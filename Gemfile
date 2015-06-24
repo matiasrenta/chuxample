@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -49,6 +47,16 @@ gem 'rmagick'
 gem 'valid_email'
 # nested form (usarlo solo si el form es muy simple o realmente necesario)
 gem 'nested_form'
+
+  # bootstrap
+  gem 'bootstrap-sass', '~> 3.3.5'
+  # Use SCSS for stylesheets
+  gem 'sass-rails', '~> 5.0'
+  #gem 'sass-rails', '>= 3.2'
+
+  # autoprefixer-rails is optional, but recommended. It automatically adds the proper vendor prefixes to your CSS code when it is compiled.
+  #gem 'autoprefixer-rails'
+
 # (-)Instalados por mi
 
 
@@ -74,8 +82,4 @@ group :development, :test do
   gem 'letter_opener'
 end
 
-group :assets do
-  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-  gem "twitter-bootstrap-rails"
-end
 
