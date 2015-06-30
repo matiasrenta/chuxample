@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Chucky</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<div id="main-container" class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <div class="row">
-    <div class="col-xs-3">
-      <h3>Tealeaf Academy Todo</h3>
-      <%= link_to 'New Todo', '/users/sign_in', class: 'btn btn-success' %>
-    </div>
-    <div class="col-xs-9">
-      <%= yield %>
-    </div>
-  </div>
-</div>
-
-</body>
+<%= render "/layouts/head" %>
+<%= render "/layouts/body" %>
 </html>
 

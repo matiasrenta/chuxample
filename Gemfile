@@ -48,11 +48,16 @@ gem 'valid_email'
 # nested form (usarlo solo si el form es muy simple o realmente necesario)
 gem 'nested_form'
 
-  # bootstrap
-  gem 'bootstrap-sass', '~> 3.3.5'
-  # Use SCSS for stylesheets
-  gem 'sass-rails', '~> 5.0'
-  #gem 'sass-rails', '>= 3.2'
+# bootstrap
+gem 'bootstrap-sass', '~> 3.3.5'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+#gem 'sass-rails', '>= 3.2'
+
+# para shortcut de sass (usado en el smartAdmin them)
+#gem 'compass-rails'
+gem "compass-rails", github: "Compass/compass-rails", branch: "master"
+
 
   # autoprefixer-rails is optional, but recommended. It automatically adds the proper vendor prefixes to your CSS code when it is compiled.
   #gem 'autoprefixer-rails'
