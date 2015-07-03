@@ -52,7 +52,7 @@ gem 'nested_form'
 gem 'bootstrap-sass', '~> 3.3.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-#gem 'sass-rails', '>= 3.2'
+gem 'font-awesome-sass', '~> 4.3.0'
 
 # para shortcut de sass (usado en el smartAdmin them)
 #gem 'compass-rails'
@@ -86,5 +86,3 @@ group :development, :test do
 
   gem 'letter_opener'
 end
-
-
