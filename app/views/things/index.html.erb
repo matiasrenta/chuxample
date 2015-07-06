@@ -1,10 +1,27 @@
 <h1>Listing Things</h1>
 
-<table class="table table-bordered table-hover">
+<%= search_form_for(@q, :html => {:name => "filter_form"}) do |f| %>
+    <%= f.search_field :name_cont, :label => "Nombre" %>
+
+    <div class="actions">
+      <div class="buttons">
+        <button type="submit" class="btn btn-primary">
+          <img src="/images/glyphicons/glyphicons_320_filter.png" alt="" />
+          <%= "Filtrar" %>
+        </button>
+        <button type="submit" class="btn-primary btn-sm" name="search_clear" value="true" id="search_clear">
+          <img src="/images/glyphicons/glyphicons_067_cleaning.png" alt="" />
+          <%= "Limpiar" %>
+        </button>
+      </div>
+    </div>
+<% end %>
+
+<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
+      <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
+      <th data-hide="phone"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Age</th>
       <th>Price</th>
       <th>Expires</th>
       <th>Discharged at</th>

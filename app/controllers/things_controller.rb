@@ -1,10 +1,12 @@
 class ThingsController < ApplicationController
+
+
   before_action :set_thing, only: [:show, :edit, :update, :destroy]
 
   # GET /things
   # GET /things.json
   def index
-    @things = Thing.all
+    @things = do_index(Thing, params)
   end
 
   # GET /things/1

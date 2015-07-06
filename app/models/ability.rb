@@ -33,9 +33,9 @@ class Ability
     send(@user.role.name)
   end
 
-  def role_name
+  def superuser
     can :manage, :all
-    can_not_for_everyone
+    cannot_for_everyone
   end
 
   #este metodo es para restringir cosas a nivel negocio, no importa el perfil
