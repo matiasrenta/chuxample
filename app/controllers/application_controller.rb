@@ -5,14 +5,38 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :set_cache_buster
   before_action :authenticate_user!
+  before_action :set_content_title#, :set_user_language
+
 
   def index
     render 'layouts/application'
   end
 
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
 
 
+  def set_content_title(title = nil)
+    if title.nil?
+      if action_name == "index"
+        title = [t("activerecord.models.#{controller_name.singularize}", count: 2)]
+      else
+        title = [t("activerecord.models.#{controller_name.singularize}", count: 1), t("activerecord.actions.#{action_name}")]
+      end
+    end
+    #session["content_title"]
+    @content_title = title[0] if title.size == 1
+    @content_title = "#{title[0]} <span>> #{title[1]} </span>" if title.size == 2
+  end
+
+  def set_user_language
+    I18n.locale = user_signed_in? ? current_user.local.to_sym : I18n.default_locale
+  end
 
   def do_index(model, params, collection = nil, default_order = false, paginate = true, order_by = nil, includes = nil)
     authorize!(:read, model)
