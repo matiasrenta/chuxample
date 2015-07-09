@@ -23,9 +23,10 @@ es:
   "true": "Sí"
   "false": "No"
 
+
   date:
     input:
-      formats: [:default, :long, :short, :system] # <- this and ...
+      formats: ['default', 'short', 'long', 'long_day', 'system'] # <- this and ...
 
     formats:
       default: "%d/%m/%Y"

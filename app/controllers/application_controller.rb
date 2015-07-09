@@ -10,16 +10,21 @@ class ApplicationController < ActionController::Base
   before_action :set_content_title#, :set_user_language
 
 
-  def index
-    render 'layouts/application'
-  end
-
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
 
+  def access_denied
+    set_content_title(t("screens.labels.access_denied"))
+  end
+
+  def action_controller_error
+    raise ActiveRecord::RecordNotFound.new("Probably a routing error")
+  end
+
+  protected ####################################### PROTECTED ###################################################
 
   def set_content_title(title = nil)
     if title.nil?
@@ -54,7 +59,6 @@ class ApplicationController < ActionController::Base
     end
 
     nodel_collection = @q.result(distinct: true)
-
     if paginate
       nodel_collection.paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
     else
@@ -84,14 +88,41 @@ class ApplicationController < ActionController::Base
     cookies[:per_page]
   end
 
-  def borrame
-    per_page = params[:per_page].blank? ? 30 : params[:per_page].to_i
-    @q = PublicActivity::Activity.order('id desc').ransack(params[:q])
-    public_activities = @q.result(distinct: true)
-    @public_activities = public_activities.paginate(:page => params[:page].blank? ? 1 : params[:page], :per_page => per_page)
-    @pagination = { :total => @public_activities.total_entries, :page => @public_activities.current_page, :per_page => per_page}
-    respond_with({public_activities: @public_activities, pagination: @pagination})
+  private ############################################ PRIVATE #################################################
+
+  def after_sign_out_path_for(user)
+    new_user_session_path
   end
+
+  rescue_from Exception, :with => :render_500
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  #rescue_from CanCan::AccessDenied do |exception|
+  #  redirect_to "/application/access_denied", :alert => t("screens.labels.access_denied")
+  #end
+
+  def render_404(exception)
+    set_content_title(t("screens.errors.not_found_404"))
+    @not_found_path = exception.message
+    respond_to do |format|
+      format.html { render template: 'errors/not_found', layout: 'error', status: 404 }
+      format.all { render :nothing => true, :status => 404 }
+    end
+  end
+
+  def render_500(exception)
+    set_content_title(t("screens.errors.internal_server_error_500"))
+    @msg = exception.message + " -- Clase: "
+    @backtrace_html = exception.backtrace.join("<br/>")
+    backtrace_log = exception.backtrace.join("\n")
+    logger.info @msg
+    logger.info backtrace_log
+    respond_to do |format|
+      format.html { render template: 'errors/internal_server_error', layout: 'error', status: 500 }
+      format.all { render :nothing => true, :status => 500 }
+    end
+    #ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver #para que me notifique por mail en production
+  end
+
 
 
 end
