@@ -33,7 +33,7 @@ class ThingsController < ApplicationController
         format.html { redirect_to @thing, notice: 'Thing was successfully created.' }
         format.json { render :show, status: :created, location: @thing }
       else
-        format.html { render :new }
+        format.html { flash[:alert] = generate_alert_msg(@thing); render :new }
         format.json { render json: @thing.errors, status: :unprocessable_entity }
       end
     end

@@ -120,7 +120,7 @@
 
     <!-- logout button -->
     <div id="logout" class="btn-header transparent pull-right">
-      <span> <%= link_to raw("<i class='fa fa-sign-out'></i>"), :destroy_user_session, data: {method: :delete, action: "userLogout", title: "Sign Out"} %> </span>
+      <span> <%= link_to raw("<i class='fa fa-sign-out'></i>"), :destroy_user_session, title: "Sign Out", data: {method: :delete, action: "userLogout"} %> </span>
     </div>
     <!-- end logout button -->
 

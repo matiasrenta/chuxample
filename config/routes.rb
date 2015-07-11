@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: 'welcome#index'
 
-  match '*path' => "application#action_controller_error", via: [:get, :post, :put, :delete]
+  #match '*path' => "application#action_controller_error", via: [:get, :post]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

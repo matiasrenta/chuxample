@@ -3,7 +3,9 @@
 <header id="header">
 
   <div id="logo-group">
-    <span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
+    <span id="logo">
+      <%= image_tag("logo.png", alt:"Chucky") %>
+    </span>
   </div>
 
   <span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Need an account?</span> <a href="register.html" class="btn btn-danger">Create account</a> </span>
@@ -28,7 +30,8 @@
             </div>
           </div>
 
-          <img src="img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">
+          <%= image_tag("demo/iphoneview.png", class:"pull-right display-image", alt:"", style: "width:210px") %>
+          <!--img src="img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px" -->
 
         </div>
 
@@ -50,47 +53,7 @@
       </div>
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
         <div class="well no-padding">
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'login-form', class: 'smart-form client-form' }) do |f| %>
-          <!--form action="index.html" id="login-form" class="smart-form client-form" -->
-            <header>
-              Sign In
-            </header>
-
-            <fieldset>
-
-              <section>
-                <label class="label">E-mail</label>
-                <label class="input"> <i class="icon-append fa fa-user"></i>
-                  <%= f.input :email, label: false, autofocus: true %>
-                  <!-- input type="email" name="email" -->
-                  <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
-              </section>
-
-              <section>
-                <label class="label">Password</label>
-                <label class="input"> <i class="icon-append fa fa-lock"></i>
-                  <%= f.input :password, label: false, required: false %>
-                  <!-- input type="password" name="password" -->
-                  <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
-                <div class="note">
-                  <%= render "devise/shared/links" %>
-                </div>
-              </section>
-
-              <section>
-                <label class="checkbox">
-                  <i></i>Stay signed in
-                  <%= f.input :remember_me, label: false, as: :boolean, input_html: {checked: true} if devise_mapping.rememberable? %>
-                  <!-- input type="checkbox" name="remember" checked="" -->
-                  </label>
-              </section>
-            </fieldset>
-            <footer>
-              <%= f.button :submit, "Sign in", class: 'btn btn-primary' %>
-            </footer>
-          <!--/form -->
-          <% end %>
-
+          <%= yield %>
         </div>
 
         <h5 class="text-center"> - Or sign in using -</h5>

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_cache_buster
   before_action :authenticate_user!
-  before_action :set_content_title#, :set_user_language
+  before_action :set_content_title #, :set_user_language
 
 
   def set_cache_buster
@@ -21,7 +21,11 @@ class ApplicationController < ActionController::Base
   end
 
   def action_controller_error
-    raise ActiveRecord::RecordNotFound.new("Probably a routing error")
+    if current_user
+      raise ActiveRecord::RecordNotFound.new("Probably a routing error")
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   protected ####################################### PROTECTED ###################################################
@@ -88,6 +92,16 @@ class ApplicationController < ActionController::Base
     cookies[:per_page]
   end
 
+  def generate_alert_msg(model_instance)
+    if model_instance.errors.any?
+      if model_instance.errors.count > 1
+        "#{model_instance.errors.count} #{t('screens.errors.many_errors')}: #{(model_instance.errors.include?(:base) && model_instance.errors.get(:base).kind_of?(String)) ? model_instance.errors.get(:base) : model_instance.errors.get(:base).join(". ")}"
+      else
+        "#{model_instance.errors.count} #{t('screens.errors.one_error')}: #{model_instance.errors.get(:base)}"
+      end
+    end
+  end
+
   private ############################################ PRIVATE #################################################
 
   def after_sign_out_path_for(user)
@@ -123,6 +137,5 @@ class ApplicationController < ActionController::Base
     #ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver #para que me notifique por mail en production
   end
 
-
-
 end
+
