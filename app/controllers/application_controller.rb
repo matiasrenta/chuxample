@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   protected ####################################### PROTECTED ###################################################
 
-  def set_content_title(title = nil)
+  def set_content_title(icon = nil, title = nil)
     if title.nil?
       if action_name == "index"
         title = [t("activerecord.models.#{controller_name.singularize}", count: 2)]
@@ -33,8 +33,10 @@ class ApplicationController < ActionController::Base
       end
     end
     #session["content_title"]
-    @content_title = title[0] if title.size == 1
-    @content_title = "#{title[0]} <span>> #{title[1]} </span>" if title.size == 2
+    @content_title = Hash.new
+    @content_title[:title] = title[0] if title.size == 1
+    @content_title[:title] = "#{title[0]} <span>> #{title[1]} </span>" if title.size == 2
+    @content_title[:icon]  = icon
   end
 
   def set_user_language

@@ -6,6 +6,7 @@ class ThingsController < ApplicationController
   # GET /things
   # GET /things.json
   def index
+    set_content_title('fa fa-lg fa-fw fa-cube')
     @things = do_index(Thing, params)
   end
 
