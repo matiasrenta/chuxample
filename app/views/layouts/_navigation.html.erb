@@ -22,14 +22,13 @@
         <%= link_to raw("<i class='fa fa-lg fa-fw fa-home'></i><span class='menu-item-parent'>Dashboard</span>"), root_path, {title: 'Dashboard'}  %>
       </li>
       <li>
-        <a href="inbox.html"><i class="fa fa-lg fa-fw fa-inbox"></i>
-          <span class="menu-item-parent">Inbox</span><span class="badge pull-right inbox-badge">14</span></a>
+        <%= link_to raw("<i class='fa fa-lg fa-fw fa-inbox'></i><span class='menu-item-parent'>Inbox</span><span class='badge pull-right inbox-badge'>14</span>"), things_path, {title: 'Dashboard'}  %>
       </li>
       <li>
         <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Graphs</span></a>
         <ul>
           <li>
-            <a href="flot.html">Flot Chart</a>
+            <%= link_to 'Cosa 1', thing_path(1), {title: 'Cosa 1'}  %>
           </li>
           <li>
             <a href="morris.html">Morris Charts</a>
