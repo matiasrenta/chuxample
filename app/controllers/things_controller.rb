@@ -6,6 +6,7 @@ class ThingsController < ApplicationController
   # GET /things
   # GET /things.json
   def index
+    set_content_title('fa fa-lg fa-fw fa-cube')
     @things = do_index(Thing, params)
   end
 
@@ -33,7 +34,7 @@ class ThingsController < ApplicationController
         format.html { redirect_to @thing, notice: 'Thing was successfully created.' }
         format.json { render :show, status: :created, location: @thing }
       else
-        format.html { render :new }
+        format.html { flash[:alert] = generate_alert_msg(@thing); render :new }
         format.json { render json: @thing.errors, status: :unprocessable_entity }
       end
     end

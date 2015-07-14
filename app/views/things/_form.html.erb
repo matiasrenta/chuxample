@@ -6,14 +6,13 @@
         file: :horizontal_file_input,
         boolean: :horizontal_boolean
 } do |f| %>
-  <%= f.error_notification %>
-
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :age %>
     <%= f.input :price %>
     <%= f.input :expires %>
     <%= f.input :discharged_at %>
+    <%= f.input :published %>
     <%= f.input :description %>
   </div>
 

@@ -1,50 +1,74 @@
-<h1>Listing Things</h1>
+<!--
+The ID "widget-grid" will start to initialize all widgets below
+You do not need to use widgets if you dont want to. Simply remove
+the <section></section> and you can use wells or panels instead
+-->
 
-<%= search_form_for(@q, :html => {:name => "filter_form"}) do |f| %>
-    <%= f.search_field :name_cont, :label => "Nombre" %>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+  <!-- row -->
+  <div class="row">
+    <!-- NEW WIDGET START -->
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <div class="actions">
-      <div class="buttons">
-        <button type="submit" class="btn btn-primary">
-          <img src="/images/glyphicons/glyphicons_320_filter.png" alt="" />
-          <%= "Filtrar" %>
-        </button>
-        <button type="submit" class="btn-primary btn-sm" name="search_clear" value="true" id="search_clear">
-          <img src="/images/glyphicons/glyphicons_067_cleaning.png" alt="" />
-          <%= "Limpiar" %>
-        </button>
+      <!-- Widget ID (each widget will need unique ID)-->
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" >
+        <header>
+          <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+          <h2>List</h2>
+          <!-- <span class="badge pull-right margin-right-5 margin-top-5">new</span> -->
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+            <!-- <input class="form-control" type="text"> -->
+
+            <div>
+              <%= search_form_for(@q, :html => {:name => "filter_form"}) do |f| %>
+                  <%= f.search_field :name_cont, :label => "Nombre" %>
+
+                  <div class="actions">
+                    <div class="buttons">
+                      <button type="submit" class="btn btn-primary">
+                        <img src="/images/glyphicons/glyphicons_320_filter.png" alt="" />
+                        <%= "Filtrar" %>
+                      </button>
+                      <button type="submit" class="btn-primary btn-sm" name="search_clear" value="true" id="search_clear">
+                        <img src="/images/glyphicons/glyphicons_067_cleaning.png" alt="" />
+                        <%= "Limpiar" %>
+                      </button>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+
+            <!-- this is what the user will see -->
+            <%= render 'index_content' %>
+
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
       </div>
-    </div>
-<% end %>
+      <!-- end widget -->
 
-<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
-  <thead>
-    <tr>
-      <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
-      <th data-hide="phone"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Age</th>
-      <th>Price</th>
-      <th>Expires</th>
-      <th>Discharged at</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    </article>
+    <!-- WIDGET END -->
+  </div>
+  <!-- end row -->
+</section>
+<!-- end widget grid -->
 
-  <tbody>
-    <% @things.each do |thing| %>
-      <tr>
-        <td><%= thing.name %></td>
-        <td><%= thing.age %></td>
-        <td><%= thing.price %></td>
-        <td><%= thing.expires %></td>
-        <td><%= thing.discharged_at %></td>
-        <td><%= thing.description %></td>
-        <td><%= link_to 'Show', thing %></td>
-        <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
-        <td><%= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?'} %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= link_to 'New Thing', new_thing_path, class: 'btn-primary btn-sm' %>

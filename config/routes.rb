@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+
   resources :things
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root to: 'application#index'
+  root to: 'welcome#index'
+
+  #match '*unmatched_route', :to => 'application#raise_not_found!', :via => :all
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

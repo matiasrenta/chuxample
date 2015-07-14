@@ -48,7 +48,6 @@ Use search to find needed section.
   <%= render "layouts/navigation" %>
   <%= render "layouts/main_panel" %>
   <%= render "layouts/footer" %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <script type='text/javascript'>pageSetUp();</script>
+
+  <%= render "layouts/bottom_javascripts" %>
 </body>
