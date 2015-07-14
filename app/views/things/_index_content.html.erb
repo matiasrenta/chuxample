@@ -1,0 +1,36 @@
+<div class="control-buttons" style="margin-top: 15px; margin-bottom: 15px; margin-left: 10px;">
+  <%= link_to 'New Thing', new_thing_path, class: 'btn-primary btn-sm' %>
+</div>
+
+<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+  <thead>
+  <tr>
+    <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
+    <th data-hide="phone"><i class="fa fa-fw fa-phone text-muted hidden-md hidden-sm hidden-xs"></i> Age</th>
+    <th>Price</th>
+    <th>Expires</th>
+    <th>Discharged at</th>
+    <th>Description</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @things.each do |thing| %>
+      <tr>
+        <td><%= thing.name %></td>
+        <td><%= thing.age %></td>
+        <td><%= thing.price %></td>
+        <td><%= thing.expires %></td>
+        <td><%= thing.discharged_at %></td>
+        <td><%= thing.description %></td>
+        <td><%= link_to 'Show', thing %></td>
+        <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
+        <td><%= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= will_paginate @things %>
