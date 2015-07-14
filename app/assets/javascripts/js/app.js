@@ -248,6 +248,7 @@ var calc_navbar_height = function() {
 						$.root_.toggleClass("minified");
 						$.root_.removeClass("hidden-menu");
 						$('html').removeClass("hidden-menu-mobile-lock");
+						// FIXME fix effects
 						// $this.effect("highlight", {}, 500);
 					}
 			    },
