@@ -36,7 +36,8 @@ gem 'public_activity'
 # para manejar seed iniciales y posteriores de load de ddbb
 gem 'seed-fu', '~> 2.3'
 # pagination
-gem 'will_paginate', '~> 3.0.6'
+#gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 # Settings
 gem 'rails-settings-cached'
 # manejo de uploads
