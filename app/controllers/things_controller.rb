@@ -1,7 +1,7 @@
 class ThingsController < ApplicationController
+  load_and_authorize_resource except: :index, param_method: :thing_params
 
-
-  before_action :set_thing, only: [:show, :edit, :update, :destroy]
+  #before_action :set_thing, only: [:show, :edit, :update, :destroy]
 
   # GET /things
   # GET /things.json
@@ -17,7 +17,6 @@ class ThingsController < ApplicationController
 
   # GET /things/new
   def new
-    @thing = Thing.new
   end
 
   # GET /things/1/edit
@@ -27,7 +26,6 @@ class ThingsController < ApplicationController
   # POST /things
   # POST /things.json
   def create
-    @thing = Thing.new(thing_params)
 
     respond_to do |format|
       if @thing.save

@@ -34,7 +34,9 @@ class Ability
   end
 
   def superuser
-    can :manage, :all
+    #can :manage, :all
+    can :manage, Thing
+    can :manage, Product
     cannot_for_everyone
   end
 

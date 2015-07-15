@@ -14,7 +14,7 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
     puts "options: #{options.to_s}"
     puts "options['chucky']: #{options['chucky']}"
     puts "puts ##################"
-    copy_file "chucky_partial.rb", "config/initializers/chucky_partial.rb"
+    #copy_file "chucky_partial.rb", "config/initializers/chucky_partial.rb"
   end
 
   def invoke_scaffold
