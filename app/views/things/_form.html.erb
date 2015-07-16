@@ -1,3 +1,9 @@
+<div class="jarviswidget" id="wid-id-0">
+  <header>
+    <h2>New/Edit</h2>
+  </header>
+  <div>
+    <div class="widget-body">
 <%= simple_form_for @thing, html: { class: 'form-horizontal' },
     wrapper: :horizontal_form,
     wrapper_mappings: {
@@ -6,17 +12,20 @@
         file: :horizontal_file_input,
         boolean: :horizontal_boolean
 } do |f| %>
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :age %>
-    <%= f.input :price %>
-    <%= f.input :expires %>
-    <%= f.input :discharged_at %>
-    <%= f.input :published %>
-    <%= f.input :description %>
-  </div>
+      <div class="form-inputs">
+        <%= f.input :name %>
+        <%= f.input :age %>
+        <%= f.input :price %>
+        <%= f.input :expires %>
+        <%= f.input :discharged_at %>
+        <%= f.input :published %>
+        <%= f.input :description %>
+      </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn-primary btn-sm' %>
-  </div>
+      <div class="form-actions">
+        <%= f.button :submit, class: 'btn-primary btn-sm' %>
+      </div>
 <% end %>
+    </div>
+  </div>
+</div>
