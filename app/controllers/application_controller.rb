@@ -139,7 +139,7 @@ class ApplicationController < ActionController::Base
       format.html { render template: 'errors/internal_server_error', layout: 'error', status: 500 }
       format.all { render :nothing => true, :status => 500 }
     end
-    #ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver #para que me notifique por mail en production
+    ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver #para que me notifique por mail en production
   end
 
 end

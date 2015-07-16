@@ -48,6 +48,8 @@ gem 'rmagick'
 gem 'valid_email'
 # nested form (usarlo solo si el form es muy simple o realmente necesario)
 gem 'nested_form'
+# exceptions sender by email
+gem 'exception_notification'
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
