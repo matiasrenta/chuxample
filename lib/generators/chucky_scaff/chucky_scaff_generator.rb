@@ -1,7 +1,7 @@
 require 'rails/generators/rails/scaffold/scaffold_generator'
 
 class ChuckyScaffGenerator < Rails::Generators::NamedBase
-  desc "ejecuta scaffold y luego hace mis personalizaciones"
+  desc "Generador mágico que solo la malicia de chucky puede crear"
 
   source_root File.expand_path('../templates', __FILE__)
 
@@ -9,6 +9,7 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option :i18n_plural_name
   class_option 'no-relationize'
   class_option :authorization # ejemplo: --authorization=superuser:manage%director:read-edit-destroy
+  class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
 
   def prueba
     puts "options: #{options.to_s}"
@@ -53,6 +54,22 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
         inject_into_file "app/models/ability.rb", after: "def #{role}\n" do
           "\t\tcan [:#{grants.join(', :')}], #{name.camelize}\n"
         end
+      end
+    end
+  end
+
+  def public_activize
+    if options[:public_activity]
+      if options[:public_activity] == 'public_activity'
+        tracked = 'tracked'
+      else
+        tracked = "tracked only: [:#{options[:public_activity].split(':').join(', :')}]"
+      end
+      inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
+        "\tinclude PublicActivity::Model\n\t#{tracked}\n\ttracked owner: ->(controller, model) {controller.try(:current_user)}\n\t#tracked recipient: ->(controller, model) { model.xxxx }
+  tracked :params => {
+              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes}
+          }\n"
       end
     end
   end
