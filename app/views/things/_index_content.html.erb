@@ -9,15 +9,15 @@
       <form class="form-inline">
         <div class="form-group">
           <label for="filter-name">Name</label>
-          <input id="filter-name" type="text" placeholder="Jane Doe" class="form-control input-xs">
+          <input id="filter-name" type="text" placeholder="Jane Doe" class="form-control input-sm">
         </div>
         <div class="form-group">
           <label for="filter-age">Age</label>
-          <input id="filter-age" type="number" placeholder="21" class="form-control input-xs">
+          <input id="filter-age" type="number" placeholder="21" class="form-control input-sm">
         </div>
         <div class="form-group">
           <label for="filter-gender">Gender</label>
-          <select id="filter-gender" class="form-control input-xs">
+          <select id="filter-gender" class="form-control input-sm">
             <option></option>
             <option>Female</option>
             <option>Male</option>
@@ -26,23 +26,25 @@
         </div>
         <div class="form-group">
           <label for="filter-price">Price</label>
-          <input id="filter-price" type="text" placeholder="Jane Doe" class="form-control input-xs">
+          <div class="input-group input-group-sm">
+            <input id="filter-price" placeholder="0.01" min="0.01" step="0.01" type="number" class="form-control input-sm"><span class="input-group-addon"><i class="fa fa-money"></i></span>
+          </div>
         </div>
         <div class="form-group">
           <label for="filter-expires">Expires</label>
-          <input id="filter-expires" class="datepicker form-control input-xs">
+          <div class="input-group input-group-sm">
+            <input id="filter-expires" data-dateformat="dd/mm/yy" placeholder="Select a date" type="text" class="form-control datepicker hasDatepicker input-sm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
         </div>
         <div class="form-group">
           <label for="filter-discharged">Discharged</label>
-          <select id="filter-discharged" class="form-control input-xs">
-            <option></option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
+          <div class="input-group input-group-sm">
+            <input id="filter-discharged" data-dateformat="dd/mm/yy" placeholder="Select a date" type="text" class="form-control datepicker hasDatepicker input-sm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
         </div>
         <div class="form-group">
           <label for="filter-description">Description</label>
-          <input id="filter-description" type="text" placeholder="jane.doe@example.com" class="form-control input-xs">
+          <input id="filter-description" type="text" placeholder="jane.doe@example.com" class="form-control input-sm">
         </div>
         <div class="btn-group pull-right">
           <button type="reset" class="btn btn-default form-control">Reset</button>
@@ -84,8 +86,8 @@
     </tbody>
   </table>
   <div class="row">
-    <div class="col-xs-4 col-offset-8">
-      <select class="form-control input-xs">
+    <div class="col-sm-4 col-sm-4 col-xs-12 pull-right">
+      <select class="form-control input-sm">
         <option>10</option>
         <option>20</option>
         <option>50</option>
