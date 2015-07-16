@@ -31,13 +31,11 @@ class Ability
 
     @user = user
     send(@user.role.name)
+    cannot_for_everyone
   end
 
   def superuser
-    #can :manage, :all
     can :manage, Thing
-    can :manage, Product
-    cannot_for_everyone
   end
 
   #este metodo es para restringir cosas a nivel negocio, no importa el perfil

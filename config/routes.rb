@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :things
   devise_for :users
   get "application/access_denied"
