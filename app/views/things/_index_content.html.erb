@@ -1,9 +1,6 @@
 
 <div class="control-buttons">
-  <div class="btn-group">
-    <%= link_to raw('<i class="fa fa-file"></i> Nuevo'), new_thing_path, class: 'btn btn-sm btn-primary' %>
-    <a aria-expanded="false" aria-controls="filters" data-toggle="collapse" href="#filters" role="button" class="btn btn-sm btn-primary"><i class="fa fa-filter"></i>Filter</a>
-  </div>
+  <div class="btn-group"><%= link_to raw('<i class="fa fa-file"></i> New'), new_thing_path, class: 'btn btn-sm btn-primary' %><a aria-expanded="false" aria-controls="filters" data-toggle="collapse" href="#filters" role="button" class="btn btn-sm btn-primary"><i class="fa fa-filter"></i>Filter</a></div>
   <div id="filters" class="collapse">
     <div class="well">
       <form class="form-inline">
@@ -47,53 +44,46 @@
           <input id="filter-description" type="text" placeholder="jane.doe@example.com" class="form-control input-sm">
         </div>
         <div class="btn-group pull-right">
-          <button type="reset" class="btn btn-default form-control">Reset</button>
-          <button type="submit" class="btn btn-primary form-control">Filter</button>
+          <button type="reset" class="btn btn-sm btn-default form-control">Reset</button>
+          <button type="submit" class="btn btn-sm btn-primary form-control">Filter</button>
         </div>
       </form>
     </div>
   </div>
-  <table id="dt_basic" width="100%" class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th data-class="expand">Name</th>
-        <th data-class="expand">Age</th>
-        <th>Gender</th>
-        <th>Price</th>
-        <th>Expires</th>
-        <th>Discharged</th>
-        <th>Description</th>
-        <th colspan="3">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @things.each do |thing| %>
-      <tr>
-        <td><%= thing.name %></td>
-        <td><%= thing.age %></td>
-        <td><%#= thing.gender %></td>
-        <td><%= thing.price %></td>
-        <td><%= thing.expires %></td>
-        <td><%= thing.discharged_at %></td>
-        <td><%= thing.description %></td>
-        <td colspan=3>
-          <%= link_to raw('<i class="fa fa-binoculars"></i>'), thing, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Show' } %>
-          <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_thing_path(thing), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Edit' } %>
-          <%= link_to raw('<i class="fa fa-trash"></i>'), thing, method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title': 'Destroy'} %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="row">
-    <div class="col-sm-4 col-sm-4 col-xs-12 pull-right">
-      <select class="form-control input-sm">
-        <option>10</option>
-        <option>20</option>
-        <option>50</option>
-        <option>100</option>
-      </select>
-      <%= will_paginate @things, renderer: BootstrapPagination::Rails %>
-    </div>
-  </div>
 </div>
+<table id="dt_basic" width="100%" class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th data-class="expand">Name</th>
+      <th data-class="expand">Age</th>
+      <th>Gender</th>
+      <th>Price</th>
+      <th>Expires</th>
+      <th>Discharged</th>
+      <th>Description</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody><% @things.each do |thing| %>
+    <tr>
+      <td><%= thing.name %></td>
+      <td><%= thing.age %></td>
+      <td><%#= thing.gender %></td>
+      <td><%= thing.price %></td>
+      <td><%= thing.expires %></td>
+      <td><%= thing.discharged_at %></td>
+      <td><%= thing.description %></td>
+      <td colspan=3>
+        <%= link_to raw('<i class="fa fa-binoculars"></i>'), thing, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Show' } %>
+        <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_thing_path(thing), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Edit' } %>
+        <%= link_to raw('<i class="fa fa-trash"></i>'), thing, method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title': 'Destroy'} %>
+      </td>
+    </tr><% end %>
+  </tbody>
+</table>
+<select class="form-control input-sm">
+  <option>10</option>
+  <option>20</option>
+  <option>50</option>
+  <option>100</option>
+</select><%= will_paginate @things, renderer: BootstrapPagination::Rails, class: 'no-margin' %>
