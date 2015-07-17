@@ -27,6 +27,9 @@
 //= require js/plugin/bootstrap-slider/bootstrap-slider
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
+//= require js/plugin/jquery-ui/ui/core.js
+//= require js/plugin/jquery-ui/ui/widget.js
+//= require js/plugin/jquery-ui/ui/datepicker.js
 //= require js/app
 //= require js/speech/voicecommand
 // require js/smart-chat-ui/smart.chat.ui

@@ -1,32 +1,76 @@
-<p>
-  <strong>Name:</strong>
-  <%= @thing.name %>
-</p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @thing.age %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @thing.price %>
-</p>
-
-<p>
-  <strong>Expires:</strong>
-  <%= @thing.expires %>
-</p>
-
-<p>
-  <strong>Discharged at:</strong>
-  <%= @thing.discharged_at %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @thing.description %>
-</p>
-
-<%= link_to 'Edit', edit_thing_path(@thing) %> |
-<%= link_to 'Back', things_path %>
+<section id="widget-grid">
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-0" class="jarviswidget">
+      <header>
+        <h2>Thing</h2>
+      </header>
+      <div>
+        <div class="widget-body no-padding">
+          <div class="control-buttons">
+            <div class="btn-group">
+              <%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), things_path, class: 'btn btn-sm btn-primary' %>
+              <%= link_to raw('<i class="fa fa-pencil"></i> Edit'), edit_thing_path(@thing), class: 'btn btn-sm btn-primary' %>
+            </div>
+          </div>
+          <div class="form-inputs">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Name</label>
+              <div class="col-sm-9">
+                <p class="form-control-static"><%= @thing.name %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Age</label>
+              <div class="col-sm-9">
+                <p class="form-control-static"><%= @thing.age %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Price</label>
+              <div class="col-sm-9">
+                <p class="form-control-static"><%= @thing.price %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Expires</label>
+              <div class="col-sm-9">
+                <p class="form-control-static"><%= @thing.expires %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Discharged at</label>
+              <div class="col-sm-9">
+                <p class="form-control-static"><%= @thing.discharged_at %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Description</label>
+              <div class="col-sm-9">
+                <p class="form-control-static"><%= @thing.description %></p>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions no-margin no-border">
+            <div class="btn-group">
+              <%= link_to raw('<i class="fa fa-cross"></i> Cancel'), things_path, class: 'btn btn-primary btn-sm' %>
+              <%= link_to raw('<i class="fa fa-check"></i> OK'), edit_thing_path(@thing), class: 'btn btn-primary btn-sm' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-1" class="jarviswidget">
+      <header>
+        <h2>Details</h2>
+      </header>
+      <div>
+        <div class="widget-body">
+          <!-- content-->
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
