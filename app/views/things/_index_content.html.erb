@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
           <label for="filter-age">Age</label>
-          <input id="filter-age" type="number" placeholder="21" class="form-control input-sm">
+          <input id="filter-age" min="0" max="120" type="number" placeholder="21" class="form-control input-sm">
         </div>
         <div class="form-group">
           <label for="filter-gender">Gender</label>
@@ -22,30 +22,50 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="filter-price">Price</label>
+          <label for="filter-price-from">Price (from)</label>
           <div class="input-group input-group-sm">
-            <input id="filter-price" placeholder="0.01" min="0.01" step="0.01" type="number" class="form-control input-sm"><span class="input-group-addon"><i class="fa fa-money"></i></span>
+            <input id="filter-price-from" min="0.01" placeholder="0.01" step="0.01" type="number" class="form-control input-sm"><span class="input-group-addon"><i class="fa fa-money"></i></span>
           </div>
         </div>
         <div class="form-group">
-          <label for="filter-expires">Expires</label>
+          <label for="filter-price-to">Price (to)</label>
           <div class="input-group input-group-sm">
-            <input id="filter-expires" data-dateformat="dd/mm/yy" placeholder="Select a date" type="text" class="form-control datepicker hasDatepicker input-sm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            <input id="filter-price-to" min="0.01" placeholder="0.01" step="0.01" type="number" class="form-control input-sm"><span class="input-group-addon"><i class="fa fa-money"></i></span>
           </div>
         </div>
         <div class="form-group">
-          <label for="filter-discharged">Discharged</label>
+          <label for="filter-expires-from">Expires (from)</label>
           <div class="input-group input-group-sm">
-            <input id="filter-discharged" data-dateformat="dd/mm/yy" placeholder="Select a date" type="text" class="form-control datepicker hasDatepicker input-sm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            <input data-dateformat="dd/mm/yy" id="filter-expires-from" placeholder="Select a date" type="text" class="form-control datepicker input-sm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="filter-expires-to">Expires (to)</label>
+          <div class="input-group input-group-sm">
+            <input data-dateformat="dd/mm/yy" id="filter-expires-to" placeholder="Select a date" type="text" class="form-control datepicker input-sm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="filter-discharged-from">Discharged (from)</label>
+          <div class="input-group input-group-sm">
+            <input data-dateformat="dd/mm/yy" id="filter-discharged-from" placeholder="Select a date" type="text" class="form-control datepicker input-sm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="filter-discharged-to">Discharged (to)</label>
+          <div class="input-group input-group-sm">
+            <input data-dateformat="dd/mm/yy" id="filter-discharged-to" placeholder="Select a date" type="text" class="form-control datepicker input-sm"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
           </div>
         </div>
         <div class="form-group">
           <label for="filter-description">Description</label>
           <input id="filter-description" type="text" placeholder="jane.doe@example.com" class="form-control input-sm">
         </div>
-        <div class="btn-group pull-right">
-          <button type="reset" class="btn btn-sm btn-default form-control">Reset</button>
-          <button type="submit" class="btn btn-sm btn-primary form-control">Filter</button>
+        <div class="form-actions no-padding">
+          <div class="btn-group">
+            <button type="reset" class="btn btn-sm btn-default form-control">Reset</button>
+            <button type="submit" class="btn btn-sm btn-primary form-control">Filter</button>
+          </div>
         </div>
       </form>
     </div>
@@ -73,10 +93,11 @@
       <td><%= thing.expires %></td>
       <td><%= thing.discharged_at %></td>
       <td><%= thing.description %></td>
+
       <td colspan=3>
-        <%= link_to raw('<i class="fa fa-binoculars"></i>'), thing, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Show' } %>
-        <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_thing_path(thing), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Edit' } %>
-        <%= link_to raw('<i class="fa fa-trash"></i>'), thing, method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title': 'Destroy'} %>
+       <%= link_to raw('<i class="fa fa-binoculars"></i>'), thing, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Show' } %>
+       <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_thing_path(thing), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Edit' } %>
+       <%= link_to raw('<i class="fa fa-trash"></i>'), thing, method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title': 'Destroy'} %>
       </td>
     </tr><% end %>
   </tbody>
