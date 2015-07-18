@@ -4,4 +4,5 @@ class Settings < RailsSettings::CachedSettings
   defaults[:manager_premium] = 19
   defaults[:show_contract_fields] = true
   defaults[:launch_mode] = [:auto, :manual]
+
 end
