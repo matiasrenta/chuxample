@@ -34,9 +34,26 @@
 //= require js/plugin/datatables/jquery.dataTables
 //= require js/plugin/datatables/dataTables.bootstrap
 //= require js/plugin/datatable-responsive/dataTables.responsive
+
+
+
+
 //= require js/app
 //= require js/speech/voicecommand
 // require js/smart-chat-ui/smart.chat.ui
 // require js/smart-chat-ui/smart.chat.manager
+
+
+// require js/plugin/flot/jquery.flot.fillbetween
+// require js/plugin/flot/jquery.flot.orderBar
+//= require js/plugin/flot/jquery.flot.cust
+//= require js/plugin/flot/jquery.flot.resize
+//= require js/plugin/flot/jquery.flot.fillbetween
+//= require js/plugin/flot/jquery.flot.orderBar.js
+//= require js/plugin/flot/jquery.flot.pie
+//= require js/plugin/flot/jquery.flot.time
+// require js/plugin/flot/jquery.flot.tooltip
+
+
 //= require jquery_nested_form
 //= require js/common
