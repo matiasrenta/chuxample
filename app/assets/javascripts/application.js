@@ -27,8 +27,8 @@
 //= require js/plugin/bootstrap-slider/bootstrap-slider
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
-//= require js/plugin/jquery-ui/ui/core
-//= require js/plugin/jquery-ui/ui/widget
+// require js/plugin/jquery-ui/ui/core
+// require js/plugin/jquery-ui/ui/widget
 //= require js/plugin/jquery-ui/ui/datepicker
 //= require js/plugin/datatables/jquery.dataTables
 //= require js/plugin/datatables/dataTables.bootstrap
