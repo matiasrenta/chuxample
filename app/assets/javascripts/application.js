@@ -33,7 +33,7 @@
 //= require js/plugin/jquery-ui/ui/datepicker
 //= require js/plugin/datatables/jquery.dataTables
 //= require js/plugin/datatables/dataTables.bootstrap
-//= require js/plugin/datatable-responsive/datatables.responsive
+//= require js/plugin/datatable-responsive/dataTables.responsive
 //= require js/app
 //= require js/speech/voicecommand
 // require js/smart-chat-ui/smart.chat.ui
