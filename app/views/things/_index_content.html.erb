@@ -60,17 +60,17 @@
     </form>
   </div>
 </div>
-<table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
+<table id="dt_basic" width="100%" class="display responsive table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th data-class="expand">Name</th>
-      <th data-hide="phone,tablet">Age</th>
-      <th data-hide="phone,tablet">Gender</th>
-      <th data-hide="phone,tablet">Price</th>
-      <th data-hide="phone,tablet">Expires</th>
-      <th data-hide="phone,tablet">Discharged</th>
-      <th data-hide="phone,tablet">Description</th>
-      <th>Actions</th>
+      <th class="all">Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Price</th>
+      <th>Expires</th>
+      <th>Discharged</th>
+      <th>Description</th>
+      <th class="all">Actions</th>
     </tr>
   </thead>
   <tbody><% @things.each do |thing| %>
