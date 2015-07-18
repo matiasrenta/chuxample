@@ -1,5 +1,56 @@
 // need to override just one or two small stylistic things and don't want to edit the main .less files?  Add those overrides here
+
+#filters {
+  background-color: #ddd;
+
+  .form-actions {
+    background-color: #ddd;
+  }
+
+  margin-top: 5px;
+  padding: 13px 14px 15px;
+}
+
+.block {
+  display: block !important;
+}
+
+.form-actions {
+  border: none;
+  margin: auto;
+
+  > .form-control {
+    display: inline;
+    width: inherit;
+  }
+}
+
 .form-inline label {
   display: block;
   margin: 0;
+}
+
+.spanning {
+  .input-group .form-control:first-child {
+    margin-right: 5px;
+  }
+  input {
+    width: 47% !important;
+  }
+}
+
+.table-actions a {
+  margin-right: 5px;
+}
+
+.widget-body {
+
+  > .control-buttons {
+    margin: 5px;
+  }
+
+  > table {
+    margin-bottom: 15px;
+  }
+
 }

@@ -22,7 +22,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
 // @import "scss/library/fontawesome/font-awesome";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -32,5 +31,8 @@
 @import "scss/smartadmin-production";
 @import "scss/smartadmin-skins";
 
-
 @import "compass";
+
+// datatables
+@import "scss/smartadmin/_plugin-dataTables.bootstrap";
+@import "scss/smartadmin/_plugin-dataTables.responsive";
