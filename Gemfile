@@ -40,6 +40,7 @@ gem 'seed-fu', '~> 2.3'
 gem 'will_paginate-bootstrap'
 # Settings
 gem 'rails-settings-cached'
+gem 'rails-settings-ui', '~> 0.3.0'
 # manejo de uploads
 gem 'carrierwave'
 # manejo de imagenes
@@ -50,6 +51,7 @@ gem 'valid_email'
 gem 'nested_form'
 # exceptions sender by email
 gem 'exception_notification'
+
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'

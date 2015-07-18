@@ -259,6 +259,20 @@ es:
       even: "debe ser par"
       cant_be_in_the_future: "No puede ser en el futuro"
 
+  settings:
+    index:
+      save_all: 'Guardar todos'
+      title: 'Application Settings'
+      description: 'Variable'
+      value: 'Valor'
+    attributes:
+      pindonga:
+        name: 'Pindongon'
+      foo:
+        name: 'foo'
+    errors:
+      default_missing: 'default_missing'
+
   activerecord:
     errors:
       template:
@@ -280,6 +294,9 @@ es:
       thing:
         one: Cosa
         other: Cosas
+      setting:
+        one: 'Configuración de la aplicación'
+        other: 'Configuración de la aplicación'
 
     actions:
       new:  'Nuevo'

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    root to: 'application#index'
+  end
+
+  mount RailsSettingsUi::Engine, at: 'admin/settings'
+
+
+
   resources :things
   devise_for :users
   get "application/access_denied"
