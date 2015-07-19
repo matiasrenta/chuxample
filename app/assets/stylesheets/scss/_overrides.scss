@@ -15,6 +15,14 @@
   display: block !important;
 }
 
+body.mobile-view-activated tbody > tr:first-child:not(.parent) > td:first-child::before {
+  content: '[+] ';
+}
+
+body.mobile-view-activated tbody > tr.parent:first-child > td:first-child::before {
+  content: '[-] ';
+}
+
 .form-actions {
   border: none;
   margin: auto;
