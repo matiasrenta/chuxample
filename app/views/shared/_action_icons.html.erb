@@ -1,0 +1,11 @@
+<%= link_to raw('<i class="fa fa-binoculars"></i>'), locals[:target], rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => 'Show'} if can? :read, locals[:target] %>
+<%= link_to raw('<i class="fa fa-pencil"></i>'), locals[:model_edit_path], rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => 'Edit'} if can? :update, locals[:target] %>
+<%= link_to raw('<i class="fa fa-trash"></i>'), locals[:target], method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title' => 'Destroy'} if can? :destroy, locals[:target] %>
+
+<% if locals[:extra_actions] %>
+    <% locals[:extra_actions].each do |extra_action| %>
+        <!-- esto no esta programado, extra_action deberá ser un hash con todas las cosas que hagan falta para crear cualquier link -->
+        <%= link_to raw('<i class="fa fa-binoculars"></i>'), locals[:target], rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => 'Show'} if can? :read, locals[:target] %>
+    <% end %>
+<% end %>
+

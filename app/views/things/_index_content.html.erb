@@ -56,14 +56,14 @@
 <table id="dt_basic" width="100%" class="display responsive table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th class="all">Name</th>
-      <th>Age</th>
-      <th>Gender</th>
-      <th>Price</th>
-      <th>Published</th>
-      <th>Expires</th>
-      <th>Discharged</th>
-      <th>Description</th>
+      <th class="all"><%= sort_link(@q, :name, 'Name') %></th>
+      <th><%= sort_link(@q, :age, 'Age') %></th>
+      <th><%= sort_link(@q, :gender, 'Gender') %></th>
+      <th><%= sort_link(@q, :price, 'Price') %></th>
+      <th><%= sort_link(@q, :published, 'Published') %></th>
+      <th><%= sort_link(@q, :expires, 'Expires') %></th>
+      <th><%= sort_link(@q, :discharged, 'Discharged') %></th>
+      <th><%= sort_link(@q, :description, 'Description') %></th>
       <th class="all">Actions</th>
     </tr>
   </thead>

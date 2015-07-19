@@ -10,14 +10,16 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option 'no-relationize'
   class_option :authorization # ejemplo: --authorization=superuser:manage%director:read-edit-destroy
   class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
-
-  def prueba
-    puts "options: #{options.to_s}"
-    #copy_file "chucky_partial.rb", "config/initializers/chucky_partial.rb"
-  end
+  class_option :migrate # para que se ejecute rake db:migrate: --migrate=true
 
   def invoke_scaffold
     invoke 'scaffold'
+  end
+
+  def copy_and_rename_index
+    copy_file "#{destination_root}/app/views/#{name.pluralize}/index.html.erb", "app/views/#{name.pluralize}/_index_content.html.erb"
+    remove_file "app/views/#{name.pluralize}/index.html.erb"
+    copy_file "index.html.erb", "app/views/#{name.pluralize}/index.html.erb"
   end
 
   def i18nize_model
@@ -72,6 +74,10 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
           }\n"
       end
     end
+  end
+
+  def migrate_to_ddbb
+    rake "db:migrate" if options[:migrate] == 'true'
   end
 
 end

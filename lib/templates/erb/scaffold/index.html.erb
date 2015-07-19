@@ -1,0 +1,92 @@
+<div>
+  <%%= link_to raw('<i class="fa fa-file"></i> New'), new_<%= singular_table_name %>_path, class: 'btn btn-sm btn-primary' if(can? :create, <%= singular_table_name.camelize %>)%>
+  <a aria-expanded="false" aria-controls="filters" data-toggle="collapse" href="#filters" role="button" class="btn btn-sm btn-primary"><i class="fa fa-filter"></i> Filter</a>
+</div>
+
+<div id="filters" class="collapse">
+  <%%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+  <% for attribute in attributes -%>
+      <% if [:integer, :float, :decimal].include? attribute.type.to_sym -%>
+          <% if attribute.name[-3,3] ==  "_id" -%>
+              <div class="form-group">
+                <label for="q[<%= attribute.name %>_cont]"><%= attribute.name[0,attribute.name.length-3] %></label>
+                <%%= f.select :<%= attribute.name %>_eq, options_from_collection_for_select(<%= attribute.name[0,attribute.name.length-3].camelize %>.all, :id, :name, @q.<%= attribute.name %>_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+              </div>
+          <% else -%>
+              <div class="form-group spanning">
+                <label for="q[<%= attribute.name %>_gteq]"><%= attribute.name %></label>
+                <div class="input-group input-group-sm block">
+                  <%%= f.search_field :<%= attribute.name %>_gteq, label: false, placeholder: 'from', class: "form-control input-sm" %>
+                </div>
+                <div class="input-group input-group-sm block">
+                  <%%= f.search_field :<%= attribute.name %>_lteq, label: false, placeholder: 'to', class: "form-control input-sm" %>
+                </div>
+              </div>
+          <% end -%>
+      <% elsif [:datetime, :date].include? attribute.type.to_sym -%>
+          <div class="form-group spanning">
+            <label for="q[<%= attribute.name %>_gteq]"><%= attribute.name %></label>
+            <div class="input-group input-group-sm block">
+              <%%= f.search_field :<%= attribute.name %>_gteq, label: false, placeholder: 'from', class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+            </div>
+            <div class="input-group input-group-sm block">
+              <%%= f.search_field :<%= attribute.name %>_lteq, label: false, placeholder: 'to', class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+            </div>
+          </div>
+      <% elsif attribute.type.to_sym == :boolean -%>
+          <div class="form-group">
+            <label for="q[<%= attribute.name %>_eq]"><%= attribute.name %></label>
+            <%%= f.select :<%= attribute.name %>_eq, options_for_select([['True', 'true'], ['False', 'false']], @q.<%= attribute.name %>_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+          </div>
+      <% else -%>
+          <div class="form-group">
+            <label for="q[<%= attribute.name %>_cont]"><%= attribute.name %></label>
+            <%%= f.search_field :<%= attribute.name %>_cont, label: false, class: "form-control input-sm" %>
+          </div>
+      <% end -%>
+  <% end -%>
+      <div class="form-actions no-padding">
+        <div>
+          <button type="submit" class="btn btn-sm btn-default form-control" name="search_clear" value="true" id="search_clear">Reset</button>
+          <button type="submit" class="btn btn-sm btn-primary form-control">Filter</button>
+        </div>
+      </div>
+  <%% end %>
+</div>
+
+<table id="dt_basic" width="100%" class="display responsive table table-striped table-bordered table-hover">
+  <thead>
+      <tr>
+        <% for attribute in attributes -%>
+            <% if attribute.name[-3,3] ==  "_id" -%>
+                <th><%%= sort_link(@q, :<%= attribute.name[0,attribute.name.length-3] %>_name, '<%= attribute.name[0,attribute.name.length-3] %>') %></th>
+            <% else -%>
+                <th><%%= sort_link(@q, :<%= attribute.name %>, '<%= attribute.name %>') %></th>
+            <% end -%>
+        <% end -%>
+        <th class="all">Actions</th>
+      </tr>
+  </thead>
+  <tbody>
+  <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+  <tr class=<%%= cycle('alternate-row', '') %>>
+  <% for attribute in attributes -%>
+      <% align = ''
+         align = " align='right;'" if [:integer, :float, :decimal].include?(attribute.type.to_sym)
+         align = " align='center;'" if [:boolean].include?(attribute.type.to_sym)
+      %>
+      <% if attribute.name[-3,3] == "_id" -%>
+          <td><%%= <%= singular_table_name %>.<%= attribute.name[0,attribute.name.length-3] %>.try(:name) %></td>
+      <% else -%>
+          <td<%= align %>><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+      <% end -%>
+  <% end -%>
+      <td class="table-actions">
+        <%%= render 'shared/action_icons', :locals => {:target => <%= singular_table_name %>, :model_edit_path => edit_<%= singular_table_name %>_path(<%= singular_table_name %>)} %>
+      </td>
+  </tr>
+  </tbody>
+  <%% end %>
+</table>
+
+<%%= render 'shared/pagination', locals: {target: @<%= plural_table_name %>, model_index_path: <%= plural_table_name %>_path} %>
