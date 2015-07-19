@@ -30,8 +30,7 @@
 // require js/plugin/jquery-ui/ui/core
 // require js/plugin/jquery-ui/ui/widget
 //= require js/plugin/jquery-ui/ui/datepicker
-//= require js/plugin/datatables/jquery.dataTables
-// require js/plugin/datatables/dataTables.bootstrap
+//= require js/jquery.dataTables.min
 //= require js/plugin/datatable-responsive/dataTables.responsive
 //= require js/dataTables.bootstrap
 //= require js/app
