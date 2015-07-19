@@ -7,5 +7,9 @@ $('table').DataTable({
   searching: false,
   info: false,
   ordering: false,
-  responsive: true
+  responsive: {
+    details: {
+      type: 'inline'
+    }
+  }
 });
