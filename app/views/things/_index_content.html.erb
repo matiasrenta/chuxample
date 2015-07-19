@@ -1,64 +1,60 @@
-
 <div class="control-buttons">
   <div><%= link_to raw('<i class="fa fa-file"></i> New'), new_thing_path, class: 'btn btn-sm btn-primary' %><a aria-expanded="false" aria-controls="filters" data-toggle="collapse" href="#filters" role="button" class="btn btn-sm btn-primary"><i class="fa fa-filter"></i> Filter</a></div>
   <div id="filters" class="collapse">
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="filter-name">Name</label>
-        <input id="filter-name" type="text" placeholder="Jane Doe" class="form-control input-sm">
-      </div>
-      <div class="form-group">
-        <label for="filter-age">Age</label>
-        <input id="filter-age" min="0" max="120" type="text" placeholder="21" class="form-control input-sm">
-      </div>
-      <div class="form-group">
-        <label for="filter-gender">Gender</label>
-        <select id="filter-gender" class="form-control input-sm">
-          <option></option>
-          <option>Female</option>
-          <option>Male</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group spanning">
-        <label for="filter-price-from">Price</label>
-        <div class="input-group input-group-sm block">
-          <input id="filter-price-from" min="0.01" placeholder="from" step="0.01" type="text" class="form-control input-sm">
+
+    <%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+        <div class="form-group">
+          <label for="q[name_cont]">Name</label>
+          <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
         </div>
-        <div class="input-group input-group-sm block">
-          <input id="filter-price-to" min="0.01" placeholder="to" step="0.01" type="text" class="form-control input-sm">
+        <div class="form-group">
+          <label for="q[age_gteq]">Age</label>
+          <%= f.search_field :age_gteq, label: false, class: "form-control input-sm" %>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="filter-description">Description</label>
-        <input id="filter-description" type="text" placeholder="jane.doe@example.com" class="form-control input-sm">
-      </div>
-      <div class="form-group spanning">
-        <label for="filter-expires-from">Expires</label>
-        <div class="input-group input-group-sm block">
-          <input data-dateformat="dd/mm/yy" id="filter-expires-from" placeholder="Enter date" type="text" class="form-control datepicker input-sm">
+
+        <div class="form-group">
+          <label for="q[gender_eq]">Gender</label>
+          <%= f.select :gender_eq, options_for_select(['Male', 'Female'], @q.gender_eq), {include_blank: true}, {class: "form-control input-sm"} %>
         </div>
-        <div class="input-group input-group-sm block">
-          <input data-dateformat="dd/mm/yy" id="filter-expires-to" placeholder="Enter date" type="text" class="form-control datepicker input-sm">
+
+        <div class="form-group spanning">
+          <label for="q[age_gteq]">Price</label>
+          <div class="input-group input-group-sm block">
+            <%= f.search_field :price_gteq, label: false, placeholder: 'from', class: "form-control input-sm" %>
+          </div>
+          <div class="input-group input-group-sm block">
+            <%= f.search_field :price_lteq, label: false, placeholder: 'to', class: "form-control input-sm" %>
+          </div>
         </div>
-      </div>
-      <div class="form-group spanning">
-        <label for="filter-discharged-from">Discharged</label>
-        <div class="input-group input-group-sm block">
-          <input data-dateformat="dd/mm/yy" id="filter-discharged-from" placeholder="Enter date" type="text" class="form-control datepicker input-sm">
+
+        <div class="form-group">
+          <label for="q[description_cont]">Description</label>
+          <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
         </div>
-        <div class="input-group input-group-sm block">
-          <input data-dateformat="dd/mm/yy" id="filter-discharged-to" placeholder="Enter date" type="text" class="form-control datepicker input-sm">
+
+        <div class="form-group spanning">
+          <label for="q[expires_gteq]">Expires</label>
+          <div class="input-group input-group-sm block">
+            <%= f.search_field :expires_gteq, label: false, placeholder: 'from', class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+          </div>
+          <div class="input-group input-group-sm block">
+            <%= f.search_field :expires_lteq, label: false, placeholder: 'to', class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+          </div>
         </div>
-      </div>
-      <div class="form-actions no-padding">
-        <div>
-          <button type="reset" class="btn btn-sm btn-default form-control">Reset</button>
-          <button type="submit" class="btn btn-sm btn-primary form-control">Filter</button>
+
+
+        <div class="form-actions no-padding">
+          <div>
+            <button type="submit" class="btn btn-sm btn-default form-control" name="search_clear" value="true" id="search_clear">Reset</button>
+            <button type="submit" class="btn btn-sm btn-primary form-control">Filter</button>
+          </div>
         </div>
-      </div>
-    </form>
-  </div>
+    <% end %>
+
+
+
+
+
 </div>
 <table id="dt_basic" width="100%" class="display responsive table table-striped table-bordered table-hover">
   <thead>
@@ -67,6 +63,7 @@
       <th>Age</th>
       <th>Gender</th>
       <th>Price</th>
+      <th>Published</th>
       <th>Expires</th>
       <th>Discharged</th>
       <th>Description</th>
@@ -77,8 +74,9 @@
     <tr>
       <td><%= thing.name %></td>
       <td><%= thing.age %></td>
-      <td><%#= thing.gender %></td>
+      <td><%= thing.gender %></td>
       <td><%= thing.price %></td>
+      <td><%= boolean_check_mark(thing.published) %></td>
       <td><%= thing.expires %></td>
       <td><%= thing.discharged_at %></td>
       <td><%= thing.description %></td>

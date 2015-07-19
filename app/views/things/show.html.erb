@@ -27,9 +27,21 @@
               </div>
             </div>
             <div class="form-group">
+              <label class="col-sm-3 control-label">Gender</label>
+              <div class="col-sm-9">
+                <p class="form-control-static"><%= @thing.gender %></p>
+              </div>
+            </div>
+            <div class="form-group">
               <label class="col-sm-3 control-label">Price</label>
               <div class="col-sm-9">
                 <p class="form-control-static"><%= @thing.price %></p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Published</label>
+              <div class="col-sm-9">
+                <p class="form-control-static"><%= boolean_check_mark(@thing.published) %></p>
               </div>
             </div>
             <div class="form-group">

@@ -26,25 +26,6 @@ the <section></section> and you can use wells or panels instead
           <div class="jarviswidget-editbox">
             <!-- This area used as dropdown edit box -->
             <!-- <input class="form-control" type="text"> -->
-
-            <div>
-              <%= search_form_for(@q, :html => {:name => "filter_form"}) do |f| %>
-                  <%= f.search_field :name_cont, :label => "Nombre" %>
-
-                  <div class="actions">
-                    <div class="buttons">
-                      <button type="submit" class="btn btn-primary">
-                        <img src="/images/glyphicons/glyphicons_320_filter.png" alt="" />
-                        <%= "Filtrar" %>
-                      </button>
-                      <button type="submit" class="btn-primary btn-sm" name="search_clear" value="true" id="search_clear">
-                        <img src="/images/glyphicons/glyphicons_067_cleaning.png" alt="" />
-                        <%= "Limpiar" %>
-                      </button>
-                    </div>
-                  </div>
-              <% end %>
-            </div>
           </div>
           <!-- end widget edit box -->
 
