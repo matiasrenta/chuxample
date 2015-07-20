@@ -21,14 +21,15 @@
 @import "smartadmin/plugin-bootstrap-validator"; // new with v1.5
 @import "smartadmin/plugin-cssemotions"; // new with v1.5
 @import "smartadmin/plugin-clockpicker";
-@import "smartadmin/plugin-colorpicker";
-@import "smartadmin/plugin-dataTables.bootstrap";
-@import "smartadmin/plugin-dataTables.colReorder";
-@import "smartadmin/plugin-dataTables.colVis";
-@import "smartadmin/plugin-dataTables.tableTools";
-// @import "smartadmin/plugin-dataTables.responsive";
+// @import "./jquery.dataTables.css";
+@import "./dataTables.bootstrap.css";
 @import "./dataTables.responsive.css";
-@import "smartadmin/plugin-dataTables-cust";
+// @import "smartadmin/plugin-dataTables.colReorder";
+// @import "smartadmin/plugin-dataTables.colVis";
+// @import "smartadmin/plugin-dataTables.tableTools";
+// @import "smartadmin/plugin-dataTables.bootstrap";
+// @import "smartadmin/plugin-dataTables.responsive";
+// @import "smartadmin/plugin-dataTables-cust";
 @import "smartadmin/plugin-dropzone";
 @import "smartadmin/plugin-easypiechart";
 @import "smartadmin/plugin-fd-slider";
