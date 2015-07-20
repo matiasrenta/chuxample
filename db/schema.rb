@@ -33,16 +33,6 @@ ActiveRecord::Schema.define(version: 20150719212218) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "published"
-    t.date     "expires"
-    t.float    "price"
-    t.integer  "thing_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "list_order"

@@ -6,4 +6,21 @@ module ApplicationHelper
       ''
     end
   end
+
+  def creating?
+    ["new", "create"].include?(action_name)
+  end
+
+  def updating?
+    ["edit", "update"].include?(action_name)
+  end
+
+  def listing?
+    action_name == "index"
+  end
+
+  def showing?
+    action_name == "show"
+  end
+
 end

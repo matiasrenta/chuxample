@@ -26,8 +26,8 @@
       <div class="form-actions">
           <div class="btn-group">
             <%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), things_path, class: 'btn btn-default btn-sm' %>
-            <%= link_to raw('<i class="fa fa-binoculars"></i> Show'), @thing, class: 'btn btn-default btn-sm', rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Show' } %>
-            <%= link_to raw('<i class="fa fa-trash"></i> Destroy'), @thing, class: 'btn btn-default btn-sm', method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title': 'Destroy'} %>
+            <%= link_to raw('<i class="fa fa-binoculars"></i> Show'), @thing, class: 'btn btn-default btn-sm' %>
+            <%= link_to raw('<i class="fa fa-trash"></i> Destroy'), @thing, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} %>
             <%= f.button :submit, class: 'btn btn-primary btn-sm' %>
           </div>
       </div>
