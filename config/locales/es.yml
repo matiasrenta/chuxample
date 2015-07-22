@@ -259,6 +259,27 @@ es:
       even: "debe ser par"
       cant_be_in_the_future: "No puede ser en el futuro"
 
+  settings:
+    index:
+      save_all: 'Guardar todos'
+      title: 'Application Settings'
+      description: 'Variable'
+      value: 'Valor'
+      actions: 'Acciones'
+    attributes:
+      company_name:
+        name: 'Nombre Empresa'
+      default_plan:
+        name: 'Plan por defecto'
+        labels: ['developer', 'business', 'premium']
+      show_contract_fields:
+        name: 'Mostrar contrato'
+      min_users:
+        name: 'Mínimo de usuarios'
+
+    errors:
+      default_missing: 'default_missing'
+
   activerecord:
     errors:
       template:
@@ -277,9 +298,15 @@ es:
         format: "%{attribute} %{message}"
 
     models:
+      product:
+        one: Producto
+        other: Productos
       thing:
         one: Cosa
         other: Cosas
+      setting:
+        one: 'Configuración de la aplicación'
+        other: 'Configuración de la aplicación'
 
     actions:
       new:  'Nuevo'

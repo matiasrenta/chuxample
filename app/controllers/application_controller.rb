@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController
+  check_authorization unless: :devise_controller?
+  skip_authorization_check only: [:access_denied]
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -43,13 +47,11 @@ class ApplicationController < ActionController::Base
     I18n.locale = user_signed_in? ? current_user.local.to_sym : I18n.default_locale
   end
 
-  def do_index(model, params, collection = nil, default_order = false, paginate = true, order_by = nil, includes = nil)
+  def do_index(model, params, collection = nil, paginate = true, order_by = nil, includes = nil)
     authorize!(:read, model)
     search_algoritm
 
-    if default_order
-      @q = model.accessible_by(current_ability, :read).ransack(params[:q])
-    elsif params[:q] && params[:q][:meta_sort]
+    if params[:q] && params[:q][:meta_sort]
       @q = model.unscoped.accessible_by(current_ability, :read).ransack(params[:q])
     elsif order_by
       @q = model.unscoped.order(order_by).accessible_by(current_ability, :read).ransack(params[:q]) unless includes
@@ -111,9 +113,12 @@ class ApplicationController < ActionController::Base
     rescue_from ActiveRecord::RecordNotFound, :with => :render_404
     rescue_from ActionController::RoutingError, :with => :render_404
   #end
-  #rescue_from CanCan::AccessDenied do |exception|
-  #  redirect_to "/application/access_denied", :alert => t("screens.labels.access_denied")
-  #end
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to "/application/access_denied", alert: t("screens.labels.access_denied")
+  end
+  rescue_from CanCan::AuthorizationNotPerformed do |exception|
+    raise CanCan::AuthorizationNotPerformed
+  end
 
   def render_404(exception)
     set_content_title(t("screens.errors.not_found_404"))
@@ -135,7 +140,7 @@ class ApplicationController < ActionController::Base
       format.html { render template: 'errors/internal_server_error', layout: 'error', status: 500 }
       format.all { render :nothing => true, :status => 500 }
     end
-    #ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver #para que me notifique por mail en production
+    ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver #para que me notifique por mail en production
   end
 
 end
