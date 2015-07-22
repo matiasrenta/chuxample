@@ -7,20 +7,28 @@
     background-color: #ddd;
   }
 
-  margin-top: 5px;
-  padding: 13px 14px 15px;
+  fieldset {
+    margin: 10px 0;
+
+    button {
+      height: 29px;
+      margin-top: 17px;
+    }
+  }
+
+  select {
+    min-width: 174px;
+  }
+
+  padding: 10px 10px 0 10px;
 }
 
 .block {
   display: block !important;
 }
 
-body.mobile-view-activated tbody > tr:first-child:not(.parent) > td:first-child::before {
-  content: '[+] ';
-}
-
-body.mobile-view-activated tbody > tr.parent:first-child > td:first-child::before {
-  content: '[-] ';
+.center {
+  text-align: center;
 }
 
 .form-actions {
@@ -39,11 +47,8 @@ body.mobile-view-activated tbody > tr.parent:first-child > td:first-child::befor
 }
 
 .spanning {
-  .input-group .form-control:first-child {
-    margin-right: 5px;
-  }
   input {
-    width: 47% !important;
+    width: 49% !important;
   }
 }
 
