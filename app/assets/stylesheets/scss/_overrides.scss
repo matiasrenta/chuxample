@@ -1,6 +1,7 @@
 // need to override just one or two small stylistic things and don't want to edit the main .less files?  Add those overrides here
+// TODO see what can be moved to index
 
-#filters {
+.jarviswidget-editbox {
   background-color: #ddd;
 
   .form-actions {
@@ -12,7 +13,7 @@
 
     button {
       height: 29px;
-      margin-top: 17px;
+      margin-top: 18px;
     }
   }
 
@@ -21,6 +22,10 @@
   }
 
   padding: 0 0 0 10px;
+}
+
+#sparks li {
+  overflow: inherit;
 }
 
 .block {
@@ -57,7 +62,6 @@
 }
 
 .widget-body {
-
   > .control-buttons {
     margin: 5px;
   }

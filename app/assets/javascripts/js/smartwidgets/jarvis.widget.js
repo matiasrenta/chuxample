@@ -28,14 +28,14 @@
 
 (function ($, window, document, undefined) {
 
-    //"use strict"; 
+    //"use strict";
 
     var pluginName = 'jarvisWidgets';
 
 	/**
 	 * Check for touch support and set right click events.
 	 **/
-	var clickEvent = (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch ? 
+	var clickEvent = (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch ?
 		'touchstart' : 'click') + '.' + pluginName;
 
     function Plugin(element, options) {
@@ -86,7 +86,7 @@
             var self = this;
 
             var da = new Date(t);
-            
+
 
             /**
              * Get and set the date and time.
@@ -189,7 +189,7 @@
         },
 
 		_loadKeys : function () {
-			
+
 			var self = this;
 
 			//*****************************************************************//
@@ -209,7 +209,7 @@
 			}
 
 		},
- 
+
         /**
          * Save all settings to the localStorage.
          *
@@ -253,7 +253,7 @@
             /**
              * Run the callback function.
              **/
-            
+
             if (typeof self.o.onSave == 'function') {
                 self.o.onSave.call(this, null, storeSettingsObj, storage.keySettings);
             }
@@ -311,7 +311,7 @@
         init: function () {
 
             var self = this;
-			
+
 			if (self.initialized) return;
 
             self._initStorage(self.storage);
@@ -444,8 +444,8 @@
                 var tWidget = $(this),
                 	thisHeader = $(this).children('header'),
                 	customBtn,
-                	deleteBtn,  
-                	editBtn,  
+                	deleteBtn,
+                	editBtn,
                 	fullscreenBtn,
                 	widgetcolorBtn,
                 	toggleBtn,
@@ -606,7 +606,6 @@
 
                     /**
                      * If the edit box is present copy the title to the input.
-                     **/
                     if (tWidget.find(self.o.editPlaceholder)
                         .length) {
                         tWidget.find(self.o.editPlaceholder)
@@ -614,6 +613,7 @@
                             .val($.trim(thisHeader.children('h2')
                                 .text()));
                     }
+                     **/
 
                     /**
                      * Prepend the image to the widget header.
@@ -693,7 +693,7 @@
                              * intervalArr.push(setInterval(intervalOne, 2000)  );
                              **/
                             $.intervalArr.push( setInterval(function () {self._loadAjaxFile(thisItem, pathToFile, thisItemHeader)}, reloadTime) );
-                            
+
                         } else {
 
                             /**
@@ -838,7 +838,7 @@
 
 				storage.getKeySettings = localStorage.getItem(storage.keySettings);
 				storage.getKeyPosition = localStorage.getItem(storage.keyPosition);
-				
+
             } // end if
 
         },
@@ -1228,9 +1228,9 @@
                 /**
                  * Delete the widgets with a confirm popup.
                  **/
-                
+
                 if ($.SmartMessageBox) {
-   
+
                    $.SmartMessageBox({
 	                    title: "<i class='fa fa-times' style='color:#ed1c24'></i> " + self.o.labelDelete +
 	                        ' "' + widTitle + '"',
@@ -1243,16 +1243,16 @@
 	                         * Run function for the indicator image.
 	                         **/
 	                        self._runLoaderWidget($(this));
-	
+
 	                        /**
 	                         * Delete the right widget.
 	                         **/
 	                        $('#' + removeId)
 	                            .fadeOut(self.o.deleteSpeed, function () {
-	
+
 	                                $(this)
 	                                    .remove();
-	
+
 	                                /**
 	                                 * Run the callback function.
 	                                 **/
@@ -1261,11 +1261,11 @@
 	                                }
 	                            });
 	                    }
-	
+
 	                });
-	                	
+
                 } else {
-                	
+
                 	/**
                      * Delete the right widget.
                      **/
@@ -1282,7 +1282,7 @@
                             self.o.onDelete.call(this, tWidget);
                         }
                     });
-                	
+
                 }
 
                 e.preventDefault();
@@ -1320,7 +1320,7 @@
 
                 e.preventDefault();
             });
-			
+
 			headers = null;
         },
 
@@ -1330,10 +1330,10 @@
          * @param:
          **/
         destroy: function () {
-            var self = this, 
-            namespace = '.' + pluginName, 
+            var self = this,
+            namespace = '.' + pluginName,
             sortItem = self.obj.find(self.o.grid + '.sortable-grid').not('[data-widget-excludegrid]');
-            
+
             sortItem.sortable('destroy');
             self.widget.children('header').off(namespace);
 			$(self.o.deleteSettingsKey).off(namespace);

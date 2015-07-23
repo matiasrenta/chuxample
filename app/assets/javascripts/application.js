@@ -36,7 +36,7 @@
 //= require js/plugin/datatables/dataTables.responsive
 
 //= require js/app
-//= require js/speech/voicecommand
+// require js/speech/voicecommand
 // require js/smart-chat-ui/smart.chat.ui
 // require js/smart-chat-ui/smart.chat.manager
 

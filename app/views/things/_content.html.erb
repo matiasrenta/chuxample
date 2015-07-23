@@ -1,0 +1,39 @@
+<table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="all control"><%= sort_link(@q, :name, 'Name') %></th>
+      <th><%= sort_link(@q, :age, 'Age') %></th>
+      <th><%= sort_link(@q, :gender, 'Gender') %></th>
+      <th><%= sort_link(@q, :price, 'Price') %></th>
+      <th><%= sort_link(@q, :published, 'Published') %></th>
+      <th><%= sort_link(@q, :expires, 'Expires') %></th>
+      <th><%= sort_link(@q, :discharged, 'Discharged') %></th>
+      <th><%= sort_link(@q, :description, 'Description') %></th>
+      <th class="all">Actions</th>
+    </tr>
+
+  </thead>
+  <tbody>
+    <% @things.each do |thing| %>
+    <tr>
+      <td><%= thing.name %></td>
+      <td><%= thing.age %></td>
+      <td><%= thing.gender %></td>
+      <td><%= thing.price %></td>
+      <td><%= boolean_check_mark(thing.published) %></td>
+      <td><%= thing.expires %></td>
+      <td><%= thing.discharged_at %></td>
+      <td><%= thing.description %></td>
+
+      <td class="table-actions">
+       <%= link_to raw('<i class="fa fa-binoculars"></i>'), thing, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Show' } %>
+       <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_thing_path(thing), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title': 'Edit' } %>
+       <%= link_to raw('<i class="fa fa-trash"></i>'), thing, method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title': 'Destroy'} %>
+      </td>
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>
+<div class="no-padding"><%= render 'shared/pagination', locals: {target: @things, model_index_path: things_path} %>
+</div>
