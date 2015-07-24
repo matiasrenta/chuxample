@@ -301,6 +301,9 @@ es:
       product:
         one: Producto
         other: Productos
+      chucky_bot:
+        one: ChuckyBot
+        other: ChuckyBots
       thing:
         one: Cosa
         other: Cosas

@@ -56,4 +56,5 @@
 
 
 //= require jquery_nested_form
+//= require chucky_bots
 //= require js/common
