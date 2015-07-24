@@ -1,26 +1,39 @@
 // need to override just one or two small stylistic things and don't want to edit the main .less files?  Add those overrides here
+// TODO see what can be moved to index
 
-#filters {
+.jarviswidget-editbox {
   background-color: #ddd;
 
   .form-actions {
     background-color: #ddd;
   }
 
-  margin-top: 5px;
-  padding: 13px 14px 15px;
+  fieldset {
+    margin: 10px 0;
+
+    button {
+      height: 29px;
+      margin-top: 18px;
+    }
+  }
+
+  select {
+    min-width: 174px;
+  }
+
+  padding: 0 0 0 10px;
+}
+
+#sparks li {
+  overflow: inherit;
 }
 
 .block {
   display: block !important;
 }
 
-body.mobile-view-activated tbody > tr:first-child:not(.parent) > td:first-child::before {
-  content: '[+] ';
-}
-
-body.mobile-view-activated tbody > tr.parent:first-child > td:first-child::before {
-  content: '[-] ';
+.center {
+  text-align: center;
 }
 
 .form-actions {
@@ -39,11 +52,8 @@ body.mobile-view-activated tbody > tr.parent:first-child > td:first-child::befor
 }
 
 .spanning {
-  .input-group .form-control:first-child {
-    margin-right: 5px;
-  }
   input {
-    width: 47% !important;
+    width: 49% !important;
   }
 }
 
@@ -52,7 +62,6 @@ body.mobile-view-activated tbody > tr.parent:first-child > td:first-child::befor
 }
 
 .widget-body {
-
   > .control-buttons {
     margin: 5px;
   }

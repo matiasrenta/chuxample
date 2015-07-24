@@ -15,4 +15,5 @@ Rails.application.config.to_prepare do
   RailsSettingsUi.parent_controller = 'Admin::ApplicationController'
   RailsSettingsUi::ApplicationController.layout 'application'
   RailsSettingsUi.inline_main_app_routes!
+  RailsSettingsUi.settings_displayed_as_select_tag = [:default_plan]
 end

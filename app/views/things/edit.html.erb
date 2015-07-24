@@ -15,10 +15,11 @@
       <div class="form-inputs">
         <%= f.input :name %>
         <%= f.input :age %>
+        <%= f.input :gender, as: :select, collection: ['Male', 'Female', 'Other'] %>
         <%= f.input :price %>
+        <%= f.input :published %>
         <%= f.input :expires, as: :string, input_html: {class: 'datepicker'} %>
         <%= f.input :discharged_at, as: :string, input_html: {class: 'datepicker'}  %>
-        <%= f.input :published %>
         <%= f.input :description %>
       </div>
 

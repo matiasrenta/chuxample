@@ -2,8 +2,10 @@
 
 $('table').DataTable
   autoWidth: false
+  info: false
   searching: false
   ordering: false
+  paging: false
 
   responsive:
     details:
