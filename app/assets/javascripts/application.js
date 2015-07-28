@@ -51,4 +51,5 @@
 // require js/plugin/flot/jquery.flot.tooltip
 
 //= require jquery_nested_form
+//= require chucky_bots
 //= require js/common

@@ -1,0 +1,59 @@
+<div>
+  <%= link_to raw('<i class="fa fa-file"></i> New'), new_chucky_bot_path, class: 'btn btn-sm btn-primary' if (can? :create, ChuckyBot) %>
+  <a aria-expanded="false" aria-controls="filters" data-toggle="collapse" href="#filters" role="button" class="btn btn-sm btn-primary"><i class="fa fa-filter"></i>
+    Filter</a>
+</div>
+
+<div id="filters" class="collapse">
+  <%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+      <div class="form-group">
+        <label for="q[underscore_model_name_cont]">underscore_model_name</label>
+        <%= f.search_field :underscore_model_name_cont, label: false, class: "form-control input-sm" %>
+      </div>
+      <div class="form-group">
+        <label for="q[i18n_singular_name_cont]">i18n_singular_name</label>
+        <%= f.search_field :i18n_singular_name_cont, label: false, class: "form-control input-sm" %>
+      </div>
+      <div class="form-group">
+        <label for="q[i18n_plural_name_cont]">i18n_plural_name</label>
+        <%= f.search_field :i18n_plural_name_cont, label: false, class: "form-control input-sm" %>
+      </div>
+      <div class="form-group">
+        <label for="q[migrate_eq]">migrate</label>
+        <%= f.select :migrate_eq, options_for_select([['True', 'true'], ['False', 'false']], @q.migrate_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+      </div>
+      <div class="form-actions no-padding">
+        <div>
+          <button type="submit" class="btn btn-sm btn-default form-control" name="search_clear" value="true" id="search_clear">Reset</button>
+          <button type="submit" class="btn btn-sm btn-primary form-control">Filter</button>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<table id="dt_basic" width="100%" class="display responsive table table-striped table-bordered table-hover">
+  <thead>
+  <tr>
+    <th><%= sort_link(@q, :underscore_model_name, 'underscore_model_name') %></th>
+    <th><%= sort_link(@q, :i18n_singular_name, 'i18n_singular_name') %></th>
+    <th><%= sort_link(@q, :i18n_plural_name, 'i18n_plural_name') %></th>
+    <th><%= sort_link(@q, :migrate, 'migrate') %></th>
+    <th class="all">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @chucky_bots.each do |chucky_bot| %>
+      <tr class=<%= cycle('alternate-row', '') %>>
+        <td><%= chucky_bot.underscore_model_name %></td>
+        <td><%= chucky_bot.i18n_singular_name %></td>
+        <td><%= chucky_bot.i18n_plural_name %></td>
+        <td align='center;'><%= chucky_bot.migrate %></td>
+        <td class="table-actions">
+          <%= render 'shared/action_icons', :locals => {:target => chucky_bot, :model_edit_path => edit_chucky_bot_path(chucky_bot)} %>
+        </td>
+      </tr>
+      </tbody>
+  <% end %>
+  </table>
+
+<%= render 'shared/pagination', locals: {target: @chucky_bots, model_index_path: chucky_bots_path} %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719010601) do
+ActiveRecord::Schema.define(version: 20150723010327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,30 @@ ActiveRecord::Schema.define(version: 20150719010601) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+
+  create_table "chucky_bot_fields", force: :cascade do |t|
+    t.string   "name"
+    t.string   "field_type"
+    t.string   "i18n_name"
+    t.text     "formats_options"
+    t.text     "validations_options"
+    t.text     "association_options"
+    t.integer  "chucky_bot_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "chucky_bots", force: :cascade do |t|
+    t.string   "underscore_model_name"
+    t.string   "i18n_singular_name"
+    t.string   "i18n_plural_name"
+    t.text     "authorization"
+    t.text     "public_activity"
+    t.boolean  "migrate"
+    t.text     "chucky_command"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
