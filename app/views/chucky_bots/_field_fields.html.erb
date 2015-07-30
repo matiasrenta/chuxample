@@ -19,7 +19,7 @@
   <tbody>
       <tr>
         <td><%= f.input :name, label: false, wrapper_tag: :span, input_html: {class: 'short_input'} %></td>
-        <td><%= f.input :field_type, label: false, as: :select, collection: %w{string integer float text date datetime}, wrapper_tag: :span, input_html: {class: 'short_input'} %></td>
+        <td><%= f.input :field_type, label: false, as: :select, collection: %w{string integer float text date datetime boolean}, wrapper_tag: :span, input_html: {class: 'short_input'} %></td>
         <td><%= f.input :i18n_name, label: false, wrapper_tag: :span, input_html: {class: 'short_input'} %></td>
         <td>
           <% hash = f.object.validations_options || {validates: nil, notes: nil} %>

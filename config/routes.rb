@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :things
   resources :chucky_bots
+
   namespace :admin do
     root to: 'application#index'
   end
 
   mount RailsSettingsUi::Engine, at: 'admin/settings'
 
-
-
-  resources :things
   devise_for :users
   get "application/access_denied"
 

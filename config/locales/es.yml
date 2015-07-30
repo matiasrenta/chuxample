@@ -287,7 +287,7 @@ es:
           one:   'No se pudo guardar este/a %{model} porque se encontró 1 error'
           other:  "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
         # The variable :count is also available
-        body: "Se encontraron problemas con los siguientes campos:"
+        default_error_base: 'Revise los errores en el formulario'
 
       messages:
         taken: "ya está en uso"
@@ -298,9 +298,6 @@ es:
         format: "%{attribute} %{message}"
 
     models:
-      product:
-        one: Producto
-        other: Productos
       chucky_bot:
         one: ChuckyBot
         other: ChuckyBots

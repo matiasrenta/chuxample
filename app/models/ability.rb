@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], Thing
 		can :manage, ChuckyBot
     can :manage, Thing
   end

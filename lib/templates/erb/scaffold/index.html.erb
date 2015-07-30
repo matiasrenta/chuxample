@@ -82,6 +82,12 @@
                      align = " align='center'" if [:boolean].include?(attribute.type.to_sym) -%>
                   <% if attribute.name[-3,3] == "_id" -%>
                       <td><%%= <%= singular_table_name %>.<%= attribute.name[0,attribute.name.length-3] %>.try(:name) %></td>
+                  <% elsif attribute.type.to_sym == :boolean -%>
+                      <td<%= align %>><%%= boolean_check_mark(<%= singular_table_name %>.<%= attribute.name %>) %></td>
+                  <% elsif attribute.type.to_sym == :date -%>
+                      <td<%= align %>><%%= l(<%= singular_table_name %>.<%= attribute.name %>, format: :default) %></td>
+                  <% elsif attribute.type.to_sym == :datetime -%>
+                      <td<%= align %>><%%= l(<%= singular_table_name %>.<%= attribute.name %>, format: :without_seg) %></td>
                   <% else -%>
                       <td<%= align %>><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
                   <% end -%>

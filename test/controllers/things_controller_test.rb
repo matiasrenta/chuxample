@@ -18,7 +18,7 @@ class ThingsControllerTest < ActionController::TestCase
 
   test "should create thing" do
     assert_difference('Thing.count') do
-      post :create, thing: { age: @thing.age, description: @thing.description, discharged_at: @thing.discharged_at, expires: @thing.expires, name: @thing.name, price: @thing.price }
+      post :create, thing: { age: @thing.age, description: @thing.description, discharged_at: @thing.discharged_at, expires: @thing.expires, gender: @thing.gender, name: @thing.name, price: @thing.price, published: @thing.published }
     end
 
     assert_redirected_to thing_path(assigns(:thing))
@@ -35,7 +35,7 @@ class ThingsControllerTest < ActionController::TestCase
   end
 
   test "should update thing" do
-    patch :update, id: @thing, thing: { age: @thing.age, description: @thing.description, discharged_at: @thing.discharged_at, expires: @thing.expires, name: @thing.name, price: @thing.price }
+    patch :update, id: @thing, thing: { age: @thing.age, description: @thing.description, discharged_at: @thing.discharged_at, expires: @thing.expires, gender: @thing.gender, name: @thing.name, price: @thing.price, published: @thing.published }
     assert_redirected_to thing_path(assigns(:thing))
   end
 

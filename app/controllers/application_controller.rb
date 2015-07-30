@@ -94,13 +94,11 @@ class ApplicationController < ActionController::Base
     cookies[:per_page]
   end
 
-  def generate_alert_msg(model_instance)
-    if model_instance.errors.any?
-      if model_instance.errors.count > 1
-        "#{model_instance.errors.count} #{t('screens.errors.many_errors')}: #{(model_instance.errors.include?(:base) && model_instance.errors.get(:base).kind_of?(String)) ? model_instance.errors.get(:base) : model_instance.errors.get(:base).join(". ")}"
-      else
-        "#{model_instance.errors.count} #{t('screens.errors.one_error')}: #{model_instance.errors.get(:base)}"
-      end
+  def generate_flash_msg(model_instance, flash_type = :alert)
+    if @thing.errors.messages[:base].present?
+      flash[flash_type] = model_instance.errors.get(:base).kind_of?(String) ? model_instance.errors.get(:base) : model_instance.errors.get(:base).join(". ")
+    elsif model_instance.errors.any?
+      flash[flash_type] = t('activerecord.errors.template.default_error_base')
     end
   end
 

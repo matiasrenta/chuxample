@@ -12,7 +12,6 @@
                                   file: :horizontal_file_input,
                                   boolean: :horizontal_boolean
                           } do |f| %>
-      <%%= f.error_notification %>
           <div class="form-inputs">
             <%- attributes.each do |attribute| -%>
                 <% if [:date, :datetime, :time].include? attribute.type.to_sym -%>

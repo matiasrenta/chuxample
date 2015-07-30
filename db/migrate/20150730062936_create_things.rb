@@ -7,6 +7,8 @@ class CreateThings < ActiveRecord::Migration
       t.date :expires
       t.datetime :discharged_at
       t.text :description
+      t.boolean :published
+      t.string :gender
 
       t.timestamps null: false
     end

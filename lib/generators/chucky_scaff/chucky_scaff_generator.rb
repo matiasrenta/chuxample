@@ -18,6 +18,9 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option :dependents # --dependents=nombre_campo:destroy%nombre_campo:restrict_with_error
   class_option :dropdown # --dropdown=nombre_campo:normal%nombre_campo:filter%nombre_campo:autocomplete
   class_option :fa_icon # --fa_icon='fa fa-lg fa-fw fa-cube'
+  # todo: cuando un campo como 'género' esta en el filtro aparece como string cuando debería ser un select con las pocas opciones que le debería de mandar en el chuccky_scaff
+
+
 
   def invoke_scaffold
     invoke 'scaffold'
