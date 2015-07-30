@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
   end
 
   def generate_flash_msg(model_instance, flash_type = :alert)
-    if @thing.errors.messages[:base].present?
+    if model_instance.errors.messages[:base].present?
       flash[flash_type] = model_instance.errors.get(:base).kind_of?(String) ? model_instance.errors.get(:base) : model_instance.errors.get(:base).join(". ")
     elsif model_instance.errors.any?
       flash[flash_type] = t('activerecord.errors.template.default_error_base')
