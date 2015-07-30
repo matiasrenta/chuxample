@@ -27,7 +27,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def create
 
     if @<%= orm_instance.save %>
-      redirect_to @<%= singular_table_name %>, notice: t("screens.notice.successfully_created")
+      redirect_to @<%= singular_table_name %>, notice: t("simple_form.flash.successfully_created")
     else
       render :new
     end
@@ -36,7 +36,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1
   def update
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
-      redirect_to @<%= singular_table_name %>, notice: t("screens.notice.successfully_updated")
+      redirect_to @<%= singular_table_name %>, notice: t("simple_form.flash.successfully_updated")
     else
       render :edit
     end
@@ -45,7 +45,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   # DELETE <%= route_url %>/1
   def destroy
     @<%= orm_instance.destroy %>
-    redirect_to <%= index_helper %>_url, notice: t("screens.notice.successfully_destroyed")
+    redirect_to <%= index_helper %>_url, notice: t("simple_form.flash.successfully_destroyed")
   end
 
   private

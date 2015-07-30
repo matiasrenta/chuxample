@@ -12,15 +12,22 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
   class_option :migrate # para que se ejecute rake db:migrate: --migrate=true
 
+  # TODO: implementar los siguientes class_options
+  class_option :validations # --validations=nombre_campo:precense-numericality%nombre_campo:precense-uniqueness
+  class_option :formats # --formats=nombre_campo:all#money%nombre_campo:index#datelong@show#datesuperlong
+  class_option :dependents # --dependents=nombre_campo:destroy%nombre_campo:restrict_with_error
+  class_option :dropdown # --dropdown=nombre_campo:normal%nombre_campo:filter%nombre_campo:autocomplete
+  class_option :fa_icon # --fa_icon='fa fa-lg fa-fw fa-cube'
+
   def invoke_scaffold
     invoke 'scaffold'
   end
 
-  def copy_and_rename_index
-    copy_file "#{destination_root}/app/views/#{name.pluralize}/index.html.erb", "app/views/#{name.pluralize}/_index_content.html.erb"
-    remove_file "app/views/#{name.pluralize}/index.html.erb"
-    copy_file "index.html.erb", "app/views/#{name.pluralize}/index.html.erb"
-  end
+  #def copy_and_rename_index
+  #  copy_file "#{destination_root}/app/views/#{name.pluralize}/index.html.erb", "app/views/#{name.pluralize}/_index_content.html.erb"
+  #  remove_file "app/views/#{name.pluralize}/index.html.erb"
+  #  copy_file "index.html.erb", "app/views/#{name.pluralize}/index.html.erb"
+  #end
 
   def i18nize_model
     if options['i18n_singular_name'] && options['i18n_plural_name']

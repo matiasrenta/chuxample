@@ -1,4 +1,4 @@
-en:
+es:
   simple_form:
     "yes": 'Sí'
     "no": 'No'
@@ -30,11 +30,42 @@ en:
     #   defaults:
     #     age: 'Select your age'
 
-      labels:
-        defaults:
-          name: 'Nombre'
-          age: 'Edad'
-          price: 'Precio'
-          expires: 'Expira'
-          discharged_at: 'Pagado el'
-          publised: 'Publicado'
+    labels:
+      defaults:
+        name: 'Nombre'
+        description: 'Descripción'
+        age: 'Edad'
+        price: 'Precio'
+        expires: 'Expira'
+        discharged_at: 'Pagado el'
+        published: 'Publicado'
+
+    placeholders:
+      from: 'desde'
+      to: 'hasta'
+
+    screen:
+      actions: 'Acciones'
+
+    flash:
+      successfully_created: 'Creado exitosamente'
+      successfully_updated: 'Actualizado exitosamente'
+      successfully_destroyed: 'Eliminado exitosamente'
+
+    buttons:
+      new: 'Nuevo'
+      filters: 'Filtros'
+      filtering: 'Filtrando'
+      filter: 'Filtrar'
+      reset_filters: 'Limpiar filtros'
+      list: 'Lista'
+      edit: 'Editar'
+      show: 'Ver'
+      destroy: 'Eliminar'
+      create: 'Crear'
+      update: 'Actualizar'
+
+    tooltips:
+      show: 'Ver'
+      edit: 'Editar'
+      destroy: 'Eliminar'

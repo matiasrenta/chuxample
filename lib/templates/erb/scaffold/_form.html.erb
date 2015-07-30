@@ -1,6 +1,6 @@
 <div class="jarviswidget" id="wid-id-0">
   <header>
-    <h2>New/Edit</h2>
+    <h2><%%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
   </header>
   <div>
     <div class="widget-body">
@@ -33,10 +33,10 @@
 
           <div class="form-actions">
             <div class="btn-group">
-              <%%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), <%= plural_table_name %>_path, class: 'btn btn-default btn-sm' if can?(:read, <%= singular_table_name.camelize %>) %>
-              <%%= link_to raw('<i class="fa fa-binoculars"></i> Show'), @<%= singular_table_name %>, class: 'btn btn-default btn-sm' if can?(:read, <%= singular_table_name.camelize %>) && updating? %>
-              <%%= link_to raw('<i class="fa fa-trash"></i> Destroy'), @<%= singular_table_name %>, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, <%= singular_table_name.camelize %>) && updating? %>
-              <%%= f.button :submit, class: 'btn btn-primary btn-sm' %>
+              <%%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), <%= plural_table_name %>_path, class: 'btn btn-default btn-sm' if can?(:read, <%= singular_table_name.camelize %>) %>
+              <%%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @<%= singular_table_name %>, class: 'btn btn-default btn-sm' if can?(:read, <%= singular_table_name.camelize %>) && updating? %>
+              <%%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @<%= singular_table_name %>, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, <%= singular_table_name.camelize %>) && updating? %>
+              <button type="submit" class="btn btn-primary btn-sm"><i class='fa fa-check-circle'></i> <%%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %></button>
             </div>
           </div>
       <%% end %>

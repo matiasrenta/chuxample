@@ -23,7 +23,7 @@
             <h2>authorization</h2>
             <%= f.simple_fields_for :authorization, OpenStruct.new(@chucky_bot.authorization) do |authorization_f| %>
                 <% @chucky_bot.authorization.keys.each do |field_name| %>
-                    <%= authorization_f.input field_name, hint: 'read-edit-destroy-whatever o manage' unless ['notes', :notes].include?(field_name) %>
+                    <%= authorization_f.input field_name, hint: 'create-read-update-destroy-whatever o manage' unless ['notes', :notes].include?(field_name) %>
                 <% end %>
                 <%= authorization_f.input :notes, as: :text, label: 'Notas', hint: 'escriba todo lo que quiera avisar/aclarar al respecto de atorización' %>
             <% end %>

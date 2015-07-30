@@ -69,10 +69,14 @@ class ApplicationController < ActionController::Base
   end
 
   def search_algoritm
-    params[:q] = nil if params[:search_clear]
+    if params[:search_clear]
+      params[:q] = nil
+      params[:search_clear] = nil
+    end
+
     if params[:q]
       params[:q].each do |param|
-        unless param[1].blank?
+        unless param[1].blank? || param[0] == 's' # la 's' es para que no se ponga rojo cuando solo se hace sort de columnas
           @filter_active = true;
           break
         end

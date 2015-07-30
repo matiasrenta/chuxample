@@ -43,6 +43,11 @@ class ChuckyBot < ActiveRecord::Base
         end
       end
 
+      # incluyo migrate
+      if migrate
+        c = "#{c} --migrate=true"
+      end
+
       # fields... showtime!
       # no relationize
       option = '--no-relationize='
