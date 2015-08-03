@@ -258,6 +258,8 @@ es:
       odd: "debe ser impar"
       even: "debe ser par"
       cant_be_in_the_future: "No puede ser en el futuro"
+      invalid_email: 'Email inválido'
+      invalid_mx: 'invalid mx'
 
   settings:
     index:
