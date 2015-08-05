@@ -40,6 +40,10 @@ class Ability
 		can :manage, ChuckyBot
   end
 
+  def prueba
+    can [:manage], Thing
+  end
+
   #este metodo es para restringir cosas a nivel negocio, no importa el perfil
   def cannot_for_everyone
     #todo: cannot manage para todas las entidades que son CONSTANT

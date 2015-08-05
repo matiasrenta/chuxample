@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied
-    set_content_title(t("screens.labels.access_denied"))
+    set_content_title(nil, [''])
   end
 
   def raise_not_found!
@@ -121,7 +121,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::RoutingError, :with => :render_404
   #end
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to "/application/access_denied", alert: t("screens.labels.access_denied")
+    redirect_to "/application/access_denied", alert: t("helpers.messages.access_denied")
   end
   rescue_from CanCan::AuthorizationNotPerformed do |exception|
     raise CanCan::AuthorizationNotPerformed

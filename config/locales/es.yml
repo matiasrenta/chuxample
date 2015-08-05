@@ -233,6 +233,7 @@ es:
 
     messages:
       are_you_sure: "¿Está seguro de querer borrar el registro?"
+      access_denied: "Acceso denegado"
 
   errors:
     format: "%{attribute} %{message}"
