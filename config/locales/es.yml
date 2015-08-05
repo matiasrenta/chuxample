@@ -300,6 +300,9 @@ es:
         format: "%{attribute} %{message}"
 
     models:
+      user:
+        one: Usuario
+        other: Usuarios
       chucky_bot:
         one: ChuckyBot
         other: ChuckyBots

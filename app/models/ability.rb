@@ -35,9 +35,9 @@ class Ability
   end
 
   def superuser
+		can [:manage], User
 		can [:manage], Thing
 		can :manage, ChuckyBot
-    can :manage, Thing
   end
 
   #este metodo es para restringir cosas a nivel negocio, no importa el perfil

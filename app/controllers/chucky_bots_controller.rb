@@ -24,8 +24,9 @@ class ChuckyBotsController < ApplicationController
   # POST /chucky_bots
   def create
     if @chucky_bot.save
-      redirect_to @chucky_bot, notice: t("screens.notice.successfully_created")
+      redirect_to @chucky_bot, notice: t("simple_form.flash.successfully_created")
     else
+      generate_flash_msg(@chucky_bot)
       render :new
     end
   end
@@ -33,8 +34,9 @@ class ChuckyBotsController < ApplicationController
   # PATCH/PUT /chucky_bots/1
   def update
     if @chucky_bot.update(chucky_bot_params)
-      redirect_to @chucky_bot, notice: t("screens.notice.successfully_updated")
+      redirect_to @chucky_bot, notice: t("simple_form.flash.successfully_updated")
     else
+      generate_flash_msg(@chucky_bot)
       render :edit
     end
   end
@@ -42,7 +44,7 @@ class ChuckyBotsController < ApplicationController
   # DELETE /chucky_bots/1
   def destroy
     @chucky_bot.destroy
-    redirect_to chucky_bots_url, notice: t("screens.notice.successfully_destroyed")
+    redirect_to chucky_bots_url, notice: t("simple_form.flash.successfully_destroyed")
   end
 
   private
