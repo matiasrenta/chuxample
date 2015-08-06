@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
         title = [t("activerecord.models.#{controller_name.singularize}", count: 1), t("activerecord.actions.#{action_name}")]
       end
     end
-    #session["content_title"]
+    icon = t("activerecord.models.#{controller_name.singularize}.icon", default: '') if icon.nil?
     @content_title = Hash.new
     @content_title[:title] = title[0] if title.size == 1
     @content_title[:title] = "#{title[0]} <span>> #{title[1]} </span>" if title.size == 2

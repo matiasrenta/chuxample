@@ -302,14 +302,15 @@ es:
 
     models:
       user:
-        one: Usuario
-        other: Usuarios
+        one: 'Usuario'
+        other: 'Usuarios'
+        icon: 'fa-fw fa fa-user'
       chucky_bot:
-        one: ChuckyBot
-        other: ChuckyBots
+        one: 'ChuckyBot'
+        other: 'ChuckyBots'
       thing:
-        one: Cosa
-        other: Cosas
+        one: 'Cosa'
+        other: 'Cosas'
       setting:
         one: 'Configuración de la aplicación'
         other: 'Configuración de la aplicación'
