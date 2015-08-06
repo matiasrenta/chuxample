@@ -7,6 +7,7 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
 
   class_option :i18n_singular_name
   class_option :i18n_plural_name
+  class_option :fa_icon # --fa_icon='fa fa-lg fa-fw fa-cube' solo funciona si se especifica i18n_singular_name y i18n_plural_name
   class_option 'no-relationize'
   class_option :authorization # ejemplo: --authorization=superuser:manage%director:read-edit-destroy
   class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
@@ -17,7 +18,8 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option :formats # --formats=nombre_campo:all#money%nombre_campo:index#datelong@show#datesuperlong
   class_option :dependents # --dependents=nombre_campo:destroy%nombre_campo:restrict_with_error
   class_option :dropdown # --dropdown=nombre_campo:normal%nombre_campo:filter%nombre_campo:autocomplete
-  class_option :fa_icon # --fa_icon='fa fa-lg fa-fw fa-cube'
+  class_option :help # --help=nombre_campo:"texto del help"%nombre_campo:"texto del help"
+
   # todo: cuando un campo como 'género' esta en el filtro aparece como string cuando debería ser un select con las pocas opciones que le debería de mandar en el chuccky_scaff
 
 
@@ -34,12 +36,20 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
 
   def i18nize_model
     if options['i18n_singular_name'] && options['i18n_plural_name']
+      fa_icon = ''
+      fa_icon = "\t\t\t\tfa_icon: '#{options['fa_icon']}'\n" if options['fa_icon'].present?
       inject_into_file 'config/locales/es.yml', after: "models:\n" do
 "      #{name}:
         one: #{options['i18n_singular_name']}
-        other: #{options['i18n_plural_name']}\n"
+        other: #{options['i18n_plural_name']}\n
+#{fa_icon}"
       end
     end
+  end
+
+
+  def iconize_model
+
   end
 
   def relationize_models

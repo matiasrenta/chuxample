@@ -27,6 +27,13 @@ class ChuckyBot < ActiveRecord::Base
         c = "#{c} --i18n_singular_name=#{i18n_singular_name} --i18n_plural_name=#{i18n_plural_name}"
       end
 
+      #
+      unless icon.blank?
+        c = "#{c} --fa_icon=#{fa_icon}"
+      end
+
+
+
       # incluyo public activity
       c = "#{c} --public_activity=#{public_activity[:actions]}" if public_activity && public_activity[:actions].present?
 

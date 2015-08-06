@@ -12,6 +12,7 @@
             <%= f.input :underscore_model_name, hint: 'underscore_model_name' %>
             <%= f.input :i18n_singular_name %>
             <%= f.input :i18n_plural_name %>
+            <%= f.input :fa_icon, hint: 'ej: fa-fw fa fa-user' %>
             <%= f.input :migrate %>
 
             <%= f.simple_fields_for :public_activity, OpenStruct.new(@chucky_bot.public_activity) do |public_activity_f| %>
