@@ -51,6 +51,8 @@ gem 'valid_email'
 gem 'nested_form'
 # exceptions sender by email
 gem 'exception_notification'
+# para versionar API
+gem 'versionist'
 
 
 # bootstrap

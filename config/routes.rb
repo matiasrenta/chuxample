@@ -71,4 +71,10 @@ Rails.application.routes.draw do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     #   end
+
+
+  # API's routes
+  api_version(:module => "V1", :path => {:value => "v1"}, :defaults => {:format => "json"}) do
+    resources :things
+  end
 end
