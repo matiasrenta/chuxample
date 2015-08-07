@@ -23,6 +23,9 @@ module Chucky
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # Para que los request sean via https
+    config.middleware.use Rack::SslEnforcer, only: ['/things'], ignore: %r{/assets}, strict: true
+
     # scaffold generetors customization by mati
     config.generators do |g|
       g.orm             :active_record

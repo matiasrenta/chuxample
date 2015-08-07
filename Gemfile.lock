@@ -156,6 +156,7 @@ GEM
       i18n (>= 0.5.0)
       railties (>= 3.0.0)
     rack (1.6.4)
+    rack-ssl-enforcer (0.2.9)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.1)
@@ -286,6 +287,7 @@ DEPENDENCIES
   nested_form
   pg
   public_activity
+  rack-ssl-enforcer
   rails (= 4.2.1)
   rails-settings-cached
   rails-settings-ui (~> 0.3.0)

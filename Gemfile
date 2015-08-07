@@ -53,6 +53,8 @@ gem 'nested_form'
 gem 'exception_notification'
 # para versionar API
 gem 'versionist'
+# ssl (https://github.com/tobmatth/rack-ssl-enforcer)
+gem 'rack-ssl-enforcer'
 
 
 # bootstrap
