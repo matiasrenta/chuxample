@@ -41,8 +41,6 @@ gem 'will_paginate-bootstrap'
 # Settings
 gem 'rails-settings-cached'
 gem 'rails-settings-ui', '~> 0.3.0'
-# manejo de uploads
-gem 'carrierwave'
 # manejo de imagenes
 gem 'rmagick'
 # para validar emails en ActiveRecord
@@ -55,7 +53,9 @@ gem 'exception_notification'
 gem 'versionist'
 # ssl (https://github.com/tobmatth/rack-ssl-enforcer)
 gem 'rack-ssl-enforcer'
-
+# upload files (https://github.com/refile/refile)
+gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.git', branch: 'master'
+gem 'refile-mini_magick'
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'

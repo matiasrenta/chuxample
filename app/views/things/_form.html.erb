@@ -21,6 +21,11 @@
             <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :published %>
             <%= f.input :gender %>
+            <%= f.attachment_field :thing_attaches_files, multiple: true, direct: true %>
+            <%= f.fields_for :thing_attaches do |upload| %>
+                <%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %>
+                <%= upload.input :_destroy, as: :boolean %>
+            <% end %>
           </div>
 
           <div class="form-actions">

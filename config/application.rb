@@ -24,7 +24,7 @@ module Chucky
     config.active_record.raise_in_transactional_callbacks = true
 
     # Para que los request sean via https
-    config.middleware.use Rack::SslEnforcer, only: ['/things'], ignore: %r{/assets}, strict: true
+    #config.middleware.use Rack::SslEnforcer, only: ['/things'], ignore: %r{/assets}, strict: true
 
     # scaffold generetors customization by mati
     config.generators do |g|
