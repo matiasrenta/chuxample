@@ -58,7 +58,7 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
       if field.include? "_id"
         unless options['no-relationize'] && options['no-relationize'].split(':').include?(field)
           inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
-            "  belongs_to :#{field.split('_id')[0]}\n"
+            "  belongs_to :#{field.split('_id')[0]}\n\n"
           end
           inject_into_file "app/models/#{field.split('_id')[0]}.rb", after: "< ActiveRecord::Base\n" do
             "  has_many :#{name.pluralize}\n"

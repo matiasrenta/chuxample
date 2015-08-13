@@ -28,7 +28,7 @@ class ChuckyBot < ActiveRecord::Base
       end
 
       #
-      unless icon.blank?
+      unless fa_icon.blank?
         c = "#{c} --fa_icon=#{fa_icon}"
       end
 
