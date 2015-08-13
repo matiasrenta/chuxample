@@ -12,14 +12,14 @@ class User < ActiveRecord::Base
   belongs_to :role
   # Include default devise modules. Others available are:
   # :registerable, :confirmable, :validatable and :omniauthable
+  # mas los 7 modulos proveidos por el gem devise_security_extension
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable
 
   validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
 
-
-
-
-
+  def only_api_access?
+    self.only_api_access
+  end
 
   # sobreescribí este metodo de Devise solo para poder enviar un subject distinto para el mail de bienvenida y el de reset pasword instruction
   def send_reset_password_instructions(subject = nil)

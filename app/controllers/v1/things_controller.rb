@@ -1,9 +1,5 @@
 class V1::ThingsController < V1::BaseController
   respond_to :json
-  protect_from_forgery with: :null_session
-  skip_authorization_check #todo: realmente queremos saltar la autorización de cancan?
-  skip_before_action :authenticate_user!
-  before_action :authenticate_user_with_http_basic
 
   def index
     @things = Thing.all
@@ -33,10 +29,4 @@ class V1::ThingsController < V1::BaseController
     params.require(:thing).permit(:name, :age, :price, :expires, :discharged_at, :description, :published, :gender)
   end
 
-  def authenticate_user_with_http_basic
-    authenticate_or_request_with_http_basic('api') do |username, password|
-      user = User.find_by_email username
-      user && user.valid_password?(password)
-    end
-  end
 end

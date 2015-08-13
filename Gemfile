@@ -56,6 +56,8 @@ gem 'rack-ssl-enforcer'
 # upload files (https://github.com/refile/refile)
 gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.git', branch: 'master'
 gem 'refile-mini_magick'
+# provee 7 modulos que se agregan a devise, ver la parte de abajo del initializer de devise para configurar esos modulos
+#gem 'devise_security_extension'
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'

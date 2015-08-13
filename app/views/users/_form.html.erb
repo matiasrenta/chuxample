@@ -18,6 +18,7 @@
             <%= f.input :locale, as: :select, collection: available_locales_for_dropdown %>
             <%= f.input :time_zone, priority: /Mexico/, include_blank: true %>
             <%= f.association :role %>
+            <%= f.input :only_api_access %>
           </div>
 
           <div class="form-actions">

@@ -39,6 +39,8 @@ es:
         expires: 'Expira'
         discharged_at: 'Pagado el'
         published: 'Publicado'
+        role: 'Rol'
+        only_api_access: 'Solo acceso API'
 
     placeholders:
       from: 'desde'

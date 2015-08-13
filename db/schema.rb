@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808023049) do
+ActiveRecord::Schema.define(version: 20150812192458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,9 +89,12 @@ ActiveRecord::Schema.define(version: 20150808023049) do
 
   create_table "thing_attaches", force: :cascade do |t|
     t.string   "file_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "thing_id"
+    t.string   "file_filename"
+    t.integer  "file_size"
+    t.string   "file_content_type"
   end
 
   create_table "things", force: :cascade do |t|
@@ -127,6 +130,7 @@ ActiveRecord::Schema.define(version: 20150808023049) do
     t.datetime "locked_at"
     t.string   "locale"
     t.string   "time_zone"
+    t.boolean  "only_api_access"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

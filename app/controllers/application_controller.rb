@@ -9,8 +9,18 @@ class ApplicationController < ActionController::Base
 
   before_action :set_cache_buster
   before_action :authenticate_user!
+  before_action :redirect_only_api_user
   before_action :set_content_title, :set_user_language, :set_user_time_zone
 
+  # previene que usuarios que solo usan la api puedan hacer login en la aplicación web
+  # todo: debería mejorarse para que no alcance a hacer login. Aqui alcanza a hacerlo y luego fuerzo el logout
+  def redirect_only_api_user
+    if user_signed_in? && current_user.only_api_access?
+      flash[:alert] = 'only api access'
+      sign_out(:user)
+      redirect_to new_user_session_path
+    end
+  end
 
 
   def set_cache_buster
@@ -113,7 +123,6 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
-
   #continue to use rescue_from in the same way as before
   #unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, :with => :render_500
@@ -149,6 +158,7 @@ class ApplicationController < ActionController::Base
     end
     ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver #para que me notifique por mail en production
   end
+
 
 end
 
