@@ -87,11 +87,19 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
       else
         tracked = "tracked only: [:#{options[:public_activity].split(':').join(', :')}]"
       end
-      inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
-        "\tinclude PublicActivity::Model\n\t#{tracked}\n\ttracked owner: ->(controller, model) {controller.try(:current_user)}\n\t#tracked recipient: ->(controller, model) { model.xxxx }
+      inject_into_file "app/models/#{name}.rb", before: "end\n" do
+"\tinclude PublicActivity::Model
+  #{tracked}
+  tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
+  tracked owner: ->(controller, model) {controller.try(:current_user)}\n\t#tracked recipient: ->(controller, model) { model.xxxx }
   tracked :params => {
-              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes}
-          }\n"
+              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)}
+          }\n\n\n
+
+  def except_attr_in_public_activity
+    [:id, :updated_at]
+  end\n
+"
       end
     end
   end
