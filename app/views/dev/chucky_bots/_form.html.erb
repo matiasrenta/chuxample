@@ -1,5 +1,5 @@
 <div>
-      <%= simple_form_for @chucky_bot, url: dev_chucky_bot_path, html: {class: 'form-horizontal'},
+      <%= simple_form_for [:dev, @chucky_bot], html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
                                   check_boxes: :horizontal_radio_and_checkboxes,
