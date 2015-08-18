@@ -1,4 +1,4 @@
-class ChuckyBotsController < ApplicationController
+class Dev::ChuckyBotsController < ApplicationController
   load_and_authorize_resource except: :index, param_method: :chucky_bot_params
 
   # GET /chucky_bots
@@ -24,7 +24,7 @@ class ChuckyBotsController < ApplicationController
   # POST /chucky_bots
   def create
     if @chucky_bot.save
-      redirect_to @chucky_bot, notice: t("simple_form.flash.successfully_created")
+      redirect_to dev_chucky_bot_url(@chucky_bot), notice: t("simple_form.flash.successfully_created")
     else
       generate_flash_msg(@chucky_bot)
       render :new
@@ -34,7 +34,7 @@ class ChuckyBotsController < ApplicationController
   # PATCH/PUT /chucky_bots/1
   def update
     if @chucky_bot.update(chucky_bot_params)
-      redirect_to @chucky_bot, notice: t("simple_form.flash.successfully_updated")
+      redirect_to dev_chucky_bot_url(@chucky_bot), notice: t("simple_form.flash.successfully_updated")
     else
       generate_flash_msg(@chucky_bot)
       render :edit
@@ -51,7 +51,7 @@ class ChuckyBotsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def chucky_bot_params
-      params.require(:chucky_bot).permit(:underscore_model_name, :i18n_singular_name, :i18n_plural_name, :migrate,
+      params.require(:chucky_bot).permit(:underscore_model_name, :i18n_singular_name, :i18n_plural_name, :fa_icon, :migrate,
                                          {authorization: Role.all.pluck(:name).concat([:notes])},
                                          {public_activity: [:actions, :notes]},
                                          {fields_attributes: [:name, :field_type, :i18n_name, :_destroy, :id,

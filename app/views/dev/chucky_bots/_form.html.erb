@@ -1,5 +1,5 @@
 <div>
-      <%= simple_form_for @chucky_bot, html: {class: 'form-horizontal'},
+      <%= simple_form_for @chucky_bot, url: dev_chucky_bot_path, html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
                                   check_boxes: :horizontal_radio_and_checkboxes,
@@ -40,9 +40,9 @@
 
           <div class="form-actions">
             <div class="btn-group">
-              <%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), chucky_bots_path, class: 'btn btn-default btn-sm' if can?(:read, ChuckyBot) %>
-              <%= link_to raw('<i class="fa fa-binoculars"></i> Show'), @chucky_bot, class: 'btn btn-default btn-sm' if can?(:read, ChuckyBot) && updating? %>
-              <%= link_to raw('<i class="fa fa-trash"></i> Destroy'), @chucky_bot, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, ChuckyBot) && updating? %>
+              <%= link_to raw('<i class="fa fa-arrow-left"></i> Back'), dev_chucky_bots_path, class: 'btn btn-default btn-sm' if can?(:read, ChuckyBot) %>
+              <%= link_to raw('<i class="fa fa-binoculars"></i> Show'), dev_chucky_bot_path(@chucky_bot), class: 'btn btn-default btn-sm' if can?(:read, ChuckyBot) && updating? %>
+              <%= link_to raw('<i class="fa fa-trash"></i> Destroy'), dev_chucky_bot_path(@chucky_bot), class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, ChuckyBot) && updating? %>
               <%= f.button :submit, class: 'btn btn-primary btn-sm' %>
             </div>
           </div>

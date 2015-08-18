@@ -1,11 +1,11 @@
 <div>
-  <%= link_to raw('<i class="fa fa-file"></i> New'), new_chucky_bot_path, class: 'btn btn-sm btn-primary' if (can? :create, ChuckyBot) %>
+  <%= link_to raw('<i class="fa fa-file"></i> New'), new_dev_chucky_bot_path, class: 'btn btn-sm btn-primary' if (can? :create, ChuckyBot) %>
   <a aria-expanded="false" aria-controls="filters" data-toggle="collapse" href="#filters" role="button" class="btn btn-sm btn-primary"><i class="fa fa-filter"></i>
     Filter</a>
 </div>
 
 <div id="filters" class="collapse">
-  <%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+  <%= search_form_for(@q, url: dev_chucky_bots_path, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
       <div class="form-group">
         <label for="q[underscore_model_name_cont]">underscore_model_name</label>
         <%= f.search_field :underscore_model_name_cont, label: false, class: "form-control input-sm" %>
@@ -49,11 +49,13 @@
         <td><%= chucky_bot.i18n_plural_name %></td>
         <td align='center;'><%= chucky_bot.migrate %></td>
         <td class="table-actions">
-          <%= render 'shared/action_icons', :locals => {:target => chucky_bot, :model_edit_path => edit_chucky_bot_path(chucky_bot)} %>
+          <%= link_to raw('<i class="fa fa-binoculars"></i>'), dev_chucky_bot_path(chucky_bot), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, chucky_bot %>
+          <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_dev_chucky_bot_path(chucky_bot), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can? :update, chucky_bot %>
+          <%= link_to raw('<i class="fa fa-trash"></i>'), dev_chucky_bot_path(chucky_bot), method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title' => t('simple_form.tooltips.destroy')} if can? :destroy, chucky_bot %>
         </td>
       </tr>
       </tbody>
   <% end %>
   </table>
 
-<%= render 'shared/pagination', locals: {target: @chucky_bots, model_index_path: chucky_bots_path} %>
+<%= render 'shared/pagination', locals: {target: @chucky_bots, model_index_path: dev_chucky_bots_path} %>

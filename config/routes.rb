@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
   resources :things
-  resources :chucky_bots
+
+  namespace :dev do
+    resources :chucky_bots
+  end
 
   namespace :admin do
     root to: 'application#index'
