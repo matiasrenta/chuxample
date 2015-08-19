@@ -1,6 +1,6 @@
 class ThingAttach < ActiveRecord::Base
   belongs_to :thing
-  attachment :file
+  attachment :file#, content_type: ["image/jpeg", "image/png", "image/gif", "application/pdf"]
 
   after_destroy :remove_file
 
