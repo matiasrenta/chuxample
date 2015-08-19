@@ -22,20 +22,25 @@
             <%= f.input :published %>
             <%= f.input :gender %>
 
-            <table>
-              <tr>
-                <td>file name</td>
-                <td>content type</td>
-                <td>file name</td>
-              </tr>
-            </table>
-
-
             <%= f.attachment_field :thing_attaches_files, multiple: true, direct: true %>
-            <%= f.fields_for :thing_attaches do |upload| %>
-                <%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %>
-                <%= upload.input :_destroy, as: :boolean %>
-            <% end %>
+            <table border="1">
+              <tr>
+                <td>image</td>
+                <td>file name</td>
+                <td>size</td>
+                <td>content type</td>
+                <td>Destroy</td>
+              </tr>
+              <%= f.fields_for :thing_attaches do |upload| %>
+                  <tr>
+                    <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
+                    <td><%= upload.object.file_filename %></td>
+                    <td><%= upload.object.file_size %></td>
+                    <td><%= upload.object.file_content_type %></td>
+                    <td><%= upload.input :_destroy, as: :boolean, label: false, wrap_with: :p %></td>
+                  </tr>
+              <% end %>
+            </table>
           </div>
 
           <div class="form-actions">
