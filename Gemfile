@@ -40,7 +40,7 @@ gem 'seed-fu', '~> 2.3'
 gem 'will_paginate-bootstrap'
 # Settings
 gem 'rails-settings-cached'
-gem 'rails-settings-ui', '~> 0.3.0'
+#gem 'rails-settings-ui', '~> 0.3.0' # no lo uso porque esta lleno de bugs y no esta claro como funciona
 # manejo de imagenes
 gem 'rmagick'
 # para validar emails en ActiveRecord

@@ -8,14 +8,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'application#index'
+    resources :settings
   end
-
-  mount RailsSettingsUi::Engine, at: 'admin/settings'
 
   devise_for :users
   resources :users do
     get 'resend_password_instructions/:id', action: 'resend_password_instructions', on: :collection
-    #get "index_by_activity/:activity_id", to: 'alternative_documents#index_by_activity', defaults: {format: :json}
   end
 
   get "application/access_denied"
@@ -35,7 +33,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  # 
+  #
   # Example resource route with options:
   #   resources :products do
   #     member do
