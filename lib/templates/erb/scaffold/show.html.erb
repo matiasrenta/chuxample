@@ -1,0 +1,58 @@
+<section id="widget-grid">
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+        <div class="widget-toolbar">
+          <%%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), <%= plural_name %>_path, class: 'btn btn-primary' %>
+          <%%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_<%= singular_name %>_path(@<%= singular_name %>), class: 'btn btn-primary' if can?(:update, <%= singular_table_name.camelize %>) %>
+        </div>
+      </header>
+      <div class="no-padding">
+        <div class="widget-body">
+          <div class="form-horizontal">
+            <% for attribute in attributes -%>
+                <div class="form-group">
+                  <% if attribute.name[-3,3] == "_id" -%>
+                      <label class="col-sm-2 control-label"><%%= t('simple_form.labels.<%= attribute.name[0,attribute.name.length-3] %>') %></label>
+                  <% else -%>
+                      <label class="col-sm-2 control-label"><%%= t('simple_form.labels.defaults.<%= attribute.name %>') %></label>
+                  <% end -%>
+                  <div class="col-sm-10">
+                    <% if [:date, :datetime, :time].include? attribute.type.to_sym -%>
+                        <p class="form-control-static"><%%= l(@<%= singular_table_name %>.<%= attribute.name %>, :format => :long) if @<%= singular_table_name %>.<%= attribute.name %> %></p>
+                    <% elsif attribute.type.to_sym == :integer -%>
+                        <% if attribute.name[-3,3] == "_id" -%>
+                            <p class="form-control-static"><%%= @<%= singular_table_name %>.<%= attribute.name[0,attribute.name.length-3] %>.try(:name) %></p>
+                        <% else -%>
+                            <p class="form-control-static"><%%= @<%= singular_table_name %>.<%= attribute.name %> %></p>
+                        <% end -%>
+                    <% elsif attribute.type.to_sym == :boolean -%>
+                        <p class="form-control-static"><%%= boolean_check_mark(@<%= singular_table_name %>.<%= attribute.name %>) %></p>
+                    <% else -%>
+                        <p class="form-control-static"><%%= @<%= singular_table_name %>.<%= attribute.name %> %></p>
+                    <% end -%>
+                  </div>
+                </div>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!--
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-info"></i></span>
+        <h2>Details</h2>
+      </header>
+      <div class="no-padding">
+        <div class="widget-body">
+
+        </div>
+      </div>
+    </div>
+  </article>
+  -->
+</section>
+

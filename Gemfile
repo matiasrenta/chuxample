@@ -12,7 +12,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-#gem 'jquery-ui-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -36,23 +36,34 @@ gem 'public_activity'
 # para manejar seed iniciales y posteriores de load de ddbb
 gem 'seed-fu', '~> 2.3'
 # pagination
-gem 'will_paginate', '~> 3.0.6'
+#gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 # Settings
 gem 'rails-settings-cached'
-# manejo de uploads
-gem 'carrierwave'
+#gem 'rails-settings-ui', '~> 0.3.0' # no lo uso porque esta lleno de bugs y no esta claro como funciona
 # manejo de imagenes
 gem 'rmagick'
 # para validar emails en ActiveRecord
 gem 'valid_email'
 # nested form (usarlo solo si el form es muy simple o realmente necesario)
 gem 'nested_form'
+# exceptions sender by email
+gem 'exception_notification'
+# para versionar API
+gem 'versionist'
+# ssl (https://github.com/tobmatth/rack-ssl-enforcer)
+gem 'rack-ssl-enforcer'
+# upload files (https://github.com/refile/refile)
+gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.git', branch: 'master'
+gem 'refile-mini_magick'
+# provee 7 modulos que se agregan a devise, ver la parte de abajo del initializer de devise para configurar esos modulos
+#gem 'devise_security_extension'
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-#gem 'sass-rails', '>= 3.2'
+gem 'font-awesome-sass', '~> 4.3.0'
 
 # para shortcut de sass (usado en el smartAdmin them)
 #gem 'compass-rails'
@@ -86,5 +97,3 @@ group :development, :test do
 
   gem 'letter_opener'
 end
-
-

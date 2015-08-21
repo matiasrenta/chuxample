@@ -31,11 +31,18 @@ class Ability
 
     @user = user
     send(@user.role.name)
+    cannot_for_everyone
   end
 
-  def role_name
-    can :manage, :all
-    can_not_for_everyone
+  def superuser
+    can [:manage], Settings
+		can [:manage], User
+		can [:manage], Thing
+		can :manage, ChuckyBot
+  end
+
+  def prueba
+    can [:manage], Thing
   end
 
   #este metodo es para restringir cosas a nivel negocio, no importa el perfil

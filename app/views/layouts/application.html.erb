@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <%= render "/layouts/head" %>
-<%= render "/layouts/body" %>
+
+
+<% if user_signed_in? %>
+    <%= render "/layouts/body" %>
+<% else %>
+    <%= render "/layouts/login" %>
+<% end %>
+
 </html>
 

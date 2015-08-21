@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624221235) do
+ActiveRecord::Schema.define(version: 20150812192458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,42 @@ ActiveRecord::Schema.define(version: 20150624221235) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
+  create_table "attachments", force: :cascade do |t|
+    t.string   "file_id"
+    t.string   "file_filename"
+    t.integer  "file_size"
+    t.string   "file_content_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+  end
+
+  create_table "chucky_bot_fields", force: :cascade do |t|
+    t.string   "name"
+    t.string   "field_type"
+    t.string   "i18n_name"
+    t.text     "formats_options"
+    t.text     "validations_options"
+    t.text     "association_options"
+    t.integer  "chucky_bot_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "chucky_bots", force: :cascade do |t|
+    t.string   "underscore_model_name"
+    t.string   "i18n_singular_name"
+    t.string   "i18n_plural_name"
+    t.text     "authorization"
+    t.text     "public_activity"
+    t.boolean  "migrate"
+    t.text     "chucky_command"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "fa_icon"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "list_order"
@@ -51,6 +87,16 @@ ActiveRecord::Schema.define(version: 20150624221235) do
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
+  create_table "thing_attaches", force: :cascade do |t|
+    t.string   "file_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "thing_id"
+    t.string   "file_filename"
+    t.integer  "file_size"
+    t.string   "file_content_type"
+  end
+
   create_table "things", force: :cascade do |t|
     t.string   "name"
     t.integer  "age"
@@ -58,6 +104,8 @@ ActiveRecord::Schema.define(version: 20150624221235) do
     t.date     "expires"
     t.datetime "discharged_at"
     t.text     "description"
+    t.boolean  "published"
+    t.string   "gender"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -80,6 +128,9 @@ ActiveRecord::Schema.define(version: 20150624221235) do
     t.integer  "failed_attempts"
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "locale"
+    t.string   "time_zone"
+    t.boolean  "only_api_access"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
