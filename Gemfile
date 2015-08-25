@@ -58,6 +58,10 @@ gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.gi
 gem 'refile-mini_magick'
 # provee 7 modulos que se agregan a devise, ver la parte de abajo del initializer de devise para configurar esos modulos
 #gem 'devise_security_extension'
+# https://github.com/collectiveidea/delayed_job
+gem 'delayed_job_active_record'
+# esto es para que se ejecuten los delayed jobs
+gem 'daemons'
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'

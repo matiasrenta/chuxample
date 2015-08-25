@@ -23,10 +23,15 @@ module Chucky
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # ver:
+    # https://github.com/collectiveidea/delayed_job#rails-42
+    # http://guides.rubyonrails.org/active_job_basics.html#setting-the-backend
+    config.active_job.queue_adapter = :delayed_job
+
     # Para que los request sean via https
     #config.middleware.use Rack::SslEnforcer, only: ['/things'], ignore: %r{/assets}, strict: true
 
-    # scaffold generetors customization by mati
+    # scaffold generetors customization by Mati
     config.generators do |g|
       g.orm             :active_record
       g.template_engine :erb
