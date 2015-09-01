@@ -62,6 +62,11 @@ gem 'refile-mini_magick'
 gem 'delayed_job_active_record'
 # esto es para que se ejecuten los delayed jobs
 gem 'daemons'
+# graficos https://github.com/ankane/chartkick    http://chartkick.com/
+gem 'chartkick'
+# para agrupar por date (tiempo), util para los graficos. https://github.com/ankane/groupdate
+gem 'groupdate'
+
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'

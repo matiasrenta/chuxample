@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   namespace :dev do
     resources :chucky_bots
+    resources :examples do
+      get 'chartkick', on: :collection
+    end
   end
 
   namespace :admin do
