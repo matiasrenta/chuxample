@@ -14,7 +14,7 @@
 //= require js/plugin/pace/pace
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require js/app.config
 //= require bootstrap-sprockets
 //= require js/notification/SmartNotification
