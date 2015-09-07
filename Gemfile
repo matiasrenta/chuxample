@@ -67,6 +67,11 @@ gem 'chartkick'
 # para agrupar por date (tiempo), util para los graficos. https://github.com/ankane/groupdate
 gem 'groupdate'
 
+# etl: https://github.com/activewarehouse/activewarehouse-etl/wiki/Documentation
+gem 'activewarehouse-etl', git: "https://github.com/apurvis/activewarehouse-etl.git"
+gem 'test-unit' # es una dependencia de activewarehouse-etl pero no esta en el gem-spec por eso la pongo a mano
+gem 'sqlite3'
+gem 'iconv', '~> 1.0.3'
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
