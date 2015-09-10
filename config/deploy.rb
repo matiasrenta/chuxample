@@ -26,7 +26,7 @@ set :deploy_to, '/home/deployer/railsapps/chucky'
 set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/assets public/system}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -50,10 +50,11 @@ namespace :deploy do
           with rails_env: fetch(:rails_env) do
             old_manifest_path = "#{shared_path}/public/assets/manifest*"
             execute :rm, old_manifest_path if test "[ -f #{old_manifest_path} ]"
-            upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
+            #upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
+            upload!('./public/assets/', "#{release_path}/public/", recursive: true)
           end
         end
-        #run_locally { execute 'rm -rf public/assets' }
+        run_locally { execute 'rm -rf public/assets' }
       end
     end
   end
