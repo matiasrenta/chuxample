@@ -12,4 +12,8 @@ class Dev::ExamplesController < ApplicationController
     @geo_chart = {Oaxaca: 15, Chihuahua: 5, Morelos: 10, Chiapas: 8}
   end
 
+  def cors
+    # just render a view with a link remote=true for testing CORS functionality
+  end
+
 end

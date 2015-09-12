@@ -66,6 +66,8 @@ gem 'daemons'
 gem 'chartkick'
 # para agrupar por date (tiempo), util para los graficos. https://github.com/ankane/groupdate
 gem 'groupdate'
+# cors - https://github.com/cyu/rack-cors
+gem 'rack-cors', :require => 'rack/cors'
 
 # etl: https://github.com/activewarehouse/activewarehouse-etl/wiki/Documentation
 gem 'activewarehouse-etl', git: "https://github.com/apurvis/activewarehouse-etl.git"

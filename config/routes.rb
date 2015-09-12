@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   namespace :dev do
     resources :chucky_bots
     resources :examples do
-      get 'chartkick', on: :collection
+      collection do
+        get 'chartkick'
+        get 'cors'
+      end
+
     end
   end
 
