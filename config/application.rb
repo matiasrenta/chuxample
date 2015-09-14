@@ -38,7 +38,7 @@ module Chucky
     config.active_job.queue_adapter = :delayed_job
 
     # Para que los request sean via https
-    #config.middleware.use Rack::SslEnforcer, only: ['/things'], ignore: %r{/assets}, strict: true
+    config.middleware.use Rack::SslEnforcer, only_environments: ['production'], only: ['/things'], ignore: %r{/assets}, strict: true
 
     # scaffold generetors customization by Mati
     config.generators do |g|
