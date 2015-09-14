@@ -13,6 +13,7 @@ class Dev::ExamplesController < ApplicationController
   end
 
   def cors
+    set_content_title('fa fa-lg fa-fw fa-cube', ['CORS example'])
     # just render a view with a link remote=true for testing CORS functionality
   end
 
