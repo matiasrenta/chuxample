@@ -38,7 +38,7 @@ module Chucky
     config.active_job.queue_adapter = :delayed_job
 
     # Para que los request sean via https
-    config.middleware.use Rack::SslEnforcer, only_environments: ['production'], ignore: %r{/assets}, strict: true#, before_redirect: Proc.new { |request|
+    #config.middleware.use Rack::SslEnforcer, only_environments: ['production'], ignore: %r{/assets}, strict: true#, before_redirect: Proc.new { |request|
        #keep flash on redirect. NO ME FUNCIONA NIGUNA DE LAS DOS LINEAS
        #request.session[:flash].keep if !request.session.nil? && request.session.key?('flash') && !request.session['flash'].empty?
        #flash.keep if !request.session.nil? && request.session.key?('flash') && !request.session['flash'].empty?
