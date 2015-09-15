@@ -40,7 +40,8 @@ module Chucky
     # Para que los request sean via https
     config.middleware.use Rack::SslEnforcer, only_environments: ['production'], ignore: %r{/assets}, strict: true, before_redirect: Proc.new { |request|
        #keep flash on redirect
-       request.session[:flash].keep_if !request.session.nil? && request.session.key?('flash') && !request.session['flash'].empty?
+       #request.session[:flash].keep if !request.session.nil? && request.session.key?('flash') && !request.session['flash'].empty?
+       flash.keep if !request.session.nil? && request.session.key?('flash') && !request.session['flash'].empty?
      }
 
     # scaffold generetors customization by Mati
