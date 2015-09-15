@@ -117,6 +117,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def generate_flash_msg_no_keep(model_instance, flash_type = :alert)
+    generate_flash_msg(model_instance, flash_type)
+    flash.discard(flash_type) # elimina esta entrada del flash al finalizar el action
+  end
+
   private ############################################ PRIVATE #################################################
 
   def after_sign_out_path_for(user)

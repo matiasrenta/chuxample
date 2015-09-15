@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       @user.delay(queue: 'mailing').send_reset_password_instructions
       redirect_to @user, notice: t('devise.labels.new_user_email_sent', email: @user.email)
     else
-      generate_flash_msg(@user)
+      generate_flash_msg_no_keep(@user)
       render :new
     end
   end
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: t("simple_form.flash.successfully_updated")
     else
-      generate_flash_msg(@user)
+      generate_flash_msg_no_keep(@user)
       render :edit
     end
   end
