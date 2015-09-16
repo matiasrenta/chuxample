@@ -89,6 +89,9 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
   # autoprefixer-rails is optional, but recommended. It automatically adds the proper vendor prefixes to your CSS code when it is compiled.
   #gem 'autoprefixer-rails'
 
+# para poner la app en maintenance mode. https://github.com/biola/turnout
+gem 'turnout'
+
 # (-)Instalados por mi
 
 
