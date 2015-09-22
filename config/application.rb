@@ -11,6 +11,15 @@ module Chucky
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # CORS config
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
@@ -23,10 +32,19 @@ module Chucky
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    # Para que los request sean via https
-    #config.middleware.use Rack::SslEnforcer, only: ['/things'], ignore: %r{/assets}, strict: true
+    # ver:
+    # https://github.com/collectiveidea/delayed_job#rails-42
+    # http://guides.rubyonrails.org/active_job_basics.html#setting-the-backend
+    config.active_job.queue_adapter = :delayed_job
 
-    # scaffold generetors customization by mati
+    # Para que los request sean via https
+    config.middleware.use Rack::SslEnforcer, only_environments: ['production'], ignore: %r{/assets}, strict: true#, before_redirect: Proc.new { |request|
+       #keep flash on redirect. NO ME FUNCIONA NIGUNA DE LAS DOS LINEAS
+       #request.session[:flash].keep if !request.session.nil? && request.session.key?('flash') && !request.session['flash'].empty?
+       #flash.keep if !request.session.nil? && request.session.key?('flash') && !request.session['flash'].empty?
+     #}
+
+    # scaffold generetors customization by Mati
     config.generators do |g|
       g.orm             :active_record
       g.template_engine :erb
@@ -35,5 +53,9 @@ module Chucky
       g.javascripts     false
       g.jbuilder        false
     end
+
+    # para cargar los path de modelos que pongo en sudirectoios de app/models/xxx
+    # No uso namespaces para los modelos porque no me parece una buena solución al perder ciertas conventions de rails
+    config.autoload_paths += %W( #{config.root}/app/models/dev #{config.root}/app/models/admin)
   end
 end

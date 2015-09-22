@@ -24,7 +24,7 @@ class ThingsController < ApplicationController
     if @thing.save
       redirect_to @thing, notice: t("simple_form.flash.successfully_created")
     else
-      generate_flash_msg(@thing)
+      generate_flash_msg_no_keep(@thing)
       render :new
     end
   end
@@ -34,7 +34,7 @@ class ThingsController < ApplicationController
     if @thing.update(thing_params)
       redirect_to @thing, notice: t("simple_form.flash.successfully_updated")
     else
-      generate_flash_msg(@thing)
+      generate_flash_msg_no_keep(@thing)
       render :edit
     end
   end

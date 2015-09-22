@@ -26,7 +26,7 @@ class Dev::ChuckyBotsController < ApplicationController
     if @chucky_bot.save
       redirect_to dev_chucky_bot_url(@chucky_bot), notice: t("simple_form.flash.successfully_created")
     else
-      generate_flash_msg(@chucky_bot)
+      generate_flash_msg_no_keep(@chucky_bot)
       render :new
     end
   end
@@ -36,7 +36,7 @@ class Dev::ChuckyBotsController < ApplicationController
     if @chucky_bot.update(chucky_bot_params)
       redirect_to dev_chucky_bot_url(@chucky_bot), notice: t("simple_form.flash.successfully_updated")
     else
-      generate_flash_msg(@chucky_bot)
+      generate_flash_msg_no_keep(@chucky_bot)
       render :edit
     end
   end
