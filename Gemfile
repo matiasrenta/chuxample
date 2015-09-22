@@ -90,7 +90,7 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
   #gem 'autoprefixer-rails'
 
 # para poner la app en maintenance mode. https://github.com/biola/turnout
-gem 'turnout' 
+gem 'turnout'
 
 # (-)Instalados por mi
 
