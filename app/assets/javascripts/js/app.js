@@ -188,6 +188,7 @@ var calc_navbar_height = function() {
 						}
 					});
 					function logout() {
+                        
 						window.location = $this.attr('href');
 					}
 
