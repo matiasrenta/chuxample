@@ -80,8 +80,8 @@
               <% end %>
             </div>
           </div>
-          <div class="widget-body">
-            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
+          <div class="widget-body no-margin-top-bottom" >
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
                 <th class='all control'><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
@@ -113,13 +113,17 @@
               <% end %>
               </tbody>
             </table>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            
+          </div>
+          <div class="widget-footer">
               <%= render 'shared/pagination', locals: {target: @things, model_index_path: things_path} %>
             </div>
-          </div>
         </div>
       </div>
     </article>
   </div>
 </section>
+<style>
+  
+</style>
 

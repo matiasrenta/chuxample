@@ -33,43 +33,43 @@
             <!-- widget content -->
             <div class="widget-body">         
 
-              <table class="table stripe hover order-column row-border" width="100%" cellspacing="0" id="dt_basic">
+              <table class="table table-striped table-hover " width="100%" cellspacing="0" id="dt_basic">
                 
                  <tbody>
                    <tr role="row">
-                       <th><%= t('simple_form.labels.defaults.name') %> largaa  ddd aaaaaa</th>
+                       <th class="th-vertical-even"><%= t('simple_form.labels.defaults.name') %> largaa  ddd aaaaaa</th>
                        <td><%= @thing.name %></td>
                     </tr>
                    <tr role="row">
-                       <th><%= t('simple_form.labels.defaults.age') %></th>
+                       <th class="th-vertical"><%= t('simple_form.labels.defaults.age') %></th>
                        <td><%= @thing.age %></td>
                     </tr>
                    <tr role="row">
-                       <th><%= t('simple_form.labels.defaults.price') %></th>
+                       <th class="th-vertical-even"><%= t('simple_form.labels.defaults.price') %></th>
                        <td><%= @thing.price %></td>
                     </tr>
                    <tr role="row">
-                       <th><%= t('simple_form.labels.defaults.expires') %></th>
+                       <th class="th-vertical"><%= t('simple_form.labels.defaults.expires') %></th>
                        <td><%= l(@thing.expires, :format => :long) if @thing.expires %></td>
                     </tr>
                    <tr role="row">
-                       <th><%= t('simple_form.labels.defaults.discharged_at') %></th>
+                       <th class="th-vertical-even"><%= t('simple_form.labels.defaults.discharged_at') %></th>
                        <td><%= l(@thing.discharged_at, :format => :long) if @thing.discharged_at %></td>
                     </tr>
                    <tr role="row">
-                       <th><%= t('simple_form.labels.defaults.description') %></th>
+                       <th class="th-vertical"><%= t('simple_form.labels.defaults.description') %></th>
                        <td><%= @thing.description %></td>
                     </tr>
                    <tr role="row">
-                       <th><%= t('simple_form.labels.defaults.published') %></th>
+                       <th class="th-vertical-even"><%= t('simple_form.labels.defaults.published') %></th>
                        <td><%= boolean_check_mark(@thing.published) %></td>
                     </tr>
                    <tr role="row">
-                       <th><%= t('simple_form.labels.defaults.gender') %></th>
+                       <th class="th-vertical"><%= t('simple_form.labels.defaults.gender') %></th>
                        <td><%= @thing.gender %></td>
                     </tr>
                    <tr role="row">
-                       <th>Imágenes</th>
+                       <th class="th-vertical-even">Imágenes</th>
                        <td><% @thing.thing_attaches.each do |attach| %>
                         <p class="form-control-static"><%= image_tag attachment_url(attach, :file, :fill, 100, 100) %></p>
                         <% end %></td>
@@ -82,6 +82,7 @@
             <!-- end widget content -->
          </div>
          <!-- end widget div -->
+        
       </div>
       <!-- end widget -->
    </article>
@@ -162,3 +163,7 @@
    </article>-->
 </div>
 
+
+
+  
+</script>
