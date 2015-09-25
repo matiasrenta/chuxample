@@ -7,9 +7,9 @@
       <%= simple_form_for @thing, html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
-                                  check_boxes: :horizontal_radio_and_checkboxes,
-                                  radio_buttons: :horizontal_radio_and_checkboxes,
-                                  file: :horizontal_file_input,
+                                  #check_boxes: :horizontal_radio_and_checkboxes,
+                                  #radio_buttons: :horizontal_radio_and_checkboxes,
+                                  attachment: :horizontal_file_input,
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs">
@@ -21,26 +21,35 @@
             <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :published %>
             <%= f.input :gender %>
+            <%= f.input :thing_attaches_files, as: :attachment, label: 'Images', multiple: true, direct: true %>
 
-            <%= f.attachment_field :thing_attaches_files, multiple: true, direct: true %>
-            <table border="1">
-              <tr>
-                <td>image</td>
-                <td>file name</td>
-                <td>size</td>
-                <td>content type</td>
-                <td>Destroy</td>
-              </tr>
-              <%= f.fields_for :thing_attaches do |upload| %>
+            <div class="form-group attachment optional thing_thing_attaches_files">
+
+              <label class="attachment optional col-sm-3 control-label"></label>
+              <div class="col-sm-9">
+                <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
                   <tr>
-                    <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
-                    <td><%= upload.object.file_filename %></td>
-                    <td><%= upload.object.file_size %></td>
-                    <td><%= upload.object.file_content_type %></td>
-                    <td><%= upload.input :_destroy, as: :boolean, label: false, wrap_with: :p %></td>
+                    <th>image</th>
+                    <th>file name</th>
+                    <th>size</th>
+                    <th>content type</th>
+                    <th>Destroy</th>
                   </tr>
-              <% end %>
-            </table>
+                  <%= f.fields_for :thing_attaches do |upload| %>
+                      <tr>
+                        <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
+                        <td><%= upload.object.file_filename %></td>
+                        <td><%= upload.object.file_size %></td>
+                        <td><%= upload.object.file_content_type %></td>
+                        <td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
+                      </tr>
+                  <% end %>
+                </table>              </div>
+
+            </div>
+
+
+
           </div>
 
           <div class="form-actions">

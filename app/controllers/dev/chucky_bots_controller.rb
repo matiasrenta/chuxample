@@ -1,5 +1,7 @@
 class Dev::ChuckyBotsController < ApplicationController
-  load_and_authorize_resource except: :index, param_method: :chucky_bot_params
+  # la opcion class: 'ChuckyBot' es para que no intente con Dev::ChuckyBot
+  load_resource except: [:index, :new], param_method: :chucky_bot_params, class: 'ChuckyBot'
+  authorize_resource except: :index, param_method: :chucky_bot_params, class: 'ChuckyBot'
 
   # GET /chucky_bots
   def index
@@ -12,6 +14,7 @@ class Dev::ChuckyBotsController < ApplicationController
 
   # GET /chucky_bots/new
   def new
+    @chucky_bot = ChuckyBot.new
     #convierto los role names en keys con values nil en una hash
     @chucky_bot.authorization = Hash[Role.all.pluck(:name).map {|key| [key, nil]}]
     @chucky_bot.public_activity = {actions: nil, notes: nil}

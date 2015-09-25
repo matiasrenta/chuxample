@@ -60,7 +60,7 @@
               </div>
             </div>
           <div class="widget-body">
-            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
                 <% attributes.each_with_index do |attribute, i| -%>
@@ -99,7 +99,7 @@
               <%% end %>
               </tbody>
             </table>
-            <div class="no-padding">
+            <div class="widget-footer">
               <%%= render 'shared/pagination', locals: {target: @<%= plural_table_name %>, model_index_path: <%= plural_table_name %>_path} %>
             </div>
           </div>
