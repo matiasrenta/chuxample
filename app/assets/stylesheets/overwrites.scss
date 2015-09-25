@@ -1,11 +1,45 @@
+// Color or tables
+// Filas impares (odd)
+$color-tr-odd:#B2C4D1;
+//Filas pares (even)
+$color-tr-even:#DFE7ED;
+//Hover de filasde tabla
+$color-tr-hover:#DFE7ED;
+//Hover del head de la tabla
+$color-tr-th: #93AEC3;
+
+.color-primary-0 { color: #9CB3C5 }	/* Main Primary color */
+.color-primary-1 { color: #EFF4F7 }
+.color-primary-2 { color: #CBD8E2 }
+.color-primary-3 { color: #6B8AA2 }
+.color-primary-4 { color: #446986 }
+
+
+
 table.dataTable, .no-margin-top-bottom{
     margin-top:0 !important;
     margin-bottom:0 !important;
     padding-bottom: 0!important;
 }
-table tr th.th-vertical{
-    background-color: #DFE3E8;
+table tr:nth-child(odd) {
+    background-color: $color-tr-odd;
 }
-table tr th.th-vertical-even{
-    background-color: #E1EEF2;
+table tr th{
+    background-color: $color-tr-th;
+    white-space: nowrap;
 }
+table tr:nth-child(even) th{
+    background-color: $color-tr-even;
+}
+table tr:hover td, table tr:hover th, table.table-things-show tr:hover td, table.table-things-show tr:hover th {
+    background-color:  $color-tr-hover;
+}
+
+table.table-things-show tr th{
+    background-color: transparent;
+    border-right: 1px solid #ccc;
+}
+table.table-things-show tr:first-child td, table.table-things-show tr:first-child th{
+    border-top:0px none;
+}
+
