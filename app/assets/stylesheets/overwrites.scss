@@ -1,0 +1,11 @@
+table.dataTable, .no-margin-top-bottom{
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+    padding-bottom: 0!important;
+}
+table tr th.th-vertical{
+    background-color: #DFE3E8;
+}
+table tr th.th-vertical-even{
+    background-color: #E1EEF2;
+}
