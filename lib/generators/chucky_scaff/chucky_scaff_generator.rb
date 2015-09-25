@@ -38,32 +38,12 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
     if options['i18n_singular_name'] && options['i18n_plural_name']
       fa_icon = ''
       fa_icon = "\s\s\s\s\s\s\s\sfa_icon: '#{options['fa_icon']}'\n" if options['fa_icon'].present?
-
-      content = "      #{name}:
-        one Má: #{options['i18n_singular_name']}
-        other: #{options['i18n_plural_name']}\n#{fa_icon}".force_encoding("UTF-8")
-
-
       inject_into_file 'config/locales/es.yml', after: "models:\n" do
-"#{content}"
+        "      #{name}:
+        one: #{options['i18n_singular_name']}
+        other: #{options['i18n_plural_name']}\n#{fa_icon}".force_encoding('ASCII-8BIT')
       end
     end
-  end
-
-#  def i18nize_model
-#    if options['i18n_singular_name'] && options['i18n_plural_name']
-#      inject_into_file 'config/locales/es.yml', after: "models:\n" do
-#        "      #{name}:
-#        one: #{options['i18n_singular_name']}
-#        other: #{options['i18n_plural_name']}\n"
-#      end
-#    end
-#  end
-
-
-
-  def iconize_model
-
   end
 
   def relationize_models
