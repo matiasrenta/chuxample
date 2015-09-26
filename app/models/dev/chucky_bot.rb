@@ -27,11 +27,10 @@ class ChuckyBot < ActiveRecord::Base
         c = "#{c} --i18n_singular_name=#{i18n_singular_name} --i18n_plural_name=#{i18n_plural_name}"
       end
 
-      #
+      # incluyo icono del modelo
       unless fa_icon.blank?
         c = "#{c} --fa_icon=#{fa_icon}"
       end
-
 
 
       # incluyo public activity
@@ -50,20 +49,41 @@ class ChuckyBot < ActiveRecord::Base
         end
       end
 
+
+
+      # fields... showtime!
+      # no relationize
+      #option = '--no-relationize='
+      values_array = Array.new
+      fields.each {|field| values_array << field.name if field[:association_options] && field[:association_options][:no_relationize] == '1'}
+      c = "#{c} --no-relationize=#{values_array.join(':')}" if values_array.size > 0
+
+
+      # validations: --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
+      validates = Array.new
+      fields.each do |field|
+        field[:validations_options][:validates].each do |validate|
+          validates << validate
+        end
+      end
+      c_validations = ""
+      validates = validates.reject(&:blank?).uniq
+      validates.each do |validate|
+        c_validations = c_validations.blank? ? "--validations=#{validate}:" : "#{c_validations}%#{validate}:"
+        fields.each do |field|
+          if field[:validations_options][:validates] && field[:validations_options][:validates].include?(validate)
+            c_validations = c_validations.ends_with?(':') ? "#{c_validations}#{field.name}" : "#{c_validations}-#{field.name}"
+          end
+        end
+      end
+      c = "#{c} #{c_validations}" unless c_validations.blank?
+
+
+
       # incluyo migrate
       if migrate
         c = "#{c} --migrate=true"
       end
-
-      # fields... showtime!
-      # no relationize
-      option = '--no-relationize='
-      values_array = Array.new
-      fields.each {|field| values_array << field.name if field[:association_options] && field[:association_options][:no_relationize] == '1'}
-      c = "#{c} #{option}#{values_array.join(':')}" if values_array.size > 0
-
-      
-
 
 
       # at last!
