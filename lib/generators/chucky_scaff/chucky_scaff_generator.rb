@@ -12,11 +12,11 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option :authorization # ejemplo: --authorization=superuser:manage%director:read-edit-destroy
   class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
   class_option :migrate # para que se ejecute rake db:migrate: --migrate=true
+  class_option :validations # --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
+  class_option :dependents # --dependents=nombre_campo:destroy-nombre_campo:restrict_with_error
 
   # TODO: implementar los siguientes class_options
-  class_option :validations # --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
   class_option :formats # --formats=nombre_campo:all#money%nombre_campo:index#datelong@show#datesuperlong
-  class_option :dependents # --dependents=nombre_campo:destroy%nombre_campo:restrict_with_error
   class_option :dropdown # --dropdown=nombre_campo:normal%nombre_campo:filter%nombre_campo:autocomplete
   class_option :help # --help=nombre_campo:"texto del help"%nombre_campo:"texto del help"
 
@@ -46,7 +46,7 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
     end
   end
 
-  def validatize_models
+  def validatize_model
     if options['validations']
       # --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
       validations = options['validations'].split('%')
@@ -70,8 +70,10 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
           inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
             "  belongs_to :#{field.split('_id')[0]}\n\n"
           end
+          #--dependents=nombre_campo:destroy-nombre_campo:restrict_with_error
+          dependent = options['dependents'].split('-').select {|word| word.include?(field)}.first.split(':').last
           inject_into_file "app/models/#{field.split('_id')[0]}.rb", after: "< ActiveRecord::Base\n" do
-            "  has_many :#{name.pluralize}\n"
+            "  has_many :#{name.pluralize}, dependent: :#{dependent}\n"
           end
         end
       end
@@ -89,32 +91,6 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
       end
     end
   end
-
-#  def public_activize
-#    if options[:public_activity]
-#      if options[:public_activity] == 'public_activity'
-#        tracked = 'tracked'
-#      else
-#        tracked = "tracked only: [:#{options[:public_activity].split(':').join(', :')}]"
-#      end
-#      inject_into_file "app/models/#{name}.rb", before: "end\n" do
-#"\tinclude PublicActivity::Model
-#  #{tracked}
-#  tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
-#  tracked owner: ->(controller, model) {controller.try(:current_user)}\n\t#tracked recipient: ->(controller, model) { model.xxxx }
-#  tracked :params => {
-#              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)}
-#          }\n\n\n
-#
-#  def except_attr_in_public_activity
-#    [:id, :updated_at]
-#  end\n
-#"
-#      end
-#    end
-#  end
-
-
 
   def public_activize
     if options[:public_activity]
@@ -142,10 +118,6 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
       end
     end
   end
-
-
-
-
 
 
   def migrate_to_ddbb

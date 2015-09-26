@@ -52,11 +52,27 @@ class ChuckyBot < ActiveRecord::Base
 
 
       # fields... showtime!
+
       # no relationize
       #option = '--no-relationize='
       values_array = Array.new
-      fields.each {|field| values_array << field.name if field[:association_options] && field[:association_options][:no_relationize] == '1'}
+      dependents = ""
+      fields.each do |field|
+        if field.name.include?('_id') && field[:association_options]
+          if field[:association_options][:no_relationize] == '1'
+            values_array << field.name
+          else
+            if field[:association_options][:dependent_on_parent].blank?
+              self.errors.add(:base, "hay campos con _id que NO tienen definido dependent")
+              return false
+            else
+              dependents = dependents.blank? ? " --dependents=#{field.name}:#{field[:association_options][:dependent_on_parent]}" : "#{dependents}-#{field.name}:#{field[:association_options][:dependent_on_parent]}"
+            end
+          end
+        end
+      end
       c = "#{c} --no-relationize=#{values_array.join(':')}" if values_array.size > 0
+      c = "#{c}#{dependents}"
 
 
       # validations: --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
