@@ -20,32 +20,25 @@
              
              <label class="string required col-xs-12 col-sm-3 control-label" for="thing_name">
                Titulo<span class="btn-help"><i class="fa fa-question-circle" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."></i></span></label> 
-             
              <div class="col-xs-12 col-sm-9">
-               <input id="thing_name" class="string required form-control" type="text" name="thing[name]"></input>
-               
-                
+               <input id="thing_name" class="string required form-control" type="text" name="thing[name]"></input>         
              </div>
            </div>
-          
-            
-
           <div class="form-inputs">
             <%= f.input :name, wrapper: :horizontal_form_help %>
-
             <%= f.input :age %>
             <%= f.input :price %>
             <%= f.input :expires, as: :string, input_html: {class: 'datepicker', data: {dateformat: 'dd/mm/yy'}} %>
-            <%= f.input :discharged_at, as: :string, input_html: {class: 'datetimepicker', data: {dateformat: 'dd/mm/yy %H:%M'}} %>
-            
+            <%= f.input :discharged_at, as: :string, input_html: {class: 'datetimepicker', data: {dateformat: 'dd/mm/yy %H:%M'}} %>   
             <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :published %>
             <%= f.input :gender %>
-
-            <%= f.attachment_field :thing_attaches_files, multiple: true, direct: true %>
+            <%= f.input :thing_attaches_files, as: :attachment, label: 'Images', multiple: true, direct: true %> 
             
-             <div class="form-inputs">
-             <table id="table-images" width="100%" class="display responsive no-wrap table-bordered table-hover table-striped" style="margin:0 padding-top:0px">
+             <div class="form-group attachment optional thing_thing_attaches_files">
+              <label class="attachment optional col-sm-3 control-label"></label>
+              <div class="col-sm-9">
+                <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <tr>
                 <th class="all control">Imagen</th>
                 <th class="all">Nombre de archivo</th>
@@ -53,19 +46,19 @@
                 <th class="no-desktop">Tipo de contenido</th>
                 <th class="all">Destruir</th>
               </tr>
-              <%= f.fields_for :thing_attaches do |upload| %>
-                  <tr>
-                    <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
-                    <td><%= upload.object.file_filename %></td>
-                    <td><%= upload.object.file_size %></td>
-                    <td><%= upload.object.file_content_type %></td>
-                    <td><%= upload.input :_destroy, as: :boolean, label: false, wrap_with: :p %></td>
-                  </tr>
-              <% end %>
+               <%= f.fields_for :thing_attaches do |upload| %>
+                      <tr>
+                        <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
+                        <td><%= upload.object.file_filename %></td>
+                        <td><%= upload.object.file_size %></td>
+                        <td><%= upload.object.file_content_type %></td>
+                        <td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
+                      </tr>
+                  <% end %>
             </table>
              </div>
-          </div>
-          
+            </div>
+          </div>    
           <div class="widget-footer">
           <div class="form-actions">
             <div class="btn-group">
