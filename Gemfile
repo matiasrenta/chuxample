@@ -72,6 +72,9 @@ gem 'groupdate'
 # cors - https://github.com/cyu/rack-cors
 gem 'rack-cors', :require => 'rack/cors'
 
+#por ahora lo pongo tambien en production hasta tener email
+gem 'letter_opener'
+
 # etl: https://github.com/activewarehouse/activewarehouse-etl/wiki/Documentation
 gem 'activewarehouse-etl', git: "https://github.com/apurvis/activewarehouse-etl.git"
 gem 'test-unit' # es una dependencia de activewarehouse-etl pero no esta en el gem-spec por eso la pongo a mano
@@ -124,5 +127,5 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  gem 'letter_opener'
+  #gem 'letter_opener'
 end
