@@ -14,9 +14,11 @@ $gris-azul-2: #93AEC3;
 .color-primary-3 { color: #6B8AA2 }
 .color-primary-4 { color: #446986 }
 
-
-table.dataTable thead tr:first-child th{
-     background-color: #DFE7ED;
+#content{
+    border-top: 1px solid #999;
+}
+table.dataTable tr:first-child th{
+    background-color: #DFE7ED;
     white-space: nowrap;
 }
 table.dataTable, .no-margin-top-bottom{
@@ -57,5 +59,8 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 }
 .edit label{
     font-weight: bold;
+}
+input#thing_published{
+  
 }
 
