@@ -1,5 +1,17 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= csrf_meta_tags %>
-<script type='text/javascript'>pageSetUp();</script>
+<script type='text/javascript'>
+pageSetUp();
+$.datetimepicker.setLocale('es');
+$('.datetimepicker').datetimepicker();
+
+
+$('.datepicker').datetimepicker({
+  timepicker:false,
+   format:'d.m.Y'
+});
+
+
+</script>
 
 <%= yield :javascript_per_page %>

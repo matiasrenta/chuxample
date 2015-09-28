@@ -30,7 +30,7 @@
 
 // require js/plugin/jquery-ui/ui/core
 // require js/plugin/jquery-ui/ui/widget
-//= require js/plugin/jquery-ui/ui/datepicker
+
 //= require js/plugin/datatables/jquery.dataTables.min
 //= require js/plugin/datatables/dataTables.bootstrap.min
 //= require js/plugin/datatables/dataTables.responsive
@@ -53,3 +53,6 @@
 //= require jquery_nested_form
 //= require chucky_bots
 //= require js/common
+
+//= require js/plugin/datetimepicker/jquery.datetimepicker
+//= require js/plugin/datetimepicker/build/jquery.datetimepicker.full.min.js
