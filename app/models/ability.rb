@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], ThingPart
     can [:manage], Settings
 		can [:manage], User
 		can [:manage], Thing
