@@ -75,25 +75,16 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'col-xs-12 col-sm-3 control-label'
-    #b.wrapper tag: 'span', class: 'input-group-addon' do |span|
-    #  span.wrapper tag: 'i', class: 'fa fa-question-circle' do |i|
-    #  end
-    #end
-    b.wrapper tag: 'div', class: 'form-group' do |ba|
+    b.wrapper tag: 'span', class: 'btn-help' do |s|
+      s.wrapper tag: 'i', class: 'fa fa-question-circle', rel: "popover-hover", 'data-placement' => "top", 'data-original-title' => "Popover activated on hover", 'data-content' => "Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum." do
+      end
+    end
+    b.wrapper tag: 'div', class: 'col-xs-12 col-sm-9' do |ba|
       ba.use :input, class: 'form-control'
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+      ba.use :error, wrap_with: {tag: 'span', class: 'help-block'}
+      ba.use :hint, wrap_with: {tag: 'p', class: 'help-block'}
     end
   end
-
-  <div class="form-group string required thing_name">
-  <label class="string required col-xs-12 col-sm-3 control-label" for="thing_name">
-      Titulo<span class="btn-help"><i class="fa fa-question-circle" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."></i></span>
-  </label>
-              <div class="col-xs-12 col-sm-9">
-                <input id="thing_name" class="string required form-control" type="text" name="thing[name]"></input>
-  </div>
-            </div>
 
   config.wrappers :horizontal_file_input, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
