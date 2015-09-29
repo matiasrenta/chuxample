@@ -8,7 +8,7 @@ class ThingPart < ActiveRecord::Base
               :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)}
           }
 
-  has_and_belongs_to_many :things
+  has_and_belongs_to_many :things, join_table: 'things_thing_parts'
 
   validates :name, presence: true
   validates :name, uniqueness: true
