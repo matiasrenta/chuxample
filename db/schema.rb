@@ -136,12 +136,12 @@ ActiveRecord::Schema.define(version: 20150929183516) do
   end
 
   create_table "things_thing_parts", id: false, force: :cascade do |t|
-    t.integer "things_id"
-    t.integer "thing_parts_id"
+    t.integer "thing_id"
+    t.integer "thing_part_id"
   end
 
-  add_index "things_thing_parts", ["thing_parts_id"], name: "index_things_thing_parts_on_thing_parts_id", using: :btree
-  add_index "things_thing_parts", ["things_id"], name: "index_things_thing_parts_on_things_id", using: :btree
+  add_index "things_thing_parts", ["thing_id"], name: "index_things_thing_parts_on_thing_id", using: :btree
+  add_index "things_thing_parts", ["thing_part_id"], name: "index_things_thing_parts_on_thing_part_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
