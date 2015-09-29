@@ -3,6 +3,7 @@ class ThingPartsController < ApplicationController
 
   # GET /thing_parts
   def index
+    params[:q] = {name_cont: params[:term]} if params[:term].present?
     @thing_parts = do_index(ThingPart, params)
   end
 
