@@ -20,68 +20,66 @@
 
 <!-- ********Autocomplete (remto JSON) ********* -->
 <script>
-	
-	
-/*
-var xmlhttp = new XMLHttpRequest();
-var url = "/thing_parts.json";
+	$(function() {
+		function log(message) {
+			$("<div>").text(message).prependTo("#log");
+			$("#log").scrollTop(0);
+		}
 
-xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        myFunction(xmlhttp.responseText);
-    }
-}
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
 
-function myFunction(response) {
-    var arr = JSON.parse(response);
-    var i;
-    var out = "<table>";
+		$("#autocomplete").autocomplete({
+			source : function(request, response) {
+				$.ajax({
+					url : "/thing_parts.json",
+					dataType : "json",
+					data : {
+						q : "[name_cont]" + request.term
+					},
+					success : function(data) {
 
-    for(i = 0; i < arr.length; i++) {
-        out += "<tr><td>" + 
-        arr[i].id +
-        "</td><td>" +
-        arr[i].name +
-        "</td><td>" +
-        arr[i].field1 +
-        "</td></tr>";
-    }
-    out += "</table>";
-    console.log(out);
-}*/
+						// Handle 'no match' indicated by [ "" ] response
+						response(data.length === 1 && data[0].length === 0 ? [] : data);
+					}
+				});
+			},
+			minLength : 3,
+			select : function(event, ui) {
+				log("Selected: " + ui.item.label);
+			}
+		});
+	}); 
 </script>
 //AUTOCOMPLETE DROPDOWN
 <script>
-		var temp = {
-	"1" : "string1",
-	"2" : "string2",
-	"3" : "string3",
-	"4" : "string4",
-	"5" : "string5"
+	var temp = {
+		"1" : "string1",
+		"2" : "string2",
+		"3" : "string3",
+		"4" : "string4",
+		"5" : "string5"
 	};
-/*
-	<!--
-	$.getJSON('data/tables.json', function(data) {
-	//Productos
 
-	//First row
-	prodId1 = data.Productos[0].id;
-	prodClave1 = data.Productos[0].clave;
-	prodNombre1 = data.Productos[0].nombre;
-	prodCat1 = data.Productos[0].categoria.nombre;
-	prodDesc1 = data.Productos[0].descripcion;
+	/*
+	 $.getJSON('data/tables.json', function(data) {
+	 //Productos
 
-	});
-	-->
-	*/
+	 //First row
+	 prodId1 = data.Productos[0].id;
+	 prodClave1 = data.Productos[0].clave;
+	 prodNombre1 = data.Productos[0].nombre;
+	 prodCat1 = data.Productos[0].categoria.nombre;
+	 prodDesc1 = data.Productos[0].descripcion;
+
+	 });
+	 
 	<!-- END JSON Data -->
 
 	var $select = $('#multiple-select');
 	$select.find('option').remove();
 	$.each(temp, function(key, value) {
-	$select.append('<option value=' + key + '>' + value + '</option>');
-	});</script>
+		$select.append('<option value=' + key + '>' + value + '</option>');
+	});
+*/
+</script>
 
 <%= yield :javascript_per_page %>
