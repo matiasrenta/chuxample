@@ -1,13 +1,13 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= csrf_meta_tags %>
 
-/* ******** Jquery UI ********* */
+<!-- ******** Jquery UI ********* -->
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-/* ******** Page setup ********* */
+<!-- ******** Page setup ********* -->
 <script type='text/javascript'>pageSetUp();</script>
 
-/* ******** Date-time picker ********* */
+<!-- ******** Date-time picker ********* -->
 <script type='text/javascript'>
 	$.datetimepicker.setLocale('es');
 	$('.datetimepicker').datetimepicker();
@@ -18,68 +18,70 @@
 	}); 
 </script>
 
-/* ********Autocomplete (remto JSON) ********* */
+<!-- ********Autocomplete (remto JSON) ********* -->
 <script>
-	$(function() {
-		function log(message) {
-			$("<div>").text(message).prependTo("#log");
-			$("#log").scrollTop(0);
-		}
+	
+	
+/*
+var xmlhttp = new XMLHttpRequest();
+var url = "/thing_parts.json";
 
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
 
-		$("#autocomplete").autocomplete({
-			source : function(request, response) {
-				$.ajax({
-					url : "http://gd.geobytes.com/AutoCompleteCity",
-					dataType : "jsonp",
-					data : {
-						q : request.term
-					},
-					success : function(data) {
+function myFunction(response) {
+    var arr = JSON.parse(response);
+    var i;
+    var out = "<table>";
 
-						// Handle 'no match' indicated by [ "" ] response
-						response(data.length === 1 && data[0].length === 0 ? [] : data);
-					}
-				});
-			},
-			minLength : 3,
-			select : function(event, ui) {
-				log("Selected: " + ui.item.label);
-			}
-		});
-	}); 
+    for(i = 0; i < arr.length; i++) {
+        out += "<tr><td>" + 
+        arr[i].id +
+        "</td><td>" +
+        arr[i].name +
+        "</td><td>" +
+        arr[i].field1 +
+        "</td></tr>";
+    }
+    out += "</table>";
+    console.log(out);
+}*/
 </script>
 //AUTOCOMPLETE DROPDOWN
 <script>
-	var temp = {
-		"1" : "string1",
-		"2" : "string2",
-		"3" : "string3",
-		"4" : "string4",
-		"5" : "string5"
+		var temp = {
+	"1" : "string1",
+	"2" : "string2",
+	"3" : "string3",
+	"4" : "string4",
+	"5" : "string5"
 	};
+/*
+	<!--
+	$.getJSON('data/tables.json', function(data) {
+	//Productos
 
-	/*
-	 $.getJSON('data/tables.json', function(data) {
-	 //Productos
+	//First row
+	prodId1 = data.Productos[0].id;
+	prodClave1 = data.Productos[0].clave;
+	prodNombre1 = data.Productos[0].nombre;
+	prodCat1 = data.Productos[0].categoria.nombre;
+	prodDesc1 = data.Productos[0].descripcion;
 
-	 //First row
-	 prodId1 = data.Productos[0].id;
-	 prodClave1 = data.Productos[0].clave;
-	 prodNombre1 = data.Productos[0].nombre;
-	 prodCat1 = data.Productos[0].categoria.nombre;
-	 prodDesc1 = data.Productos[0].descripcion;
-
-	 });
-	 */
-	/* END JSON Data */
+	});
+	-->
+	*/
+	<!-- END JSON Data -->
 
 	var $select = $('#multiple-select');
 	$select.find('option').remove();
 	$.each(temp, function(key, value) {
-		$select.append('<option value=' + key + '>' + value + '</option>');
-	});
-
-</script>
+	$select.append('<option value=' + key + '>' + value + '</option>');
+	});</script>
 
 <%= yield :javascript_per_page %>

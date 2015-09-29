@@ -74,15 +74,15 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'col-sm-3 control-label'
-    #b.wrapper tag: 'span', class: 'input-group-addon' do |span|
-    #  span.wrapper tag: 'i', class: 'fa fa-question-circle' do |i|
-    #  end
-    #end
-    b.wrapper tag: 'div', class: 'col-sm-9' do |ba|
+    b.use :label, class: 'col-xs-12 col-sm-3 control-label'
+    b.wrapper tag: 'span', class: 'btn-help' do |s|
+      s.wrapper tag: 'i', class: 'fa fa-question-circle', rel: "popover-hover", 'data-placement' => "top", 'data-original-title' => "Popover activated on hover", 'data-content' => "Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum." do
+      end
+    end
+    b.wrapper tag: 'div', class: 'col-xs-12 col-sm-9' do |ba|
       ba.use :input, class: 'form-control'
-      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
-      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+      ba.use :error, wrap_with: {tag: 'span', class: 'help-block'}
+      ba.use :hint, wrap_with: {tag: 'p', class: 'help-block'}
     end
   end
 

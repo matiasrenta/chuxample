@@ -11,6 +11,8 @@ class Thing < ActiveRecord::Base
 	#accepts_attachments_for :documents, attachment: :file
 	#accepts_nested_attributes_for :documents, allow_destroy: true
 
+	has_and_belongs_to_many :thing_parts
+
 	has_many :thing_attaches, dependent: :destroy
 	accepts_attachments_for :thing_attaches, attachment: :file, append: true
 	accepts_nested_attributes_for :thing_attaches, allow_destroy: true

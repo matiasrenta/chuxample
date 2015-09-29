@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20150928192330) do
-
+ActiveRecord::Schema.define(version: 20150929183516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +113,15 @@ ActiveRecord::Schema.define(version: 20150928192330) do
     t.string   "file_content_type"
   end
 
+  create_table "thing_parts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "field1"
+    t.string   "field2"
+    t.string   "field3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "things", force: :cascade do |t|
     t.string   "name"
     t.integer  "age"
@@ -127,6 +134,14 @@ ActiveRecord::Schema.define(version: 20150928192330) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  create_table "things_thing_parts", id: false, force: :cascade do |t|
+    t.integer "things_id"
+    t.integer "thing_parts_id"
+  end
+
+  add_index "things_thing_parts", ["thing_parts_id"], name: "index_things_thing_parts_on_thing_parts_id", using: :btree
+  add_index "things_thing_parts", ["things_id"], name: "index_things_thing_parts_on_things_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
