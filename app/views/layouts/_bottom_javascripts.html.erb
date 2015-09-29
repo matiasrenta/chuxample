@@ -20,34 +20,54 @@
 
 <!-- ********Autocomplete (remto JSON) ********* -->
 <script>
-	$(function() {
-		function log(message) {
-			$("<div>").text(message).prependTo("#log");
-			$("#log").scrollTop(0);
-		}
+	/*$.ajax({
+	 dataType : "json",
+	 url : "/thing_parts.json",
+	 success : function(data) {
+	 var obj = data.responseText;
+	 console.log(obj);
+	 }
+	 });*/
 
+	  $(function() {
+    function log( message ) {
+      $( "<div>" ).text( message ).prependTo( "#log" );
+      $( "#log" ).scrollTop( 0 );
+    }
+ 
+    $( "#autocomplete" ).autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+          url: "/thing_parts.json",
+          dataType: "json",
+          data: {
+           // q: request.term
+           term: request.term
+          },
+          success: function( data ) {
+            response( data );
+          }
+        });
+      },
+      minLength: 1,
+      select: function( event, ui ) {
+        log( ui.item ?
+          "Selected: " + ui.item.label :
+          "Nothing selected, input was " + this.value);
+      },
+      open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      },
+      close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+      }
+    });
+  });
 
-		$("#autocomplete").autocomplete({
-			source : function(request, response) {
-				$.ajax({
-					url : "/thing_parts.json",
-					dataType : "json",
-					data : {
-						q : "[name_cont]" + request.term
-					},
-					success : function(data) {
+	// Perform other work here ...
 
-						// Handle 'no match' indicated by [ "" ] response
-						response(data.length === 1 && data[0].length === 0 ? [] : data);
-					}
-				});
-			},
-			minLength : 3,
-			select : function(event, ui) {
-				log("Selected: " + ui.item.label);
-			}
-		});
-	}); 
+	//$.getJSON("/thing_parts.json", function(data) {
+
 </script>
 //AUTOCOMPLETE DROPDOWN
 <script>
@@ -71,15 +91,15 @@
 	 prodDesc1 = data.Productos[0].descripcion;
 
 	 });
-	 
-	<!-- END JSON Data -->
 
-	var $select = $('#multiple-select');
-	$select.find('option').remove();
-	$.each(temp, function(key, value) {
-		$select.append('<option value=' + key + '>' + value + '</option>');
-	});
-*/
+	 <!-- END JSON Data -->
+
+	 var $select = $('#multiple-select');
+	 $select.find('option').remove();
+	 $.each(temp, function(key, value) {
+	 $select.append('<option value=' + key + '>' + value + '</option>');
+	 });
+	 */
 </script>
 
 <%= yield :javascript_per_page %>
