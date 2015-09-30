@@ -5,7 +5,7 @@
 	</header>
 	<div>
 		<div class="widget-body">
-			<%= simple_form_for @thing, html: {class: 'form-horizontal'},
+			<%= simple_nested_form_for @thing, html: {class: 'form-horizontal'},
 			wrapper: :horizontal_form,
 			wrapper_mappings: {
 			check_boxes: :horizontal_radio_and_checkboxes,
@@ -59,54 +59,79 @@
 					</div>
 				</div>
 
-				<div class="form-inputs">
-					<%= f.input :name, wrapper: :horizontal_form_help %>
-					<%= f.input :age %>
-					<%= f.input :price %>
-					<%= f.input :expires, as: :string, input_html: {class: 'datepicker', data: {dateformat: 'dd/mm/yy'}} %>
-					<%= f.input :discharged_at, as: :string, input_html: {class: 'datetimepicker', data: {dateformat: 'dd/mm/yy %H:%M'}} %>
-					<%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
-					<%= f.input :published %>
-					<%= f.input :gender %>
-					<%= f.input :thing_attaches_files, as: :attachment, label: 'Images', multiple: true, direct: true %>
 
-					<div class="form-group attachment optional thing_thing_attaches_files">
-						<label class="attachment optional col-sm-3 control-label"></label>
-						<div class="col-sm-9">
-							<table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
-								<tr>
-									<th class="all control">Imagen</th>
-									<th class="all">Nombre de archivo</th>
-									<th class="no-desktop">Tamaño</th>
-									<th class="no-desktop">Tipo de contenido</th>
-									<th class="all">Destruir</th>
-								</tr>
-								<%= f.fields_for :thing_attaches do |upload| %>
-								<tr>
-									<td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
-									<td><%= upload.object.file_filename %></td>
-									<td><%= upload.object.file_size %></td>
-									<td><%= upload.object.file_content_type %></td>
-									<td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
-								</tr>
-								<% end %>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="widget-footer">
-					<div class="form-actions">
-						<div class="btn-group">
-							<%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), things_path, class: 'btn btn-default btn-sm' if can?(:read, Thing) %>
-							<%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @thing, class: 'btn btn-default btn-sm' if can?(:read, Thing) && updating? %>
-							<%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @thing, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, Thing) && updating? %>
-							<button type="submit" class="btn btn-primary btn-sm">
-								<i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
-							</button>
-						</div>
-					</div>
-				</div>
-				<% end %>
-			</div>
-		</div>
-	</div>
+            <%= f.input :name %>
+            <%= f.input :age %>
+            <%= f.input :price %>
+            <%= f.input :expires, as: :string, input_html: {class: 'datepicker'} %>
+            <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', data: {dateformat: 'dd/mm/yy %H:%M'}} %>
+            <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :published %>
+            <%= f.input :gender %>
+            <%= f.input :thing_attaches_files, as: :attachment, label: 'Images', multiple: true, direct: true %>
+            <div class="form-group attachment optional thing_thing_attaches_files">
+              <label class="attachment optional col-sm-3 control-label"></label>
+
+              <div class="col-sm-9">
+                <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+                  <tr>
+                    <th class="all control">Imagen</th>
+                    <th class="all">Nombre de archivo</th>
+                    <th class="no-desktop">Tamaño</th>
+                    <th class="no-desktop">Tipo de contenido</th>
+                    <th class="all">Destruir</th>
+                  </tr>
+                  <%= f.fields_for :thing_attaches do |upload| %>
+                      <tr>
+                        <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
+                        <td><%= upload.object.file_filename %></td>
+                        <td><%= upload.object.file_size %></td>
+                        <td><%= upload.object.file_content_type %></td>
+                        <td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
+                      </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+
+            <table id="contacts" width="100%" class="col-sm-9 display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <tr>
+                <th class="all control">name</th>
+                <th>field 1</th>
+                <th>field 2</th>
+                <th>field 3</th>
+                <th class="all"></th>
+              </tr>
+              <%= f.fields_for :thing_contacts, :wrapper => false do |thing_contact_form| %>
+                  <tr class="fields">
+                    <td><%= thing_contact_form.input :name, wrapper: :clean, input_html: {style: 'display: inline;'} %></td>
+                    <td><%= thing_contact_form.input :field1, wrapper: :clean, input_html: {style: 'display: inline;'} %></td>
+                    <td><%= thing_contact_form.input :field2, wrapper: :clean, input_html: {style: 'display: inline;'} %></td>
+                    <td><%= thing_contact_form.input :field3, wrapper: :clean, input_html: {style: 'display: inline;'} %></td>
+                    <td align="center">
+                      <%= thing_contact_form.link_to_remove do %>
+                          <i class='fa fa-trash-o'></i>
+                      <% end %>
+                    </td>
+                  </tr>
+              <% end %>
+            </table>
+            <p><%= f.link_to_add "Add a contact", :thing_contacts, :data => {:target => "#contacts"} %></p>
+
+
+            <div class="widget-footer">
+              <div class="form-actions">
+                <div class="btn-group">
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), things_path, class: 'btn btn-default btn-sm' if can?(:read, Thing) %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @thing, class: 'btn btn-default btn-sm' if can?(:read, Thing) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @thing, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, Thing) && updating? %>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
+                </div>
+              </div>
+            </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
