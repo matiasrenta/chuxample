@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :thing_contacts
   resources :thing_parts
   resources :things
 

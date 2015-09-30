@@ -49,6 +49,6 @@ class ThingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def thing_params
-      params.require(:thing).permit({thing_attaches_files: []}, {thing_attaches_attributes: [:_destroy, :id]}, :name, :age, :price, :expires, :discharged_at, :description, :published, :gender)
+      params.require(:thing).permit({thing_attaches_files: []}, {thing_attaches_attributes: [:_destroy, :id]}, {thing_contacts_attributes: [:_destroy, :id, :name, :field1, :field2, :field3]}, :name, :age, :price, :expires, :discharged_at, :description, :published, :gender)
     end
 end

@@ -301,6 +301,10 @@ es:
         format: "%{attribute} %{message}"
 
     models:
+      thing_contact:
+        one: Contacto
+        other: Contactos
+        fa_icon: 'fa-fw'
       thing_part:
         one: Parte
         other: Partes
