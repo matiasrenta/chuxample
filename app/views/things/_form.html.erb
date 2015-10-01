@@ -109,17 +109,18 @@
 								<td><%= thing_contact_form.input :field1, wrapper: :clean, input_html: {style: 'display: inline;'} %></td>
 								<td><%= thing_contact_form.input :field2, wrapper: :clean, input_html: {style: 'display: inline;'} %></td>
 								<td><%= thing_contact_form.input :field3, wrapper: :clean, input_html: {style: 'display: inline;'} %></td>
-								<td align="center"> <%= thing_contact_form.link_to_remove do %> 
-									<i class="fa fa-trash-o" data-original-title="destroy" data-placement="top" rel="tooltip" ></i>
-									
-
-									 <% end %> </td>
+								<td align="center"> 
+									<%= thing_contact_form.link_to_remove do %> 
+									<i class="fa fa-trash-o" data-original-title="destroy" data-placement="top" rel="tooltip" ></i> 
+									<% end %>
+								</td>
 														
 							</tr>
 							<% end %>
 						</table>
 						<div class="well well-sm">
-							<span class="btn bg-color-blue txt-color-white btn-xs"> <%= f.link_to_add "Add", :thing_contacts, :data => {:target => "#contacts"} %> <i class="fa fa-plus-square"></i> </span>
+							<span class="btn bg-color-blue txt-color-white btn-xs"> 
+								<%= f.link_to_add raw("add <i class='fa fa-plus-square'></i>"), :thing_contacts, :data => {:target => "#contacts"} %> </span>
 
 						</div>
 					</div>
