@@ -5,6 +5,7 @@
   </header>
   <div>
     <div class="widget-body">
+
       <%= simple_nested_form_for @thing, html: {class: 'form-horizontal'},
                                  wrapper: :horizontal_form,
                                  wrapper_mappings: {
@@ -42,7 +43,9 @@
 
               <div class="col-xs-12 col-sm-9">
                 <select class="select2-container select2-container-multi select2" id="multiple-select">
-                  <option></option>
+                  <option value=""></option>
+                  <option value="male"></option>
+                  <option value="female"></option>
                 </select>
               </div>
             </div>
@@ -68,6 +71,31 @@
               </div>
             </div>
 
+
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-3 control-label" for="thing_gender">Genero</label>
+              <div class="col-xs-12 col-sm-9">
+                <select class="select2-container select2-container-multi select2" id="thing_gender" multiple="multiple">
+                  <option value=""></option>
+                  <option value="1">male</option>
+                  <option value="2">female</option>
+                  <option value="3">travesti</option>
+                  <option value="4">male</option>
+                  <option value="5">female</option>
+                  <option value="6">travesti</option>
+                  <option value="7">male</option>
+                  <option value="8">female</option>
+                  <option value="9">travesti</option>
+                  <option value="10">male</option>
+                  <option value="11">female</option>
+                  <option value="12">travesti</option>
+                </select>
+              </div>
+            </div>
+
+
+            <%= f.input :thing_part_ids, input_html: {multiple: 'multiple', class: "select2-container select2-container-multi select2 pindonga"} %>
+
             <%= f.input :name %>
             <%= f.input :age %>
             <%= f.input :price %>
@@ -75,8 +103,10 @@
             <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', data: {dateformat: 'dd/mm/yy %H:%M'}} %>
             <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :published %>
-            <%= f.input :gender %>
+            <%#= f.input :gender, as: :select, collection: ['male', 'female'], input_html: {class: 'selec2_simple'} %>
             <%= f.input :thing_attaches_files, as: :attachment, label: 'Images', multiple: true, direct: true %>
+
+
             <div class="form-group attachment optional thing_thing_attaches_files">
               <label class="attachment optional col-sm-3 control-label"></label>
 
