@@ -1,1 +1,16 @@
-<h3>update</h3>
+<h3>modifico <%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></h3>
+<p>
+  <%= User.find(activity.owner_id).try(:name) if activity.owner_type == 'User' %>
+  <%= activity.created_at %>
+  <%#= activity.trackable.try(:name) if ... existe la clase %>
+  <b>Cambios:</b>
+    <ul>
+      <% changes = activity.parameters[:attributes_changed] %>
+      <% if changes %>
+          <% changes.keys.each do |key| %>
+              <li><%= "#{key} de #{changes[key][0]} paso a #{changes[key][1]}" %></li>
+          <% end %>
+      <% end %>
+    </ul>
+</p>
+<hr>

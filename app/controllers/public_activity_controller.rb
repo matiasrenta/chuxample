@@ -4,6 +4,6 @@ class PublicActivityController < ApplicationController
   def index
     authorize!(:read, PublicActivity::Activity)
     set_content_title('fa-fw fa fa-video-camera', ['Public Activity'])
-    @activity = PublicActivity::Activity.first
+    @activities = PublicActivity::Activity.last(1)
   end
 end

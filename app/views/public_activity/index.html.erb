@@ -1,1 +1,15 @@
-<%= render_activity(@activity, fallback: 'default') %>
+<% @activities.each do |activity| %>
+    <%
+       if activity.key.include?('create')
+         fallback = 'default_create'
+       elsif activity.key.include?('update')
+         fallback = 'default_update'
+       elsif activity.key.include?('destroy')
+         fallback = 'default_destroy'
+       end
+    %>
+    <%= render_activity(activity, fallback: fallback) %>
+<% end %>
+
+
+
