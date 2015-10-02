@@ -14,6 +14,8 @@ $gris-azul-2: #93AEC3;
 .color-primary-3 { color: #6B8AA2 }
 .color-primary-4 { color: #446986 }
 
+
+
 #content{
     border-top: 1px solid #999;
 
@@ -68,3 +70,25 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
   padding-left:3px;
 }
 
+// Estilos del login
+.btn-danger {
+  background-color: #a90329;
+  border-color: #900323;
+  color: #fff;
+}
+#extr-page-header-space a[href="register.html"]{
+  font-size: 13px;
+}
+// Iconos de timeline
+.smart-timeline i.fa{
+ color:#23527c;
+  
+}
+.smart-timeline .label{
+  margin-right:5px;
+  padding:2px 4px;
+  background-color:#23527c;
+}
+.smart-timeline table{
+  font-size:11px;
+}
