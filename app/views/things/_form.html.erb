@@ -71,7 +71,7 @@
             <%= f.input :name %>
             <%= f.input :age %>
             <%= f.input :price %>
-            <%= f.input :expires, as: :string, input_html: {class: 'datepicker'} %>
+            <%= f.input :expires, as: :string, input_html: {class: 'date-picker'} %>
             <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', data: {dateformat: 'dd/mm/yy %H:%M'}} %>
             <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :published %>

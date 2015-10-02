@@ -92,3 +92,14 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 .smart-timeline table{
   font-size:11px;
 }
+@media (max-width: 767px) {
+  .alert-success {
+    //max-height: 50px;
+  }
+  
+}
+@media (max-width: 767px) {
+  ul#sparks{
+    display:none;
+  }
+}
