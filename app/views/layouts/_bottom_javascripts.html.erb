@@ -68,8 +68,7 @@
 </script>
 
 <script>
-//AUTOCOMPLETE DROPDOWN
-
+	//AUTOCOMPLETE DROPDOWN
 
 	/*var temp = {
 	 "1" : "string1",
@@ -78,19 +77,45 @@
 	 "4" : "string4",
 	 "5" : "string5"
 	 };*/
-	 
-	 var temp = [{"id":6,"name":"test3","field1":"test3"},{"id":5,"name":"test2","field1":"test2"},{"id":4,"name":"test1","field1":"fild1"}]
-console.log(temp);
-	
+
+	var temp = [{
+		"id" : 6,
+		"name" : "test3",
+		"field1" : "test3"
+	}, {
+		"id" : 5,
+		"name" : "test2",
+		"field1" : "test2"
+	}, {
+		"id" : 4,
+		"name" : "test1",
+		"field1" : "fild1"
+	}]
+	console.log(temp);
 
 	var $select = $('#multiple-select');
 	$select.find('option').remove();
 	$.each(temp, function(key, value) {
-		
+
 		//$select.append('<option value=' + key + '>' + value + '</option>');
 	}); 
 </script>
 
 <script></script>
+<script>
+	$(function() {
+
+		$("#show-details").click(function() {
+			$("#detalles").toggle("slow");
+
+			if ($(this).text() == 'Mostrar detalles') {
+				$(this).text('Ocultar detalles');
+			} else {
+				$(this).text('Mostrar detalles');
+			}
+
+		});
+	}); 
+</script>
 
 <%= yield :javascript_per_page %>
