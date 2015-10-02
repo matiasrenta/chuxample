@@ -10,12 +10,27 @@
 <!-- ******** Date-time picker ********* -->
 <script type='text/javascript'>
 	$.datetimepicker.setLocale('es');
-	$('.datetimepicker').datetimepicker();
-
-	$('.datepicker').datetimepicker({
-		timepicker : false,
-		format : 'd.m.Y'
+	
+	$('.datetimepicker').datetimepicker({
+		lazyint:true,
+		//mask:true,
+		format:'d/m/Y H:i'
+		
+		
 	}); 
+
+	$('.date-picker').datetimepicker({
+		lazyint:true,
+		timepicker : false,
+		//mask:true,
+		format : 'd/m/Y',
+		closeOnDateSelect:true,		
+		scrollInput:false
+	}); 
+	
+	//Mask del datetimepicker
+	$('.date-picker').mask('00/00/0000');
+	$('.datetimepicker').mask('00/00/0000 00:00');
 </script>
 
 <!-- ********Autocomplete (remoto JSON) ********* -->
