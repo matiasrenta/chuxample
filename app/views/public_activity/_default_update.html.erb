@@ -4,7 +4,7 @@
     <img src="https://cdn2.iconfinder.com/data/icons/real-flat-security/512/spy-512.png" width="32" height="32" alt="user" />
   </div>
   <div class="smart-timeline-time">
-    <small><%= activity.created_at %></small>
+    <small><%= time_ago_in_words(activity.created_at) %></small>
   </div>
   <div class="smart-timeline-content">
     <p><a href="javascript:void(0);"><strong><%= User.find(activity.owner_id).try(:name) if activity.owner_type == 'User' %></strong></a></p>
