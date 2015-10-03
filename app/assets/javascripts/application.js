@@ -59,4 +59,6 @@
 
 //= require js/plugin/mask/jquery.mask.js
 
+//= require js/plugin/bootstrap-tour/bootstrap-tour.js
+
 
