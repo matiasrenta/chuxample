@@ -8,7 +8,11 @@
   </div>
   <div class="smart-timeline-content">
     <p><a href="javascript:void(0);"><strong><%= User.find(activity.owner_id).try(:name) if activity.owner_type == 'User' %></strong></a></p>
-    <p><i class="fa fa-pencil-square-o fa-border fa-lg"></i>Actualizó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong> <a href="#">Nombre de producto</a></p>
+    <p>
+      <i class="fa fa-pencil-square-o fa-border fa-lg"></i>
+      Actualizó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
+      <a href="#"><%= activity.trackable.try(:name) %></a>
+    </p>
 
     <p><a href="#" id="show-details">Mostrar detalles</a></p>
     <div id="detalles" style="display:none">

@@ -14,7 +14,9 @@
                    fallback = 'default_destroy'
                  end
               %>
-              <%= render_activity(activity, fallback: fallback) %>
+              <% if !activity.trackable_type.blank? && exists_class?(activity.trackable_type) %>
+                <%= render_activity(activity, fallback: fallback) %>
+              <% end %>
           <% end %>
         </ul>
       </div>

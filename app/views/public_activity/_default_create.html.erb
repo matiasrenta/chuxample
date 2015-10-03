@@ -7,6 +7,9 @@
   </div>
   <div class="smart-timeline-content">
     <p><a href="javascript:void(0);"><strong>Matias Renta</strong></a></p>
-    <p><i class="fa fa-plus-square-o fa-border fa-lg"></i>Creó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong> <a href="#">Nombre de producto</a></p>
+    <p><i class="fa fa-plus-square-o fa-border fa-lg"></i>
+      Creó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
+      <a href="#"><%= activity.trackable.try(:name) %></a>
+    </p>
   </div>
 </li>
