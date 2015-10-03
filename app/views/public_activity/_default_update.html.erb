@@ -1,16 +1,41 @@
-<h3>modifico <%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></h3>
-<p>
-  <%= User.find(activity.owner_id).try(:name) if activity.owner_type == 'User' %>
-  <%= activity.created_at %>
   <%#= activity.trackable.try(:name) if ... existe la clase %>
-  <b>Cambios:</b>
-    <ul>
+<li>
+  <div class="smart-timeline-icon">
+    <img src="https://cdn2.iconfinder.com/data/icons/real-flat-security/512/spy-512.png" width="32" height="32" alt="user" />
+  </div>
+  <div class="smart-timeline-time">
+    <small><%= activity.created_at %></small>
+  </div>
+  <div class="smart-timeline-content">
+    <p><a href="javascript:void(0);"><strong><%= User.find(activity.owner_id).try(:name) if activity.owner_type == 'User' %></strong></a></p>
+    <p><i class="fa fa-pencil-square-o fa-border fa-lg"></i>Actualizó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong> <a href="#">Nombre de producto</a></p>
+
+    <p><a href="#" id="show-details">Mostrar detalles</a></p>
+    <div id="detalles" style="display:none">
       <% changes = activity.parameters[:attributes_changed] %>
       <% if changes %>
-          <% changes.keys.each do |key| %>
-              <li><%= "#{key} de #{changes[key][0]} paso a #{changes[key][1]}" %></li>
-          <% end %>
+          <% keys = changes.keys # lo paso a arrays para garantizar el mismo orden %>
+          <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+            <tr>
+              <th class="all ">Valor</th>
+              <% keys.each do |key| %>
+                  <th><%= t("simple_form.labels.defaults.#{key}") %></th>
+              <% end %>
+            </tr>
+            <tr>
+              <td><strong>Antes</strong></td>
+              <% keys.each do |key| %>
+                  <td><%= changes[key][0] %></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td><strong>Después<strong></td>
+              <% keys.each do |key| %>
+                  <td><%= changes[key][1] %></td>
+              <% end %>
+            </tr>
+          </table>
       <% end %>
-    </ul>
-</p>
-<hr>
+    </div>
+  </div>
+</li>

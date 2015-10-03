@@ -1,15 +1,27 @@
-<% @activities.each do |activity| %>
-    <%
-       if activity.key.include?('create')
-         fallback = 'default_create'
-       elsif activity.key.include?('update')
-         fallback = 'default_update'
-       elsif activity.key.include?('destroy')
-         fallback = 'default_destroy'
-       end
-    %>
-    <%= render_activity(activity, fallback: fallback, layout: 'public_activity') %>
-<% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="well well-sm">
+      <!-- Timeline Content -->
+      <div class="smart-timeline">
+        <ul class="smart-timeline-list">
+          <% @activities.each do |activity| %>
+              <%
+                 if activity.key.include?('create')
+                   fallback = 'default_create'
+                 elsif activity.key.include?('update')
+                   fallback = 'default_update'
+                 elsif activity.key.include?('destroy')
+                   fallback = 'default_destroy'
+                 end
+              %>
+              <%= render_activity(activity, fallback: fallback) %>
+          <% end %>
+        </ul>
+      </div>
+      <!-- END Timeline Content -->
+    </div>
+  </div>
+</div>
 
 
 

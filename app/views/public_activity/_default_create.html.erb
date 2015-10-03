@@ -1,5 +1,3 @@
-<h3>creo <%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></h3>
-
 <li>
   <div class="smart-timeline-icon">
     <img src="/assets/avatars/matias-2843edd7848c89d7860c35f5143f99ae.png" width="32" height="32" alt="user" />
@@ -8,14 +6,7 @@
     <small>just now</small>
   </div>
   <div class="smart-timeline-content">
-    <p>
-      <a href="javascript:void(0);"><strong>Matias Renta</strong></a>
-    </p>
-
-    <p>
-      <i class="fa fa-plus-square-o fa-border fa-lg"></i><strong>Creó producto</strong> <a href="#">Nombre de producto</a>
-    </p>
-
-
+    <p><a href="javascript:void(0);"><strong>Matias Renta</strong></a></p>
+    <p><i class="fa fa-plus-square-o fa-border fa-lg"></i>Creó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong> <a href="#">Nombre de producto</a></p>
   </div>
 </li>
