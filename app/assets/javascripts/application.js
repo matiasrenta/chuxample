@@ -59,4 +59,7 @@
 
 //= require js/plugin/mask/jquery.mask.js
 
+//= require js/plugin/intro-js/intro.js
+
+
 

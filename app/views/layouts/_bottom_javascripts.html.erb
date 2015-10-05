@@ -10,27 +10,26 @@
 <!-- ******** Date-time picker ********* -->
 <script type='text/javascript'>
 	$.datetimepicker.setLocale('es');
-	
+
 	$('.datetimepicker').datetimepicker({
-		lazyint:true,
+		lazyint : true,
 		//mask:true,
-		format:'d/m/Y H:i'
-		
-		
-	}); 
+		format : 'd/m/Y H:i'
+
+	});
 
 	$('.date-picker').datetimepicker({
-		lazyint:true,
+		lazyint : true,
 		timepicker : false,
 		//mask:true,
 		format : 'd/m/Y',
-		closeOnDateSelect:true,		
-		scrollInput:false
-	}); 
-	
+		closeOnDateSelect : true,
+		scrollInput : false
+	});
+
 	//Mask del datetimepicker
 	$('.date-picker').mask('00/00/0000');
-	$('.datetimepicker').mask('00/00/0000 00:00');
+	$('.datetimepicker').mask('00/00/0000 00:00'); 
 </script>
 
 <!-- ********Autocomplete (remoto JSON) ********* -->
@@ -131,6 +130,62 @@
 
 		});
 	}); 
+</script>
+
+<script>
+	// TOUR
+
+	$(function() {
+
+		if ($('[data-step]').length < 4) {
+			var ultima = "Sig. Página";
+			var multi = true;
+		} else {
+			var ultima = "Terminar";
+			var multi = false;
+		}
+
+		if (RegExp('tour2', 'gi').test(window.location.search)) {
+
+			var currentStep = $('[data-step]').length;
+
+			introJs().setOptions({
+				'exitOnOverlayClick' : 'true',
+				'skipLabel' : 'Cancelar',
+				'doneLabel' : ultima,
+				'tooltipPosition' : 'auto',
+				'positionPrecedence' : ['right', 'left', 'bottom', 'top'],
+				'nextLabel' : 'Siguiente',
+				'prevLabel' : 'Anterior'
+			}).goToStep(currentStep).start().oncomplete(function() {
+				checkTour();
+			});
+		}
+
+		$("#start-tour").click(function() {
+			introJs().setOptions({
+				'exitOnOverlayClick' : 'true',
+				'skipLabel' : 'Cancelar',
+				'doneLabel' : ultima,
+				'tooltipPosition' : 'auto',
+				'positionPrecedence' : ['right', 'left', 'bottom', 'top'],
+				'nextLabel' : 'Siguiente',
+				'prevLabel' : 'Anterior'
+			}).start().oncomplete(function() {
+				checkTour();
+			});
+		});
+
+		function checkTour() {
+			if (multi == true) {
+				window.location.href = '/welcome/prueba.html?tour2=true';
+			} else {
+				window.location.search = "";
+			}
+		}
+
+	});
+
 </script>
 
 <%= yield :javascript_per_page %>
