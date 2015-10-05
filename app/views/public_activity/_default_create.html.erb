@@ -6,7 +6,7 @@
     <small><%= time_ago_in_words(activity.created_at) %></small>
   </div>
   <div class="smart-timeline-content">
-    <p><a href="javascript:void(0);"><strong>Matias Renta</strong></a></p>
+    <p><a href="javascript:void(0);"><strong><%= User.find(activity.owner_id).try(:name) if activity.owner_type == 'User' %></strong></a></p>
     <p><i class="fa fa-plus-square-o fa-border fa-lg"></i>
       Creó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
       <a href="#"><%= activity.trackable.try(:name) %></a>
