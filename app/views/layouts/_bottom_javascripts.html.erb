@@ -180,4 +180,60 @@
 	}); 
 </script>
 
+<script>
+	// TOUR
+
+	$(function() {
+
+		if ($('[data-step]').length < 4) {
+			var ultima = "Sig. Página";
+			var multi = true;
+		} else {
+			var ultima = "Terminar";
+			var multi = false;
+		}
+
+		if (RegExp('tour2', 'gi').test(window.location.search)) {
+
+			var currentStep = $('[data-step]').length;
+
+			introJs().setOptions({
+				'exitOnOverlayClick' : 'true',
+				'skipLabel' : 'Cancelar',
+				'doneLabel' : ultima,
+				'tooltipPosition' : 'auto',
+				'positionPrecedence' : ['right', 'left', 'bottom', 'top'],
+				'nextLabel' : 'Siguiente',
+				'prevLabel' : 'Anterior'
+			}).goToStep(currentStep).start().oncomplete(function() {
+				checkTour();
+			});
+		}
+
+		$("#start-tour").click(function() {
+			introJs().setOptions({
+				'exitOnOverlayClick' : 'true',
+				'skipLabel' : 'Cancelar',
+				'doneLabel' : ultima,
+				'tooltipPosition' : 'auto',
+				'positionPrecedence' : ['right', 'left', 'bottom', 'top'],
+				'nextLabel' : 'Siguiente',
+				'prevLabel' : 'Anterior'
+			}).start().oncomplete(function() {
+				checkTour();
+			});
+		});
+
+		function checkTour() {
+			if (multi == true) {
+				window.location.href = '/welcome/prueba.html?tour2=true';
+			} else {
+				window.location.search = "";
+			}
+		}
+
+	});
+
+</script>
+
 <%= yield :javascript_per_page %>

@@ -103,7 +103,32 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
     display:none;
   }
 }
+<<<<<<< HEAD
 //Boton tour
 #btn-tour{
   font-weight:bold;
 }
+=======
+
+.introjs-helperNumberLayer {
+  background: #3A3633!important;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  color: white;
+  font-family: Arial,verdana,tahoma;
+  font-size: 13px;
+  font-weight: bold;
+  height: 21px !important;
+  left: 5px !important;
+  line-height: 11px!important;
+  padding: 2px 0px !important;
+  position: absolute;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  top: -16px;
+  visibility: visible;
+  width: 21px !important;
+  z-index: 2147483647 !important;
+}
+>>>>>>> 2b831a2c6e5a5214916e976092d40c64454a44e2
