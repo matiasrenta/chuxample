@@ -21,4 +21,20 @@ module PublicActivityHelper
   def keyables
     [['Creó', 'create'], ['Actualizó', 'update'], ['Borró', 'destroy']]
   end
+
+  def trackable_label(activity)
+    if can?(:read, activity.trackable)
+      link_to activity.trackable.try(:name), activity.trackable
+    else
+      activity.trackable.try(:name)
+    end
+  end
+
+  def user_link(activity)
+    if activity.owner_type == 'User'
+      link_to raw("<strong>#{activity.owner.try(:name)}</strong>"), activity.owner
+    else
+      "<strong>#{activity.owner.try(:name)}</strong>".html_safe
+    end
+  end
 end
