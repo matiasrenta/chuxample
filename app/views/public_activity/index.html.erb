@@ -5,6 +5,14 @@
             <label for="q[owner_id_eq]"><%= t('activerecord.models.user.one') %></label>
             <%= f.select :owner_id_eq, options_from_collection_for_select(User.all, :id, :name, @q.owner_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
           </div>
+          <div class="form-group">
+            <label for="q[trackable_type_eq]"><%= t('activerecord.models.trackable_type') %></label>
+            <%= f.select :trackable_type_eq, options_from_collection_for_select(trackables, :id, :name, @q.trackable_type_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+          </div>
+          <div class="form-group">
+            <label for="q[key_cont]">Action</label>
+            <%= f.select :key_cont, keyables, {include_blank: true}, {class: "form-control input-sm"} %>
+          </div>
           <div class="form-group spanning">
             <label for="q[created_at_gteq]"><%= t('simple_form.labels.defaults.created_at') %></label>
             <div class="input-group input-group-sm block">
