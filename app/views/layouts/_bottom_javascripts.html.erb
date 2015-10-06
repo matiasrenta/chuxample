@@ -62,7 +62,7 @@
 
 						});
 						response(dataMapped);
-						//console.log("id: "+dataMapped[0].id);
+						
 					}
 				});
 			},
@@ -105,7 +105,7 @@
 		"name" : "test1",
 		"field1" : "fild1"
 	}]
-	console.log(temp);
+	//console.log(temp);
 
 	var $select = $('#multiple-select');
 	$select.find('option').remove();
@@ -167,8 +167,10 @@
 	//ostrar / ocutar detalles en timeline
 	$(function() {
 
-		$("#show-details").click(function() {
-			$("#detalles").toggle("slow");
+		$(".show-details").click(function() {
+			var elem = $(this).closest("p").next(".detalles");
+			
+			$(elem).toggle("slow");
 
 			if ($(this).text() == 'Mostrar detalles') {
 				$(this).text('Ocultar detalles');
