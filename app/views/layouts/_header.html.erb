@@ -73,7 +73,9 @@
 			</li>
 		</ul>
 		<!-- end dropdown-menu-->
-
+		
+		
+		
 	</div>
 	<!-- end projects dropdown -->
 
@@ -119,7 +121,7 @@
 		<div id="logout" class="btn-header transparent pull-right">
 			<span> <%= link_to raw("<i class='fa fa-sign-out'></i>"), :destroy_user_session, title: "Sign Out", data: {method: :delete, 'logout-msg': "Esta seguro?", action: "userLogout"} %> </span>
 		</div>
-		
+
 		<!-- end logout button -->
 
 		<!-- search mobile button (this is hidden till mobile view port) -->
@@ -171,7 +173,14 @@
 			</li>
 		</ul>
 		<!-- end multiple lang -->
-
+		
+		<!-- TOUR BTN -->
+		<div class="btn btn-header pull-right">
+		<button id="start-tour" class="btn btn-info ">
+			Inicia el tour guiado
+		</button>
+		</div>
+		<!-- end TOUR BTN -->
 	</div>
 	<!-- end pulled right: nav area -->
 

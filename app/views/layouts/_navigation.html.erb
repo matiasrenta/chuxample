@@ -3,7 +3,7 @@
 <aside id="left-panel">
 
   <!-- User info -->
-  <div class="login-info">
+  <div class="login-info" data-step="1" data-intro="Aqui se encuentra la información del usuario. Y aqui hay más info...">
     <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
         <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
           <%= image_tag("avatars/matias.png", alt: "me", class: "online") %>
@@ -19,7 +19,7 @@
   <nav>
     <ul>
 
-      <li>
+      <li data-step="2" data-intro="Este es el menú de administración. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
         <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Administration</span></a>
         <ul>
           <li>
@@ -31,7 +31,7 @@
         </ul>
       </li>
 
-      <li>
+      <li data-step="3" data-intro="Este es el menú de desarollo.">
         <a href="#"><i class="fa fa-lg fa-fw fa-code"></i> <span class="menu-item-parent">Development</span></a>
         <ul>
           <li>
