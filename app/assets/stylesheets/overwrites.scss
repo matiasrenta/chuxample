@@ -126,3 +126,22 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
   z-index: 2147483647 !important;
 }
 
+.filtros{
+  //padding:10px 0;
+  //border:1px solid #ccc;
+  //background:#f8f7f7;
+  //margin-bottom:5px;
+}
+.filtros form .form-group{
+  margin-right:10px;
+}
+.filtros form select{
+  width:100%!important;
+}
+.filtros .btn-group button{
+  margin-top:15px;
+  margin-right:5px;
+}
+.jarviswidget-editbox form label{
+  //font-weight:bold;
+}

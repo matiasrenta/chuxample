@@ -1403,7 +1403,7 @@ var calc_navbar_height = function() {
 				// edit btn
 				editButton : true,
 				editPlaceholder : '.jarviswidget-editbox',
-				editClass : 'fa fa-cog | fa fa-save',
+				editClass : 'fa fa-filter | fa fa-filter',
 				editSpeed : 200,
 				onEdit : function() {
 				},
