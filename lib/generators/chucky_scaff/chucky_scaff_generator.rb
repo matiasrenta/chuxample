@@ -113,7 +113,8 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
   tracked owner: ->(controller, model) {controller.try(:current_user)}\n\t#tracked recipient: ->(controller, model) { model.xxxx }
   tracked :params => {
-              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)}
+              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},
+              :model_label => proc {|controller, model| model.try(:name)}
           }\n\n\n"
       end
     end

@@ -7,11 +7,11 @@
     <small><%= time_ago_in_words(activity.created_at) %></small>
   </div>
   <div class="smart-timeline-content">
-    <p><a href="javascript:void(0);"><strong><%= User.find(activity.owner_id).try(:name) if activity.owner_type == 'User' %></strong></a></p>
+    <p><%= user_label(activity) %></p>
     <p>
       <i class="fa fa-pencil-square-o fa-border fa-lg"></i>
       Actualizó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
-      <a href="#"><%= activity.trackable.try(:name) %></a>
+      <%= trackable_label(activity) %>
     </p>
 
     <p><a href="#" id="show-details">Mostrar detalles</a></p>

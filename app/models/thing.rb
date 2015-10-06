@@ -4,7 +4,8 @@ class Thing < ActiveRecord::Base
 	tracked owner: ->(controller, model) {controller.try(:current_user)}
 	#tracked recipient: ->(controller, model) { model.xxxx }
   tracked :parameters => {
-              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes}
+							:attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},
+							:model_label => proc {|controller, model| model.try(:name)}
           }
 
 	#has_many :documents, as: :attachable#, dependent: :destroy
@@ -20,4 +21,8 @@ class Thing < ActiveRecord::Base
 	accepts_nested_attributes_for :thing_attaches, allow_destroy: true
 
 	validates_presence_of :name
+
+	def except_attr_in_public_activity
+		[:id, :updated_at]
+	end
 end
