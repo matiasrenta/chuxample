@@ -272,9 +272,10 @@
 		$(".minifyme").click(function() {
 
 			if (Cookies.get('nav') != "min") {
-				Cookies.set('nav', 'min');
+				
+				Cookies.set('nav', 'min', {path: '/' });
 			} else if (Cookies.get('nav') == "min") {
-				Cookies.set('nav', 'max');
+				Cookies.set('nav', 'max', {path: '/' });
 			}
 		});
 
