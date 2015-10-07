@@ -31,9 +31,14 @@
 @import "scss/smartadmin-production";
 @import "scss/smartadmin-production.min";
 @import "scss/smartadmin-skins";
+
+//Componente xdsoft datetimepicker. No es el mismo datetime incluido en el theme
 @import "datetimepicker";
+
+// Sobreescribimos los estilos que hacen falta
 @import "overwrites";
 
+// Intro JS -> Tour de jquery
 @import "scss/intro-js/introjs.scss";
 
 
