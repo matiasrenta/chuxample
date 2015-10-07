@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user_time_zone
-    Time.zone = current_user.time_zone if user_signed_in?
+    Time.zone = current_user.time_zone if user_signed_in? && !current_user.time_zone.blank?
   end
 
   def do_index(model, params, collection = nil, paginate = true, order_by = nil, includes = nil)
