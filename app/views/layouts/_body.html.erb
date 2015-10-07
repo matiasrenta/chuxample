@@ -43,7 +43,7 @@ Use search to find needed section.
     * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 -->
 
-<body class="">
+<body class="<%= cookies[:nav] == 'min' ? 'minified' : '' %>">
   <%= render "layouts/header" %>
   <%= render "layouts/navigation" %>
   <%= render "layouts/main_panel" %>
