@@ -88,7 +88,6 @@ class ApplicationController < ActionController::Base
       params[:q] = nil
       params[:search_clear] = nil
     end
-
     if params[:q]
       params[:q].each do |param|
         unless param[1].blank? || param[0] == 's' # la 's' es para que no se ponga rojo cuando solo se hace sort de columnas
