@@ -4,8 +4,6 @@
 <!-- ******** Jquery UI ********* -->
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-<!-- ******** Page setup ********* -->
-<script type='text/javascript'>pageSetUp();</script>
 
 <!-- ******** Date-time picker ********* -->
 <script type='text/javascript'>
@@ -153,21 +151,18 @@
 		
 	});
 
-	tour.init();
-	tour.start(true);
+	//tour.init();
+	//tour.start(true);
 	});
 
-	// Initialize the tour
-	//tour.init();
-
-	// Start the tour
-	//tour.start();
+	
 </script>
 <script>
-	//ostrar / ocutar detalles en timeline
+	//Mostrar / ocutar detalles en timeline
 	$(function() {
 
-		$(".show-details").click(function() {
+		$(".show-details").click(function(event) {
+			event.preventDefault();
 			var elem = $(this).closest("p").next(".detalles");
 			
 			$(elem).toggle("slow");
@@ -237,5 +232,19 @@
 	});
 
 </script>
+<script>
+	// Tooeltips
+	$(document).ready(function(){
+
+   // $('[data-toggle="toogle"]').tooltip({'placement': 'top'});
+     $('[data-toggle="tooltip"]').tooltip();
+      $('a.tooltipwithnofollow[rel="tooltip nofollow"]').tooltip();
+
+});
+	
+	
+</script>
+<!-- ******** Page setup ********* -->
+<script type='text/javascript'>pageSetUp();</script>
 
 <%= yield :javascript_per_page %>
