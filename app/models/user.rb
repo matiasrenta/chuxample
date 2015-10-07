@@ -15,8 +15,11 @@ class User < ActiveRecord::Base
   # :registerable, :confirmable, :validatable and :omniauthable
   # mas los 7 modulos proveidos por el gem devise_security_extension
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable
+  attachment :avatar, type: :image
 
   validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
+
+  after_destroy :remove_file
 
   def only_api_access?
     self.only_api_access
@@ -46,6 +49,10 @@ class User < ActiveRecord::Base
     end
 
 
+  private
 
+  def remove_file
+    file.delete
+  end
 end
 
