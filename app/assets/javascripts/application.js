@@ -61,5 +61,6 @@
 
 
 //= require js/plugin/intro-js/intro.js
+//= require js/plugin/js-cookie/js.cookie.js
 
 
