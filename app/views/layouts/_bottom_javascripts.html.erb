@@ -4,7 +4,6 @@
 <!-- ******** Jquery UI ********* -->
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-
 <!-- ******** Date-time picker ********* -->
 <script type='text/javascript'>
 	$.datetimepicker.setLocale('es');
@@ -60,7 +59,7 @@
 
 						});
 						response(dataMapped);
-						
+
 					}
 				});
 			},
@@ -120,42 +119,41 @@
 	$("#btn-tour").click(function() {
 
 		var tour = new Tour({
-		backdrop:true,
-		storage:false,
-		steps : [{
-		element : "#hide-menu",
-		title : "Mostrar menú",
-		content : "Abre o cierra el menu principal (barra izquierda)"
-		}, {
-		element : "#left-panel",
-		title : "Panel izquierdo",
-		content : "Contiene la información del usuario y el menú de navegación"
-		}, {
-		element : "#login-info",
-		title : "Información del usuario",
-		content : "¿Quién está logueado?"
-		}, {
-		element : "#left-panel nav",
-		title : "Menú principal",
-		content : "Acceso a odas las secciones del sitio"
-		}, {
-		element : "#logout",
-		title : "Cerrar sesión",
-		content : "Da clic aqui para cerrar sesión"
-		}, {
-		element : "#timeline",
-		title : "Línea de tiempo",
-		content : "Puedes ver toda la actividad de los usarios, ordenada cronológicamente",
-		path : "/welcome/prueba.html"
-		}]
-		
+			backdrop : true,
+			storage : false,
+			steps : [{
+				element : "#hide-menu",
+				title : "Mostrar menú",
+				content : "Abre o cierra el menu principal (barra izquierda)"
+			}, {
+				element : "#left-panel",
+				title : "Panel izquierdo",
+				content : "Contiene la información del usuario y el menú de navegación"
+			}, {
+				element : "#login-info",
+				title : "Información del usuario",
+				content : "¿Quién está logueado?"
+			}, {
+				element : "#left-panel nav",
+				title : "Menú principal",
+				content : "Acceso a odas las secciones del sitio"
+			}, {
+				element : "#logout",
+				title : "Cerrar sesión",
+				content : "Da clic aqui para cerrar sesión"
+			}, {
+				element : "#timeline",
+				title : "Línea de tiempo",
+				content : "Puedes ver toda la actividad de los usarios, ordenada cronológicamente",
+				path : "/welcome/prueba.html"
+			}]
+
+		});
+
+		//tour.init();
+		//tour.start(true);
 	});
 
-	//tour.init();
-	//tour.start(true);
-	});
-
-	
 </script>
 <script>
 	//Mostrar / ocutar detalles en timeline
@@ -164,7 +162,7 @@
 		$(".show-details").click(function(event) {
 			event.preventDefault();
 			var elem = $(this).closest("p").next(".detalles");
-			
+
 			$(elem).toggle("slow");
 
 			if ($(this).text() == 'Mostrar detalles') {
@@ -234,15 +232,54 @@
 </script>
 <script>
 	// Tooeltips
-	$(document).ready(function(){
+	$(document).ready(function() {
 
-   // $('[data-toggle="toogle"]').tooltip({'placement': 'top'});
-     $('[data-toggle="tooltip"]').tooltip();
-      $('a.tooltipwithnofollow[rel="tooltip nofollow"]').tooltip();
+		// $('[data-toggle="toogle"]').tooltip({'placement': 'top'});
+		$('[data-toggle="tooltip"]').tooltip();
+		$('a.tooltipwithnofollow[rel="tooltip nofollow"]').tooltip();
 
-});
-	
-	
+	});
+
+</script>
+
+<!-- ******** Minified ?? ********* -->
+<script>
+	/*
+	 $(function() {
+
+	 var lsmini = localStorage.getItem("minificado");
+
+	 if (lsmini === "true") {
+	 $("body").addClass("minified");
+	 }
+
+	 $(".minifyme").click(function() {
+
+	 //alert(localStorage.minificado);
+	 if (localStorage.minificado != "true") {
+	 localStorage.minificado = "true";
+	 } else if (localStorage.minificado === "true") {
+	 localStorage.minificado = "false";
+	 }
+
+	 });
+
+	 });
+	 */
+
+	$(function() {
+
+		$(".minifyme").click(function() {
+
+			if (Cookies.get('nav') != "min") {
+				Cookies.set('nav', 'min');
+			} else if (Cookies.get('nav') == "min") {
+				Cookies.set('nav', 'max');
+			}
+		});
+
+	});
+
 </script>
 <!-- ******** Page setup ********* -->
 <script type='text/javascript'>pageSetUp();</script>
