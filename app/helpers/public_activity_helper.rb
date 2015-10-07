@@ -46,4 +46,13 @@ module PublicActivityHelper
       'Usuario no existente'
     end
   end
+
+  def owner_avatar(activity)
+    if activity.owner
+      image_tag attachment_url(activity.owner, :avatar, :fill, 32, 32, fallback: "avatars/male.png")
+    else
+      image_tag("avatars/male.png", width: 32, height: 32)
+    end
+
+  end
 end
