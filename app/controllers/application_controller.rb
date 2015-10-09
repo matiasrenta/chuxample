@@ -55,11 +55,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user_language
-    I18n.locale = (user_signed_in? && current_user.locale) ? current_user.locale.to_sym : I18n.default_locale
+    I18n.locale = (user_signed_in? && !current_user.locale.blank?) ? current_user.locale.to_sym : I18n.default_locale
   end
 
   def set_user_time_zone
-    Time.zone = current_user.time_zone if user_signed_in?
+    Time.zone = current_user.time_zone if user_signed_in? && !current_user.time_zone.blank?
   end
 
   def do_index(model, params, collection = nil, paginate = true, order_by = nil, includes = nil)
@@ -88,7 +88,6 @@ class ApplicationController < ActionController::Base
       params[:q] = nil
       params[:search_clear] = nil
     end
-
     if params[:q]
       params[:q].each do |param|
         unless param[1].blank? || param[0] == 's' # la 's' es para que no se ponga rojo cuando solo se hace sort de columnas

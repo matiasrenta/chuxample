@@ -1,15 +1,16 @@
 <li>
   <div class="smart-timeline-icon">
-    <img src="http://images.vectorhq.com/images/premium/thumbs/147/user-or-member-secret-agent-avatar-woman-people-icon-isolated-on-white-background-vector-illustration_147168479.jpg" width="32" height="32" alt="user" />
+    <%= owner_avatar(activity) %>
   </div>
   <div class="smart-timeline-time">
     <small><%= time_ago_in_words(activity.created_at) %></small>
   </div>
   <div class="smart-timeline-content">
-    <p><a href="javascript:void(0);"><strong><%= User.find(activity.owner_id).try(:name) if activity.owner_type == 'User' %></strong></a></p>
+    <p><%= user_label(activity) %></p>
     <p>
       <i class="fa fa-trash-o fa-border fa-lg"></i>
       Borró <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
-      <em><%= activity.trackable.try(:name) %></em></p>
+      <%= trackable_label(activity, false) %>
+    </p>
   </div>
 </li>

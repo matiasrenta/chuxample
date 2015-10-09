@@ -22,19 +22,37 @@ module PublicActivityHelper
     [['Creó', 'create'], ['Actualizó', 'update'], ['Borró', 'destroy']]
   end
 
-  def trackable_label(activity)
-    if can?(:read, activity.trackable)
-      link_to activity.trackable.try(:name), activity.trackable
+  def trackable_label(activity, with_not_exists = true)
+    label = activity.parameters[:model_label]
+    if activity.trackable
+      if can?(:read, activity.trackable)
+        link_to label, activity.trackable
+      else
+        label
+      end
     else
-      activity.trackable.try(:name)
+      with_not_exists ? "#{label} <em>(ya no existe)</em>".html_safe : label
     end
   end
 
-  def user_link(activity)
-    if activity.owner_type == 'User'
-      link_to raw("<strong>#{activity.owner.try(:name)}</strong>"), activity.owner
+  def user_label(activity)
+    if activity.owner
+      if activity.owner_type == 'User' && can?(:read, activity.owner)
+        link_to raw("<strong>#{activity.owner.try(:name)}</strong>"), activity.owner
+      else
+        "<strong>#{activity.owner.try(:name)}</strong>".html_safe
+      end
     else
-      "<strong>#{activity.owner.try(:name)}</strong>".html_safe
+      'Usuario no existente'
     end
+  end
+
+  def owner_avatar(activity)
+    if activity.owner
+      image_tag attachment_url(activity.owner, :avatar, :fill, 32, 32, fallback: "avatars/male.png")
+    else
+      image_tag("avatars/male.png", width: 32, height: 32)
+    end
+
   end
 end
