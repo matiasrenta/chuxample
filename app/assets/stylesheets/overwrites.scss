@@ -145,3 +145,16 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 .jarviswidget-editbox form label{
   //font-weight:bold;
 }
+.pagination.pagination-xs {
+  //font-size:11px;
+}
+form#per_page_change select#per_page{
+  max-width:50px!important;
+  padding:2px;
+}
+@media (max-width: 767px) {
+.pagination-xs > li > a, .pagination-xs > li > span {
+  font-size: 12px;
+  padding: 4px 6px;
+}
+}
