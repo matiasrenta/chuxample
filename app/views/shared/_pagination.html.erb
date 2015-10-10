@@ -1,5 +1,5 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  <div class="col-lg-4 col-lg-offset-7 col-md-8 col-md-offset-3 col-sm-4 col-sm-offset-7 col-xs-10">
+  <div class="col-lg-4 col-lg-offset-7 col-md-9 col-md-offset-2 col-sm-9 col-sm-offset-2 col-xs-10">
      <%= will_paginate locals[:target], inner_window: 1, outer_window: 1, renderer: BootstrapPagination::Rails, class: 'no-margin pagination-xs' %>
   </div>
   <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 no-padding">
@@ -11,17 +11,3 @@
    
   </div>
 </div>
-  
-  
-  
- <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  <div class="col-lg-3 col-sm-4 col-xs-6 no-padding">
-    <%= will_paginate locals[:target], renderer: BootstrapPagination::Rails, class: 'no-margin pagination-xs' %>
-  </div>
-  <div class="col-lg-1 col-lg-offset-8 col-md-1 col-md-offset-3 col-sm-1 col-sm-offset-7 col-xs-2 col-xs-offset-1 no-padding">
-    <%= form_tag locals[:model_index_path], id: 'per_page_change', method: 'get' do %>
-      <%= select_tag :per_page, options_for_select([1, 2, 5, 10, 20, 50, 100], params[:per_page]), {class: "form-control input-xs", onchange: "this.form.submit();"} %>
-    <% end %>
-  </div>
-</div>
--->
