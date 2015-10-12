@@ -2,7 +2,7 @@
 lock '3.1.0'
 
 set :application, 'chucky'
-set :repo_url, 'git@github.com:damianpm/chucky.git'
+set :repo_url, 'git@github.com:matiasrenta/chucky.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
@@ -40,22 +40,22 @@ namespace :deploy do
     Rake::Task['deploy:assets:precompile'].clear_actions
     desc 'Precompile assets locally and upload to servers'
     task :precompile do
-      on roles(fetch(:assets_roles)) do
-        run_locally do
-          with rails_env: fetch(:rails_env) do
-            execute 'bin/rake assets:precompile'
-          end
-        end
-        within release_path do
-          with rails_env: fetch(:rails_env) do
-            old_manifest_path = "#{shared_path}/public/assets/manifest*"
-            execute :rm, old_manifest_path if test "[ -f #{old_manifest_path} ]"
-            #upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
-            upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
-          end
-        end
-        run_locally { execute 'rm -rf public/assets' }
-      end
+      #on roles(fetch(:assets_roles)) do
+      #  run_locally do
+      #    with rails_env: fetch(:rails_env) do
+      #      execute 'bin/rake assets:precompile'
+      #    end
+      #  end
+      #  within release_path do
+      #    with rails_env: fetch(:rails_env) do
+      #      old_manifest_path = "#{shared_path}/public/assets/manifest*"
+      #      execute :rm, old_manifest_path if test "[ -f #{old_manifest_path} ]"
+      #      #upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
+      #      upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
+      #    end
+      #  end
+      #  run_locally { execute 'rm -rf public/assets' }
+      #end
     end
   end
 
