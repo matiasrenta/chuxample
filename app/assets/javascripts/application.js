@@ -13,18 +13,21 @@
 
 //= require js/plugin/pace/pace
 //= require jquery
+
+// Ruby on Rails unobtrusive scripting adapter for jQuery 
 //= require jquery_ujs
+
 // require turbolinks
 //= require js/app.config
 //= require bootstrap-sprockets
-//= require js/notification/SmartNotification
+// require js/notification/SmartNotification
 //= require js/smartwidgets/jarvis.widget
 //= require js/plugin/easy-pie-chart/jquery.easy-pie-chart
 //= require js/plugin/sparkline/jquery.sparkline
 //= require js/plugin/jquery-validate/jquery.validate
-//= require js/plugin/masked-input/jquery.maskedinput
+// require js/plugin/masked-input/jquery.maskedinput
 //= require js/plugin/select2/select2
-//= require js/plugin/bootstrap-slider/bootstrap-slider
+// require js/plugin/bootstrap-slider/bootstrap-slider
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
 
@@ -42,12 +45,12 @@
 
 // require js/plugin/flot/jquery.flot.fillbetween
 // require js/plugin/flot/jquery.flot.orderBar
-//= require js/plugin/flot/jquery.flot.cust
-//= require js/plugin/flot/jquery.flot.resize
-//= require js/plugin/flot/jquery.flot.fillbetween
-//= require js/plugin/flot/jquery.flot.orderBar.js
-//= require js/plugin/flot/jquery.flot.pie
-//= require js/plugin/flot/jquery.flot.time
+// require js/plugin/flot/jquery.flot.cust
+// require js/plugin/flot/jquery.flot.resize
+// require js/plugin/flot/jquery.flot.fillbetween
+// require js/plugin/flot/jquery.flot.orderBar.js
+// require js/plugin/flot/jquery.flot.pie
+// require js/plugin/flot/jquery.flot.time
 // require js/plugin/flot/jquery.flot.tooltip
 
 //= require jquery_nested_form
@@ -62,5 +65,8 @@
 
 //= require js/plugin/intro-js/intro.js
 //= require js/plugin/js-cookie/js.cookie.js
+
+//= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js
+//= require js/plugin/fuelux/wizard/wizard.js
 
 
