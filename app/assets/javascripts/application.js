@@ -24,7 +24,7 @@
 //= require js/smartwidgets/jarvis.widget
 //= require js/plugin/easy-pie-chart/jquery.easy-pie-chart
 //= require js/plugin/sparkline/jquery.sparkline
-// require js/plugin/jquery-validate/jquery.validate
+//= require js/plugin/jquery-validate/jquery.validate
 // require js/plugin/masked-input/jquery.maskedinput
 //= require js/plugin/select2/select2
 // require js/plugin/bootstrap-slider/bootstrap-slider
@@ -65,5 +65,8 @@
 
 //= require js/plugin/intro-js/intro.js
 //= require js/plugin/js-cookie/js.cookie.js
+
+//= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js
+//= require js/plugin/fuelux/wizard/wizard.js
 
 

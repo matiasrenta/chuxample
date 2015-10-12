@@ -8,13 +8,13 @@
 
 				<header>
 					<span class="widget-icon"><i class="fa fa-table"></i></span>
-					<div class="widget-toolbar">
-						<a href="#" role="button" class="btn jarviswidget-edit-btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %> </a>
+					<div class="widget-toolbar filter-group">
+						<a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %> </a>
 					</div>
 				</header>
 				<!-- widget div-->
 				<div class="no-padding filtros">
-					<div class="jarviswidget-editbox">
+					<div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
 						<!-- This area used as dropdown edit box -->
 
 						<div class="col-md-12 col-sm-12">
