@@ -71,6 +71,8 @@ gem 'chartkick'
 gem 'groupdate'
 # cors - https://github.com/cyu/rack-cors
 gem 'rack-cors', :require => 'rack/cors'
+# wizard. https://github.com/schneems/wicked
+gem 'wicked'
 
 #por ahora lo pongo tambien en production hasta tener email
 gem 'letter_opener'
