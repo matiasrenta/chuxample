@@ -1,3 +1,5 @@
+$.root_ = $('body');
+
 /*                  ______________________________________
            ________|                                      |_______
            \       |           SmartAdmin WebApp          |      /
@@ -188,7 +190,7 @@ var calc_navbar_height = function() {
 						}
 					});
 					function logout() {
-                        
+
 						window.location = $this.attr('href');
 					}
 
@@ -511,6 +513,9 @@ var calc_navbar_height = function() {
  * Description: Fire when DOM is ready
  */
 	jQuery(document).ready(function() {
+
+
+
 
 		initApp.SmartActions();
 		initApp.leftNav();

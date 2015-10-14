@@ -79,10 +79,8 @@
 //= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js
 //= require js/plugin/fuelux/wizard/wizard.js
 
-//= require js/app.config
-//= require js/app
 
 //= require turbolinks
 
 
-//= require chucky_config.js
+//= require js/app.config

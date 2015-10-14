@@ -11,4 +11,4 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 #todo: quitar esto porque es solo para la demo con Ale
-Rails.application.config.assets.precompile += %w( matias-demo-chart1.js js/app.js js/app.config.js )
+Rails.application.config.assets.precompile += %w( matias-demo-chart1.js js/app.js chucky_config.js )
