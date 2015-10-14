@@ -38,7 +38,7 @@ gem 'ransack'
 gem 'public_activity', github: 'pokonski/public_activity'
 # para manejar seed iniciales y posteriores de load de ddbb
 gem 'seed-fu', '~> 2.3'
-# pagination
+# pagination. https://github.com/bootstrap-ruby/will_paginate-bootstrap
 gem 'will_paginate-bootstrap'
 # Settings
 gem 'rails-settings-cached'
