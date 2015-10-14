@@ -188,21 +188,25 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before
  border-radius: 4px;
     display: block;
     float: left;
-    margin: 4px 5px;
+    margin: 2px 5px;
     padding: 3px;
 }
 .widget-footer{
   min-height:40px;
+    margin: 0 -13px;
 }
 .widget-footer .form-actions {
- border: medium none;
-    margin: auto;
+    border: medium none;
+  margin: auto;
     padding:0;
 }
 .jarviswidget .widget-body {
   min-height:0;
-   padding-bottom: 0;
+  padding-bottom: 0;
 }
 #bootstrap-wizard-1 .form-actions{
+  padding:0;
+}
+table tr td.table-actions{
   padding:0;
 }

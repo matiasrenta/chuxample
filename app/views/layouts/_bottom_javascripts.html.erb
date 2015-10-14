@@ -177,7 +177,8 @@
 			});
 		}
 
-		$("#start-tour").click(function() {
+		$("#start-tour").click(function(event) {
+			 event.preventDefault();
 			introJs().setOptions({
 				'exitOnOverlayClick' : 'true',
 				'skipLabel' : 'Cancelar',
