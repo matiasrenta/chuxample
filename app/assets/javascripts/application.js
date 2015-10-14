@@ -17,7 +17,7 @@
 // Ruby on Rails unobtrusive scripting adapter for jQuery 
 //= require jquery_ujs
 
-// require turbolinks
+//= require turbolinks
 //= require js/app.config
 //= require bootstrap-sprockets
 // require js/notification/SmartNotification
@@ -77,5 +77,7 @@
 
 //= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js
 //= require js/plugin/fuelux/wizard/wizard.js
+
+//= require chucky_config.js
 
 
