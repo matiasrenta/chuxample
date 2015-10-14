@@ -21,9 +21,12 @@
 //@import "smartadmin/plugin-bootstrap-validator"; // new with v1.5
 //@import "smartadmin/plugin-cssemotions"; // new with v1.5
 //@import "smartadmin/plugin-clockpicker";
-// @import "./jquery.dataTables.css";
-//@import "./dataTables.bootstrap";
-//@import "./dataTables.responsive";
+
+// Necesarios para datatables (Boton expandir) 
+//@import "./jquery.dataTables.css";
+@import "./dataTables.bootstrap";
+@import "./dataTables.responsive";
+
 // @import "smartadmin/plugin-dataTables.colReorder";
 //@import "smartadmin/plugin-dataTables.colVis";
 //@import "smartadmin/plugin-dataTables.tableTools";

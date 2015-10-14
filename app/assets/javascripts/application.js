@@ -35,8 +35,13 @@
 // require js/plugin/jquery-ui/ui/widget
 
 //= require js/plugin/datatables/jquery.dataTables.min
+//= require js/plugin/datatables/jquery.dataTables
 //= require js/plugin/datatables/dataTables.bootstrap.min
+//= require js/plugin/datatables/dataTables.bootstrap
+//= require js/plugin/datatables/dataTables.colVis
+//= require js/plugin/datatables/dataTables.tableTools
 //= require js/plugin/datatables/dataTables.responsive
+// require js/plugin/datatables/datatables.responsive.min
 
 //= require js/app
 // require js/speech/voicecommand
@@ -57,13 +62,17 @@
 //= require chucky_bots
 //= require js/common
 
+// Datetimepicker (no es el mismo del theme)
 //= require js/plugin/datetimepicker/jquery.datetimepicker
 //= require js/plugin/datetimepicker/build/jquery.datetimepicker.full.min.js
 
+// Lquery Mask inputs (no es el del theme)
 //= require js/plugin/mask/jquery.mask.js
 
-
+// Jquery tour
 //= require js/plugin/intro-js/intro.js
+
+// Jquery cookies (para menu colapsado)
 //= require js/plugin/js-cookie/js.cookie.js
 
 //= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js

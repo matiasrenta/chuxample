@@ -165,3 +165,44 @@ form#per_page_change select#per_page{
   background-color: #ddd;
   padding: 0 0 0 10px;
 }
+//table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before, 
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before {
+ background-color: rgb(38,91,137);
+  border-radius: 0;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child::before {
+  //background-color: rgb(38,91,137);
+  border-radius: 0;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.child td.child table{
+ width:100%;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.child > td p{
+  text-align:left;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before{
+  display: none;
+}
+.table-actions a{
+ border-radius: 4px;
+    display: block;
+    float: left;
+    margin: 4px 5px;
+    padding: 3px;
+}
+.widget-footer{
+  min-height:40px;
+}
+.widget-footer .form-actions {
+ border: medium none;
+    margin: auto;
+    padding:0;
+}
+.jarviswidget .widget-body {
+  min-height:0;
+   padding-bottom: 0;
+}
+#bootstrap-wizard-1 .form-actions{
+  padding:0;
+}
