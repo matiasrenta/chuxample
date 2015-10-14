@@ -73,6 +73,8 @@ gem 'groupdate'
 gem 'rack-cors', :require => 'rack/cors'
 # wizard. https://github.com/schneems/wicked
 gem 'wicked'
+# es para que funciona turbolinks, ver el git: https://github.com/kossnocorp/jquery.turbolinks
+gem 'jquery-turbolinks'
 
 #por ahora lo pongo tambien en production hasta tener email
 gem 'letter_opener'
