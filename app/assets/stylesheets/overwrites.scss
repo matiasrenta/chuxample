@@ -191,3 +191,18 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before
     margin: 4px 5px;
     padding: 3px;
 }
+.widget-footer{
+  min-height:40px;
+}
+.widget-footer .form-actions {
+ border: medium none;
+    margin: auto;
+    padding:0;
+}
+.jarviswidget .widget-body {
+  min-height:0;
+   padding-bottom: 0;
+}
+#bootstrap-wizard-1 .form-actions{
+  padding:0;
+}
