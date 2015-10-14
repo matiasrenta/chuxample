@@ -29,42 +29,42 @@ $(function() {
 	}
 
 
-	$("#autocomplete").autocomplete({
-		source : function(request, response) {
-			$.ajax({
-				url : "/thing_parts.json",
-				dataType : "json",
-				data : {
-					term : request.term,
-
-				},
-				success : function(data) {
-
-					dataMapped = $.map(data, function(item) {
-						return {
-							label : item.name,
-							value : item.name,
-							id : item.id
-
-						};
-
-					});
-					response(dataMapped);
-
-				}
-			});
-		},
-		minLength : 1,
-		select : function(event, ui) {
-			log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
-		},
-		open : function() {
-			$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-		},
-		close : function() {
-			$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-		}
-	});
+	//$("#autocomplete").autocomplete({
+	//	source : function(request, response) {
+	//		$.ajax({
+	//			url : "/thing_parts.json",
+	//			dataType : "json",
+	//			data : {
+	//				term : request.term,
+//
+	//			},
+	//			success : function(data) {
+//
+	//				dataMapped = $.map(data, function(item) {
+	//					return {
+	//						label : item.name,
+	//						value : item.name,
+	//						id : item.id
+//
+	//					};
+//
+	//				});
+	//				response(dataMapped);
+//
+	//			}
+	//		});
+	//	},
+	//	minLength : 1,
+	//	select : function(event, ui) {
+	//		log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
+	//	},
+	//	open : function() {
+	//		$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+	//	},
+	//	close : function() {
+	//		$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+	//	}
+	//});
 });
 
 //AUTOCOMPLETE DROPDOWN

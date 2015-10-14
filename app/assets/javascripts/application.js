@@ -13,13 +13,13 @@
 
 //= require js/plugin/pace/pace
 //= require jquery
-//= require jquery.turbolinks
+// require jquery.turbolinks
 
 // Ruby on Rails unobtrusive scripting adapter for jQuery 
 //= require jquery_ujs
 
 
-//= require js/app.config
+
 //= require bootstrap-sprockets
 // require js/notification/SmartNotification
 //= require js/smartwidgets/jarvis.widget
@@ -44,7 +44,7 @@
 //= require js/plugin/datatables/dataTables.responsive
 // require js/plugin/datatables/datatables.responsive.min
 
-//= require js/app
+
 // require js/speech/voicecommand
 // require js/smart-chat-ui/smart.chat.ui
 // require js/smart-chat-ui/smart.chat.manager
@@ -79,8 +79,10 @@
 //= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js
 //= require js/plugin/fuelux/wizard/wizard.js
 
-//= require chucky_config.js
+//= require js/app.config
+//= require js/app
 
 //= require turbolinks
 
 
+//= require chucky_config.js

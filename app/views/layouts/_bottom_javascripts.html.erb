@@ -1,2 +1,8 @@
+<%#= javascript_include_tag "js/app.config" %>
+<%#= javascript_include_tag "js/app" %>
+<%#= javascript_include_tag "chucky_config" %>
+
 <script>pageSetUp();</script>
+
+<%= csrf_meta_tags %>
 <%= yield :javascript_per_page %>

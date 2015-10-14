@@ -131,7 +131,7 @@
  * VOICE COMMAND CONFIG
  * dependency: js/speech/voicecommand.js
  */
-	voice_command = true,
+	voice_command = false,
 /*
  * Turns on speech as soon as the page is loaded
  */	
