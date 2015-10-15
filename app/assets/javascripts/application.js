@@ -61,7 +61,7 @@
 
 //= require jquery_nested_form
 //= require chucky_bots
-//= require js/common
+
 
 // Datetimepicker (no es el mismo del theme)
 //= require js/plugin/datetimepicker/jquery.datetimepicker
