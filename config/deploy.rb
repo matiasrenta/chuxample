@@ -5,7 +5,7 @@ set :application, 'chucky'
 set :repo_url, 'git@github.com:matiasrenta/chucky.git'
 
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/home/deployer/railsapps/chucky'
