@@ -79,8 +79,6 @@
 //= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js
 //= require js/plugin/fuelux/wizard/wizard.js
 
-
 //= require turbolinks
-
 
 //= require js/app.config
