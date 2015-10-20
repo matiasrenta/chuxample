@@ -51,5 +51,9 @@ config/database.yml
 # rubymine ignore
 .idea/
 
+# aptana ignore
+.project
+
+
 **/*.*~
 

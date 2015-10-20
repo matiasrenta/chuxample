@@ -29,7 +29,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     if @<%= orm_instance.save %>
       redirect_to @<%= singular_table_name %>, notice: t("simple_form.flash.successfully_created")
     else
-      generate_flash_msg(@<%= singular_table_name %>)
+      generate_flash_msg_no_keep(@<%= singular_table_name %>)
       render :new
     end
   end
@@ -39,7 +39,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     if @<%= orm_instance.update("#{singular_table_name}_params") %>
       redirect_to @<%= singular_table_name %>, notice: t("simple_form.flash.successfully_updated")
     else
-      generate_flash_msg(@<%= singular_table_name %>)
+      generate_flash_msg_no_keep(@<%= singular_table_name %>)
       render :edit
     end
   end

@@ -12,11 +12,11 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option :authorization # ejemplo: --authorization=superuser:manage%director:read-edit-destroy
   class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
   class_option :migrate # para que se ejecute rake db:migrate: --migrate=true
+  class_option :validations # --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
+  class_option :dependents # --dependents=nombre_campo:destroy-nombre_campo:restrict_with_error
 
   # TODO: implementar los siguientes class_options
-  class_option :validations # --validations=nombre_campo:precense-numericality%nombre_campo:precense-uniqueness
   class_option :formats # --formats=nombre_campo:all#money%nombre_campo:index#datelong@show#datesuperlong
-  class_option :dependents # --dependents=nombre_campo:destroy%nombre_campo:restrict_with_error
   class_option :dropdown # --dropdown=nombre_campo:normal%nombre_campo:filter%nombre_campo:autocomplete
   class_option :help # --help=nombre_campo:"texto del help"%nombre_campo:"texto del help"
 
@@ -37,19 +37,29 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   def i18nize_model
     if options['i18n_singular_name'] && options['i18n_plural_name']
       fa_icon = ''
-      fa_icon = "\t\t\t\tfa_icon: '#{options['fa_icon']}'\n" if options['fa_icon'].present?
+      fa_icon = "\s\s\s\s\s\s\s\sfa_icon: '#{options['fa_icon']}'\n" if options['fa_icon'].present?
       inject_into_file 'config/locales/es.yml', after: "models:\n" do
-"      #{name}:
+        "      #{name}:
         one: #{options['i18n_singular_name']}
-        other: #{options['i18n_plural_name']}\n
-#{fa_icon}"
+        other: #{options['i18n_plural_name']}\n#{fa_icon}".force_encoding('ASCII-8BIT')
       end
     end
   end
 
-
-  def iconize_model
-
+  def validatize_model
+    if options['validations']
+      # --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
+      validations = options['validations'].split('%')
+      text_to_inject = ""
+      validations.each do |validation|
+        validation_key = validation.split(':')[0]
+        validation_filds = validation.split(':')[1].split('-')
+        text_to_inject = "#{text_to_inject}  validates #{validation_filds.map(&:to_sym).to_s.slice(1, validation_filds.map(&:to_sym).to_s.size - 2)}, #{validation_key}: true\n"
+      end
+      inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
+        "#{text_to_inject}"
+      end
+    end
   end
 
   def relationize_models
@@ -60,8 +70,10 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
           inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
             "  belongs_to :#{field.split('_id')[0]}\n\n"
           end
+          #--dependents=nombre_campo:destroy-nombre_campo:restrict_with_error
+          dependent = options['dependents'].split('-').select {|word| word.include?(field)}.first.split(':').last
           inject_into_file "app/models/#{field.split('_id')[0]}.rb", after: "< ActiveRecord::Base\n" do
-            "  has_many :#{name.pluralize}\n"
+            "  has_many :#{name.pluralize}, dependent: :#{dependent}\n"
           end
         end
       end
@@ -87,22 +99,29 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
       else
         tracked = "tracked only: [:#{options[:public_activity].split(':').join(', :')}]"
       end
-      inject_into_file "app/models/#{name}.rb", before: "end\n" do
-"\tinclude PublicActivity::Model
-  #{tracked}
-  tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
-  tracked owner: ->(controller, model) {controller.try(:current_user)}\n\t#tracked recipient: ->(controller, model) { model.xxxx }
-  tracked :params => {
-              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)}
-          }\n\n\n
 
+      inject_into_file "app/models/#{name}.rb", before: "end\n" do
+        "\n\n\n
   def except_attr_in_public_activity
     [:id, :updated_at]
-  end\n
-"
+  end\n"
+      end
+
+      inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
+        "\tinclude PublicActivity::Model
+  #{tracked}
+  tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
+  tracked owner: ->(controller, model) {controller.try(:current_user)}
+  #tracked recipient: ->(controller, model) { model.xxxx }
+  tracked :on => {:update => proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).keys.size > 0 }}
+  tracked :params => {
+              :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},
+              :model_label => proc {|controller, model| model.try(:name)}
+          }\n\n\n"
       end
     end
   end
+
 
   def migrate_to_ddbb
     rake "db:migrate" if options[:migrate] == 'true'

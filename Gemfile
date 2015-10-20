@@ -1,3 +1,5 @@
+#require 'refile/simple_form'
+
 source 'https://rubygems.org'
 
 
@@ -31,12 +33,12 @@ gem 'cancancan', '~> 1.10'
 gem 'simple_form'
 # para hacer filtros
 gem 'ransack'
-# para public activity
-gem 'public_activity'
+# se usa la version 2.0 (unstable) para aprovechar la funcionalidad de fallback. cuando salga el
+# release de la 2.0 hay que quitar la opcion github. https://github.com/chaps-io/public_activity
+gem 'public_activity', github: 'pokonski/public_activity'
 # para manejar seed iniciales y posteriores de load de ddbb
 gem 'seed-fu', '~> 2.3'
-# pagination
-#gem 'will_paginate', '~> 3.0.6'
+# pagination. https://github.com/bootstrap-ruby/will_paginate-bootstrap
 gem 'will_paginate-bootstrap'
 # Settings
 gem 'rails-settings-cached'
@@ -54,10 +56,34 @@ gem 'versionist'
 # ssl (https://github.com/tobmatth/rack-ssl-enforcer)
 gem 'rack-ssl-enforcer'
 # upload files (https://github.com/refile/refile)
+# antes tenia la version 0.5.5. voy a updetear este gem para ver si funciona con simple_form
 gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.git', branch: 'master'
 gem 'refile-mini_magick'
 # provee 7 modulos que se agregan a devise, ver la parte de abajo del initializer de devise para configurar esos modulos
 #gem 'devise_security_extension'
+# https://github.com/collectiveidea/delayed_job
+gem 'delayed_job_active_record'
+# esto es para que se ejecuten los delayed jobs
+gem 'daemons'
+# graficos https://github.com/ankane/chartkick    http://chartkick.com/
+gem 'chartkick'
+# para agrupar por date (tiempo), util para los graficos. https://github.com/ankane/groupdate
+gem 'groupdate'
+# cors - https://github.com/cyu/rack-cors
+gem 'rack-cors', :require => 'rack/cors'
+# wizard. https://github.com/schneems/wicked
+gem 'wicked'
+# es para que funciona turbolinks, ver el git: https://github.com/kossnocorp/jquery.turbolinks
+gem 'jquery-turbolinks'
+
+#por ahora lo pongo tambien en production hasta tener email
+gem 'letter_opener'
+
+# etl: https://github.com/activewarehouse/activewarehouse-etl/wiki/Documentation
+gem 'activewarehouse-etl', git: "https://github.com/apurvis/activewarehouse-etl.git"
+gem 'test-unit' # es una dependencia de activewarehouse-etl pero no esta en el gem-spec por eso la pongo a mano
+gem 'sqlite3'
+gem 'iconv', '~> 1.0.3'
 
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -73,6 +99,9 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
   # autoprefixer-rails is optional, but recommended. It automatically adds the proper vendor prefixes to your CSS code when it is compiled.
   #gem 'autoprefixer-rails'
 
+# para poner la app en maintenance mode. https://github.com/biola/turnout
+gem 'turnout'
+
 # (-)Instalados por mi
 
 
@@ -85,6 +114,13 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :development do
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-rbenv', github: "capistrano/rbenv"
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -95,5 +131,5 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  gem 'letter_opener'
+  #gem 'letter_opener'
 end

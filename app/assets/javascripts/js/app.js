@@ -1,3 +1,5 @@
+$.root_ = $('body');
+
 /*                  ______________________________________
            ________|                                      |_______
            \       |           SmartAdmin WebApp          |      /
@@ -188,6 +190,7 @@ var calc_navbar_height = function() {
 						}
 					});
 					function logout() {
+
 						window.location = $this.attr('href');
 					}
 
@@ -510,6 +513,9 @@ var calc_navbar_height = function() {
  * Description: Fire when DOM is ready
  */
 	jQuery(document).ready(function() {
+
+
+
 
 		initApp.SmartActions();
 		initApp.leftNav();
@@ -1402,7 +1408,7 @@ var calc_navbar_height = function() {
 				// edit btn
 				editButton : true,
 				editPlaceholder : '.jarviswidget-editbox',
-				editClass : 'fa fa-cog | fa fa-save',
+				editClass : 'fa fa-filter | fa fa-filter',
 				editSpeed : 200,
 				onEdit : function() {
 				},
