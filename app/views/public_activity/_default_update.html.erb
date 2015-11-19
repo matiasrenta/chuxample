@@ -12,6 +12,7 @@
       <i class="fa fa-pencil-square-o fa-border fa-lg"></i>
       Actualizó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
       <%= trackable_label(activity) %>
+      <%= link_to 'show history', trackable_history(activity) %>
     </p>
 
     <p><a href="#" class="show-details">Mostrar detalles</a></p>

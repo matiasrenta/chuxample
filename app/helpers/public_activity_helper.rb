@@ -35,6 +35,10 @@ module PublicActivityHelper
     end
   end
 
+  def trackable_history(activity)
+    "http://localhost:3000/public_activity?q[trackable_type_eq]=#{activity.trackable_type}&q[trackable_id_eq]=#{activity.trackable_id}"
+  end
+
   def user_label(activity)
     if activity.owner
       if activity.owner_type == 'User' && can?(:read, activity.owner)

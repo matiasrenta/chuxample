@@ -11,6 +11,7 @@
       <i class="fa fa-trash-o fa-border fa-lg"></i>
       Borró <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
       <%= trackable_label(activity, false) %>
+      <%= link_to 'show history', trackable_history(activity) %>
     </p>
   </div>
 </li>
