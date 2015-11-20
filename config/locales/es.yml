@@ -294,19 +294,19 @@ es:
       user:
         one: 'Usuario'
         other: 'Usuarios'
-        icon: 'fa-fw fa fa-user'
+        fa_icon: 'fa-fw fa fa-user'
       chucky_bot:
         one: 'Chucky Bot'
         other: 'Chucky Bots'
-        icon: 'fa-fw fa fa-reddit'
+        fa_icon: 'fa-fw fa fa-reddit'
       thing:
         one: 'Cosa'
         other: 'Cosas'
-        icon: 'fa-fw fa fa-cube'
+        fa_icon: 'fa-fw fa fa-cube'
       setting:
         one: 'Variable de Configuración'
         other: 'Variables de Configuración'
-        icon: 'fa-fw fa fa-cog'
+        fa_icon: 'fa-fw fa fa-cog'
 
     actions:
       new:  'Nuevo'
