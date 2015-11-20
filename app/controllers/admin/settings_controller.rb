@@ -50,15 +50,36 @@ class Admin::SettingsController < Admin::ApplicationController
     if Settings.unscoped.exists?(var: params[:settings][:var])
       @setting.errors.add(:var, "ya esta en uso")
       render :new
-    else
-      eval("Settings.#{params[:settings][:var]} = #{params[:settings][:value]}")
+    elsif params[:settings][:var].present? && params[:settings][:value].present?
+      value = params[:settings][:value]
+      if value.starts_with?('[', '{') || ((value.to_i != 0 && !value.starts_with?('0')) || (value.to_i == 0 && value.starts_with?('0')))
+        eval("Settings.#{params[:settings][:var]} = #{params[:settings][:value]}")
+      else
+        eval("Settings.#{params[:settings][:var]} = '#{params[:settings][:value]}'") if params[:settings][:value].instance_of? String
+      end
       redirect_to admin_settings_path, notice: t("simple_form.flash.successfully_created")
+      return
+    else
+      flash[:alert] = 'fields can not be blank'
+      render :edit
     end
   end
 
   def update
-    eval("Settings.#{params[:settings][:var]} = #{params[:settings][:value]}")
-    redirect_to admin_settings_path, notice: t("simple_form.flash.successfully_updated")
+    if params[:settings][:value].present?
+      value = params[:settings][:value]
+      if value.starts_with?('[', '{') || ((value.to_i != 0 && !value.starts_with?('0')) || (value.to_i == 0 && value.starts_with?('0')))
+        eval("Settings.#{params[:settings][:var]} = #{params[:settings][:value]}")
+      else
+        eval("Settings.#{params[:settings][:var]} = '#{params[:settings][:value]}'") if params[:settings][:value].instance_of? String
+      end
+      redirect_to admin_settings_path, notice: t("simple_form.flash.successfully_updated")
+      return
+    else
+      @setting = Settings.unscoped.find_by_var(params[:settings][:var])
+      flash[:alert] = 'value can not be blank'
+      render :edit
+    end
   end
 
   def destroy
