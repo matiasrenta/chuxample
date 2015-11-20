@@ -5,8 +5,14 @@ bundle exec cap production deploy
 en config/deploy.rb comentar/descomentar para que no compile/compile los assets
 
 
-Instalar imagamagic en ubuntu:
+Imagamagic en ubuntu:
 ==============================
 sudo apt-get install imagemagick --fix-missing
 si falla al instalar el gem rmagic probar: sudo apt-get install libmagickwand-dev imagemagick
 solucion publicada en http://stackoverflow.com/questions/16774501/rmagick-gem-installation-issue
+
+
+Memcached:
+==========
+Instalar en ubuntu 14.04 (aqui instala mysql y php, pero creo que eso no es necesario, solo instalar memcached):
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-memcache-on-ubuntu-14-04
