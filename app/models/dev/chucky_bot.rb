@@ -24,12 +24,12 @@ class ChuckyBot < ActiveRecord::Base
 
       # incluyo i18n plural and singular names
       unless (i18n_singular_name.blank? || i18n_plural_name.blank?)
-        c = "#{c} --i18n_singular_name=#{i18n_singular_name} --i18n_plural_name=#{i18n_plural_name}"
+        c = "#{c} --i18n_singular_name='#{i18n_singular_name}' --i18n_plural_name='#{i18n_plural_name}'"
       end
 
       # incluyo icono del modelo
       unless fa_icon.blank?
-        c = "#{c} --fa_icon=#{fa_icon}"
+        c = "#{c} --fa_icon='#{fa_icon}'"
       end
 
 
