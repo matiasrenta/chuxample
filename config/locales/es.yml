@@ -262,24 +262,6 @@ es:
       invalid_email: 'Email inválido'
       invalid_mx: 'invalid mx'
 
-  settings:
-    index:
-      save_all: 'Guardar todos'
-      title: 'Application Settings'
-      description: 'Variable'
-      value: 'Valor'
-      actions: 'Acciones'
-    attributes:
-      company_name:
-        name: 'Nombre Empresa'
-      default_plan:
-        name: 'Plan por defecto'
-        labels: ['developer', 'business', 'premium']
-      show_contract_fields:
-        name: 'Mostrar contrato'
-      min_users:
-        name: 'Mínimo de usuarios'
-
     errors:
       default_missing: 'default_missing'
 
@@ -312,16 +294,19 @@ es:
       user:
         one: 'Usuario'
         other: 'Usuarios'
-        icon: 'fa-fw fa fa-user'
+        fa_icon: 'fa-fw fa fa-user'
       chucky_bot:
-        one: 'ChuckyBot'
-        other: 'ChuckyBots'
+        one: 'Chucky Bot'
+        other: 'Chucky Bots'
+        fa_icon: 'fa-fw fa fa-reddit'
       thing:
         one: 'Cosa'
         other: 'Cosas'
+        fa_icon: 'fa-fw fa fa-cube'
       setting:
-        one: 'Configuración de la aplicación'
-        other: 'Configuración de la aplicación'
+        one: 'Variable de Configuración'
+        other: 'Variables de Configuración'
+        fa_icon: 'fa-fw fa fa-cog'
 
     actions:
       new:  'Nuevo'

@@ -1,89 +1,93 @@
 <section id="widget-grid">
-  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
 
+<!-- row -->
+<div class="row">
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <!-- Widget ID (each widget will need unique ID)-->
+    <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <!-- widget options:
+         usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+         data-widget-colorbutton="false"
+         data-widget-editbutton="false"
+         data-widget-togglebutton="false"
+         data-widget-deletebutton="false"
+         data-widget-fullscreenbutton="false"
+         data-widget-custombutton="false"
+         data-widget-collapsed="true"
+         data-widget-sortable="false"
+
+         -->
+      <header>
+        <span class="widget-icon"><i class="fa fa-binoculars"></i></span>
         <div class="widget-toolbar">
           <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), dev_chucky_bots_path, class: 'btn btn-sm btn-primary' if can?(:read, @chucky_bot) %>
           <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_dev_chucky_bot_path(@chucky_bot), class: 'btn btn-sm btn-primary' if can?(:read, @chucky_bot) %>
         </div>
       </header>
-      <div class="no-padding">
-        <div class="widget-body">
-          <div class="form-horizontal">
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">fa_icon</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><i class="<%= @chucky_bot.fa_icon %>"></i></p>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">underscore_model_name</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><%= @chucky_bot.underscore_model_name %></p>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">i18n_singular_name</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><%= @chucky_bot.i18n_singular_name %></p>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">i18n_plural_name</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><%= @chucky_bot.i18n_plural_name %></p>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">authorization notes</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><%= @chucky_bot.authorization[:notes] %></p>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">public_activity_notes</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><%= @chucky_bot.public_activity[:notes] %></p>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">migrate</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><%= boolean_check_mark(@chucky_bot.migrate) %></p>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">fields</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><%= @chucky_bot.fields.map(&:name).join(', ') %></p>
-
-                <p class="form-control-static"><%= link_to 'releer opciones de validación para no olvidar nada', 'http://guides.rubyonrails.org/active_record_validations.html#validation-helpers' %></p>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">chucky_command</label>
-
-              <div class="col-sm-9">
-                <p class="form-control-static"><%= @chucky_bot.chucky_command %></p>
-              </div>
-            </div>
-
-          </div>
+      <!-- widget div-->
+      <div>
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+          <!-- This area used as dropdown edit box -->
         </div>
+        <!-- end widget edit box -->
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
+
+            <tbody>
+            <tr role="row">
+              <th>fa_icon</th>
+              <td><i class="<%= @chucky_bot.fa_icon %>"></i></td>
+            </tr>
+            <tr role="row">
+              <th>underscore_model_name</th>
+              <td><%= @chucky_bot.underscore_model_name %></td>
+            </tr>
+            <tr role="row">
+              <th>i18n_singular_name</th>
+              <td><%= @chucky_bot.i18n_singular_name %></td>
+            </tr>
+            <tr role="row">
+              <th>i18n_plural_name</th>
+              <td><%= @chucky_bot.i18n_plural_name %></td>
+            </tr>
+            <tr role="row">
+              <th>authorization notes</th>
+              <td><%= @chucky_bot.authorization[:notes] %></td>
+            </tr>
+            <tr role="row">
+              <th>public_activity_notes</th>
+              <td><%= @chucky_bot.public_activity[:notes] %></td>
+            </tr>
+            <tr role="row">
+              <th>migrate</th>
+              <td><%= boolean_check_mark(@chucky_bot.migrate) %></td>
+            </tr>
+            <tr role="row">
+              <th>fields</th>
+              <td>
+                <%= @chucky_bot.fields.map(&:name).join(', ') %>
+                <p class="form-control-static"><%= link_to 'releer opciones de validación para no olvidar nada', 'http://guides.rubyonrails.org/active_record_validations.html#validation-helpers' %></p>
+              </td>
+            </tr>
+            <tr role="row">
+              <th>chucky_command</th>
+              <td><%= @chucky_bot.chucky_command %></td>
+            </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+        <!-- end widget content -->
       </div>
+      <!-- end widget div -->
     </div>
   </article>
-
+</div>
   <!--
   <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
