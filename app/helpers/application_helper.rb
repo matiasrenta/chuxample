@@ -45,4 +45,12 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
+  def format_date_field(var)
+    var ? var.strftime("%d/%m/%Y") : nil
+  end
+
+  def format_datetime_field(var)
+    var ? var.strftime("%d/%m/%Y %H:%M") : nil
+  end
+
 end
