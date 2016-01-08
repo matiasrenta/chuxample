@@ -11,11 +11,8 @@ class ThingContact < ActiveRecord::Base
 
   belongs_to :thing
 
-  validates :name, :thing_id, presence: true
-  validates :name, uniqueness: true
-  validates :thing_id, numericality: true
-
-
+  validates :name, presence: true
+  validates :name, uniqueness: { scope: :thing_id }
 
 
   def except_attr_in_public_activity
