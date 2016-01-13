@@ -14,8 +14,10 @@
                           } do |f| %>
           <div class="form-inputs edit">
             <%- attributes.each do |attribute| -%>
-                <% if [:date, :datetime, :time].include? attribute.type.to_sym -%>
-                    <%%= f.input :<%= attribute.name %>, as: :string, input_html: {class: 'datepicker', data: {dateformat: 'dd/mm/yy'}} %>
+                <% if attribute.type.to_sym == :date -%>
+                    <%%= f.input :<%= attribute.name %>, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@<%= singular_table_name %>.<%= attribute.name %>)} %>
+                <% elsif attribute.type.to_sym == :datetime -%>
+                    <%%= f.input :<%= attribute.name %>, as: :string, placeholder: 'dd/mm/aaaa HH:MM', input_html: {class: 'datetimepicker', value: format_datetime_field(@<%= singular_table_name %>.<%= attribute.name %>)} %>
                 <% elsif attribute.type.to_sym ==  :text -%>
                     <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>, :input_html => { :rows => 4, :cols => 30 } %>
                 <% elsif [:integer, :float, :decimal].include? attribute.type.to_sym -%>
