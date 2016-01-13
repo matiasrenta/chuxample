@@ -6,11 +6,9 @@
   <div class="login-info" data-step="1" data-intro="Aqui se encuentra la información del usuario. Y aqui hay más info...">
     <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
         <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-          <%= image_tag("avatars/matias.png", alt: "me", class: "online") %>
-          <span>Matias</span>
-          <i class="fa fa-angle-down"></i>
+          <%= image_tag attachment_url(current_user, :avatar, :fill, 50, 50, fallback: "avatars/male.png"), class: 'online' %>
+          <span><%= current_user.try(:name) %></span>
         </a>
-
     </span>
   </div>
   <!-- end user info -->
