@@ -15,59 +15,6 @@
                                  } do |f| %>
 
           <div class="form-inputs edit">
-
-            <div class="form-group string required thing_name">
-
-              <label class="string required col-xs-12 col-sm-3 control-label" for="autocomplete">Select simple con
-                autocomplete: </label>
-
-              <div class="col-xs-12 col-sm-9">
-                <input id="autocomplete" class="string required form-control">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-xs-12 col-sm-3 control-label" for="simple-select">Select simple sin autocomplete</label>
-
-              <div class="col-xs-12 col-sm-9">
-                <select multiple class="select2-container select2-container-multi select2" id="simple-select">
-                  <option></option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-xs-12 col-sm-3 control-label" for="multiple-select">Select multiple sin
-                autocomplete</label>
-
-              <div class="col-xs-12 col-sm-9">
-                <select class="select2-container select2-container-multi select2" id="multiple-select">
-                  <option></option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-xs-12 col-sm-3 control-label" for="multiple-select-auto">Select multiple con
-                autocomplete</label>
-
-              <div class="col-xs-12 col-sm-9">
-                <select multiple class="select2-container select2-container-multi select2" id="multiple-select-auto">
-                  <option></option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group string required thing_name">
-              <label class="string required col-xs-12 col-sm-3 control-label" for="thing_name">
-                Titulo<span class="btn-help"><i class="fa fa-question-circle" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."></i></span></label>
-
-              <div class="col-xs-12 col-sm-9">
-                <input id="thing_name" class="string required form-control" type="text" name="thing[name]">
-                </input>
-              </div>
-            </div>
-
             <%= f.input :name %>
             <%= f.input :age %>
             <%= f.input :price %>
