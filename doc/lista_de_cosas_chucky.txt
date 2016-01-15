@@ -1,0 +1,26 @@
+FRONT-END
+=========
+Issues:
+- en los filtros al apretar enter el foco esta en "limpiar filtros" cuando debería estar en "filtrar"
+
+Funcionalidades:
+1. en el formulario de Thing yo puse el boton "tooltip" en Contacts. Hay que quitarlo
+2. el Stay signed in del login no funciona
+3. el tour debe aparecer solo en desktop no en movil, y la librería no debe cargarse en el movil
+4. mecanismo para importación desde excel
+5. mecanismo para exportación de la lista a formatos excel
+6. icono help en campo formulario con pophover
+7. componente dropdown filter, multiselect y autocomplete (conquistar select2)
+8. javascript events para mostrar progreso en upload de archivos
+9. wizard
+10. mecanismo de alta de otra entidad en popover estando en formulario parent (validaciones en js, sino mejor dejarlo con otra pantalla y menejo de redirect al formulario que hizo la llamada)
+11. comentarios en entidades
+12. image cropping
+13. mentions (poder colocar @usuario y que esto genere una notificación)
+
+BACK-END
+Importación desde excel simple, que se valide con el mismo modelo, que se baje el excel que debe ser usado
+Exportación a excel: pantalla donde se seleccionan las columnas a exportar
+Habilitar envio de mails
+Actualizar envio de mail ante crash
+Ejacutar los delayjobs
