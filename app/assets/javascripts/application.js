@@ -13,7 +13,9 @@
 
 //= require js/plugin/pace/pace
 //= require jquery
-// require jquery.turbolinks
+
+// https://github.com/kossnocorp/jquery.turbolinks
+// require jquery.turbolinks // esto no se porqué hace que los menues y los filtros reboten y vuelvan colapsarse (tal vez otras cosas negativas)
 
 // Ruby on Rails unobtrusive scripting adapter for jQuery 
 //= require jquery_ujs
