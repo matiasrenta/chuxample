@@ -7,6 +7,6 @@ class ThingAttach < ActiveRecord::Base
   private
 
   def remove_file
-    file.delete
+    file.try(:delete)
   end
 end
