@@ -5,8 +5,11 @@ Issues:
 
 Funcionalidades:
 1. en el formulario de Thing yo puse el boton "tooltip" en Contacts. Hay que quitarlo
+    -------OK--
 2. el Stay signed in del login no funciona
+    ------Se ha dejado por default con valor 0 (Deseleccionado en la vista) las regEx se encuentran en jquery.validate.js--
 3. el tour debe aparecer solo en desktop no en movil, y la librería no debe cargarse en el movil
+    ---- La opción del menú para el Tour ya esta oculta en movil, falta no cargar el plugin intro-js -----
 4. mecanismo para importación desde excel
 5. mecanismo para exportación de la lista a formatos excel
 6. icono help en campo formulario con pophover
