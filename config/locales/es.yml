@@ -261,6 +261,7 @@ es:
       cant_be_in_the_future: "No puede ser en el futuro"
       invalid_email: 'Email inválido'
       invalid_mx: 'invalid mx'
+      invalid_imported_entities: 'Hay registros inválidos'
 
     errors:
       default_missing: 'default_missing'
@@ -281,6 +282,9 @@ es:
 
       full_messages:
         format: "%{attribute} %{message}"
+
+    messages:
+      imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
       thing_contact:
@@ -317,6 +321,7 @@ es:
       update: 'Editar'
       edit_multiple: 'Editar'
       update_multiple: 'Editar'
+      import: 'Importar'
 
   will_paginate:
     previous_label: "&#8592;"

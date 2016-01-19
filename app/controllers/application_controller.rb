@@ -121,6 +121,26 @@ class ApplicationController < ActionController::Base
     flash.discard(flash_type) # elimina esta entrada del flash al finalizar el action
   end
 
+  # example: new_import(Thing, ThingImport, 'fa-fw fa fa-cube')
+  def new_import(model, model_import, icon)
+    authorize! :import, model
+    set_content_title(icon, [t("activerecord.models.#{controller_name.singularize}", count: 2), t("activerecord.actions.import")])
+    @entity_import = model_import.new
+  end
+
+  # example: create_import(Thing, ThingImport, 'fa-fw fa fa-cube')
+  def create_import(model, model_import, icon)
+    authorize! :import, model
+    set_content_title(icon, [t("activerecord.models.#{controller_name.singularize}", count: 2), t("activerecord.actions.import")])
+    @entity_import = model_import.new(params["#{model.name.underscore}_import".to_sym])
+    if @entity_import.save
+      redirect_to things_url, notice: t('activerecord.messages.imported_successfuly', count: @entity_import.imported_entities.size)
+    else
+      generate_flash_msg_no_keep(@entity_import)
+      render :new_import
+    end
+  end
+
   private ############################################ PRIVATE #################################################
 
   def after_sign_out_path_for(user)

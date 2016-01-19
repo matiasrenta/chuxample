@@ -22,7 +22,7 @@ class ThingsController < ApplicationController
   def create
 
     if @thing.save
-      redirect_to @thing, notice: t("simple_form.flash.successfully_created")
+      redirect_to @thing, notice: t('simple_form.flash.successfully_created')
     else
       generate_flash_msg_no_keep(@thing)
       render :new
@@ -32,7 +32,7 @@ class ThingsController < ApplicationController
   # PATCH/PUT /things/1
   def update
     if @thing.update(thing_params)
-      redirect_to @thing, notice: t("simple_form.flash.successfully_updated")
+      redirect_to @thing, notice: t('simple_form.flash.successfully_updated')
     else
       generate_flash_msg_no_keep(@thing)
       render :edit
@@ -42,13 +42,15 @@ class ThingsController < ApplicationController
   # DELETE /things/1
   def destroy
     @thing.destroy
-    redirect_to things_url, notice: t("simple_form.flash.successfully_destroyed")
+    redirect_to things_url, notice: t('simple_form.flash.successfully_destroyed')
   end
 
   def new_import
+    super(Thing, ThingImport, t('activerecord.models.thing.fa_icon'))
   end
 
   def create_import
+    super(Thing, ThingImport, t('activerecord.models.thing.fa_icon'))
   end
 
   private

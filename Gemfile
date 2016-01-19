@@ -103,6 +103,11 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 # para poner la app en maintenance mode. https://github.com/biola/turnout
 gem 'turnout'
 
+# para importar desde excel
+gem 'roo', '~> 2.0.0'
+# para hacer bulck import (una solo sql en vez de una por cada renglón del excel)
+gem 'activerecord-import'
+
 # (-)Instalados por mi
 
 
