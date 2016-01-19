@@ -12,16 +12,15 @@ class BaseImport
   def save
     if imported_entities.map(&:valid?).all?
       if save_in_ddbb == '1'
-        Thing.import imported_entities # esto es del gem activerecord-import el cual hace una sola sentencia insert para todos los registros. Cuidado: no validations y no callbacks
-        #Thing.transaction do
-        #  imported_entities.each(&:save!)
-        #end
+        model = self.class.name # ejemplo: ThingImport
+        model.slice! "Import" # quito el Import para que quede Thing
+        eval("#{model}.import imported_entities")  # esto es del gem activerecord-import el cual hace una sola sentencia insert para todos los registros. Cuidado: no validations y no callbacks
       end
       true
     else
       errors.add(:base, I18n.translate('activerecord.errors.messages.invalid_imported_entities'))
-      imported_entities.each_with_index do |action, index|
-        action.errors.full_messages.each do |message|
+      imported_entities.each_with_index do |entity, index|
+        entity.errors.full_messages.each do |message|
           errors.add :base, "Fila #{index+2}: #{message}"
         end
       end
