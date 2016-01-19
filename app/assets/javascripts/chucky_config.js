@@ -307,21 +307,19 @@ $(function() {
 
 // Login (remember-me)
 $(function() {
-	$("input[name='user[remember_me]']").val('1');
+	$("input[name='user[remember_me]']").val('0');
 
 	//alert($("input[name='user[remember_me]']").val());
 
 	$("input[name='remember']").change(function() {
 
-		if ($("input[name='user[remember_me]']").val() == '0') {
-			$("input[name='user[remember_me]']").val('1');
-		} else {
+		if ($("input[name='user[remember_me]']").val() == '1') {
 			$("input[name='user[remember_me]']").val('0');
+		} else {
+			$("input[name='user[remember_me]']").val('1');
 		}
 
 		//alert($("input[name='user[remember_me]']").val());
 	});
 
 });
-
-

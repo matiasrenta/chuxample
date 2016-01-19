@@ -660,6 +660,10 @@
             },
             creditcard: {
                 creditcard: true
+            },
+            password : {
+                minlength : 3,
+                maxlength : 20
             }
         },
         addClassRules: function (className, rules) {

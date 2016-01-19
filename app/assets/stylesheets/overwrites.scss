@@ -82,7 +82,7 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 // Iconos de timeline
 .smart-timeline i.fa{
  color:#23527c;
-  
+
 }
 .smart-timeline .label{
   margin-right:5px;
@@ -96,7 +96,7 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
   .alert-success {
     //max-height: 50px;
   }
-  
+
 }
 @media (max-width: 767px) {
   ul#sparks{
@@ -165,7 +165,7 @@ form#per_page_change select#per_page{
   background-color: #ddd;
   padding: 0 0 0 10px;
 }
-//table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before, 
+//table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before,
 
 table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before {
  background-color: rgb(38,91,137);
@@ -209,4 +209,18 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before
 }
 table tr td.table-actions{
   padding:0;
+}
+
+.form-control-feedback {
+  line-height: 34px !important;
+}
+
+.input-group[class*="col-"] {
+    float: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.popover{
+    width: 200px !important; // Max Width of the popover (depending on the container!)
 }

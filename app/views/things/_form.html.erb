@@ -1,7 +1,12 @@
 <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
 
   <header>
+    <div class="jarviswidget-ctrls hidden-xs" role="menu">
+      <a href="javascript:void(0);" class="button-icon" rel="tooltip" title="" data-placement="bottom" data-original-title="Carga masiva"><i class="fa fa-upload"></i>
+      </a>
+    </div>
     <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
+
   </header>
   <div>
     <div class="widget-body">
@@ -15,7 +20,7 @@
                                  } do |f| %>
 
           <div class="form-inputs edit">
-            <%= f.input :name %>
+            <%= f.input :name %><i class="icon-append fa fa-question-circle txt-color-blue" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."></i>
             <%= f.input :age %>
             <%= f.input :price %>
             <%= f.input :expires, as: :string, input_html: {class: 'date-picker', value: @thing.expires ? @thing.expires.strftime("%d/%m/%Y") : nil} %>
@@ -70,8 +75,6 @@
                           <%= thing_contact_form.link_to_remove do %>
                               <i class="fa fa-trash-o" data-original-title="destroy" data-placement="top" rel="tooltip"></i>
                           <% end %>
-                          <a data-original-title="Tooltip Left" data-placement="left" rel="tooltip" class="btn btn-default" href="javascript:void(0);">Tooltip
-                            Left</a>
                         </td>
 
                       </tr>

@@ -1,6 +1,10 @@
 <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
 
   <header>
+    <div class="jarviswidget-ctrls hidden-xs" role="menu">
+      <a href="javascript:void(0);" class="button-icon" rel="tooltip" title="" data-placement="bottom" data-original-title="Carga masiva"><i class="fa fa-upload"></i>
+      </a>
+    </div>
     <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
   </header>
   <div>
@@ -18,19 +22,20 @@
           <div class="form-inputs edit">
 
             <div class="form-group string required thing_name">
-
-              <label class="string required col-xs-12 col-sm-3 control-label" for="autocomplete">Select simple con
-                autocomplete: </label>
-
-              <div class="col-xs-12 col-sm-9">
+              <label class="string required control-label col-sm-3" for="autocomplete">
+                Select simple con autocomplete:
+              </label>
+              <div class="col-sm-8 input-group add-on">
                 <input id="autocomplete" class="string required form-control">
+                <div class="input-group-btn">
+                	<button type="button" class="btn btn-default" rel="popover-hover" data-placement="top" data-original-title="Auto-complete" data-content="Selección simple con autocomplete"><i class="fa fa-question"></i></button>
+                </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="col-xs-12 col-sm-3 control-label" for="simple-select">Select simple sin autocomplete</label>
-
-              <div class="col-xs-12 col-sm-9">
+              <label class="col-sm-3 control-label" for="simple-select">Select simple sin autocomplete</label>
+              <div class="col-sm-8">
                 <select multiple class="select2-container select2-container-multi select2" id="simple-select">
                   <option></option>
                 </select>
@@ -38,10 +43,9 @@
             </div>
 
             <div class="form-group">
-              <label class="col-xs-12 col-sm-3 control-label" for="multiple-select">Select multiple sin
+              <label class="col-sm-3 control-label" for="multiple-select">Select multiple sin
                 autocomplete</label>
-
-              <div class="col-xs-12 col-sm-9">
+              <div class="col-sm-8">
                 <select class="select2-container select2-container-multi select2" id="multiple-select">
                   <option value=""></option>
                   <option value="male"></option>
@@ -51,10 +55,9 @@
             </div>
 
             <div class="form-group">
-              <label class="col-xs-12 col-sm-3 control-label" for="multiple-select-auto">Select multiple con
+              <label class="col-sm-3 control-label" for="multiple-select-auto">Select multiple con
                 autocomplete</label>
-
-              <div class="col-xs-12 col-sm-9">
+              <div class="col-sm-8">
                 <select multiple class="select2-container select2-container-multi select2" id="multiple-select-auto">
                   <option></option>
                 </select>
@@ -62,19 +65,24 @@
             </div>
 
             <div class="form-group string required thing_name">
-              <label class="string required col-xs-12 col-sm-3 control-label" for="thing_name">
-                Titulo<span class="btn-help"><i class="fa fa-question-circle" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."></i></span></label>
-
-              <div class="col-xs-12 col-sm-9">
-                <input id="thing_name" class="string required form-control" type="text" name="thing[name]">
-                </input>
+              <label class="string required control-label col-sm-3" for="thing_name">
+                Titulo
+                <!-- <span class="btn-help">
+                  <i class="fa fa-question-circle" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."></i>
+                </span> -->
+              </label>
+              <div class="col-sm-8 input-group add-on">
+                <input id="thing_name" class="form-control" type="text" name="thing[name]">
+                <div class="input-group-btn">
+                	<button type="button" class="btn btn-default" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."><i class="fa fa-question"></i></button>
+                </div>
               </div>
             </div>
 
 
             <div class="form-group">
-              <label class="col-xs-12 col-sm-3 control-label" for="thing_gender">Genero</label>
-              <div class="col-xs-12 col-sm-9">
+              <label class="col-sm-3 control-label" for="thing_gender">Genero</label>
+              <div class="col-sm-8">
                 <select class="select2-container select2-container-multi select2" id="thing_gender" multiple="multiple">
                   <option value=""></option>
                   <option value="1">male</option>
@@ -110,7 +118,7 @@
             <div class="form-group attachment optional thing_thing_attaches_files">
               <label class="attachment optional col-sm-3 control-label"></label>
 
-              <div class="col-sm-9">
+              <div class="col-sm-8 table-responsive">
                 <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
                   <tr>
                     <th class="all control">Imagen</th>
@@ -132,8 +140,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-xs-12 col-sm-3 control-label" for="">Contacts</label>
-              <div class="col-xs-12 col-sm-9 ">
+              <label class="col-sm-3 control-label" for="">Contacts</label>
+              <div class="col-xs-12 col-sm-8 table-responsive">
                 <table id="contacts" width="100%" class="display table table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
                   <tr>
                     <th class="all control">name</th>
