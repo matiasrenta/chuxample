@@ -322,6 +322,7 @@ es:
       edit_multiple: 'Editar'
       update_multiple: 'Editar'
       import: 'Importar'
+      Export: 'Exportar'
 
   will_paginate:
     previous_label: "&#8592;"
