@@ -11,11 +11,11 @@ class BaseImport
 
   def save
     if imported_entities.map(&:valid?).all?
-      puts "SE INTENTARÁ GRABAR EN DDBB #{imported_entities.size} ENTIDADES"
       if save_in_ddbb == '1'
-        Thing.transaction do
-          imported_entities.each(&:save!)
-        end
+        Thing.import imported_entities # esto es del gem activerecord-import el cual hace una sola sentencia insert para todos los registros. Cuidado: no validations y no callbacks
+        #Thing.transaction do
+        #  imported_entities.each(&:save!)
+        #end
       end
       true
     else
