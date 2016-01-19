@@ -4,6 +4,13 @@ class ThingsController < ApplicationController
   # GET /things
   def index
     @things = do_index(Thing, params)
+    #@things.to_xlsx
+    #@things = Thing.all.to_xlsx
+
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   # GET /things/1

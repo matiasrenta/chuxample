@@ -1,4 +1,5 @@
 class Thing < ActiveRecord::Base
+	acts_as_xlsx
 	include PublicActivity::Model
 	tracked only: [:create, :update, :destroy]
 	tracked owner: ->(controller, model) {controller.try(:current_user)}
