@@ -60,6 +60,12 @@ class ThingsController < ApplicationController
     super(Thing, ThingImport, t('activerecord.models.thing.fa_icon'))
   end
 
+  def download_import_file
+    respond_to do |format|
+      format.xlsx
+    end
+  end
+
   private
 
     # Only allow a trusted parameter "white list" through.

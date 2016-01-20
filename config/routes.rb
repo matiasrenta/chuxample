@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection do
       get 'new_import'
       post 'create_import'
+      get 'download_import_file'
     end
   end
 
