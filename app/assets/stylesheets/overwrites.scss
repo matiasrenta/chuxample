@@ -142,6 +142,9 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
   margin-top:15px;
   margin-right:5px;
 }
+#filter-zone .btn-group .btn:last-child{
+  margin-left:5px !important;
+}
 .jarviswidget-editbox form label{
   //font-weight:bold;
 }
