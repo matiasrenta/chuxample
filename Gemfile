@@ -103,6 +103,15 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 # para poner la app en maintenance mode. https://github.com/biola/turnout
 gem 'turnout'
 
+# para importar desde excel
+gem 'roo', '~> 2.0.0'
+# para hacer bulck import (una solo sql en vez de una por cada renglón del excel). https://github.com/zdennis/activerecord-import
+gem 'activerecord-import'
+# para crear excels. https://github.com/randym/acts_as_xlsx
+gem 'axlsx', '2.1.0.pre' # esta version hace que funcione el zip de ruby. ver: https://github.com/randym/axlsx/issues/234
+gem 'acts_as_xlsx' , github: "matiasrenta/acts_as_xlsx", branch: "master"
+gem 'axlsx_rails'
+
 # (-)Instalados por mi
 
 

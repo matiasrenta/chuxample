@@ -1,0 +1,14 @@
+<p>Cantidad de <%= t('activerecord.models.thing.other') %>: <%= Thing.count %></p>
+<p>Maximum <%= t('activerecord.models.thing.one') %> ID: <%= Thing.maximum(:id) %></p>
+
+<%= form_for @entity_import, url: create_import_things_path do |f| %>
+  <table style="width: 1100px;">
+    <tr>
+      <td><%= f.file_field :file %></td>
+      <td><strong>Cantidad de registros:</strong> <%= f.select :quantity_records, [['Un par para probar', 'un_par'], ['Todos', 'todos']] %></td>
+      <td><strong>Grabar en ddbb: </strong><%= f.check_box :save_in_ddbb %></td>
+      <td><div class="buttons"><%= f.submit "Import" %></div></td>
+    </tr>
+  </table>
+<% end %>
+

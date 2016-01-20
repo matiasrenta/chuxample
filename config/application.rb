@@ -56,6 +56,6 @@ module Chucky
 
     # para cargar los path de modelos que pongo en sudirectoios de app/models/xxx
     # No uso namespaces para los modelos porque no me parece una buena solución al perder ciertas conventions de rails
-    config.autoload_paths += %W( #{config.root}/app/models/dev #{config.root}/app/models/admin)
+    config.autoload_paths += %W( #{config.root}/app/models/dev #{config.root}/app/models/admin #{config.root}/app/models/importers)
   end
 end

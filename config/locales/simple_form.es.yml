@@ -32,6 +32,7 @@ es:
 
     labels:
       defaults:
+        id: 'ID'
         name: 'Nombre'
         description: 'Descripción'
         age: 'Edad'
@@ -41,6 +42,9 @@ es:
         published: 'Publicado'
         role: 'Rol'
         only_api_access: 'Solo acceso API'
+        gender: 'Género'
+        created_at: 'Creado'
+        updated_at: 'Actualizado'
 
     placeholders:
       from: 'desde'

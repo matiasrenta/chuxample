@@ -82,4 +82,7 @@
 //= require js/plugin/fuelux/wizard/wizard.js
 
 //= require turbolinks
+
+//= require things
+
 //= require js/app.config
