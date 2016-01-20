@@ -5,8 +5,8 @@
 // TODO add page-specific assets
 
 function export_list() {
-    alert($("form[name='form_filter']").attr('action') )
-  $("form[name='form_filter']").attr('action', $("form[name='form_filter']").attr('action') + '.xlsx');
-    alert($("form[name='form_filter']").attr('action') )
-  $('#thing_search').submit();
+  var actionOrigin = $("form[name='filter_form']").attr('action');
+  $("form[name='filter_form']").attr('action', actionOrigin + '.xlsx').submit();
+  var actionNew = $("form[name='filter_form']").attr('action').slice(0,-5);
+  $("form[name='filter_form']").attr('action', actionNew);
 }
