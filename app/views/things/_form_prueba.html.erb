@@ -1,0 +1,43 @@
+<div class="form-group string required thing_name">
+  <label class="string required control-label col-sm-3" for="thing_name">
+    Titulo
+  </label>
+  <div class="col-sm-8 input-group add-on">
+    <input id="thing_name" class="form-control" name="thing[name]" type="text">
+    <div class="input-group-btn">
+      <button type="button" class="btn btn-default" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."><i class="fa fa-question"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-3 control-label" for="thing_gender">Genero</label>
+  <div class="col-sm-8">
+    <select aria-hidden="true" tabindex="-1" class="select2-container select2-container-multi select2 select2-hidden-accessible" id="thing_gender" multiple="">
+      <option value=""></option>
+      <option value="1">male</option>
+      <option value="2">female</option>
+    </select>
+    <span style="width: 100%;" dir="ltr" class="select2 select2-container select2-container--default">
+      <span class="selection">
+        <span tabindex="-1" class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false">
+          <ul class="select2-selection__rendered">
+            <li class="select2-search select2-search--inline">
+              <input style="width: 0.75em;" placeholder="" class="select2-search__field" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" type="search">
+            </li>
+          </ul>
+        </span>
+      </span>
+      <span class="dropdown-wrapper" aria-hidden="true"></span>
+    </span>
+  </div>
+</div>
+
+<div class="form-group string required thing_name">
+  <label class="string required col-sm-3 control-label" for="thing_name">
+    <abbr title="requerido">*</abbr>Nombre
+  </label>
+  <div class="col-sm-9">
+    <input class="string required form-control" value="prueba" name="thing[name]" id="thing_name" type="text">
+  </div>
+</div>
