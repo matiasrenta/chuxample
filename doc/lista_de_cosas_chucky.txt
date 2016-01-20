@@ -14,6 +14,7 @@ Funcionalidades:
 5. mecanismo para exportación de la lista a formatos excel -- Boton listo --
 6. icono help en campo formulario con pophover -- OK --
 7. componente dropdown filter, multiselect y autocomplete (conquistar select2)
+    -- En pantalla funciona bien, falta multiselect sin mostrar dropdown --
 8. javascript events para mostrar progreso en upload de archivos
 9. wizard
 10. mecanismo de alta de otra entidad en popover estando en formulario parent (validaciones en js, sino mejor dejarlo con otra pantalla y menejo de redirect al formulario que hizo la llamada)

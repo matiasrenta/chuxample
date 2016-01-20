@@ -325,7 +325,6 @@ $(function() {
 });
 
 	//Select2 Nueva Implementacion
-
 	//Carga Json de Estados ejemplo
 	var dataPartial;
 	$.getJSON("../assets/partial.json", function (data) {
@@ -333,14 +332,8 @@ $(function() {
 	});
 
 	setTimeout(function(){ console.log(dataPartial); }, 1000);
-	setTimeout(function(){ $(".selectComponent").select2({ data: dataPartial }); }, 1000);
-	setTimeout(function(){ $("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity }); }, 1000);
-	setTimeout(function(){ $("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 }); }, 1000);
-
-	// var json = [
-	// 	{"id":1,"text":"Aguascalientes"},
-	// 	{"id":2,"text":"Baja California"},
-	// 	{"id":3,"text":"Baja California Sur"}
-	// ];
-	//
-	// //$("#selectSingle").select2({ data: json });
+	setTimeout(function(){
+		$(".selectComponent").select2({ data: dataPartial });
+		$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
+		$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
+	}, 1000);
