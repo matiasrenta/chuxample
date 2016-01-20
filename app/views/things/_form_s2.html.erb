@@ -11,70 +11,67 @@
     <div class="widget-body">
 
       <%= simple_nested_form_for @thing, html: {class: 'form-horizontal'},
-                                 wrapper: :horizontal_form,
-                                 wrapper_mappings: {
-                                         check_boxes: :horizontal_radio_and_checkboxes,
-                                         radio_buttons: :horizontal_radio_and_checkboxes,
-                                         attachment: :horizontal_file_input,
-                                         boolean: :horizontal_boolean
-                                 } do |f| %>
+      wrapper: :horizontal_form,
+      wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        attachment: :horizontal_file_input,
+        boolean: :horizontal_boolean
+        } do |f| %>
 
-          <div class="form-inputs edit">
+        <div class="form-inputs edit">
 
-            <div class="form-group string required thing_name">
-              <label class="string required control-label col-sm-3" for="autocomplete">
-                Select simple con autocomplete:
-              </label>
-              <div class="col-sm-8 input-group add-on">
-                <input id="autocomplete" class="string required form-control">
-                <div class="input-group-btn">
-                	<button type="button" class="btn btn-default" rel="popover-hover" data-placement="top" data-original-title="Auto-complete" data-content="Selección simple con autocomplete"><i class="fa fa-question"></i></button>
-                </div>
-              </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="simple-select">Select simple sin autocomplete</label>
+            <div class="col-sm-8">
+              <select class="form-control" id="selectSimple">
+                 <option value="" selected="selected">Seleccione</option>
+              </select>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label class="col-sm-3 control-label" for="simple-select">Select simple sin autocomplete</label>
-              <div class="col-sm-8">
-                <select multiple class="select2-container select2-container-multi select2" id="simple-select">
-                  <option></option>
-                </select>
-              </div>
+          <div class="form-group string required thing_name">
+            <label class="string required control-label col-sm-3" for="autocomplete">
+              Select simple con autocomplete:
+            </label>
+            <div class="col-sm-8">
+              <select class="form-control selectComponent" id="selectSingleAuto">
+                 <option value="" selected="selected">Seleccione</option>
+              </select>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label class="col-sm-3 control-label" for="multiple-select">Select multiple sin
-                autocomplete</label>
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="multiple-select">Select multiple sin
+              autocomplete</label>
               <div class="col-sm-8">
-                <select class="select2-container select2-container-multi select2" id="multiple-select">
-                  <option value=""></option>
-                  <option value="male"></option>
-                  <option value="female"></option>
+                <select class="form-control selectComponent" id="selectMultiple" multiple="multiple">
+                   <option value="" disabled="disabled">Seleccione</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-3 control-label" for="multiple-select-auto">Select multiple con
-                autocomplete</label>
-              <div class="col-sm-8">
-                <select multiple class="select2-container select2-container-multi select2" id="multiple-select-auto">
-                  <option></option>
-                </select>
+                autocomplete (limitado)</label>
+                <div class="col-sm-8">
+                  <select class="form-control selectComponent" id="selectMultipleAuto" multiple="multiple">
+                     <option value="" disabled="disabled">Seleccione</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group string required thing_name">
-              <label class="string required control-label col-sm-3" for="thing_name">
-                Titulo
-                <!-- <span class="btn-help">
+              <div class="form-group string required thing_name">
+                <label class="string required control-label col-sm-3" for="thing_name">
+                  Titulo
+                  <!-- <span class="btn-help">
                   <i class="fa fa-question-circle" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."></i>
                 </span> -->
               </label>
               <div class="col-sm-8 input-group add-on">
                 <input id="thing_name" class="form-control" type="text" name="thing[name]">
                 <div class="input-group-btn">
-                	<button type="button" class="btn btn-default" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."><i class="fa fa-question"></i></button>
+                  <button type="button" class="btn btn-default" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."><i class="fa fa-question"></i></button>
                 </div>
               </div>
             </div>
@@ -128,13 +125,13 @@
                     <th class="all">Destruir</th>
                   </tr>
                   <%= f.fields_for :thing_attaches do |upload| %>
-                      <tr>
-                        <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
-                        <td><%= upload.object.file_filename %></td>
-                        <td><%= upload.object.file_size %></td>
-                        <td><%= upload.object.file_content_type %></td>
-                        <td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
-                      </tr>
+                  <tr>
+                    <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
+                    <td><%= upload.object.file_filename %></td>
+                    <td><%= upload.object.file_size %></td>
+                    <td><%= upload.object.file_content_type %></td>
+                    <td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
+                  </tr>
                   <% end %>
                 </table>
               </div>
@@ -151,25 +148,25 @@
                     <th class="all"></th>
                   </tr>
                   <%= f.fields_for :thing_contacts, :wrapper => false do |thing_contact_form| %>
-                      <tr class="fields">
-                        <td><%= thing_contact_form.input :name, wrapper: :clean %></td>
-                        <td><%= thing_contact_form.input :field1, wrapper: :clean %></td>
-                        <td><%= thing_contact_form.input :field2, wrapper: :clean %></td>
-                        <td><%= thing_contact_form.input :field3, wrapper: :clean %></td>
-                        <td align="center">
-                          <%= thing_contact_form.link_to_remove do %>
-                              <i class="fa fa-trash-o" data-original-title="destroy" data-placement="top" rel="tooltip"></i>
-                          <% end %>
-                          <a data-original-title="Tooltip Left" data-placement="left" rel="tooltip" class="btn btn-default" href="javascript:void(0);">Tooltip Left</a>
-                        </td>
+                  <tr class="fields">
+                    <td><%= thing_contact_form.input :name, wrapper: :clean %></td>
+                    <td><%= thing_contact_form.input :field1, wrapper: :clean %></td>
+                    <td><%= thing_contact_form.input :field2, wrapper: :clean %></td>
+                    <td><%= thing_contact_form.input :field3, wrapper: :clean %></td>
+                    <td align="center">
+                      <%= thing_contact_form.link_to_remove do %>
+                      <i class="fa fa-trash-o" data-original-title="destroy" data-placement="top" rel="tooltip"></i>
+                      <% end %>
+                      <a data-original-title="Tooltip Left" data-placement="left" rel="tooltip" class="btn btn-default" href="javascript:void(0);">Tooltip Left</a>
+                    </td>
 
-                      </tr>
+                  </tr>
                   <% end %>
                 </table>
                 <div class="well well-sm">
-					<span class="btn bg-color-blue txt-color-white btn-xs">
-                      <%= f.link_to_add raw("add <i class='fa fa-plus-square'></i>"), :thing_contacts, :data => {:target => "#contacts"} %>
-                    </span>
+                  <span class="btn bg-color-blue txt-color-white btn-xs">
+                    <%= f.link_to_add raw("add <i class='fa fa-plus-square'></i>"), :thing_contacts, :data => {:target => "#contacts"} %>
+                  </span>
                 </div>
               </div>
             </div>
@@ -186,9 +183,9 @@
                 </div>
               </div>
             </div>
-      <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-</div>
+    </div>

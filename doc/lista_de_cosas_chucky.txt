@@ -10,9 +10,9 @@ Funcionalidades:
     ------Se ha dejado por default con valor 0 (Deseleccionado en la vista) las regEx se encuentran en jquery.validate.js--
 3. el tour debe aparecer solo en desktop no en movil, y la librería no debe cargarse en el movil
     ---- La opción del menú para el Tour ya esta oculta en movil, falta no cargar el plugin intro-js -----
-4. mecanismo para importación desde excel
-5. mecanismo para exportación de la lista a formatos excel
-6. icono help en campo formulario con pophover
+4. mecanismo para importación desde excel -- Boton listo --
+5. mecanismo para exportación de la lista a formatos excel -- Boton listo --
+6. icono help en campo formulario con pophover -- OK --
 7. componente dropdown filter, multiselect y autocomplete (conquistar select2)
 8. javascript events para mostrar progreso en upload de archivos
 9. wizard
