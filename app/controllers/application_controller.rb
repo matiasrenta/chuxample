@@ -37,6 +37,12 @@ class ApplicationController < ActionController::Base
       raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
   end
 
+  def download_import_file
+    respond_to do |format|
+      format.xlsx
+    end
+  end
+
   protected ####################################### PROTECTED ###################################################
 
   def set_content_title(icon = nil, title = nil)
@@ -140,6 +146,8 @@ class ApplicationController < ActionController::Base
       render :new_import
     end
   end
+
+
 
   private ############################################ PRIVATE #################################################
 
