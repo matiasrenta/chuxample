@@ -1,5 +1,6 @@
 <p>Cantidad de <%= t('activerecord.models.thing.other') %>: <%= Thing.count %></p>
 <p>Maximum <%= t('activerecord.models.thing.one') %> ID: <%= Thing.maximum(:id) %></p>
+<p><%= link_to 'Download import file', download_import_file_things_path(format: :xlsx) %></p>
 
 <%= form_for @entity_import, url: create_import_things_path do |f| %>
   <table style="width: 1100px;">
