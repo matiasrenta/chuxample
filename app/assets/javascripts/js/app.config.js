@@ -25,7 +25,7 @@
  * author: Sunny (@bootstraphunt)
  * email: info@myorange.ca
  * =======================================================================
- * 
+ *
  * GLOBAL ROOT (DO NOT CHANGE)
  */
     // hemos puesto esta variable en app.js en la primer linea. ante problemas raros, rrollback de esto y probar
@@ -33,10 +33,10 @@
 /*
  * APP CONFIGURATION (HTML/AJAX/PHP Versions ONLY)
  * Description: Enable / disable certain theme features here
- * GLOBAL: Your left nav in your app will no longer fire ajax calls, set 
+ * GLOBAL: Your left nav in your app will no longer fire ajax calls, set
  * it to false for HTML version
- */	
-	$.navAsAjax = false; 
+ */
+	$.navAsAjax = false;
 /*
  * GLOBAL: Sound Config (define sound path, enable or disable all sounds)
  */
@@ -46,13 +46,13 @@
  * SAVE INSTANCE REFERENCE (DO NOT CHANGE)
  * Save a reference to the global object (window in the browser)
  */
-	var root = this,	
+	var root = this,
 /*
  * DEBUGGING MODE
  * debugState = true; will spit all debuging message inside browser console.
  * The colors are best displayed in chrome browser.
  */
-	debugState = false,	
+	debugState = false,
 	debugStyle = 'font-weight: bold; color: #00f;',
 	debugStyle_green = 'font-weight: bold; font-style:italic; color: #46C246;',
 	debugStyle_red = 'font-weight: bold; color: #ed1c24;',
@@ -60,21 +60,21 @@
 	debugStyle_success = 'background-color:green; font-weight:bold; color:#fff;',
 	debugStyle_error = 'background-color:#ed1c24; font-weight:bold; color:#fff;',
 /*
- * Impacts the responce rate of some of the responsive elements (lower 
+ * Impacts the responce rate of some of the responsive elements (lower
  * value affects CPU but improves speed)
  */
 	throttle_delay = 350,
 /*
  * The rate at which the menu expands revealing child elements on click
  */
-	menu_speed = 235,	
+	menu_speed = 235,
 /*
  * Collapse current menu item as other menu items are expanded
  * Careful when using this option, if you have a long menu it will
- * keep expanding and may distrupt the user experience This is best 
+ * keep expanding and may distrupt the user experience This is best
  * used with fixed-menu class
  */
-	menu_accordion = true,	
+	menu_accordion = true,
 /*
  * Turn on JarvisWidget functionality
  * Global JarvisWidget Settings
@@ -87,22 +87,22 @@
  * Use localstorage to save widget settings
  * turn this off if you prefer to use the onSave hook to save
  * these settings to your datatabse instead
- */	
+ */
 	localStorageJarvisWidgets = true,
 /*
- * Turn off sortable feature for JarvisWidgets 
- */	
-	sortableJarvisWidgets = true,		
+ * Turn off sortable feature for JarvisWidgets
+ */
+	sortableJarvisWidgets = true,
 /*
- * Warning: Enabling mobile widgets could potentially crash your webApp 
- * if you have too many widgets running at once 
+ * Warning: Enabling mobile widgets could potentially crash your webApp
+ * if you have too many widgets running at once
  * (must have enableJarvisWidgets = true)
  */
-	enableMobileWidgets = false,	
+	enableMobileWidgets = false,
 /*
  * Turn on fast click for mobile devices
  * Enable this to activate fastclick plugin
- * dependency: js/plugin/fastclick/fastclick.js 
+ * dependency: js/plugin/fastclick/fastclick.js
  */
 	fastClick = false,
 /*
@@ -147,9 +147,4 @@
 
 /*
  * END APP.CONFIG
- */ 
- 
- 
- 
- 
- 	
+ */

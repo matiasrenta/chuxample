@@ -96,11 +96,18 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
   .alert-success {
     //max-height: 50px;
   }
-
-}
-@media (max-width: 767px) {
   ul#sparks{
     display:none;
+  }
+  .pagination-xs > li > a, .pagination-xs > li > span {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+
+}
+@media (max-width: 420px) {
+  .jarviswidget header h2 {
+    width: 83%;
   }
 }
 
@@ -155,12 +162,7 @@ form#per_page_change select#per_page{
   max-width:50px!important;
   padding:2px;
 }
-@media (max-width: 767px) {
-.pagination-xs > li > a, .pagination-xs > li > span {
-  font-size: 12px;
-  padding: 4px 6px;
-}
-}
+
 .filter-group{
   float:right;
 }

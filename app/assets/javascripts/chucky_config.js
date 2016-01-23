@@ -1,3 +1,4 @@
+//alert("chucky_config");
 // ******** Date-time picker ********* -->
 $(function() {
 	$.datetimepicker.setLocale('es');
@@ -305,36 +306,27 @@ $(function() {
 	});
 });
 
-// Login (remember-me)
-$(function() {
-	$("input[name='user[remember_me]']").val('0');
-
-	//alert($("input[name='user[remember_me]']").val());
-
-	$("input[name='remember']").change(function() {
-
-		if ($("input[name='user[remember_me]']").val() == '1') {
-			$("input[name='user[remember_me]']").val('0');
-		} else {
-			$("input[name='user[remember_me]']").val('1');
-		}
-
-		//alert($("input[name='user[remember_me]']").val());
-	});
-
+//Select2 Nueva Implementacion
+//Carga Json de Estados ejemplo
+var dataPartial;
+$.getJSON("../../assets/partial.json", function (data) {
+		dataPartial = data;
 });
+setTimeout(function(){
+	$(".selectComponent").select2({ data: dataPartial });
+	$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
+	$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
+}, 1000);
 
-	//Select2 Nueva Implementacion
-
-	//Carga Json de Estados ejemplo
-	var dataPartial;
-	$.getJSON("../assets/partial.json", function (data) {
-			dataPartial = data;
-	});
-
-
-	setTimeout(function(){
-		$(".selectComponent").select2({ data: dataPartial });
-		$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
-		$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
-	}, 1000);
+//Append help button
+var inputWork = $('.field_with_image_rt');
+var rel = $(inputWork).attr('data-pop');
+var placement = $(inputWork).attr('data-placement');
+var title = $(inputWork).attr('data-title');
+var content = $(inputWork).attr('data-content');
+var icon = 'fa fa-question';
+$(inputWork).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+// activate popovers with hover states
+$("[rel=popover-hover], [data-rel=popover-hover]").popover({
+	trigger : "hover"
+});

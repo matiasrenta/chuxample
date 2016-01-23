@@ -1,15 +1,82 @@
-<p>Cantidad de <%= t('activerecord.models.thing.other') %>: <%= Thing.count %></p>
-<p>Maximum <%= t('activerecord.models.thing.one') %> ID: <%= Thing.maximum(:id) %></p>
-<p><%= link_to 'Download import file', download_import_file_things_path(format: :xlsx) %></p>
+<section id="widget-grid">
 
-<%= form_for @entity_import, url: create_import_things_path do |f| %>
-  <table style="width: 1100px;">
-    <tr>
-      <td><%= f.file_field :file %></td>
-      <td><strong>Cantidad de registros:</strong> <%= f.select :quantity_records, [['Un par para probar', 'un_par'], ['Todos', 'todos']] %></td>
-      <td><strong>Grabar en ddbb: </strong><%= f.check_box :save_in_ddbb %></td>
-      <td><div class="buttons"><%= f.submit "Import" %></div></td>
-    </tr>
-  </table>
-<% end %>
+  <!-- row -->
+	<div class="row">
+		<!-- NEW WIDGET START -->
+		<article class="col-sm-6">
 
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" class="jarviswidget jarviswidget-color-darken">
+
+        <header>
+          <span class="widget-icon"><i class='fa fa-download'></i></span>
+          <h2>Download import file</h2>
+        </header>
+
+        <div>
+          <div class="widget-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <p>Cantidad de <%= t('activerecord.models.thing.other') %>: <%= Thing.count %></p>
+              </div>
+              <div class="col-sm-6">
+                <p>Maximum <%= t('activerecord.models.thing.one') %> ID: <%= Thing.maximum(:id) %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <p><%= link_to 'Download import file', download_import_file_things_path(format: :xlsx) %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </article>
+
+		<!-- NEW WIDGET START -->
+		<article class="col-sm-6">
+
+      <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" class="jarviswidget jarviswidget-color-darken">
+
+        <header>
+          <span class="widget-icon"><i class='fa fa-upload'></i></span>
+          <h2>Upload import file</h2>
+        </header>
+
+        <div>
+          <div class="widget-body">
+            <div class="row">
+              <div class="col-xs-12">
+                <%= form_for @entity_import, url: create_import_things_path do |f| %>
+                <%= f.file_field :file %><br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <strong>Cantidad de registros:</strong>
+                <%= f.select :quantity_records, [['Un par para probar', 'un_par'], ['Todos', 'todos']] %><br><br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <strong>Grabar en ddbb: </strong><%= f.check_box :save_in_ddbb %><br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="btn-toolbar pull-right">
+                  <%= f.submit "Import", :class =>'btn btn-primary' %>
+                </div>
+              </div>
+              <% end %><br><br><br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </article>
+  </div>
+
+</section>
