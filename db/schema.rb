@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006235124) do
+ActiveRecord::Schema.define(version: 20160122004711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,12 @@ ActiveRecord::Schema.define(version: 20151006235124) do
     t.string   "file_content_type"
   end
 
+  create_table "thing_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "thing_contacts", force: :cascade do |t|
     t.string   "name"
     t.integer  "thing_id"
@@ -141,8 +147,9 @@ ActiveRecord::Schema.define(version: 20151006235124) do
     t.text     "description"
     t.boolean  "published"
     t.string   "gender"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "thing_category_id"
   end
 
   create_table "things_thing_parts", id: false, force: :cascade do |t|

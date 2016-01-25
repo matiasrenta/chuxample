@@ -29,7 +29,7 @@
 //= require js/plugin/sparkline/jquery.sparkline
 //= require js/plugin/jquery-validate/jquery.validate
 // require js/plugin/masked-input/jquery.maskedinput
-//= require js/plugin/select2/select2
+// require js/plugin/select2/select2
 // require js/plugin/bootstrap-slider/bootstrap-slider
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
@@ -64,6 +64,13 @@
 //= require jquery_nested_form
 //= require chucky_bots
 
+// (+) select 2 world
+//= require select2
+//= require select2_locale_es
+//= require auto_select2/static_select2
+//= require auto_select2/ajax_select2
+//= require auto_select2/multi_ajax_select2_value_parser
+// (-) select 2 world
 
 // Datetimepicker (no es el mismo del theme)
 //= require js/plugin/datetimepicker/jquery.datetimepicker

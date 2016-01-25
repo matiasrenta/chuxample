@@ -112,6 +112,14 @@ gem 'axlsx', '2.1.0.pre' # esta version hace que funcione el zip de ruby. ver: h
 gem 'acts_as_xlsx' , github: "matiasrenta/acts_as_xlsx", branch: "master"
 gem 'axlsx_rails'
 
+#select2 para rails. https://github.com/argerim/select2-rails
+gem 'select2-rails'
+# provide API (scripts, helpers, controller and base class for ajax-search) for select2. https://github.com/Loriowar/auto_select2
+gem 'auto_select2'
+# Provide select2 input class for simple_form. https://github.com/tab10id/simple_form_auto_select2
+#gem 'simple_form_auto_select2'
+# para hacer los tags en las views. https://github.com/Loriowar/auto_select2_tag
+gem 'auto_select2_tag'
 # (-)Instalados por mi
 
 

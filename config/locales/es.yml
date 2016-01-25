@@ -287,6 +287,10 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      thing_category:
+        one: Categoría de cosa
+        other: Categoría de cosas
+        fa_icon: 'fa-fw fa fa-user'
       thing_contact:
         one: Contacto
         other: Contactos

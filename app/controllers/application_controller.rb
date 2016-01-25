@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
-  check_authorization unless: :devise_controller?
+  #check_authorization unless: :devise_controller?
   skip_authorization_check only: [:access_denied]
 
   # Prevent CSRF attacks by raising an exception.

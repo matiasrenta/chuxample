@@ -328,7 +328,7 @@ $(function() {
 
 	//Carga Json de Estados ejemplo
 	var dataPartial;
-	$.getJSON("../assets/partial.json", function (data) {
+	$.getJSON("../../assets/partial.json", function (data) {
 			dataPartial = data;
 	});
 
