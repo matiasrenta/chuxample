@@ -6,6 +6,12 @@ https://fk.github.io/select2-bootstrap-css/
 gem con select2, compatible con bootstrap e i18n
 https://github.com/argerim/select2-rails
 
+gem on top of select2-rails
+https://github.com/Loriowar/auto_select2
+
+gem para hacer los tags en views de rails (on top of auto_select2)
+https://github.com/Loriowar/auto_select2_tag
+
 
 
 vision de la solución:
