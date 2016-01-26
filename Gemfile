@@ -135,7 +135,6 @@ gem 'simple_form_auto_select2'
 
 group :development do
   gem 'capistrano', '~> 3.1.0'
-  #gem 'capistrano', github: '', branch: 'master'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-rails', '~> 1.1.6'
   gem 'capistrano-rbenv', github: "capistrano/rbenv"
