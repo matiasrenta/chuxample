@@ -1,11 +1,14 @@
 <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
 
   <header>
-    <div class="jarviswidget-ctrls hidden-xs" role="menu">
+    <!-- <div class="jarviswidget-ctrls hidden-xs" role="menu">
       <a href="javascript:void(0);" class="button-icon" rel="tooltip" title="" data-placement="bottom" data-original-title="Carga masiva"><i class="fa fa-upload"></i>
       </a>
-    </div>
+    </div> -->
     <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
+
+    <div class="widget-toolbar filter-group hidden-xs" role="menu"><%= creating? ? '<a href="new_import" class="btn btn-primary"><i class="fa fa-upload"></i> Carga Masiva</a>'.html_safe : ''.html_safe %></div>
+
   </header>
   <div>
     <div class="widget-body">

@@ -83,6 +83,7 @@
 
 //= require turbolinks
 
+//= require js/plugin/google-charts/jsapi.js
 //= require things
 //= require global
 
