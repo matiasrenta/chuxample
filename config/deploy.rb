@@ -40,7 +40,7 @@ namespace :deploy do
     Rake::Task['deploy:assets:precompile'].clear_actions
     desc 'Precompile assets locally and upload to servers'
     task :precompile do
-      #on roles(fetch(:assets_roles)) do
+      on roles(fetch(:assets_roles)) do
       #  run_locally do
       #    execute 'RAILS_ENV=production bundle exec rake assets:precompile'
       #    #with rails_env: fetch(:rails_env) do
@@ -56,7 +56,7 @@ namespace :deploy do
       #    end
       #  end
       #  run_locally { execute 'rm -rf public/assets' }
-      #end
+      end
     end
   end
 
