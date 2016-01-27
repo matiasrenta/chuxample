@@ -65,8 +65,8 @@
 //= require chucky_bots
 
 // (+) select 2 world
-// require select2
-// require select2_locale_es
+//= require select2
+//= require select2_locale_es
 // require auto_select2/static_select2
 // require auto_select2/ajax_select2
 // require auto_select2/multi_ajax_select2_value_parser
