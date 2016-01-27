@@ -1,0 +1,6 @@
+en un select/collection se puede definir el :label_method y el :value_method inline con simple_form
+===================================================================================================
+<%= f.input :menu_category_id, :collection => @product.menu.menu_categories,
+  :label_method => :name, :value_method => :id, :label => "Category" %>
+
+

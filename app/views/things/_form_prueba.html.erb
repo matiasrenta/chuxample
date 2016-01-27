@@ -1,43 +1,117 @@
-<div class="form-group string required thing_name">
-  <label class="string required control-label col-sm-3" for="thing_name">
-    Titulo
-  </label>
-  <div class="col-sm-8 input-group add-on">
-    <input id="thing_name" class="form-control" name="thing[name]" type="text">
-    <div class="input-group-btn">
-      <button type="button" class="btn btn-default" rel="popover-hover" data-placement="top" data-original-title="Popover activated on hover" data-content="Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."><i class="fa fa-question"></i></button>
+
+<div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+
+  <header>
+    <div class="jarviswidget-ctrls hidden-xs" role="menu">
+      <a href="<%= new_import_things_path %>" class="button-icon" rel="tooltip" title="" data-placement="bottom" data-original-title="Carga masiva"><i class="fa fa-upload"></i>
+      </a>
     </div>
-  </div>
-</div>
+    <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
 
-<div class="form-group">
-  <label class="col-sm-3 control-label" for="thing_gender">Genero</label>
-  <div class="col-sm-8">
-    <select aria-hidden="true" tabindex="-1" class="select2-container select2-container-multi select2 select2-hidden-accessible" id="thing_gender" multiple="">
-      <option value=""></option>
-      <option value="1">male</option>
-      <option value="2">female</option>
-    </select>
-    <span style="width: 100%;" dir="ltr" class="select2 select2-container select2-container--default">
-      <span class="selection">
-        <span tabindex="-1" class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false">
-          <ul class="select2-selection__rendered">
-            <li class="select2-search select2-search--inline">
-              <input style="width: 0.75em;" placeholder="" class="select2-search__field" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" type="search">
-            </li>
-          </ul>
-        </span>
-      </span>
-      <span class="dropdown-wrapper" aria-hidden="true"></span>
-    </span>
-  </div>
-</div>
+  </header>
+  <div>
+    <div class="widget-body">
 
-<div class="form-group string required thing_name">
-  <label class="string required col-sm-3 control-label" for="thing_name">
-    <abbr title="requerido">*</abbr>Nombre
-  </label>
-  <div class="col-sm-9">
-    <input class="string required form-control" value="prueba" name="thing[name]" id="thing_name" type="text">
+
+
+      <%= simple_nested_form_for @thing, html: {class: 'form-horizontal'},
+                                 wrapper: :horizontal_form,
+                                 wrapper_mappings: {
+                                         check_boxes: :horizontal_radio_and_checkboxes,
+                                         radio_buttons: :horizontal_radio_and_checkboxes,
+                                         attachment: :horizontal_file_input,
+                                         boolean: :horizontal_boolean
+                                 } do |f| %>
+
+          <div class="form-inputs edit">
+            <%= f.input :name %>
+            <%= f.input :thing_category_id, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {} %>
+            <%#= f.input :thing_category_id, as: :ajax_select2, placeholder: 'Empiece escribiendo' %>
+            <%#= f.association :thing_category, as: :select2 %>
+            <%#= select2_tag(:thing_category_id, options_from_collection_for_select(ThingCategory.order(name: :desc), :id, :name), {placeholder: 'fill me', include_blank: true }) %>
+            <%#= select2_ajax_tag :thing_category_id, {class_name: :thing_category, text_column: :name, id_column: :id}, nil, placeholder: 'Fill me now!' %>
+            <%#= select2_ajax_tag :thing_category_id, :thing_category, nil, search_method: :unusual_case, class: 'thing_category_input', placeholder: 'Fill me now!' %>
+            <%= f.input :age %>
+            <%= f.input :price %>
+            <%= f.input :expires, as: :string, input_html: {class: 'date-picker', value: @thing.expires ? @thing.expires.strftime("%d/%m/%Y") : nil} %>
+            <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', value: @thing.discharged_at ? @thing.discharged_at.strftime("%d/%m/%Y %H:%M") : nil} %>
+            <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :published %>
+            <%= f.input :gender, collection: User.all %>
+            <%= f.input :thing_attaches_files, as: :attachment, label: 'Images', multiple: true, direct: true %>
+            <div class="form-group attachment optional thing_thing_attaches_files">
+              <label class="attachment optional col-sm-3 control-label"></label>
+
+              <div class="col-sm-9">
+                <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+                  <tr>
+                    <th class="all control">Imagen</th>
+                    <th class="all">Nombre de archivo</th>
+                    <th class="no-desktop">Tamaño</th>
+                    <th class="no-desktop">Tipo de contenido</th>
+                    <th class="all">Destruir</th>
+                  </tr>
+                  <%= f.fields_for :thing_attaches do |upload| %>
+                      <tr>
+                        <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
+                        <td><%= upload.object.file_filename %></td>
+                        <td><%= upload.object.file_size %></td>
+                        <td><%= upload.object.file_content_type %></td>
+                        <td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
+                      </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-3 control-label" for="">Contacts</label>
+
+              <div class="col-xs-12 col-sm-9 ">
+                <table id="contacts" width="100%" class="display table table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
+                  <tr>
+                    <th class="all control">name</th>
+                    <th>field 1</th>
+                    <th>field 2</th>
+                    <th>field 3</th>
+                    <th class="all"></th>
+                  </tr>
+                  <%= f.fields_for :thing_contacts, :wrapper => false do |thing_contact_form| %>
+                      <tr class="fields">
+                        <td><%= thing_contact_form.input :name, wrapper: :clean %></td>
+                        <td><%= thing_contact_form.input :field1, wrapper: :clean %></td>
+                        <td><%= thing_contact_form.input :field2, wrapper: :clean %></td>
+                        <td><%= thing_contact_form.input :field3, wrapper: :clean %></td>
+                        <td align="center">
+                          <%= thing_contact_form.link_to_remove do %>
+                              <i class="fa fa-trash-o" data-original-title="destroy" data-placement="top" rel="tooltip"></i>
+                          <% end %>
+                        </td>
+
+                      </tr>
+                  <% end %>
+                </table>
+                <div class="well well-sm">
+					<span class="btn bg-color-blue txt-color-white btn-xs">
+                      <%= f.link_to_add raw("add <i class='fa fa-plus-square'></i>"), :thing_contacts, :data => {:target => "#contacts"} %>
+                    </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="widget-footer">
+              <div class="form-actions">
+                <div class="btn-group">
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), things_path, class: 'btn btn-default btn-sm' if can?(:read, Thing) %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @thing, class: 'btn btn-default btn-sm' if can?(:read, Thing) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @thing, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, Thing) && updating? %>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
   </div>
 </div>

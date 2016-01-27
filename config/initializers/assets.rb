@@ -9,4 +9,4 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( matias-demo-chart1.js js/common.js js/app.js chucky_config.js )
+Rails.application.config.assets.precompile += %w( js/common.js js/app.js chucky_config.js select2.js select2_locale_es.js)

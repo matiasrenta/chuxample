@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :thing_categories
   resources :wizard
   resources :public_activity
   resources :thing_contacts

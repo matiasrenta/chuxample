@@ -31,6 +31,10 @@
 //Componente xdsoft datetimepicker. No es el mismo datetime incluido en el theme
 @import "datetimepicker";
 
+// select2 from gem select2-rails
+@import "select2.css";
+@import "select2-bootstrap.css";
+
 // Sobreescribimos los estilos que hacen falta
 @import "overwrites";
 

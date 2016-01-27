@@ -368,3 +368,17 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 		var chart = new google.visualization.BarChart(document.getElementById('chart_bar'));
 		chart.draw(data, options);
 	};
+	//Select2 Nueva Implementacion
+
+	//Carga Json de Estados ejemplo
+//	var dataPartial;
+//	$.getJSON("../../assets/partial.json", function (data) {
+//			dataPartial = data;
+//	});
+//
+//
+//	setTimeout(function(){
+//		$(".selectComponent").select2({ data: dataPartial });
+//		$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
+//		$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
+//	}, 1000);
