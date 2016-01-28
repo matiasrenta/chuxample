@@ -269,6 +269,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+
 	$('#bootstrap-wizard-1').bootstrapWizard({
 		'tabClass' : 'form-wizard',
 		'onNext' : function(tab, navigation, index) {
