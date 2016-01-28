@@ -24,7 +24,8 @@
 
           <div class="form-inputs edit">
             <%= f.input :name %>
-            <%= f.input :thing_category_id, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {} %>
+            <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {} %>
+            <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo' %>
             <%#= f.input :thing_category_id, as: :ajax_select2, placeholder: 'Empiece escribiendo' %>
             <%#= f.association :thing_category, as: :select2 %>
             <%#= select2_tag(:thing_category_id, options_from_collection_for_select(ThingCategory.order(name: :desc), :id, :name), {placeholder: 'fill me', include_blank: true }) %>
