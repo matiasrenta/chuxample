@@ -32,8 +32,8 @@
 @import "datetimepicker";
 
 // select2 from gem select2-rails
-@import "select2.scss";
-@import "select2-bootstrap.css";
+@import "select2";
+@import "select2-bootstrap";
 
 // Sobreescribimos los estilos que hacen falta
 @import "overwrites";

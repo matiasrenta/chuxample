@@ -4,3 +4,10 @@ en un select/collection se puede definir el :label_method y el :value_method inl
   :label_method => :name, :value_method => :id, :label => "Category" %>
 
 
+Clean de assets para probar con algo fresh:
+===========================================
+[RAILS_ENV=development] rake assets:clobber assets:precompile (rake assets:clean no me funciona)  //esto debe ser usado con config.assets.prefix = '/dev-assets' en environment/development.rb
+
+Para ver el assets load path:
+=============================
+en la consola: Rails.application.config.assets.paths
