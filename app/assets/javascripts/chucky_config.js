@@ -1,3 +1,4 @@
+//alert("chucky_config");
 // ******** Date-time picker ********* -->
 $(function() {
 	$.datetimepicker.setLocale('es');
@@ -268,6 +269,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+
 	$('#bootstrap-wizard-1').bootstrapWizard({
 		'tabClass' : 'form-wizard',
 		'onNext' : function(tab, navigation, index) {
@@ -305,24 +307,69 @@ $(function() {
 	});
 });
 
-// Login (remember-me)
-$(function() {
-	$("input[name='user[remember_me]']").val('0');
-
-	//alert($("input[name='user[remember_me]']").val());
-
-	$("input[name='remember']").change(function() {
-
-		if ($("input[name='user[remember_me]']").val() == '1') {
-			$("input[name='user[remember_me]']").val('0');
-		} else {
-			$("input[name='user[remember_me]']").val('1');
-		}
-
-		//alert($("input[name='user[remember_me]']").val());
-	});
-
+//Select2 Nueva Implementacion
+//Carga Json de Estados ejemplo
+var dataPartial;
+$.getJSON("../../assets/partial.json", function (data) {
+		dataPartial = data;
 });
+setTimeout(function(){
+	$(".selectComponent").select2({ data: dataPartial });
+	$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
+	$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
+}, 1000);
+
+//Append help button
+var inputWork = $('.field_with_image_rt');
+var rel = $(inputWork).attr('data-pop');
+var placement = $(inputWork).attr('data-placement');
+var title = $(inputWork).attr('data-title');
+var content = $(inputWork).attr('data-content');
+var icon = 'fa fa-question';
+$(inputWork).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+// activate popovers with hover states
+$("[rel=popover-hover], [data-rel=popover-hover]").popover({
+	trigger : "hover"
+});
+
+//Google Charts
+
+// Load the Visualization API and the piechart package.
+	// google.load('visualization', '1', {'packages':['corechart']});
+	//
+	// // Set a callback to run when the Google Visualization API is loaded.
+	// google.setOnLoadCallback(drawChart);
+	//
+	// // Callback that creates and populates a data table,
+	// // instantiates the pie chart, passes in the data and
+	// // draws it.
+	// setTimeout(drawChart, 330);
+	// function drawChart() {
+	//
+	// 	// Create the data table.
+	// 	var data = new google.visualization.DataTable();
+	// 	data.addColumn('string', 'Topping');
+	// 	data.addColumn('number', 'Slices');
+	// 	data.addRows([
+	// 		['Mushrooms', 3],
+	// 		['Onions', 1],
+	// 		['Olives', 1],
+	// 		['Zucchini', 1],
+	// 		['Pepperoni', 2]
+	// 	]);
+	//
+	// 	// Set chart options
+	// 	var options = {'title':'How Much Pizza I Ate Last Night',
+	// 	'width':400,
+	// 	'height':300};
+	//
+	// 	// Instantiate and draw our chart, passing in some options.
+	// 	var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+	// 	chart.draw(data, options);
+	//
+	// 	var chart = new google.visualization.BarChart(document.getElementById('chart_bar'));
+	// 	chart.draw(data, options);
+	// };
 
 	//Select2 Nueva Implementacion
 
