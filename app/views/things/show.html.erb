@@ -54,6 +54,10 @@
                      <td><%= @thing.thing_parts.map(&:name).join(', ') %></td>
                    </tr>
                    <tr role="row">
+                     <th><%= t('simple_form.labels.defaults.thing_contacts') %></th>
+                     <td><%= @thing.thing_contacts.map(&:name).join(', ') %></td>
+                   </tr>
+                   <tr role="row">
                        <th><%= t('simple_form.labels.defaults.age') %></th>
                        <td><%= @thing.age %></td>
                     </tr>
