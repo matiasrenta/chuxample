@@ -229,3 +229,47 @@ table tr td.table-actions{
 .popover{
     width: 200px !important; // Max Width of the popover (depending on the container!)
 }
+
+// Table alternative
+
+.tableAlt thead tr {
+    background-color: #eee;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#fafafa));
+    background-image: -webkit-linear-gradient(top, #f2f2f2 0, #fafafa 100%);
+    background-image: -moz-linear-gradient(top, #f2f2f2 0, #fafafa 100%);
+    background-image: -ms-linear-gradient(top, #f2f2f2 0, #fafafa 100%);
+    background-image: -o-linear-gradient(top, #f2f2f2 0, #fafafa 100%);
+    background-image: linear-gradient(top, #f2f2f2 0%, #fafafa 100%);
+    font-size: 12px;
+}
+
+.tableAlt > thead:first-child > tr:first-child > th, .table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+.tableAlt > thead > tr > th {
+    padding-right: 30px;
+}
+
+.tableAlt > tr:first-child th {
+    background-color: #DFE7ED;
+    white-space: nowrap;
+}
+
+.tableAlt > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+
+.tableAlt > thead > tr > th, .tableAlt > thead > tr > td, .tableAlt > tbody > tr > th, .tableAlt > tbody > tr > td, .tableAlt > tfoot > tr > th, .tableAlt > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.tableAlt > td, .tableAlt > th {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}

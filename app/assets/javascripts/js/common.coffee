@@ -1,9 +1,7 @@
 # init datatables
 
 square = () ->
-  # event.preventDefault()
-  # alert "page has loaded!"
-  $('table').DataTable
+  $('.table').DataTable
     autoWidth: false
     info: false
     searching: false
@@ -20,5 +18,7 @@ square = () ->
           false
           return if data? then $('<table/>').append( data ) else false
 
-#square()
+    $('table #imagesTB').DataTable
+     DataTable: false
+
 setTimeout(square, 100)

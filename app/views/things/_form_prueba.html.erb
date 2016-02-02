@@ -39,8 +39,8 @@
             <div class="form-group attachment optional thing_thing_attaches_files">
               <label class="attachment optional col-sm-3 control-label"></label>
 
-              <div class="col-sm-9">
-                <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
+              <div class="col-sm-9 table-responsive">
+                <table id="dt_basic" width="100%" class="display tableAlt table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
                   <thead>
                     <tr>
                       <th class="all control">Imagen</th>
@@ -50,7 +50,7 @@
                       <th class="all">Destruir</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <!-- <tbody> -->
                     <%= f.fields_for :thing_attaches do |upload| %>
                         <tr>
                           <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
@@ -60,16 +60,16 @@
                           <td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
                         </tr>
                     <% end %>
-                  </tbody>
+                  <!-- </tbody> -->
                 </table>
               </div>
             </div>
             <div class="form-group">
               <label class="col-xs-12 col-sm-3 control-label" for="">Contacts</label>
 
-              <div class="col-xs-12 col-sm-9 ">
-                <table id="contacts" width="100%" class="display table table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
-                  <thead>
+              <div class="col-sm-9 table-responsive">
+                <table id="contacts" width="100%" class="display tableAlt table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
+                  <!-- <thead> -->
                     <tr>
                       <th class="all control">name</th>
                       <th>field 1</th>
@@ -77,8 +77,8 @@
                       <th>field 3</th>
                       <th class="all"></th>
                     </tr>
-                  </thead>
-                  <tbody>
+                  <!-- </thead>
+                  <tbody> -->
                     <%= f.fields_for :thing_contacts, :wrapper => false do |thing_contact_form| %>
                     <tr class="fields">
                       <td><%= thing_contact_form.input :name, wrapper: :clean %></td>
@@ -90,10 +90,9 @@
                             <i class="fa fa-trash-o" data-original-title="destroy" data-placement="top" rel="tooltip"></i>
                         <% end %>
                       </td>
-
                     </tr>
                     <% end %>
-                  </tbody>
+                  <!-- </tbody> -->
                 </table>
                 <div class="well well-sm">
 					        <span class="btn bg-color-blue txt-color-white btn-xs">
