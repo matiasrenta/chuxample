@@ -118,8 +118,6 @@ gem 'select2-rails', '3.5.4'
 gem 'auto_select2'
 # Provide select2 input class for simple_form. https://github.com/tab10id/simple_form_auto_select2
 gem 'simple_form_auto_select2'
-# para hacer los tags en las views. https://github.com/Loriowar/auto_select2_tag
-#gem 'auto_select2_tag'
 # (-)Instalados por mi
 
 
@@ -128,9 +126,6 @@ gem 'simple_form_auto_select2'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development do
   gem 'capistrano', '~> 3.1.0'

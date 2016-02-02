@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/matiasrenta/acts_as_xlsx.git
-  revision: cf648178e441d6b609017cc5fe1a7d73a1fe5ebb
+  revision: 3253e8e02235c104a0595be15a95016f0ce21cd8
   branch: master
   specs:
     acts_as_xlsx (1.0.6)

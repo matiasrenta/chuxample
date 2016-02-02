@@ -45,6 +45,8 @@ es:
         gender: 'Género'
         created_at: 'Creado'
         updated_at: 'Actualizado'
+        thing_category: 'Categoría'
+        thing_category_id: 'ID Categoría'
 
     placeholders:
       from: 'desde'

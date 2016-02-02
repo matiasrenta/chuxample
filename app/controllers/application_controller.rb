@@ -81,11 +81,11 @@ class ApplicationController < ActionController::Base
       @q = model.unscoped.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[:q])
     end
 
-    nodel_collection = @q.result(distinct: true)
+    model_collection = @q.result(distinct: true)
     if paginate
-      nodel_collection.paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
+      model_collection.paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
     else
-      nodel_collection.all
+      model_collection.all
     end
   end
 
