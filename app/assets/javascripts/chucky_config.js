@@ -22,77 +22,7 @@ $(function() {
 	$('.date-picker').mask('00/00/0000');
 	$('.datetimepicker').mask('00/00/0000 00:00');
 });
-// ********Autocomplete (remoto JSON) ********* -->
-$(function() {
-	function log(message) {
-		$("<div>").text(message).prependTo("#log");
-		$("#log").scrollTop(0);
-	}
 
-
-	//$("#autocomplete").autocomplete({
-	//	source : function(request, response) {
-	//		$.ajax({
-	//			url : "/thing_parts.json",
-	//			dataType : "json",
-	//			data : {
-	//				term : request.term,
-	//
-	//			},
-	//			success : function(data) {
-	//
-	//				dataMapped = $.map(data, function(item) {
-	//					return {
-	//						label : item.name,
-	//						value : item.name,
-	//						id : item.id
-	//
-	//					};
-	//
-	//				});
-	//				response(dataMapped);
-	//
-	//			}
-	//		});
-	//	},
-	//	minLength : 1,
-	//	select : function(event, ui) {
-	//		log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
-	//	},
-	//	open : function() {
-	//		$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-	//	},
-	//	close : function() {
-	//		$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-	//	}
-	//});
-});
-
-//AUTOCOMPLETE DROPDOWN
-
-$(function() {
-
-	var temp = [{
-		"id" : 6,
-		"name" : "test3",
-		"field1" : "test3"
-	}, {
-		"id" : 5,
-		"name" : "test2",
-		"field1" : "test2"
-	}, {
-		"id" : 4,
-		"name" : "test1",
-		"field1" : "fild1"
-	}];
-
-	var $select = $('#multiple-select');
-	$select.find('option').remove();
-	$.each(temp, function(key, value) {
-
-		//$select.append('<option value=' + key + '>' + value + '</option>');
-	});
-});
 //Mostrar / ocutar detalles en timeline
 $(function() {
 
@@ -181,19 +111,14 @@ $(function() {
 
 // Tooltips
 $(document).ready(function() {
-
 	$('[data-toggle="tooltip"]').tooltip();
 	$('a.tooltipwithnofollow[rel="tooltip nofollow"]').tooltip();
-
 });
 
 // ******** Menu Minified ?? ********* -->
 $(function() {
-
 	$(".minifyme").click(function() {
-
 		if (Cookies.get('nav') != "min") {
-
 			Cookies.set('nav', 'min', {
 				path : '/'
 			});
@@ -203,7 +128,6 @@ $(function() {
 			});
 		}
 	});
-
 });
 $(document).ready(function() {
 
@@ -306,18 +230,6 @@ $(function() {
 		$("#filter-zone").slideToggle("slow");
 	});
 });
-
-//Select2 Nueva Implementacion
-//Carga Json de Estados ejemplo
-var dataPartial;
-$.getJSON("../../assets/partial.json", function (data) {
-		dataPartial = data;
-});
-setTimeout(function(){
-	$(".selectComponent").select2({ data: dataPartial });
-	$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
-	$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
-}, 1000);
 
 //Append help button
 var inputWork = $('.field_with_image_rt');
