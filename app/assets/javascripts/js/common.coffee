@@ -18,7 +18,4 @@ square = () ->
           false
           return if data? then $('<table/>').append( data ) else false
 
-    $('table #imagesTB').DataTable
-     DataTable: false
-
 setTimeout(square, 100)
