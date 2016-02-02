@@ -385,3 +385,5 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 //		$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
 //		$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
 //	}, 1000);
+
+$(".boolean").removeClass("form-control");
