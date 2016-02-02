@@ -21,24 +21,28 @@
       <% if changes %>
           <% keys = changes.keys # lo paso a arrays para garantizar el mismo orden %>
           <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
-            <tr>
-              <th class="all ">Valor</th>
-              <% keys.each do |key| %>
-                  <th><%= t("simple_form.labels.defaults.#{key}") %></th>
-              <% end %>
-            </tr>
-            <tr>
-              <td><strong>Antes</strong></td>
-              <% keys.each do |key| %>
-                  <td><%= changes[key][0] %></td>
-              <% end %>
-            </tr>
-            <tr>
-              <td><strong>Después<strong></td>
-              <% keys.each do |key| %>
-                  <td><%= changes[key][1] %></td>
-              <% end %>
-            </tr>
+            <thead>
+              <tr>
+                <th class="all control">Valor</th>
+                <% keys.each do |key| %>
+                <th><%= t("simple_form.labels.defaults.#{key}") %></th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Antes</strong></td>
+                <% keys.each do |key| %>
+                <td><%= changes[key][0] %></td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><strong>Después<strong></td>
+                <% keys.each do |key| %>
+                <td><%= changes[key][1] %></td>
+                <% end %>
+              </tr>
+            </tbody>
           </table>
       <% end %>
     </div>
