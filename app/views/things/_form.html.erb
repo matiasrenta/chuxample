@@ -23,24 +23,18 @@
 
           <div class="form-inputs edit">
             <%= f.input :name %>
-            <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {} %>
+            <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo' %>
             <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo' %>
-            <%#= f.input :thing_category_id, as: :ajax_select2, placeholder: 'Empiece escribiendo' %>
-            <%#= f.association :thing_category, as: :select2 %>
-            <%#= select2_tag(:thing_category_id, options_from_collection_for_select(ThingCategory.order(name: :desc), :id, :name), {placeholder: 'fill me', include_blank: true }) %>
-            <%#= select2_ajax_tag :thing_category_id, {class_name: :thing_category, text_column: :name, id_column: :id}, nil, placeholder: 'Fill me now!' %>
-            <%#= select2_ajax_tag :thing_category_id, :thing_category, nil, search_method: :unusual_case, class: 'thing_category_input', placeholder: 'Fill me now!' %>
             <%= f.input :age %>
             <%= f.input :price %>
-            <%= f.input :expires, as: :string, input_html: {class: 'date-picker', value: @thing.expires ? @thing.expires.strftime("%d/%m/%Y") : nil} %>
-            <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', value: @thing.discharged_at ? @thing.discharged_at.strftime("%d/%m/%Y %H:%M") : nil} %>
-            <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :expires, as: :string, input_html: {class: 'date-picker', value: format_date_field(@thing.expires)} %>
+            <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', value: format_datetime_field(@thing.discharged_at)} %>
+            <%= f.input :description %>
             <%= f.input :published %>
             <%= f.input :gender, collection: User.all %>
             <%= f.input :thing_attaches_files, as: :attachment, label: 'Images', multiple: true, direct: true %>
             <div class="form-group attachment optional thing_thing_attaches_files">
               <label class="attachment optional col-sm-3 control-label"></label>
-
               <div class="col-sm-9">
                 <div class="table-responsive">
                   <table id="dt_basic" width="100%" class="display tableAlt table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
@@ -53,7 +47,6 @@
                         <th class="all">Destruir</th>
                       </tr>
                     </thead>
-                    <!-- <tbody> -->
                       <%= f.fields_for :thing_attaches do |upload| %>
                           <tr>
                             <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
@@ -63,18 +56,15 @@
                             <td align="center"><%= upload.input :_destroy, as: :boolean, wrapper: :clean %></td>
                           </tr>
                       <% end %>
-                    <!-- </tbody> -->
                   </table>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <label class="col-xs-12 col-sm-3 control-label" for="">Contacts</label>
-
               <div class="col-sm-9">
                 <div class="table-responsive">
                   <table id="contacts" width="100%" class="display tableAlt table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
-                    <!-- <thead> -->
                       <tr>
                         <th class="all control">name</th>
                         <th>field 1</th>
@@ -82,8 +72,6 @@
                         <th>field 3</th>
                         <th class="all"></th>
                       </tr>
-                    <!-- </thead>
-                    <tbody> -->
                       <%= f.fields_for :thing_contacts, :wrapper => false do |thing_contact_form| %>
                       <tr class="fields">
                         <td><%= thing_contact_form.input :name, wrapper: :clean %></td>
@@ -97,7 +85,6 @@
                         </td>
                       </tr>
                       <% end %>
-                    <!-- </tbody> -->
                   </table>
                   <div class="well well-sm">
   					        <span class="btn bg-color-blue txt-color-white btn-xs">
@@ -112,8 +99,8 @@
               <div class="form-actions">
                 <div class="btn-group">
                   <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), things_path, class: 'btn btn-default btn-sm' if can?(:read, Thing) %>
-                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @thing, class: 'btn btn-default btn-sm' if can?(:read, Thing) && updating? %>
-                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @thing, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, Thing) && updating? %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @thing, class: 'btn btn-default btn-sm' if (can?(:read, Thing) && updating?) %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @thing, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if (can?(:destroy, Thing) && updating?) %>
                   <button type="submit" class="btn btn-primary btn-sm">
                     <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
                   </button>

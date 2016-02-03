@@ -34,12 +34,7 @@
                       <label for="q[role_id_cont]"><%= t('simple_form.labels.role') %></label>
                       <%= f.select :role_id_eq, options_from_collection_for_select(Role.all, :id, :name, @q.role_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                     </div>
-                    <div class="btn-group">
-                      <button id="search_clear" name="search_clear" type="submit" value="true" class="btn btn-sm btn-warning form-control">
-                        <i class="fa fa-repeat"></i> <%= t('simple_form.buttons.reset_filters') %></button>
-                      <button type="submit" class="btn btn-sm btn-primary form-control">
-                        <i class="fa fa-filter"></i> <%= t('simple_form.buttons.filter') %></button>
-                    </div>
+                    <%= render "shared/submit_filters" %>
                   </fieldset>
               <% end %>
             </div>
