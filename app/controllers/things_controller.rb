@@ -49,14 +49,6 @@ class ThingsController < ApplicationController
     redirect_to things_url, notice: t('simple_form.flash.successfully_destroyed')
   end
 
-  def new_import
-    super(Thing, ThingImport, t('activerecord.models.thing.fa_icon'))
-  end
-
-  def create_import
-    super(Thing, ThingImport, t('activerecord.models.thing.fa_icon'))
-  end
-
   private
 
     # Only allow a trusted parameter "white list" through.

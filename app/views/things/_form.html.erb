@@ -38,7 +38,6 @@
               <div class="col-sm-9">
                 <div class="table-responsive">
                   <table id="dt_basic" width="100%" class="display tableAlt table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
-                    <thead>
                       <tr>
                         <th class="all control">Imagen</th>
                         <th class="all">Nombre de archivo</th>
@@ -46,7 +45,6 @@
                         <th class="no-desktop">Tipo de contenido</th>
                         <th class="all">Destruir</th>
                       </tr>
-                    </thead>
                       <%= f.fields_for :thing_attaches do |upload| %>
                           <tr>
                             <td><%= attachment_image_tag(upload.object, :file, :fill, 30, 30) %></td>
