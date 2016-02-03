@@ -63,7 +63,7 @@
                     </tr>
                    <tr role="row">
                        <th><%= t('simple_form.labels.defaults.price') %></th>
-                       <td><%= @thing.price %></td>
+                       <td><%= @thing.price ? number_to_currency(@thing.price, unit: '') : nil %></td>
                     </tr>
                    <tr role="row">
                        <th><%= t('simple_form.labels.defaults.expires') %></th>
