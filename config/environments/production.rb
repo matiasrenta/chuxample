@@ -67,6 +67,14 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: 'deliriumtechmen.com' }
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address  => "localhost",
+      :port  => 25,
+      :domain  => 'deliriumtechmen.com',
+      :user_name  => nil, #NOREPLY_MAIL,
+      :password  => nil #NOREPLY_PASS,
+      #:authentication  => :login
+  }
   config.action_mailer.asset_host = 'http://deliriumtechmen.com'
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
