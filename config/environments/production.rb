@@ -68,7 +68,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'deliriumtechmen.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address  => "localhost",
+      :address  => 'deliriumtechmen.com',
       :port  => 25,
       :domain  => 'deliriumtechmen.com',
       :user_name  => nil, #NOREPLY_MAIL,
