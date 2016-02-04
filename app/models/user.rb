@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable
   attachment :avatar, type: :image
 
-  validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
+  #validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
+  validates :email, email: {message: I18n.t('errors.messages.invalid_email')}
 
   after_destroy :remove_file
 
