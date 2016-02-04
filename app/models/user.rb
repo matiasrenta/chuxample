@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   private
 
   def remove_file
-    file.delete
+    avatar.try(:delete)
   end
 end
 
