@@ -49,7 +49,7 @@ gem 'rmagick'
 gem 'valid_email'
 # nested form (usarlo solo si el form es muy simple o realmente necesario)
 gem 'nested_form'
-# exceptions sender by email
+# exceptions sender. https://github.com/smartinez87/exception_notification
 gem 'exception_notification'
 # para versionar API
 gem 'versionist'

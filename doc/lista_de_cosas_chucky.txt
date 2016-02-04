@@ -25,7 +25,6 @@ Funcionalidades:
 
 BACK-END
 Importación desde excel simple, que se valide con el mismo modelo, que se baje el excel que debe ser usado
-Exportación a excel: pantalla donde se seleccionan las columnas a exportar
+Exportación a excel: se exportan todas las columnas con las associations con sus names
 Habilitar envio de mails
-Actualizar envio de mail ante crash
 Ejacutar los delayjobs
