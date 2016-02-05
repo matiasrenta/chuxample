@@ -68,11 +68,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'deliriumtechmen.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address  => 'deliriumtechmen.com',
-      :port  => 25,
-      :domain  => 'deliriumtechmen.com',
-      :user_name  => nil, #NOREPLY_MAIL,
-      :password  => nil #NOREPLY_PASS,
+      openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
+      address: 'localhost',
+      port: 25,
+      domain: 'deliriumtechmen.com',
+      user_name: nil, #NOREPLY_MAIL,
+      password: nil #NOREPLY_PASS,
       #:authentication  => :login
   }
   config.action_mailer.asset_host = 'http://deliriumtechmen.com'
