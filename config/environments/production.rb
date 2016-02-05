@@ -76,6 +76,10 @@ Rails.application.configure do
       password: nil #NOREPLY_PASS,
       #:authentication  => :login
   }
+  config.action_mailer.default_options = {
+      from: %{"Chucky" <noreply@deliriumtechmen.com>},
+      content_type: "text/html"
+  }
   config.action_mailer.asset_host = 'http://deliriumtechmen.com'
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
