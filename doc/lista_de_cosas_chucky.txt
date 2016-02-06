@@ -24,7 +24,7 @@ Funcionalidades:
 13. mentions (poder colocar @usuario y que esto genere una notificación)
 
 BACK-END
-Importación desde excel simple, que se valide con el mismo modelo, que se baje el excel que debe ser usado
-Exportación a excel: se exportan todas las columnas con las associations con sus names
-Habilitar envio de mails
-Ejacutar los delayjobs
+- Importación desde excel simple, que se valide con el mismo modelo, que se baje el excel que debe ser usado
+- Exportación a excel: se exportan todas las columnas con las associations con sus names
+- Ejecutar los delayjobs
+- profile page, link en usuario logueado y logout button en ese lugar
