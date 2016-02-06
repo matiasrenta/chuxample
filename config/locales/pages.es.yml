@@ -10,6 +10,7 @@ es:
       use_back_button: 'Use el boton  "atrás" de su navegador para regresar a la página anterior.'
     login:
       sign_in: 'Iniciar sesión'
+      sign_out: 'Cerrar sesión'
       sign_up: 'Crear cuenta'
       e-mail: 'E-mail'
       password: 'Contraseña'
@@ -32,4 +33,8 @@ es:
       welcome: 'Bienvenido'
       you_can_confirm_your_account: 'Puedes confirmar tu cuenta a traves del siguiente link'
       confirm_my_account: 'Confirmar mi cuenta'
+    header:
+      full_screen: 'Pantalla completa'
+      collapse_menu: 'Colapsar menú'
+
 
