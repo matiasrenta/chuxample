@@ -1,7 +1,6 @@
 <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { id: 'login-form', class: 'smart-form client-form', method: :put }) do |f| %>
-    <!--form action="index.html" id="login-form" class="smart-form client-form" -->
     <header>
-      Change your password
+      <%= t('pages.login.change_your_password') %>
     </header>
 
     <fieldset>
@@ -10,14 +9,14 @@
       <%= f.full_error :reset_password_token %>
 
       <section>
-        <label class="label">New password</label>
+        <label class="label"><%= t('pages.login.new_password') %></label>
         <label class="input"> <i class="icon-append fa fa-user"></i>
-          <%= f.input :password, label: false, required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :password, label: false, required: true, autofocus: true, hint: ("#{@minimum_password_length} #{t('pages.login.characters_minimum')}" if @minimum_password_length) %>
         </label>
       </section>
 
       <section>
-        <label class="label">Confirm your new password</label>
+        <label class="label"><%= t('pages.login.confirm_your_new_password') %></label>
         <label class="input"> <i class="icon-append fa fa-lock"></i>
           <%= f.input :password_confirmation, label: false, required: true %>
         </label>
@@ -27,8 +26,7 @@
       </section>
     </fieldset>
     <footer>
-      <%= f.button :submit, "Change password", class: 'btn btn-primary' %>
+      <%= f.button :submit, t('pages.login.change_password'), class: 'btn btn-primary' %>
     </footer>
-    <!--/form -->
 <% end %>
 
