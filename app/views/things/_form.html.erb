@@ -22,7 +22,7 @@
                                  } do |f| %>
 
           <div class="form-inputs edit">
-            <%= f.input :name %>
+            <%= f.input :name, input_html: {class: 'field_with_image_rt', 'data-pop' => 'popover-hover', 'data-placement' => 'top', 'data-title' => 'Titulo', 'data-content' => 'Contenido del pop', 'data-icon' => 'fa fa-question'} %>
             <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo' %>
             <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo' %>
             <%= f.input :age %>
