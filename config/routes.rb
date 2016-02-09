@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :delayed_jobs
   resources :thing_categories
   resources :wizard
   resources :public_activity
