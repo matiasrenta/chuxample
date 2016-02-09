@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:read], DelayedJob
 		can [:manage], ThingCategory
     can [:manage], PublicActivity::Activity
 		can [:manage], ThingContact
