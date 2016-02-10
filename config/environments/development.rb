@@ -40,14 +40,21 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  # Local Precompilation of assets. Con esto los assets pueden ser commited to github. ver: http://edgeguides.rubyonrails.org/asset_pipeline.html#local-precompilation
+  #config.assets.prefix = '/dev-assets'
+
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = true
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # envia mail ante exceptions
   config.middleware.use ExceptionNotification::Rack,
     :email => {
-        :email_prefix => "[PREFIX] ",
-        :sender_address => %{"notifier" <notifier@example.com>},
-        :exception_recipients => %w{exceptions@example.com}
+        :email_prefix => "chucky 500 - ",
+        :sender_address => %{"Exception notifier" <notifier@deliriumtechmen.com>},
+        :exception_recipients => %w{matiasrenta@gmail.com}
     }
 
 end

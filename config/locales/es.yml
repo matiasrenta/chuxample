@@ -261,6 +261,7 @@ es:
       cant_be_in_the_future: "No puede ser en el futuro"
       invalid_email: 'Email inválido'
       invalid_mx: 'invalid mx'
+      invalid_imported_entities: 'Hay registros inválidos'
 
     errors:
       default_missing: 'default_missing'
@@ -282,7 +283,18 @@ es:
       full_messages:
         format: "%{attribute} %{message}"
 
+    messages:
+      imported_successfuly: 'Se importaron %{count} registros exitosamente'
+
     models:
+      delayed_job:
+        one: Delayed job
+        other: Delayed jobs
+        fa_icon: 'fa-fw fa fa-stack-overflow '
+      thing_category:
+        one: Categoría de cosa
+        other: Categoría de cosas
+        fa_icon: 'fa-fw fa fa-user'
       thing_contact:
         one: Contacto
         other: Contactos
@@ -317,6 +329,8 @@ es:
       update: 'Editar'
       edit_multiple: 'Editar'
       update_multiple: 'Editar'
+      import: 'Importar'
+      Export: 'Exportar'
 
   will_paginate:
     previous_label: "&#8592;"

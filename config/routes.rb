@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
 
+  resources :delayed_jobs
+  resources :thing_categories
   resources :wizard
   resources :public_activity
   resources :thing_contacts
   resources :thing_parts
-  resources :things
+  resources :things do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
 
   namespace :dev do
     resources :chucky_bots

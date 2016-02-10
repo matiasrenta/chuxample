@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     authorize! :create, @user
     if @user.save
       @user.delay(queue: 'mailing').send_reset_password_instructions
+      #@user.send_reset_password_instructions
       redirect_to @user, notice: t('devise.labels.new_user_email_sent', email: @user.email)
     else
       generate_flash_msg_no_keep(@user)
@@ -59,6 +60,7 @@ class UsersController < ApplicationController
 
   def resend_password_instructions
     @user.delay(queue: 'mailing').send_reset_password_instructions
+    #@user.send_reset_password_instructions
     redirect_to(users_path, :notice => t('devise.labels.email_sent', email: @user.email))
   end
 

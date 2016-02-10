@@ -34,10 +34,10 @@
                             <div class="form-group spanning">
                               <label for="q[<%= attribute.name %>_gteq]"><%%= t('simple_form.labels.defaults.<%= attribute.name %>') %></label>
                               <div class="input-group input-group-sm block">
-                                <%%= f.search_field :<%= attribute.name %>_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+                                <%%= f.search_field :<%= attribute.name %>_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.<%= attribute.name %>_gteq) %>
                               </div>
                               <div class="input-group input-group-sm block">
-                                <%%= f.search_field :<%= attribute.name %>_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+                                <%%= f.search_field :<%= attribute.name %>_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.<%= attribute.name %>_lteq) %>
                               </div>
                             </div>
                         <% elsif attribute.type.to_sym == :boolean -%>
@@ -52,10 +52,7 @@
                             </div>
                         <% end -%>
                     <% end -%>
-                    <div class="btn-group">
-                      <button id="search_clear" name="search_clear" type="submit" value="true" class="btn btn-sm btn-warning form-control"><i class="fa fa-repeat"></i> <%%= t('simple_form.buttons.reset_filters') %></button>
-                      <button type="submit" class="btn btn-sm btn-primary form-control"><i class="fa fa-filter"></i> <%%= t('simple_form.buttons.filter') %></button>
-                    </div>
+                    <%%= render 'shared/submit_filters' %>
                   </fieldset><%% end %>
               </div>
             </div>
@@ -93,7 +90,7 @@
                   <% end -%>
               <% end -%>
               <td class="table-actions">
-                <%%= render 'shared/action_icons', locals: {target: <%= singular_table_name %>, model_edit_path: edit_<%= singular_table_name %>_path(<%= singular_table_name %>)} %>
+                <%%= render 'shared/action_icons', locals: {target: <%= singular_table_name %>} %>
               </td>
               </tr>
               <%% end %>

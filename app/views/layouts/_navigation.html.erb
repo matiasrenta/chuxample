@@ -6,11 +6,9 @@
   <div class="login-info" data-step="1" data-intro="Aqui se encuentra la información del usuario. Y aqui hay más info...">
     <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
         <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-          <%= image_tag("avatars/matias.png", alt: "me", class: "online") %>
-          <span>Matias</span>
-          <i class="fa fa-angle-down"></i>
+          <%= image_tag attachment_url(current_user, :avatar, :fill, 50, 50, fallback: "avatars/male.png"), class: 'online' %>
+          <span><%= current_user.try(:name) %></span>
         </a>
-
     </span>
   </div>
   <!-- end user info -->
@@ -19,7 +17,7 @@
   <nav>
     <ul>
 
-      <li data-step="2" data-intro="Este es el menú de administración. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
+      <li data-step="2" data-intro="Este es el menú de administración.">
         <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Administration</span></a>
         <ul>
           <li>
@@ -27,6 +25,9 @@
           </li>
           <li>
             <%= link_to 'Settings', '/admin/settings', {title: 'Settings'}  %>
+          </li>
+          <li>
+            <%= link_to 'Delayed Jobs', delayed_jobs_path, {title: 'Delayed Jobs'}  %>
           </li>
         </ul>
       </li>
@@ -49,18 +50,18 @@
           <li>
             <%= link_to 'Pruebas', '/welcome/prueba', {title: 'Pruebas'}  %>
           </li>
-          
+
         </ul>
       </li>
-      <li> 
-      	  <a href="#"><i class="fa fa-lg fa-fw fa-question-circle"></i> <span class="menu-item-parent">Ayuda</span></a>
-      	
-      	<ul><li>
+      <li class="hidden-xs"> 
+      	<a href="#"><i class="fa fa-lg fa-fw fa-question-circle"></i> <span class="menu-item-parent">Ayuda</span></a>
+      	<ul>
+          <li>
            <a href="#" id="start-tour">Tour guiado</a>
           </li>
         </ul>
       </li>
-       
+
     </ul>
   </nav>
 			<span class="minifyme" data-action="minifyMenu">

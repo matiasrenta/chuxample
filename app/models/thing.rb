@@ -1,4 +1,5 @@
 class Thing < ActiveRecord::Base
+	acts_as_xlsx({columns: ['id', 'name', 'age', 'price', 'expires', 'discharged_at', 'description', 'published', 'gender', 'thing_category_id', 'thing_category.name']})
 	include PublicActivity::Model
 	tracked only: [:create, :update, :destroy]
 	tracked owner: ->(controller, model) {controller.try(:current_user)}
@@ -9,10 +10,7 @@ class Thing < ActiveRecord::Base
 							:model_label => proc {|controller, model| model.try(:name)}
           }
 
-	#has_many :documents, as: :attachable#, dependent: :destroy
-	#accepts_attachments_for :documents, attachment: :file
-	#accepts_nested_attributes_for :documents, allow_destroy: true
-
+	belongs_to :thing_category
 	has_many :thing_contacts, dependent: :destroy
 	has_many :thing_attaches, dependent: :destroy
 	has_and_belongs_to_many :thing_parts, join_table: 'things_thing_parts'

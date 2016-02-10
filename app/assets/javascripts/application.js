@@ -13,9 +13,12 @@
 
 //= require js/plugin/pace/pace
 //= require jquery
+
+// https://github.com/kossnocorp/jquery.turbolinks
+// esto no se porqué hace que los menues y los filtros reboten y vuelvan colapsarse (tal vez otras cosas negativas)
 // require jquery.turbolinks
 
-// Ruby on Rails unobtrusive scripting adapter for jQuery 
+// Ruby on Rails unobtrusive scripting adapter for jQuery
 //= require jquery_ujs
 
 
@@ -27,7 +30,7 @@
 //= require js/plugin/sparkline/jquery.sparkline
 //= require js/plugin/jquery-validate/jquery.validate
 // require js/plugin/masked-input/jquery.maskedinput
-//= require js/plugin/select2/select2
+// require js/plugin/select2/select2
 // require js/plugin/bootstrap-slider/bootstrap-slider
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
@@ -35,15 +38,14 @@
 // require js/plugin/jquery-ui/ui/core
 // require js/plugin/jquery-ui/ui/widget
 
-//= require js/plugin/datatables/jquery.dataTables.min
+// require js/plugin/datatables/jquery.dataTables.min
 //= require js/plugin/datatables/jquery.dataTables
-//= require js/plugin/datatables/dataTables.bootstrap.min
+// require js/plugin/datatables/dataTables.bootstrap.min
 //= require js/plugin/datatables/dataTables.bootstrap
-//= require js/plugin/datatables/dataTables.colVis
-//= require js/plugin/datatables/dataTables.tableTools
+// require js/plugin/datatables/dataTables.colVis
+// require js/plugin/datatables/dataTables.tableTools
 //= require js/plugin/datatables/dataTables.responsive
 // require js/plugin/datatables/datatables.responsive.min
-
 
 // require js/speech/voicecommand
 // require js/smart-chat-ui/smart.chat.ui
@@ -62,6 +64,13 @@
 //= require jquery_nested_form
 //= require chucky_bots
 
+// (+) select 2 world
+//= require select2
+//= require select2_locale_es
+// require auto_select2/static_select2
+// require auto_select2/ajax_select2
+// require auto_select2/multi_ajax_select2_value_parser
+// (-) select 2 world
 
 // Datetimepicker (no es el mismo del theme)
 //= require js/plugin/datetimepicker/jquery.datetimepicker
@@ -80,4 +89,9 @@
 //= require js/plugin/fuelux/wizard/wizard.js
 
 //= require turbolinks
+
+//= require js/plugin/google-charts/jsapi.js
+//= require things
+//= require global
+
 //= require js/app.config

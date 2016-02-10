@@ -49,7 +49,7 @@ gem 'rmagick'
 gem 'valid_email'
 # nested form (usarlo solo si el form es muy simple o realmente necesario)
 gem 'nested_form'
-# exceptions sender by email
+# exceptions sender. https://github.com/smartinez87/exception_notification
 gem 'exception_notification'
 # para versionar API
 gem 'versionist'
@@ -81,6 +81,7 @@ gem 'letter_opener'
 
 # etl: https://github.com/activewarehouse/activewarehouse-etl/wiki/Documentation
 #gem 'activewarehouse-etl', git: "https://github.com/apurvis/activewarehouse-etl.git"
+#gem 'activewarehouse-etl', git: "https://github.com/Autrement/activewarehouse-etl.git", branch: 'rails4'
 #gem 'test-unit' # es una dependencia de activewarehouse-etl pero no esta en el gem-spec por eso la pongo a mano
 #gem 'sqlite3'
 #gem 'iconv', '~> 1.0.3'
@@ -102,6 +103,21 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 # para poner la app en maintenance mode. https://github.com/biola/turnout
 gem 'turnout'
 
+# para importar desde excel
+gem 'roo', '~> 2.0.0'
+# para hacer bulck import (una solo sql en vez de una por cada renglón del excel). https://github.com/zdennis/activerecord-import
+gem 'activerecord-import'
+# para crear excels. https://github.com/randym/acts_as_xlsx
+gem 'axlsx', '2.1.0.pre' # esta version hace que funcione el zip de ruby. ver: https://github.com/randym/axlsx/issues/234
+gem 'acts_as_xlsx' , github: "matiasrenta/acts_as_xlsx", branch: "master"
+gem 'axlsx_rails'
+
+#select2 para rails. https://github.com/argerim/select2-rails
+gem 'select2-rails', '3.5.4'
+# provide API (scripts, helpers, controller and base class for ajax-search) for select2. https://github.com/Loriowar/auto_select2
+gem 'auto_select2'
+# Provide select2 input class for simple_form. https://github.com/tab10id/simple_form_auto_select2
+gem 'simple_form_auto_select2'
 # (-)Instalados por mi
 
 
@@ -111,13 +127,10 @@ gem 'turnout'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development do
   gem 'capistrano', '~> 3.1.0'
   gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-rails', '~> 1.1.6'
   gem 'capistrano-rbenv', github: "capistrano/rbenv"
 end
 

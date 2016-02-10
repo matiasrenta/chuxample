@@ -1,0 +1,21 @@
+links:
+======
+Select2 Bootstrap 3
+https://fk.github.io/select2-bootstrap-css/
+
+gem con select2, compatible con bootstrap e i18n
+https://github.com/argerim/select2-rails
+
+gem on top of select2-rails
+https://github.com/Loriowar/auto_select2
+
+gem para hacer los tags en views de rails (on top of auto_select2)
+https://github.com/Loriowar/auto_select2_tag
+
+
+
+vision de la solución:
+======================
+1- En simple_form ponemos un input_html {class: 'with_select2', data-minimum-results: 10, data-whatever-select2-need: 'xx'}
+2- on document ready aplicar a todos los elements que tengan la clase 'with_select2' el select2
+3- aplicarles todos los data-xxxxx que tenga cada input

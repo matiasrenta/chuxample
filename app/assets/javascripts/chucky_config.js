@@ -1,3 +1,4 @@
+//alert("chucky_config");
 // ******** Date-time picker ********* -->
 $(function() {
 	$.datetimepicker.setLocale('es');
@@ -21,77 +22,7 @@ $(function() {
 	$('.date-picker').mask('00/00/0000');
 	$('.datetimepicker').mask('00/00/0000 00:00');
 });
-// ********Autocomplete (remoto JSON) ********* -->
-$(function() {
-	function log(message) {
-		$("<div>").text(message).prependTo("#log");
-		$("#log").scrollTop(0);
-	}
 
-
-	//$("#autocomplete").autocomplete({
-	//	source : function(request, response) {
-	//		$.ajax({
-	//			url : "/thing_parts.json",
-	//			dataType : "json",
-	//			data : {
-	//				term : request.term,
-//
-	//			},
-	//			success : function(data) {
-//
-	//				dataMapped = $.map(data, function(item) {
-	//					return {
-	//						label : item.name,
-	//						value : item.name,
-	//						id : item.id
-//
-	//					};
-//
-	//				});
-	//				response(dataMapped);
-//
-	//			}
-	//		});
-	//	},
-	//	minLength : 1,
-	//	select : function(event, ui) {
-	//		log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
-	//	},
-	//	open : function() {
-	//		$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
-	//	},
-	//	close : function() {
-	//		$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
-	//	}
-	//});
-});
-
-//AUTOCOMPLETE DROPDOWN
-
-$(function() {
-
-	var temp = [{
-		"id" : 6,
-		"name" : "test3",
-		"field1" : "test3"
-	}, {
-		"id" : 5,
-		"name" : "test2",
-		"field1" : "test2"
-	}, {
-		"id" : 4,
-		"name" : "test1",
-		"field1" : "fild1"
-	}];
-
-	var $select = $('#multiple-select');
-	$select.find('option').remove();
-	$.each(temp, function(key, value) {
-
-		//$select.append('<option value=' + key + '>' + value + '</option>');
-	});
-});
 //Mostrar / ocutar detalles en timeline
 $(function() {
 
@@ -180,19 +111,14 @@ $(function() {
 
 // Tooltips
 $(document).ready(function() {
-
 	$('[data-toggle="tooltip"]').tooltip();
 	$('a.tooltipwithnofollow[rel="tooltip nofollow"]').tooltip();
-
 });
 
 // ******** Menu Minified ?? ********* -->
 $(function() {
-
 	$(".minifyme").click(function() {
-
 		if (Cookies.get('nav') != "min") {
-
 			Cookies.set('nav', 'min', {
 				path : '/'
 			});
@@ -202,7 +128,6 @@ $(function() {
 			});
 		}
 	});
-
 });
 $(document).ready(function() {
 
@@ -268,6 +193,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+
 	$('#bootstrap-wizard-1').bootstrapWizard({
 		'tabClass' : 'form-wizard',
 		'onNext' : function(tab, navigation, index) {
@@ -305,23 +231,71 @@ $(function() {
 	});
 });
 
-// Login (remember-me)
-$(function() {
-	$("input[name='user[remember_me]']").val('1');
-
-	//alert($("input[name='user[remember_me]']").val());
-
-	$("input[name='remember']").change(function() {
-
-		if ($("input[name='user[remember_me]']").val() == '0') {
-			$("input[name='user[remember_me]']").val('1');
-		} else {
-			$("input[name='user[remember_me]']").val('0');
-		}
-
-		//alert($("input[name='user[remember_me]']").val());
-	});
-
+//Append help button
+var inputWork = $('.field_with_image_rt');
+var rel = $(inputWork).attr('data-pop');
+var placement = $(inputWork).attr('data-placement');
+var title = $(inputWork).attr('data-title');
+var content = $(inputWork).attr('data-content');
+var icon = $(inputWork).attr('data-icon');
+$(inputWork).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+// activate popovers with hover states
+$("[rel=popover-hover], [data-rel=popover-hover]").popover({
+	trigger : "hover"
 });
 
+//Google Charts
 
+// Load the Visualization API and the piechart package.
+	// google.load('visualization', '1', {'packages':['corechart']});
+	//
+	// // Set a callback to run when the Google Visualization API is loaded.
+	// google.setOnLoadCallback(drawChart);
+	//
+	// // Callback that creates and populates a data table,
+	// // instantiates the pie chart, passes in the data and
+	// // draws it.
+	// setTimeout(drawChart, 330);
+	// function drawChart() {
+	//
+	// 	// Create the data table.
+	// 	var data = new google.visualization.DataTable();
+	// 	data.addColumn('string', 'Topping');
+	// 	data.addColumn('number', 'Slices');
+	// 	data.addRows([
+	// 		['Mushrooms', 3],
+	// 		['Onions', 1],
+	// 		['Olives', 1],
+	// 		['Zucchini', 1],
+	// 		['Pepperoni', 2]
+	// 	]);
+	//
+	// 	// Set chart options
+	// 	var options = {'title':'How Much Pizza I Ate Last Night',
+	// 	'width':400,
+	// 	'height':300};
+	//
+	// 	// Instantiate and draw our chart, passing in some options.
+	// 	var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+	// 	chart.draw(data, options);
+	//
+	// 	var chart = new google.visualization.BarChart(document.getElementById('chart_bar'));
+	// 	chart.draw(data, options);
+	// };
+
+	//Select2 Nueva Implementacion
+
+	//Carga Json de Estados ejemplo
+//	var dataPartial;
+//	$.getJSON("../../assets/partial.json", function (data) {
+//			dataPartial = data;
+//	});
+//
+//
+//	setTimeout(function(){
+//		$(".selectComponent").select2({ data: dataPartial });
+//		$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
+//		$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
+//	}, 1000);
+
+$(".boolean").removeClass("form-control");

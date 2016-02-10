@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
-  tracked owner: ->(controller, model) {controller.try(:current_user)}
+  tracked owner: ->(controller, model) { controller.try(:current_user) if controller.try(:user_sign_in?) }
   #tracked recipient: ->(controller, model) { model.xxxx }
   tracked :parameters => {
               :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},
@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable
   attachment :avatar, type: :image
 
-  validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
+  #validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
+  validates :email, email: {message: I18n.t('errors.messages.invalid_email')}
 
   after_destroy :remove_file
 
@@ -53,7 +54,7 @@ class User < ActiveRecord::Base
   private
 
   def remove_file
-    file.delete
+    avatar.try(:delete)
   end
 end
 
