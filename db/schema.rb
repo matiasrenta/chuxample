@@ -33,17 +33,6 @@ ActiveRecord::Schema.define(version: 20160122004711) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
-  create_table "attachments", force: :cascade do |t|
-    t.string   "file_id"
-    t.string   "file_filename"
-    t.integer  "file_size"
-    t.string   "file_content_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "attachable_id"
-    t.string   "attachable_type"
-  end
-
   create_table "chucky_bot_fields", force: :cascade do |t|
     t.string   "name"
     t.string   "field_type"
