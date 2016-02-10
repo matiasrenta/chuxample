@@ -25,3 +25,6 @@ Memcached:
 ==========
 Instalar en ubuntu 14.04 (aqui instala mysql y php, pero creo que eso no es necesario, solo instalar memcached):
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-memcache-on-ubuntu-14-04
+
+
+BORRAME, ESTO ES SOLO UNA PRUEBA
