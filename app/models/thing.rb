@@ -25,7 +25,4 @@ class Thing < ActiveRecord::Base
 		[:id, :updated_at]
 	end
 
-	def pindonga
-		
-	end
 end
