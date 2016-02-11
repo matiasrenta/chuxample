@@ -43,7 +43,7 @@
                         <% elsif attribute.type.to_sym == :boolean -%>
                             <div class="form-group">
                               <label for="q[<%= attribute.name %>_eq]"><%%= t('simple_form.labels.defaults.<%= attribute.name %>') %></label>
-                              <%%= f.select :<%= attribute.name %>_eq, options_for_select([['True', 'true'], ['False', 'false']], @q.<%= attribute.name %>_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                              <%%= f.select :<%= attribute.name %>_eq, options_for_select([[t('true'), 'true'], [t('false'), 'false']], @q.<%= attribute.name %>_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                             </div>
                         <% else -%>
                             <div class="form-group">
