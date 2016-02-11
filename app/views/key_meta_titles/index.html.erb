@@ -1,0 +1,63 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_key_meta_title_path, class: 'btn btn-primary' if(can? :create, KeyMetaTitle) %>
+            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
+            <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                                                                        <div class="form-group">
+                              <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
+                              <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
+                            </div>
+                                                                                                <div class="form-group">
+                              <label for="q[abbreviation_cont]"><%= t('simple_form.labels.defaults.abbreviation') %></label>
+                              <%= f.search_field :abbreviation_cont, label: false, class: "form-control input-sm" %>
+                            </div>
+                                                                                                                                <div class="form-group">
+                                  <label for="q[key_meta_subcategory_id_cont]"><%= t('simple_form.labels.key_meta_subcategory') %></label>
+                                  <%= f.select :key_meta_subcategory_id_eq, options_from_collection_for_select(KeyMetaSubcategory.all, :id, :name, @q.key_meta_subcategory_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                            <%= render 'shared/submit_filters' %>
+                  </fieldset><% end %>
+              </div>
+            </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                                                            <th class='all control'><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
+                                                                                <th><%= sort_link(@q, :abbreviation, t('simple_form.labels.defaults.abbreviation')) %></th>
+                                                                                <th><%= sort_link(@q, :key_meta_subcategory_name, t('simple_form.labels.key_meta_subcategory')) %></th>
+                                                    <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @key_meta_titles.each do |key_meta_title| %>
+              <tr>
+                                                                        <td><%= key_meta_title.name %></td>
+                                                                                          <td><%= key_meta_title.abbreviation %></td>
+                                                                                          <td><%= key_meta_title.key_meta_subcategory.try(:name) %></td>
+                                              <td class="table-actions">
+                <%= render 'shared/action_icons', locals: {target: key_meta_title} %>
+              </td>
+              </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @key_meta_titles, model_index_path: key_meta_titles_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

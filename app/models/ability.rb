@@ -35,6 +35,10 @@ class Ability
   end
 
   def superuser
+		can [:manage], KeyMetaValue
+		can [:manage], KeyMetaTitle
+		can [:manage], KeyMetaSubcategory
+		can [:manage], KeyMetaCategory
 		can [:read, :destroy], DelayedJob
 		can [:manage], ThingCategory
     can [:manage], PublicActivity::Activity

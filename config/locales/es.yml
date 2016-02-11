@@ -287,6 +287,22 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      key_meta_value:
+        one: Valor de clave
+        other: Valores de clave
+        fa_icon: 'fa-fw fa fa-list-ol'
+      key_meta_title:
+        one: Título de clave
+        other: Títulos de clave
+        fa_icon: 'fa-fw fa fa-paragraph'
+      key_meta_subcategory:
+        one: Subcategoría de clave
+        other: Subcategorías de clave
+        fa_icon: 'fa-fw fa fa-indent'
+      key_meta_category:
+        one: Categoría de clave
+        other: Categorías de clave
+        fa_icon: 'fa-fw fa fa-list'
       delayed_job:
         one: Delayed job
         other: Delayed jobs

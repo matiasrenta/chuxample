@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :key_meta_values
+  resources :key_meta_titles
+  resources :key_meta_subcategories
+  resources :key_meta_categories
   resources :delayed_jobs
   resources :thing_categories
   resources :wizard
