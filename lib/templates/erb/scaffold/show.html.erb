@@ -16,7 +16,7 @@
             <% for attribute in attributes -%>
                 <% attribute_name = attribute.name[-3,3] == "_id" ? attribute.name[0,attribute.name.length-3] : attribute.name -%>
             <tr role="row">
-              <th><%%= t('simple_form.labels.<%= attribute_name %>') %></th>
+              <th><%%= t('simple_form.labels.default.<%= attribute_name %>') %></th>
               <td>
                 <% if [:date, :datetime, :time].include? attribute.type.to_sym -%>
                     <%%= l(@<%= singular_table_name %>.<%= attribute.name %>, :format => :long) if @<%= singular_table_name %>.<%= attribute.name %> %>
