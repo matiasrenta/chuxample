@@ -35,20 +35,13 @@
 								<div class="form-group spanning ">
 									<label for="q[created_at_gteq]"><%= t('simple_form.labels.defaults.created_at') %></label>
 									<div class="input-group input-group-sm block">
-										<%= f.search_field :created_at_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+										<%= f.search_field :created_at_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.created_at_gteq) %>
 									</div>
 									<div class="input-group input-group-sm block">
-										<%= f.search_field :created_at_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+										<%= f.search_field :created_at_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.created_at_lteq) %>
 									</div>
 								</div>
-								<div class="btn-group">
-									<button id="search_clear" name="search_clear" type="submit" value="true" class="btn btn-sm btn-warning">
-										<i class="fa fa-repeat"></i> <%= t('simple_form.buttons.reset_filters') %>
-									</button>
-									<button type="submit" class="btn btn-sm btn-primary">
-										<i class="fa fa-filter"></i> <%= t('simple_form.buttons.filter') %>
-									</button>
-								</div>
+                                <%= render "shared/submit_filters" %>
 							</fieldset>
 							<% end %>
 						</div>
