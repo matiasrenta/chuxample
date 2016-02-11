@@ -33,8 +33,12 @@ es:
       welcome: 'Bienvenido'
       you_can_confirm_your_account: 'Puedes confirmar tu cuenta a traves del siguiente link'
       confirm_my_account: 'Confirmar mi cuenta'
+
     header:
       full_screen: 'Pantalla completa'
       collapse_menu: 'Colapsar menú'
+
+    navigation:
+      key_meta: 'Meta Claves'
 
 
