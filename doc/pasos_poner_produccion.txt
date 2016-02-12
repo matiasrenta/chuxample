@@ -1,0 +1,20 @@
+- crear DNS en digital ocean
+- sudo service nginx stop (para que bundle install pase)
+- cambiar config/deploy/production.rb
+- cambiar config/deploy.rb
+    nombre app
+    repo git
+    deploy_to (cambiar directorio)
+    comentar linked_files
+    que no compile los assets la primera vez para que se cree la estructura y luego descomentar y hacer otro deploy
+
+- copiar database.yml y secrets.yml de otra app a shared/config/
+- cambiar database.yml con solo production y la base de la app
+- RAILS_ENV=production bundle exec rake db:create
+- deployar de nuevo con capistrano para que haga migrate
+- RAILS_ENV=production bundle exec rake db:seed_fu
+- /etc/nginx/sites-enabled   (para agregar el server de la app)
+- sudo service nginx restart
+- cambiar config/environment/production.rb de cada linea de la config de mailer
+- cambiar config/initializer/devise.rb (config.mailer_sender con la nueva direccion de mail)
+- ejecutar bin/delayed_job start (ver memo.txt para mas opciones)
