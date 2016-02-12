@@ -17,3 +17,4 @@
 - sudo service nginx restart
 - cambiar config/environment/production.rb de cada linea de la config de mailer
 - cambiar config/initializer/devise.rb (config.mailer_sender con la nueva direccion de mail)
+- ejecutar bin/delayed_job start (ver memo.txt para mas opciones)
