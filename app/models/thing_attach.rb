@@ -1,6 +1,6 @@
 class ThingAttach < ActiveRecord::Base
   belongs_to :thing
-  attachment :file#, content_type: ["image/jpeg", "image/png", "image/gif", "application/pdf"]
+  attachment :file, store: 's3_backend', cache: 's3_cache'
 
   after_destroy :remove_file
 
