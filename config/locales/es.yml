@@ -283,6 +283,13 @@ es:
       full_messages:
         format: "%{attribute} %{message}"
 
+      models:
+        user:
+          attributes:
+            avatar:
+              invalid_content_type: 'Formato no permitido'
+              too_large: 'Excede el tamaño permitido'
+
     messages:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 

@@ -59,6 +59,7 @@ gem 'rack-ssl-enforcer'
 # antes tenia la version 0.5.5. voy a updetear este gem para ver si funciona con simple_form
 gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.git', branch: 'master'
 gem 'refile-mini_magick'
+gem 'refile-s3'
 # provee 7 modulos que se agregan a devise, ver la parte de abajo del initializer de devise para configurar esos modulos
 #gem 'devise_security_extension'
 # https://github.com/collectiveidea/delayed_job
