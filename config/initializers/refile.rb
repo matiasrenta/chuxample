@@ -11,8 +11,8 @@ if Rails.env.production?
       region: "us-west-2",
       bucket: "change_me",
   }
-  Refile.backends['s3_backend'] = Refile::S3.new(prefix: "store", **aws)
-  Refile.backends['s3_cache'] = Refile::S3.new(prefix: "cache", **aws)
+  Refile.backends['s3_backend'] = Refile::S3.new(prefix: "store", max_size: 2.megabytes, **aws)
+  Refile.backends['s3_cache'] = Refile::S3.new(prefix: "cache", max_size: 2.megabytes, **aws)
 else
   Refile.backends['s3_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3/store').to_s, max_size: 2.megabytes)
   Refile.backends['s3_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3/cache').to_s, max_size: 2.megabytes)
