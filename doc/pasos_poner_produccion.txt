@@ -15,3 +15,5 @@
 - RAILS_ENV=production bundle exec rake db:seed_fu
 - /etc/nginx/sites-enabled   (para agregar el server de la app)
 - sudo service nginx restart
+- cambiar config/environment/production.rb de cada linea de la config de mailer
+- cambiar config/initializer/devise.rb (config.mailer_sender con la nueva direccion de mail)
