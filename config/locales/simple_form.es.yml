@@ -49,6 +49,7 @@ es:
         thing_category_id: 'ID Categoría'
         trackable_type: 'Entidad'
         action: 'Acción'
+        abbreviation: 'Abreviación'
 
     placeholders:
       from: 'desde'
