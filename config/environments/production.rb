@@ -65,22 +65,22 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'deliriumtechmen.com' }
+  config.action_mailer.default_url_options = { host: 'cuauh.deliriumtechmen.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
       address: 'localhost',
       port: 25,
-      domain: 'deliriumtechmen.com',
+      domain: 'cuauh.deliriumtechmen.com',
       user_name: nil, #NOREPLY_MAIL,
       password: nil #NOREPLY_PASS,
       #:authentication  => :login
   }
   config.action_mailer.default_options = {
-      from: %{"Chucky" <noreply@deliriumtechmen.com>},
+      from: %{"Cuauhutemoc" <noreply@cuauh.deliriumtechmen.com>},
       content_type: "text/html"
   }
-  config.action_mailer.asset_host = 'http://deliriumtechmen.com'
+  config.action_mailer.asset_host = 'http://cuauh.deliriumtechmen.com'
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -98,8 +98,8 @@ Rails.application.configure do
   # envia mail ante exceptions
   config.middleware.use ExceptionNotification::Rack,
                         :email => {
-                            :email_prefix => "chucky 500 - ",
-                            :sender_address => %{"Exception Notifier" <notifier@deliriumtechmen.com>},
+                            :email_prefix => "Cuauhutemoc 500 - ",
+                            :sender_address => %{"Exception Notifier" <notifier@cuauh.deliriumtechmen.com>},
                             :exception_recipients => %w{matiasrenta@gmail.com}
                         }
 end
