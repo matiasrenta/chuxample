@@ -164,6 +164,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
     erubis (2.7.0)
     exception_notification (4.1.1)
       actionmailer (>= 3.0.4)
@@ -382,6 +386,7 @@ DEPENDENCIES
   daemons
   delayed_job_active_record
   devise
+  dotenv-rails
   exception_notification
   font-awesome-sass (~> 4.3.0)
   groupdate
