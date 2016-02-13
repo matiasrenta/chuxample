@@ -77,9 +77,6 @@ gem 'wicked'
 # es para que funciona turbolinks, ver el git: https://github.com/kossnocorp/jquery.turbolinks
 gem 'jquery-turbolinks'
 
-#por ahora lo pongo tambien en production hasta tener email
-gem 'letter_opener'
-
 # etl: https://github.com/activewarehouse/activewarehouse-etl/wiki/Documentation
 #gem 'activewarehouse-etl', git: "https://github.com/apurvis/activewarehouse-etl.git"
 #gem 'activewarehouse-etl', git: "https://github.com/Autrement/activewarehouse-etl.git", branch: 'rails4'
@@ -119,6 +116,8 @@ gem 'select2-rails', '3.5.4'
 gem 'auto_select2'
 # Provide select2 input class for simple_form. https://github.com/tab10id/simple_form_auto_select2
 gem 'simple_form_auto_select2'
+# para setear environment variables. https://github.com/bkeepers/dotenv
+gem 'dotenv-rails'
 # (-)Instalados por mi
 
 
@@ -145,5 +144,5 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  #gem 'letter_opener'
+  gem 'letter_opener'
 end
