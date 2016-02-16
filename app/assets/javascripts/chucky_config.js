@@ -299,3 +299,47 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 //	}, 1000);
 
 $(".boolean").removeClass("form-control");
+//$("#mydropzone").dropzone()
+
+// //Refile feedback
+// $("#progress-bar-div").hide();
+// FileUploader = {
+//   init: function(){
+//     var form = document.querySelector('form');
+// 		console.log("form/// ",form);
+// 		if (form) {
+// 	    form.addEventListener('upload:progress', function(event){
+// 				//alert("upload:progress");
+// 	      this.doProgress(event);
+// 	    }.bind(this));
+// 		}
+//   },
+//
+//   doProgress: function(event){
+// 		$("#progress-bar-div").fadeIn('slow');
+//     var detail = event.detail;
+// 		console.log("detail////////////// ",detail);
+// 		$("#totalDiv").html(detail.progress.total);
+// 		$("#loadedDiv").html(detail.progress.loaded);
+//     var percentage = Math.round( (detail.progress.loaded / detail.progress.total) * 100);
+//     $('.progress-bar').css('width', percentage + '%').html(percentage + '%');
+//   }
+// }
+//
+// //$(document).ready(function(){
+//   Object.create(FileUploader).init();
+// //});
+// //
+// // $(document).on("upload:start", "form", function(e) {
+// //   $(this).find("button[type=submit]").attr("disabled", true)
+// // });
+// $(document).on("upload:complete", "form", function(e) {
+//   if(!$(this).find("input.uploading").length) {
+//     $(this).find("button[type=submit]").removeAttr("disabled")
+//   };
+// 	alert("upload:complete");
+// });
+// $(document).on("upload:success", "form", function(e) {
+//   $("#progress-bar-div").fadeOut('slow');
+// 		alert("upload:success");
+// });

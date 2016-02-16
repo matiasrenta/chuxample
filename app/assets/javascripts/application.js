@@ -93,5 +93,6 @@
 //= require js/plugin/google-charts/jsapi.js
 //= require things
 //= require global
-
+//= require refile
+//= require js/plugin/dropzone/dropzone.js
 //= require js/app.config
