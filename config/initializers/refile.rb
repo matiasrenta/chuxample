@@ -1,6 +1,8 @@
 require 'refile/simple_form'
 require 'refile/s3'
 
+Refile.allow_uploads_to = :all
+
 Refile.backends['filesystem_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/filesystem/store').to_s, max_size: 2.megabytes)
 Refile.backends['filesystem_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/filesystem/cache').to_s, max_size: 2.megabytes)
 
