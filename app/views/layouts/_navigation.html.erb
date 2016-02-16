@@ -17,7 +17,7 @@
   <nav>
     <ul>
 
-      <li data-step="2" data-intro="Este es el menú de administración. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
+      <li data-step="2" data-intro="Este es el menú de administración.">
         <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Administration</span></a>
         <ul>
           <li>
@@ -25,6 +25,9 @@
           </li>
           <li>
             <%= link_to 'Settings', '/admin/settings', {title: 'Settings'}  %>
+          </li>
+          <li>
+            <%= link_to 'Delayed Jobs', delayed_jobs_path, {title: 'Delayed Jobs'}  %>
           </li>
         </ul>
       </li>

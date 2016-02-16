@@ -39,9 +39,29 @@ class ApplicationController < ActionController::Base
 
   def download_import_file
     respond_to do |format|
-      format.xlsx
+      format.xlsx{response.headers['Content-Disposition'] = "attachment; filename=#{import_file_name}.xlsx"}
     end
   end
+
+  def new_import
+    authorize! :import, model_class
+    set_content_title(icon_class, [t("activerecord.models.#{controller_name.singularize}", count: 2), t("activerecord.actions.import")])
+    @entity_import = model_import_class.new
+  end
+
+  # example: create_import(Thing, ThingImport, 'fa-fw fa fa-cube')
+  def create_import
+    authorize! :import, model_class
+    set_content_title(icon_class, [t("activerecord.models.#{controller_name.singularize}", count: 2), t("activerecord.actions.import")])
+    @entity_import = model_import_class.new(params["#{model_class.name.underscore}_import".to_sym])
+    if @entity_import.save
+      redirect_to eval("#{model_class.name.downcase.pluralize}_url"), notice: t('activerecord.messages.imported_successfuly', count: @entity_import.imported_entities.size)
+    else
+      generate_flash_msg_no_keep(@entity_import)
+      render :new_import
+    end
+  end
+
 
   protected ####################################### PROTECTED ###################################################
 
@@ -127,28 +147,6 @@ class ApplicationController < ActionController::Base
     flash.discard(flash_type) # elimina esta entrada del flash al finalizar el action
   end
 
-  # example: new_import(Thing, ThingImport, 'fa-fw fa fa-cube')
-  def new_import(model, model_import, icon)
-    authorize! :import, model
-    set_content_title(icon, [t("activerecord.models.#{controller_name.singularize}", count: 2), t("activerecord.actions.import")])
-    @entity_import = model_import.new
-  end
-
-  # example: create_import(Thing, ThingImport, 'fa-fw fa fa-cube')
-  def create_import(model, model_import, icon)
-    authorize! :import, model
-    set_content_title(icon, [t("activerecord.models.#{controller_name.singularize}", count: 2), t("activerecord.actions.import")])
-    @entity_import = model_import.new(params["#{model.name.underscore}_import".to_sym])
-    if @entity_import.save
-      redirect_to things_url, notice: t('activerecord.messages.imported_successfuly', count: @entity_import.imported_entities.size)
-    else
-      generate_flash_msg_no_keep(@entity_import)
-      render :new_import
-    end
-  end
-
-
-
   private ############################################ PRIVATE #################################################
 
   def after_sign_out_path_for(user)
@@ -188,7 +186,24 @@ class ApplicationController < ActionController::Base
       format.html { render template: 'errors/internal_server_error', layout: 'error', status: 500 }
       format.all { render :nothing => true, :status => 500 }
     end
-    ExceptionNotifier::Notifier.exception_notification(request.env, exception).deliver #para que me notifique por mail en production
+    ExceptionNotifier.notify_exception(exception, :env => request.env) #para que me notifique por mail en production
+  end
+
+  # del nombre del controller obtengo el model, ej: de things_controller obtengo Thing (no el string sino la clase)
+  def model_class
+    eval("#{controller_name.singularize.camelize}")
+  end
+
+  def model_import_class
+    eval("#{model_class.name}Import")
+  end
+
+  def import_file_name
+    "#{t("activerecord.models.#{controller_name.singularize}.other").tr(' ', '_')}_import"
+  end
+
+  def icon_class
+    t("activerecord.models.#{controller_name.singularize}.fa_icon")
   end
 
 

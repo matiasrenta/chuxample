@@ -283,10 +283,21 @@ es:
       full_messages:
         format: "%{attribute} %{message}"
 
+      models:
+        user:
+          attributes:
+            avatar:
+              invalid_content_type: 'Formato no permitido'
+              too_large: 'Excede el tamaño permitido'
+
     messages:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      delayed_job:
+        one: Delayed job
+        other: Delayed jobs
+        fa_icon: 'fa-fw fa fa-stack-overflow '
       thing_category:
         one: Categoría de cosa
         other: Categoría de cosas

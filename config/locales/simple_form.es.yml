@@ -47,6 +47,8 @@ es:
         updated_at: 'Actualizado'
         thing_category: 'Categoría'
         thing_category_id: 'ID Categoría'
+        trackable_type: 'Entidad'
+        action: 'Acción'
 
     placeholders:
       from: 'desde'

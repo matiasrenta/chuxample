@@ -237,7 +237,7 @@ var rel = $(inputWork).attr('data-pop');
 var placement = $(inputWork).attr('data-placement');
 var title = $(inputWork).attr('data-title');
 var content = $(inputWork).attr('data-content');
-var icon = 'fa fa-question';
+var icon = $(inputWork).attr('data-icon');
 $(inputWork).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
 // activate popovers with hover states
 $("[rel=popover-hover], [data-rel=popover-hover]").popover({

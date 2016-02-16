@@ -53,4 +53,9 @@ module ApplicationHelper
     var ? var.strftime("%d/%m/%Y %H:%M") : nil
   end
 
+  def edit_model_path(instance)
+    eval("edit_#{instance.class.name.underscore}_path(instance)")
+  end
+
+
 end

@@ -3,7 +3,7 @@
 	<div id="logo-group">
 
 		<!-- PLACE YOUR LOGO HERE -->
-		<span id="logo"> <%= image_tag('logo-opi.svg', alt: 'SmartAdmin', style: "width:80px;") %> </span>
+		<span id="logo"> <%= image_tag('logo_opi.png', alt: 'OPI', style: "width:80px;") %> </span>
 		<!-- END LOGO PLACEHOLDER -->
 
 		<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -50,41 +50,12 @@
 		<!-- END AJAX-DROPDOWN -->
 	</div>
 
-	<!-- projects dropdown -->
-	<div class="project-context hidden-xs">
-
-		<span class="label">Projects:</span>
-		<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
-
-		<!-- Suggestion: populate this list with fetch and push technique -->
-		<ul class="dropdown-menu">
-			<li>
-				<a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a>
-			</li>
-			<li>
-				<a href="javascript:void(0);">Notes on pipeline upgradee</a>
-			</li>
-			<li>
-				<a href="javascript:void(0);">Assesment Report for merchant account</a>
-			</li>
-			<li class="divider"></li>
-			<li>
-				<a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a>
-			</li>
-		</ul>
-		<!-- end dropdown-menu-->
-		
-		
-		
-	</div>
-	<!-- end projects dropdown -->
-
 	<!-- pulled right: nav area -->
 	<div class="pull-right">
 
 		<!-- collapse menu button -->
 		<div id="hide-menu" class="btn-header pull-right">
-			<span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+			<span> <a href="javascript:void(0);" data-action="toggleMenu" title="<%= t('pages.header.collapse_menu') %>"><i class="fa fa-reorder"></i></a> </span>
 		</div>
 		<!-- end collapse menu -->
 
@@ -117,62 +88,22 @@
 			</li>
 		</ul>
 
-		<!-- logout button -->
-		<div id="logout" class="btn-header transparent pull-right">
-			<span> <%= link_to raw("<i class='fa fa-sign-out'></i>"), :destroy_user_session, title: "Sign Out", data: {method: :delete, 'logout-msg': "Esta seguro?", action: "userLogout"} %> </span>
-		</div>
-
-		<!-- end logout button -->
+      <!-- fullscreen button -->
+      <div id="fullscreen" class="btn-header transparent pull-right">
+        <span> <a href="javascript:void(0);" data-action="launchFullscreen" title="<%= t('pages.header.full_screen') %>"><i class="fa fa-arrows-alt"></i></a> </span>
+      </div>
+      <!-- end fullscreen button -->
 
 		<!-- search mobile button (this is hidden till mobile view port) -->
 
 		<!-- end search mobile button -->
 
-		<!-- fullscreen button -->
-		<div id="fullscreen" class="btn-header transparent pull-right">
-			<span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
-		</div>
-		<!-- end fullscreen button -->
+      <!-- logout button -->
+      <div id="logout" class="btn-header transparent pull-right">
+        <span> <%= link_to raw("<i class='fa fa-sign-out'></i>"), :destroy_user_session, title: t('pages.login.sign_out'), data: {method: :delete, 'logout-msg': "Esta seguro?", action: "userLogout"} %> </span>
+      </div>
+      <!-- end logout button -->
 
-		<!-- multiple lang dropdown : find all flags in the flags page -->
-		<ul class="header-dropdown-list hidden-xs">
-			<li>
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= image_tag("blank.gif", class:"flag flag-us", alt:"United States") %> <span> English (US) </span> <i class="fa fa-angle-down"></i> </a>
-				<ul class="dropdown-menu pull-right">
-					<li class="active">
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-us", alt:"United States") %> English (US)</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-fr", alt:"France") %> Français</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-es", alt:"Spanish") %> Español</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-de", alt:"German") %> Deutsch</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-jp", alt:"Japan") %> 日本語</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-cn", alt:"China") %> 中文</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-it", alt:"Italy") %> Italiano</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-pt", alt:"Portugal") %> Portugal</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-ru", alt:"Russia") %> Русский язык</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);"><%= image_tag("blank.gif", class:"flag flag-kr", alt:"Korea") %> 한국어</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-		<!-- end multiple lang -->
 	</div>
 	<!-- end pulled right: nav area -->
 

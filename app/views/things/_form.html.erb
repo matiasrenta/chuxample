@@ -22,7 +22,7 @@
         } do |f| %>
 
         <div class="form-inputs edit">
-          <%= f.input :name %>
+          <%= f.input :name, input_html: {class: 'field_with_image_rt', 'data-pop' => 'popover-hover', 'data-placement' => 'top', 'data-title' => 'Titulo', 'data-content' => 'Contenido del pop', 'data-icon' => 'fa fa-question'} %>
           <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo' %>
           <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo' %>
           <%= f.input :age %>
@@ -33,10 +33,7 @@
           <%= f.input :published %>
           <%= f.input :gender, collection: User.all %>
           <%= f.input :thing_attaches_files, as: :attachment, label: 'Images', multiple: true, direct: true %>
-          <!-- <div class="well">
-            <strong>Cargado: </strong><span id="loadedDiv"></span>
-            <strong>%: </strong><span id="totalDiv"></span>
-          </div> -->
+
           <div class="form-group">
             <label class="col-xs-12 col-sm-3 control-label" for="">Images 2</label>
             <div class="col-sm-9">
@@ -47,6 +44,7 @@
                       <span class="small"> (Or Click)</span>
                     </h3>
                   </div>
+
                 </div>
               </div>
             </div>

@@ -22,16 +22,16 @@ es:
       reset_password_instructions:
         subject: "Instrucciones para restablecer tu contraseña"
         hi: "Hola, %{name_or_email}!"
-        content: "Alguien ha solicitado un link para cambiar tu password. Puedes hacerlo mediante el link de abajo."
-        link: "Cambiar mi clave"
-        footer: "Si tú no solicitaste esto, por favor ignora este mail. Tu clave no va a cambiar hasta que tú accedas al link y la cambies."
+        content: "Alguien ha solicitado este email para cambiar tu password. Puedes hacerlo mediante el link de abajo."
+        link: "Cambiar mi contraseña"
+        footer: "Si tú no solicitaste esto, por favor ignora este mail. Tu contraseña no va a cambiar hasta que tú accedas al link y la cambies."
       unlock_instructions:
         subject: "Instrucciones de desbloqueo"
       welcome:
         subject: "Tu cuenta ha sido creada"
         hi: "Hola, %{name_or_email}!"
-        content: "Tu cuenta ha sido creada, solo debes ingresar al link de abajo para definir tu clave de acceso."
-        link: "Definir mi clave"
+        content: "Tu cuenta ha sido creada, pero debes ingresar al link de abajo para crear tu contraseña."
+        link: "Setear mi contraseña"
         footer: "Tu cuenta fue creada por un administrador del sistema."
     omniauth_callbacks:
       failure: "No se te ha podido autorizar de %{kind} debido a \"%{reason}\"."
@@ -60,16 +60,16 @@ es:
       unlocked: "Tu cuenta ha sido desbloqueada. Por favor inicia sesión para continuar."
     labels:
       resend_wellcome_mail: "Reenviar mail de bienvenida"
-      send_reset_pass_mail: "Enviar solicitud cambio de clave"
+      send_reset_pass_mail: "Enviar solicitud cambio de contraseña"
       send_us_your_email: "Ingrese su email para enviarle las instruciones."
-      new_user_email_sent: "Se ha enviado un mail a %{email} con las instrucciones para setear la clave y comenzar a utilizar el sistema"
+      new_user_email_sent: "Se ha enviado un mail a %{email} con las instrucciones para setear la contraseña y comenzar a utilizar el sistema"
       email_sent: "Se ha enviado el email a %{email}"
       email: "Email"
-      change_your_password: "Cambie su clave. Mínimo de 6 caracteres"
-      set_your_password: "Setee su clave. Mínimo de 6 caracteres"
-      new_password: "Nueva clave"
-      password: "Clave"
-      confirm_new_password: "Confirmar clave"
+      change_your_password: "Cambie su contraseña. Mínimo de 6 caracteres"
+      set_your_password: "Setee su contraseña. Mínimo de 6 caracteres"
+      new_password: "Nueva contraseña"
+      password: "Contraseña"
+      confirm_new_password: "Confirmar contraseña"
 
   errors:
     messages:

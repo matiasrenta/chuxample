@@ -49,11 +49,12 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # envia mail ante exceptions
   config.middleware.use ExceptionNotification::Rack,
     :email => {
-        :email_prefix => "[PREFIX] ",
-        :sender_address => %{"notifier" <notifier@example.com>},
-        :exception_recipients => %w{exceptions@example.com}
+        :email_prefix => "chucky 500 - ",
+        :sender_address => %{"Exception notifier" <notifier@deliriumtechmen.com>},
+        :exception_recipients => %w{matiasrenta@gmail.com}
     }
 
 end

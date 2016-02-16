@@ -49,7 +49,7 @@ gem 'rmagick'
 gem 'valid_email'
 # nested form (usarlo solo si el form es muy simple o realmente necesario)
 gem 'nested_form'
-# exceptions sender by email
+# exceptions sender. https://github.com/smartinez87/exception_notification
 gem 'exception_notification'
 # para versionar API
 gem 'versionist'
@@ -59,6 +59,7 @@ gem 'rack-ssl-enforcer'
 # antes tenia la version 0.5.5. voy a updetear este gem para ver si funciona con simple_form
 gem 'refile', require: 'refile/rails', git: 'https://github.com/refile/refile.git', branch: 'master'
 gem 'refile-mini_magick'
+gem 'refile-s3'
 # provee 7 modulos que se agregan a devise, ver la parte de abajo del initializer de devise para configurar esos modulos
 #gem 'devise_security_extension'
 # https://github.com/collectiveidea/delayed_job
@@ -75,9 +76,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'wicked'
 # es para que funciona turbolinks, ver el git: https://github.com/kossnocorp/jquery.turbolinks
 gem 'jquery-turbolinks'
-
-#por ahora lo pongo tambien en production hasta tener email
-gem 'letter_opener'
 
 # etl: https://github.com/activewarehouse/activewarehouse-etl/wiki/Documentation
 #gem 'activewarehouse-etl', git: "https://github.com/apurvis/activewarehouse-etl.git"
@@ -118,6 +116,8 @@ gem 'select2-rails', '3.5.4'
 gem 'auto_select2'
 # Provide select2 input class for simple_form. https://github.com/tab10id/simple_form_auto_select2
 gem 'simple_form_auto_select2'
+# para setear environment variables. https://github.com/bkeepers/dotenv
+gem 'dotenv-rails'
 # (-)Instalados por mi
 
 
@@ -144,5 +144,5 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  #gem 'letter_opener'
+  gem 'letter_opener'
 end

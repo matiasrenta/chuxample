@@ -48,20 +48,20 @@
                       <label for="q[expires_gteq]"><%= t('simple_form.labels.defaults.expires') %></label>
 
                       <div class="input-group input-group-sm block">
-                        <%= f.search_field :expires_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+                        <%= f.search_field :expires_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.expires_gteq) %>
                       </div>
                       <div class="input-group input-group-sm block">
-                        <%= f.search_field :expires_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+                        <%= f.search_field :expires_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.expires_lteq) %>
                       </div>
                     </div>
                     <div class="form-group spanning">
                       <label for="q[discharged_at_gteq]"><%= t('simple_form.labels.defaults.discharged_at') %></label>
 
                       <div class="input-group input-group-sm block">
-                        <%= f.search_field :discharged_at_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+                        <%= f.search_field :discharged_at_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.discharged_at_gteq) %>
                       </div>
                       <div class="input-group input-group-sm block">
-                        <%= f.search_field :discharged_at_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control datepicker input-sm", data: {dateformat: "dd/mm/yy"} %>
+                        <%= f.search_field :discharged_at_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.discharged_at_lteq) %>
                       </div>
                     </div>
                     <div class="form-group">
@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group">
                       <label for="q[published_eq]"><%= t('simple_form.labels.defaults.published') %></label>
-                      <%= f.select :published_eq, options_for_select([['True', 'true'], ['False', 'false']], @q.published_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      <%= f.select :published_eq, options_for_select([[t('true'), 'true'], [t('false'), 'false']], @q.published_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                     </div>
                     <div class="form-group">
                       <label for="q[gender_cont]"><%= t('simple_form.labels.defaults.gender') %></label>
@@ -101,14 +101,14 @@
                   <tr>
                     <td><%= thing.name %></td>
                     <td align='right'><%= thing.age %></td>
-                    <td align='right'><%= thing.price %></td>
+                    <td align='right'><%= thing.price ? number_to_currency(thing.price, unit: '') : nil %></td>
                     <td><%= l(thing.expires, format: :default) if thing.expires %></td>
                     <td><%= l(thing.discharged_at, format: :without_seg) if thing.discharged_at %></td>
                     <td><%= thing.description %></td>
                     <td align='center'><%= boolean_check_mark(thing.published) %></td>
                     <td><%= thing.gender %></td>
                     <td class="table-actions">
-                      <%= render 'shared/action_icons', locals: {target: thing, model_edit_path: edit_thing_path(thing)} %>
+                      <%= render 'shared/action_icons', locals: {target: thing} %>
                     </td>
                   </tr>
               <% end %>
