@@ -287,13 +287,9 @@ table tr td.table-actions{
 }
 
 // Dropzone
-.dropzone {
-    min-height: 170px;
-}
+.dropzone { min-height: 170px; }
 
-.dropzone .dz-preview {
-    margin: 0 22px 10px 0;
-}
+.dropzone .dz-preview { margin: 0 22px 10px 0; }
 
 .dropzone .dz-preview .dz-image {
     border-radius: 6px;
@@ -301,10 +297,9 @@ table tr td.table-actions{
     height: 110px;
 }
 
-.dropzone .dz-preview.dz-file-preview .dz-image {
-    border-radius: 6px;
-}
+.dropzone .dz-preview.dz-file-preview .dz-image { border-radius: 6px; }
 
 .dropzone.dz-clickable .dz-message * {
-    margin-top: 2.5%;
+  top: 50%;
+  margin-top: 0;
 }
