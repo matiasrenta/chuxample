@@ -356,7 +356,6 @@
       },
       processingmultiple: noop,
       uploadprogress: function(file, progress, bytesSent) {
-        console.log("progress", progress);
         var progressPass = progress;
         var node, _i, _len, _ref, _results;
         if (file.previewElement) {
@@ -387,7 +386,6 @@
       },
       canceledmultiple: noop,
       complete: function(file) {
-        // $("button[type=submit]").removeAttr("disabled");
         if (file._removeLink) {
           file._removeLink.textContent = this.options.dictRemoveFile;
         }
@@ -440,6 +438,7 @@
         return this.options.fallback.call(this);
       }
       if (this.options.url == null) {
+        //Cambie la URL para utilizar la de Refile, al final Dropzone ya no hace el Post
         //this.options.url = this.element.getAttribute("action");
         var urlRefile = $("#thing_thing_attaches_files").attr("data-url");
         this.options.url = urlRefile;
@@ -709,7 +708,6 @@
       totalBytesSent = 0;
       totalBytes = 0;
       activeFiles = this.getActiveFiles();
-      console.info("activeFiles-- ",activeFiles);
       if (activeFiles.length) {
         _ref = this.getActiveFiles();
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -719,7 +717,6 @@
         }
         totalUploadProgress = 100 * totalBytesSent / totalBytes;
         progressPass = totalUploadProgress;
-        //$("button[type=submit]").attr("disabled", true)
       } else {
         totalUploadProgress = 100;
       }
@@ -867,25 +864,6 @@
 
     Dropzone.prototype.drop = function(e) {
       var this2 = e;
-      // this2.clickableElements.forEach((function(_this) {
-      //   console.log("_this2- ",_this);
-      //   return function(clickableElement) {
-      //     console.log("clickableElement2- ",clickableElement);
-      //     return _this.listeners.push({
-      //       element: clickableElement,
-      //       events: {
-      //         "click": function(e) {
-      //           console.log("e------ ", e);
-      //           alert("dropzone2");
-      //           if ((clickableElement !== _this.element) || (e.target === _this.element || Dropzone.elementInside(e.target, _this.element.querySelector(".dz-message")))) {
-      //             return _this.hiddenFileInput.click();
-      //           }
-      //         }
-      //       }
-      //     });
-      //   };
-      // })(this2));
-
       var files, items;
       if (!e.dataTransfer) {
         return;
@@ -900,19 +878,6 @@
           this.handleFiles(files);
         }
       }
-      // var dataToSend = files;
-      // console.log('dataToSend-- ', dataToSend);
-      // var arrayToSend = [
-      //   {
-      //     'id':'',
-      //     'filename':dataToSend.name,
-      //     'content_type':dataToSend.type,
-      //     'size':dataToSend.size
-      //   }
-      // ];
-      // console.log('arrayToSend-- ', arrayToSend);
-      // $('#thing_thing_attaches_files').removeAttr( "name" );
-      // $('input[name="thing[thing_attaches_files][]"]').val(JSON.stringify(arrayToSend));
       functionChangeFict(this2, e);
     };
 
@@ -1185,6 +1150,7 @@
     };
 
     Dropzone.prototype.processFile = function(file) {
+      // Desactivo este Return para que Dropzone no haga Post y solo se haga el de Refile
       //return this.processFiles([file]);
     };
 
@@ -1376,6 +1342,7 @@
       }
       for (_j = 0, _len1 = files.length; _j < _len1; _j++) {
         file = files[_j];
+        // Desactivo este Return para que Dropzone no haga Post y solo se haga el de Refile
         //this.emit("sending", file, xhr, formData);
       }
       if (this.options.uploadMultiple) {
