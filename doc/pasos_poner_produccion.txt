@@ -17,5 +17,5 @@
 - sudo service nginx restart
 - cambiar config/environment/production.rb de cada linea de la config de mailer
 - cambiar config/initializer/devise.rb (config.mailer_sender con la nueva direccion de mail)
-- cambiar config/initializer/refile.rb (poner el bucket y las claves s3 en environment variables)
+- cambiar .env.production (poner el bucket y las claves s3)
 - ejecutar bin/delayed_job start (ver memo.txt para mas opciones)
