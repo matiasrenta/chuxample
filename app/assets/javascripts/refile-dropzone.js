@@ -19,6 +19,7 @@ var ItemArray = [];
   if(!document.addEventListener) { return; } // IE8
   document.addEventListener("change", function(changeEvent) {
     input = changeEvent.target;
+    console.info(input);
     if(input.tagName === "INPUT" && input.type === "file" && input.getAttribute("data-direct")) {
       if(!input.files) { return; } // IE9, bail out if file API is not supported.
       var reference = input.getAttribute("data-reference");
