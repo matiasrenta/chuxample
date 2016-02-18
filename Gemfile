@@ -118,6 +118,8 @@ gem 'auto_select2'
 gem 'simple_form_auto_select2'
 # para setear environment variables. https://github.com/bkeepers/dotenv
 gem 'dotenv-rails'
+# https://github.com/mailboxer/mailboxer
+gem 'mailboxer'
 # (-)Instalados por mi
 
 
