@@ -1,6 +1,7 @@
 require 'valid_email'
 
 class User < ActiveRecord::Base
+  acts_as_messageable
   include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
@@ -16,12 +17,16 @@ class User < ActiveRecord::Base
   # :registerable, :confirmable, :validatable and :omniauthable
   # mas los 7 modulos proveidos por el gem devise_security_extension
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable
-  attachment :avatar, type: :image
+  attachment :avatar, type: :image, store: 'filesystem_backend', cache: 'filesystem_cache'
 
   #validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
   validates :email, email: {message: I18n.t('errors.messages.invalid_email')}
 
   after_destroy :remove_file
+
+  def mailboxer_email(object)
+    email
+  end
 
   def only_api_access?
     self.only_api_access
@@ -38,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def except_attr_in_public_activity
-    [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count]
+    [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count, :current_sign_in_ip, :last_sign_in_ip, :failed_attempts, :unlock_token, :locked_at, :reset_password_token, :reset_password_sent_at]
   end
 
   protected

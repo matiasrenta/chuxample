@@ -16,6 +16,8 @@
 !/log/.keep
 /tmp
 
+# Ignore uploaded files
+/uploads
 
 
 *.rbc
@@ -53,6 +55,9 @@ config/database.yml
 
 # aptana ignore
 .project
+
+# ignore production environment variables
+.env.production
 
 
 **/*.*~

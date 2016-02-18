@@ -17,7 +17,7 @@
   <nav>
     <ul>
 
-      <li data-step="2" data-intro="Este es el menú de administración.">
+      <li data-step="1" data-intro="Este es el menú de administración.">
         <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Administration</span></a>
         <ul>
           <li>
@@ -28,6 +28,21 @@
           </li>
           <li>
             <%= link_to 'Delayed Jobs', delayed_jobs_path, {title: 'Delayed Jobs'}  %>
+          </li>
+        </ul>
+      </li>
+
+      <li data-step="2" data-intro="Este es el menú de meta clave.">
+        <a href="#"><i class="fa fa-lg fa-fw fa-key"></i> <span class="menu-item-parent"><%= t('pages.navigation.key_meta') %></span></a>
+        <ul>
+          <li>
+            <%= link_to t('activerecord.models.key_meta_category.other'), key_meta_categories_path, {title: t('activerecord.models.key_meta_category.other')}  %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.key_meta_subcategory.other'), key_meta_subcategories_path, {title: t('activerecord.models.key_meta_subcategory.other')}  %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.key_meta_title.other'), key_meta_titles_path, {title: t('activerecord.models.key_meta_title.other')}  %>
           </li>
         </ul>
       </li>

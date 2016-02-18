@@ -52,8 +52,8 @@ Rails.application.configure do
   # envia mail ante exceptions
   config.middleware.use ExceptionNotification::Rack,
     :email => {
-        :email_prefix => "chucky 500 - ",
-        :sender_address => %{"Exception notifier" <notifier@deliriumtechmen.com>},
+        :email_prefix => "Cuauhtemoc 500 - ",
+        :sender_address => %{"Exception notifier" <notifier@cuauh.deliriumtechmen.com>},
         :exception_recipients => %w{matiasrenta@gmail.com}
     }
 

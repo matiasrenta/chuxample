@@ -95,6 +95,12 @@ GEM
     autoprefixer-rails (6.0.3)
       execjs
       json
+    aws-sdk (2.2.9)
+      aws-sdk-resources (= 2.2.9)
+    aws-sdk-core (2.2.9)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.2.9)
+      aws-sdk-core (= 2.2.9)
     axlsx (2.1.0.pre)
       htmlentities (~> 4.3.1)
       nokogiri (>= 1.4.1)
@@ -121,6 +127,11 @@ GEM
     capistrano-rails (1.1.6)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     chartkick (1.4.1)
     chunky_png (1.3.5)
     coffee-rails (4.1.1)
@@ -158,6 +169,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
     erubis (2.7.0)
     exception_notification (4.1.1)
       actionmailer (>= 3.0.4)
@@ -166,6 +181,8 @@ GEM
     ffi (1.9.10)
     font-awesome-sass (4.3.2.1)
       sass (~> 3.2)
+    foreigner (1.7.4)
+      activerecord (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     groupdate (2.5.0)
@@ -177,6 +194,7 @@ GEM
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jmespath (1.1.3)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -196,6 +214,10 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailboxer (0.13.0)
+      carrierwave (>= 0.5.8)
+      foreigner (>= 0.9.1)
+      rails (>= 3.2.0)
     mime-types (2.6.2)
     mini_magick (4.3.6)
     mini_portile2 (2.0.0)
@@ -262,6 +284,9 @@ GEM
     refile-mini_magick (0.2.0)
       mini_magick (~> 4.0)
       refile (~> 0.5)
+    refile-s3 (0.2.0)
+      aws-sdk (~> 2.0)
+      refile (~> 0.6.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
@@ -372,6 +397,7 @@ DEPENDENCIES
   daemons
   delayed_job_active_record
   devise
+  dotenv-rails
   exception_notification
   font-awesome-sass (~> 4.3.0)
   groupdate
@@ -380,6 +406,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   letter_opener
+  mailboxer
   nested_form
   pg
   public_activity!
@@ -390,6 +417,7 @@ DEPENDENCIES
   ransack
   refile!
   refile-mini_magick
+  refile-s3
   rmagick
   roo (~> 2.0.0)
   sass-rails (~> 5.0)

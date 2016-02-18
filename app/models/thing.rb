@@ -24,4 +24,5 @@ class Thing < ActiveRecord::Base
 	def except_attr_in_public_activity
 		[:id, :updated_at]
 	end
+
 end
