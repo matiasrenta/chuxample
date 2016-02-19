@@ -1,6 +1,7 @@
 require 'valid_email'
 
 class User < ActiveRecord::Base
+  acts_as_messageable
   include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
@@ -22,6 +23,10 @@ class User < ActiveRecord::Base
   validates :email, email: {message: I18n.t('errors.messages.invalid_email')}
 
   after_destroy :remove_file
+
+  def mailboxer_email(object)
+    email
+  end
 
   def only_api_access?
     self.only_api_access
