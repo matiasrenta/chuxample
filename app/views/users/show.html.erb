@@ -75,6 +75,7 @@
             <thead>
             <tr>
               <th class='all control'>sender</th>
+              <th>Date</th>
               <th>Box</th>
               <th>subject</th>
               <th>body</th>
@@ -85,6 +86,7 @@
             <% @receipts.each do |receipt| %>
                 <tr>
                   <td><%= receipt.message.sender.name %></td>
+                  <td><%= receipt.created_at %></td>
                   <td><%= receipt.mailbox_type %></td>
                   <td><%= receipt.message.subject %></td>
                   <td><%= receipt.message.body %></td>

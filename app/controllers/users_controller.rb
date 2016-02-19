@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     #end
     #@receipts.paginate(page: 1, per_page: 10)
 
-    @receipts = Mailboxer::Receipt.where(mailbox_type: 'inbox', receiver_id: @user.id).all#.paginate(page: 1, per_page: 3)
+    @receipts = Mailboxer::Receipt.where(mailbox_type: 'inbox', receiver_id: @user.id).order('created_at desc').paginate(page: 1, per_page: 10)
 
   end
 
