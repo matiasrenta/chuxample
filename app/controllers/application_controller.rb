@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :set_cache_buster
   before_action :authenticate_user!
   before_action :redirect_only_api_user
-  before_action :set_content_title, :set_user_language, :set_user_time_zone
+  before_action :set_content_title, :set_user_language, :set_user_time_zone, :new_notifications
 
   # previene que usuarios que solo usan la api puedan hacer login en la aplicación web
   # todo: debería mejorarse para que no alcance a hacer login. Aqui alcanza a hacerlo y luego fuerzo el logout
@@ -204,6 +204,15 @@ class ApplicationController < ActionController::Base
 
   def icon_class
     t("activerecord.models.#{controller_name.singularize}.fa_icon")
+  end
+
+  # cuento las notificaciones del current_user para mostrar en el header
+  def new_notifications
+    @new_notifications = Mailboxer::Receipt.where(mailbox_type: 'inbox',
+                                                  receiver_id: current_user.id,
+                                                  is_read: false,
+                                                  trashed: false,
+                                                  deleted: false).count if user_signed_in?
   end
 
 
