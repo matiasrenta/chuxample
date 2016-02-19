@@ -81,6 +81,7 @@
 
           <script type="text/javascript">
           Dropzone.options.mydropzone = {
+            maxFiles: null,
             init: function(file, done) {
               thisDropzone = this;
               var mockFile = {};
@@ -157,34 +158,3 @@
       </div>
     </div>
   </div>
-
-  <!-- <script>
-  Dropzone.options.mydropzone = {
-  init: function(file, done) {
-  thisDropzone = this;
-  var mockFile = {};
-  var thumbnail2;
-  <% @thing.thing_attaches.each do |ta| %>
-  mockFile = { name: '<%= ta.file_filename %>', size: <%= ta.file_size %>, type: '<%= ta.file_content_type %>' };
-  thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-  thisDropzone.options.thumbnail.call(thisDropzone, mockFile, '<%= attachment_url(ta, :file, :fill, 100, 100) %>');
-
-  thumbnail2 = $('.dz-image:last');
-  $(thumbnail2).each(function (i) {
-  var type = mockFile.type;
-  console.log(this);
-  if (type != 'image/png' && type != 'image/jpeg' && type != 'image/jpg') {
-  $(thumbnail2).children().removeAttr('src alt');
-  back_files(type);
-}
-return false;
-});
-<% end %>
-$('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
-$(".dz-progress").fadeOut();
-},
-accept: function(file, done) {
-back_files_news(file, done);
-},
-};
-</script> -->

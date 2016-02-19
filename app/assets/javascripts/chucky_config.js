@@ -247,6 +247,8 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 $(".boolean").removeClass("form-control");
 //Esconde input file de refile en form html de things
 $("label[for='thing_thing_attaches_files'], #thing_thing_attaches_files").hide();
+//Esconde input file de refile en form html de users
+$("label[for='user_avatar'], #user_avatar").hide();
 // Drop
 function back_files(type){
 	var thumbnail = $('.dz-image:last');
@@ -296,3 +298,35 @@ function noImage(mockFile){
 		return false;
 	});
 }
+
+//Dropzone User Avatar
+Dropzone.options.dropzoneUser = {
+		 maxFiles: 1
+};
+function dropzone_edit(file_filename, file_size, file_content_type, hidden_name, attachment_url) {
+	$('input[name="user[avatar]"]').removeAttr('value');
+     Dropzone.options.dropzoneUser = {
+			 		maxFiles: 1,
+         init: function (file, done) {
+             thisDropzone = this;
+             var mockFile = {};
+             var indexVar = 0;
+             mockFile = {
+                 name: file_filename,
+                 size: file_size,
+                 type: file_content_type,
+                 hidden_name: hidden_name,
+                 index: indexVar
+             };
+             thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+             thisDropzone.options.thumbnail.call(thisDropzone, mockFile, attachment_url);
+             noImage(mockFile);
+             $('#dropzoneUser').removeClass('dz-started');
+             $('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
+             $('.dz-progress').fadeOut();
+         },
+         accept: function (file, done) {
+             back_files_news(file, done);
+         }
+     }
+ };

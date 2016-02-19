@@ -21,4 +21,4 @@ square = () ->
 setTimeout(square, 100)
 
 $(document).on "page:change", ->
-  $("#mydropzone").dropzone()
+  $(".dropzone").dropzone()

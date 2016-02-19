@@ -242,21 +242,6 @@
         return this.element.classList.remove("dz-started");
       },
       addedfile: function(file, done) {
-        // switch (file.type) {
-        //   case 'application/pdf':
-        //   $('.dz-image').css('background', 'url(../../assets/pdf-icon.png)');
-        //   break;
-        //   case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        //   $('.dz-image').css('background', 'url(../../assets/word-icon.png');
-        //   break;
-        //   case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-        //   $('.dz-image').css('background', 'url(../../assets/xls-icon.png');
-        //   break;
-        //   case 'text/csv':
-        //   $('.dz-image').css('background', 'url(../../assets/xls-icon.png');
-        //   break;
-        // }
-        // done();
 
         var node, removeFileEvent, removeLink, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
         if (this.element === this.previewsContainer) {
@@ -309,17 +294,37 @@
         }
       },
       removedfile: function(file) {
-        // alert(file.index);
-        $("input[name='thing[thing_attaches_attributes]["+file.index+"][_destroy]']").val('1');
+        //alert('file.index: '+file.index);
+        var input = $('input.attachment')[0];
+        //console.log(this);
+        if ( this.options.maxFiles === null ) {
+          //alert("multiple 1");
+          $("input[name='thing[thing_attaches_attributes]["+file.index+"][_destroy]']").val('1');
+        } else {
+          //alert("no multiple 1");
+          $("input[name='user[remove_avatar]']").val('1');
+        }
+
+
         var nameKey = file.name;
         toRemove = ItemArray
         .filter(function (el) {
           return el.filename !== nameKey;
         });
-        var reference = $("#thing_thing_attaches_files").attr("data-reference");
+        var reference = $("input.attachment").attr("data-reference");
         var metadataField = document.querySelector("input[type=hidden][data-reference='" + reference + "']");
-        metadataField.value = JSON.stringify(toRemove);
-        ItemArray = toRemove;
+        //$('input.attachment').removeAttr('multiple');
+        console.log(input);
+        if ( this.options.maxFiles === null ) {
+          //alert("multiple");
+          metadataField.value = JSON.stringify(toRemove);
+          ItemArray = toRemove;
+        } else {
+          //alert("no multiple");
+          $(metadataField).removeAttr('value');
+          //console.log("metadataField---- ",metadataField);
+          //ItemArray = toRemove;
+        }
 
         var _ref;
         if (file.previewElement) {
@@ -461,9 +466,9 @@
         return this.options.fallback.call(this);
       }
       if (this.options.url == null) {
-        //Cambie la URL para utilizar la de Refile, al final Dropzone ya no hace el Post
+        //Cambio la URL para utilizar la de Refile, al final Dropzone ya no hace el Post
         //this.options.url = this.element.getAttribute("action");
-        var urlRefile = $("#thing_thing_attaches_files").attr("data-url");
+        var urlRefile = $("input.attachment").attr("data-url");
         this.options.url = urlRefile;
       }
       if (!this.options.url) {
@@ -572,8 +577,8 @@
               if (_this.hiddenFileInput) {
                 document.body.removeChild(_this.hiddenFileInput);
               }
-              var reference = $("#thing_thing_attaches_files").attr("data-reference");
-              var url = $("#thing_thing_attaches_files").attr("data-url");
+              var reference = $("input.attachment").attr("data-reference");
+              var url = $("input.attachment").attr("data-url");
               _this.hiddenFileInput = document.createElement("input");
               _this.hiddenFileInput.setAttribute("type", "file");
               _this.hiddenFileInput.setAttribute("data-direct", "true");
@@ -581,6 +586,7 @@
               _this.hiddenFileInput.setAttribute("data-reference", reference);
               _this.hiddenFileInput.setAttribute("data-as", "file");
               _this.hiddenFileInput.setAttribute("data-url", url);
+              //alert('maxfiles--: '+_this.options.maxFiles);
               if ((_this.options.maxFiles == null) || _this.options.maxFiles > 1) {
                 _this.hiddenFileInput.setAttribute("multiple", "multiple");
               }
@@ -1438,28 +1444,29 @@
 
   Dropzone.options = {};
   Dropzone.options.mydropzone = false;
-  Dropzone.options.mydropzone = {
-    // accept: function(file, done) {
-    //   var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
-    //
-    //   switch (file.type) {
-    //     case 'application/pdf':
-    //     thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
-    //     break;
-    //     case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-    //     thumbnail.css('background', 'url(../../assets/word-icon.png');
-    //     break;
-    //     case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-    //     thumbnail.css('background', 'url(../../assets/xls-icon.png');
-    //     break;
-    //     case 'text/csv':
-    //     thumbnail.css('background', 'url(../../assets/xls-icon.png');
-    //     break;
-    //   }
-    //
-    //   done();
-    // },
-  };
+  Dropzone.options.dropzoneUser = false;
+  // Dropzone.options.mydropzone = {
+  //   accept: function(file, done) {
+  //     var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+  //
+  //     switch (file.type) {
+  //       case 'application/pdf':
+  //       thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
+  //       break;
+  //       case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+  //       thumbnail.css('background', 'url(../../assets/word-icon.png');
+  //       break;
+  //       case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+  //       thumbnail.css('background', 'url(../../assets/xls-icon.png');
+  //       break;
+  //       case 'text/csv':
+  //       thumbnail.css('background', 'url(../../assets/xls-icon.png');
+  //       break;
+  //     }
+  //
+  //     done();
+  //   },
+  // };
 
   Dropzone.optionsForElement = function(element) {
     if (element.getAttribute("id")) {

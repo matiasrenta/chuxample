@@ -19,11 +19,11 @@ var ItemArray = [];
   if(!document.addEventListener) { return; } // IE8
   document.addEventListener("change", function(changeEvent) {
     input = changeEvent.target;
-    console.info(input);
     if(input.tagName === "INPUT" && input.type === "file" && input.getAttribute("data-direct")) {
       if(!input.files) { return; } // IE9, bail out if file API is not supported.
       var reference = input.getAttribute("data-reference");
       var metadataField = document.querySelector("input[type=hidden][data-reference='" + reference + "']");
+      //console.info(metadataField.value);
       var url = input.getAttribute("data-url");
       var fields = JSON.parse(input.getAttribute("data-fields") || "null");
       var requests = [].map.call(input.files, function(file, index) {
@@ -87,13 +87,28 @@ var ItemArray = [];
             var id = xhr.id || JSON.parse(xhr.responseText).id;
             return { id: id, filename: xhr.file.name, content_type: xhr.file.type, size: xhr.file.size };
           });
-          if(!input.multiple) data = data[0];
-          var arrayInit;
-          data.forEach(function(entry) {
-            arrayInit = entry;
-            ItemArray.push(arrayInit);
-          });
-          if(metadataField) metadataField.value = JSON.stringify(ItemArray);
+          //if(!input.multiple) data = data[0];
+          //console.info(metadataField.value);
+
+          //console.log(input);
+          if ( input.multiple ) {
+            //alert("multiple----");
+            var arrayInit;
+            //console.log("data",data);
+            data.forEach(function(entry) {
+              arrayInit = entry;
+              ItemArray.push(arrayInit);
+            });
+            if(metadataField) metadataField.value = JSON.stringify(ItemArray);
+          } else {
+            //alert("no multiple----");
+            data = data[0];
+            $(metadataField).removeAttr('value');
+            if (!metadataField.value ) {
+              metadataField.value = JSON.stringify(data);
+            }
+            //if(metadataField.value) metadataField.value = JSON.stringify(data);
+          }
           input.removeAttribute("name");
         }
       }
@@ -120,8 +135,8 @@ function functionChangeFict(this2, e){
   var filesToSend = e.dataTransfer.files;
   var input = $('.dz-hidden-input')[0];
   input.setAttribute("id", "inputTouch");
-  var reference = $("#thing_thing_attaches_files").attr("data-reference");
-  var url = $("#thing_thing_attaches_files").attr("data-url");
+  var reference = $(".attachment .optional").attr("data-reference");
+  var url = $(".attachment .optional").attr("data-url");
 
   if(input.tagName === "INPUT" && input.getAttribute("data-direct")) {
     if(!filesToSend) { return; } // IE9, bail out if file API is not supported.
@@ -192,13 +207,25 @@ function functionChangeFict(this2, e){
           var id = xhr.id || JSON.parse(xhr.responseText).id;
           return { id: id, filename: xhr.file.name, content_type: xhr.file.type, size: xhr.file.size };
         });
-        if(!input.multiple) data = data[0];
-        var arrayInit;
-        data.forEach(function(entry) {
-          arrayInit = entry;
-          ItemArray.push(arrayInit);
-        });
-        if(metadataField) metadataField.value = JSON.stringify(ItemArray);
+        //if(!input.multiple) data = data[0];
+        if ( input.multiple ) {
+          //alert("multiple----");
+          var arrayInit;
+          //console.log("data",data);
+          data.forEach(function(entry) {
+            arrayInit = entry;
+            ItemArray.push(arrayInit);
+          });
+          if(metadataField) metadataField.value = JSON.stringify(ItemArray);
+        } else {
+          //alert("no multiple----");
+          data = data[0];
+          $(metadataField).removeAttr('value');
+          if (!metadataField.value) {
+            metadataField.value = JSON.stringify(data);
+          }
+          //if(metadataField.value) metadataField.value = JSON.stringify(data);
+        }
         input.removeAttribute("name");
       }
     }
