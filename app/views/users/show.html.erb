@@ -71,30 +71,21 @@
       </header>
       <div class="no-padding">
         <div class="widget-body">
-
-          <% conversations = @user.mailbox.inbox
-             receipts = []
-             conversations.each do |c|
-               c.receipts_for(@user).each do |r|
-                 receipts << r
-               end
-             end
-          %>
-
-
           <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
             <thead>
             <tr>
               <th class='all control'>sender</th>
+              <th>Box</th>
               <th>subject</th>
               <th>body</th>
               <th>unread?</th>
             </tr>
             </thead>
             <tbody>
-            <% receipts.each do |receipt| %>
+            <% @receipts.each do |receipt| %>
                 <tr>
                   <td><%= receipt.message.sender.name %></td>
+                  <td><%= receipt.mailbox_type %></td>
                   <td><%= receipt.message.subject %></td>
                   <td><%= receipt.message.body %></td>
                   <td><%= receipt.is_unread? %></td>
