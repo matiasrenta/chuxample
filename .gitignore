@@ -59,6 +59,7 @@ config/database.yml
 # ignore production environment variables
 .env.production
 
+#ignorar .directory no sabemos que es
+.directory
 
 **/*.*~
-
