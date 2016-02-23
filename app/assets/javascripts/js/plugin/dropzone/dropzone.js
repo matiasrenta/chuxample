@@ -150,8 +150,8 @@
       accept: function(file, done) {
         return done();
       },
-      init: function() {
-        return noop;
+      init: function(file, done) {
+        return done;
       },
       forceFallback: false,
       fallback: function() {
@@ -241,7 +241,7 @@
       reset: function() {
         return this.element.classList.remove("dz-started");
       },
-      addedfile: function(file) {
+      addedfile: function(file, done) {
 
         var node, removeFileEvent, removeLink, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
         if (this.element === this.previewsContainer) {
@@ -294,20 +294,48 @@
         }
       },
       removedfile: function(file) {
+        //alert('file.index: '+file.index);
+        var input = $('input.attachment')[0];
+        //console.log(this);
+        if ( this.options.maxFiles === null ) {
+          //alert("multiple 1");
+          $("input[name='thing[thing_attaches_attributes]["+file.index+"][_destroy]']").val('1');
+        } else {
+          //alert("no multiple 1");
+          $("input[name='user[remove_avatar]']").val('1');
+        }
+
+
         var nameKey = file.name;
         toRemove = ItemArray
         .filter(function (el) {
           return el.filename !== nameKey;
         });
-        var reference = $("#thing_thing_attaches_files").attr("data-reference");
+        var reference = $("input.attachment").attr("data-reference");
         var metadataField = document.querySelector("input[type=hidden][data-reference='" + reference + "']");
-        metadataField.value = JSON.stringify(toRemove);
-        ItemArray = toRemove;
+        //$('input.attachment').removeAttr('multiple');
+        console.log(input);
+        if ( this.options.maxFiles === null ) {
+          //alert("multiple");
+          metadataField.value = JSON.stringify(toRemove);
+          ItemArray = toRemove;
+        } else {
+          //alert("no multiple");
+          $(metadataField).removeAttr('value');
+          //console.log("metadataField---- ",metadataField);
+          //ItemArray = toRemove;
+        }
 
         var _ref;
         if (file.previewElement) {
           if ((_ref = file.previewElement) != null) {
-            _ref.parentNode.removeChild(file.previewElement);
+          var aSelected = file.previewElement;
+            if ( $(aSelected).hasClass('dz-success') ) {
+              _ref.parentNode.removeChild(file.previewElement);
+            } else {
+              $(file.previewElement).css('opacity','0.4');
+              $(file.previewElement).find('.dz-remove').text("Se eliminará al actualizar").removeAttr('href').addClass('text-remove');
+            }
           }
         }
         return this._updateMaxFilesReachedClass();
@@ -438,9 +466,9 @@
         return this.options.fallback.call(this);
       }
       if (this.options.url == null) {
-        //Cambie la URL para utilizar la de Refile, al final Dropzone ya no hace el Post
+        //Cambio la URL para utilizar la de Refile, al final Dropzone ya no hace el Post
         //this.options.url = this.element.getAttribute("action");
-        var urlRefile = $("#thing_thing_attaches_files").attr("data-url");
+        var urlRefile = $("input.attachment").attr("data-url");
         this.options.url = urlRefile;
       }
       if (!this.options.url) {
@@ -540,7 +568,7 @@
         if (this.element.tagName === "input") {
           this.element.setAttribute("enctype", "multipart/form-data");
         }
-        if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {
+        if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {//
           this.element.appendChild(Dropzone.createElement("<div class=\"dz-default dz-message\"><span>" + this.options.dictDefaultMessage + "</span></div>"));
         }
         if (this.clickableElements.length) {
@@ -549,8 +577,8 @@
               if (_this.hiddenFileInput) {
                 document.body.removeChild(_this.hiddenFileInput);
               }
-              var reference = $("#thing_thing_attaches_files").attr("data-reference");
-              var url = $("#thing_thing_attaches_files").attr("data-url");
+              var reference = $("input.attachment").attr("data-reference");
+              var url = $("input.attachment").attr("data-url");
               _this.hiddenFileInput = document.createElement("input");
               _this.hiddenFileInput.setAttribute("type", "file");
               _this.hiddenFileInput.setAttribute("data-direct", "true");
@@ -558,6 +586,7 @@
               _this.hiddenFileInput.setAttribute("data-reference", reference);
               _this.hiddenFileInput.setAttribute("data-as", "file");
               _this.hiddenFileInput.setAttribute("data-url", url);
+              //alert('maxfiles--: '+_this.options.maxFiles);
               if ((_this.options.maxFiles == null) || _this.options.maxFiles > 1) {
                 _this.hiddenFileInput.setAttribute("multiple", "multiple");
               }
@@ -969,7 +998,7 @@
       }
     };
 
-    Dropzone.prototype.addFile = function(file) {
+    Dropzone.prototype.addFile = function(file, done) {
       file.upload = {
         progress: 0,
         total: file.size,
@@ -977,7 +1006,7 @@
       };
       this.files.push(file);
       file.status = Dropzone.ADDED;
-      this.emit("addedfile", file);
+      this.emit("addedfile", file, done);
       this._enqueueThumbnail(file);
       return this.accept(file, (function(_this) {
         return function(error) {
@@ -1415,28 +1444,29 @@
 
   Dropzone.options = {};
   Dropzone.options.mydropzone = false;
-  Dropzone.options.mydropzone = {
-  accept: function(file, done) {
-    var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
-
-    switch (file.type) {
-      case 'application/pdf':
-        thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
-        break;
-      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-        thumbnail.css('background', 'url(../../assets/word-icon.png');
-        break;
-      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-        thumbnail.css('background', 'url(../../assets/xls-icon.png');
-        break;
-      case 'text/csv':
-        thumbnail.css('background', 'url(../../assets/xls-icon.png');
-        break;
-    }
-
-    done();
-  },
-};
+  Dropzone.options.dropzoneUser = false;
+  // Dropzone.options.mydropzone = {
+  //   accept: function(file, done) {
+  //     var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+  //
+  //     switch (file.type) {
+  //       case 'application/pdf':
+  //       thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
+  //       break;
+  //       case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+  //       thumbnail.css('background', 'url(../../assets/word-icon.png');
+  //       break;
+  //       case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+  //       thumbnail.css('background', 'url(../../assets/xls-icon.png');
+  //       break;
+  //       case 'text/csv':
+  //       thumbnail.css('background', 'url(../../assets/xls-icon.png');
+  //       break;
+  //     }
+  //
+  //     done();
+  //   },
+  // };
 
   Dropzone.optionsForElement = function(element) {
     if (element.getAttribute("id")) {
