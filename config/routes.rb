@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :conversations, only: [:index, :show, :destroy]
   resources :delayed_jobs
   resources :thing_categories
   resources :wizard
