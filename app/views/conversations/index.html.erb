@@ -3,6 +3,7 @@
     <td>Sender</td>
     <td>Time</td>
     <td>Message</td>
+    <td>Actions</td>
   </tr>
   <% @conversations.each do |conversation| %>
       <% message = conversation.last_message %>
@@ -10,6 +11,7 @@
         <td><%= message.sender.name %></td>
         <td><%= l(message.created_at, format: :without_seg) %></td>
         <td><%= message.body.html_safe %></td>
+        <td><%= link_to 'Mark as read', mark_as_read_conversation_path(conversation), id: "conversation_link_#{conversation.id}", class: 'btn btn-xs btn-info', :remote => true, method: :post if conversation.is_unread?(current_user) %></td>
       </tr>
   <% end %>
 </table>

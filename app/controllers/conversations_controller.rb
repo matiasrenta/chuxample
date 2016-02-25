@@ -13,6 +13,9 @@ class ConversationsController < ApplicationController
     set_content_title(nil, ['Conversation'])
   end
 
+  def mark_as_read
+    @conversation.mark_as_read(current_user)
+  end
   private
 
   def get_mailbox

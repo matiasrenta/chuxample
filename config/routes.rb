@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :conversations, only: [:index, :show, :destroy]
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :mark_as_read
+    end
+  end
   resources :delayed_jobs
   resources :thing_categories
   resources :wizard
