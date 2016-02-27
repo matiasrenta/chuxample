@@ -1,19 +1,21 @@
-<table border="1">
-  <tr>
-    <td>Sender</td>
-    <td>Time</td>
-    <td>Message</td>
-    <td>Actions</td>
-  </tr>
+<ul class="notification-body">
   <% @conversations.each do |conversation| %>
       <% message = conversation.last_message %>
-      <tr>
-        <td><%= message.sender.name %></td>
-        <td><%= l(message.created_at, format: :without_seg) %></td>
-        <td><%= message.body.html_safe %></td>
-        <td><%= link_to 'Mark as read', mark_as_read_conversation_path(conversation), id: "conversation_link_#{conversation.id}", class: 'btn btn-xs btn-info', :remote => true, method: :post if conversation.is_unread?(current_user) %></td>
-      </tr>
+      <li id="<%= "conversation_li_#{conversation.id}" %>">
+            <span class="padding-10 <%= conversation.is_unread?(current_user) ? 'unread' : '' %>">
+                <%= message.subject.html_safe -%>
+                <span>
+                  <%= message.body.html_safe -%>
+                  <%= link_to 'Mark as read', mark_as_read_conversation_path(conversation), id: "conversation_link_#{conversation.id}", class: 'btn btn-xs btn-primary margin-top-5 pull-right', :remote => true, method: :post if conversation.is_unread?(current_user) %>
+                  <%= link_to 'Move to trash', conversation_path(conversation), class: 'btn btn-xs btn-danger margin-top-5 pull-right', :remote => true, method: :delete %>
+                  <br/>
+                  <span class="pull-right font-xs text-muted"><i><%= l(message.created_at, format: :without_seg) %></i></span>
+                </span>
+            </span>
+      </li>
   <% end %>
-</table>
+</ul>
 
 <%= will_paginate %>
+
+

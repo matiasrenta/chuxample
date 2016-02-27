@@ -63,7 +63,7 @@ class ThingsController < ApplicationController
     else current_user.email == 'algo@mail.com'
       reciever = User.find_by_email('matias@opi.la')
     end
-    current_user.send_message(reciever, "#{current_user.name} modificó la cosa #{view_context.link_to(@thing.name, thing_path(@thing))}", 'sin subject')
+    current_user.send_message(reciever, "#{current_user.name} modificó la cosa #{view_context.link_to(@thing.name, thing_path(@thing), class: 'display-normal')}", '<span></span>')
   end
 
 end

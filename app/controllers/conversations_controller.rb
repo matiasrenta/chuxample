@@ -16,6 +16,11 @@ class ConversationsController < ApplicationController
   def mark_as_read
     @conversation.mark_as_read(current_user)
   end
+
+  def destroy
+    @conversation.move_to_trash(current_user)
+  end
+
   private
 
   def get_mailbox
