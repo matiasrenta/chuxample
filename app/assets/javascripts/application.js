@@ -93,5 +93,7 @@
 //= require js/plugin/google-charts/jsapi.js
 //= require things
 //= require global
+// require jquery.infinite-pages
+//= require global_coffee
 
 //= require js/app.config

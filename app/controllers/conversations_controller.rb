@@ -5,8 +5,9 @@ class ConversationsController < ApplicationController
   before_action :get_conversation, except: [:index]
 
   def index
+    sleep(1)
     set_content_title(nil, ['Conversations'])
-    @conversations = @mailbox.inbox.paginate(page: params[:page], per_page: 10)
+    @conversations = @mailbox.inbox.paginate(page: params[:page], per_page: 7)
   end
 
   def show
