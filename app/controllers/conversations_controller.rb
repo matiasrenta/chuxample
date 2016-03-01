@@ -20,9 +20,10 @@ class ConversationsController < ApplicationController
 
   def mark_all_as_read
     @mailbox.conversations(unread: true).each do |conversation|
-      conversation.mark_as_read(current_user)
+      #conversation.mark_as_read(current_user)
     end
     index
+    redirect_to :back
   end
 
   def destroy
