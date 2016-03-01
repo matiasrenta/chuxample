@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   layout false
   #before_action :authenticate_user!
   before_action :get_mailbox
-  before_action :get_conversation, except: [:index]
+  before_action :get_conversation, except: [:index, :mark_all_as_read]
 
   def index
     sleep(1)
@@ -16,6 +16,13 @@ class ConversationsController < ApplicationController
 
   def mark_as_read
     @conversation.mark_as_read(current_user)
+  end
+
+  def mark_all_as_read
+    @mailbox.conversations(unread: true).each do |conversation|
+      conversation.mark_as_read(current_user)
+    end
+    index
   end
 
   def destroy

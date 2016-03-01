@@ -8,7 +8,7 @@
 
 		<!-- Note: The activity badge color changes when clicked and resets the number to 0
 		Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-		<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> <%= @new_notifications %> </b> </span>
+		<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> <%= @unread_notifications_count %> </b> </span>
 
 		<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
 		<div class="ajax-dropdown">
@@ -25,6 +25,7 @@
 					<input type="radio" name="activity" id="ajax/notify/tasks.html">
 					Tasks (4) </label>
 			</div>
+            <div><%#= link_to 'Mark all as read', mark_all_as_read_conversations_path, remote: true %></div>
 
 			<!-- notification content -->
 			<div class="ajax-notifications custom-scroll notification_panel">
