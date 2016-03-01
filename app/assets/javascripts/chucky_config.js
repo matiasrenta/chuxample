@@ -249,7 +249,7 @@ $(".boolean").removeClass("form-control");
 $("label[for='thing_thing_attaches_files'], #thing_thing_attaches_files").hide();
 //Esconde input file de refile en form html de users
 $("label[for='user_avatar'], #user_avatar").hide();
-// Drop
+// Dropzone
 function back_files(type){
 	var thumbnail = $('.dz-image:last');
 	switch (type) {

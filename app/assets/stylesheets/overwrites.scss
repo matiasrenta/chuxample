@@ -275,7 +275,16 @@ table tr td.table-actions{
 }
 
 .dropzone .dz-preview .dz-error-message {
-  top: 150px;
+  top: 100px;
+}
+
+.dropzone .dz-preview .dz-error-mark svg g {
+  border: 1px solid #FFFFFF;
+  fill: #be2626;
+}
+
+.dropzone .dz-preview .dz-error-mark {
+    top: 45%;
 }
 
 @media (max-width: 979px) {
@@ -322,9 +331,10 @@ table tr td.table-actions{
   -ms-transform: scale(1.05, 1.05);
   -o-transform: scale(1.05, 1.05);
   transform: scale(1.05, 1.05);
-  -webkit-filter: blur(8px);
-  filter: blur(8px);
-  border-radius: 6px; }
+  // -webkit-filter: blur(1px);
+  // filter: blur(1px);
+  border-radius: 6px;
+}
 
 .dropzone .dz-preview .dz-image {
   width: 100px;

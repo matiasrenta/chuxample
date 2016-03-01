@@ -117,7 +117,7 @@
       withCredentials: false,
       parallelUploads: 2,
       uploadMultiple: false,
-      maxFilesize: 256,
+      maxFilesize: 2,
       paramName: "file",
       createImageThumbnails: true,
       maxThumbnailFilesize: 10,
@@ -294,17 +294,12 @@
         }
       },
       removedfile: function(file) {
-        //alert('file.index: '+file.index);
         var input = $('input.attachment')[0];
-        //console.log(this);
         if ( this.options.maxFiles === null ) {
-          //alert("multiple 1");
           $("input[name='thing[thing_attaches_attributes]["+file.index+"][_destroy]']").val('1');
         } else {
-          //alert("no multiple 1");
           $("input[name='user[remove_avatar]']").val('1');
         }
-
 
         var nameKey = file.name;
         toRemove = ItemArray
@@ -314,16 +309,11 @@
         var reference = $("input.attachment").attr("data-reference");
         var metadataField = document.querySelector("input[type=hidden][data-reference='" + reference + "']");
         //$('input.attachment').removeAttr('multiple');
-        console.log(input);
         if ( this.options.maxFiles === null ) {
-          //alert("multiple");
           metadataField.value = JSON.stringify(toRemove);
           ItemArray = toRemove;
         } else {
-          //alert("no multiple");
           $(metadataField).removeAttr('value');
-          //console.log("metadataField---- ",metadataField);
-          //ItemArray = toRemove;
         }
 
         var _ref;
@@ -987,10 +977,13 @@
 
     Dropzone.prototype.accept = function(file, done) {
       if (file.size > this.options.maxFilesize * 1024 * 1024) {
+        $('.dz-success-mark').remove();
         return done(this.options.dictFileTooBig.replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100).replace("{{maxFilesize}}", this.options.maxFilesize));
       } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
+        $('.dz-success-mark').remove();
         return done(this.options.dictInvalidFileType);
       } else if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+        $('.dz-success-mark').remove();
         done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", this.options.maxFiles));
         return this.emit("maxfilesexceeded", file);
       } else {
