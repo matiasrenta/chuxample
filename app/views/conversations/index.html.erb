@@ -1,0 +1,9 @@
+<div id="infinite-list">
+    <ul class="notification-body">
+      <%= render :partial => 'conversation', :object => @conversations %>
+    </ul>
+
+    <%= will_paginate %>
+</div>
+
+
