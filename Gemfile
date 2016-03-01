@@ -120,6 +120,8 @@ gem 'simple_form_auto_select2'
 gem 'dotenv-rails'
 # https://github.com/mailboxer/mailboxer
 gem 'mailboxer'
+# para poder unir dos relations (y no hacer pluck(id) y luego otra query) https://github.com/brianhempel/active_record_union
+gem 'active_record_union'
 # (-)Instalados por mi
 
 
