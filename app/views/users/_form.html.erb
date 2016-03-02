@@ -20,61 +20,8 @@
           <%= f.input :time_zone, priority: /Mexico/, include_blank: true %>
           <%= f.association :role %>
           <%= f.input :only_api_access %>
-          <%#= f.attachment_field :avatar %>
-          <%= f.input :avatar, as: :attachment, label: 'Avatar', direct: true %>
-
-          <div class="form-group">
-            <label class="col-xs-12 col-sm-3 control-label" for="">Files</label>
-            <div class="col-sm-9">
-              <div class="upload-dropzone dropzone dz-clickable" data-upload-field="images" id="dropzoneUser">
-                <div class="dz-default dz-message">
-                  <div class="col-xs-12">
-                    <h3><i class="fa fa-caret-right text-danger"></i> Drop files to upload.
-                      <span class="small"> (Or Click)</span>
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <% if @user.avatar %>
-          <div class="form-group attachment optional thing_thing_attaches_files hidden">
-            <label class="attachment optional col-sm-3 control-label"></label>
-            <div class="col-sm-9">
-              <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
-                <thead>
-                  <tr>
-                    <th class="all control">Imagen</th>
-                    <th class="all">Destruir</th>
-                  </tr>
-                </thead>
-                <tr>
-                  <td><%= image_tag attachment_url(f.object, :avatar, :fill, 100, 100) %> <%#= attachment_image_tag(f.object, :avatar, :fill, 30, 30) %></td>
-                  <td align="center"><%= f.input :remove_avatar, as: :boolean, wrapper: :clean %></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-
-          <script type="text/javascript">
-            dropzone_edit('<%= @user.avatar_filename %>',
-            <%= @user.avatar_size %>,
-            '<%= @user.avatar_content_type %>',
-            'user[remove_avatar]',
-            '<%= attachment_url(@user, :avatar, :fill, 100, 100) %>');
-          </script>
-
-          <% end %>
-
-          <!-- <% if !@user.avatar %>
-          <script type="text/javascript">
-            $('input[name="user[avatar]"]').removeAttr('value');
-          </script>
-          <% end %> -->
+          <%= render 'shared/dropzone_simple', locals: {f: f, field: :avatar} %>
         </div>
-
-
 
         <div class="form-actions">
           <div class="btn-group">

@@ -244,11 +244,6 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 	trigger : "hover"
 });
 
-$(".boolean").removeClass("form-control");
-//Esconde input file de refile en form html de things
-$("label[for='thing_thing_attaches_files'], #thing_thing_attaches_files").hide();
-//Esconde input file de refile en form html de users
-$("label[for='user_avatar'], #user_avatar").hide();
 // Dropzone
 function back_files(type){
 	var thumbnail = $('.dz-image:last');
@@ -270,6 +265,7 @@ function back_files(type){
 
 function back_files_news(file, done){
 	var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+    //back_files(file.type)
 	switch (file.type) {
 	  case 'application/pdf':
 	  thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
@@ -291,7 +287,7 @@ function noImage(mockFile){
 	var thumbnail = $('.dz-image:last');
 	$(thumbnail).each(function (i) {
 		var type = mockFile.type;
-		if (type != 'image/png' && type != 'image/jpeg' && type != 'image/jpg') {
+		if (type != 'image/png' && type != 'image/jpeg' && type != 'image/jpg' && type != 'image/gif') {
 			$(thumbnail).children().removeAttr('src alt');
 			back_files(type);
 		}
