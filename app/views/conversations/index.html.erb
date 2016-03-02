@@ -14,11 +14,14 @@
             $('.notification_panel').scroll(function() {
                 var url;
                 url = $('.notification_panel a[rel=next]').attr('href');
-                alert('debug 3, url: ' + url);
-                if (url && $('.notification_panel').scrollTop() > 250) {
+                //alert('debug 3, url: ' + url);
+                if (url && $('.notification_panel').scrollTop() > 100) {
                     alert('debug 4');
                     $('.notification_panel .pagination').text("Fetching more products...");
                     return $.getScript(url);
+                }
+                else{
+                    alert('NO MAYOR, SCROLL TOP=' + $('.notification_panel').scrollTop())
                 }
             });
             return $('.notification_panel').scroll();
