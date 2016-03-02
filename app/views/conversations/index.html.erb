@@ -5,3 +5,20 @@
 
   <%= will_paginate %>
 </div>
+
+<script>
+    (function() {
+        jQuery(function() {
+            $('.notification_panel').scroll(function() {
+                var url;
+                url = $('.notification_panel a[rel=next]').attr('href');
+                if (url && $('.notification_panel').scrollTop() > 250) {
+                    $('.notification_panel .pagination').text("Fetching more products...");
+                    return $.getScript(url);
+                }
+            });
+            return $('.notification_panel').scroll();
+        });
+
+    }).call(this);
+</script>
