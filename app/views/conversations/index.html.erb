@@ -7,12 +7,16 @@
 </div>
 
 <script>
+  alert('debug 1');
     (function() {
         jQuery(function() {
+            alert('debug 2');
             $('.notification_panel').scroll(function() {
                 var url;
                 url = $('.notification_panel a[rel=next]').attr('href');
+                alert('debug 3, url: ' + url);
                 if (url && $('.notification_panel').scrollTop() > 250) {
+                    alert('debug 4');
                     $('.notification_panel .pagination').text("Fetching more products...");
                     return $.getScript(url);
                 }
