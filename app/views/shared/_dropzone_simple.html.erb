@@ -1,5 +1,8 @@
-<% instance = locals[:f].object %>
-<%= locals[:f].input locals[:field], as: :attachment, direct: true, label: false, input_html: {style: 'display: none;'} %>
+<%
+   instance = locals[:f].object
+   remove_hidden_name = "#{instance.class.name.underscore}[remove_#{locals[:field]}]"
+%>
+<%= locals[:f].input locals[:field], as: :attachment, direct: true, label: false, input_html: {style: 'display: none;', 'data-remove-hidden-name': remove_hidden_name} %>
 <div class="form-group">
   <label class="col-xs-12 col-sm-3 control-label" for="">Files</label>
   <div class="col-sm-9">
@@ -20,7 +23,7 @@
         dropzone_edit('<%= instance.send("#{locals[:field]}_filename".to_sym) %>',
                 <%= instance.send("#{locals[:field]}_size".to_sym) %>,
                 '<%= instance.send("#{locals[:field]}_content_type".to_sym) %>',
-                '<%= "#{instance.class.name.underscore}[remove_#{locals[:field]}]" %>',
+                '<%= remove_hidden_name %>',
                 '<%= attachment_url(instance, locals[:field], :fill, 100, 100) %>');
     </script>
 <% end %>
