@@ -1,4 +1,4 @@
-<% locals[:instance] = locals[:f].object %>
+<% instance = locals[:f].object %>
 <%= locals[:f].input locals[:field], as: :attachment, direct: true, label: false, input_html: {style: 'display: none;'} %>
 <div class="form-group">
   <label class="col-xs-12 col-sm-3 control-label" for="">Files</label>
@@ -14,15 +14,13 @@
     </div>
   </div>
 </div>
-<% if locals[:instance].send(locals[:field]) %>
+<% if instance.send(locals[:field]) %>
     <%= locals[:f].input "remove_#{locals[:field]}".to_sym, as: :boolean, wrapper: :clean, input_html: {style: 'display: none;'} %>
     <script type="text/javascript">
-        dropzone_edit('<%= locals[:instance].send("#{locals[:field]}_filename".to_sym) %>',
-                <%= locals[:instance].send("#{locals[:field]}_size".to_sym) %>,
-                '<%= locals[:instance].send("#{locals[:field]}_content_type".to_sym) %>',
-                '<%= "#{locals[:instance].class.name.downcase}[remove_#{locals[:field]}]" %>',
-                '<%= attachment_url(locals[:instance], locals[:field], :fill, 100, 100) %>');
+        dropzone_edit('<%= instance.send("#{locals[:field]}_filename".to_sym) %>',
+                <%= instance.send("#{locals[:field]}_size".to_sym) %>,
+                '<%= instance.send("#{locals[:field]}_content_type".to_sym) %>',
+                '<%= "#{instance.class.name.underscore}[remove_#{locals[:field]}]" %>',
+                '<%= attachment_url(instance, locals[:field], :fill, 100, 100) %>');
     </script>
 <% end %>
-
-user[remove_avatar]
