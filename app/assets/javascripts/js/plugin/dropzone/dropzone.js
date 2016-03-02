@@ -242,7 +242,7 @@
         return this.element.classList.remove("dz-started");
       },
       addedfile: function(file, done) {
-
+        console.log(this);
         var node, removeFileEvent, removeLink, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
         if (this.element === this.previewsContainer) {
           this.element.classList.add("dz-started");
@@ -262,7 +262,7 @@
             node.innerHTML = this.filesize(file.size);
           }
           if (this.options.addRemoveLinks) {
-            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
+            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-hidden=\"" + file.hidden_name + "\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
             file.previewElement.appendChild(file._removeLink);
           }
           removeFileEvent = (function(_this) {
@@ -294,11 +294,26 @@
         }
       },
       removedfile: function(file) {
-        var input = $('input.attachment')[0];
+        var hidden_name;
         if ( this.options.maxFiles === null ) {
-          $("input[name='thing[thing_attaches_attributes]["+file.index+"][_destroy]']").val('1');
+
+          hidden_name = $(file._removeLink).attr('data-hidden');
+          console.log( 'hidden_name--- ',hidden_name );
+          console.log( 'file.index-- ', file.index );
+
+          var new_hidden = hidden_name.replace(/\[.]\[.+?\]/g, "["+file.index+"][_destroy]")
+          console.log('NEW hidden_name--- ',new_hidden);
+
+          console.log( $("input[name='"+ new_hidden +"']").val() );
+          //Cambia el value a 1 del elemento a eliminar
+          $("input[name='"+ new_hidden +"']").val('1');
+          console.log( $("input[name='"+ new_hidden +"']").val() );
         } else {
-          $("input[name='user[remove_avatar]']").val('1');
+          hidden_name = $(file._removeLink).attr('data-hidden');
+          console.log( $("input[name='"+ hidden_name +"']").val() );
+          //Cambia el value a 1 del elemento a eliminar
+          $("input[name='"+ hidden_name +"']").val('1');
+          console.log( $("input[name='"+ hidden_name +"']").val() );
         }
 
         var nameKey = file.name;

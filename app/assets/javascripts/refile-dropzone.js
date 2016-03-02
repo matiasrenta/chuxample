@@ -98,6 +98,10 @@ var ItemArray = [];
             if (metadataField.value === "{}" || !metadataField.value ) {
               $('.fileUploadedCheck').parent().parent().fadeOut('slow');
               metadataField.value = JSON.stringify(data);
+              var metadata = document.querySelector("input[type=hidden][data-reference='" + reference + "']");
+              console.log('file----- ',metadata);
+              $("input[name='user[remove_avatar]']").val('0');
+              // console.log($("input[name='user[remove_avatar]']").val());
             }
           }
           input.removeAttribute("name");
