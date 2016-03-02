@@ -300,29 +300,27 @@ Dropzone.options.dropzoneUser = {
 		 maxFiles: 1
 };
 function dropzone_edit(file_filename, file_size, file_content_type, hidden_name, attachment_url) {
-	$('input[name="user[avatar]"]').removeAttr('value');
-     Dropzone.options.dropzoneUser = {
-			 		maxFiles: 1,
-         init: function (file, done) {
-             thisDropzone = this;
-             var mockFile = {};
-             var indexVar = 0;
-             mockFile = {
-                 name: file_filename,
-                 size: file_size,
-                 type: file_content_type,
-                 hidden_name: hidden_name,
-                 index: indexVar
-             };
-             thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-             thisDropzone.options.thumbnail.call(thisDropzone, mockFile, attachment_url);
-             noImage(mockFile);
-             $('#dropzoneUser').removeClass('dz-started');
-             $('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
-             $('.dz-progress').fadeOut();
-         },
-         accept: function (file, done) {
-             back_files_news(file, done);
-         }
-     }
+	//$('input[name="user[avatar]"]').removeAttr('value');
+		 Dropzone.options.dropzoneUser = {
+				maxFiles: 1,
+				 init: function (file, done) {
+						 thisDropzone = this;
+						 var mockFile = {};
+						 mockFile = {
+								 name: file_filename,
+								 size: file_size,
+								 type: file_content_type,
+								 hidden_name: hidden_name
+							 };
+						 thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+						 thisDropzone.options.thumbnail.call(thisDropzone, mockFile, attachment_url);
+						 noImage(mockFile);
+						 $('#dropzoneUser').removeClass('dz-started');
+						 $('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
+						 $('.dz-progress').fadeOut();
+				 },
+				 accept: function (file, done) {
+						 back_files_news(file, done);
+				 }
+		 }
  };

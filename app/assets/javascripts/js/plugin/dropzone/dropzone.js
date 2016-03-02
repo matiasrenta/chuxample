@@ -312,8 +312,6 @@
         if ( this.options.maxFiles === null ) {
           metadataField.value = JSON.stringify(toRemove);
           ItemArray = toRemove;
-        } else {
-          $(metadataField).removeAttr('value');
         }
 
         var _ref;
