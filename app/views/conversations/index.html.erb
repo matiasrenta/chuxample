@@ -1,4 +1,4 @@
-<div>
+<div id="pindonga">
   <ul id="infinite-list" class="notification-body">
     <%= render :partial => 'conversation', :object => @conversations %>
   </ul>
@@ -7,21 +7,14 @@
 </div>
 
 <script>
-  alert('debug 1');
     (function() {
         jQuery(function() {
-            alert('debug 2');
             $('.notification_panel').scroll(function() {
                 var url;
                 url = $('.notification_panel a[rel=next]').attr('href');
-                //alert('debug 3, url: ' + url);
-                if (url && $('.notification_panel').scrollTop() > 100) {
-                    alert('debug 4');
+                if (url && $('.notification_panel').scrollTop() > $('#pindonga').height() - $('.notification_panel').height() - 50) {
                     $('.notification_panel .pagination').text("Fetching more products...");
                     return $.getScript(url);
-                }
-                else{
-                    alert('NO MAYOR, SCROLL TOP=' + $('.notification_panel').scrollTop())
                 }
             });
             return $('.notification_panel').scroll();
