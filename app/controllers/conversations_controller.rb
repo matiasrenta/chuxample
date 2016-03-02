@@ -6,7 +6,6 @@ class ConversationsController < ApplicationController
 
   def index
     sleep(1)
-    set_content_title(nil, ['Conversations'])
     @conversations = @mailbox.inbox.paginate(page: params[:page], per_page: 7)
   end
 
