@@ -49,6 +49,8 @@ es:
         thing_category_id: 'ID Categoría'
         trackable_type: 'Entidad'
         action: 'Acción'
+        thing_attaches: 'Archivos'
+        avatar: 'Avatar'
 
     placeholders:
       from: 'desde'
@@ -56,6 +58,7 @@ es:
 
     screen:
       actions: 'Acciones'
+      click_or_drop_files: 'Haga click o arrastre archivos'
 
     flash:
       successfully_created: 'Creado exitosamente'

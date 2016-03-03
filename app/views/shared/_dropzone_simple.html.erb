@@ -1,0 +1,28 @@
+<%
+   instance = locals[:f].object
+   remove_hidden_name = "#{instance.class.name.underscore}[remove_#{locals[:field]}]"
+   label = locals[:label] || t("simple_form.labels.defaults.#{locals[:field]}")
+%>
+<%= locals[:f].input locals[:field], as: :attachment, direct: true, label: false, input_html: {style: 'display: none;', 'data-remove-hidden-name': remove_hidden_name} %>
+<div class="form-group">
+  <label class="col-xs-12 col-sm-3 control-label" for=""><%= label %></label>
+  <div class="col-sm-9">
+    <div class="upload-dropzone dropzone dz-clickable" data-upload-field="images" id="dropzoneUser">
+      <div class="dz-default dz-message">
+        <div class="col-xs-12">
+          <h3><i class="fa fa-caret-right text-danger"></i> <%= t('simple_form.screen.click_or_drop_files') %>.</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if instance.send(locals[:field]) %>
+    <%= locals[:f].input "remove_#{locals[:field]}".to_sym, as: :boolean, wrapper: :clean, input_html: {style: 'display: none;'} %>
+    <script type="text/javascript">
+        dropzone_edit('<%= instance.send("#{locals[:field]}_filename".to_sym) %>',
+                <%= instance.send("#{locals[:field]}_size".to_sym) %>,
+                '<%= instance.send("#{locals[:field]}_content_type".to_sym) %>',
+                '<%= remove_hidden_name %>',
+                '<%= attachment_url(instance, locals[:field], :fill, 100, 100) %>');
+    </script>
+<% end %>

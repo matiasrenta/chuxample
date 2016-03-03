@@ -19,3 +19,6 @@ square = () ->
           return if data? then $('<table/>').append( data ) else false
 
 setTimeout(square, 100)
+
+$(document).on "page:change", ->
+  $(".dropzone").dropzone()

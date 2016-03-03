@@ -1,4 +1,5 @@
 class Thing < ActiveRecord::Base
+	acts_as_commentable
 	acts_as_xlsx({columns: ['id', 'name', 'age', 'price', 'expires', 'discharged_at', 'description', 'published', 'gender', 'thing_category_id', 'thing_category.name']})
 	include PublicActivity::Model
 	tracked only: [:create, :update, :destroy]
