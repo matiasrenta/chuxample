@@ -33,7 +33,7 @@
           <%= f.input :published %>
           <%= f.input :gender, collection: User.all %>
 
-          <%= render 'shared/dropzone_multiple', locals: {f: f, model_attaches_files: :thing_attaches_files, relation_attaches: :thing_attaches} %>
+          <%= render 'shared/dropzone_multiple', locals: {f: f, field: :thing_attaches_files} %>
 
           <div class="form-group">
             <label class="col-xs-12 col-sm-3 control-label" for="">Contacts</label>
