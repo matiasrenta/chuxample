@@ -122,6 +122,10 @@ gem 'dotenv-rails'
 gem 'mailboxer'
 # para poder unir dos relations (y no hacer pluck(id) y luego otra query) https://github.com/brianhempel/active_record_union
 gem 'active_record_union'
+# para hacer dump de la ddbb local a un seed y luego pasarlo a producción u otro entorno. https://github.com/rroblak/seed_dump
+#gem 'seed_dump'
+# https://github.com/elight/acts_as_commentable_with_threading
+gem 'acts_as_commentable_with_threading'
 # (-)Instalados por mi
 
 
