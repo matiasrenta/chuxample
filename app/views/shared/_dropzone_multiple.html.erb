@@ -1,5 +1,4 @@
 <%
-  # eliminar este comentario
   f = locals[:f]
   field = locals[:field]
   association = field.to_s.split('_files')[0].to_sym
@@ -19,33 +18,49 @@
    </div>
  </div>
 </div>
+
 <%= f.fields_for association do |upload| %>
   <div class="hidden">
    <%= upload.input :_destroy, as: :boolean, wrapper: :clean, label: false, input_html: {style: 'display: none;'} %>
   </div>
 <% end %>
+
 <script type="text/javascript">
-   Dropzone.options.mydropzone = {
-       maxFiles: null,
-       init: function(file, done) {
-           thisDropzone = this;
-           var mockFile = {};
-           var indexVar = 0;
-           <%= f.fields_for association, nil, {wrapper: false, include_id: false} do |uploaded| %>
-           <% f_input_string = uploaded.input :_destroy, as: :boolean, wrapper: :clean
-               hidden_name = f_input_string.split('name="')[1].split('"')[0] %>
-               mockFile = { name: '<%= uploaded.object.file_filename %>', size: <%= uploaded.object.file_size %>, type: '<%= uploaded.object.file_content_type %>', hidden_name: '<%= hidden_name %>', index: indexVar };
-               thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-               thisDropzone.options.thumbnail.call(thisDropzone, mockFile, '<%= attachment_url(uploaded.object, :file, :fill, 100, 100) %>');
-               noImage(mockFile);
-               indexVar++;
-           <% end %>
-           $('#mydropzone').removeClass('dz-started');
-           $('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
-           $('.dz-progress').fadeOut();
-       },
-       accept: function(file, done) {
-           back_files_news(file, done);
-       }
-   };
+    function back_files_news(file, done) {
+        thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+        cases_background(file.type);
+        done();
+    }
+
+    Dropzone.options.mydropzone = {
+        maxFiles: null,
+        init: function (file, done) {
+            thisDropzone = this;
+            var mockFile = {};
+            var indexVar = 0;
+            <%= f.fields_for association, nil, {wrapper: false, include_id: false} do |uploaded| %>
+            <% f_input_string = uploaded.input :_destroy, as: :boolean, wrapper: :clean
+                hidden_name = f_input_string.split('name="')[1].split('"')[0] %>
+            mockFile = {
+                name: '<%= uploaded.object.file_filename %>',
+                size: <%= uploaded.object.file_size %>,
+                type: '<%= uploaded.object.file_content_type %>',
+                hidden_name: '<%= hidden_name %>',
+                index: indexVar
+            };
+            thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+            thisDropzone.options.thumbnail.call(thisDropzone, mockFile, '<%= attachment_url(uploaded.object, :file, :fill, 100, 100) %>');
+            noImage(mockFile);
+            indexVar++;
+            <% end %>
+            $('#mydropzone').removeClass('dz-started');
+            $('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
+            $('.dz-progress').fadeOut();
+        },
+        accept: function (file, done) {
+            back_files_news(file, done);
+        }
+    };
 </script>
+
+<%= render 'shared/dropzone_shared' %>

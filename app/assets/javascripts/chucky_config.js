@@ -245,70 +245,43 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 });
 
 // Dropzone
-var thumbnail;
-function back_files(type){
-	thumbnail = $('.dz-image:last');
-	cases_background(type);
-	// switch (type) {
-	// 	case 'application/pdf':
-	// 	$(thumbnail).css('background', 'url(../../assets/pdf-icon.png)');
-	// 	break;
-	// 	case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-	// 	$(thumbnail).css('background', 'url(../../assets/word-icon.png)');
-	// 	break;
-	// 	case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-	// 	$(thumbnail).css('background', 'url(../../assets/xls-icon.png)');
-	// 	break;
-	// 	case 'text/csv':
-	// 	thumbnail.css('background', 'url(../../assets/xls-icon.png)');
-	// }
-};
+//var thumbnail;
+//function back_files(type){
+//	thumbnail = $('.dz-image:last');
+//	cases_background(type);
+//};
 
-function back_files_news(file, done){
-	thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
-	cases_background(file.type);
-	// switch (file.type) {
-	//   case 'application/pdf':
-	//   thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
-	//   break;
-	//   case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-	//   thumbnail.css('background', 'url(../../assets/word-icon.png)');
-	//   break;
-	//   case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-	//   thumbnail.css('background', 'url(../../assets/xls-icon.png)');
-	//   break;
-	//   case 'text/csv':
-	//   thumbnail.css('background', 'url(../../assets/xls-icon.png)');
-	//   break;
-	// }
-	done();
-}
+//function back_files_news(file, done){
+//	thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+//	cases_background(file.type);
+//	done();
+//}
 
-function cases_background(type){
-	switch (type) {
-	  case 'application/pdf':
-	  thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
-	  break;
-	  case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-	  thumbnail.css('background', 'url(../../assets/word-icon.png)');
-	  break;
-	  case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-	  thumbnail.css('background', 'url(../../assets/xls-icon.png)');
-	  break;
-	  case 'text/csv':
-	  thumbnail.css('background', 'url(../../assets/xls-icon.png)');
-	  break;
-	}
-}
-
-function noImage(mockFile){
-	var thumbnail = $('.dz-image:last');
-	var type = mockFile.type;
-		$(thumbnail).each(function (i) {
-			if (type != 'image/png' && type != 'image/jpeg' && type != 'image/jpg' && type != 'image/gif') {
-				$(thumbnail).children().removeAttr('src alt');
-				back_files(type);
-			}
-			return false;
-		});
-}
+//function cases_background(type){
+//	switch (type) {
+//	  case 'application/pdf':
+//	  thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
+//	  break;
+//	  case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+//	  thumbnail.css('background', 'url(../../assets/word-icon.png)');
+//	  break;
+//	  case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+//	  thumbnail.css('background', 'url(../../assets/xls-icon.png)');
+//	  break;
+//	  case 'text/csv':
+//	  thumbnail.css('background', 'url(../../assets/xls-icon.png)');
+//	  break;
+//	}
+//}
+//
+//function noImage(mockFile){
+//	var thumbnail = $('.dz-image:last');
+//	var type = mockFile.type;
+//		$(thumbnail).each(function (i) {
+//			if (type != 'image/png' && type != 'image/jpeg' && type != 'image/jpg' && type != 'image/gif') {
+//				$(thumbnail).children().removeAttr('src alt');
+//				back_files(type);
+//			}
+//			return false;
+//		});
+//}
