@@ -5,6 +5,12 @@
         cases_background(type);
     };
 
+    function back_files_news(file, done) {
+        thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+        cases_background(file.type);
+        done();
+    }
+
     function cases_background(type){
         switch (type) {
             case 'application/pdf':

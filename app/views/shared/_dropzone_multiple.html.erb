@@ -25,13 +25,9 @@
   </div>
 <% end %>
 
-<script type="text/javascript">
-    function back_files_news(file, done) {
-        thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
-        cases_background(file.type);
-        done();
-    }
+<%= render 'shared/dropzone_shared' %>
 
+<script type="text/javascript">
     Dropzone.options.mydropzone = {
         maxFiles: null,
         init: function (file, done) {
@@ -63,4 +59,3 @@
     };
 </script>
 
-<%= render 'shared/dropzone_shared' %>
