@@ -1,56 +1,29 @@
 <%
-   # eliminar este comentario
-   instance = locals[:f].object
-   remove_hidden_name = "#{instance.class.name.underscore}[remove_#{locals[:field]}]"
+  # eliminar este comentario
+  instance = locals[:f].object
+  remove_hidden_name = "#{instance.class.name.underscore}[remove_#{locals[:field]}]"
+  label = locals[:label] || t("simple_form.labels.defaults.#{locals[:field]}")
 %>
 <%= locals[:f].input locals[:field], as: :attachment, direct: true, label: false, input_html: {style: 'display: none;', 'data-remove-hidden-name': remove_hidden_name} %>
 <div class="form-group">
-  <label class="col-xs-12 col-sm-3 control-label" for="">Files</label>
-  <div class="col-sm-8">
-    <div class="upload-dropzone dropzone dz-clickable" data-upload-field="images" id="dropzoneUser">
-      <div class="dz-default dz-message">
-        <div class="col-xs-12">
-          <h3><i class="fa fa-caret-right text-danger"></i> Drop files to upload.
-            <span class="small"> (Or Click)</span>
-          </h3>
-        </div>
-      </div>
-    </div>
-  </div>
+ <label class="col-xs-12 col-sm-3 control-label" for=""><%= label %></label>
+ <div class="col-sm-9">
+   <div class="upload-dropzone dropzone dz-clickable" data-upload-field="images" id="dropzoneUser">
+     <div class="dz-default dz-message">
+       <div class="col-xs-12">
+         <h3><i class="fa fa-caret-right text-danger"></i> <%= t('simple_form.screen.click_or_drop_files') %>.</h3>
+       </div>
+     </div>
+   </div>
+ </div>
 </div>
 <% if instance.send(locals[:field]) %>
-    <%= locals[:f].input "remove_#{locals[:field]}".to_sym, as: :boolean, wrapper: :clean, input_html: {style: 'display: none;'} %>
-    <script type="text/javascript">
-      var file_exist = true;
-    </script>
-<% else %>
-  <script type="text/javascript">
-    var file_exist = false;
-  </script>
+   <%= locals[:f].input "remove_#{locals[:field]}".to_sym, as: :boolean, wrapper: :clean, input_html: {style: 'display: none;'} %>
+   <script type="text/javascript">
+       dropzone_edit('<%= instance.send("#{locals[:field]}_filename".to_sym) %>',
+               <%= instance.send("#{locals[:field]}_size".to_sym) %>,
+               '<%= instance.send("#{locals[:field]}_content_type".to_sym) %>',
+               '<%= remove_hidden_name %>',
+               '<%= attachment_url(instance, locals[:field], :fill, 100, 100) %>');
+   </script>
 <% end %>
-  <script type="text/javascript">
-    Dropzone.options.dropzoneUser = {
-         maxFiles: 1,
-        init: function (file, done) {
-            thisDropzone = this;
-            var mockFile = {};
-            mockFile = {
-                name: file_exist ? '<%= instance.send("#{locals[:field]}_filename".to_sym) %>' : '',
-                size:  file_exist ? '<%= instance.send("#{locals[:field]}_size".to_sym) %>' : '',
-                type: file_exist ? '<%= instance.send("#{locals[:field]}_content_type".to_sym) %>' : '',
-                hidden_name: file_exist ? '<%= remove_hidden_name %>' : ''
-            };
-            if (file_exist) {
-              thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-            }
-            thisDropzone.options.thumbnail.call(thisDropzone, mockFile, '<%= attachment_url(instance, locals[:field], :fill, 100, 100) %>');
-            noImage(mockFile);
-            $('#dropzoneUser').removeClass('dz-started');
-            $('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
-            $('.dz-progress').fadeOut();
-        },
-        accept: function (file, done) {
-            back_files_news(file, done);
-        }
-    }
-  </script>
