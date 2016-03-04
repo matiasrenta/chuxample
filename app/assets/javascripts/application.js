@@ -93,7 +93,6 @@
 //= require js/plugin/google-charts/jsapi.js
 //= require things
 //= require global
-//= require global_coffee
 // require refile
 // Refile custom para que funcione con dropzone
 //= require refile-dropzone

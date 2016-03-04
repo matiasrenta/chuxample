@@ -245,28 +245,47 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 });
 
 // Dropzone
+var thumbnail;
 function back_files(type){
-	var thumbnail = $('.dz-image:last');
-	switch (type) {
-		case 'application/pdf':
-		$(thumbnail).css('background', 'url(../../assets/pdf-icon.png)');
-		break;
-		case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-		$(thumbnail).css('background', 'url(../../assets/word-icon.png)');
-		break;
-		case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
-		$(thumbnail).css('background', 'url(../../assets/xls-icon.png)');
-		break;
-		case 'text/csv':
-		$(thumbnail).css('background', 'url(../../assets/xls-icon.png)');
-		break;
-	}
+	thumbnail = $('.dz-image:last');
+	cases_background(type);
+	// switch (type) {
+	// 	case 'application/pdf':
+	// 	$(thumbnail).css('background', 'url(../../assets/pdf-icon.png)');
+	// 	break;
+	// 	case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+	// 	$(thumbnail).css('background', 'url(../../assets/word-icon.png)');
+	// 	break;
+	// 	case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+	// 	$(thumbnail).css('background', 'url(../../assets/xls-icon.png)');
+	// 	break;
+	// 	case 'text/csv':
+	// 	thumbnail.css('background', 'url(../../assets/xls-icon.png)');
+	// }
 };
 
 function back_files_news(file, done){
-	var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
-    //back_files(file.type)
-	switch (file.type) {
+	thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+	cases_background(file.type);
+	// switch (file.type) {
+	//   case 'application/pdf':
+	//   thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
+	//   break;
+	//   case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+	//   thumbnail.css('background', 'url(../../assets/word-icon.png)');
+	//   break;
+	//   case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+	//   thumbnail.css('background', 'url(../../assets/xls-icon.png)');
+	//   break;
+	//   case 'text/csv':
+	//   thumbnail.css('background', 'url(../../assets/xls-icon.png)');
+	//   break;
+	// }
+	done();
+}
+
+function cases_background(type){
+	switch (type) {
 	  case 'application/pdf':
 	  thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
 	  break;
@@ -280,49 +299,16 @@ function back_files_news(file, done){
 	  thumbnail.css('background', 'url(../../assets/xls-icon.png)');
 	  break;
 	}
-	done();
 }
 
 function noImage(mockFile){
 	var thumbnail = $('.dz-image:last');
-	$(thumbnail).each(function (i) {
-		var type = mockFile.type;
-		if (type != 'image/png' && type != 'image/jpeg' && type != 'image/jpg' && type != 'image/gif') {
-			$(thumbnail).children().removeAttr('src alt');
-			back_files(type);
-		}
-		return false;
-	});
+	var type = mockFile.type;
+		$(thumbnail).each(function (i) {
+			if (type != 'image/png' && type != 'image/jpeg' && type != 'image/jpg' && type != 'image/gif') {
+				$(thumbnail).children().removeAttr('src alt');
+				back_files(type);
+			}
+			return false;
+		});
 }
-
-//Dropzone User Avatar
-// Dropzone.options.dropzoneUser = {
-// 		 maxFiles: 1
-// };
-// function dropzone_edit(file_filename, file_size, file_content_type, hidden_name, attachment_url) {
-// 	//$('input[name="user[avatar]"]').removeAttr('value');
-//      Dropzone.options.dropzoneUser = {
-// 			 		maxFiles: 1,
-//          init: function (file, done) {
-//              thisDropzone = this;
-//              var mockFile = {};
-//              var indexVar = 0;
-//              mockFile = {
-//                  name: file_filename,
-//                  size: file_size,
-//                  type: file_content_type,
-//                  hidden_name: hidden_name,
-//                  index: indexVar
-//              };
-//              thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-//              thisDropzone.options.thumbnail.call(thisDropzone, mockFile, attachment_url);
-//              noImage(mockFile);
-//              $('#dropzoneUser').removeClass('dz-started');
-//              $('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
-//              $('.dz-progress').fadeOut();
-//          },
-//          accept: function (file, done) {
-//              back_files_news(file, done);
-//          }
-//      }
-//  };

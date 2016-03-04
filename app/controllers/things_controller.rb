@@ -59,8 +59,8 @@ class ThingsController < ApplicationController
 
   def notify_other_user
     if current_user.email == 'matias@opi.la'
-      reciever = User.find_by_email('algo@mail.com')
-    else current_user.email == 'algo@mail.com'
+      reciever = User.find_by_email('matiasrenta@mail.com')
+    else current_user.email == 'matiasrenta@mail.com'
       reciever = User.find_by_email('matias@opi.la')
     end
     current_user.send_message(reciever, "#{current_user.name} modificó la cosa #{view_context.link_to(@thing.name, thing_path(@thing), class: 'display-normal')}", '<span></span>')

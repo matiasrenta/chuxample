@@ -242,7 +242,6 @@
         return this.element.classList.remove("dz-started");
       },
       addedfile: function(file, done) {
-        console.log(this);
         var node, removeFileEvent, removeLink, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
         if (this.element === this.previewsContainer) {
           this.element.classList.add("dz-started");
@@ -294,6 +293,7 @@
         }
       },
       removedfile: function(file) {
+        console.log(file);
         var hidden_name;
         if ( this.options.maxFiles === null ) {
 
@@ -301,7 +301,7 @@
           console.log( 'hidden_name--- ',hidden_name );
           console.log( 'file.index-- ', file.index );
 
-          var new_hidden = hidden_name.replace(/\[.]\[.+?\]/g, "["+file.index+"][_destroy]")
+          var new_hidden = hidden_name.replace(/[[^\]]*\].*?\[([^\]]*)\]/g, "]["+file.index+"]")
           console.log('NEW hidden_name--- ',new_hidden);
 
           console.log( $("input[name='"+ new_hidden +"']").val() );
@@ -309,11 +309,16 @@
           $("input[name='"+ new_hidden +"']").val('1');
           console.log( $("input[name='"+ new_hidden +"']").val() );
         } else {
+          console.log(this);
+          console.log(file.status);
           hidden_name = $(file._removeLink).attr('data-hidden');
-          console.log( $("input[name='"+ hidden_name +"']").val() );
           //Cambia el value a 1 del elemento a eliminar
           $("input[name='"+ hidden_name +"']").val('1');
-          console.log( $("input[name='"+ hidden_name +"']").val() );
+          var reference = $("input.attachment").attr("data-reference");
+          var metadataField = document.querySelector("input[type=hidden][data-reference='" + reference + "']");
+          if (file.status != "error") {
+            $(metadataField).val('{}');
+          }
         }
 
         var nameKey = file.name;
@@ -369,6 +374,7 @@
           }
           _ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
           _results = [];
+          ////$('.dz-remove').remove();
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             node = _ref[_i];
             _results.push(node.textContent = message);
@@ -589,7 +595,6 @@
               _this.hiddenFileInput.setAttribute("data-reference", reference);
               _this.hiddenFileInput.setAttribute("data-as", "file");
               _this.hiddenFileInput.setAttribute("data-url", url);
-              //alert('maxfiles--: '+_this.options.maxFiles);
               if ((_this.options.maxFiles == null) || _this.options.maxFiles > 1) {
                 _this.hiddenFileInput.setAttribute("multiple", "multiple");
               }
@@ -1017,6 +1022,7 @@
       return this.accept(file, (function(_this) {
         return function(error) {
           if (error) {
+            back_files(file.type);
             file.accepted = false;
             _this._errorProcessing([file], error);
           } else {

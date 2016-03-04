@@ -98,10 +98,9 @@ var ItemArray = [];
             if (metadataField.value === "{}" || !metadataField.value ) {
               $('.fileUploadedCheck').parent().parent().fadeOut('slow');
               metadataField.value = JSON.stringify(data);
-              var metadata = document.querySelector("input[type=hidden][data-reference='" + reference + "']");
-              console.log('file----- ',metadata);
-              $("input[name='user[remove_avatar]']").val('0');
-              // console.log($("input[name='user[remove_avatar]']").val());
+              var metadata = document.querySelector("input[type=file][data-reference='" + reference + "']");
+              var remove_name = $(metadata).attr("data-remove-hidden-name");
+              $("input[name='"+remove_name+"']").val('0');
             }
           }
           input.removeAttribute("name");
@@ -216,7 +215,9 @@ function functionChangeFict(this2, e){
           if (metadataField.value === "{}" || !metadataField.value ) {
             $('.fileUploadedCheck').parent().parent().fadeOut('slow');
             metadataField.value = JSON.stringify(data);
-          } else {
+            var metadata = document.querySelector("input[type=file][data-reference='" + reference + "']");
+            var remove_name = $(metadata).attr("data-remove-hidden-name");
+            $("input[name='"+remove_name+"']").val('0');
           }
         }
         input.removeAttribute("name");
