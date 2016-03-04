@@ -1,4 +1,5 @@
 <%
+   # eliminar este comentario
    instance = locals[:f].object
    remove_hidden_name = "#{instance.class.name.underscore}[remove_#{locals[:field]}]"
    label = locals[:label] || t("simple_form.labels.defaults.#{locals[:field]}")
