@@ -104,3 +104,6 @@
       <!-- end widget -->
    </article>
 </div>
+
+
+<%= render partial: "comments/template", locals: {commentable: @thing, new_comment: @new_comment} %>

@@ -12,6 +12,7 @@ class ThingsController < ApplicationController
 
   # GET /things/1
   def show
+    @new_comment = Comment.build_from(@thing, current_user.id, '')
   end
 
   # GET /things/new

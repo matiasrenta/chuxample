@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :comments
   resources :conversations, only: [:index, :show, :destroy] do
     post :mark_as_read, on: :member
     get :mark_all_as_read, on: :collection
