@@ -1,4 +1,12 @@
-<%= locals[:f].input locals[:model_attaches_files], as: :attachment, label: 'Images', multiple: true, direct: locals[:direct] || true, label: false, input_html: {style: 'display: none;'} %>
+<%
+   # eliminar este comentario
+   f = locals[:f]
+   field = locals[:field]
+   association = field.to_s.split('_files')[0].to_sym
+   label = locals[:label] || t("simple_form.labels.defaults.#{association}")
+%>
+
+<%= f.input field, as: :attachment, multiple: true, direct: locals[:direct] || true, label: false, input_html: {style: 'display: none;'} %>
 <div class="form-group">
   <label class="col-xs-12 col-sm-3 control-label" for="">Files</label>
   <div class="col-sm-8">
