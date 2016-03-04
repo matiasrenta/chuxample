@@ -9,7 +9,7 @@
 <%= f.input field, as: :attachment, multiple: true, direct: locals[:direct] || true, label: false, input_html: {style: 'display: none;'} %>
 <div class="form-group">
  <label class="col-xs-12 col-sm-3 control-label" for=""><%= label %></label>
- <div class="col-sm-9">
+ <div class="col-sm-8">
    <div class="upload-dropzone dropzone dz-clickable" data-upload-field="images" id="mydropzone">
      <div class="dz-default dz-message">
        <div class="col-xs-12">
@@ -20,7 +20,9 @@
  </div>
 </div>
 <%= f.fields_for association do |upload| %>
+  <div class="hidden">
    <%= upload.input :_destroy, as: :boolean, wrapper: :clean, label: false, input_html: {style: 'display: none;'} %>
+  </div>
 <% end %>
 <script type="text/javascript">
    Dropzone.options.mydropzone = {
