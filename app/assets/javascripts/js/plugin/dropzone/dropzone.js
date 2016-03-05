@@ -293,24 +293,13 @@
         }
       },
       removedfile: function(file) {
-        console.log(file);
         var hidden_name;
         if ( this.options.maxFiles === null ) {
-
           hidden_name = $(file._removeLink).attr('data-hidden');
-          console.log( 'hidden_name--- ',hidden_name );
-          console.log( 'file.index-- ', file.index );
-
           var new_hidden = hidden_name.replace(/[[^\]]*\].*?\[([^\]]*)\]/g, "]["+file.index+"]")
-          console.log('NEW hidden_name--- ',new_hidden);
-
-          console.log( $("input[name='"+ new_hidden +"']").val() );
           //Cambia el value a 1 del elemento a eliminar
           $("input[name='"+ new_hidden +"']").val('1');
-          console.log( $("input[name='"+ new_hidden +"']").val() );
         } else {
-          console.log(this);
-          console.log(file.status);
           hidden_name = $(file._removeLink).attr('data-hidden');
           //Cambia el value a 1 del elemento a eliminar
           $("input[name='"+ hidden_name +"']").val('1');
@@ -1226,6 +1215,8 @@
     };
 
     Dropzone.prototype.cancelUpload = function(file) {
+      cancel_flag = true;
+      xhr = new XMLHttpRequest();
       var groupedFile, groupedFiles, _i, _j, _len, _len1, _ref;
       if (file.status === Dropzone.UPLOADING) {
         groupedFiles = this._getFilesWithXhr(file.xhr);
@@ -1233,7 +1224,7 @@
           groupedFile = groupedFiles[_i];
           groupedFile.status = Dropzone.CANCELED;
         }
-        file.xhr.abort();
+        //file.xhr.abort();
         for (_j = 0, _len1 = groupedFiles.length; _j < _len1; _j++) {
           groupedFile = groupedFiles[_j];
           this.emit("canceled", groupedFile);
