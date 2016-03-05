@@ -3,13 +3,15 @@
   field = locals[:field]
   association = field.to_s.split('_files')[0].to_sym
   label = locals[:label] || t("simple_form.labels.defaults.#{association}")
+  instance = f.object
+  accepted_files = instance.send(association).send("file_attachment_definition").valid_content_types.join(', ') if instance.send(association).send("file_attachment_definition").valid_content_types
 %>
 
 <%= f.input field, as: :attachment, multiple: true, direct: locals[:direct] || true, label: false, input_html: {style: 'display: none;'} %>
 <div class="form-group">
  <label class="col-xs-12 col-sm-3 control-label" for=""><%= label %></label>
  <div class="col-sm-8">
-   <div class="upload-dropzone dropzone dz-clickable" data-upload-field="images" id="mydropzone">
+   <div class="upload-dropzone dropzone dz-clickable" data-upload-field="images" id="dropzoneMultiple">
      <div class="dz-default dz-message">
        <div class="col-xs-12">
          <h3><i class="fa fa-caret-right text-danger"></i> <%= t('simple_form.screen.click_or_drop_files') %>.</h3>
@@ -28,8 +30,21 @@
 <%= render 'shared/dropzone_shared' %>
 
 <script type="text/javascript">
-    Dropzone.options.mydropzone = {
+    Dropzone.options.dropzoneMultiple = {
         maxFiles: null,
+        maxFilesize: <%= locals[:max_filesize] %>,
+        acceptedFiles: '<%= accepted_files %>',
+        dictDefaultMessage: '<%= t('simple_form.screen.click_or_drop_files') %>',
+        dictFallbackMessage: '<%= t('simple_form.screen.not_support_drag_drop') %>',
+        dictFallbackText: '<%= t('simple_form.screen.use_the_form_below') %>',
+        dictFileTooBig: '<%= t('simple_form.screen.file_is_too_big') %> ({{filesize}}Mb). <%= t('simple_form.screen.max_filesize') %>: {{maxFilesize}}Mb.',
+        dictInvalidFileType: '<%= t('simple_form.screen.cant_upload_this_type') %>',
+        dictResponseError: '<%= t('simple_form.screen.server_responded_with_code') %>: {{statusCode}}',
+        dictCancelUpload: '<%= t('simple_form.screen.cancel_upload') %>',
+        dictCancelUploadConfirmation: '<%= t('simple_form.screen.are_you_sure_cancel_upload') %>',
+        dictRemoveFile: '<%= t('simple_form.screen.remove_file') %>',
+        dictRemoveFileConfirmation: null,
+        dictMaxFilesExceeded: '<%= t('simple_form.screen.cant_upload_any_more_files') %>',
         init: function (file, done) {
             thisDropzone = this;
             var mockFile = {};
@@ -49,7 +64,7 @@
             noImage(mockFile);
             indexVar++;
             <% end %>
-            $('#mydropzone').removeClass('dz-started');
+            $('#dropzoneMultiple').removeClass('dz-started');
             $('.dz-image').children().before('<i class="fileUploadedCheck fa fa-2x fa-check-circle"></i>');
             $('.dz-progress').fadeOut();
         },

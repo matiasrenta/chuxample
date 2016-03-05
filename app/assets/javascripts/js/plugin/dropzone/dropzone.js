@@ -1455,8 +1455,8 @@
   Dropzone.version = "4.0.1";
 
   Dropzone.options = {};
-  Dropzone.options.mydropzone = false;
-  Dropzone.options.dropzoneUser = false;
+  Dropzone.options.dropzoneMultiple = false;
+  Dropzone.options.dropzoneSimple = false;
   // Dropzone.options.mydropzone = {
   //   accept: function(file, done) {
   //     var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
