@@ -96,7 +96,7 @@ var ItemArray = [];
             if(metadataField) metadataField.value = JSON.stringify(ItemArray);
           } else {
             data = data[0];
-            if (cancel_flag == false || metadataField.value === "{}" || !metadataField.value ) {
+            if (cancel_flag == false && metadataField.value === "{}" || !metadataField.value ) {
               $('.fileUploadedCheck').parent().parent().fadeOut('slow');
               metadataField.value = JSON.stringify(data);
               var metadata = document.querySelector("input[type=file][data-reference='" + reference + "']");
@@ -219,8 +219,11 @@ function functionChangeFict(this2, e){
             var metadata = document.querySelector("input[type=file][data-reference='" + reference + "']");
             var remove_name = $(metadata).attr("data-remove-hidden-name");
             $("input[name='"+remove_name+"']").val('0');
-            //return file._removeLink.textContent = Dropzone.options.dropzoneSimple.dictRemoveFile;
-            return file._removeLink.textContent = this.Dropzone.options.dictRemoveFile;
+            if (input.multiple) {
+              $(file._removeLink).html(this.Dropzone.options.dropzoneMultiple.dictRemoveFile);
+            } else {
+              $(file._removeLink).html(this.Dropzone.options.dropzoneSimple.dictRemoveFile);
+            }
           }
         }
         input.removeAttribute("name");
@@ -233,8 +236,11 @@ function processing(file) {
   if (file.previewElement) {
     file.previewElement.classList.add("dz-processing");
     if (file._removeLink) {
-      //return file._removeLink.textContent = Dropzone.prototype.defaultOptions.dictCancelUpload;
-      return file._removeLink.textContent = this.Dropzone.options.dictCancelUpload;
+      if (input.multiple) {
+        $(file._removeLink).html(this.Dropzone.options.dropzoneMultiple.dictCancelUpload);
+      } else {
+        $(file._removeLink).html(this.Dropzone.options.dropzoneSimple.dictCancelUpload);
+      }
     }
   }
 }
@@ -266,8 +272,11 @@ function progress_match(file, progressEvent){
 		if (cancel_flag == false && percentage === 100) {
 			$("button[type=submit]").prop('disabled', false);
 			$(".dz-progress").fadeOut("slow");
-      //$(file._removeLink).html(Dropzone.prototype.defaultOptions.dictRemoveFile);
-      $(file._removeLink).html(this.Dropzone.options.dictRemoveFile);
+      if (input.multiple) {
+        $(file._removeLink).html(this.Dropzone.options.dropzoneMultiple.dictRemoveFile);
+      } else {
+        $(file._removeLink).html(this.Dropzone.options.dropzoneSimple.dictRemoveFile);
+      }
       file.status = Dropzone.ADDED;
 			return file.previewElement.classList.add("dz-success");
 		};
