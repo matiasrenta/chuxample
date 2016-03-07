@@ -242,6 +242,7 @@
         return this.element.classList.remove("dz-started");
       },
       addedfile: function(file, done) {
+        cancel_flag = false;
         var node, removeFileEvent, removeLink, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
         if (this.element === this.previewsContainer) {
           this.element.classList.add("dz-started");
@@ -331,7 +332,11 @@
               _ref.parentNode.removeChild(file.previewElement);
             } else {
               $(file.previewElement).css('opacity','0.4');
-              $(file.previewElement).find('.dz-remove').text("Se eliminará al actualizar").removeAttr('href').addClass('text-remove');
+              if (file.status == "canceled") {
+                $(file.previewElement).find('.dz-remove').text("Cancelado").removeAttr('href').addClass('text-remove');
+              } else {
+                $(file.previewElement).find('.dz-remove').text("Se eliminará al actualizar").removeAttr('href').addClass('text-remove');
+              }
             }
           }
         }
@@ -372,14 +377,14 @@
         }
       },
       errormultiple: noop,
-      processing: function(file) {
-        if (file.previewElement) {
-          file.previewElement.classList.add("dz-processing");
-          if (file._removeLink) {
-            return file._removeLink.textContent = this.options.dictCancelUpload;
-          }
-        }
-      },
+      // processing: function(file) {
+      //   if (file.previewElement) {
+      //     file.previewElement.classList.add("dz-processing");
+      //     if (file._removeLink) {
+      //       return file._removeLink.textContent = this.options.dictCancelUpload;
+      //     }
+      //   }
+      // },
       processingmultiple: noop,
       uploadprogress: function(file, progress, bytesSent) {
         var progressPass = progress;
@@ -403,7 +408,7 @@
       sendingmultiple: noop,
       success: function(file) {
         if (file.previewElement) {
-          return file.previewElement.classList.add("dz-success");
+          //return file.previewElement.classList.add("dz-success");
         }
       },
       successmultiple: noop,
@@ -1185,17 +1190,18 @@
     };
 
     Dropzone.prototype.processFiles = function(files) {
-      var file, _i, _len;
-      for (_i = 0, _len = files.length; _i < _len; _i++) {
-        file = files[_i];
-        file.processing = true;
-        file.status = Dropzone.UPLOADING;
-        this.emit("processing", file);
-      }
-      if (this.options.uploadMultiple) {
-        this.emit("processingmultiple", files);
-      }
-      return this.uploadFiles(files);
+      // Desactivo este Return para que Dropzone no haga Post y solo se haga el de Refile
+      // var file, _i, _len;
+      // for (_i = 0, _len = files.length; _i < _len; _i++) {
+      //   file = files[_i];
+      //   file.processing = true;
+      //   file.status = Dropzone.UPLOADING;
+      //   this.emit("processing", file);
+      // }
+      // if (this.options.uploadMultiple) {
+      //   this.emit("processingmultiple", files);
+      // }
+      // return this.uploadFiles(files);
     };
 
     Dropzone.prototype._getFilesWithXhr = function(xhr) {
@@ -1224,11 +1230,13 @@
           groupedFile = groupedFiles[_i];
           groupedFile.status = Dropzone.CANCELED;
         }
-        //file.xhr.abort();
-        for (_j = 0, _len1 = groupedFiles.length; _j < _len1; _j++) {
-          groupedFile = groupedFiles[_j];
-          this.emit("canceled", groupedFile);
-        }
+        xhr.abort();
+        // for (_j = 0, _len1 = groupedFiles.length; _j < _len1; _j++) {
+        //   groupedFile = groupedFiles[_j];
+        //   console.log(groupedFile);
+        //   this.emit("canceled", groupedFile);
+        // }
+        this.emit("canceled", file);
         if (this.options.uploadMultiple) {
           this.emit("canceledmultiple", groupedFiles);
         }

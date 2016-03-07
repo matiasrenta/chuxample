@@ -219,7 +219,8 @@ function functionChangeFict(this2, e){
             var metadata = document.querySelector("input[type=file][data-reference='" + reference + "']");
             var remove_name = $(metadata).attr("data-remove-hidden-name");
             $("input[name='"+remove_name+"']").val('0');
-            return file._removeLink.textContent = Dropzone.options.dropzoneSimple.dictRemoveFile;
+            //return file._removeLink.textContent = Dropzone.options.dropzoneSimple.dictRemoveFile;
+            return file._removeLink.textContent = this.Dropzone.options.dictRemoveFile;
           }
         }
         input.removeAttribute("name");
@@ -232,7 +233,8 @@ function processing(file) {
   if (file.previewElement) {
     file.previewElement.classList.add("dz-processing");
     if (file._removeLink) {
-      return file._removeLink.textContent = Dropzone.options.dropzoneSimple.dictCancelUpload;
+      //return file._removeLink.textContent = Dropzone.prototype.defaultOptions.dictCancelUpload;
+      return file._removeLink.textContent = this.Dropzone.options.dictCancelUpload;
     }
   }
 }
@@ -261,11 +263,17 @@ function progress_match(file, progressEvent){
       }, 500);
 	}
 	function successProgress(file){
-		if (cancel_flag == false || percentage === 100) {
+		if (cancel_flag == false && percentage === 100) {
 			$("button[type=submit]").prop('disabled', false);
 			$(".dz-progress").fadeOut("slow");
-      $(file._removeLink).html(Dropzone.options.dropzoneSimple.dictRemoveFile);
+      //$(file._removeLink).html(Dropzone.prototype.defaultOptions.dictRemoveFile);
+      $(file._removeLink).html(this.Dropzone.options.dictRemoveFile);
+      file.status = Dropzone.ADDED;
 			return file.previewElement.classList.add("dz-success");
+		};
+    if (cancel_flag == true) {
+      $("button[type=submit]").prop('disabled', false);
+      return file.previewElement.classList.remove("dz-success");
 		}
 	}
 }
