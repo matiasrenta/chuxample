@@ -14,7 +14,7 @@
 		<div class="ajax-dropdown">
 
 			<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
-			<div class="btn-group btn-group-justified" data-toggle="buttons">
+			<!-- <div class="btn-group btn-group-justified" data-toggle="buttons">
 				<label class="btn btn-default">
 					<input type="radio" name="activity" id="ajax/notify/mail.html">
 					Msgs (14) </label>
@@ -24,9 +24,11 @@
 				<label class="btn btn-default">
 					<input type="radio" name="activity" id="ajax/notify/tasks.html">
 					Tasks (4) </label>
+			</div> -->
+      <div class="font-xs">
+				<%= link_to 'Mark all as read', mark_all_as_read_conversations_path %>
+				<input class="hidden" type="radio" name="activity" id="<%= conversations_path %>">
 			</div>
-            <div><%= link_to 'Mark all as read', mark_all_as_read_conversations_path %></div>
-
 			<!-- notification content -->
 			<div class="ajax-notifications custom-scroll notification_panel">
 
