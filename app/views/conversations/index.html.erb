@@ -1,0 +1,24 @@
+<div id="pindonga">
+  <ul id="infinite-list" class="notification-body">
+    <%= render :partial => 'conversation', :object => @conversations %>
+  </ul>
+
+  <%= will_paginate %>
+</div>
+
+<script>
+    (function() {
+        jQuery(function() {
+            $('.notification_panel').scroll(function() {
+                var url;
+                url = $('.notification_panel a[rel=next]').attr('href');
+                if (url && $('.notification_panel').scrollTop() > $('#pindonga').height() - $('.notification_panel').height() - 50) {
+                    $('.notification_panel .pagination').text("Fetching more products...");
+                    return $.getScript(url);
+                }
+            });
+            return $('.notification_panel').scroll();
+        });
+
+    }).call(this);
+</script>

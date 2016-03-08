@@ -273,3 +273,79 @@ table tr td.table-actions{
     -moz-box-sizing: content-box;
     box-sizing: content-box;
 }
+
+.dropzone .dz-preview .dz-error-message {
+  top: 130px;
+}
+
+.dropzone .dz-preview .dz-error-mark svg g {
+  border: 1px solid #FFFFFF;
+  fill: #be2626;
+}
+
+.dropzone .dz-preview .dz-error-mark {
+    top: 45%;
+}
+
+@media (max-width: 979px) {
+  .dropzone .dz-default.dz-message {
+    width: auto;
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+// Dropzone
+.dropzone { min-height: 170px; }
+
+.dropzone .dz-preview { margin: 0 22px 10px 0; }
+
+.dropzone .dz-preview .dz-image {
+    border-radius: 6px;
+    width: 100px;
+    height: 100px;
+}
+
+.dropzone .dz-preview.dz-file-preview .dz-image { border-radius: 6px; }
+
+.dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {
+    cursor: pointer;
+    margin-top: 0.5%;
+}
+
+.fileUploadedCheck {
+  position: absolute;
+  z-index: 100;
+  background: #45DA4D;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+  color: white;
+  padding: 0 2px;
+  margin: 3px;
+}
+
+.dropzone .dz-preview:hover .dz-image {
+  -webkit-transform: scale(1.05, 1.05);
+  -moz-transform: scale(1.05, 1.05);
+  -ms-transform: scale(1.05, 1.05);
+  -o-transform: scale(1.05, 1.05);
+  transform: scale(1.05, 1.05);
+  // -webkit-filter: blur(1px);
+  // filter: blur(1px);
+  border-radius: 6px;
+}
+
+.dropzone .dz-preview .dz-image {
+  width: 100px;
+  height: 100px;
+}
+
+.text-remove {
+  max-width: 100px;
+  color: red;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.2;
+  cursor: default;
+}
