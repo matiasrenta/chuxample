@@ -1,4 +1,5 @@
 var idNew, input;
+var cancel_flag = false;
 var ItemArray = [];
 (function() {
   "use strict";
@@ -95,9 +96,12 @@ var ItemArray = [];
             if(metadataField) metadataField.value = JSON.stringify(ItemArray);
           } else {
             data = data[0];
-            if (metadataField.value === "{}" || !metadataField.value ) {
+            if (cancel_flag == false && metadataField.value === "{}" || !metadataField.value ) {
               $('.fileUploadedCheck').parent().parent().fadeOut('slow');
               metadataField.value = JSON.stringify(data);
+              var metadata = document.querySelector("input[type=file][data-reference='" + reference + "']");
+              var remove_name = $(metadata).attr("data-remove-hidden-name");
+              $("input[name='"+remove_name+"']").val('0');
             }
           }
           input.removeAttribute("name");
@@ -209,10 +213,17 @@ function functionChangeFict(this2, e){
         } else {
           data = data[0];
           //$(metadataField).removeAttr('value');
-          if (metadataField.value === "{}" || !metadataField.value ) {
+          if (cancel_flag == false ||metadataField.value === "{}" || !metadataField.value ) {
             $('.fileUploadedCheck').parent().parent().fadeOut('slow');
             metadataField.value = JSON.stringify(data);
-          } else {
+            var metadata = document.querySelector("input[type=file][data-reference='" + reference + "']");
+            var remove_name = $(metadata).attr("data-remove-hidden-name");
+            $("input[name='"+remove_name+"']").val('0');
+            if (input.multiple) {
+              $(file._removeLink).html(this.Dropzone.options.dropzoneMultiple.dictRemoveFile);
+            } else {
+              $(file._removeLink).html(this.Dropzone.options.dropzoneSimple.dictRemoveFile);
+            }
           }
         }
         input.removeAttribute("name");
@@ -221,8 +232,23 @@ function functionChangeFict(this2, e){
   }
 }
 
+function processing(file) {
+  if (file.previewElement) {
+    file.previewElement.classList.add("dz-processing");
+    if (file._removeLink) {
+      if (input.multiple) {
+        $(file._removeLink).html(this.Dropzone.options.dropzoneMultiple.dictCancelUpload);
+      } else {
+        $(file._removeLink).html(this.Dropzone.options.dropzoneSimple.dictCancelUpload);
+      }
+    }
+  }
+}
 ////////////// Cuenta el progreso de subida del archivo para mostrarlo en la barra de dropzone //////////////////
 function progress_match(file, progressEvent){
+  file.processing = true;
+  file.status = Dropzone.UPLOADING;
+  processing(file);
 	$("button[type=submit]").attr("disabled", true);
 	var percentage = Math.round( (progressEvent.loaded / progressEvent.total) * 100);
 	var progress = percentage;
@@ -238,13 +264,25 @@ function progress_match(file, progressEvent){
 				_results.push(node.style.width = "" + progress + "%");
 			}
 		}
-		return successProgress();
+      setTimeout(function(){
+        return successProgress(file);
+      }, 500);
 	}
-	function successProgress(){
-		if (percentage === 100) {
+	function successProgress(file){
+		if (cancel_flag == false && percentage === 100) {
 			$("button[type=submit]").prop('disabled', false);
 			$(".dz-progress").fadeOut("slow");
+      if (input.multiple) {
+        $(file._removeLink).html(this.Dropzone.options.dropzoneMultiple.dictRemoveFile);
+      } else {
+        $(file._removeLink).html(this.Dropzone.options.dropzoneSimple.dictRemoveFile);
+      }
+      file.status = Dropzone.ADDED;
 			return file.previewElement.classList.add("dz-success");
+		};
+    if (cancel_flag == true) {
+      $("button[type=submit]").prop('disabled', false);
+      return file.previewElement.classList.remove("dz-success");
 		}
 	}
 }
