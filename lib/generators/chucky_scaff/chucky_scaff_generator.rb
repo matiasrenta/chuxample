@@ -11,9 +11,11 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option 'no-relationize'
   class_option :authorization # ejemplo: --authorization=superuser:manage%director:read-edit-destroy
   class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
+  class_option :massive_import # para que copie los archivos (luego hay que customizarlos para que funcione): --massive_import=true
   class_option :migrate # para que se ejecute rake db:migrate: --migrate=true
   class_option :validations # --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
   class_option :dependents # --dependents=nombre_campo:destroy-nombre_campo:restrict_with_error
+
 
   # TODO: implementar los siguientes class_options
   class_option :formats # --formats=nombre_campo:all#money%nombre_campo:index#datelong@show#datesuperlong
@@ -119,6 +121,15 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
               :model_label => proc {|controller, model| model.try(:name)}
           }\n\n\n"
       end
+    end
+  end
+
+
+  def copy_import_templates
+    if options[:massive_import] == 'true'
+      copy_file "download_import_file.xlsx.axlsx", "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx"
+      copy_file "new_import.html.erb", "app/views/#{name.pluralize}/new_import.html.erb"
+      copy_file "model_import.rb", "app/models/importers/#{name}_import.rb"
     end
   end
 
