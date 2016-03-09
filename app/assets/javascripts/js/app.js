@@ -417,7 +417,7 @@ var calc_navbar_height = function() {
 
 				if ($this.find('.badge').hasClass('bg-color-red')) {
 					$this.find('.badge').removeClassPrefix('bg-color-');
-					$this.find('.badge').text("0");
+					//$this.find('.badge').text("0");
 				}
 
 				if (!$this.next('.ajax-dropdown').is(':visible')) {
