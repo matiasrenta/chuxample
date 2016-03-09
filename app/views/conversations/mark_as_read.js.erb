@@ -1,1 +1,1 @@
-$("#conversation_link_<%= @conversation.id.to_s %>").css('display', 'none');
+$("#conversation_link_<%= @conversation.id.to_s %>").animate({ opacity: 0 }).parent().parent().removeClass('unread');

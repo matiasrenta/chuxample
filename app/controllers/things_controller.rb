@@ -60,11 +60,12 @@ class ThingsController < ApplicationController
 
   def notify_other_user
     if current_user.email == 'matias@opi.la'
-      reciever = User.find_by_email('matiasrenta@mail.com')
-    else current_user.email == 'matiasrenta@mail.com'
+      reciever = User.find_by_email('matiasrenta@gmail.com')
+    else current_user.email == 'matiasrenta@gmail.com'
       reciever = User.find_by_email('matias@opi.la')
     end
-    current_user.send_message(reciever, "#{current_user.name} modificó la cosa #{view_context.link_to(@thing.name, thing_path(@thing), class: 'display-normal')}", '<span></span>')
+    # current_user.send_message(reciever, "#{current_user.name} modificó la cosa #{view_context.link_to(@thing.name, thing_path(@thing), class: 'display-normal')}", '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"><i class="fa fa-cube fa-fw fa-1x"></i></em>')
+    current_user.send_message(reciever, "Lasdasjhba ajhjhsahashd jasdha prueba para texto muy largo en notificaciones, probando espacio de body en notificaciones, prueba más notificaciones", '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"><i class="fa fa-cube fa-fw fa-1x"></i></em>')
   end
 
 end
