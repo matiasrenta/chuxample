@@ -285,7 +285,7 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 //			return false;
 //		});
 //}
-
+console.log( $('.bounceIn') );
 $('#activity').click(function(e) {
 	var $this = $(this);
 	//
@@ -294,23 +294,16 @@ $('#activity').click(function(e) {
 	// 	$this.find('.badge').text("0");
 	// }
 	//
-	// if (!$this.next('.ajax-dropdown').is(':visible')) {
-	// 	$this.next('.ajax-dropdown').fadeIn(150);
-	// 	$this.addClass('active');
-	// } else {
-	// 	$this.next('.ajax-dropdown').fadeOut(150);
-	// 	$this.removeClass('active');
-	// }
-	//
-	var theUrlVal = $('input[name="activity"]').attr('id');
-	container = $('.ajax-notifications');
-	loadURL(theUrlVal, container);
+	if (!$this.next('.ajax-dropdown').is(':visible')) {
+		var theUrlVal = $('input[name="activity"]').attr('id');
+		container = $('.ajax-notifications');
+		loadURL(theUrlVal, container);
+		//clear memory reference
+		$this = null;
+		theUrlVal = null;
+		e.preventDefault();
+	}
 
-	//clear memory reference
-	$this = null;
-	theUrlVal = null;
-
-	e.preventDefault();
 });
 
 // $('input[name="activity"]').change(function() {
