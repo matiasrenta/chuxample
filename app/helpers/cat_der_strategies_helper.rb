@@ -1,0 +1,2 @@
+module CatDerStrategiesHelper
+end

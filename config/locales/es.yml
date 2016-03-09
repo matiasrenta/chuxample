@@ -284,6 +284,15 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      cat_der_line_of_action:
+        one: Línea de Acción (der. hum.)
+        other: Líneas de Acción (der. hum.)
+      cat_der_strategy:
+        one: Estrategia Derechos Humanos
+        other: Estrategias Derechos Humanos
+      cat_der_human_right:
+        one: Derecho Humano
+        other: Derechos Humanos
         user:
           attributes:
             avatar:
@@ -294,6 +303,15 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_der_line_of_action:
+        one: Línea de Acción (der. hum.)
+        other: Líneas de Acción (der. hum.)
+      cat_der_strategy:
+        one: Estrategia Derechos Humanos
+        other: Estrategias Derechos Humanos
+      cat_der_human_right:
+        one: Derecho Humano
+        other: Derechos Humanos
       key_meta_value:
         one: Valor de clave
         other: Valores de clave

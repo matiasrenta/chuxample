@@ -52,6 +52,7 @@ es:
         abbreviation: 'Abreviación'
         thing_attaches: 'Archivos'
         avatar: 'Avatar'
+        key: 'Código'
 
     placeholders:
       from: 'desde'

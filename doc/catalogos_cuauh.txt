@@ -32,10 +32,10 @@ Objetivo: key:string description:text
 Meta: key:string description:text
 LA (Línea de Acción): key:string description:text
 cat_pgd_eje (axis)
-cat_pgd_ao (ao)
+cat_pgd_area_oportunidad (Area of opportunity)
 cat_pgd_objetivo (objective)
 cat_pgd_meta (goal)
-cat_pgd_la (la)
+cat_pgd_linea_de_accion (line of action)
 
 CATÁLOGO DE FONDO:
 FF (Fuente de Financiamiento): key:string description:text

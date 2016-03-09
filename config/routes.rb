@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :cat_der_line_of_actions
+  resources :cat_der_strategies
+  resources :cat_der_human_rights do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :key_meta_values
   resources :key_meta_titles
   resources :key_meta_subcategories
