@@ -46,7 +46,7 @@
                   <tr>
                     <td><%= cat_der_strategy.key %></td>
                     <td><%= cat_der_strategy.description %></td>
-                    <td><%= cat_der_strategy.cat_der_human_right.try(:name) %></td>
+                    <td><%= cat_der_strategy.cat_der_human_right.try(:description) %></td>
                     <td class="table-actions">
                       <%= render 'shared/action_icons', locals: {target: cat_der_strategy} %>
                     </td>

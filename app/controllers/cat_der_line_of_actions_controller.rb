@@ -4,6 +4,10 @@ class CatDerLineOfActionsController < ApplicationController
   # GET /cat_der_line_of_actions
   def index
     @cat_der_line_of_actions = do_index(CatDerLineOfAction, params)
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   # GET /cat_der_line_of_actions/1

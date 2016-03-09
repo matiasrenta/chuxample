@@ -4,6 +4,10 @@ class CatDerStrategiesController < ApplicationController
   # GET /cat_der_strategies
   def index
     @cat_der_strategies = do_index(CatDerStrategy, params)
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   # GET /cat_der_strategies/1
