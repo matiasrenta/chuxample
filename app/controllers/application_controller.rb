@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
     set_content_title(icon_class, [t("activerecord.models.#{controller_name.singularize}", count: 2), t("activerecord.actions.import")])
     @entity_import = model_import_class.new(params["#{model_class.name.underscore}_import".to_sym])
     if @entity_import.save
-      redirect_to eval("#{model_class.name.downcase.pluralize}_url"), notice: t('activerecord.messages.imported_successfuly', count: @entity_import.imported_entities.size)
+      redirect_to eval("#{model_class.name.underscore.pluralize}_url"), notice: t('activerecord.messages.imported_successfuly', count: @entity_import.imported_entities.size)
     else
       generate_flash_msg_no_keep(@entity_import)
       render :new_import
