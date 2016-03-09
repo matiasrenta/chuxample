@@ -47,6 +47,26 @@
         </ul>
       </li>
 
+      <li data-step="2" data-intro="Este es el menú catálogos.">
+        <a href="#"><i class="fa fa-lg fa-fw fa-key"></i> <span class="menu-item-parent"><%= t('pages.navigation.catalogs') %></span></a>
+        <ul>
+          <li>
+            <a href="#"><%= t('activerecord.errors.cat_der_human_right.other') %></a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_der_human_right.other'), cat_der_human_rights_path, {title: t('activerecord.models.cat_der_human_right.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.errors.cat_der_strategy.other'), cat_der_strategies_path, {title: t('activerecord.errors.cat_der_strategy.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.errors.cat_der_line_of_action.other'), cat_der_line_of_actions_path, {title: t('activerecord.errors.cat_der_line_of_action.other')}  %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
       <li data-step="3" data-intro="Este es el menú de desarollo.">
         <a href="#"><i class="fa fa-lg fa-fw fa-code"></i> <span class="menu-item-parent">Development</span></a>
         <ul>
@@ -85,3 +105,7 @@
 
 </aside>
 <!-- END NAVIGATION -->
+
+
+
+
