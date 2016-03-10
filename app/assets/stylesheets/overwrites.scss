@@ -353,3 +353,36 @@ table tr td.table-actions{
   line-height: 1.2;
   cursor: default;
 }
+
+//notificaciones ajax
+.ajax-dropdown {
+  height: 383px;
+}
+
+.notification_ind {
+  width: 96%;
+}
+
+.padding_notification {
+  padding: 8px 4px 13px !important;
+}
+
+.subject_notification {
+  padding: 0 18px 0 15px;
+}
+
+.font_body_notification {
+  display: inline-block;
+  font-size: 90%;
+  padding-left: 4px;
+  width: 260px;
+  line-height: 1.3;
+}
+
+.padding_mute {
+  float: right;
+}
+
+.icons_notification {
+  width: 32px;
+}

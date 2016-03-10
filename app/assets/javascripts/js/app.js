@@ -416,25 +416,29 @@ var calc_navbar_height = function() {
 				var $this = $(this);
 
 				if ($this.find('.badge').hasClass('bg-color-red')) {
-					$this.find('.badge').removeClassPrefix('bg-color-');
+					//$this.find('.badge').removeClassPrefix('bg-color-');
 					//$this.find('.badge').text("0");
 				}
 
+				var theUrlVal = $('input[name="activity"]').attr('id');
+
+
 				if (!$this.next('.ajax-dropdown').is(':visible')) {
+					container = $('.ajax-notifications');
+					loadURL(theUrlVal, container);
+					e.preventDefault();
 					$this.next('.ajax-dropdown').fadeIn(150);
-					$this.addClass('active');
+					$this.addClass('bg-color-red bounceIn');
 				} else {
 					$this.next('.ajax-dropdown').fadeOut(150);
-					$this.removeClass('active');
+					//$this.removeClass('active');
 				}
 
-				var theUrlVal = $this.next('.ajax-dropdown').find('.btn-group > .active > input').attr('id');
-
+				//var theUrlVal = $this.next('.ajax-dropdown').find('.btn-group > .active > input').attr('id');
 				//clear memory reference
 				$this = null;
 				theUrlVal = null;
 
-				e.preventDefault();
 			});
 
 			$('input[name="activity"]').change(function() {
@@ -470,12 +474,13 @@ var calc_navbar_height = function() {
 			// Change color of lable once notification button is clicked
 
 			$this = $('#activity > .badge');
-
+			//alert( parseInt($this.text()) )
 			if (parseInt($this.text()) > 0) {
 				$this.addClass("bg-color-red bounceIn animated");
-
 				//clear memory reference
 				$this = null;
+			} else if ( parseInt($this.text()) == 0 ) {
+				$this.addClass('animated fadeOut');
 			}
 
 
