@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :cat_fon_funding_sources
+  resources :cat_pgd_line_of_actions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :cat_pgd_goals do
     collection do
       get 'new_import'
@@ -21,7 +29,6 @@ Rails.application.routes.draw do
       get 'download_import_file'
     end
   end
-  resources :cat_fon_funding_sources
   resources :cat_pgd_axis do
     collection do
       get 'new_import'
