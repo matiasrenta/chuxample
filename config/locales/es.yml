@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      cat_gen_axi:
+        one: Eje Género
+        other: Ejes Género
       cat_der_line_of_action:
         one: Línea de Acción (der. hum.)
         other: Líneas de Acción (der. hum.)
@@ -303,6 +306,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_gen_axi:
+        one: Eje Género
+        other: Ejes Género
       cat_der_line_of_action:
         one: Línea de Acción (der. hum.)
         other: Líneas de Acción (der. hum.)

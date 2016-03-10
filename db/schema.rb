@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309001829) do
+ActiveRecord::Schema.define(version: 20160309234946) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +54,13 @@ ActiveRecord::Schema.define(version: 20160309001829) do
     t.integer  "cat_der_human_right_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "cat_gen_axis", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "chucky_bot_fields", force: :cascade do |t|

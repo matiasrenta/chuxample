@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], CatGenAxi
 		can [:manage], CatDerLineOfAction
 		can [:manage], CatDerStrategy
 		can [:manage], CatDerHumanRight
