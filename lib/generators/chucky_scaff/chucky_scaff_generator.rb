@@ -40,7 +40,7 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
     if options['i18n_singular_name'] && options['i18n_plural_name']
       fa_icon = ''
       fa_icon = "\s\s\s\s\s\s\s\sfa_icon: '#{options['fa_icon']}'\n" if options['fa_icon'].present?
-      inject_into_file 'config/locales/es.yml', after: "models:\n" do
+      inject_into_file 'config/locales/es.yml', after: "    models:\n" do
         "      #{name}:
         one: #{options['i18n_singular_name']}
         other: #{options['i18n_plural_name']}\n#{fa_icon}".force_encoding('ASCII-8BIT')

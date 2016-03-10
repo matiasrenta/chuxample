@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cat_fon_funding_sources
   resources :cat_pgd_axis do
     collection do
       get 'new_import'

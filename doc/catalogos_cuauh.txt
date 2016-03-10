@@ -62,6 +62,13 @@ cat_fon_fuente_especifica (Specific source)
 cat_fon_year_document
 cat_fon_origen_recurso (Origin Resource)
 cat_fon_fondo (fund) (esta relacionado con claves foraneas a c/u de los anteriores)
+---------------------------------
+cat_fon_funding_source
+cat_fon_generic_source
+cat_fon_specific_source
+cat_fon_year_document
+cat_fon_origin_resource
+cat_fon_fund
 
 
 

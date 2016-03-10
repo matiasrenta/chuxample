@@ -284,33 +284,6 @@ es:
         format: "%{attribute} %{message}"
 
       models:
-      cat_pgd_axi:
-        one: Eje PGDDF
-        other: Ejes PGDDF
-      cat_gen_line_of_action:
-        one: Línea de Acción Género
-        other: Líneas de Acción Género
-      cat_gen_goal:
-        one: Meta Género
-        other: Metas Género
-      cat_gen_strategy:
-        one: Estrategia Género
-        other: Estrategias Género
-      cat_gen_objective:
-        one: Objetivo género
-        other: Objetivos género
-      cat_gen_axi:
-        one: Eje Género
-        other: Ejes Género
-      cat_der_line_of_action:
-        one: Línea de Acción (der. hum.)
-        other: Líneas de Acción (der. hum.)
-      cat_der_strategy:
-        one: Estrategia Derechos Humanos
-        other: Estrategias Derechos Humanos
-      cat_der_human_right:
-        one: Derecho Humano
-        other: Derechos Humanos
         user:
           attributes:
             avatar:
@@ -321,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_fon_funding_source:
+        one: Fuente de Financiamiento
+        other: Fuentes de Financiamiento
       cat_pgd_axi:
         one: Eje PGDDF
         other: Ejes PGDDF
@@ -348,22 +324,6 @@ es:
       cat_der_human_right:
         one: Derecho Humano
         other: Derechos Humanos
-      key_meta_value:
-        one: Valor de clave
-        other: Valores de clave
-        fa_icon: 'fa-fw fa fa-list-ol'
-      key_meta_title:
-        one: Título de clave
-        other: Títulos de clave
-        fa_icon: 'fa-fw fa fa-paragraph'
-      key_meta_subcategory:
-        one: Subcategoría de clave
-        other: Subcategorías de clave
-        fa_icon: 'fa-fw fa fa-indent'
-      key_meta_category:
-        one: Categoría de clave
-        other: Categorías de clave
-        fa_icon: 'fa-fw fa fa-list'
       delayed_job:
         one: Delayed job
         other: Delayed jobs
