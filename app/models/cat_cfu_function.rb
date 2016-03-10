@@ -1,4 +1,5 @@
 class CatCfuFunction < ActiveRecord::Base
+  has_many :cat_cfu_subfunctions, dependent: :restrict_with_error
   belongs_to :cat_cfu_finality
 
   validates :key, :description, :cat_cfu_finality_id, presence: true
