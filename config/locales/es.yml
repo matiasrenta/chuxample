@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_fon_year_document:
+        one: Año del Documento
+        other: Años de los Documentos
       cat_fon_specific_source:
         one: Fuente Específica
         other: Fuentes Específicas
