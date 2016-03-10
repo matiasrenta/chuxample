@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_pgd_area_of_opportunity:
+        one: Area de Oportunidad
+        other: Areas de Oportunidad
       cat_fon_funding_source:
         one: Fuente de Financiamiento
         other: Fuentes de Financiamiento
