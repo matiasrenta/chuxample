@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216232760) do
+ActiveRecord::Schema.define(version: 20160310022312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,68 @@ ActiveRecord::Schema.define(version: 20160216232760) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+
+  create_table "cat_der_human_rights", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "cat_der_line_of_actions", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_der_strategy_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "cat_der_strategies", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_der_human_right_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "cat_gen_axis", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "cat_gen_goals", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_gen_strategy_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "cat_gen_line_of_actions", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_gen_goal_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "cat_gen_objectives", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_gen_axi_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "cat_gen_strategies", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_gen_objective_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "chucky_bot_fields", force: :cascade do |t|
     t.string   "name"
@@ -57,6 +119,23 @@ ActiveRecord::Schema.define(version: 20160216232760) do
     t.datetime "updated_at",            null: false
     t.string   "fa_icon"
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.string   "title"
+    t.text     "body"
+    t.string   "subject"
+    t.integer  "user_id",          null: false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -253,6 +332,10 @@ ActiveRecord::Schema.define(version: 20160216232760) do
     t.string   "time_zone"
     t.boolean  "only_api_access"
     t.string   "avatar_id"
+    t.string   "avatar_filename"
+    t.integer  "avatar_size"
+    t.string   "avatar_content_type"
+    t.datetime "last_seen_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

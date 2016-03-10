@@ -11,9 +11,11 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option 'no-relationize'
   class_option :authorization # ejemplo: --authorization=superuser:manage%director:read-edit-destroy
   class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
+  class_option :massive_import # para que copie los archivos (luego hay que customizarlos para que funcione): --massive_import=true
   class_option :migrate # para que se ejecute rake db:migrate: --migrate=true
   class_option :validations # --validations=precense:nombre_campo1-nombre_campo2%numericality:nombre_campo1-nombre_campo2
   class_option :dependents # --dependents=nombre_campo:destroy-nombre_campo:restrict_with_error
+
 
   # TODO: implementar los siguientes class_options
   class_option :formats # --formats=nombre_campo:all#money%nombre_campo:index#datelong@show#datesuperlong
@@ -119,6 +121,59 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
               :model_label => proc {|controller, model| model.try(:name)}
           }\n\n\n"
       end
+    end
+  end
+
+
+  def copy_import_templates
+    if options[:massive_import] == 'true'
+      copy_file "download_import_file.xlsx.axlsx", "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx"
+      copy_file "new_import.html.erb", "app/views/#{name.pluralize}/new_import.html.erb"
+      copy_file "model_import.rb", "app/models/importers/#{name}_import.rb"
+    end
+  end
+
+  def fill_import_templates
+    if options[:massive_import] == 'true'
+      inject_into_file "app/models/importers/#{name}_import.rb", after: "" do
+"
+class #{name.singularize.camelize}Import < BaseImport
+  def create_entity_from_row(row)
+    #{name.singularize} = #{name.singularize.camelize}.new
+    #{name.singularize}.key = row[I18n.translate('simple_form.labels.defaults.key')]
+    #{name.singularize}.description = row[I18n.translate('simple_form.labels.defaults.description')]
+    ##{name.singularize}.entidaaaaadddddd_id = PareeeennnnnT.find_by_key(#{name.singularize}.key[0........2]).id
+    #{name.singularize}
+  end
+end
+"
+      end
+
+      inject_into_file "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx", after: "" do
+        "
+wb = xlsx_package.workbook
+wb.add_worksheet(name: t(\"activerecord.models.#{name.singularize}.other\")) do |sheet|
+  sheet.add_row (#{name.singularize.camelize}.column_names - %W(id created_at updated_at)).map { |c| I18n.t(\"simple_form.labels.defaults.\#{c}\") }
+end
+"
+      end
+
+      inject_into_file "app/views/#{name.pluralize}/new_import.html.erb", after: "" do
+        "
+<%= render 'shared/new_import', locals: {entity: #{name.singularize.camelize}} %>
+"
+      end
+
+      inject_into_file "config/routes.rb", after: "resources :#{name.pluralize}" do
+        " do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+"
+      end
+
     end
   end
 

@@ -1,9 +1,70 @@
 Rails.application.routes.draw do
 
+  resources :cat_gen_line_of_actions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_gen_goals do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_gen_strategies do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_gen_objectives do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_gen_axis do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_der_line_of_actions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_der_strategies do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_der_human_rights do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :key_meta_values
   resources :key_meta_titles
   resources :key_meta_subcategories
   resources :key_meta_categories
+  resources :comments
+  resources :conversations, only: [:index, :show, :destroy] do
+    post :mark_as_read, on: :member
+    get :mark_all_as_read, on: :collection
+  end
   resources :delayed_jobs
   resources :thing_categories
   resources :wizard

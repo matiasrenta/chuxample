@@ -35,6 +35,14 @@ class Ability
   end
 
   def superuser
+		can [:manage], CatGenLineOfAction
+		can [:manage], CatGenGoal
+		can [:manage], CatGenStrategy
+		can [:manage], CatGenObjective
+		can [:manage], CatGenAxi
+		can [:manage], CatDerLineOfAction
+		can [:manage], CatDerStrategy
+		can [:manage], CatDerHumanRight
 		can [:manage], KeyMetaValue
 		can [:manage], KeyMetaTitle
 		can [:manage], KeyMetaSubcategory

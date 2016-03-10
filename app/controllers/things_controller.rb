@@ -12,6 +12,7 @@ class ThingsController < ApplicationController
 
   # GET /things/1
   def show
+    @new_comment = Comment.build_from(@thing, current_user.id, '')
   end
 
   # GET /things/new
@@ -36,6 +37,7 @@ class ThingsController < ApplicationController
   # PATCH/PUT /things/1
   def update
     if @thing.update(thing_params)
+      notify_other_user # todo: esto es una prueba de notificaciones, quitar cuando se implemente algo real
       redirect_to @thing, notice: t('simple_form.flash.successfully_updated')
     else
       generate_flash_msg_no_keep(@thing)
@@ -51,8 +53,19 @@ class ThingsController < ApplicationController
 
   private
 
-    # Only allow a trusted parameter "white list" through.
-    def thing_params
-      params.require(:thing).permit({thing_attaches_files: []}, {thing_attaches_attributes: [:_destroy, :id]}, {thing_contacts_attributes: [:_destroy, :id, :name, :field1, :field2, :field3]}, {thing_part_ids: []}, :name, :age, :price, :expires, :discharged_at, :description, :published, :gender, :thing_category_id)
+  # Only allow a trusted parameter "white list" through.
+  def thing_params
+    params.require(:thing).permit({thing_attaches_files: []}, {thing_attaches_attributes: [:_destroy, :id]}, {thing_contacts_attributes: [:_destroy, :id, :name, :field1, :field2, :field3]}, {thing_part_ids: []}, :name, :age, :price, :expires, :discharged_at, :description, :published, :gender, :thing_category_id)
+  end
+
+  def notify_other_user
+    if current_user.email == 'matias@opi.la'
+      reciever = User.find_by_email('matiasrenta@gmail.com')
+    else current_user.email == 'matiasrenta@gmail.com'
+      reciever = User.find_by_email('matias@opi.la')
     end
+    # current_user.send_message(reciever, "#{current_user.name} modificó la cosa #{view_context.link_to(@thing.name, thing_path(@thing), class: 'display-normal')}", '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"><i class="fa fa-cube fa-fw fa-1x"></i></em>')
+    current_user.send_message(reciever, "Lasdasjhba ajhjhsahashd jasdha prueba para texto muy largo en notificaciones, probando espacio de body en notificaciones, prueba más notificaciones", '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"><i class="fa fa-cube fa-fw fa-1x"></i></em>')
+  end
+
 end

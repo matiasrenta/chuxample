@@ -17,7 +17,7 @@
                             <% if attribute.name[-3,3] ==  "_id" -%>
                                 <div class="form-group">
                                   <label for="q[<%= attribute.name %>_cont]"><%%= t('simple_form.labels.<%= attribute.name[0,attribute.name.length-3] %>') %></label>
-                                  <%%= f.select :<%= attribute.name %>_eq, options_from_collection_for_select(<%= attribute.name[0,attribute.name.length-3].camelize %>.all, :id, :name, @q.<%= attribute.name %>_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                  <%%= f.select :<%= attribute.name %>_eq, options_from_collection_for_select(<%= attribute.name[0,attribute.name.length-3].camelize %>.all, :id, :description, @q.<%= attribute.name %>_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                             <% else -%>
                                 <div class="form-group spanning">
@@ -78,7 +78,7 @@
                      align = " align='right'" if [:integer, :float, :decimal].include?(attribute.type.to_sym)
                      align = " align='center'" if [:boolean].include?(attribute.type.to_sym) -%>
                   <% if attribute.name[-3,3] == "_id" -%>
-                      <td><%%= <%= singular_table_name %>.<%= attribute.name[0,attribute.name.length-3] %>.try(:name) %></td>
+                      <td><%%= <%= singular_table_name %>.<%= attribute.name[0,attribute.name.length-3] %>.try(:description) %></td>
                   <% elsif attribute.type.to_sym == :boolean -%>
                       <td<%= align %>><%%= boolean_check_mark(<%= singular_table_name %>.<%= attribute.name %>) %></td>
                   <% elsif attribute.type.to_sym == :date -%>

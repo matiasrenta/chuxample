@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
   before_action :set_cache_buster
   before_action :authenticate_user!
   before_action :redirect_only_api_user
-  before_action :set_content_title, :set_user_language, :set_user_time_zone
+  before_action :set_content_title, :set_user_language, :set_user_time_zone, :unread_notifications_count
+  before_action :set_last_seen_at, if: proc { user_signed_in? && (session[:last_seen_at] == nil || session[:last_seen_at] < 15.minutes.ago) }
 
   # previene que usuarios que solo usan la api puedan hacer login en la aplicación web
   # todo: debería mejorarse para que no alcance a hacer login. Aqui alcanza a hacerlo y luego fuerzo el logout
@@ -55,7 +56,7 @@ class ApplicationController < ActionController::Base
     set_content_title(icon_class, [t("activerecord.models.#{controller_name.singularize}", count: 2), t("activerecord.actions.import")])
     @entity_import = model_import_class.new(params["#{model_class.name.underscore}_import".to_sym])
     if @entity_import.save
-      redirect_to eval("#{model_class.name.downcase.pluralize}_url"), notice: t('activerecord.messages.imported_successfuly', count: @entity_import.imported_entities.size)
+      redirect_to eval("#{model_class.name.underscore.pluralize}_url"), notice: t('activerecord.messages.imported_successfuly', count: @entity_import.imported_entities.size)
     else
       generate_flash_msg_no_keep(@entity_import)
       render :new_import
@@ -206,6 +207,24 @@ class ApplicationController < ActionController::Base
     t("activerecord.models.#{controller_name.singularize}.fa_icon")
   end
 
+  # cuento las notificaciones del current_user para mostrar en el header
+  def unread_notifications
+    Mailboxer::Receipt.where(mailbox_type: 'inbox',
+                            receiver_id: current_user.id,
+                            is_read: false,
+                            trashed: false,
+                            deleted: false) if user_signed_in?
+  end
+
+  def unread_notifications_count
+    @unread_notifications_count = unread_notifications.count if user_signed_in?
+  end
+
+  def set_last_seen_at
+    time_now = Time.now
+    current_user.update_attribute(:last_seen_at, time_now)
+    session[:last_seen_at] = time_now
+  end
 
 end
 

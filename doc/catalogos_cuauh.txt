@@ -1,0 +1,66 @@
+LISTA DE CATÁLOGOS DE CUAUH PARA GENERAR CHUCKY BOTS:
+=====================================================
+CATÁLOGO DE DERECHOS HUMANOS
+Derecho: key:string description:text
+Estrategia: key:string description:text
+Línea de Acción: key:string description:text
+cat_der_derecho_humano (human right)
+cat_der_estrategia (strategy)
+cat_der_linea_de_accion (line of action)
+---------
+cat_der_human_right
+cat_der_strategy
+cat_der_line_of_action
+
+
+CATALOGO DE GÉNERO:
+Eje: key:string description:text
+Objetivo: key:string description:text
+Estrategia: key:string description:text
+Meta: key:string description:text
+Línea de Acción: key:string description:text
+cat_gen_eje (axis)
+cat_gen_objetivo (objective)
+cat_gen_estrategia (strategy)
+cat_gen_meta (goal)
+cat_gen_linea_de_accion (line of action)
+-----------------------
+cat_gen_axis
+cat_gen_objective
+cat_gen_strategy
+cat_gen_goal
+cat_gen_line_of_action
+
+CATÁLOGO PGDDF (Programa General de Desarrollo del DF):
+Eje: key:string description:text
+AO: key:string description:text
+Objetivo: key:string description:text
+Meta: key:string description:text
+LA (Línea de Acción): key:string description:text
+cat_pgd_eje (axis)
+cat_pgd_area_oportunidad (Area of opportunity)
+cat_pgd_objetivo (objective)
+cat_pgd_meta (goal)
+cat_pgd_linea_de_accion (line of action)
+
+CATÁLOGO DE FONDO:
+FF (Fuente de Financiamiento): key:string description:text
+FG (Fuente Genérica): key:string description:text
+FE (Fuente Específica): key:string description:text
+AD (Año del Documento): key:string description:text (en este caso la description es 2016, podría ser un integer pero mejor no cambiar)
+OR (Origen del Recurso): key:string description:text
+Fondo: key:string description:text
+cat_fon_fuente_financiamiento (Funding Source)
+cat_fon_fuente_generica (Generic source)
+cat_fon_fuente_especifica (Specific source)
+cat_fon_year_document
+cat_fon_origen_recurso (Origin Resource)
+cat_fon_fondo (fund) (esta relacionado con claves foraneas a c/u de los anteriores)
+
+
+
+
+
+
+
+

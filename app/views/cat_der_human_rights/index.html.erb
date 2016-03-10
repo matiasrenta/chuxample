@@ -1,0 +1,61 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header>
+          <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_cat_der_human_right_path, class: 'btn btn-primary' if (can? :create, CatDerHumanRight) %>
+            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
+            <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="form-group">
+                      <label for="q[key_cont]"><%= t('simple_form.labels.defaults.key') %></label>
+                      <%= f.search_field :key_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[description_cont]"><%= t('simple_form.labels.defaults.description') %></label>
+                      <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <%= render 'shared/submit_filters' %>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
+                <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @cat_der_human_rights.each do |cat_der_human_right| %>
+                  <tr>
+                    <td><%= cat_der_human_right.key %></td>
+                    <td><%= cat_der_human_right.description %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: cat_der_human_right} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @cat_der_human_rights, model_index_path: cat_der_human_rights_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

@@ -244,58 +244,76 @@ $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 	trigger : "hover"
 });
 
-//Google Charts
+// Dropzone
+//var thumbnail;
+//function back_files(type){
+//	thumbnail = $('.dz-image:last');
+//	cases_background(type);
+//};
 
-// Load the Visualization API and the piechart package.
-	// google.load('visualization', '1', {'packages':['corechart']});
-	//
-	// // Set a callback to run when the Google Visualization API is loaded.
-	// google.setOnLoadCallback(drawChart);
-	//
-	// // Callback that creates and populates a data table,
-	// // instantiates the pie chart, passes in the data and
-	// // draws it.
-	// setTimeout(drawChart, 330);
-	// function drawChart() {
-	//
-	// 	// Create the data table.
-	// 	var data = new google.visualization.DataTable();
-	// 	data.addColumn('string', 'Topping');
-	// 	data.addColumn('number', 'Slices');
-	// 	data.addRows([
-	// 		['Mushrooms', 3],
-	// 		['Onions', 1],
-	// 		['Olives', 1],
-	// 		['Zucchini', 1],
-	// 		['Pepperoni', 2]
-	// 	]);
-	//
-	// 	// Set chart options
-	// 	var options = {'title':'How Much Pizza I Ate Last Night',
-	// 	'width':400,
-	// 	'height':300};
-	//
-	// 	// Instantiate and draw our chart, passing in some options.
-	// 	var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-	// 	chart.draw(data, options);
-	//
-	// 	var chart = new google.visualization.BarChart(document.getElementById('chart_bar'));
-	// 	chart.draw(data, options);
-	// };
+//function back_files_news(file, done){
+//	thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+//	cases_background(file.type);
+//	done();
+//}
 
-	//Select2 Nueva Implementacion
-
-	//Carga Json de Estados ejemplo
-//	var dataPartial;
-//	$.getJSON("../../assets/partial.json", function (data) {
-//			dataPartial = data;
-//	});
+//function cases_background(type){
+//	switch (type) {
+//	  case 'application/pdf':
+//	  thumbnail.css('background', 'url(../../assets/pdf-icon.png)');
+//	  break;
+//	  case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+//	  thumbnail.css('background', 'url(../../assets/word-icon.png)');
+//	  break;
+//	  case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+//	  thumbnail.css('background', 'url(../../assets/xls-icon.png)');
+//	  break;
+//	  case 'text/csv':
+//	  thumbnail.css('background', 'url(../../assets/xls-icon.png)');
+//	  break;
+//	}
+//}
 //
-//
-//	setTimeout(function(){
-//		$(".selectComponent").select2({ data: dataPartial });
-//		$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
-//		$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
-//	}, 1000);
+//function noImage(mockFile){
+//	var thumbnail = $('.dz-image:last');
+//	var type = mockFile.type;
+//		$(thumbnail).each(function (i) {
+//			if (type != 'image/png' && type != 'image/jpeg' && type != 'image/jpg' && type != 'image/gif') {
+//				$(thumbnail).children().removeAttr('src alt');
+//				back_files(type);
+//			}
+//			return false;
+//		});
+//}
+console.log( $('.bounceIn') );
+$('#activity').click(function(e) {
+	var $this = $(this);
+	//
+	// if ($this.find('.badge').hasClass('bg-color-red')) {
+	// 	$this.find('.badge').removeClassPrefix('bg-color-');
+	// 	$this.find('.badge').text("0");
+	// }
+	//
+	if (!$this.next('.ajax-dropdown').is(':visible')) {
+		var theUrlVal = $('input[name="activity"]').attr('id');
+		container = $('.ajax-notifications');
+		loadURL(theUrlVal, container);
+		//clear memory reference
+		$this = null;
+		theUrlVal = null;
+		e.preventDefault();
+	}
 
-$(".boolean").removeClass("form-control");
+});
+
+// $('input[name="activity"]').change(function() {
+// 	var $this = $(this);
+//
+// 	url = $this.attr('id');
+// 	container = $('.ajax-notifications');
+//
+// 	loadURL(url, container);
+//
+// 	//clear memory reference
+// 	$this = null;
+// });
