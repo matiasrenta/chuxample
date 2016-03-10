@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      cat_gen_goal:
+        one: Meta Género
+        other: Metas Género
       cat_gen_strategy:
         one: Estrategia Género
         other: Estrategias Género
@@ -312,6 +315,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_gen_goal:
+        one: Meta Género
+        other: Metas Género
       cat_gen_strategy:
         one: Estrategia Género
         other: Estrategias Género

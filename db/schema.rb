@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310015115) do
+ActiveRecord::Schema.define(version: 20160310021505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20160310015115) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "cat_gen_goals", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_gen_strategy_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "cat_gen_objectives", force: :cascade do |t|
