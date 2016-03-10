@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310231512) do
+ActiveRecord::Schema.define(version: 20160310232043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 20160310231512) do
     t.integer  "cat_ere_expending_focu_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "cat_ere_subresults", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_ere_result_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "cat_fon_funding_sources", force: :cascade do |t|

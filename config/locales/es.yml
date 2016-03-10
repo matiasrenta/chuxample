@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_ere_subresult:
+        one: Subresultado
+        other: Subresultados
       cat_ere_result:
         one: Resultado
         other: Resultados

@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :cat_ere_subresults do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :cat_ere_results do
     collection do
       get 'new_import'

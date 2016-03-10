@@ -1,0 +1,2 @@
+module CatEreSubresultsHelper
+end
