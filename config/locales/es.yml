@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_ere_expending_focu:
+        one: Enfoque del Gasto
+        other: Enfoques de los Gastos
       cat_cfu_subfunction:
         one: Subfunción
         other: Subfunciones
