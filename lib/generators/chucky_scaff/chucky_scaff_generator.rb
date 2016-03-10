@@ -130,8 +130,12 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
       copy_file "download_import_file.xlsx.axlsx", "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx"
       copy_file "new_import.html.erb", "app/views/#{name.pluralize}/new_import.html.erb"
       copy_file "model_import.rb", "app/models/importers/#{name}_import.rb"
+    end
+  end
 
-      inject_into_file "app/models/importers/#{name.singularize}_import.rb" do
+  def fill_import_templates
+    if options[:massive_import] == 'true'
+      inject_into_file "app/models/importers/#{name}_import.rb", after: "" do
 "
 class #{name.singularize.camelize}Import < BaseImport
   def create_entity_from_row(row)
@@ -145,8 +149,8 @@ end
 "
       end
 
-      inject_into_file "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx" do
-"
+      inject_into_file "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx", after: "" do
+        "
 wb = xlsx_package.workbook
 wb.add_worksheet(name: t(\"activerecord.models.#{name.singularize}.other\")) do |sheet|
   sheet.add_row (#{name.singularize.camelize}.column_names - %W(id created_at updated_at)).map { |c| I18n.t(\"simple_form.labels.defaults.\#{c}\") }
@@ -154,14 +158,14 @@ end
 "
       end
 
-      inject_into_file "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx" do
-"
+      inject_into_file "app/views/#{name.pluralize}/new_import.html.erb", after: "" do
+        "
 <%= render 'shared/new_import', locals: {entity: #{name.singularize.camelize}} %>
 "
       end
 
       inject_into_file "config/routes.rb", after: "resources :#{name.pluralize}" do
-" do
+        " do
     collection do
       get 'new_import'
       post 'create_import'

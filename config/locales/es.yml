@@ -284,6 +284,12 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      cat_gen_strategy:
+        one: Estrategia Género
+        other: Estrategias Género
+      cat_gen_objective:
+        one: Objetivo género
+        other: Objetivos género
       cat_gen_axi:
         one: Eje Género
         other: Ejes Género
@@ -306,6 +312,12 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_gen_strategy:
+        one: Estrategia Género
+        other: Estrategias Género
+      cat_gen_objective:
+        one: Objetivo género
+        other: Objetivos género
       cat_gen_axi:
         one: Eje Género
         other: Ejes Género

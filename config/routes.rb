@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  resources :cat_gen_strategies do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_gen_objectives do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :cat_gen_axis do
     collection do
       get 'new_import'
