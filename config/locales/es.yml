@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      cat_pgd_axi:
+        one: Eje PGDDF
+        other: Ejes PGDDF
       cat_gen_line_of_action:
         one: Línea de Acción Género
         other: Líneas de Acción Género
@@ -318,6 +321,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_pgd_axi:
+        one: Eje PGDDF
+        other: Ejes PGDDF
       cat_gen_line_of_action:
         one: Línea de Acción Género
         other: Líneas de Acción Género
