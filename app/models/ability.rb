@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], CatEreResult
 		can [:manage], CatEreExpendingFocu
 		can [:manage], CatCfuSubfunction
 		can [:manage], CatCfuFunction
