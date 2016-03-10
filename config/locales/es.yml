@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_pgd_goal:
+        one: Meta PGDDF
+        other: Metas PGDDF
       cat_pgd_objective:
         one: Objetivo PGDDF
         other: Objetivos PGDDF
