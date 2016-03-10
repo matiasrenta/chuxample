@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cat_fon_generic_sources
   resources :cat_fon_funding_sources
   resources :cat_pgd_line_of_actions do
     collection do

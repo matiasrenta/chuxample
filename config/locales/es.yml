@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      cat_fon_generic_source:
+        one: Fuente Genérica
+        other: Fuentes Genéricas
         user:
           attributes:
             avatar:
@@ -294,6 +297,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_fon_generic_source:
+        one: Fuente Genérica
+        other: Fuentes Genéricas
       cat_pgd_line_of_action:
         one: Línea de Acción PGDDF
         other: Líneas de Acción PGDDF
