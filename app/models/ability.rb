@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], CatPgdObjective
 		can [:manage], CatPgdAreaOfOpportunity
     can [:manage], CatFonFundingSource
 		can [:manage], CatPgdAxi
