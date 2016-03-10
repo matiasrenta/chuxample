@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cat_fon_origin_resources
   resources :cat_fon_year_documents
   resources :cat_fon_specific_sources
   resources :cat_fon_generic_sources

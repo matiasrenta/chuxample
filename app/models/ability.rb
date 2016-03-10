@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], CatFonOriginResource
 		can [:manage], CatFonYearDocument
 		can [:manage], CatFonSpecificSource
 		can [:manage], CatFonGenericSource
