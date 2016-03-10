@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :cat_cfu_functions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :cat_cfu_finalities
   resources :cat_fon_funds
   resources :cat_fon_origin_resources
