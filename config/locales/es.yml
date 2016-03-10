@@ -284,9 +284,6 @@ es:
         format: "%{attribute} %{message}"
 
       models:
-      cat_fon_origin_resource:
-        one: Origen del Recurso
-        other: Orígenes de los Recursos
         user:
           attributes:
             avatar:
@@ -297,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_fon_fund:
+        one: Fondo
+        other: Fondos
       cat_fon_origin_resource:
         one: Origen del Recurso
         other: Orígenes de los Recursos
