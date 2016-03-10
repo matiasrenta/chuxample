@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_cfu_finality:
+        one: Finalidad
+        other: Finalidades
       cat_fon_fund:
         one: Fondo
         other: Fondos

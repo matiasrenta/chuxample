@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cat_cfu_finalities
   resources :cat_fon_funds
   resources :cat_fon_origin_resources
   resources :cat_fon_year_documents

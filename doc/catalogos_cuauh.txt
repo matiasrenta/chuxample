@@ -71,6 +71,25 @@ cat_fon_origin_resource
 cat_fon_fund
 
 
+CATÁLOGO CLASIFICACION FUNCIONAL:
+FI (Finalidad)
+F (Función)
+SF (Subfunción)
+----------------
+cat_cfu_finality
+cat_cfu_function
+cat_cfu_subfunction
+
+
+CATÁLOGO DE ESTRUCTURA POR RESULTADOS:
+EG (Enfoque del Gasto)
+R (Resultado)
+SR (Subresultado)
+--------------------
+cat_ere_expending_focus
+cat_ere_result
+cat_ere_subresult
+
 
 
 
