@@ -130,6 +130,46 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
       copy_file "download_import_file.xlsx.axlsx", "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx"
       copy_file "new_import.html.erb", "app/views/#{name.pluralize}/new_import.html.erb"
       copy_file "model_import.rb", "app/models/importers/#{name}_import.rb"
+
+      inject_into_file "app/models/importers/#{name.singularize}_import.rb" do
+"
+class #{name.singularize.camelize}Import < BaseImport
+  def create_entity_from_row(row)
+    #{name.singularize} = #{name.singularize.camelize}.new
+    #{name.singularize}.key = row[I18n.translate('simple_form.labels.defaults.key')]
+    #{name.singularize}.description = row[I18n.translate('simple_form.labels.defaults.description')]
+    ##{name.singularize}.entidaaaaadddddd_id = PareeeennnnnT.find_by_key(#{name.singularize}.key[0........2]).id
+    #{name.singularize}
+  end
+end
+"
+      end
+
+      inject_into_file "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx" do
+"
+wb = xlsx_package.workbook
+wb.add_worksheet(name: t(\"activerecord.models.#{name.singularize}.other\")) do |sheet|
+  sheet.add_row (#{name.singularize.camelize}.column_names - %W(id created_at updated_at)).map { |c| I18n.t(\"simple_form.labels.defaults.\#{c}\") }
+end
+"
+      end
+
+      inject_into_file "app/views/#{name.pluralize}/download_import_file.xlsx.axlsx" do
+"
+<%= render 'shared/new_import', locals: {entity: #{name.singularize.camelize}} %>
+"
+      end
+
+      inject_into_file "config/routes.rb", after: "resources :#{name.pluralize}" do
+" do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+"
+      end
+
     end
   end
 
