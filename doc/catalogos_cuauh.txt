@@ -90,6 +90,19 @@ cat_ere_expending_focus
 cat_ere_result
 cat_ere_subresult
 
+CATALOGO DE ACTIVIDAD INSTITUCIONAL:
+cat_aci_institutional_activity
+
+key
+description
+cat_pgd_axi_id
+cat_ere_expending_focu_id
+cat_ere_result_id
+cat_ere_subresult_id
+cat_cfu_finality_id
+cat_cfu_function_id
+cat_cfu_subfunction_id
+
 
 
 
