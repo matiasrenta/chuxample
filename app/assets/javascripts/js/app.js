@@ -1887,7 +1887,7 @@ var calc_navbar_height = function() {
 				container.removeData().html("");
 
 				// place cog
-				container.html('<h1 class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> Loading...</h1>');
+				container.html('<h1 class="ajax-loading-animation" style="margin-top:10px"><i class="fa fa-cog fa-spin"></i> Loading...</h1>');
 
 				// Only draw breadcrumb if it is main content material
 				if (container[0] == $("#content")[0]) {

@@ -354,9 +354,19 @@ table tr td.table-actions{
   cursor: default;
 }
 
+.pagination{
+  padding: 0 20px;
+}
 //notificaciones ajax
 .ajax-dropdown {
-  height: 383px;
+  height: auto;
+  max-height: 383px;
+  padding: 10px 10px 0;
+}
+
+.ajax-notifications {
+  height: auto;
+  max-height: 365px;
 }
 
 .notification_ind {
