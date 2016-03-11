@@ -29,7 +29,7 @@
           <%= f.input :price %>
           <%= f.input :expires, as: :string, input_html: {class: 'date-picker', value: format_date_field(@thing.expires)} %>
           <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', value: format_datetime_field(@thing.discharged_at)} %>
-          <%= f.input :description %>
+          <%= f.input :description, input_html: {class: 'mentions'} %>
           <%= f.input :published %>
           <%= f.input :gender, collection: User.all %>
 
@@ -87,3 +87,16 @@
       </div>
     </div>
   </div>
+
+
+<script>
+    //$('.mentions').mentionsInput({
+    //    source: [
+    //        {value: 'alex', uid: 'user:1'},
+    //        {value: 'andrew', uid: 'user:2'},
+    //        {value: 'angry birds', uid: 'game:5'},
+    //        {value: 'assault', uid: 'game:3'}
+    //    ],
+    //    showAtCaret: true
+    //});
+</script>

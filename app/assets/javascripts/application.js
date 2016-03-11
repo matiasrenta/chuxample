@@ -72,6 +72,9 @@
 // require auto_select2/multi_ajax_select2_value_parser
 // (-) select 2 world
 
+// require js/plugin/jquery-ui/ui/autocomplete
+// require js/plugin/jquery-mentions/jquery.mentions
+
 // Datetimepicker (no es el mismo del theme)
 //= require js/plugin/datetimepicker/jquery.datetimepicker
 //= require js/plugin/datetimepicker/build/jquery.datetimepicker.full.min.js
@@ -91,7 +94,6 @@
 //= require turbolinks
 
 //= require js/plugin/google-charts/jsapi.js
-//= require things
 //= require global
 // require refile
 // Refile custom para que funcione con dropzone
