@@ -72,8 +72,8 @@
 // require auto_select2/multi_ajax_select2_value_parser
 // (-) select 2 world
 
-//= require js/plugin/jquery-ui/ui/autocomplete
-//= require js/plugin/jquery-mentions/jquery.mentions
+// require js/plugin/jquery-ui/ui/autocomplete
+// require js/plugin/jquery-mentions/jquery.mentions
 
 // Datetimepicker (no es el mismo del theme)
 //= require js/plugin/datetimepicker/jquery.datetimepicker
