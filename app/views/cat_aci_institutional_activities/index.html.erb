@@ -1,0 +1,99 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_cat_aci_institutional_activity_path, class: 'btn btn-primary' if(can? :create, CatAciInstitutionalActivity) %>
+            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
+            <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                                                                        <div class="form-group">
+                              <label for="q[key_cont]"><%= t('simple_form.labels.defaults.key') %></label>
+                              <%= f.search_field :key_cont, label: false, class: "form-control input-sm" %>
+                            </div>
+                                                                                                <div class="form-group">
+                              <label for="q[description_cont]"><%= t('simple_form.labels.defaults.description') %></label>
+                              <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
+                            </div>
+                                                                                                                                <div class="form-group">
+                                  <label for="q[cat_pgd_axi_id_cont]"><%= t('simple_form.labels.cat_pgd_axi') %></label>
+                                  <%= f.select :cat_pgd_axi_id_eq, options_from_collection_for_select(CatPgdAxi.all, :id, :description, @q.cat_pgd_axi_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                                                                                            <div class="form-group">
+                                  <label for="q[cat_ere_expending_focu_id_cont]"><%= t('simple_form.labels.cat_ere_expending_focu') %></label>
+                                  <%= f.select :cat_ere_expending_focu_id_eq, options_from_collection_for_select(CatEreExpendingFocu.all, :id, :description, @q.cat_ere_expending_focu_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                                                                                            <div class="form-group">
+                                  <label for="q[cat_ere_result_id_cont]"><%= t('simple_form.labels.cat_ere_result') %></label>
+                                  <%= f.select :cat_ere_result_id_eq, options_from_collection_for_select(CatEreResult.all, :id, :description, @q.cat_ere_result_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                                                                                            <div class="form-group">
+                                  <label for="q[cat_ere_subresult_id_cont]"><%= t('simple_form.labels.cat_ere_subresult') %></label>
+                                  <%= f.select :cat_ere_subresult_id_eq, options_from_collection_for_select(CatEreSubresult.all, :id, :description, @q.cat_ere_subresult_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                                                                                            <div class="form-group">
+                                  <label for="q[cat_cfu_finality_id_cont]"><%= t('simple_form.labels.cat_cfu_finality') %></label>
+                                  <%= f.select :cat_cfu_finality_id_eq, options_from_collection_for_select(CatCfuFinality.all, :id, :description, @q.cat_cfu_finality_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                                                                                            <div class="form-group">
+                                  <label for="q[cat_cfu_function_id_cont]"><%= t('simple_form.labels.cat_cfu_function') %></label>
+                                  <%= f.select :cat_cfu_function_id_eq, options_from_collection_for_select(CatCfuFunction.all, :id, :description, @q.cat_cfu_function_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                                                                                            <div class="form-group">
+                                  <label for="q[cat_cfu_subfunction_id_cont]"><%= t('simple_form.labels.cat_cfu_subfunction') %></label>
+                                  <%= f.select :cat_cfu_subfunction_id_eq, options_from_collection_for_select(CatCfuSubfunction.all, :id, :description, @q.cat_cfu_subfunction_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                            <%= render 'shared/submit_filters' %>
+                  </fieldset><% end %>
+              </div>
+            </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                                                            <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
+                                                                                <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.cat_pgd_axi')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.cat_ere_expending_focu')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.cat_ere_result')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_ere_subresult_name, t('simple_form.labels.cat_ere_subresult')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_cfu_finality_name, t('simple_form.labels.cat_cfu_finality')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_cfu_function_name, t('simple_form.labels.cat_cfu_function')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_cfu_subfunction_name, t('simple_form.labels.cat_cfu_subfunction')) %></th>
+                                                    <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @cat_aci_institutional_activities.each do |cat_aci_institutional_activity| %>
+              <tr>
+                                                                        <td><%= cat_aci_institutional_activity.key %></td>
+                                                                                          <td><%= cat_aci_institutional_activity.description %></td>
+                                                                                          <td><%= cat_aci_institutional_activity.cat_pgd_axi.try(:description) %></td>
+                                                                                          <td><%= cat_aci_institutional_activity.cat_ere_expending_focu.try(:description) %></td>
+                                                                                          <td><%= cat_aci_institutional_activity.cat_ere_result.try(:description) %></td>
+                                                                                          <td><%= cat_aci_institutional_activity.cat_ere_subresult.try(:description) %></td>
+                                                                                          <td><%= cat_aci_institutional_activity.cat_cfu_finality.try(:description) %></td>
+                                                                                          <td><%= cat_aci_institutional_activity.cat_cfu_function.try(:description) %></td>
+                                                                                          <td><%= cat_aci_institutional_activity.cat_cfu_subfunction.try(:description) %></td>
+                                              <td class="table-actions">
+                <%= render 'shared/action_icons', locals: {target: cat_aci_institutional_activity} %>
+              </td>
+              </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @cat_aci_institutional_activities, model_index_path: cat_aci_institutional_activities_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

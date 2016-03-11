@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_aci_institutional_activity:
+        one: Actividad Institucional
+        other: Actividades Institucionales
       cat_ere_subresult:
         one: Subresultado
         other: Subresultados

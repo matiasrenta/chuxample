@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310232043) do
+ActiveRecord::Schema.define(version: 20160311012305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,20 @@ ActiveRecord::Schema.define(version: 20160310232043) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+
+  create_table "cat_aci_institutional_activities", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_pgd_axi_id"
+    t.integer  "cat_ere_expending_focu_id"
+    t.integer  "cat_ere_result_id"
+    t.integer  "cat_ere_subresult_id"
+    t.integer  "cat_cfu_finality_id"
+    t.integer  "cat_cfu_function_id"
+    t.integer  "cat_cfu_subfunction_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "cat_cfu_finalities", force: :cascade do |t|
     t.string   "key"
