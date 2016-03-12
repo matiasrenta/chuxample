@@ -92,16 +92,25 @@ cat_ere_subresult
 
 CATALOGO DE ACTIVIDAD INSTITUCIONAL:
 cat_aci_institutional_activity
+campos: key, description, cat_pgd_axi_id, cat_ere_expending_focu_id, cat_ere_result_id, cat_ere_subresult_id, cat_cfu_finality_id, cat_cfu_function_id, cat_cfu_subfunction_id
 
-key
-description
-cat_pgd_axi_id
-cat_ere_expending_focu_id
-cat_ere_result_id
-cat_ere_subresult_id
-cat_cfu_finality_id
-cat_cfu_function_id
-cat_cfu_subfunction_id
+CATÁLOGO DE POSICIÓN PRESUPUESTAL:
+tipo de gasto
+dígito identificador
+destino de gasto
+partida
+    capítulo
+    concepto
+    partida genérica
+    partida específica
+-----------------------------
+cat_ppr_expense_type
+cat_ppr_digit_identifier
+cat_ppr_spending_destination
+cat_ppr_par_chapter
+cat_ppr_par_concept
+cat_ppr_par_partida_generica
+cat_ppr_par_partida_especifica
 
 
 

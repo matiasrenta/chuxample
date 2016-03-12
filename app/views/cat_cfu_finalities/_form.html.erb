@@ -4,7 +4,7 @@
   </header>
   <div>
     <div class="widget-body">
-      <%= simple_form_for @cat_cfu_finality, html: { class: 'form-horizontal' },
+      <%= simple_form_for @cat_cfu_finality, html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
                                   check_boxes: :horizontal_radio_and_checkboxes,
@@ -13,16 +13,18 @@
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs edit">
-                                    <%= f.input :key %>
-                                                    <%= f.input :description, :input_html => { :rows => 4, :cols => 30 } %>
-                
+            <%= f.input :key %>
+            <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
+
             <div class="widget-footer">
               <div class="form-actions">
                 <div class="btn-group">
                   <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), cat_cfu_finalities_path, class: 'btn btn-default btn-sm' if can?(:read, CatCfuFinality) %>
                   <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @cat_cfu_finality, class: 'btn btn-default btn-sm' if can?(:read, CatCfuFinality) && updating? %>
                   <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @cat_cfu_finality, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, CatCfuFinality) && updating? %>
-                  <button type="submit" class="btn btn-primary btn-sm"><i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %></button>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
                 </div>
               </div>
             </div>
