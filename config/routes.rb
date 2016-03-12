@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cat_ppr_par_chapters
   resources :cat_ppr_expense_types
   resources :cat_aci_institutional_activities do
     collection do
