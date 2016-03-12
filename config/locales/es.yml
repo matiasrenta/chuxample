@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      cat_ppr_expense_type:
+        one: Tipo de Gasto
+        other: Tipos de Gasto
         user:
           attributes:
             avatar:
@@ -294,6 +297,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_ppr_expense_type:
+        one: Tipo de Gasto
+        other: Tipos de Gasto
       cat_aci_institutional_activity:
         one: Actividad Institucional
         other: Actividades Institucionales

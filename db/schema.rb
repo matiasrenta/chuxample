@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311012305) do
+ActiveRecord::Schema.define(version: 20160312005401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -239,6 +239,13 @@ ActiveRecord::Schema.define(version: 20160311012305) do
     t.integer  "cat_pgd_area_of_opportunity_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+  end
+
+  create_table "cat_ppr_expense_types", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "chucky_bot_fields", force: :cascade do |t|
