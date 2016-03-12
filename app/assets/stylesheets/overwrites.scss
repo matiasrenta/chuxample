@@ -218,6 +218,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before
 }
 table tr td.table-actions{
   padding:0;
+  display: flex;
 }
 
 .form-control-feedback {
@@ -395,4 +396,24 @@ table tr td.table-actions{
 
 .icons_notification {
   width: 32px;
+}
+
+.product-deatil {
+    padding: 30px 30px 50px;
+}
+
+.product-content {
+    border: 1px solid #dfe5e9;
+    margin-bottom: 20px;
+    margin-top: 12px;
+    background: #fff;
+}
+
+.chat-body li.message .message-text {
+  display: block !important;
+  margin-left: 60px !important;
+}
+
+.profile-message{
+  margin-bottom: 20px;
 }

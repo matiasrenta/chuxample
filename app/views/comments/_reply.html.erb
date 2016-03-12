@@ -1,22 +1,58 @@
 <% comments.each do |comment| %>
-    <div class="comments-show">
-      <div class="comment">
-        <p><%= comment.body %><br></p>
-        <div class="comment-nav"><a href="#" class="comment-reply">reply</a></div>
-        <div class="reply-form">
-          <%= form_for @new_comment do |f| %>
-              <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
-              <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
-              <%= f.hidden_field :comment_id, value: comment.id %>
-              <div class="field form-group">
-                <%= f.text_area :body, class: 'form-control' %>
-              </div>
-              <div class="field form-group">
-                <%= submit_tag "Post Reply", class: 'btn btn-primary' %>
-              </div>
-          <% end %>
-        </div>
-      </div>
-      <%= render partial: "comments/reply", locals: {comments: comment.children} %>
-    </div>
+    <ul class="comments-show" style="list-style: none;">
+      <li class="comment message">
+        <em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"><i class="fa fa-user fa-fw fa-2x"></i></em>
+        <span class="message-text">
+          <a href="javascript:void(0);" class="username">John Doe <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small></a>
+          <%= comment.body %>
+
+          <ul class="list-inline font-xs">
+            <li>
+              <a href="javascript:void(0);" class="text-info reply-button"><i class="fa fa-reply"></i> Reply</a>
+            </li>
+            <!-- <li>
+              <a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="text-muted">Show All Comments (14)</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="text-primary">Hide</a>
+            </li> -->
+          </ul>
+          <ul style="list-style: none;">
+            <li class="reply-form">
+              <%= form_for @new_comment do |f| %>
+                  <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
+                  <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
+                  <%= f.hidden_field :comment_id, value: comment.id %>
+                  <div class="field form-group">
+                    <%= f.text_area :body, class: 'form-control', placeholder: 'Write a reply' %>
+                  </div>
+                  <div class="margin-top-10">
+                    <%= submit_tag "Post Reply", class: 'btn btn-sm btn-primary pull-right' %>
+                    <button type="button" class="btn btn-sm btn-default pull-right cancel-reply">Cancel</button>
+                    <br><br>
+                  </div>
+              <% end %>
+            </li>
+          </ul>
+        </span>
+        <!-- <div class="comment-nav"><a href="#" class="comment-reply">reply</a></div> -->
+      </li>
+      <li class="message message-reply">
+        <%= render partial: "comments/reply", locals: {comments: comment.children} %>
+      </li>
+    </ul>
 <% end %>
+<script type="text/javascript">
+  $('.reply-form').hide()
+  $('.reply-button').click(function(e) {
+    var $this = $(this);
+    $( this ).parent().parent().next().children().slideDown();
+  });
+  $('.cancel-reply').click(function(e) {
+    var $this = $(this);
+    $( this ).parent().parent().parent().slideUp();
+  });
+</script>
