@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :cat_ppr_par_concepts do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :cat_ppr_par_chapters
   resources :cat_ppr_expense_types
   resources :cat_aci_institutional_activities do

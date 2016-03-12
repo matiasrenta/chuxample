@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], CatPprParConcept
 		can [:manage], CatPprParChapter
 		can [:manage], CatPprExpenseType
 		can [:manage], CatAciInstitutionalActivity

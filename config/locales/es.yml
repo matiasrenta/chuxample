@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_ppr_par_concept:
+        one: Concepto
+        other: Conceptos
       cat_ppr_par_chapter:
         one: Capítulo
         other: Capítulos
