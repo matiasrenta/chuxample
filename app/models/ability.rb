@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], CatPprDigitIdentifier
 		can [:manage], CatPprParPartidaEspecifica
 		can [:manage], CatPprParPartidaGenerica
 		can [:manage], CatPprParConcept
