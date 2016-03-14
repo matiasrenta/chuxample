@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312013350) do
+ActiveRecord::Schema.define(version: 20160312014157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,6 +261,14 @@ ActiveRecord::Schema.define(version: 20160312013350) do
     t.integer  "cat_ppr_par_chapter_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "cat_ppr_par_partida_especificas", force: :cascade do |t|
+    t.string   "key"
+    t.text     "description"
+    t.integer  "cat_ppr_par_partida_generica_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "cat_ppr_par_partida_genericas", force: :cascade do |t|

@@ -44,7 +44,10 @@ class BaseImport
 
     (secuencia).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      entities << create_entity_from_row(row)
+      enti = create_entity_from_row(row)
+      if enti
+        entities << enti
+      end
     end
     entities
   end

@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_ppr_par_partida_especifica:
+        one: Partida Específica
+        other: Partida Específica
       cat_ppr_par_partida_generica:
         one: Partida Genérica
         other: Partidas Genéricas
