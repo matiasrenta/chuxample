@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_uni_measure_unit:
+        one: Unidad de Medida
+        other: Unidades de Medida
       cat_are_area:
         one: Área
         other: Áreas

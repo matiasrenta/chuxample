@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :cat_uni_measure_units do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :cat_are_areas
   resources :cat_ppr_digit_identifiers
   resources :cat_ppr_par_partida_especificas do
