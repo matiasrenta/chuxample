@@ -25,7 +25,7 @@ cat_gen_estrategia (strategy)
 cat_gen_meta (goal)
 cat_gen_linea_de_accion (line of action)
 -----------------------
-cat_gen_axis
+cat_gen_axi
 cat_gen_objective
 cat_gen_strategy
 cat_gen_goal
@@ -43,7 +43,7 @@ cat_pgd_objetivo (objective)
 cat_pgd_meta (goal)
 cat_pgd_linea_de_accion (line of action)
 ---------------------------
-cat_pgd_axis
+cat_pgd_axi
 cat_pgd_area_of_opportunity
 cat_pgd_objective
 cat_pgd_goal
@@ -86,7 +86,7 @@ EG (Enfoque del Gasto)
 R (Resultado)
 SR (Subresultado)
 --------------------
-cat_ere_expending_focus
+cat_ere_expending_focu
 cat_ere_result
 cat_ere_subresult
 
@@ -117,6 +117,75 @@ cat_are_area
 
 CATÁLOGO DE UNIDADES DE MEDIDA:
 cat_uni_measure_unit
+
+
+
+ANALÍTICO DE CLAVES:
+====================
+Campos:
+cat_pgd_axi_id
+cat_ere_expending_focu_id
+cat_ere_result_id
+cat_ere_subresult_id
+year
+sector
+subsector
+unidad_responsable
+cat_cfu_finality_id
+cat_cfu_function_id
+cat_cfu_subfunction_id
+cat_aci_institutional_activity_id (aqui hay que checar que esta AI tenga los foreing key iguales a los de ere y cfu y que la descripción sea igual también)
+
+cat_fon_funding_source_id
+cat_fon_generic_source_id (la clave no es unica, checar por description)
+cat_fon_specific_source_id (la clave no es unica, checar por description)
+cat_fon_year_document_id
+cat_fon_origin_resource_id
+cat_fon_fund (este no va porque van los otros, podriamos ver que existe uno de estos con la combinacion de todos los anteriores dados por el excel de analitico de claves, si no existe podriamos revisarlo)
+
+cat_ppr_par_partida_especifica_id
+cat_ppr_expense_type_id
+cat_ppr_digit_identifier_id
+cat_ppr_spending_destination_id (no sabemos aun, cuando lo cargue revisar)
+
+proyecto_de_inversion (traducir al ingles)
+
+cat_are_area_id (en el excel sale la description no el key, solo tener en cuenta para mostrar la description y nunca el key)
+
+autorizado (un float)
+enero, febrero, marzo, ...diciembre (floats)
+
+cat_uni_measure_unit_id
+
+meta_fisica (¿float o integer?)
+
+descripcion_de_las_acciones (un text)
+
+domicilio_del_area (un text)
+
+dut_de_la_accion (¿un text?)
+
+poblacion_beneficiada (¿es un numero entero?)
+
+cat_der_human_right_id (en el excel sale sin el cero adelante, unificar o bien aclararlo con luis)
+cat_der_strategy_id (en el excel sale solo un digito, sin cero y sin el anterior)
+cat_der_line_of_action_id (aqui sale completita la key)
+
+justificacion (¿que es esto?)
+
+mujeres (integer)
+hombres (integer)
+cat_gen_axi_id (en el excel sale sin el cero de adelante)
+cat_gen_objective_id (cuidado! en el excel no sale el key lo cual está mal, solo sale la description)
+cat_gen_strategy_id (el excel no tiene los ceros ni los anteriores)
+
+Los siguientes no figuran en el excel (checar si no hay mas):
+--------------------------------------
+cat_gen_goal (no figura en el excel)
+cat_gen_line_of_action (no figura en el excel)
+
+
+
 
 
 
