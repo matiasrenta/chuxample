@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cat_are_areas
   resources :cat_ppr_digit_identifiers
   resources :cat_ppr_par_partida_especificas do
     collection do

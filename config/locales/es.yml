@@ -284,9 +284,6 @@ es:
         format: "%{attribute} %{message}"
 
       models:
-      cat_ppr_digit_identifier:
-        one: Dígito Identificador
-        other: Dígitos Identificadores
         user:
           attributes:
             avatar:
@@ -297,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_are_area:
+        one: Área
+        other: Áreas
       cat_ppr_digit_identifier:
         one: Dígito Identificador
         other: Dígitos Identificadores

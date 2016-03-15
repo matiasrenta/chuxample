@@ -112,6 +112,13 @@ cat_ppr_par_concept
 cat_ppr_par_partida_generica
 cat_ppr_par_partida_especifica
 
+CATÁLOGO DE ÁREAS:
+cat_are_area
+
+CATÁLOGO DE UNIDADES DE MEDIDA:
+cat_uni_measure_unit
+
+
 
 
 
