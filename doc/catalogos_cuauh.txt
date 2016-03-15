@@ -134,7 +134,7 @@ unidad_responsable
 cat_cfu_finality_id
 cat_cfu_function_id
 cat_cfu_subfunction_id
-cat_aci_institutional_activity_id (aqui hay que checar que esta AI tenga los foreing key iguales a los de ere y cfu y que la descripción sea igual también)
+cat_aci_institutional_activity_id (hay que poner solo el 208)(aqui hay que checar que esta AI tenga los foreing key iguales a los de ere y cfu y que la descripción sea igual también)
 
 cat_fon_funding_source_id
 cat_fon_generic_source_id (la clave no es unica, checar por description)
@@ -157,7 +157,7 @@ enero, febrero, marzo, ...diciembre (floats)
 
 cat_uni_measure_unit_id
 
-meta_fisica (¿float o integer?)
+meta_fisica (integer)
 
 descripcion_de_las_acciones (un text)
 
@@ -165,13 +165,13 @@ domicilio_del_area (un text)
 
 dut_de_la_accion (¿un text?)
 
-poblacion_beneficiada (¿es un numero entero?)
+poblacion_beneficiada (integer)
 
 cat_der_human_right_id (en el excel sale sin el cero adelante, unificar o bien aclararlo con luis)
 cat_der_strategy_id (en el excel sale solo un digito, sin cero y sin el anterior)
 cat_der_line_of_action_id (aqui sale completita la key)
 
-justificacion (¿que es esto?)
+justificacion (esta en duda pero por el momento es un campo text)
 
 mujeres (integer)
 hombres (integer)
