@@ -3,22 +3,20 @@
       <li class="comment message">
         <em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"><i class="fa fa-user fa-fw fa-2x"></i></em>
         <span class="message-text">
-          <a href="javascript:void(0);" class="username">John Doe <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small></a>
+          <a href="javascript:void(0);" class="username">John Doe
+              <small class="text-muted pull-right ultra-light"> 2 Minutes ago </small>
+          </a>
           <%= comment.body %>
-
-          <ul class="list-inline font-xs">
+          <ul class="list-inline font-xs reply-bottom">
+            <li class="time-left">
+              <a href="javascript:void(0);" class="text-muted">1 minute ago </a>
+            </li>
             <li>
               <a href="javascript:void(0);" class="text-info reply-button"><i class="fa fa-reply"></i> Reply</a>
             </li>
-            <!-- <li>
-              <a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a>
-            </li>
-            <li>
-              <a href="javascript:void(0);" class="text-muted">Show All Comments (14)</a>
-            </li>
-            <li>
-              <a href="javascript:void(0);" class="text-primary">Hide</a>
-            </li> -->
+            <!-- <li><a href="javascript:void(0);" class="text-danger"><i class="fa fa-thumbs-up"></i> Like</a></li>
+            <li><a href="javascript:void(0);" class="text-muted">Show All Comments (14)</a></li>
+            <li><a href="javascript:void(0);" class="text-primary">Hide</a></li> -->
           </ul>
           <ul style="list-style: none;">
             <li class="reply-form">
@@ -46,7 +44,7 @@
     </ul>
 <% end %>
 <script type="text/javascript">
-  $('.reply-form').hide()
+  $('.reply-form').hide();
   $('.reply-button').click(function(e) {
     var $this = $(this);
     $( this ).parent().parent().next().children().slideDown();
@@ -54,5 +52,30 @@
   $('.cancel-reply').click(function(e) {
     var $this = $(this);
     $( this ).parent().parent().parent().slideUp();
+  });
+
+  $('.comments-show').each(function() {
+    var messageReply = $(this).find('.message-reply')[0];
+    var messageChild = $(messageReply).children()[0];
+
+    if ( $(messageChild).hasClass('comments-show') ) {
+      $(this).find('.message-reply').show();
+    } else {
+      $(this).find('.message-reply').hide();
+    };
+  });
+
+  $('.comment').each(function() {
+    var commentEach = $(this)[0];
+    console.log( 'commentEach/// ', commentEach );
+    //var messageTopChild = $(messageTop).children()[0];
+    //var messageReplyTime = $(messageTopChild).next()[0];
+    //console.log( 'messageReplyTime/// ',messageReplyTime );
+    //$(this).find('li .time-left').hide();
+    if ( $(commentEach).parent().parent().hasClass('message-reply') ) {
+      $(commentEach).find('.ultra-light').hide();
+    } else {
+      $(commentEach).find('.time-left').hide();
+    }
   });
 </script>
