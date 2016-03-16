@@ -1,4 +1,5 @@
 class CatGenStrategy < ActiveRecord::Base
+  has_many :key_analyticals, dependent: :restrict_with_error
   has_many :cat_gen_goals, dependent: :restrict_with_error
   belongs_to :cat_gen_objective
 

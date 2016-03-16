@@ -1,4 +1,5 @@
 class CatPgdAreaOfOpportunity < ActiveRecord::Base
+  has_many :key_analyticals, dependent: :restrict_with_error
   has_many :cat_pgd_objectives, dependent: :restrict_with_error
   belongs_to :cat_pgd_axi
 

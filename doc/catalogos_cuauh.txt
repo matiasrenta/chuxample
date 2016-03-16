@@ -120,7 +120,7 @@ cat_uni_measure_unit
 
 
 
-ANALÍTICO DE CLAVES:
+ANALÍTICO DE CLAVES (key_analytical):
 ====================
 Campos:
 cat_pgd_axi_id
@@ -141,14 +141,18 @@ cat_fon_generic_source_id (la clave no es unica, checar por description)
 cat_fon_specific_source_id (la clave no es unica, checar por description)
 cat_fon_year_document_id
 cat_fon_origin_resource_id
-cat_fon_fund (este no va porque van los otros, podriamos ver que existe uno de estos con la combinacion de todos los anteriores dados por el excel de analitico de claves, si no existe podriamos revisarlo)
+cat_fon_fund_id (este no va porque van los otros, podriamos ver que existe uno de estos con la combinacion de todos los anteriores dados por el excel de analitico de claves, si no existe podriamos revisarlo)
 
-cat_ppr_par_partida_especifica_id
+cat_ppr_par_chapter_id
+cat_ppr_par_concept_id
+cat_ppr_par_partida_generica_id
+cat_ppr_par_partida_especifica_id (deberia incluir los catalogos que forman esta y además esta, y checar que existe una linea en c/u de los catalogos segun esta key compuesta)
+
 cat_ppr_expense_type_id
 cat_ppr_digit_identifier_id
 cat_ppr_spending_destination_id (no sabemos aun, cuando lo cargue revisar)
 
-proyecto_de_inversion (traducir al ingles)
+proyecto_de_inversion (string)
 
 cat_are_area_id (en el excel sale la description no el key, solo tener en cuenta para mostrar la description y nunca el key)
 
@@ -173,6 +177,7 @@ cat_der_line_of_action_id (aqui sale completita la key)
 
 justificacion (esta en duda pero por el momento es un campo text)
 
+porcentaje_igualdad_sustantiva
 mujeres (integer)
 hombres (integer)
 cat_gen_axi_id (en el excel sale sin el cero de adelante)
@@ -181,10 +186,13 @@ cat_gen_strategy_id (el excel no tiene los ceros ni los anteriores)
 
 Los siguientes no figuran en el excel (checar si no hay mas):
 --------------------------------------
-cat_gen_goal (no figura en el excel)
-cat_gen_line_of_action (no figura en el excel)
+cat_gen_goal_id (no figura en el excel)
+cat_gen_line_of_action_id (no figura en el excel)
 
-
+cat_pgd_area_of_opportunity_id
+cat_pgd_objective_id
+cat_pgd_goal_id
+cat_pgd_line_of_action_id
 
 
 

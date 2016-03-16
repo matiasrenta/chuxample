@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :key_analyticals do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :cat_ppr_spending_destinations do
     collection do
       get 'new_import'

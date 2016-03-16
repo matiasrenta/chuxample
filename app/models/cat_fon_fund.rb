@@ -1,4 +1,5 @@
 class CatFonFund < ActiveRecord::Base
+  has_many :key_analyticals, dependent: :restrict_with_error
   belongs_to :cat_fon_origin_resource
 
   belongs_to :cat_fon_year_document

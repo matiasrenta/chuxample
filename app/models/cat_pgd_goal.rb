@@ -1,4 +1,5 @@
 class CatPgdGoal < ActiveRecord::Base
+  has_many :key_analyticals, dependent: :restrict_with_error
   has_many :cat_pgd_line_of_actions, dependent: :restrict_with_error
   belongs_to :cat_pgd_objective
 

@@ -284,6 +284,10 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      key_analytical:
+        one: Analítico de Claves
+        other: Analítico de Claves
+        fa_icon: 'fa-fw fa fa-list-ol'
         user:
           attributes:
             avatar:
@@ -294,6 +298,10 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      key_analytical:
+        one: Analítico de Claves
+        other: Analítico de Claves
+        fa_icon: 'fa-fw fa fa-list-ol'
       cat_ppr_spending_destination:
         one: Destino de Gasto
         other: Destinos de Gasto

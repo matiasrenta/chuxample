@@ -1,4 +1,5 @@
 class CatAciInstitutionalActivity < ActiveRecord::Base
+  has_many :key_analyticals, dependent: :restrict_with_error
   belongs_to :cat_cfu_subfunction
   belongs_to :cat_cfu_function
   belongs_to :cat_cfu_finality

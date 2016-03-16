@@ -1,4 +1,5 @@
 class CatEreExpendingFocu < ActiveRecord::Base
+  has_many :key_analyticals, dependent: :restrict_with_error
   has_many :cat_aci_institutional_activities, dependent: :restrict_with_error
   has_many :cat_ere_results, dependent: :restrict_with_error
   validates :key, :description, presence: true

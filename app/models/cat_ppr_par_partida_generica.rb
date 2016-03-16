@@ -1,4 +1,5 @@
 class CatPprParPartidaGenerica < ActiveRecord::Base
+  has_many :key_analyticals, dependent: :restrict_with_error
   has_many :cat_ppr_par_partida_especificas, dependent: :restrict_with_error
   belongs_to :cat_ppr_par_concept
 
