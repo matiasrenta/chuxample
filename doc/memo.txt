@@ -31,3 +31,8 @@ Assets en producción:
 =====================
 si no se refrescan los assets al deployar, entonces eliminar la carpeta shared/public/assets
 Esto debe ser porque no se eliminan los viejos assets, los nuevos se subern pero los viejos están alli.
+
+DB:SEED:DUMP:
+=============
+rake db:seed:dump APPEND=true EXCLUDE=created_at,updated_at MODELS=CatGenAxi,CatGenGoal...
+para ejecutarlo en produccion: rake db:seed

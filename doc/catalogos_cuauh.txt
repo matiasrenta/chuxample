@@ -128,9 +128,9 @@ cat_ere_expending_focu_id
 cat_ere_result_id
 cat_ere_subresult_id
 year
-sector
-subsector
-unidad_responsable
+sector (02 significa Gobierno)
+subsector (CD significa Órganos Desconcentrados)
+unidad_responsable (06 significa Delegación Cuauhtemoc)
 cat_cfu_finality_id
 cat_cfu_function_id
 cat_cfu_subfunction_id
@@ -163,7 +163,7 @@ descripcion_de_las_acciones (un text)
 
 domicilio_del_area (un text)
 
-dut_de_la_accion (¿un text?)
+dut_de_la_accion (significa unidad territorial, es decir, condesa-roma o tepito-guerrero (es un text))
 
 poblacion_beneficiada (integer)
 
