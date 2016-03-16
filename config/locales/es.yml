@@ -294,6 +294,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      cat_ppr_spending_destination:
+        one: Destino de Gasto
+        other: Destinos de Gasto
       cat_uni_measure_unit:
         one: Unidad de Medida
         other: Unidades de Medida
