@@ -1,2 +1,0 @@
-class CatalogClenersController < ApplicationController
-end
