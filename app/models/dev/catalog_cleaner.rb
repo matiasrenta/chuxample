@@ -14,4 +14,54 @@ class CatalogCleaner < Object
       end
     end
   end
+
+  def self.copy_cat_gen_objective
+    # las descripciones de cat_gen_objective van a la tabla cat_gen_axi en el campo objetivo
+    CatGenObjective.all.each do |objetive|
+      cat_gen_axi = CatGenAxi.find_by_key(objetive.key.split('.')[0])
+      cat_gen_axi.objetivo = objetive.description
+      cat_gen_axi.save!
+    end
+  end
+
+  def self.copy_cat_gen_goal
+    CatGenGoal.all.each do |goal|
+      cat_gen_strategy = CatGenStrategy.find_by_key(goal.key[0..7])
+      cat_gen_strategy.meta = goal.description
+      cat_gen_strategy.save!
+    end
+  end
+
+  def self.clean_gen_keys
+    # cat_gen_strategy
+    # limpio la key
+    #CatGenStrategy.all.each do |strategy|
+    #  splited_key = strategy.key.split('.')
+    #  strategy.key = "#{splited_key[0]}.#{splited_key[2]}"
+    #  strategy.save!
+    #end
+
+    #cat_gen_line_of_action
+    # limpio la key
+    #CatGenLineOfAction.all.each do |loa|
+    #  splited_key = loa.key.split('.')
+    #  loa.key = "#{splited_key[0]}.#{splited_key[2]}.#{splited_key[4]}"
+    #  loa.save!
+    #end
+  end
+
+  def self.relationize_gen_models
+    # cat_gen_strategy con cat_gen_axi
+    #CatGenStrategy.all.each do |strategy|
+    #  strategy.cat_gen_axi_id = CatGenAxi.find_by_key(strategy.key.split('.')[0]).id
+    #  strategy.save!
+    #end
+
+    # cat_gen_line_of_action con cat_gen_strategy
+    #CatGenLineOfAction.all.each do |loa|
+    #  loa.cat_gen_strategy_id = CatGenStrategy.find_by_key(loa.key[0..4]).id
+    #  loa.save!
+    #end
+  end
+
 end

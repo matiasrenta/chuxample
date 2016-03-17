@@ -25,11 +25,9 @@ cat_gen_estrategia (strategy)
 cat_gen_meta (goal)
 cat_gen_linea_de_accion (line of action)
 -----------------------
-cat_gen_axi
-cat_gen_objective
-cat_gen_strategy
-cat_gen_goal
-cat_gen_line_of_action
+cat_gen_axi, cat_gen_objective
+cat_gen_strategy, cat_gen_goal (cat_gen_strategies ahora necesita cat_gen_axi_id)
+cat_gen_line_of_action (ahora necesita cat_gen_strategy_id)
 
 CATÁLOGO PGDDF (Programa General de Desarrollo del DF):
 Eje: key:string description:text

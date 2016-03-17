@@ -33,6 +33,7 @@
               <tr>
                 <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
                 <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
+                <th><%= sort_link(@q, :objetivo, 'Objetivo') %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>
@@ -41,6 +42,7 @@
                   <tr>
                     <td><%= cat_gen_axi.key %></td>
                     <td><%= cat_gen_axi.description %></td>
+                    <td><%= cat_gen_axi.objetivo %></td>
                     <td class="table-actions">
                       <%= render 'shared/action_icons', locals: {target: cat_gen_axi} %>
                     </td>

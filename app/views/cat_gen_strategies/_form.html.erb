@@ -4,14 +4,15 @@
 
     <% if creating? %>
         <div class='widget-toolbar hidden-xs'>
-          <a href='<%= new_import_cat_gen_strategies_path %>' role='button' class='btn btn-primary'><i class='fa fa-upload'></i>Carga masiva</a>
+          <a href='<%= new_import_cat_gen_strategies_path %>' role='button' class='btn btn-primary'><i class='fa fa-upload'></i>Carga
+            masiva</a>
         </div>
     <% end %>
 
   </header>
   <div>
     <div class="widget-body">
-      <%= simple_form_for @cat_gen_strategy, html: { class: 'form-horizontal' },
+      <%= simple_form_for @cat_gen_strategy, html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
                                   check_boxes: :horizontal_radio_and_checkboxes,
@@ -20,17 +21,20 @@
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs edit">
-                                    <%= f.input :key %>
-                                                    <%= f.input :description, :input_html => { :rows => 4, :cols => 30 } %>
-                                                                            <%= f.association :cat_gen_objective %>
-                                    
+            <%= f.input :key %>
+            <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :meta, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.association :cat_gen_axi %>
+
             <div class="widget-footer">
               <div class="form-actions">
                 <div class="btn-group">
                   <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), cat_gen_strategies_path, class: 'btn btn-default btn-sm' if can?(:read, CatGenStrategy) %>
                   <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @cat_gen_strategy, class: 'btn btn-default btn-sm' if can?(:read, CatGenStrategy) && updating? %>
                   <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @cat_gen_strategy, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, CatGenStrategy) && updating? %>
-                  <button type="submit" class="btn btn-primary btn-sm"><i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %></button>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
                 </div>
               </div>
             </div>

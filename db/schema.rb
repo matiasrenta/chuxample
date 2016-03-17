@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316200020) do
+ActiveRecord::Schema.define(version: 20160317030226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 20160316200020) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "objetivo"
   end
 
   create_table "cat_gen_goals", force: :cascade do |t|
@@ -188,9 +189,9 @@ ActiveRecord::Schema.define(version: 20160316200020) do
   create_table "cat_gen_line_of_actions", force: :cascade do |t|
     t.string   "key"
     t.text     "description"
-    t.integer  "cat_gen_goal_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "cat_gen_strategy_id"
   end
 
   create_table "cat_gen_objectives", force: :cascade do |t|
@@ -204,9 +205,10 @@ ActiveRecord::Schema.define(version: 20160316200020) do
   create_table "cat_gen_strategies", force: :cascade do |t|
     t.string   "key"
     t.text     "description"
-    t.integer  "cat_gen_objective_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.text     "meta"
+    t.integer  "cat_gen_axi_id"
   end
 
   create_table "cat_pgd_area_of_opportunities", force: :cascade do |t|
@@ -415,12 +417,10 @@ ActiveRecord::Schema.define(version: 20160316200020) do
     t.integer  "cat_der_human_right_id"
     t.integer  "cat_der_strategy_id"
     t.integer  "cat_der_line_of_action_id"
-    t.text     "justificacion"
     t.float    "porcentaje_igualdad_sustantiva"
     t.integer  "mujeres"
     t.integer  "hombres"
     t.integer  "cat_gen_axi_id"
-    t.integer  "cat_gen_objective_id"
     t.integer  "cat_gen_strategy_id"
     t.integer  "cat_gen_goal_id"
     t.integer  "cat_gen_line_of_action_id"
@@ -430,6 +430,8 @@ ActiveRecord::Schema.define(version: 20160316200020) do
     t.integer  "cat_pgd_line_of_action_id"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.text     "justificacion_derechos_humanos"
+    t.text     "justificacion_genero"
   end
 
   create_table "key_meta_categories", force: :cascade do |t|
