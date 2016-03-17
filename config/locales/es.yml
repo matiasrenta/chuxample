@@ -386,15 +386,9 @@ es:
       cat_gen_line_of_action:
         one: Línea de Acción Género
         other: Líneas de Acción Género
-      cat_gen_goal:
-        one: Meta Género
-        other: Metas Género
       cat_gen_strategy:
         one: Estrategia Género
         other: Estrategias Género
-      cat_gen_objective:
-        one: Objetivo género
-        other: Objetivos género
       cat_gen_axi:
         one: Eje Género
         other: Ejes Género

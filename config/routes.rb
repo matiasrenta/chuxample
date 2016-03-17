@@ -137,21 +137,7 @@ Rails.application.routes.draw do
       get 'download_import_file'
     end
   end
-  resources :cat_gen_goals do
-    collection do
-      get 'new_import'
-      post 'create_import'
-      get 'download_import_file'
-    end
-  end
   resources :cat_gen_strategies do
-    collection do
-      get 'new_import'
-      post 'create_import'
-      get 'download_import_file'
-    end
-  end
-  resources :cat_gen_objectives do
     collection do
       get 'new_import'
       post 'create_import'
