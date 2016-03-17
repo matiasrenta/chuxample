@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317165039) do
+ActiveRecord::Schema.define(version: 20160317170056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -406,7 +406,6 @@ ActiveRecord::Schema.define(version: 20160317165039) do
     t.integer  "hombres"
     t.integer  "cat_gen_axi_id"
     t.integer  "cat_gen_strategy_id"
-    t.integer  "cat_gen_goal_id"
     t.integer  "cat_gen_line_of_action_id"
     t.integer  "cat_pgd_area_of_opportunity_id"
     t.integer  "cat_pgd_objective_id"
