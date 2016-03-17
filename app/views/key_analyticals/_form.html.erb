@@ -70,15 +70,14 @@
             <%= f.association :cat_der_human_right %>
             <%= f.association :cat_der_strategy %>
             <%= f.association :cat_der_line_of_action %>
-            <%= f.input :justificacion, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :justificacion_derechos_humanos, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :porcentaje_igualdad_sustantiva %>
             <%= f.input :mujeres %>
             <%= f.input :hombres %>
             <%= f.association :cat_gen_axi %>
-            <%= f.association :cat_gen_objective %>
             <%= f.association :cat_gen_strategy %>
-            <%= f.association :cat_gen_goal %>
             <%= f.association :cat_gen_line_of_action %>
+            <%= f.input :justificacion_genero, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.association :cat_pgd_area_of_opportunity %>
             <%= f.association :cat_pgd_objective %>
             <%= f.association :cat_pgd_goal %>

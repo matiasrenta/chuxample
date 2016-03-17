@@ -3,500 +3,484 @@
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
           <div class="widget-toolbar filter-group">
-            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_key_analytical_path, class: 'btn btn-primary' if(can? :create, KeyAnalytical) %>
-            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_key_analytical_path, class: 'btn btn-primary' if (can? :create, KeyAnalytical) %>
+            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
           </div>
         </header>
         <div class="no-padding">
           <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
             <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
-                                                                                                        <div class="form-group">
-                                  <label for="q[cat_pgd_axi_id_cont]"><%= t('simple_form.labels.cat_pgd_axi') %></label>
-                                  <%= f.select :cat_pgd_axi_id_eq, options_from_collection_for_select(CatPgdAxi.all, :id, :description, @q.cat_pgd_axi_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ere_expending_focu_id_cont]"><%= t('simple_form.labels.cat_ere_expending_focu') %></label>
-                                  <%= f.select :cat_ere_expending_focu_id_eq, options_from_collection_for_select(CatEreExpendingFocu.all, :id, :description, @q.cat_ere_expending_focu_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ere_result_id_cont]"><%= t('simple_form.labels.cat_ere_result') %></label>
-                                  <%= f.select :cat_ere_result_id_eq, options_from_collection_for_select(CatEreResult.all, :id, :description, @q.cat_ere_result_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ere_subresult_id_cont]"><%= t('simple_form.labels.cat_ere_subresult') %></label>
-                                  <%= f.select :cat_ere_subresult_id_eq, options_from_collection_for_select(CatEreSubresult.all, :id, :description, @q.cat_ere_subresult_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[year_gteq]"><%= t('simple_form.labels.defaults.year') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :year_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :year_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                            <div class="form-group">
-                              <label for="q[sector_cont]"><%= t('simple_form.labels.defaults.sector') %></label>
-                              <%= f.search_field :sector_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[subsector_cont]"><%= t('simple_form.labels.defaults.subsector') %></label>
-                              <%= f.search_field :subsector_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[unidad_responsable_cont]"><%= t('simple_form.labels.defaults.unidad_responsable') %></label>
-                              <%= f.search_field :unidad_responsable_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="form-group">
-                                  <label for="q[cat_cfu_finality_id_cont]"><%= t('simple_form.labels.cat_cfu_finality') %></label>
-                                  <%= f.select :cat_cfu_finality_id_eq, options_from_collection_for_select(CatCfuFinality.all, :id, :description, @q.cat_cfu_finality_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_cfu_function_id_cont]"><%= t('simple_form.labels.cat_cfu_function') %></label>
-                                  <%= f.select :cat_cfu_function_id_eq, options_from_collection_for_select(CatCfuFunction.all, :id, :description, @q.cat_cfu_function_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_cfu_subfunction_id_cont]"><%= t('simple_form.labels.cat_cfu_subfunction') %></label>
-                                  <%= f.select :cat_cfu_subfunction_id_eq, options_from_collection_for_select(CatCfuSubfunction.all, :id, :description, @q.cat_cfu_subfunction_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_aci_institutional_activity_id_cont]"><%= t('simple_form.labels.cat_aci_institutional_activity') %></label>
-                                  <%= f.select :cat_aci_institutional_activity_id_eq, options_from_collection_for_select(CatAciInstitutionalActivity.all, :id, :description, @q.cat_aci_institutional_activity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_funding_source_id_cont]"><%= t('simple_form.labels.cat_fon_funding_source') %></label>
-                                  <%= f.select :cat_fon_funding_source_id_eq, options_from_collection_for_select(CatFonFundingSource.all, :id, :description, @q.cat_fon_funding_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_generic_source_id_cont]"><%= t('simple_form.labels.cat_fon_generic_source') %></label>
-                                  <%= f.select :cat_fon_generic_source_id_eq, options_from_collection_for_select(CatFonGenericSource.all, :id, :description, @q.cat_fon_generic_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_specific_source_id_cont]"><%= t('simple_form.labels.cat_fon_specific_source') %></label>
-                                  <%= f.select :cat_fon_specific_source_id_eq, options_from_collection_for_select(CatFonSpecificSource.all, :id, :description, @q.cat_fon_specific_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_year_document_id_cont]"><%= t('simple_form.labels.cat_fon_year_document') %></label>
-                                  <%= f.select :cat_fon_year_document_id_eq, options_from_collection_for_select(CatFonYearDocument.all, :id, :description, @q.cat_fon_year_document_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_origin_resource_id_cont]"><%= t('simple_form.labels.cat_fon_origin_resource') %></label>
-                                  <%= f.select :cat_fon_origin_resource_id_eq, options_from_collection_for_select(CatFonOriginResource.all, :id, :description, @q.cat_fon_origin_resource_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_fund_id_cont]"><%= t('simple_form.labels.cat_fon_fund') %></label>
-                                  <%= f.select :cat_fon_fund_id_eq, options_from_collection_for_select(CatFonFund.all, :id, :description, @q.cat_fon_fund_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ppr_par_chapter_id_cont]"><%= t('simple_form.labels.cat_ppr_par_chapter') %></label>
-                                  <%= f.select :cat_ppr_par_chapter_id_eq, options_from_collection_for_select(CatPprParChapter.all, :id, :description, @q.cat_ppr_par_chapter_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ppr_par_concept_id_cont]"><%= t('simple_form.labels.cat_ppr_par_concept') %></label>
-                                  <%= f.select :cat_ppr_par_concept_id_eq, options_from_collection_for_select(CatPprParConcept.all, :id, :description, @q.cat_ppr_par_concept_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ppr_par_partida_generica_id_cont]"><%= t('simple_form.labels.cat_ppr_par_partida_generica') %></label>
-                                  <%= f.select :cat_ppr_par_partida_generica_id_eq, options_from_collection_for_select(CatPprParPartidaGenerica.all, :id, :description, @q.cat_ppr_par_partida_generica_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ppr_par_partida_especifica_id_cont]"><%= t('simple_form.labels.cat_ppr_par_partida_especifica') %></label>
-                                  <%= f.select :cat_ppr_par_partida_especifica_id_eq, options_from_collection_for_select(CatPprParPartidaEspecifica.all, :id, :description, @q.cat_ppr_par_partida_especifica_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ppr_expense_type_id_cont]"><%= t('simple_form.labels.cat_ppr_expense_type') %></label>
-                                  <%= f.select :cat_ppr_expense_type_id_eq, options_from_collection_for_select(CatPprExpenseType.all, :id, :description, @q.cat_ppr_expense_type_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ppr_digit_identifier_id_cont]"><%= t('simple_form.labels.cat_ppr_digit_identifier') %></label>
-                                  <%= f.select :cat_ppr_digit_identifier_id_eq, options_from_collection_for_select(CatPprDigitIdentifier.all, :id, :description, @q.cat_ppr_digit_identifier_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_ppr_spending_destination_id_cont]"><%= t('simple_form.labels.cat_ppr_spending_destination') %></label>
-                                  <%= f.select :cat_ppr_spending_destination_id_eq, options_from_collection_for_select(CatPprSpendingDestination.all, :id, :description, @q.cat_ppr_spending_destination_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                            <div class="form-group">
-                              <label for="q[proyecto_de_inversion_cont]"><%= t('simple_form.labels.defaults.proyecto_de_inversion') %></label>
-                              <%= f.search_field :proyecto_de_inversion_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="form-group">
-                                  <label for="q[cat_are_area_id_cont]"><%= t('simple_form.labels.cat_are_area') %></label>
-                                  <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.all, :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[autorizado_gteq]"><%= t('simple_form.labels.defaults.autorizado') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :autorizado_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :autorizado_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[enero_gteq]"><%= t('simple_form.labels.defaults.enero') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :enero_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :enero_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[febrero_gteq]"><%= t('simple_form.labels.defaults.febrero') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :febrero_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :febrero_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[marzo_gteq]"><%= t('simple_form.labels.defaults.marzo') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :marzo_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :marzo_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[abril_gteq]"><%= t('simple_form.labels.defaults.abril') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :abril_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :abril_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[mayo_gteq]"><%= t('simple_form.labels.defaults.mayo') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :mayo_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :mayo_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[junio_gteq]"><%= t('simple_form.labels.defaults.junio') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :junio_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :junio_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[julio_gteq]"><%= t('simple_form.labels.defaults.julio') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :julio_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :julio_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[agosto_gteq]"><%= t('simple_form.labels.defaults.agosto') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :agosto_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :agosto_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[septiembre_gteq]"><%= t('simple_form.labels.defaults.septiembre') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :septiembre_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :septiembre_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[octubre_gteq]"><%= t('simple_form.labels.defaults.octubre') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :octubre_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :octubre_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[noviembre_gteq]"><%= t('simple_form.labels.defaults.noviembre') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :noviembre_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :noviembre_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[diciembre_gteq]"><%= t('simple_form.labels.defaults.diciembre') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :diciembre_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :diciembre_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_uni_measure_unit_id_cont]"><%= t('simple_form.labels.cat_uni_measure_unit') %></label>
-                                  <%= f.select :cat_uni_measure_unit_id_eq, options_from_collection_for_select(CatUniMeasureUnit.all, :id, :description, @q.cat_uni_measure_unit_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[meta_fisica_gteq]"><%= t('simple_form.labels.defaults.meta_fisica') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :meta_fisica_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :meta_fisica_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                            <div class="form-group">
-                              <label for="q[descripcion_de_las_acciones_cont]"><%= t('simple_form.labels.defaults.descripcion_de_las_acciones') %></label>
-                              <%= f.search_field :descripcion_de_las_acciones_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[domicilio_del_area_cont]"><%= t('simple_form.labels.defaults.domicilio_del_area') %></label>
-                              <%= f.search_field :domicilio_del_area_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[dut_de_la_accion_cont]"><%= t('simple_form.labels.defaults.dut_de_la_accion') %></label>
-                              <%= f.search_field :dut_de_la_accion_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="form-group spanning">
-                                  <label for="q[poblacion_beneficiada_gteq]"><%= t('simple_form.labels.defaults.poblacion_beneficiada') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :poblacion_beneficiada_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :poblacion_beneficiada_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_der_human_right_id_cont]"><%= t('simple_form.labels.cat_der_human_right') %></label>
-                                  <%= f.select :cat_der_human_right_id_eq, options_from_collection_for_select(CatDerHumanRight.all, :id, :description, @q.cat_der_human_right_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_der_strategy_id_cont]"><%= t('simple_form.labels.cat_der_strategy') %></label>
-                                  <%= f.select :cat_der_strategy_id_eq, options_from_collection_for_select(CatDerStrategy.all, :id, :description, @q.cat_der_strategy_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_der_line_of_action_id_cont]"><%= t('simple_form.labels.cat_der_line_of_action') %></label>
-                                  <%= f.select :cat_der_line_of_action_id_eq, options_from_collection_for_select(CatDerLineOfAction.all, :id, :description, @q.cat_der_line_of_action_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                            <div class="form-group">
-                              <label for="q[justificacion_cont]"><%= t('simple_form.labels.defaults.justificacion') %></label>
-                              <%= f.search_field :justificacion_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="form-group spanning">
-                                  <label for="q[porcentaje_igualdad_sustantiva_gteq]"><%= t('simple_form.labels.defaults.porcentaje_igualdad_sustantiva') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :porcentaje_igualdad_sustantiva_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :porcentaje_igualdad_sustantiva_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[mujeres_gteq]"><%= t('simple_form.labels.defaults.mujeres') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :mujeres_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :mujeres_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group spanning">
-                                  <label for="q[hombres_gteq]"><%= t('simple_form.labels.defaults.hombres') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :hombres_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :hombres_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_gen_axi_id_cont]"><%= t('simple_form.labels.cat_gen_axi') %></label>
-                                  <%= f.select :cat_gen_axi_id_eq, options_from_collection_for_select(CatGenAxi.all, :id, :description, @q.cat_gen_axi_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_gen_objective_id_cont]"><%= t('simple_form.labels.cat_gen_objective') %></label>
-                                  <%= f.select :cat_gen_objective_id_eq, options_from_collection_for_select(CatGenObjective.all, :id, :description, @q.cat_gen_objective_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_gen_strategy_id_cont]"><%= t('simple_form.labels.cat_gen_strategy') %></label>
-                                  <%= f.select :cat_gen_strategy_id_eq, options_from_collection_for_select(CatGenStrategy.all, :id, :description, @q.cat_gen_strategy_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_gen_goal_id_cont]"><%= t('simple_form.labels.cat_gen_goal') %></label>
-                                  <%= f.select :cat_gen_goal_id_eq, options_from_collection_for_select(CatGenGoal.all, :id, :description, @q.cat_gen_goal_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_gen_line_of_action_id_cont]"><%= t('simple_form.labels.cat_gen_line_of_action') %></label>
-                                  <%= f.select :cat_gen_line_of_action_id_eq, options_from_collection_for_select(CatGenLineOfAction.all, :id, :description, @q.cat_gen_line_of_action_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_pgd_area_of_opportunity_id_cont]"><%= t('simple_form.labels.cat_pgd_area_of_opportunity') %></label>
-                                  <%= f.select :cat_pgd_area_of_opportunity_id_eq, options_from_collection_for_select(CatPgdAreaOfOpportunity.all, :id, :description, @q.cat_pgd_area_of_opportunity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_pgd_objective_id_cont]"><%= t('simple_form.labels.cat_pgd_objective') %></label>
-                                  <%= f.select :cat_pgd_objective_id_eq, options_from_collection_for_select(CatPgdObjective.all, :id, :description, @q.cat_pgd_objective_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_pgd_goal_id_cont]"><%= t('simple_form.labels.cat_pgd_goal') %></label>
-                                  <%= f.select :cat_pgd_goal_id_eq, options_from_collection_for_select(CatPgdGoal.all, :id, :description, @q.cat_pgd_goal_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_pgd_line_of_action_id_cont]"><%= t('simple_form.labels.cat_pgd_line_of_action') %></label>
-                                  <%= f.select :cat_pgd_line_of_action_id_eq, options_from_collection_for_select(CatPgdLineOfAction.all, :id, :description, @q.cat_pgd_line_of_action_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                            <%= render 'shared/submit_filters' %>
-                  </fieldset><% end %>
-              </div>
+                    <div class="form-group">
+                      <label for="q[cat_pgd_axi_id_cont]"><%= t('simple_form.labels.cat_pgd_axi') %></label>
+                      <%= f.select :cat_pgd_axi_id_eq, options_from_collection_for_select(CatPgdAxi.all, :id, :description, @q.cat_pgd_axi_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ere_expending_focu_id_cont]"><%= t('simple_form.labels.cat_ere_expending_focu') %></label>
+                      <%= f.select :cat_ere_expending_focu_id_eq, options_from_collection_for_select(CatEreExpendingFocu.all, :id, :description, @q.cat_ere_expending_focu_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ere_result_id_cont]"><%= t('simple_form.labels.cat_ere_result') %></label>
+                      <%= f.select :cat_ere_result_id_eq, options_from_collection_for_select(CatEreResult.all, :id, :description, @q.cat_ere_result_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ere_subresult_id_cont]"><%= t('simple_form.labels.cat_ere_subresult') %></label>
+                      <%= f.select :cat_ere_subresult_id_eq, options_from_collection_for_select(CatEreSubresult.all, :id, :description, @q.cat_ere_subresult_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[year_gteq]"><%= t('simple_form.labels.defaults.year') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :year_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :year_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[sector_cont]"><%= t('simple_form.labels.defaults.sector') %></label>
+                      <%= f.search_field :sector_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[subsector_cont]"><%= t('simple_form.labels.defaults.subsector') %></label>
+                      <%= f.search_field :subsector_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[unidad_responsable_cont]"><%= t('simple_form.labels.defaults.unidad_responsable') %></label>
+                      <%= f.search_field :unidad_responsable_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_cfu_finality_id_cont]"><%= t('simple_form.labels.cat_cfu_finality') %></label>
+                      <%= f.select :cat_cfu_finality_id_eq, options_from_collection_for_select(CatCfuFinality.all, :id, :description, @q.cat_cfu_finality_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_cfu_function_id_cont]"><%= t('simple_form.labels.cat_cfu_function') %></label>
+                      <%= f.select :cat_cfu_function_id_eq, options_from_collection_for_select(CatCfuFunction.all, :id, :description, @q.cat_cfu_function_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_cfu_subfunction_id_cont]"><%= t('simple_form.labels.cat_cfu_subfunction') %></label>
+                      <%= f.select :cat_cfu_subfunction_id_eq, options_from_collection_for_select(CatCfuSubfunction.all, :id, :description, @q.cat_cfu_subfunction_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_aci_institutional_activity_id_cont]"><%= t('simple_form.labels.cat_aci_institutional_activity') %></label>
+                      <%= f.select :cat_aci_institutional_activity_id_eq, options_from_collection_for_select(CatAciInstitutionalActivity.all, :id, :description, @q.cat_aci_institutional_activity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_funding_source_id_cont]"><%= t('simple_form.labels.cat_fon_funding_source') %></label>
+                      <%= f.select :cat_fon_funding_source_id_eq, options_from_collection_for_select(CatFonFundingSource.all, :id, :description, @q.cat_fon_funding_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_generic_source_id_cont]"><%= t('simple_form.labels.cat_fon_generic_source') %></label>
+                      <%= f.select :cat_fon_generic_source_id_eq, options_from_collection_for_select(CatFonGenericSource.all, :id, :description, @q.cat_fon_generic_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_specific_source_id_cont]"><%= t('simple_form.labels.cat_fon_specific_source') %></label>
+                      <%= f.select :cat_fon_specific_source_id_eq, options_from_collection_for_select(CatFonSpecificSource.all, :id, :description, @q.cat_fon_specific_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_year_document_id_cont]"><%= t('simple_form.labels.cat_fon_year_document') %></label>
+                      <%= f.select :cat_fon_year_document_id_eq, options_from_collection_for_select(CatFonYearDocument.all, :id, :description, @q.cat_fon_year_document_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_origin_resource_id_cont]"><%= t('simple_form.labels.cat_fon_origin_resource') %></label>
+                      <%= f.select :cat_fon_origin_resource_id_eq, options_from_collection_for_select(CatFonOriginResource.all, :id, :description, @q.cat_fon_origin_resource_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_fund_id_cont]"><%= t('simple_form.labels.cat_fon_fund') %></label>
+                      <%= f.select :cat_fon_fund_id_eq, options_from_collection_for_select(CatFonFund.all, :id, :description, @q.cat_fon_fund_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ppr_par_chapter_id_cont]"><%= t('simple_form.labels.cat_ppr_par_chapter') %></label>
+                      <%= f.select :cat_ppr_par_chapter_id_eq, options_from_collection_for_select(CatPprParChapter.all, :id, :description, @q.cat_ppr_par_chapter_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ppr_par_concept_id_cont]"><%= t('simple_form.labels.cat_ppr_par_concept') %></label>
+                      <%= f.select :cat_ppr_par_concept_id_eq, options_from_collection_for_select(CatPprParConcept.all, :id, :description, @q.cat_ppr_par_concept_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ppr_par_partida_generica_id_cont]"><%= t('simple_form.labels.cat_ppr_par_partida_generica') %></label>
+                      <%= f.select :cat_ppr_par_partida_generica_id_eq, options_from_collection_for_select(CatPprParPartidaGenerica.all, :id, :description, @q.cat_ppr_par_partida_generica_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ppr_par_partida_especifica_id_cont]"><%= t('simple_form.labels.cat_ppr_par_partida_especifica') %></label>
+                      <%= f.select :cat_ppr_par_partida_especifica_id_eq, options_from_collection_for_select(CatPprParPartidaEspecifica.all, :id, :description, @q.cat_ppr_par_partida_especifica_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ppr_expense_type_id_cont]"><%= t('simple_form.labels.cat_ppr_expense_type') %></label>
+                      <%= f.select :cat_ppr_expense_type_id_eq, options_from_collection_for_select(CatPprExpenseType.all, :id, :description, @q.cat_ppr_expense_type_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ppr_digit_identifier_id_cont]"><%= t('simple_form.labels.cat_ppr_digit_identifier') %></label>
+                      <%= f.select :cat_ppr_digit_identifier_id_eq, options_from_collection_for_select(CatPprDigitIdentifier.all, :id, :description, @q.cat_ppr_digit_identifier_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_ppr_spending_destination_id_cont]"><%= t('simple_form.labels.cat_ppr_spending_destination') %></label>
+                      <%= f.select :cat_ppr_spending_destination_id_eq, options_from_collection_for_select(CatPprSpendingDestination.all, :id, :description, @q.cat_ppr_spending_destination_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[proyecto_de_inversion_cont]"><%= t('simple_form.labels.defaults.proyecto_de_inversion') %></label>
+                      <%= f.search_field :proyecto_de_inversion_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_are_area_id_cont]"><%= t('simple_form.labels.cat_are_area') %></label>
+                      <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.all, :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[autorizado_gteq]"><%= t('simple_form.labels.defaults.autorizado') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :autorizado_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :autorizado_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[enero_gteq]"><%= t('simple_form.labels.defaults.enero') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :enero_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :enero_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[febrero_gteq]"><%= t('simple_form.labels.defaults.febrero') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :febrero_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :febrero_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[marzo_gteq]"><%= t('simple_form.labels.defaults.marzo') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :marzo_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :marzo_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[abril_gteq]"><%= t('simple_form.labels.defaults.abril') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :abril_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :abril_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[mayo_gteq]"><%= t('simple_form.labels.defaults.mayo') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :mayo_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :mayo_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[junio_gteq]"><%= t('simple_form.labels.defaults.junio') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :junio_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :junio_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[julio_gteq]"><%= t('simple_form.labels.defaults.julio') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :julio_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :julio_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[agosto_gteq]"><%= t('simple_form.labels.defaults.agosto') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :agosto_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :agosto_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[septiembre_gteq]"><%= t('simple_form.labels.defaults.septiembre') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :septiembre_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :septiembre_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[octubre_gteq]"><%= t('simple_form.labels.defaults.octubre') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :octubre_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :octubre_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[noviembre_gteq]"><%= t('simple_form.labels.defaults.noviembre') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :noviembre_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :noviembre_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[diciembre_gteq]"><%= t('simple_form.labels.defaults.diciembre') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :diciembre_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :diciembre_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_uni_measure_unit_id_cont]"><%= t('simple_form.labels.cat_uni_measure_unit') %></label>
+                      <%= f.select :cat_uni_measure_unit_id_eq, options_from_collection_for_select(CatUniMeasureUnit.all, :id, :description, @q.cat_uni_measure_unit_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[meta_fisica_gteq]"><%= t('simple_form.labels.defaults.meta_fisica') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :meta_fisica_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :meta_fisica_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[descripcion_de_las_acciones_cont]"><%= t('simple_form.labels.defaults.descripcion_de_las_acciones') %></label>
+                      <%= f.search_field :descripcion_de_las_acciones_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[domicilio_del_area_cont]"><%= t('simple_form.labels.defaults.domicilio_del_area') %></label>
+                      <%= f.search_field :domicilio_del_area_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[dut_de_la_accion_cont]"><%= t('simple_form.labels.defaults.dut_de_la_accion') %></label>
+                      <%= f.search_field :dut_de_la_accion_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[poblacion_beneficiada_gteq]"><%= t('simple_form.labels.defaults.poblacion_beneficiada') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :poblacion_beneficiada_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :poblacion_beneficiada_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_der_human_right_id_cont]"><%= t('simple_form.labels.cat_der_human_right') %></label>
+                      <%= f.select :cat_der_human_right_id_eq, options_from_collection_for_select(CatDerHumanRight.all, :id, :description, @q.cat_der_human_right_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_der_strategy_id_cont]"><%= t('simple_form.labels.cat_der_strategy') %></label>
+                      <%= f.select :cat_der_strategy_id_eq, options_from_collection_for_select(CatDerStrategy.all, :id, :description, @q.cat_der_strategy_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_der_line_of_action_id_cont]"><%= t('simple_form.labels.cat_der_line_of_action') %></label>
+                      <%= f.select :cat_der_line_of_action_id_eq, options_from_collection_for_select(CatDerLineOfAction.all, :id, :description, @q.cat_der_line_of_action_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[porcentaje_igualdad_sustantiva_gteq]"><%= t('simple_form.labels.defaults.porcentaje_igualdad_sustantiva') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :porcentaje_igualdad_sustantiva_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :porcentaje_igualdad_sustantiva_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[mujeres_gteq]"><%= t('simple_form.labels.defaults.mujeres') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :mujeres_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :mujeres_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group spanning">
+                      <label for="q[hombres_gteq]"><%= t('simple_form.labels.defaults.hombres') %></label>
+
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :hombres_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                      </div>
+                      <div class="input-group input-group-sm block">
+                        <%= f.search_field :hombres_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_gen_axi_id_cont]"><%= t('simple_form.labels.cat_gen_axi') %></label>
+                      <%= f.select :cat_gen_axi_id_eq, options_from_collection_for_select(CatGenAxi.all, :id, :description, @q.cat_gen_axi_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_gen_strategy_id_cont]"><%= t('simple_form.labels.cat_gen_strategy') %></label>
+                      <%= f.select :cat_gen_strategy_id_eq, options_from_collection_for_select(CatGenStrategy.all, :id, :description, @q.cat_gen_strategy_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_gen_line_of_action_id_cont]"><%= t('simple_form.labels.cat_gen_line_of_action') %></label>
+                      <%= f.select :cat_gen_line_of_action_id_eq, options_from_collection_for_select(CatGenLineOfAction.all, :id, :description, @q.cat_gen_line_of_action_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_pgd_area_of_opportunity_id_cont]"><%= t('simple_form.labels.cat_pgd_area_of_opportunity') %></label>
+                      <%= f.select :cat_pgd_area_of_opportunity_id_eq, options_from_collection_for_select(CatPgdAreaOfOpportunity.all, :id, :description, @q.cat_pgd_area_of_opportunity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_pgd_objective_id_cont]"><%= t('simple_form.labels.cat_pgd_objective') %></label>
+                      <%= f.select :cat_pgd_objective_id_eq, options_from_collection_for_select(CatPgdObjective.all, :id, :description, @q.cat_pgd_objective_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_pgd_goal_id_cont]"><%= t('simple_form.labels.cat_pgd_goal') %></label>
+                      <%= f.select :cat_pgd_goal_id_eq, options_from_collection_for_select(CatPgdGoal.all, :id, :description, @q.cat_pgd_goal_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_pgd_line_of_action_id_cont]"><%= t('simple_form.labels.cat_pgd_line_of_action') %></label>
+                      <%= f.select :cat_pgd_line_of_action_id_eq, options_from_collection_for_select(CatPgdLineOfAction.all, :id, :description, @q.cat_pgd_line_of_action_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <%= render 'shared/submit_filters' %>
+                  </fieldset>
+              <% end %>
             </div>
+          </div>
           <div class="widget-body">
             <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
-                                                            <th class='all control'><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.cat_pgd_axi')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.cat_ere_expending_focu')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.cat_ere_result')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ere_subresult_name, t('simple_form.labels.cat_ere_subresult')) %></th>
-                                                                                <th><%= sort_link(@q, :year, t('simple_form.labels.defaults.year')) %></th>
-                                                                                <th><%= sort_link(@q, :sector, t('simple_form.labels.defaults.sector')) %></th>
-                                                                                <th><%= sort_link(@q, :subsector, t('simple_form.labels.defaults.subsector')) %></th>
-                                                                                <th><%= sort_link(@q, :unidad_responsable, t('simple_form.labels.defaults.unidad_responsable')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_cfu_finality_name, t('simple_form.labels.cat_cfu_finality')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_cfu_function_name, t('simple_form.labels.cat_cfu_function')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_cfu_subfunction_name, t('simple_form.labels.cat_cfu_subfunction')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_aci_institutional_activity_name, t('simple_form.labels.cat_aci_institutional_activity')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_funding_source_name, t('simple_form.labels.cat_fon_funding_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_generic_source_name, t('simple_form.labels.cat_fon_generic_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_specific_source_name, t('simple_form.labels.cat_fon_specific_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_year_document_name, t('simple_form.labels.cat_fon_year_document')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_origin_resource_name, t('simple_form.labels.cat_fon_origin_resource')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_fund_name, t('simple_form.labels.cat_fon_fund')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ppr_par_chapter_name, t('simple_form.labels.cat_ppr_par_chapter')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ppr_par_concept_name, t('simple_form.labels.cat_ppr_par_concept')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ppr_par_partida_generica_name, t('simple_form.labels.cat_ppr_par_partida_generica')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_name, t('simple_form.labels.cat_ppr_par_partida_especifica')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ppr_expense_type_name, t('simple_form.labels.cat_ppr_expense_type')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ppr_digit_identifier_name, t('simple_form.labels.cat_ppr_digit_identifier')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ppr_spending_destination_name, t('simple_form.labels.cat_ppr_spending_destination')) %></th>
-                                                                                <th><%= sort_link(@q, :proyecto_de_inversion, t('simple_form.labels.defaults.proyecto_de_inversion')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_are_area_name, t('simple_form.labels.cat_are_area')) %></th>
-                                                                                <th><%= sort_link(@q, :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
-                                                                                <th><%= sort_link(@q, :enero, t('simple_form.labels.defaults.enero')) %></th>
-                                                                                <th><%= sort_link(@q, :febrero, t('simple_form.labels.defaults.febrero')) %></th>
-                                                                                <th><%= sort_link(@q, :marzo, t('simple_form.labels.defaults.marzo')) %></th>
-                                                                                <th><%= sort_link(@q, :abril, t('simple_form.labels.defaults.abril')) %></th>
-                                                                                <th><%= sort_link(@q, :mayo, t('simple_form.labels.defaults.mayo')) %></th>
-                                                                                <th><%= sort_link(@q, :junio, t('simple_form.labels.defaults.junio')) %></th>
-                                                                                <th><%= sort_link(@q, :julio, t('simple_form.labels.defaults.julio')) %></th>
-                                                                                <th><%= sort_link(@q, :agosto, t('simple_form.labels.defaults.agosto')) %></th>
-                                                                                <th><%= sort_link(@q, :septiembre, t('simple_form.labels.defaults.septiembre')) %></th>
-                                                                                <th><%= sort_link(@q, :octubre, t('simple_form.labels.defaults.octubre')) %></th>
-                                                                                <th><%= sort_link(@q, :noviembre, t('simple_form.labels.defaults.noviembre')) %></th>
-                                                                                <th><%= sort_link(@q, :diciembre, t('simple_form.labels.defaults.diciembre')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_uni_measure_unit_name, t('simple_form.labels.cat_uni_measure_unit')) %></th>
-                                                                                <th><%= sort_link(@q, :meta_fisica, t('simple_form.labels.defaults.meta_fisica')) %></th>
-                                                                                <th><%= sort_link(@q, :descripcion_de_las_acciones, t('simple_form.labels.defaults.descripcion_de_las_acciones')) %></th>
-                                                                                <th><%= sort_link(@q, :domicilio_del_area, t('simple_form.labels.defaults.domicilio_del_area')) %></th>
-                                                                                <th><%= sort_link(@q, :dut_de_la_accion, t('simple_form.labels.defaults.dut_de_la_accion')) %></th>
-                                                                                <th><%= sort_link(@q, :poblacion_beneficiada, t('simple_form.labels.defaults.poblacion_beneficiada')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_der_human_right_name, t('simple_form.labels.cat_der_human_right')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_der_strategy_name, t('simple_form.labels.cat_der_strategy')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_der_line_of_action_name, t('simple_form.labels.cat_der_line_of_action')) %></th>
-                                                                                <th><%= sort_link(@q, :justificacion, t('simple_form.labels.defaults.justificacion')) %></th>
-                                                                                <th><%= sort_link(@q, :porcentaje_igualdad_sustantiva, t('simple_form.labels.defaults.porcentaje_igualdad_sustantiva')) %></th>
-                                                                                <th><%= sort_link(@q, :mujeres, t('simple_form.labels.defaults.mujeres')) %></th>
-                                                                                <th><%= sort_link(@q, :hombres, t('simple_form.labels.defaults.hombres')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_gen_axi_name, t('simple_form.labels.cat_gen_axi')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_gen_objective_name, t('simple_form.labels.cat_gen_objective')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_gen_strategy_name, t('simple_form.labels.cat_gen_strategy')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_gen_goal_name, t('simple_form.labels.cat_gen_goal')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_gen_line_of_action_name, t('simple_form.labels.cat_gen_line_of_action')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_pgd_area_of_opportunity_name, t('simple_form.labels.cat_pgd_area_of_opportunity')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_pgd_objective_name, t('simple_form.labels.cat_pgd_objective')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_pgd_goal_name, t('simple_form.labels.cat_pgd_goal')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_pgd_line_of_action_name, t('simple_form.labels.cat_pgd_line_of_action')) %></th>
-                                                    <th class="all"><%= t('simple_form.screen.actions') %></th>
+                <th class='all control'><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.cat_pgd_axi')) %></th>
+                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.cat_ere_expending_focu')) %></th>
+                <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.cat_ere_result')) %></th>
+                <th><%= sort_link(@q, :cat_ere_subresult_name, t('simple_form.labels.cat_ere_subresult')) %></th>
+                <th><%= sort_link(@q, :year, t('simple_form.labels.defaults.year')) %></th>
+                <th><%= sort_link(@q, :sector, t('simple_form.labels.defaults.sector')) %></th>
+                <th><%= sort_link(@q, :subsector, t('simple_form.labels.defaults.subsector')) %></th>
+                <th><%= sort_link(@q, :unidad_responsable, t('simple_form.labels.defaults.unidad_responsable')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_finality_name, t('simple_form.labels.cat_cfu_finality')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_function_name, t('simple_form.labels.cat_cfu_function')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_subfunction_name, t('simple_form.labels.cat_cfu_subfunction')) %></th>
+                <th><%= sort_link(@q, :cat_aci_institutional_activity_name, t('simple_form.labels.cat_aci_institutional_activity')) %></th>
+                <th><%= sort_link(@q, :cat_fon_funding_source_name, t('simple_form.labels.cat_fon_funding_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_generic_source_name, t('simple_form.labels.cat_fon_generic_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_specific_source_name, t('simple_form.labels.cat_fon_specific_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_year_document_name, t('simple_form.labels.cat_fon_year_document')) %></th>
+                <th><%= sort_link(@q, :cat_fon_origin_resource_name, t('simple_form.labels.cat_fon_origin_resource')) %></th>
+                <th><%= sort_link(@q, :cat_fon_fund_name, t('simple_form.labels.cat_fon_fund')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_chapter_name, t('simple_form.labels.cat_ppr_par_chapter')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_concept_name, t('simple_form.labels.cat_ppr_par_concept')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_partida_generica_name, t('simple_form.labels.cat_ppr_par_partida_generica')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_name, t('simple_form.labels.cat_ppr_par_partida_especifica')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_expense_type_name, t('simple_form.labels.cat_ppr_expense_type')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_digit_identifier_name, t('simple_form.labels.cat_ppr_digit_identifier')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_spending_destination_name, t('simple_form.labels.cat_ppr_spending_destination')) %></th>
+                <th><%= sort_link(@q, :proyecto_de_inversion, t('simple_form.labels.defaults.proyecto_de_inversion')) %></th>
+                <th><%= sort_link(@q, :cat_are_area_name, t('simple_form.labels.cat_are_area')) %></th>
+                <th><%= sort_link(@q, :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
+                <th><%= sort_link(@q, :cat_uni_measure_unit_name, t('simple_form.labels.cat_uni_measure_unit')) %></th>
+                <th><%= sort_link(@q, :meta_fisica, t('simple_form.labels.defaults.meta_fisica')) %></th>
+                <th><%= sort_link(@q, :descripcion_de_las_acciones, t('simple_form.labels.defaults.descripcion_de_las_acciones')) %></th>
+                <th><%= sort_link(@q, :domicilio_del_area, t('simple_form.labels.defaults.domicilio_del_area')) %></th>
+                <th><%= sort_link(@q, :dut_de_la_accion, t('simple_form.labels.defaults.dut_de_la_accion')) %></th>
+                <th><%= sort_link(@q, :poblacion_beneficiada, t('simple_form.labels.defaults.poblacion_beneficiada')) %></th>
+                <th><%= sort_link(@q, :cat_der_human_right_name, t('simple_form.labels.cat_der_human_right')) %></th>
+                <th><%= sort_link(@q, :cat_der_strategy_name, t('simple_form.labels.cat_der_strategy')) %></th>
+                <th><%= sort_link(@q, :cat_der_line_of_action_name, t('simple_form.labels.cat_der_line_of_action')) %></th>
+                <th><%= sort_link(@q, :porcentaje_igualdad_sustantiva, t('simple_form.labels.defaults.porcentaje_igualdad_sustantiva')) %></th>
+                <th><%= sort_link(@q, :mujeres, t('simple_form.labels.defaults.mujeres')) %></th>
+                <th><%= sort_link(@q, :hombres, t('simple_form.labels.defaults.hombres')) %></th>
+                <th><%= sort_link(@q, :cat_gen_axi_name, t('simple_form.labels.cat_gen_axi')) %></th>
+                <th><%= sort_link(@q, :cat_gen_objective_name, t('simple_form.labels.cat_gen_objective')) %></th>
+                <th><%= sort_link(@q, :cat_gen_strategy_name, t('simple_form.labels.cat_gen_strategy')) %></th>
+                <th><%= sort_link(@q, :cat_gen_goal_name, t('simple_form.labels.cat_gen_goal')) %></th>
+                <th><%= sort_link(@q, :cat_gen_line_of_action_name, t('simple_form.labels.cat_gen_line_of_action')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_area_of_opportunity_name, t('simple_form.labels.cat_pgd_area_of_opportunity')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_objective_name, t('simple_form.labels.cat_pgd_objective')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_goal_name, t('simple_form.labels.cat_pgd_goal')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_line_of_action_name, t('simple_form.labels.cat_pgd_line_of_action')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>
               <tbody>
               <% @key_analyticals.each do |key_analytical| %>
-              <tr>
-                                                                        <td><%= key_analytical.cat_pgd_axi.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ere_expending_focu.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ere_result.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ere_subresult.try(:description) %></td>
-                                                                                          <td align='right'><%= key_analytical.year %></td>
-                                                                                          <td><%= key_analytical.sector %></td>
-                                                                                          <td><%= key_analytical.subsector %></td>
-                                                                                          <td><%= key_analytical.unidad_responsable %></td>
-                                                                                          <td><%= key_analytical.cat_cfu_finality.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_cfu_function.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_cfu_subfunction.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_aci_institutional_activity.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_fon_funding_source.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_fon_generic_source.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_fon_specific_source.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_fon_year_document.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_fon_origin_resource.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_fon_fund.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ppr_par_chapter.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ppr_par_concept.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ppr_par_partida_generica.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ppr_par_partida_especifica.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ppr_expense_type.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ppr_digit_identifier.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_ppr_spending_destination.try(:description) %></td>
-                                                                                          <td><%= key_analytical.proyecto_de_inversion %></td>
-                                                                                          <td><%= key_analytical.cat_are_area.try(:description) %></td>
-                                                                                          <td align='right'><%= key_analytical.autorizado %></td>
-                                                                                          <td align='right'><%= key_analytical.enero %></td>
-                                                                                          <td align='right'><%= key_analytical.febrero %></td>
-                                                                                          <td align='right'><%= key_analytical.marzo %></td>
-                                                                                          <td align='right'><%= key_analytical.abril %></td>
-                                                                                          <td align='right'><%= key_analytical.mayo %></td>
-                                                                                          <td align='right'><%= key_analytical.junio %></td>
-                                                                                          <td align='right'><%= key_analytical.julio %></td>
-                                                                                          <td align='right'><%= key_analytical.agosto %></td>
-                                                                                          <td align='right'><%= key_analytical.septiembre %></td>
-                                                                                          <td align='right'><%= key_analytical.octubre %></td>
-                                                                                          <td align='right'><%= key_analytical.noviembre %></td>
-                                                                                          <td align='right'><%= key_analytical.diciembre %></td>
-                                                                                          <td><%= key_analytical.cat_uni_measure_unit.try(:description) %></td>
-                                                                                          <td align='right'><%= key_analytical.meta_fisica %></td>
-                                                                                          <td><%= key_analytical.descripcion_de_las_acciones %></td>
-                                                                                          <td><%= key_analytical.domicilio_del_area %></td>
-                                                                                          <td><%= key_analytical.dut_de_la_accion %></td>
-                                                                                          <td align='right'><%= key_analytical.poblacion_beneficiada %></td>
-                                                                                          <td><%= key_analytical.cat_der_human_right.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_der_strategy.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_der_line_of_action.try(:description) %></td>
-                                                                                          <td><%= key_analytical.justificacion %></td>
-                                                                                          <td align='right'><%= key_analytical.porcentaje_igualdad_sustantiva %></td>
-                                                                                          <td align='right'><%= key_analytical.mujeres %></td>
-                                                                                          <td align='right'><%= key_analytical.hombres %></td>
-                                                                                          <td><%= key_analytical.cat_gen_axi.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_gen_objective.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_gen_strategy.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_gen_goal.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_gen_line_of_action.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_pgd_area_of_opportunity.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_pgd_objective.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_pgd_goal.try(:description) %></td>
-                                                                                          <td><%= key_analytical.cat_pgd_line_of_action.try(:description) %></td>
-                                              <td class="table-actions">
-                <%= render 'shared/action_icons', locals: {target: key_analytical} %>
-              </td>
-              </tr>
+                  <tr>
+                    <td><%= key_analytical.cat_pgd_axi.try(:description) %></td>
+                    <td><%= key_analytical.cat_ere_expending_focu.try(:description) %></td>
+                    <td><%= key_analytical.cat_ere_result.try(:description) %></td>
+                    <td><%= key_analytical.cat_ere_subresult.try(:description) %></td>
+                    <td align='right'><%= key_analytical.year %></td>
+                    <td><%= key_analytical.sector %></td>
+                    <td><%= key_analytical.subsector %></td>
+                    <td><%= key_analytical.unidad_responsable %></td>
+                    <td><%= key_analytical.cat_cfu_finality.try(:description) %></td>
+                    <td><%= key_analytical.cat_cfu_function.try(:description) %></td>
+                    <td><%= key_analytical.cat_cfu_subfunction.try(:description) %></td>
+                    <td><%= key_analytical.cat_aci_institutional_activity.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_funding_source.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_generic_source.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_specific_source.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_year_document.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_origin_resource.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_fund.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_par_chapter.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_par_concept.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_par_partida_generica.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_par_partida_especifica.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_expense_type.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_digit_identifier.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_spending_destination.try(:description) %></td>
+                    <td><%= key_analytical.proyecto_de_inversion %></td>
+                    <td><%= key_analytical.cat_are_area.try(:description) %></td>
+                    <td align='right'><%= key_analytical.autorizado %></td>
+                    <td><%= key_analytical.cat_uni_measure_unit.try(:description) %></td>
+                    <td align='right'><%= key_analytical.meta_fisica %></td>
+                    <td><%= key_analytical.descripcion_de_las_acciones %></td>
+                    <td><%= key_analytical.domicilio_del_area %></td>
+                    <td><%= key_analytical.dut_de_la_accion %></td>
+                    <td align='right'><%= key_analytical.poblacion_beneficiada %></td>
+                    <td><%= key_analytical.cat_der_human_right.try(:description) %></td>
+                    <td><%= key_analytical.cat_der_strategy.try(:description) %></td>
+                    <td><%= key_analytical.cat_der_line_of_action.try(:description) %></td>
+                    <td align='right'><%= key_analytical.porcentaje_igualdad_sustantiva %></td>
+                    <td align='right'><%= key_analytical.mujeres %></td>
+                    <td align='right'><%= key_analytical.hombres %></td>
+                    <td><%= key_analytical.cat_gen_axi.try(:description) %></td>
+                    <td><%= key_analytical.cat_gen_objective.try(:description) %></td>
+                    <td><%= key_analytical.cat_gen_strategy.try(:description) %></td>
+                    <td><%= key_analytical.cat_gen_goal.try(:description) %></td>
+                    <td><%= key_analytical.cat_gen_line_of_action.try(:description) %></td>
+                    <td><%= key_analytical.cat_pgd_area_of_opportunity.try(:description) %></td>
+                    <td><%= key_analytical.cat_pgd_objective.try(:description) %></td>
+                    <td><%= key_analytical.cat_pgd_goal.try(:description) %></td>
+                    <td><%= key_analytical.cat_pgd_line_of_action.try(:description) %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: key_analytical} %>
+                    </td>
+                  </tr>
               <% end %>
               </tbody>
             </table>

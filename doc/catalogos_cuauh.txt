@@ -172,21 +172,18 @@ poblacion_beneficiada (integer)
 cat_der_human_right_id (en el excel sale sin el cero adelante, unificar o bien aclararlo con luis)
 cat_der_strategy_id (en el excel sale solo un digito, sin cero y sin el anterior)
 cat_der_line_of_action_id (aqui sale completita la key)
-
-justificacion (esta en duda pero por el momento es un campo text)
+justificacion_derechos_humanos (text)
 
 porcentaje_igualdad_sustantiva
 mujeres (integer)
 hombres (integer)
 cat_gen_axi_id (en el excel sale sin el cero de adelante)
-cat_gen_objective_id (cuidado! en el excel no sale el key lo cual está mal, solo sale la description)
 cat_gen_strategy_id (el excel no tiene los ceros ni los anteriores)
+cat_gen_line_of_action_id (no figura en el excel)
+justificacion_genero (text)
 
 Los siguientes no figuran en el excel (checar si no hay mas):
 --------------------------------------
-cat_gen_goal_id (no figura en el excel)
-cat_gen_line_of_action_id (no figura en el excel)
-
 cat_pgd_area_of_opportunity_id
 cat_pgd_objective_id
 cat_pgd_goal_id
