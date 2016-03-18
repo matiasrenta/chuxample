@@ -19,11 +19,21 @@ class BaseImport
       true
     else
       errors.add(:base, I18n.translate('activerecord.errors.messages.invalid_imported_entities'))
+      #imported_entities.each_with_index do |entity, index|
+      #  entity.errors.full_messages.each do |message|
+      #    errors.add :base, "Fila #{index+2}: #{message}"
+      #  end
+      #end
+      c = []
       imported_entities.each_with_index do |entity, index|
-        entity.errors.full_messages.each do |message|
-          errors.add :base, "Fila #{index+2}: #{message}"
+        if entity.errors.any?
+          c << index + 1
+          if c.size < 10
+            errors.add :base, "Fila #{index+2}: #{entity.errors.full_messages}"
+          end
         end
       end
+      errors.add :base, "cantidad de filas con errores: #{c.size}"
       false
     end
   end
@@ -44,10 +54,7 @@ class BaseImport
 
     (secuencia).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      enti = create_entity_from_row(row)
-      if enti
-        entities << enti
-      end
+      entities << create_entity_from_row(row)
     end
     entities
   end
