@@ -64,4 +64,10 @@ class CatalogCleaner < Object
     #end
   end
 
+  def self.construct_all_key_analyticals_string
+    KeyAnalytical.all.each do |key_analytical|
+      key_analytical.save!
+    end
+  end
+
 end
