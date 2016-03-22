@@ -304,9 +304,6 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
-      profile_obra:
-        one: Perfil Obra
-        other: Perfiles Obra
       project_activity:
         one: Actividad
         other: Actividades
