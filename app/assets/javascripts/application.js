@@ -35,8 +35,13 @@
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
 
+
 // require js/plugin/jquery-ui/ui/core
 // require js/plugin/jquery-ui/ui/widget
+
+// require js/plugin/jquery-ui/ui/autocomplete
+//= require js/plugin/jquery-ui/jquery-ui.js
+//= require js/plugin/jquery-mentions/jquery.mentions
 
 // require js/plugin/datatables/jquery.dataTables.min
 //= require js/plugin/datatables/jquery.dataTables
@@ -71,9 +76,6 @@
 // require auto_select2/ajax_select2
 // require auto_select2/multi_ajax_select2_value_parser
 // (-) select 2 world
-
-// require js/plugin/jquery-ui/ui/autocomplete
-// require js/plugin/jquery-mentions/jquery.mentions
 
 // Datetimepicker (no es el mismo del theme)
 //= require js/plugin/datetimepicker/jquery.datetimepicker
