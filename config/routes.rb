@@ -176,10 +176,6 @@ Rails.application.routes.draw do
       get 'download_import_file'
     end
   end
-  resources :key_meta_values
-  resources :key_meta_titles
-  resources :key_meta_subcategories
-  resources :key_meta_categories
   resources :comments
   resources :conversations, only: [:index, :show, :destroy] do
     post :mark_as_read, on: :member

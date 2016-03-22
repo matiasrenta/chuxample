@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319010714) do
+ActiveRecord::Schema.define(version: 20160322181557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -416,35 +416,6 @@ ActiveRecord::Schema.define(version: 20160319010714) do
     t.text     "justificacion_derechos_humanos"
     t.text     "justificacion_genero"
     t.string   "key_analytical_string"
-  end
-
-  create_table "key_meta_categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "key_meta_subcategories", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "key_meta_category_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  create_table "key_meta_titles", force: :cascade do |t|
-    t.string   "name"
-    t.string   "abbreviation"
-    t.integer  "key_meta_subcategory_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "key_meta_values", force: :cascade do |t|
-    t.string   "key_value"
-    t.string   "key_description"
-    t.integer  "key_meta_title_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

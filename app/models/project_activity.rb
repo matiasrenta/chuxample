@@ -12,7 +12,6 @@ class ProjectActivity < ActiveRecord::Base
 
 
   belongs_to :key_analytical
-  belongs_to :profile, polymorphic: true
 
   validates :key, :name, :description, :key_analytical_id, presence: true
   validates :key_analytical_id, numericality: true

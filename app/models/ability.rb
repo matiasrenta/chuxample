@@ -70,10 +70,6 @@ class Ability
 		can [:manage], CatDerLineOfAction
 		can [:manage], CatDerStrategy
 		can [:manage], CatDerHumanRight
-		can [:manage], KeyMetaValue
-		can [:manage], KeyMetaTitle
-		can [:manage], KeyMetaSubcategory
-		can [:manage], KeyMetaCategory
 		can [:read, :destroy], DelayedJob
 		can [:manage], ThingCategory
     can [:manage], PublicActivity::Activity
