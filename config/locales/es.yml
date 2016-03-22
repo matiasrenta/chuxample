@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      project_activity:
+        one: Actividad
+        other: Actividades
       key_analytical:
         one: Analítico de Claves
         other: Analítico de Claves
@@ -298,6 +301,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      project_activity:
+        one: Actividad
+        other: Actividades
       key_analytical:
         one: Analítico de Claves
         other: Analítico de Claves

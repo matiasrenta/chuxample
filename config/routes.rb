@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :project_activities
+  resources :projects
   resources :key_analyticals do
     collection do
       get 'new_import'

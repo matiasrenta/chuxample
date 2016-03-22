@@ -1,4 +1,5 @@
 class KeyAnalytical < ActiveRecord::Base
+  has_many :project_activities, dependent: :restrict_with_error
   belongs_to :cat_pgd_line_of_action
   belongs_to :cat_pgd_goal
   belongs_to :cat_pgd_objective
