@@ -45,19 +45,41 @@
     </div>
   </article>
 
-  <!--
   <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-      <header><span class="widget-icon"><i class="fa fa-info"></i></span>
-        <h2>Details</h2>
+      <header>
+        <h2>Documentos Financieros</h2>
+        <div class="widget-toolbar">
+          <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_activity_financial_document_path(@project_activity), class: 'btn btn-primary' if (can? :create, FinancialDocument) %>
+        </div>
       </header>
       <div class="no-padding">
         <div class="widget-body">
-
+          <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+              <th class='all control'>Tipo</th>
+              <th>Número</th>
+              <th>Importe</th>
+              <th class="all"><%= t('simple_form.screen.actions') %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @project_activity.financial_documents.each do |fd| %>
+                <tr>
+                  <td><%= fd.doc_type %></td>
+                  <td><%= fd.code %></td>
+                  <td><%= fd.amount %></td>
+                  <td class="table-actions">
+                    <%= render 'shared/action_icons', locals: {target: fd} %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </article>
-  -->
 </section>
 

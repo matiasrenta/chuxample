@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  #resources :project_activities
   resources :projects, shallow: true do
-    resources :project_activities
+    resources :project_activities, shallow: true do
+      resources :financial_documents
+    end
   end
   resources :key_analyticals do
     collection do

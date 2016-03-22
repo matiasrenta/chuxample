@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      financial_document:
+        one: Documento Financiero
+        other: Documentos Financieros
       profile_obra:
         one: Perfil Obra
         other: Perfiles Obra
@@ -304,6 +307,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      financial_document:
+        one: Documento Financiero
+        other: Documentos Financieros
       project_activity:
         one: Actividad
         other: Actividades

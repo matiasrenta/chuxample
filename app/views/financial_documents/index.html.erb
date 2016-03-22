@@ -1,0 +1,91 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_financial_document_path, class: 'btn btn-primary' if(can? :create, FinancialDocument) %>
+            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
+            <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                                                                        <div class="form-group">
+                              <label for="q[doc_type_cont]"><%= t('simple_form.labels.defaults.doc_type') %></label>
+                              <%= f.search_field :doc_type_cont, label: false, class: "form-control input-sm" %>
+                            </div>
+                                                                                                <div class="form-group">
+                              <label for="q[code_cont]"><%= t('simple_form.labels.defaults.code') %></label>
+                              <%= f.search_field :code_cont, label: false, class: "form-control input-sm" %>
+                            </div>
+                                                                                                <div class="form-group">
+                              <label for="q[provider_cont]"><%= t('simple_form.labels.defaults.provider') %></label>
+                              <%= f.search_field :provider_cont, label: false, class: "form-control input-sm" %>
+                            </div>
+                                                                                                <div class="form-group spanning">
+                              <label for="q[doc_date_gteq]"><%= t('simple_form.labels.defaults.doc_date') %></label>
+                              <div class="input-group input-group-sm block">
+                                <%= f.search_field :doc_date_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.doc_date_gteq) %>
+                              </div>
+                              <div class="input-group input-group-sm block">
+                                <%= f.search_field :doc_date_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.doc_date_lteq) %>
+                              </div>
+                            </div>
+                                                                                                                                <div class="form-group spanning">
+                                  <label for="q[amount_gteq]"><%= t('simple_form.labels.defaults.amount') %></label>
+                                  <div class="input-group input-group-sm block">
+                                    <%= f.search_field :amount_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                                  </div>
+                                  <div class="input-group input-group-sm block">
+                                    <%= f.search_field :amount_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                                  </div>
+                                </div>
+                                                                                                                                                            <div class="form-group">
+                                  <label for="q[project_activity_id_cont]"><%= t('simple_form.labels.project_activity') %></label>
+                                  <%= f.select :project_activity_id_eq, options_from_collection_for_select(ProjectActivity.all, :id, :description, @q.project_activity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                                </div>
+                                                                                            <%= render 'shared/submit_filters' %>
+                  </fieldset><% end %>
+              </div>
+            </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                                                            <th class='all control'><%= sort_link(@q, :doc_type, t('simple_form.labels.defaults.type')) %></th>
+                                                                                <th><%= sort_link(@q, :code, t('simple_form.labels.defaults.code')) %></th>
+                                                                                <th><%= sort_link(@q, :provider, t('simple_form.labels.defaults.provider')) %></th>
+                                                                                <th><%= sort_link(@q, :doc_date, t('simple_form.labels.defaults.doc_date')) %></th>
+                                                                                <th><%= sort_link(@q, :amount, t('simple_form.labels.defaults.amount')) %></th>
+                                                                                <th><%= sort_link(@q, :project_activity_name, t('simple_form.labels.project_activity')) %></th>
+                                                    <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @financial_documents.each do |financial_document| %>
+              <tr>
+                                                                        <td><%= financial_document.doc_type %></td>
+                                                                                          <td><%= financial_document.code %></td>
+                                                                                          <td><%= financial_document.provider %></td>
+                                                                                          <td><%= l(financial_document.doc_date, format: :default) %></td>
+                                                                                          <td align='right'><%= financial_document.amount %></td>
+                                                                                          <td><%= financial_document.project_activity.try(:description) %></td>
+                                              <td class="table-actions">
+                <%= render 'shared/action_icons', locals: {target: financial_document} %>
+              </td>
+              </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @financial_documents, model_index_path: financial_documents_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

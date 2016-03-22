@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], FinancialDocument
 		can [:manage], ProjectActivity
 		can [:manage], KeyAnalytical
 		can [:manage], CatPprSpendingDestination

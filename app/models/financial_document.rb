@@ -1,6 +1,4 @@
-class ProjectActivity < ActiveRecord::Base
-  has_many :financial_documents, dependent: :restrict_with_error
-
+class FinancialDocument < ActiveRecord::Base
 	include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
@@ -13,12 +11,12 @@ class ProjectActivity < ActiveRecord::Base
           }
 
 
-  belongs_to :key_analytical
+  belongs_to :project_activity
 
-  validates :key, :name, :description, :key_analytical_id, presence: true
-  validates :key_analytical_id, numericality: true
+  validates :project_activity_id, presence: true
+  validates :project_activity_id, numericality: true
 
-  accepts_nested_attributes_for :financial_documents, allow_destroy: true
+
 
 
 

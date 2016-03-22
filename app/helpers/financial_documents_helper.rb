@@ -1,0 +1,2 @@
+module FinancialDocumentsHelper
+end
