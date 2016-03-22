@@ -67,11 +67,6 @@
 
   $('.comment').each(function() {
     var commentEach = $(this)[0];
-    console.log( 'commentEach/// ', commentEach );
-    //var messageTopChild = $(messageTop).children()[0];
-    //var messageReplyTime = $(messageTopChild).next()[0];
-    //console.log( 'messageReplyTime/// ',messageReplyTime );
-    //$(this).find('li .time-left').hide();
     if ( $(commentEach).parent().parent().hasClass('message-reply') ) {
       $(commentEach).find('.ultra-light').hide();
     } else {
