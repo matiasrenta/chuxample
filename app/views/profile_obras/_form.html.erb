@@ -1,0 +1,50 @@
+<div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+  <header>
+    <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
+
+    <% if creating? %>
+        <div class='widget-toolbar hidden-xs'>
+          <a href='<%= new_import_profile_obras_path %>' role='button' class='btn btn-primary'><i class='fa fa-upload'></i>Carga masiva</a>
+        </div>
+    <% end %>
+
+  </header>
+  <div>
+    <div class="widget-body">
+      <%= simple_form_for @profile_obra, html: { class: 'form-horizontal' },
+                          wrapper: :horizontal_form,
+                          wrapper_mappings: {
+                                  check_boxes: :horizontal_radio_and_checkboxes,
+                                  radio_buttons: :horizontal_radio_and_checkboxes,
+                                  file: :horizontal_file_input,
+                                  boolean: :horizontal_boolean
+                          } do |f| %>
+          <div class="form-inputs edit">
+                                    <%= f.input :contrato %>
+                                                    <%= f.input :calle %>
+                                                    <%= f.input :numero %>
+                                                    <%= f.input :colonia %>
+                                                    <%= f.input :codigo_postal %>
+                                                    <%= f.input :tipo_obra %>
+                                                                            <%= f.input :cantidad %>
+                                                                                                <%= f.input :importe %>
+                                                                        <%= f.input :fecha_inicio, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@profile_obra.fecha_inicio)} %>
+                                                    <%= f.input :fecha_fin, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@profile_obra.fecha_fin)} %>
+                                                                            <%= f.input :avance_programado %>
+                                                                                                <%= f.input :avance_real %>
+                                    
+            <div class="widget-footer">
+              <div class="form-actions">
+                <div class="btn-group">
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), profile_obras_path, class: 'btn btn-default btn-sm' if can?(:read, ProfileObra) %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @profile_obra, class: 'btn btn-default btn-sm' if can?(:read, ProfileObra) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @profile_obra, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, ProfileObra) && updating? %>
+                  <button type="submit" class="btn btn-primary btn-sm"><i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %></button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

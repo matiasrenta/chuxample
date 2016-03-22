@@ -12,6 +12,7 @@ class ProjectActivitiesController < ApplicationController
 
   # GET /project_activities/new
   def new
+    @key_analytical = KeyAnalytical.find(params[:project_id])
   end
 
   # GET /project_activities/1/edit
@@ -20,9 +21,10 @@ class ProjectActivitiesController < ApplicationController
 
   # POST /project_activities
   def create
-
+    @key_analytical = KeyAnalytical.find(params[:project_id])
+    @project_activity = @key_analytical.project_activities.build(project_activity_params)
     if @project_activity.save
-      redirect_to @project_activity, notice: t("simple_form.flash.successfully_created")
+      redirect_to project_path(@key_analytical), notice: t("simple_form.flash.successfully_created")
     else
       generate_flash_msg_no_keep(@project_activity)
       render :new
@@ -32,7 +34,7 @@ class ProjectActivitiesController < ApplicationController
   # PATCH/PUT /project_activities/1
   def update
     if @project_activity.update(project_activity_params)
-      redirect_to @project_activity, notice: t("simple_form.flash.successfully_updated")
+      redirect_to project_path(@project_activity.key_analytical_id), notice: t("simple_form.flash.successfully_updated")
     else
       generate_flash_msg_no_keep(@project_activity)
       render :edit
@@ -42,7 +44,7 @@ class ProjectActivitiesController < ApplicationController
   # DELETE /project_activities/1
   def destroy
     @project_activity.destroy
-    redirect_to project_activities_url, notice: t("simple_form.flash.successfully_destroyed")
+    redirect_to project_path(@project_activity.key_analytical_id), notice: t("simple_form.flash.successfully_destroyed")
   end
 
   private

@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      profile_obra:
+        one: Perfil Obra
+        other: Perfiles Obra
       project_activity:
         one: Actividad
         other: Actividades
@@ -301,9 +304,15 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      profile_obra:
+        one: Perfil Obra
+        other: Perfiles Obra
       project_activity:
         one: Actividad
         other: Actividades
+      project:
+        one: Proyecto
+        other: Proyectos
       key_analytical:
         one: Analítico de Claves
         other: Analítico de Claves

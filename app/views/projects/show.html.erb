@@ -4,8 +4,8 @@
       <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
 
         <div class="widget-toolbar">
-          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), key_analyticals_path, class: 'btn btn-primary' %>
-          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_key_analytical_path(@key_analytical), class: 'btn btn-primary' if can?(:update, KeyAnalytical) %>
+          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), projects_path, class: 'btn btn-primary' %>
+          <%#= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_key_analytical_path(@key_analytical), class: 'btn btn-primary' if can?(:update, KeyAnalytical) %>
         </div>
       </header>
       <div>
@@ -393,19 +393,39 @@
     </div>
   </article>
 
-  <!--
   <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-      <header><span class="widget-icon"><i class="fa fa-info"></i></span>
-        <h2>Details</h2>
+      <header>
+        <h2>Actividades del Proyecto</h2>
+        <div class="widget-toolbar">
+          <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_project_activity_path(@key_analytical), class: 'btn btn-primary' if (can? :create, ProjectActivity) %>
+        </div>
       </header>
       <div class="no-padding">
         <div class="widget-body">
-
+          <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+              <th class='all control'>Name</th>
+              <th>Description</th>
+              <th class="all"><%= t('simple_form.screen.actions') %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @key_analytical.project_activities.each do |pa| %>
+                <tr>
+                  <td><%= pa.name %></td>
+                  <td><%= pa.description %></td>
+                  <td class="table-actions">
+                    <%= render 'shared/action_icons', locals: {target: pa} %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </article>
-  -->
 </section>
 
