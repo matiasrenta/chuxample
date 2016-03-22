@@ -66,6 +66,10 @@ class ApplicationController < ActionController::Base
 
   protected ####################################### PROTECTED ###################################################
 
+  def unread_notifications_count
+    @unread_notifications_count = unread_notifications.count if user_signed_in?
+  end
+
   def set_content_title(icon = nil, title = nil)
     if title.nil?
       if action_name == "index"
@@ -216,10 +220,6 @@ class ApplicationController < ActionController::Base
                             deleted: false) if user_signed_in?
   end
 
-  def unread_notifications_count
-    @unread_notifications_count = unread_notifications.count if user_signed_in?
-  end
-
   def set_last_seen_at
     time_now = Time.now
     current_user.update_attribute(:last_seen_at, time_now)
@@ -227,4 +227,3 @@ class ApplicationController < ActionController::Base
   end
 
 end
-

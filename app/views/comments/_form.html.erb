@@ -1,10 +1,15 @@
 <%= form_for @new_comment do |f| %>
     <%= f.hidden_field :commentable_id, value: @new_comment.commentable_id %>
     <%= f.hidden_field :commentable_type, value: @new_comment.commentable_type %>
-    <div class="field form-group">
-      <%= f.text_area :body, class: 'form-control' %>
-    </div>
-    <div class="field form-group">
-      <%= submit_tag "Post comment", class: 'btn btn-primary' %>
+    <!-- <div class="field form-group">
+      <%= f.text_area :body, class: 'form-control', placeholder: 'Write a comment' %>
+    </div> -->
+    <%= f.text_area :body, class: 'form-control', placeholder: 'Write a comment' %>
+    <div class="margin-top-10">
+      <%= submit_tag "Post comment", class: 'btn btn-sm btn-primary pull-right' %>
+      <br><br>
     </div>
 <% end %>
+<script type="text/javascript">
+  $('.new_comment').addClass('well padding-bottom-10');
+</script>
