@@ -243,3 +243,18 @@ $(inputWork).parent().addClass('input-group add-on').append('<div class="input-g
 $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 	trigger : "hover"
 });
+
+// Mentions
+var datos;
+$.ajax({
+  url: "../../users/mentionables.json",
+  cache: false,
+  async: false
+})
+  .done(function( data ) {
+    datos = data;
+  });
+$('.mentions').mentionsInput({
+	source: datos,
+	showAtCaret: true
+});

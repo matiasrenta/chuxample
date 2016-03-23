@@ -104,7 +104,11 @@
                     <td align='right'><%= thing.price ? number_to_currency(thing.price, unit: '') : nil %></td>
                     <td><%= l(thing.expires, format: :default) if thing.expires %></td>
                     <td><%= l(thing.discharged_at, format: :without_seg) if thing.discharged_at %></td>
-                    <td><%= thing.description %></td>
+                    <td>
+                      <div class="mentions" contenteditable>
+                        <%= thing.description %>
+                      </div>
+                    </td>
                     <td align='center'><%= boolean_check_mark(thing.published) %></td>
                     <td><%= thing.gender %></td>
                     <td class="table-actions">

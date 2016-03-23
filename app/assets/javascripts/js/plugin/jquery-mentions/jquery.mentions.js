@@ -513,7 +513,7 @@
         }
 
         mentionTpl = function(mention) {
-            return "<strong data-mention=\"" + mention.uid + "\">" + mention.value + "</strong>";
+            return "<span data-mention=\"" + mention.uid + "\">" + mention.value + "</span>";
         };
 
         insertMention = function(mention, pos, suffix) {
