@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322190643) do
+ActiveRecord::Schema.define(version: 20160323022527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -293,6 +293,13 @@ ActiveRecord::Schema.define(version: 20160322190643) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "chapters", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "chucky_bot_fields", force: :cascade do |t|
     t.string   "name"
     t.string   "field_type"
@@ -351,15 +358,30 @@ ActiveRecord::Schema.define(version: 20160322190643) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "fin_doc_types_chapters", id: false, force: :cascade do |t|
+    t.integer "financial_document_type_id"
+    t.integer "chapter_id"
+  end
+
+  add_index "fin_doc_types_chapters", ["chapter_id"], name: "index_fin_doc_types_chapters_on_chapter_id", using: :btree
+  add_index "fin_doc_types_chapters", ["financial_document_type_id"], name: "index_fin_doc_types_chapters_on_financial_document_type_id", using: :btree
+
+  create_table "financial_document_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "financial_documents", force: :cascade do |t|
-    t.string   "doc_type"
     t.string   "code"
     t.string   "provider"
     t.date     "doc_date"
     t.float    "amount"
     t.integer  "project_activity_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "financial_document_type_id"
   end
 
   create_table "key_analyticals", force: :cascade do |t|

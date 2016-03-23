@@ -12,6 +12,7 @@ class FinancialDocument < ActiveRecord::Base
 
 
   belongs_to :project_activity
+  belongs_to :financial_document_type
 
   validates :project_activity_id, presence: true
   validates :project_activity_id, numericality: true

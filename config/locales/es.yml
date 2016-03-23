@@ -284,6 +284,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      financial_document_type:
+        one: Tipo de Documento Financiero
+        other: Tipos de Documentos Financieros
       financial_document:
         one: Documento Financiero
         other: Documentos Financieros
@@ -307,6 +310,9 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      financial_document_type:
+        one: Tipo de Documento Financiero
+        other: Tipos de Documentos Financieros
       financial_document:
         one: Documento Financiero
         other: Documentos Financieros
