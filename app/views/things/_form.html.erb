@@ -91,14 +91,15 @@
 
 <script>
     $('.mentions').mentionsInput({
-       source: [
-           {value: 'alex', uid: 'user:1', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
-           {value: 'andrew', uid: 'user:2', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
-           {value: 'angry birds', uid: 'game:5', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
-           {value: 'assault', uid: 'game:3', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
-           {value: 'Esau', uid: 'user:3', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
-           {value: 'Matias', uid: 'user:4', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
-       ],
+      //  source: [
+      //      {value: 'alex', uid: 'user:1', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
+      //      {value: 'andrew', uid: 'user:2', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
+      //      {value: 'angry birds', uid: 'game:5', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
+      //      {value: 'assault', uid: 'game:3', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
+      //      {value: 'Esau', uid: 'user:3', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
+      //      {value: 'Matias', uid: 'user:4', image: 'http://localhost:3000/attachments/363f67a3dc178f5946c160d342b63d94bcb5bec4/filesystem_backend/fill/50/50/c4d8fb49eabc65dcb133a15e8a8e13bdfed346de2198d7c6945ffd231cc5/Atari.jpg'},
+      //  ],
+       source: 'http://localhost:3000/users.json',
        showAtCaret: true
     });
     var cursorPosition = $('textarea').prop("selectionStart");

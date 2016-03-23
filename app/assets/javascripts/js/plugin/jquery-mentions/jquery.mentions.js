@@ -97,10 +97,10 @@
             var anchor, li, value;
             li = $('<li>');
             anchor = $('<a>').appendTo(li);
-            if (item.image) {
-                anchor.append("<img style='width:25px; margin-right:5px' src=\"" + item.image + "\" />");
+            if (item.avatar_url) {
+                anchor.append("<img style='width:25px; margin-right:5px' src=\"" + item.avatar_url + "\" />");
             }
-            value = item.value.replace(this.searchTerm.substring(), "<strong>$&</strong>");
+            value = item.name.replace(this.searchTerm.substring(), "<strong>$&</strong>");
             anchor.append(value);
             return li.appendTo(ul);
         }
@@ -122,7 +122,7 @@
                     return false;
                 }
             }
-            mention = document.createTextNode(ui.item.value);
+            mention = document.createTextNode(ui.item.name);
             insertMention(mention, pos, this.options.suffix);
             this.element.change();
             return false;
@@ -179,7 +179,7 @@
         };
 
         MentionsBase.prototype._markupMention = function(mention) {
-            return "@[" + mention.name + "](" + mention.uid + ")";
+            return "@[" + mention.name + "](" + mention.id + ")";
         };
 
         return MentionsBase;
@@ -284,7 +284,7 @@
             while (match) {
                 this._addMention({
                     name: match[1],
-                    uid: match[2],
+                    id: match[2],
                     pos: match.index - offset
                 });
                 offset += match[2].length + 5;
@@ -385,9 +385,9 @@
         MentionsInput.prototype._onSelect = function(event, ui) {
             this._updateMentions();
             this._addMention({
-                name: ui.item.value,
+                name: ui.item.name,
                 pos: ui.item.pos,
-                uid: ui.item.uid
+                id: ui.item.id
             });
             return this._updateValue();
         };
@@ -513,7 +513,7 @@
         }
 
         mentionTpl = function(mention) {
-            return "<strong data-mention=\"" + mention.uid + "\">" + mention.value + "</strong>";
+            return "<strong data-mention=\"" + mention.id + "\">" + mention.name + "</strong>";
         };
 
         insertMention = function(mention, pos, suffix) {
@@ -550,10 +550,10 @@
             var mentionRE;
             mentionRE = /@\[([^\]]+)\]\(([^ \)]+)\)/g;
             value = value.replace(mentionRE, (function(_this) {
-                return function(match, value, uid) {
+                return function(match, value, id) {
                     return mentionTpl({
                             value: value,
-                            uid: uid
+                            id: id
                         }) + _this.marker;
                 };
             })(this));
@@ -619,12 +619,12 @@
             value = this.input.clone();
             markupMention = this._markupMention;
             $(this.selector, value).replaceWith(function() {
-                var name, uid;
-                uid = $(this).data('mention');
+                var name, id;
+                id = $(this).data('mention');
                 name = $(this).text();
                 return markupMention({
                     name: name,
-                    uid: uid
+                    id: id
                 });
             });
             return value.html().replace(this.marker, '');
@@ -635,7 +635,7 @@
             mentions = [];
             $(this.selector, this.input).each(function() {
                 return mentions.push({
-                    uid: $(this).data('mention'),
+                    id: $(this).data('mention'),
                     name: $(this).text()
                 });
             });
