@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :suppliers
+  resources :towns
+  resources :states
   resources :financial_document_types
   resources :projects, shallow: true do
     resources :project_activities, shallow: true do

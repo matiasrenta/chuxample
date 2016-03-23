@@ -13,7 +13,7 @@
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs edit">
-            <%= f.input :doc_type %>
+            <%= f.association :financial_document_type %>
             <%= f.input :code %>
             <%= f.input :provider %>
             <%= f.input :doc_date, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@financial_document.doc_date)} %>

@@ -4,8 +4,8 @@
       <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
 
         <div class="widget-toolbar">
-          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), project_activity_path(@financial_document.project_activity), class: 'btn btn-primary' %>
-          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_financial_document_path(@financial_document), class: 'btn btn-primary' if can?(:update, FinancialDocument) %>
+          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), towns_path, class: 'btn btn-primary' %>
+          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_town_path(@town), class: 'btn btn-primary' if can?(:update, Town) %>
         </div>
       </header>
       <div>
@@ -15,39 +15,21 @@
           <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
             <tbody>
             <tr role="row">
-              <th><%= t('simple_form.labels.defaults.financial_document_type') %></th>
+              <th><%= t('simple_form.labels.defaults.name') %></th>
               <td>
-                <%= @financial_document.financial_document_type.try(:name) %>
+                <%= @town.name %>
               </td>
             </tr>
             <tr role="row">
-              <th><%= t('simple_form.labels.defaults.code') %></th>
+              <th><%= t('simple_form.labels.defaults.abbreviation') %></th>
               <td>
-                <%= @financial_document.code %>
+                <%= @town.abbreviation %>
               </td>
             </tr>
             <tr role="row">
-              <th><%= t('simple_form.labels.defaults.provider') %></th>
+              <th><%= t('simple_form.labels.defaults.state') %></th>
               <td>
-                <%= @financial_document.provider %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.doc_date') %></th>
-              <td>
-                <%= l(@financial_document.doc_date, :format => :long) if @financial_document.doc_date %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.amount') %></th>
-              <td>
-                <%= @financial_document.amount %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.project_activity') %></th>
-              <td>
-                <%= @financial_document.project_activity.try(:name) %>
+                <%= @town.state.try(:name) %>
               </td>
             </tr>
             </tbody>

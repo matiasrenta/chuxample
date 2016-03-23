@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323022527) do
+ActiveRecord::Schema.define(version: 20160323201629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -531,6 +531,29 @@ ActiveRecord::Schema.define(version: 20160323022527) do
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "rfc"
+    t.string   "razon_social"
+    t.string   "name"
+    t.string   "calle"
+    t.string   "nro_exterior"
+    t.string   "nro_interior"
+    t.string   "entre_calles"
+    t.integer  "state_id"
+    t.integer  "town_id"
+    t.string   "codigo_postal"
+    t.text     "observaciones"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "thing_attaches", force: :cascade do |t|
     t.string   "file_id"
     t.datetime "created_at",        null: false
@@ -587,6 +610,14 @@ ActiveRecord::Schema.define(version: 20160323022527) do
 
   add_index "things_thing_parts", ["thing_id"], name: "index_things_thing_parts_on_thing_id", using: :btree
   add_index "things_thing_parts", ["thing_part_id"], name: "index_things_thing_parts_on_thing_part_id", using: :btree
+
+  create_table "towns", force: :cascade do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.integer  "state_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

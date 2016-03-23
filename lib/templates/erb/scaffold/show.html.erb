@@ -22,7 +22,7 @@
                     <%%= l(@<%= singular_table_name %>.<%= attribute.name %>, :format => :long) if @<%= singular_table_name %>.<%= attribute.name %> %>
                 <% elsif attribute.type.to_sym == :integer -%>
                     <% if attribute.name[-3,3] == "_id" -%>
-                        <%%= @<%= singular_table_name %>.<%= attribute.name[0,attribute.name.length-3] %>.try(:description) %>
+                        <%%= @<%= singular_table_name %>.<%= attribute.name[0,attribute.name.length-3] %>.try(:name) %>
                     <% else -%>
                         <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
                     <% end -%>

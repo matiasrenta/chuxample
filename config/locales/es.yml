@@ -284,22 +284,6 @@ es:
         format: "%{attribute} %{message}"
 
       models:
-      financial_document_type:
-        one: Tipo de Documento Financiero
-        other: Tipos de Documentos Financieros
-      financial_document:
-        one: Documento Financiero
-        other: Documentos Financieros
-      profile_obra:
-        one: Perfil Obra
-        other: Perfiles Obra
-      project_activity:
-        one: Actividad
-        other: Actividades
-      key_analytical:
-        one: Analítico de Claves
-        other: Analítico de Claves
-        fa_icon: 'fa-fw fa fa-list-ol'
         user:
           attributes:
             avatar:
@@ -310,6 +294,18 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      supplier:
+        one: Proveedor
+        other: Proveedores
+        fa_icon: 'fa-fw fa fa-truck'
+      town:
+        one: Municipio/Delegación
+        other: Municipios/Delegaciones
+        fa_icon: 'fa-fw fa fa-map-marker'
+      state:
+        one: Estado
+        other: Estados
+        fa_icon: 'fa-fw fa fa-globe'
       financial_document_type:
         one: Tipo de Documento Financiero
         other: Tipos de Documentos Financieros

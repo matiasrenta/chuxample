@@ -51,6 +51,6 @@ class FinancialDocumentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def financial_document_params
-      params.require(:financial_document).permit(:doc_type, :code, :provider, :doc_date, :amount, :project_activity_id)
+      params.require(:financial_document).permit(:financial_document_type_id, :code, :provider, :doc_date, :amount, :project_activity_id)
     end
 end

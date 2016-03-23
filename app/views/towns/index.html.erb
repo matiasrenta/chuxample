@@ -1,0 +1,66 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_town_path, class: 'btn btn-primary' if (can? :create, Town) %>
+            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
+            <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="form-group">
+                      <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
+                      <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[abbreviation_cont]"><%= t('simple_form.labels.defaults.abbreviation') %></label>
+                      <%= f.search_field :abbreviation_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[state_id_cont]"><%= t('simple_form.labels.state') %></label>
+                      <%= f.select :state_id_eq, options_from_collection_for_select(State.all, :id, :name, @q.state_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <%= render 'shared/submit_filters' %>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
+                <th><%= sort_link(@q, :abbreviation, t('simple_form.labels.defaults.abbreviation')) %></th>
+                <th><%= sort_link(@q, :state_name, t('simple_form.labels.state')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @towns.each do |town| %>
+                  <tr>
+                    <td><%= town.name %></td>
+                    <td><%= town.abbreviation %></td>
+                    <td><%= town.state.try(:name) %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: town} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @towns, model_index_path: towns_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

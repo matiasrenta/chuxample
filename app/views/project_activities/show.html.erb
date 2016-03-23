@@ -67,7 +67,7 @@
             <tbody>
             <% @project_activity.financial_documents.each do |fd| %>
                 <tr>
-                  <td><%= fd.doc_type %></td>
+                  <td><%= fd.financial_document_type.try(:name) %></td>
                   <td><%= fd.code %></td>
                   <td><%= fd.amount %></td>
                   <td class="table-actions">

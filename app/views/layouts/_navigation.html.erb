@@ -23,6 +23,17 @@
             <%= link_to 'Users', users_path, {title: 'Users'}  %>
           </li>
           <li>
+            <a href="#">Estados y Municipios</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.state.other'), states_path, {title: t('activerecord.models.state.other')} %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.town.other'), towns_path, {title: t('activerecord.models.town.other')} %>
+              </li>
+            </ul>
+          </li>
+          <li>
             <%= link_to 'Settings', '/admin/settings', {title: 'Settings'}  %>
           </li>
           <li>
@@ -39,8 +50,12 @@
         <a href="/projects"><i class="fa fa-lg fa-fw fa-list-ol"></i> <span class="menu-item-parent">Proyectos</span></a>
       </li>
 
+      <li data-step="1" data-intro="Este es el menú de proveedores.">
+        <a href="/suppliers"><i class="fa fa-lg fa-fw fa-truck"></i> <span class="menu-item-parent"><%= t('activerecord.models.supplier.other') %></span></a>
+      </li>
+
       <li data-step="2" data-intro="Este es el menú catálogos.">
-        <a href="#"><i class="fa fa-lg fa-fw fa-key"></i> <span class="menu-item-parent"><%= t('pages.navigation.catalogs') %></span></a>
+        <a href="#"><i class="fa fa-lg fa-fw fa-list-alt"></i> <span class="menu-item-parent">Catálogos</span></a>
         <ul>
           <li>
             <a href="#">Derechos Humanos</a>

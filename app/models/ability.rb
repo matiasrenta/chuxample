@@ -35,6 +35,9 @@ class Ability
   end
 
   def superuser
+		can [:manage], Supplier
+		can [:manage], Town
+		can [:manage], State
 		can [:manage], FinancialDocumentType
 		can [:manage], FinancialDocument
 		can [:manage], ProjectActivity
