@@ -299,8 +299,8 @@ es:
         other: Proveedores
         fa_icon: 'fa-fw fa fa-truck'
       town:
-        one: Municipio/Delegación
-        other: Municipios/Delegaciones
+        one: Municipio / Delegación
+        other: Municipios / Delegaciones
         fa_icon: 'fa-fw fa fa-map-marker'
       state:
         one: Estado
