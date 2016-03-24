@@ -53,7 +53,7 @@
 
         </ul>
       </li>
-      <li class="hidden-xs"> 
+      <li class="hidden-xs">
       	<a href="#"><i class="fa fa-lg fa-fw fa-question-circle"></i> <span class="menu-item-parent">Ayuda</span></a>
       	<ul>
           <li>
@@ -70,3 +70,14 @@
 
 </aside>
 <!-- END NAVIGATION -->
+<script type="text/javascript">
+
+  var pathUrl = location.pathname.split("/")[1];
+  $( 'nav ul li a' ).each(function( index, value ) {
+    var href = $(this).attr('href').split("/")[1];
+    if ( href === pathUrl ) {
+      $(this).parent().addClass('active');
+    }
+  });
+
+</script>
