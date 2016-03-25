@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
-  #check_authorization unless: :devise_controller?
+  check_authorization unless: :devise_controller?
   skip_authorization_check only: [:access_denied]
 
   # Prevent CSRF attacks by raising an exception.
@@ -89,20 +89,20 @@ class ApplicationController < ActionController::Base
     Time.zone = current_user.time_zone if user_signed_in? && !current_user.time_zone.blank?
   end
 
-  def do_index(model, params, collection = nil, paginate = true, order_by = nil, includes = nil)
+  def do_index(model, params, collection = nil, paginate = true, order_by = nil, includes = nil, query_param = :q)
     authorize!(:read, model)
-    search_algoritm
-
-    if params[:q] && params[:q][:meta_sort]
-      @q = model.unscoped.accessible_by(current_ability, :read).ransack(params[:q])
+    variable_name = query_param.to_s
+    search_algoritm(query_param)
+    if params[query_param] && params[query_param][:meta_sort]
+      instance_variable_set("@#{variable_name}", model.unscoped.accessible_by(current_ability, :read).ransack(params[query_param]))
     elsif order_by
-      @q = model.unscoped.order(order_by).accessible_by(current_ability, :read).ransack(params[:q]) unless includes
-      @q = model.unscoped.includes(includes).order(order_by).accessible_by(current_ability, :read).ransack(params[:q]) if includes
+      instance_variable_set("@#{variable_name}", model.unscoped.order(order_by).accessible_by(current_ability, :read).ransack(params[query_param])) unless includes
+      instance_variable_set("@#{variable_name}", model.unscoped.includes(includes).order(order_by).accessible_by(current_ability, :read).ransack(params[query_param])) if includes
     else
-      @q = model.unscoped.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[:q])
+      instance_variable_set("@#{variable_name}", model.unscoped.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[query_param]))
     end
 
-    model_collection = @q.result(distinct: true)
+    model_collection = eval("@#{variable_name}.result(distinct: true)") #@q.result(distinct: true)
     if paginate
       model_collection.paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
     else
@@ -110,14 +110,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def search_algoritm
+  def search_algoritm(query_param = :q)
     if params[:search_clear]
-      params[:q] = nil
+      params[query_param] = nil
       params[:search_clear] = nil
     end
-    if params[:q]
-      params[:q].each do |param|
+    if params[query_param]
+      params[query_param].each do |param|
         unless param[1].blank? || param[0] == 's' # la 's' es para que no se ponga rojo cuando solo se hace sort de columnas
+          instance_variable_set("@#{query_param.to_s}_filter_active", true) # ejemplo: @q_obra_filter_active
           @filter_active = true;
           break
         end

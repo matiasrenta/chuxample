@@ -1,100 +1,11 @@
 <section id="widget-grid">
-  <div class="row">
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
-
-          <div class="widget-toolbar filter-group">
-            <%#= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_key_analytical_path, class: 'btn btn-primary' if (can? :create, KeyAnalytical) %>
-            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
-            </a>
-          </div>
-        </header>
-        <div class="no-padding">
-          <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
-            <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, url: '/projects', html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
-                  <fieldset>
-                    <div class="form-group">
-                      <label for="q[cat_pgd_axi_id_cont]"><%= t('simple_form.labels.key_analytical_string') %></label>
-                      <%= f.search_field :key_analytical_string_cont, label: false, class: "form-control input-sm" %>
-                    </div>
-                    <div class="form-group">
-                      <label for="q[cat_pgd_axi_id_cont]"><%= t('simple_form.labels.cat_pgd_axi') %></label>
-                      <%= f.select :cat_pgd_axi_id_eq, options_from_collection_for_select(CatPgdAxi.all, :id, :description, @q.cat_pgd_axi_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                    </div>
-                    <div class="form-group spanning">
-                      <label for="q[year_gteq]"><%= t('simple_form.labels.defaults.year') %></label>
-
-                      <div class="input-group input-group-sm block">
-                        <%= f.search_field :year_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                      </div>
-                      <div class="input-group input-group-sm block">
-                        <%= f.search_field :year_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="q[cat_aci_institutional_activity_id_cont]"><%= t('simple_form.labels.cat_aci_institutional_activity') %></label>
-                      <%= f.select :cat_aci_institutional_activity_id_eq, options_from_collection_for_select(CatAciInstitutionalActivity.all, :id, :description, @q.cat_aci_institutional_activity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                    </div>
-                    <div class="form-group">
-                      <label for="q[cat_ppr_par_partida_especifica_id_cont]"><%= t('simple_form.labels.cat_ppr_par_partida_especifica') %></label>
-                      <%= f.select :cat_ppr_par_partida_especifica_id_eq, options_from_collection_for_select(CatPprParPartidaEspecifica.all, :id, :description, @q.cat_ppr_par_partida_especifica_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                    </div>
-                    <div class="form-group">
-                      <label for="q[cat_are_area_id_cont]"><%= t('simple_form.labels.cat_are_area') %></label>
-                      <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.all, :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                    </div>
-                    <div class="form-group spanning">
-                      <label for="q[autorizado_gteq]"><%= t('simple_form.labels.defaults.autorizado') %></label>
-
-                      <div class="input-group input-group-sm block">
-                        <%= f.search_field :autorizado_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                      </div>
-                      <div class="input-group input-group-sm block">
-                        <%= f.search_field :autorizado_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                      </div>
-                    </div>
-                    <%= render 'shared/submit_filters' %>
-                  </fieldset>
-              <% end %>
-            </div>
-          </div>
-          <div class="widget-body">
-            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
-              <thead>
-              <tr>
-                <th class='all control'><%= sort_link(@q, :key_analytical_string, 'Clave Presupuestaria') %></th>
-                <th><%= sort_link(@q, :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
-                <th>Monto Ejercido</th>
-                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_key, 'Partida') %></th>
-                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_description, 'Concepto Partida') %></th>
-                <th><%= sort_link(@q, :cat_are_area_description, 'Área') %></th>
-                <th class="all"><%= t('simple_form.screen.actions') %></th>
-              </tr>
-              </thead>
-              <tbody>
-              <% @key_analyticals.each do |key_analytical| %>
-                  <tr>
-                    <td><%= key_analytical.key_analytical_string %></td>
-                    <td align='right'><%= number_to_currency(key_analytical.autorizado, unit: '') if key_analytical.autorizado %></td>
-                    <td align='right'></td>
-                    <td><%= key_analytical.cat_ppr_par_partida_especifica.try(:key) %></td>
-                    <td><%= key_analytical.cat_ppr_par_partida_especifica.try(:description) %></td>
-                    <td><%= key_analytical.cat_are_area.try(:description) %></td>
-                    <td class="table-actions">
-                      <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), project_path(key_analytical), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, key_analytical %>
-                    </td>
-                  </tr>
-              <% end %>
-              </tbody>
-            </table>
-            <div class="widget-footer">
-              <%= render 'shared/pagination', locals: {target: @key_analyticals, model_index_path: projects_path} %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+  <div>
   </div>
+  <div class="row">
+    <%= render 'projects_widget', locals: {projects: @projects_obra, query_instance: @q_obra, query_name: 'q_obra'} %>
+    <%= render 'projects_widget', locals: {projects: @projects_administracion, query_instance: @q_administracion, query_name: 'q_administracion'} %>
+    <%= render 'projects_widget', locals: {projects: @projects_cultura, query_instance: @q_cultura, query_name: 'q_cultura'} %>
+  </div>
+
 </section>
 

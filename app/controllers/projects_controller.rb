@@ -2,7 +2,12 @@ class ProjectsController < ApplicationController
   #load_and_authorize_resource except: :index, param_method: :key_analytical_params
 
   def index
-    @key_analyticals = do_index(KeyAnalytical, params)
+    #@key_analyticals = do_index(KeyAnalytical, params)
+    @projects_obra = do_index(ProjectObra, params, nil, true, nil, nil, :q_obra)
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ @projects_obra.size: #{@projects_obra.size}"
+
+    @projects_cultura = do_index(ProjectCultura, params, nil, true, nil, nil, :q_cultura)
+    @projects_administracion = do_index(ProjectAdministracion, params, nil, true, nil, nil, :q_administracion)
   end
 
   def show

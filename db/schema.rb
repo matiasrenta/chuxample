@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323201629) do
+ActiveRecord::Schema.define(version: 20160325003038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -449,6 +449,7 @@ ActiveRecord::Schema.define(version: 20160323201629) do
     t.text     "justificacion_derechos_humanos"
     t.text     "justificacion_genero"
     t.string   "key_analytical_string"
+    t.string   "project_type"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

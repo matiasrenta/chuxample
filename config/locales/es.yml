@@ -284,6 +284,18 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      project_administracion:
+        one: Proyecto de Administración
+        other: Proyectos de Administración
+        fa_icon: 'fa-fw fa fa-archive'
+      project_cultura:
+        one: Projecto de Cultura
+        other: Projectos de Cultura
+        fa_icon: 'fa-fw fa fa-institution'
+      project_obra:
+        one: Proyecto de Obra
+        other: Proyectos de Obra
+        fa_icon: 'fa-fw fa fa-building '
         user:
           attributes:
             avatar:
@@ -294,6 +306,18 @@ es:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
 
     models:
+      project_administracion:
+        one: Proyecto de Administración
+        other: Proyectos de Administración
+        fa_icon: 'fa-fw fa fa-archive'
+      project_cultura:
+        one: Projecto de Cultura
+        other: Projectos de Cultura
+        fa_icon: 'fa-fw fa fa-institution'
+      project_obra:
+        one: Proyecto de Obra
+        other: Proyectos de Obra
+        fa_icon: 'fa-fw fa fa-building '
       supplier:
         one: Proveedor
         other: Proveedores

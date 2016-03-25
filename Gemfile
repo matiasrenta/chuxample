@@ -31,7 +31,7 @@ gem 'devise'
 gem 'cancancan', '~> 1.10'
 # form builder
 gem 'simple_form'
-# para hacer filtros
+# para hacer filtros. https://github.com/activerecord-hackery/ransack
 gem 'ransack'
 # se usa la version 2.0 (unstable) para aprovechar la funcionalidad de fallback. cuando salga el
 # release de la 2.0 hay que quitar la opcion github. https://github.com/chaps-io/public_activity

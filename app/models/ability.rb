@@ -35,6 +35,9 @@ class Ability
   end
 
   def superuser
+		can [:manage], ProjectAdministracion
+		can [:manage], ProjectCultura
+		can [:manage], ProjectObra
 		can [:manage], Supplier
 		can [:manage], Town
 		can [:manage], State
