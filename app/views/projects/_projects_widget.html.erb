@@ -1,7 +1,8 @@
 <article class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
   <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-    <header><span class="widget-icon"><i class="fa fa-table"></i></span>
-
+    <header>
+      <span class="widget-icon"><i class="<%= locals[:wicon] %>"></i></span>
+      <h2><%= locals[:wtitle] %></h2>
       <div class="widget-toolbar filter-group">
         <%#= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_key_analytical_path, class: 'btn btn-primary' if (can? :create, KeyAnalytical) %>
         <a href="#" id="filtrar" role="button" class="btn <%= eval("@#{locals[:query_name]}_filter_active") ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= eval("@#{locals[:query_name]}_filter_active") ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>

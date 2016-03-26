@@ -317,7 +317,7 @@ es:
       project_obra:
         one: Proyecto de Obra
         other: Proyectos de Obra
-        fa_icon: 'fa-fw fa fa-building '
+        fa_icon: 'fa-fw fa fa-building'
       supplier:
         one: Proveedor
         other: Proveedores

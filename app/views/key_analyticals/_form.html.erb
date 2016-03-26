@@ -12,7 +12,7 @@
   </header>
   <div>
     <div class="widget-body">
-      <%= simple_form_for @key_analytical, html: {class: 'form-horizontal'},
+      <%= simple_form_for @key_analytical.becomes(KeyAnalytical), html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
                                   check_boxes: :horizontal_radio_and_checkboxes,
@@ -87,8 +87,8 @@
               <div class="form-actions">
                 <div class="btn-group">
                   <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), key_analyticals_path, class: 'btn btn-default btn-sm' if can?(:read, KeyAnalytical) %>
-                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @key_analytical, class: 'btn btn-default btn-sm' if can?(:read, KeyAnalytical) && updating? %>
-                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @key_analytical, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, KeyAnalytical) && updating? %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), key_analytical_path(@key_analytical), class: 'btn btn-default btn-sm' if can?(:read, KeyAnalytical) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), key_analytical_path(@key_analytical), class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, KeyAnalytical) && updating? %>
                   <button type="submit" class="btn btn-primary btn-sm">
                     <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
                   </button>

@@ -22,7 +22,7 @@ class KeyAnalyticalsController < ApplicationController
   def create
 
     if @key_analytical.save
-      redirect_to @key_analytical, notice: t("simple_form.flash.successfully_created")
+      redirect_to @key_analytical.becomes(KeyAnalytical), notice: t("simple_form.flash.successfully_created")
     else
       generate_flash_msg_no_keep(@key_analytical)
       render :new
@@ -32,7 +32,7 @@ class KeyAnalyticalsController < ApplicationController
   # PATCH/PUT /key_analyticals/1
   def update
     if @key_analytical.update(key_analytical_params)
-      redirect_to @key_analytical, notice: t("simple_form.flash.successfully_updated")
+      redirect_to @key_analytical.becomes(KeyAnalytical), notice: t("simple_form.flash.successfully_updated")
     else
       generate_flash_msg_no_keep(@key_analytical)
       render :edit
