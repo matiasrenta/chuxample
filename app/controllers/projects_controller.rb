@@ -10,6 +10,15 @@ class ProjectsController < ApplicationController
   def show
     @key_analytical = KeyAnalytical.find(params[:id])
     authorize! :read, @key_analytical.class
+    if @key_analytical.obra?
+      @project_activity_obras = do_index(ProjectActivityObra, params)
+    elsif @key_analytical.administracion?
+      #@project_activity_administracion = do_index(ProjectActivityAdministracion, params)
+    elsif @key_analytical.cultura?
+      #@project_activity_administracion = do_index(ProjectActivityAdministracion, params)
+    else
+      raise "Tipo de proyecto inexistente"
+    end
   end
 
   private
