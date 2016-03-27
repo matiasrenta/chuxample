@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326191712) do
+ActiveRecord::Schema.define(version: 20160327033804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -369,19 +369,29 @@ ActiveRecord::Schema.define(version: 20160326191712) do
   create_table "financial_document_types", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "system_doc_type"
   end
 
   create_table "financial_documents", force: :cascade do |t|
-    t.string   "code"
-    t.string   "provider"
-    t.date     "doc_date"
-    t.float    "amount"
-    t.integer  "project_activity_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "financial_document_type_id"
+    t.string   "nro_documento"
+    t.float    "monto"
+    t.integer  "supplier_id"
+    t.integer  "financial_document_contract_id"
+    t.string   "file_id"
+    t.string   "file_filename"
+    t.integer  "file_size"
+    t.string   "file_content_type"
+    t.string   "type"
+    t.integer  "project_activityable_id"
+    t.string   "project_activityable_type"
+    t.text     "description"
+    t.date     "fecha_expedicion"
+    t.date     "fecha_finalizacion"
   end
 
   create_table "key_analyticals", force: :cascade do |t|

@@ -12,6 +12,7 @@ class ProjectActivityObra < ActiveRecord::Base
 
 
   belongs_to :project_obra
+  has_many :financial_documents, as: :project_activityable, dependent: :restrict_with_error
 
   validates :name, :cantidad, :project_obra_id, presence: true
   validates :cantidad, :project_obra_id, numericality: true

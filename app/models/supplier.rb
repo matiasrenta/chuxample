@@ -12,8 +12,8 @@ class Supplier < ActiveRecord::Base
 
 
   belongs_to :town
-
   belongs_to :state
+  has_many :financial_documents
 
   validates :rfc, :razon_social, :name, presence: true
   validates :rfc, :razon_social, :name, uniqueness: true

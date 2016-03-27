@@ -1,0 +1,2 @@
+class FinancialDocumentOther < FinancialDocument
+end

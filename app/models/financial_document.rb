@@ -11,14 +11,13 @@ class FinancialDocument < ActiveRecord::Base
           }
 
 
-  belongs_to :project_activity
+  belongs_to :project_activityable, polymorphic: true
   belongs_to :financial_document_type
+  belongs_to :supplier
 
-  validates :project_activity_id, presence: true
-  validates :project_activity_id, numericality: true
-
-
-
+  def grupo_factura?
+    type == 'FinancialDocumentBill'
+  end
 
 
   def except_attr_in_public_activity

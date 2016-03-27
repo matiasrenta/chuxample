@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
-  check_authorization unless: :devise_controller?
+  check_authorization unless: :not_check_authorization?
+
   skip_authorization_check only: [:access_denied]
 
   # Prevent CSRF attacks by raising an exception.
@@ -225,6 +226,10 @@ class ApplicationController < ActionController::Base
     time_now = Time.now
     current_user.update_attribute(:last_seen_at, time_now)
     session[:last_seen_at] = time_now
+  end
+
+  def not_check_authorization?
+    devise_controller? || is_a?(Select2AutocompletesController)
   end
 
 end
