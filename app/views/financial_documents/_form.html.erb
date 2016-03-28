@@ -22,6 +22,7 @@
             <%= f.association :supplier %>
             <%= f.association :financial_document_contract, label_method: :nro_documento %>
             <%= f.input :description %>
+            <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: ENV['REFILE_S3_MAX_FILESIZE'].to_i} %>
             <div class="widget-footer">
               <div class="form-actions">
                 <div class="btn-group">
