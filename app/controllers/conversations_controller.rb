@@ -15,6 +15,7 @@ class ConversationsController < ApplicationController
 
   def mark_as_read
     @conversation.mark_as_read(current_user)
+    unread_notifications_count
   end
 
   def mark_all_as_read
@@ -27,6 +28,7 @@ class ConversationsController < ApplicationController
 
   def destroy
     @conversation.move_to_trash(current_user)
+    unread_notifications_count
   end
 
   private

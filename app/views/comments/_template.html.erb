@@ -3,7 +3,10 @@
     <%= commentable.comment_threads.count == 0 ? "no" : commentable.comment_threads.count %> comments
   </h4>
 </div>
-<%= render partial: "comments/form", locals: {new_comment: new_comment} %>
-<div class="comments-container">
-  <%= render partial: "comments/reply", locals: {comments: commentable.root_comments} %>
+<div class="product-content product-wrap clearfix product-deatil">
+  <div class="comments-container chat-body no-padding profile-message">
+    <%= render partial: "comments/reply", locals: {comments: commentable.root_comments} %>
+  </div>
+  <h4>New Comment</h4>
+  <%= render partial: "comments/form", locals: {new_comment: new_comment} %>
 </div>
