@@ -77,6 +77,10 @@ class UsersController < ApplicationController
     redirect_to(users_path, :notice => t('devise.labels.email_sent', email: @user.email))
   end
 
+  def mentionables
+    @users = do_index(User, params)
+  end
+
   private
 
     # Only allow a trusted parameter "white list" through.

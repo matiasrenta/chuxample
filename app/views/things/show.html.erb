@@ -75,7 +75,11 @@
                     </tr>
                    <tr role="row">
                        <th><%= t('simple_form.labels.defaults.description') %></th>
-                       <td><%= @thing.description %></td>
+                       <td>
+                         <div class="mentions" contenteditable>
+                           <%= @thing.description %>
+                         </div>
+                       </td>
                     </tr>
                    <tr role="row">
                        <th><%= t('simple_form.labels.defaults.published') %></th>

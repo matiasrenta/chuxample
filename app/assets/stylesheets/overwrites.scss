@@ -218,6 +218,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before
 }
 table tr td.table-actions{
   padding:0;
+  display: flex;
 }
 
 .form-control-feedback {
@@ -352,4 +353,72 @@ table tr td.table-actions{
   font-weight: bold;
   line-height: 1.2;
   cursor: default;
+}
+
+.pagination{
+  padding: 0 20px;
+}
+//notificaciones ajax
+.ajax-dropdown {
+  height: auto;
+  max-height: 383px;
+  padding: 10px 10px 0;
+}
+
+.ajax-notifications {
+  height: auto;
+  max-height: 365px;
+}
+
+.notification_ind {
+  width: 96%;
+}
+
+.padding_notification {
+  padding: 8px 4px 13px !important;
+}
+
+.subject_notification {
+  padding: 0 18px 0 15px;
+}
+
+.font_body_notification {
+  display: inline-block;
+  font-size: 90%;
+  padding-left: 4px;
+  width: 260px;
+  line-height: 1.3;
+}
+
+.padding_mute {
+  float: right;
+}
+
+.icons_notification {
+  width: 32px;
+}
+
+.product-deatil {
+    padding: 30px 30px 50px;
+}
+
+.product-content {
+    border: 1px solid #dfe5e9;
+    margin-bottom: 20px;
+    margin-top: 12px;
+    background: #fff;
+}
+
+.chat-body li.message .message-text {
+  display: block !important;
+  margin-left: 60px !important;
+}
+
+.profile-message{
+  margin-bottom: 20px;
+}
+
+.reply-bottom {
+  border-bottom: 5px solid #FFFFFF;
+  padding-bottom: 10px !important;
 }

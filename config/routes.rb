@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users do
     get 'resend_password_instructions/:id', action: 'resend_password_instructions', on: :collection
+    get 'mentionables', on: :collection
   end
 
   get "application/access_denied"

@@ -98,7 +98,7 @@
             li = $('<li>');
             anchor = $('<a>').appendTo(li);
             if (item.image) {
-                anchor.append("<img src=\"" + item.image + "\" />");
+                anchor.append("<img style='width:25px; margin-right:5px' src=\"" + item.image + "\" />");
             }
             value = item.value.replace(this.searchTerm.substring(), "<strong>$&</strong>");
             anchor.append(value);
@@ -513,7 +513,7 @@
         }
 
         mentionTpl = function(mention) {
-            return "<strong data-mention=\"" + mention.uid + "\">" + mention.value + "</strong>";
+            return "<span data-mention=\"" + mention.uid + "\">" + mention.value + "</span>";
         };
 
         insertMention = function(mention, pos, suffix) {
@@ -823,5 +823,6 @@
         });
         return returnValue;
     };
+
 
 }).call(this);
