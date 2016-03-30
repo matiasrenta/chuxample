@@ -1,4 +1,3 @@
-<!-- row -->
 <div class="row">
    <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <!-- Widget ID (each widget will need unique ID)-->
@@ -109,5 +108,5 @@
    </article>
 </div>
 
-
 <%= render partial: "comments/template", locals: {commentable: @thing, new_comment: @new_comment} %>
+<%= javascript_include_tag 'mentions' %>
