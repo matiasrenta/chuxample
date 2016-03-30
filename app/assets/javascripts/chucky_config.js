@@ -226,12 +226,6 @@ $(document).ready(function() {
 });
 // Filtros
 $(function() {
-	// $(".filtrar").click(function(event) {
-	// 	var element = $(this)[0];
-	// 	var elementId = $(element).attr('id');
-	// 	console.log( $(element).attr('id') );
-	// 	$("elementId .filter-zone").slideToggle("slow");
-	// });
 	var bgs = $('.filter-zone');
 	$('.filter-button').click(function () {
         var target = $($(this).data('target')).stop(true).slideToggle();
