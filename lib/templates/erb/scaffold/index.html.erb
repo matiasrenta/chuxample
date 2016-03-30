@@ -1,26 +1,27 @@
 <section id="widget-grid">
   <div class="row">
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <article class="col-xs-12">
       <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header><span class="widget-icon"><i class="fa fa-table"></i></span>
           <div class="widget-toolbar filter-group">
             <%%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_<%= singular_table_name %>_path, class: 'btn btn-primary' if(can? :create, <%= singular_table_name.camelize %>) %>
-            <a href="#" id="filtrar" role="button" class="btn <%%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
           </div>
         </header>
         <div class="no-padding">
-          <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
-            <div class="col-md-9 col-sm-12 no-padding"><%%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
+                    <div class="row">
                     <% for attribute in attributes -%>
                         <% if [:integer, :float, :decimal].include? attribute.type.to_sym -%>
                             <% if attribute.name[-3,3] ==  "_id" -%>
-                                <div class="form-group">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
                                   <label for="q[<%= attribute.name %>_cont]"><%%= t('simple_form.labels.<%= attribute.name[0,attribute.name.length-3] %>') %></label>
                                   <%%= f.select :<%= attribute.name %>_eq, options_from_collection_for_select(<%= attribute.name[0,attribute.name.length-3].camelize %>.all, :id, :name, @q.<%= attribute.name %>_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                             <% else -%>
-                                <div class="form-group spanning">
+                                <div class="col-md-3 col-sm-6 col-xs-12 spanning">
                                   <label for="q[<%= attribute.name %>_gteq]"><%%= t('simple_form.labels.defaults.<%= attribute.name %>') %></label>
                                   <div class="input-group input-group-sm block">
                                     <%%= f.search_field :<%= attribute.name %>_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
@@ -31,7 +32,7 @@
                                 </div>
                             <% end -%>
                         <% elsif [:datetime, :date].include? attribute.type.to_sym -%>
-                            <div class="form-group spanning">
+                            <div class="col-md-3 col-sm-6 col-xs-12 spanning">
                               <label for="q[<%= attribute.name %>_gteq]"><%%= t('simple_form.labels.defaults.<%= attribute.name %>') %></label>
                               <div class="input-group input-group-sm block">
                                 <%%= f.search_field :<%= attribute.name %>_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.<%= attribute.name %>_gteq) %>
@@ -41,19 +42,25 @@
                               </div>
                             </div>
                         <% elsif attribute.type.to_sym == :boolean -%>
-                            <div class="form-group">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
                               <label for="q[<%= attribute.name %>_eq]"><%%= t('simple_form.labels.defaults.<%= attribute.name %>') %></label>
                               <%%= f.select :<%= attribute.name %>_eq, options_for_select([[t('true'), 'true'], [t('false'), 'false']], @q.<%= attribute.name %>_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                             </div>
                         <% else -%>
-                            <div class="form-group">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
                               <label for="q[<%= attribute.name %>_cont]"><%%= t('simple_form.labels.defaults.<%= attribute.name %>') %></label>
                               <%%= f.search_field :<%= attribute.name %>_cont, label: false, class: "form-control input-sm" %>
                             </div>
                         <% end -%>
                     <% end -%>
-                    <%%= render 'shared/submit_filters' %>
-                  </fieldset><%% end %>
+                      </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <%% end %>
               </div>
             </div>
           <div class="widget-body">
