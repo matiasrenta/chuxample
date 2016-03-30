@@ -12,7 +12,7 @@
 
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
-            <a href="#" id="filtrar" role="button" class="btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+            <a href="#" id="filtrar-wid-id-0" role="button" class="btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
           </div>
         </header>
         <div class="no-padding">

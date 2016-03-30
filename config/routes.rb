@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :financial_document_types
   resources :projects, shallow: true do
     resources :project_activity_obras, shallow: true do
-      resources :financial_documents
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
     end
     # resources :project_activities, shallow: true do
     #   resources :financial_documents

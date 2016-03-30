@@ -1,4 +1,6 @@
 class FinancialDocumentsController < ApplicationController
+  include Wicked::Wizard
+  steps :select_document_type, :fill_document_info
   load_and_authorize_resource except: :index, param_method: :financial_document_params
 
   # GET /financial_documents
@@ -15,6 +17,14 @@ class FinancialDocumentsController < ApplicationController
     #@project_activity = ProjectActivity.find(params[:project_activity_id])
     @project_activity = ProjectActivityObra.find(params[:project_activity_obra_id])
     @financial_document = FinancialDocumentBill.new
+  end
+
+  def new_with_type
+    @project_activity = ProjectActivityObra.find(params[:project_activity_obra_id])
+    financial_document_type_id = params[:financial_document][:financial_document_type_id]
+    @financial_document = FinancialDocumentType.find(financial_document_type_id).system_doc_type.constantize.new(financial_document_type_id: financial_document_type_id)
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@ #{@financial_document}"
+    render 'edit'
   end
 
   # GET /financial_documents/1/edit
