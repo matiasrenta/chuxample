@@ -1,5 +1,13 @@
 FRONT-END
 =========
+
+Chucky Bugs ---
+
+- Filtros: Ordenar campos --OK--
+- Filtros: función para desplegar #filter-zone no funciona cuando hay varios widgets
+- En pantallas Show, la tabla se corta en el bottom
+
+
 Issues:
 - 1- En los filtros al apretar enter el foco esta en "limpiar filtros" cuando debería estar en "filtrar"
   --- Se intercambiaron los botones para mover el index, debido a que ambos son submit ---

@@ -96,7 +96,7 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 .smart-timeline table{
   font-size:11px;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .alert-success {
     //max-height: 50px;
   }
@@ -112,6 +112,14 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 @media (max-width: 420px) {
   .jarviswidget header h2 {
     width: 83%;
+  }
+}
+
+@media (min-width: 768px){
+  .form-inline .form-control {
+      display: inline-block;
+      width: 100%;
+      vertical-align: middle;
   }
 }
 
@@ -158,6 +166,9 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 }
 .jarviswidget-editbox form label{
   //font-weight:bold;
+}
+.jarviswidget-editbox select {
+    min-width: inherit;
 }
 .pagination.pagination-xs {
   //font-size:11px;
@@ -208,6 +219,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before
     border: medium none;
   margin: auto;
     padding:0;
+}
+.jarviswidget {
+    margin: 0 0 65px 0;
 }
 .jarviswidget .widget-body {
   min-height:0;
@@ -421,4 +435,8 @@ table tr td.table-actions{
 .reply-bottom {
   border-bottom: 5px solid #FFFFFF;
   padding-bottom: 10px !important;
+}
+
+.spanning input {
+    width: 50% !important;
 }

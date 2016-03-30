@@ -226,9 +226,17 @@ $(document).ready(function() {
 });
 // Filtros
 $(function() {
-	$("#filtrar").click(function(event) {
-		$("#filter-zone").slideToggle("slow");
-	});
+	// $(".filtrar").click(function(event) {
+	// 	var element = $(this)[0];
+	// 	var elementId = $(element).attr('id');
+	// 	console.log( $(element).attr('id') );
+	// 	$("elementId .filter-zone").slideToggle("slow");
+	// });
+	var bgs = $('.filter-zone');
+	$('.filter-button').click(function () {
+        var target = $($(this).data('target')).stop(true).slideToggle();
+        bgs.not(target).filter(':visible').stop(true, true).slideUp();
+    })
 });
 
 //Append help button
@@ -242,19 +250,4 @@ $(inputWork).parent().addClass('input-group add-on').append('<div class="input-g
 // activate popovers with hover states
 $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 	trigger : "hover"
-});
-
-// Mentions
-var datos;
-$.ajax({
-  url: "../../users/mentionables.json",
-  cache: false,
-  async: false
-})
-  .done(function( data ) {
-    datos = data;
-  });
-$('.mentions').mentionsInput({
-	source: datos,
-	showAtCaret: true
 });
