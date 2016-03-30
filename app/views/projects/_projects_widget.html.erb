@@ -1,16 +1,15 @@
 <article class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-  <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+  <div id="<%= locals[:wid] %>" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
     <header>
       <span class="widget-icon"><i class="<%= locals[:wicon] %>"></i></span>
       <h2><%= locals[:wtitle] %></h2>
       <div class="widget-toolbar filter-group">
         <%#= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_key_analytical_path, class: 'btn btn-primary' if (can? :create, KeyAnalytical) %>
-        <a href="#" id="filtrar" role="button" class="btn <%= eval("@#{locals[:query_name]}_filter_active") ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= eval("@#{locals[:query_name]}_filter_active") ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
-        </a>
+        <a href="javascript:void(0)" data-target="#filter-<%= locals[:wid] %>" id="filtrar" role="button" class="filter-button btn <%= eval("@#{locals[:query_name]}_filter_active") ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= eval("@#{locals[:query_name]}_filter_active") ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
       </div>
     </header>
     <div class="no-padding">
-      <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
+      <div class="jarviswidget-editbox filter-zone" id="filter-<%= locals[:wid] %>" style="display:none;">
         <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(locals[:query_instance], as: locals[:query_name].to_sym, url: '/projects', html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
               <fieldset>
                 <div class="form-group">

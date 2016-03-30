@@ -5,11 +5,11 @@
         <header><span class="widget-icon"><i class="fa fa-table"></i></span>
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_cat_aci_institutional_activity_path, class: 'btn btn-primary' if(can? :create, CatAciInstitutionalActivity) %>
-            <a href="#" id="filtrar" role="button" class="btn <%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
           </div>
         </header>
         <div class="no-padding">
-          <div class="jarviswidget-editbox" id="filter-zone" style="display:none;">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
             <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
                                                                         <div class="form-group">
