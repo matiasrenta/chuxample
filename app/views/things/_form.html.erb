@@ -1,5 +1,4 @@
 <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-
   <header>
     <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
     <% if creating? %>
@@ -87,3 +86,4 @@
       </div>
     </div>
   </div>
+  <%= javascript_include_tag 'mentions' %>
