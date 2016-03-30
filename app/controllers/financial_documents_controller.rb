@@ -1,6 +1,4 @@
 class FinancialDocumentsController < ApplicationController
-  include Wicked::Wizard
-  steps :select_document_type, :fill_document_info
   load_and_authorize_resource except: :index, param_method: :financial_document_params
 
   # GET /financial_documents

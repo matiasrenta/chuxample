@@ -1,15 +1,15 @@
 <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
   <header>
     <h2><%= updating? ? "<i class='fa fa-pencil'></i>".html_safe : "<i class='fa fa-file'></i>".html_safe %></h2>
+
   </header>
   <div>
     <div class="widget-body">
-      <%# render "form_#{@financial_document.class.name.underscore}" %>
-      <h1>helolooo</h1>
-      <% render 'form_financial_document_bill' %>
+      <%= render "form_#{@financial_document.class.name.underscore}" %>
     </div>
   </div>
 </div>
+
 
 
 
