@@ -13,7 +13,6 @@
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs edit">
-            <%# f.object = @financial_document.becomes(FinancialDocumentBill) %>
             <%= f.association :financial_document_type %>
             <div class="widget-footer">
               <div class="form-actions">

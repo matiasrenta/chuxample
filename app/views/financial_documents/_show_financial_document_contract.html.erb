@@ -1,0 +1,43 @@
+<tr role="row">
+  <th><%= t('simple_form.labels.defaults.financial_document_type') %></th>
+  <td>
+    <%= @financial_document.financial_document_type.try(:name) %>
+  </td>
+</tr>
+<tr role="row">
+  <th><%= t('simple_form.labels.defaults.nro_documento') %></th>
+  <td>
+    <%= @financial_document.nro_documento %>
+  </td>
+</tr>
+<tr role="row">
+  <th><%= t('simple_form.labels.defaults.fecha_expedicion') %></th>
+  <td>
+    <%= l(@financial_document.fecha_expedicion, :format => :long) if @financial_document.fecha_expedicion %>
+  </td>
+</tr>
+<tr role="row">
+  <th><%= t('simple_form.labels.defaults.fecha_finalizacion') %></th>
+  <td>
+    <%= l(@financial_document.fecha_finalizacion, :format => :long) if @financial_document.fecha_finalizacion %>
+  </td>
+</tr>
+<tr role="row">
+  <th><%= t('simple_form.labels.defaults.monto') %></th>
+  <td>
+    <%= @financial_document.monto %>
+  </td>
+</tr>
+<tr role="row">
+  <th><%= t('simple_form.labels.defaults.supplier') %></th>
+  <td>
+    <%= @financial_document.supplier.try(:name) %>
+  </td>
+</tr>
+<tr role="row">
+  <th><%= t('simple_form.labels.defaults.file') %></th>
+  <td>
+    <%= link_to "Download file", attachment_url(@financial_document, :file) %>
+  </td>
+</tr>
+
