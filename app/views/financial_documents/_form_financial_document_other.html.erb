@@ -8,8 +8,10 @@
                     } do |f| %>
     <div class="form-inputs edit">
       <% f.object = @financial_document.becomes(FinancialDocumentOther) %>
-      <%= f.association :financial_document_type %>
+      <%= f.association :financial_document_type, input_html: {disabled: true} %>
+      <%= f.input :financial_document_type_id, as: :hidden, input_html: {value: @financial_document.financial_document_type_id} %>
       <%= f.input :description %>
+      <% f.object = @financial_document.becomes(FinancialDocument) %>
       <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: ENV['REFILE_S3_MAX_FILESIZE'].to_i} %>
       <div class="widget-footer">
         <div class="form-actions">

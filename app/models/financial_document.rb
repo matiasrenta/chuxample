@@ -18,10 +18,21 @@ class FinancialDocument < ActiveRecord::Base
   attachment :file, extension: %w[jpg jpeg png gif pdf doc docx], store: 's3_backend', cache: 's3_cache'
   #content_type: %w[image/jpeg image/png image/gif text/plain application/pdf application/doc application/docx]
 
+  validates :financial_document_type_id, :file, presence: true
+  # las demas validaciones estan en cada tipo de documento
+
   after_destroy :remove_file
 
   def grupo_factura?
     type == 'FinancialDocumentBill'
+  end
+
+  def grupo_contrato?
+    type == 'FinancialDocumentContract'
+  end
+
+  def grupo_other?
+    type == 'FinancialDocumentOther'
   end
 
 
@@ -29,9 +40,20 @@ class FinancialDocument < ActiveRecord::Base
     [:id, :updated_at]
   end
 
+  # no puedo ponerlo como una validacion porque refile lo borra despues de validarlo creo
+  def check_file_presence_on_update(params)
+    if params[:financial_document][:file] == '{}' && params[:financial_document][:remove_file] == '1'
+      errors.add(:file, I18n.t('errors.messages.blank'))
+      return false
+    else
+      return true
+    end
+  end
+
   private
 
   def remove_file
     file.try(:delete)
   end
+
 end

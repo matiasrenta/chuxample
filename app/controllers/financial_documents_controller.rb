@@ -21,7 +21,6 @@ class FinancialDocumentsController < ApplicationController
     @project_activity = ProjectActivityObra.find(params[:project_activity_obra_id])
     financial_document_type_id = params[:financial_document][:financial_document_type_id]
     @financial_document = FinancialDocumentType.find(financial_document_type_id).system_doc_type.constantize.new(financial_document_type_id: financial_document_type_id)
-    puts "@@@@@@@@@@@@@@@@@@@@@@@@ #{@financial_document}"
     render 'edit'
   end
 
@@ -32,19 +31,22 @@ class FinancialDocumentsController < ApplicationController
   # POST /financial_documents
   def create
     @project_activity = ProjectActivityObra.find(params[:project_activity_obra_id])
-    @financial_document = @project_activity.financial_documents.build(financial_document_params)
-    @financial_document.type = @financial_document.financial_document_type.system_doc_type
-        if @financial_document.save
+    financial_document_type_id = params[:financial_document][:financial_document_type_id]
+    @financial_document = FinancialDocumentType.find(financial_document_type_id).system_doc_type.constantize.new(financial_document_params)
+    @financial_document.project_activityable = @project_activity
+    #@financial_document = @project_activity.financial_documents.build(financial_document_params)
+    #@financial_document.type = @financial_document.financial_document_type.system_doc_type
+    if @financial_document.save
       redirect_to project_activity_obra_path(@project_activity), notice: t("simple_form.flash.successfully_created")
     else
       generate_flash_msg_no_keep(@financial_document)
-      render :new
+      render :edit
     end
   end
 
   # PATCH/PUT /financial_documents/1
   def update
-    if @financial_document.update(financial_document_params)
+    if @financial_document.check_file_presence_on_update(params) && @financial_document.update(financial_document_params)
       redirect_to financial_document_path(@financial_document), notice: t("simple_form.flash.successfully_updated")
     else
       generate_flash_msg_no_keep(@financial_document)
@@ -54,8 +56,13 @@ class FinancialDocumentsController < ApplicationController
 
   # DELETE /financial_documents/1
   def destroy
-    @financial_document.destroy
-    redirect_to project_activity_obra_path(@financial_document.project_activityable_id), notice: t("simple_form.flash.successfully_destroyed")
+    if @financial_document.destroy
+      redirect_to project_activity_obra_path(@financial_document.project_activityable_id), notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@financial_document)
+      redirect_to project_activity_obra_path(@financial_document.project_activityable_id)
+    end
+
   end
 
   private

@@ -8,13 +8,15 @@
                     } do |f| %>
     <div class="form-inputs edit">
       <% f.object = @financial_document.becomes(FinancialDocumentBill) %>
-      <%= f.association :financial_document_type %>
+      <%= f.association :financial_document_type, input_html: {disabled: true} %>
+      <%= f.input :financial_document_type_id, as: :hidden, input_html: {value: @financial_document.financial_document_type_id} %>
       <%= f.input :nro_documento %>
       <%= f.input :fecha_expedicion, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@financial_document.fecha_expedicion)} %>
       <%= f.input :fecha_finalizacion, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@financial_document.fecha_finalizacion)} %>
       <%= f.input :monto %>
       <%= f.association :supplier %>
       <%= f.association :financial_document_contract, label_method: :nro_documento %>
+      <% f.object = @financial_document.becomes(FinancialDocument) %>
       <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: ENV['REFILE_S3_MAX_FILESIZE'].to_i} %>
       <div class="widget-footer">
         <div class="form-actions">

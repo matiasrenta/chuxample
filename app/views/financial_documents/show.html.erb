@@ -46,35 +46,27 @@
               </td>
             </tr>
             <tr role="row">
-              <th><%= t('simple_form.labels.defaults.supplier_id') %></th>
+              <th><%= t('simple_form.labels.defaults.supplier') %></th>
               <td>
                 <%= @financial_document.supplier.try(:name) %>
               </td>
             </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.supplier_id') %></th>
-              <td>
-                <%= @financial_document.supplier.try(:name) %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.financial_document_type_id') %></th>
-              <td>
-                <%= @financial_document.financial_document_type.try(:name) %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.financial_document_contract_id') %></th>
-              <td>
-                <%= @financial_document.financial_document_contract.try(:nro_documento) if @financial_document.grupo_factura? %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.description') %></th>
-              <td>
-                <%= @financial_document.description %>
-              </td>
-            </tr>
+            <% if @financial_document.grupo_factura? %>
+                <tr role="row">
+                  <th><%= t('simple_form.labels.defaults.financial_document_contract') %></th>
+                  <td>
+                    <%= @financial_document.financial_document_contract.try(:nro_documento) %>
+                  </td>
+                </tr>
+            <% end %>
+            <% if @financial_document.grupo_other? %>
+                <tr role="row">
+                  <th><%= t('simple_form.labels.defaults.description') %></th>
+                  <td>
+                    <%= @financial_document.description %>
+                  </td>
+                </tr>
+            <% end %>
             </tbody>
           </table>
         </div>
