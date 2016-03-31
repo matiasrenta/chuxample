@@ -67,6 +67,12 @@
                   </td>
                 </tr>
             <% end %>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.file') %></th>
+              <td>
+                <%= link_to "Download file", attachment_url(@financial_document, :file) %>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>
