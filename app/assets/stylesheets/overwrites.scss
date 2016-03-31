@@ -96,6 +96,30 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 .smart-timeline table{
   font-size:11px;
 }
+
+//Iconos hove
+.actions-hover {
+  float: right;
+  padding: 10px;
+  top: -99px;
+}
+
+.actions-hover .btn {
+  width: 37px;
+}
+
+.actions-hover .btn:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.actions-hover .btn:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.smart-timeline .btn i.fa {
+    color: #8A8A8A;
+}
+
 @media (max-width: 768px) {
   .alert-success {
     //max-height: 50px;
