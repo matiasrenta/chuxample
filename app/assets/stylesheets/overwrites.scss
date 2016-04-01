@@ -97,24 +97,31 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
   font-size:11px;
 }
 
-//Iconos hove
+
+//Iconos hover
 .actions-hover {
   float: right;
   padding: 10px;
-  top: -99px;
+  top: -13px;
 }
 
 .actions-hover .btn {
   width: 37px;
+  padding: 2px;
 }
 
-.actions-hover .btn:first-child {
-  border-radius: 6px 0 0 6px;
-}
+// .btn:hover {
+//   margin-right: 0;
+//   box-shadow: none;
+// }
 
-.actions-hover .btn:last-child {
-  border-radius: 0 6px 6px 0;
-}
+// .actions-hover .btn:first-child {
+//   border-radius: 4px 0 0 4px;
+// }
+//
+// .actions-hover .btn:last-child {
+//   border-radius: 0 4px 4px 0;
+// }
 
 .smart-timeline .btn i.fa {
     color: #8A8A8A;
