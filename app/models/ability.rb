@@ -35,10 +35,49 @@ class Ability
   end
 
   def superuser
-		can [:manage], KeyMetaValue
-		can [:manage], KeyMetaTitle
-		can [:manage], KeyMetaSubcategory
-		can [:manage], KeyMetaCategory
+		can [:manage], ProjectActivityObra
+		can [:manage], ProjectAdministracion
+		can [:manage], ProjectCultura
+		can [:manage], ProjectObra
+		can [:manage], Supplier
+		can [:manage], Town
+		can [:manage], State
+		can [:manage], FinancialDocumentType
+		can [:manage], FinancialDocument
+		can [:manage], KeyAnalytical
+		can [:manage], CatPprSpendingDestination
+		can [:manage], CatUniMeasureUnit
+		can [:manage], CatAreArea
+		can [:manage], CatPprDigitIdentifier
+		can [:manage], CatPprParPartidaEspecifica
+		can [:manage], CatPprParPartidaGenerica
+		can [:manage], CatPprParConcept
+		can [:manage], CatPprParChapter
+		can [:manage], CatPprExpenseType
+		can [:manage], CatAciInstitutionalActivity
+		can [:manage], CatEreSubresult
+		can [:manage], CatEreResult
+		can [:manage], CatEreExpendingFocu
+		can [:manage], CatCfuSubfunction
+		can [:manage], CatCfuFunction
+		can [:manage], CatCfuFinality
+		can [:manage], CatFonFund
+		can [:manage], CatFonOriginResource
+		can [:manage], CatFonYearDocument
+		can [:manage], CatFonSpecificSource
+		can [:manage], CatFonGenericSource
+		can [:manage], CatPgdLineOfAction
+		can [:manage], CatPgdGoal
+		can [:manage], CatPgdObjective
+		can [:manage], CatPgdAreaOfOpportunity
+    can [:manage], CatFonFundingSource
+		can [:manage], CatPgdAxi
+		can [:manage], CatGenLineOfAction
+		can [:manage], CatGenStrategy
+		can [:manage], CatGenAxi
+		can [:manage], CatDerLineOfAction
+		can [:manage], CatDerStrategy
+		can [:manage], CatDerHumanRight
 		can [:read, :destroy], DelayedJob
 		can [:manage], ThingCategory
     can [:manage], PublicActivity::Activity

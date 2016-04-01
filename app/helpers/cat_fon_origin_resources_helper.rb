@@ -1,0 +1,2 @@
+module CatFonOriginResourcesHelper
+end

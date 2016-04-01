@@ -1,0 +1,160 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_key_analytical_path, class: 'btn btn-primary' if (can? :create, KeyAnalytical) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="form-group">
+                      <label for="q[id_eq]">ID</label>
+                      <%= f.search_field :id_eq, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[key_analytical_string_eq]">Key</label>
+                      <%= f.search_field :key_analytical_string_cont, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_are_area_id_cont]"><%= t('simple_form.labels.cat_are_area') %></label>
+                      <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.all, :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <%= render 'shared/submit_filters' %>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :id, 'ID') %></th>
+                <th class='all control'><%= sort_link(@q, :key_analyticals_string, 'Key') %></th>
+                <th><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.cat_pgd_axi')) %></th>
+                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.cat_ere_expending_focu')) %></th>
+                <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.cat_ere_result')) %></th>
+                <th><%= sort_link(@q, :cat_ere_subresult_name, t('simple_form.labels.cat_ere_subresult')) %></th>
+                <th><%= sort_link(@q, :year, t('simple_form.labels.defaults.year')) %></th>
+                <th><%= sort_link(@q, :sector, t('simple_form.labels.defaults.sector')) %></th>
+                <th><%= sort_link(@q, :subsector, t('simple_form.labels.defaults.subsector')) %></th>
+                <th><%= sort_link(@q, :unidad_responsable, t('simple_form.labels.defaults.unidad_responsable')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_finality_name, t('simple_form.labels.cat_cfu_finality')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_function_name, t('simple_form.labels.cat_cfu_function')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_subfunction_name, t('simple_form.labels.cat_cfu_subfunction')) %></th>
+                <th><%= sort_link(@q, :cat_aci_institutional_activity_name, t('simple_form.labels.cat_aci_institutional_activity')) %></th>
+                <th><%= sort_link(@q, :cat_fon_funding_source_name, t('simple_form.labels.cat_fon_funding_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_generic_source_name, t('simple_form.labels.cat_fon_generic_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_specific_source_name, t('simple_form.labels.cat_fon_specific_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_year_document_name, t('simple_form.labels.cat_fon_year_document')) %></th>
+                <th><%= sort_link(@q, :cat_fon_origin_resource_name, t('simple_form.labels.cat_fon_origin_resource')) %></th>
+                <th><%= sort_link(@q, :cat_fon_fund_name, t('simple_form.labels.cat_fon_fund')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_chapter_name, t('simple_form.labels.cat_ppr_par_chapter')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_concept_name, t('simple_form.labels.cat_ppr_par_concept')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_partida_generica_name, t('simple_form.labels.cat_ppr_par_partida_generica')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_name, t('simple_form.labels.cat_ppr_par_partida_especifica')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_expense_type_name, t('simple_form.labels.cat_ppr_expense_type')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_digit_identifier_name, t('simple_form.labels.cat_ppr_digit_identifier')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_spending_destination_name, t('simple_form.labels.cat_ppr_spending_destination')) %></th>
+                <th><%= sort_link(@q, :proyecto_de_inversion, t('simple_form.labels.defaults.proyecto_de_inversion')) %></th>
+                <th><%= sort_link(@q, :cat_are_area_name, t('simple_form.labels.cat_are_area')) %></th>
+                <th><%= sort_link(@q, :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
+                <th><%= sort_link(@q, :cat_uni_measure_unit_name, t('simple_form.labels.cat_uni_measure_unit')) %></th>
+                <th><%= sort_link(@q, :meta_fisica, t('simple_form.labels.defaults.meta_fisica')) %></th>
+                <th><%= sort_link(@q, :descripcion_de_las_acciones, t('simple_form.labels.defaults.descripcion_de_las_acciones')) %></th>
+                <th><%= sort_link(@q, :domicilio_del_area, t('simple_form.labels.defaults.domicilio_del_area')) %></th>
+                <th><%= sort_link(@q, :dut_de_la_accion, t('simple_form.labels.defaults.dut_de_la_accion')) %></th>
+                <th><%= sort_link(@q, :poblacion_beneficiada, t('simple_form.labels.defaults.poblacion_beneficiada')) %></th>
+                <th><%= sort_link(@q, :cat_der_human_right_name, t('simple_form.labels.cat_der_human_right')) %></th>
+                <th><%= sort_link(@q, :cat_der_strategy_name, t('simple_form.labels.cat_der_strategy')) %></th>
+                <th><%= sort_link(@q, :cat_der_line_of_action_name, t('simple_form.labels.cat_der_line_of_action')) %></th>
+                <th><%= sort_link(@q, :porcentaje_igualdad_sustantiva, t('simple_form.labels.defaults.porcentaje_igualdad_sustantiva')) %></th>
+                <th><%= sort_link(@q, :mujeres, t('simple_form.labels.defaults.mujeres')) %></th>
+                <th><%= sort_link(@q, :hombres, t('simple_form.labels.defaults.hombres')) %></th>
+                <th><%= sort_link(@q, :cat_gen_axi_name, t('simple_form.labels.cat_gen_axi')) %></th>
+                <th><%= sort_link(@q, :cat_gen_strategy_name, t('simple_form.labels.cat_gen_strategy')) %></th>
+                <th><%= sort_link(@q, :cat_gen_line_of_action_name, t('simple_form.labels.cat_gen_line_of_action')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_area_of_opportunity_name, t('simple_form.labels.cat_pgd_area_of_opportunity')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_objective_name, t('simple_form.labels.cat_pgd_objective')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_goal_name, t('simple_form.labels.cat_pgd_goal')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_line_of_action_name, t('simple_form.labels.cat_pgd_line_of_action')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @key_analyticals.each do |key_analytical| %>
+                  <tr>
+                    <td><%= key_analytical.id %></td>
+                    <td><%= key_analytical.key_analytical_string %></td>
+                    <td><%= key_analytical.cat_pgd_axi.try(:description) %></td>
+                    <td><%= key_analytical.cat_ere_expending_focu.try(:description) %></td>
+                    <td><%= key_analytical.cat_ere_result.try(:description) %></td>
+                    <td><%= key_analytical.cat_ere_subresult.try(:description) %></td>
+                    <td align='right'><%= key_analytical.year %></td>
+                    <td><%= key_analytical.sector %></td>
+                    <td><%= key_analytical.subsector %></td>
+                    <td><%= key_analytical.unidad_responsable %></td>
+                    <td><%= key_analytical.cat_cfu_finality.try(:description) %></td>
+                    <td><%= key_analytical.cat_cfu_function.try(:description) %></td>
+                    <td><%= key_analytical.cat_cfu_subfunction.try(:description) %></td>
+                    <td><%= key_analytical.cat_aci_institutional_activity.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_funding_source.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_generic_source.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_specific_source.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_year_document.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_origin_resource.try(:description) %></td>
+                    <td><%= key_analytical.cat_fon_fund.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_par_chapter.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_par_concept.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_par_partida_generica.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_par_partida_especifica.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_expense_type.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_digit_identifier.try(:description) %></td>
+                    <td><%= key_analytical.cat_ppr_spending_destination.try(:description) %></td>
+                    <td><%= key_analytical.proyecto_de_inversion %></td>
+                    <td><%= key_analytical.cat_are_area.try(:description) %></td>
+                    <td align='right'><%= key_analytical.autorizado %></td>
+                    <td><%= key_analytical.cat_uni_measure_unit.try(:description) %></td>
+                    <td align='right'><%= key_analytical.meta_fisica %></td>
+                    <td><%= key_analytical.descripcion_de_las_acciones %></td>
+                    <td><%= key_analytical.domicilio_del_area %></td>
+                    <td><%= key_analytical.dut_de_la_accion %></td>
+                    <td align='right'><%= key_analytical.poblacion_beneficiada %></td>
+                    <td><%= key_analytical.cat_der_human_right.try(:description) %></td>
+                    <td><%= key_analytical.cat_der_strategy.try(:description) %></td>
+                    <td><%= key_analytical.cat_der_line_of_action.try(:description) %></td>
+                    <td align='right'><%= key_analytical.porcentaje_igualdad_sustantiva %></td>
+                    <td align='right'><%= key_analytical.mujeres %></td>
+                    <td align='right'><%= key_analytical.hombres %></td>
+                    <td><%= key_analytical.cat_gen_axi.try(:description) %></td>
+                    <td><%= key_analytical.cat_gen_strategy.try(:description) %></td>
+                    <td><%= key_analytical.cat_gen_line_of_action.try(:description) %></td>
+                    <td><%= key_analytical.cat_pgd_area_of_opportunity.try(:description) %></td>
+                    <td><%= key_analytical.cat_pgd_objective.try(:description) %></td>
+                    <td><%= key_analytical.cat_pgd_goal.try(:description) %></td>
+                    <td><%= key_analytical.cat_pgd_line_of_action.try(:description) %></td>
+                    <td class="table-actions">
+                      <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), key_analytical_path(key_analytical), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, key_analytical %>
+                      <%= link_to raw('<i class="fa fa-pencil fa-lg"></i>'), edit_key_analytical_path(key_analytical), rel: 'tooltip', title: t('simple_form.tooltips.edit'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can? :update, key_analytical %>
+                      <%= link_to raw('<i class="fa fa-trash fa-lg"></i>'), key_analytical_path(key_analytical), method: :delete, rel: 'tooltip', title: t('simple_form.tooltips.destroy'), class:'tooltipwithnofollow', data: { toggle: 'toggle', placement: 'top' , confirm: t('helpers.messages.are_you_sure'), 'original-title' => t('simple_form.tooltips.destroy')} if can? :destroy, key_analytical %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @key_analyticals, model_index_path: key_analyticals_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

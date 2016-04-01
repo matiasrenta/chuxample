@@ -50,6 +50,9 @@ es:
         trackable_type: 'Entidad'
         action: 'Acción'
         abbreviation: 'Abreviación'
+        thing_attaches: 'Archivos'
+        avatar: 'Avatar'
+        key: 'Código'
 
     placeholders:
       from: 'desde'
@@ -57,6 +60,17 @@ es:
 
     screen:
       actions: 'Acciones'
+      click_or_drop_files: 'Haga click o arrastre archivos'
+      not_support_drag_drop: 'Tu navegador no soporta drag and drop'
+      use_the_form_below: 'Por favor usa el formulario de abajo'
+      file_is_too_big: 'Archivo demasiado grande'
+      max_filesize: 'Máximo'
+      cant_upload_this_type: 'Tipo de archivo incorrecto'
+      server_responded_with_code: 'Error. El servidor respodió con código'
+      cancel_upload: 'Cancelar'
+      are_you_sure_cancel_upload: '¿Estás seguro de cancelar?'
+      remove_file: 'Eliminar'
+      cant_upload_any_more_files: 'No se pueden subir más archivos'
 
     flash:
       successfully_created: 'Creado exitosamente'

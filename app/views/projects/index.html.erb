@@ -1,0 +1,11 @@
+<section id="widget-grid">
+  <div>
+  </div>
+  <div class="row">
+    <%= render 'projects_widget', locals: {projects: @projects_obra, query_instance: @q_obra, query_name: 'q_obra', wtitle: t('activerecord.models.project_obra.other'), wicon: t('activerecord.models.project_obra.fa_icon'), wid: 'wid-id-0'} %>
+    <%= render 'projects_widget', locals: {projects: @projects_administracion, query_instance: @q_administracion, query_name: 'q_administracion', wtitle: t('activerecord.models.project_administracion.other'), wicon: t('activerecord.models.project_administracion.fa_icon'), wid: 'wid-id-1'} %>
+    <%= render 'projects_widget', locals: {projects: @projects_cultura, query_instance: @q_cultura, query_name: 'q_cultura', wtitle: t('activerecord.models.project_cultura.other'), wicon: t('activerecord.models.project_cultura.fa_icon'), wid: 'wid-id-2'} %>
+  </div>
+
+</section>
+

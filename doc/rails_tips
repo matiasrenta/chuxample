@@ -11,3 +11,27 @@ Clean de assets para probar con algo fresh:
 Para ver el assets load path:
 =============================
 en la consola: Rails.application.config.assets.paths
+
+
+Obtener Class from string:
+==========================
+si tengo "things", entonces:
+"things".singularize.classify.constantize
+ejemplo:
+"things".singularize.classify.constantize.find(1)
+sería Igual a Thing.find(1)
+
+
+Listar multiples modelos en una sola lista (un solo index view con paginación)
+==============================================================================
+https://github.com/baldursson/listable
+
+
+STI Sigle Table Inheritance:
+============================
+en el formulario tuve que poner una cosa así:
+<%= simple_form_for @perro.becomes(Animal) %>
+la explicacion esta aqui: http://thepugautomatic.com/2012/08/rails-sti-and-form-for/
+en el proyecto de cuauhtemoc lo hice en el form de key_analytical
+
+

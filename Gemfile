@@ -31,7 +31,7 @@ gem 'devise'
 gem 'cancancan', '~> 1.10'
 # form builder
 gem 'simple_form'
-# para hacer filtros
+# para hacer filtros. https://github.com/activerecord-hackery/ransack
 gem 'ransack'
 # se usa la version 2.0 (unstable) para aprovechar la funcionalidad de fallback. cuando salga el
 # release de la 2.0 hay que quitar la opcion github. https://github.com/chaps-io/public_activity
@@ -120,6 +120,10 @@ gem 'simple_form_auto_select2'
 gem 'dotenv-rails'
 # https://github.com/mailboxer/mailboxer
 gem 'mailboxer'
+# para poder unir dos relations (y no hacer pluck(id) y luego otra query) https://github.com/brianhempel/active_record_union
+gem 'active_record_union'
+# https://github.com/elight/acts_as_commentable_with_threading
+gem 'acts_as_commentable_with_threading'
 # (-)Instalados por mi
 
 
@@ -134,6 +138,8 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-rails', '~> 1.1.6'
   gem 'capistrano-rbenv', github: "capistrano/rbenv"
+  # para hacer dump de la ddbb local a un seed y luego pasarlo a producción u otro entorno. https://github.com/rroblak/seed_dump
+  gem 'seed_dump'
 end
 
 group :development, :test do

@@ -226,9 +226,17 @@ $(document).ready(function() {
 });
 // Filtros
 $(function() {
-	$("#filtrar").click(function(event) {
-		$("#filter-zone").slideToggle("slow");
-	});
+	// $(".filtrar").click(function(event) {
+	// 	var element = $(this)[0];
+	// 	var elementId = $(element).attr('id');
+	// 	console.log( $(element).attr('id') );
+	// 	$("elementId .filter-zone").slideToggle("slow");
+	// });
+	var bgs = $('.filter-zone');
+	$('.filter-button').click(function () {
+        var target = $($(this).data('target')).stop(true).slideToggle();
+        bgs.not(target).filter(':visible').stop(true, true).slideUp();
+    })
 });
 
 //Append help button
@@ -243,59 +251,3 @@ $(inputWork).parent().addClass('input-group add-on').append('<div class="input-g
 $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 	trigger : "hover"
 });
-
-//Google Charts
-
-// Load the Visualization API and the piechart package.
-	// google.load('visualization', '1', {'packages':['corechart']});
-	//
-	// // Set a callback to run when the Google Visualization API is loaded.
-	// google.setOnLoadCallback(drawChart);
-	//
-	// // Callback that creates and populates a data table,
-	// // instantiates the pie chart, passes in the data and
-	// // draws it.
-	// setTimeout(drawChart, 330);
-	// function drawChart() {
-	//
-	// 	// Create the data table.
-	// 	var data = new google.visualization.DataTable();
-	// 	data.addColumn('string', 'Topping');
-	// 	data.addColumn('number', 'Slices');
-	// 	data.addRows([
-	// 		['Mushrooms', 3],
-	// 		['Onions', 1],
-	// 		['Olives', 1],
-	// 		['Zucchini', 1],
-	// 		['Pepperoni', 2]
-	// 	]);
-	//
-	// 	// Set chart options
-	// 	var options = {'title':'How Much Pizza I Ate Last Night',
-	// 	'width':400,
-	// 	'height':300};
-	//
-	// 	// Instantiate and draw our chart, passing in some options.
-	// 	var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-	// 	chart.draw(data, options);
-	//
-	// 	var chart = new google.visualization.BarChart(document.getElementById('chart_bar'));
-	// 	chart.draw(data, options);
-	// };
-
-	//Select2 Nueva Implementacion
-
-	//Carga Json de Estados ejemplo
-//	var dataPartial;
-//	$.getJSON("../../assets/partial.json", function (data) {
-//			dataPartial = data;
-//	});
-//
-//
-//	setTimeout(function(){
-//		$(".selectComponent").select2({ data: dataPartial });
-//		$("#selectSimple").select2({ data: dataPartial, minimumResultsForSearch: Infinity });
-//		$("#selectMultipleAuto").select2({ data: dataPartial, maximumSelectionLength: 2 });
-//	}, 1000);
-
-$(".boolean").removeClass("form-control");

@@ -16,12 +16,25 @@
   <!-- NAVIGATION : This navigation is also responsive-->
   <nav>
     <ul>
-
       <li data-step="1" data-intro="Este es el menú de administración.">
         <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Administration</span></a>
         <ul>
           <li>
             <%= link_to 'Users', users_path, {title: 'Users'}  %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.key_analytical.other'), key_analyticals_path, {title: t('activerecord.models.key_analytical.other')}  %>
+          </li>
+          <li>
+            <a href="#">Estados y Municipios</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.state.other'), states_path, {title: t('activerecord.models.state.other')} %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.town.other'), towns_path, {title: t('activerecord.models.town.other')} %>
+              </li>
+            </ul>
           </li>
           <li>
             <%= link_to 'Settings', '/admin/settings', {title: 'Settings'}  %>
@@ -31,19 +44,177 @@
           </li>
         </ul>
       </li>
+      <li data-step="1" data-intro="Este es el menú de proyectos.">
+        <a href="/projects"><i class="fa fa-lg fa-fw fa-list-ol"></i> <span class="menu-item-parent">Proyectos</span></a>
+      </li>
 
-      <li data-step="2" data-intro="Este es el menú de meta clave.">
-        <a href="#"><i class="fa fa-lg fa-fw fa-key"></i> <span class="menu-item-parent"><%= t('pages.navigation.key_meta') %></span></a>
+      <li data-step="1" data-intro="Este es el menú de proveedores.">
+        <a href="/suppliers"><i class="fa fa-lg fa-fw fa-truck"></i> <span class="menu-item-parent"><%= t('activerecord.models.supplier.other') %></span></a>
+      </li>
+
+      <li data-step="2" data-intro="Este es el menú catálogos.">
+        <a href="#"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Catálogos</span></a>
         <ul>
           <li>
-            <%= link_to t('activerecord.models.key_meta_category.other'), key_meta_categories_path, {title: t('activerecord.models.key_meta_category.other')}  %>
+            <a href="#">Derechos Humanos</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_der_human_right.other'), cat_der_human_rights_path, {title: t('activerecord.models.cat_der_human_right.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_der_strategy.other'), cat_der_strategies_path, {title: t('activerecord.models.cat_der_strategy.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_der_line_of_action.other'), cat_der_line_of_actions_path, {title: t('activerecord.models.cat_der_line_of_action.other')}  %>
+              </li>
+            </ul>
           </li>
           <li>
-            <%= link_to t('activerecord.models.key_meta_subcategory.other'), key_meta_subcategories_path, {title: t('activerecord.models.key_meta_subcategory.other')}  %>
+            <a href="#">Género</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_gen_axi.other'), cat_gen_axis_path, {title: t('activerecord.models.cat_gen_axi.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_gen_strategy.other'), cat_gen_strategies_path, {title: t('activerecord.models.cat_gen_strategy.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_gen_line_of_action.other'), cat_gen_line_of_actions_path, {title: t('activerecord.models.cat_gen_line_of_action.other')}  %>
+              </li>
+            </ul>
           </li>
           <li>
-            <%= link_to t('activerecord.models.key_meta_title.other'), key_meta_titles_path, {title: t('activerecord.models.key_meta_title.other')}  %>
+            <a href="#">PGDDF</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_pgd_axi.other'), cat_pgd_axis_path, {title: t('activerecord.models.cat_pgd_axi.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_pgd_area_of_opportunity.other'), cat_pgd_area_of_opportunities_path, {title: t('activerecord.models.cat_pgd_area_of_opportunity.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_pgd_objective.other'), cat_pgd_objectives_path, {title: t('activerecord.models.cat_pgd_objective.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_pgd_goal.other'), cat_pgd_goals_path, {title: t('activerecord.models.cat_pgd_goal.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_pgd_line_of_action.other'), cat_pgd_line_of_actions_path, {title: t('activerecord.models.cat_pgd_line_of_action.other')}  %>
+              </li>
+            </ul>
           </li>
+          <li>
+            <a href="#">Fondo</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_fon_funding_source.other'), cat_fon_funding_sources_path, {title: t('activerecord.models.cat_fon_funding_source.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_fon_generic_source.other'), cat_fon_generic_sources_path, {title: t('activerecord.models.cat_fon_generic_source.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_fon_specific_source.other'), cat_fon_specific_sources_path, {title: t('activerecord.models.cat_fon_specific_source.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_fon_year_document.other'), cat_fon_year_documents_path, {title: t('activerecord.models.cat_fon_year_document.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_fon_origin_resource.other'), cat_fon_origin_resources_path, {title: t('activerecord.models.cat_fon_origin_resource.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_fon_fund.other'), cat_fon_funds_path, {title: t('activerecord.models.cat_fon_fund.other')}  %>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Clasificación Funcional</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_cfu_finality.other'), cat_cfu_finalities_path, {title: t('activerecord.models.cat_cfu_finality.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_cfu_function.other'), cat_cfu_functions_path, {title: t('activerecord.models.cat_cfu_function.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_cfu_subfunction.other'), cat_cfu_subfunctions_path, {title: t('activerecord.models.cat_cfu_subfunction.other')}  %>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Estructura por Resultados</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_ere_expending_focu.other'), cat_ere_expending_focus_path, {title: t('activerecord.models.cat_ere_expending_focu.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_ere_result.other'), cat_ere_results_path, {title: t('activerecord.models.cat_ere_result.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_ere_subresult.other'), cat_ere_subresults_path, {title: t('activerecord.models.cat_ere_subresult.other')}  %>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Actividad Institucional</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_aci_institutional_activity.other'), cat_aci_institutional_activities_path, {title: t('activerecord.models.cat_aci_institutional_activity.other')}  %>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">Posición Presupuestal</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_ppr_expense_type.other'), cat_ppr_expense_types_path, {title: t('activerecord.models.cat_ppr_expense_type.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_ppr_spending_destination.other'), cat_ppr_spending_destinations_path, {title: t('activerecord.models.cat_ppr_spending_destination.other')}  %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.cat_ppr_digit_identifier.other'), cat_ppr_digit_identifiers_path, {title: t('activerecord.models.cat_ppr_digit_identifier.other')}  %>
+              </li>
+              <li>
+                  <a href="#">Partida</a>
+                  <ul>
+                    <li>
+                      <%= link_to t('activerecord.models.cat_ppr_par_chapter.other'), cat_ppr_par_chapters_path, {title: t('activerecord.models.cat_ppr_par_chapter.other')}  %>
+                    </li>
+                    <li>
+                      <%= link_to t('activerecord.models.cat_ppr_par_concept.other'), cat_ppr_par_concepts_path, {title: t('activerecord.models.cat_ppr_par_concept.other')}  %>
+                    </li>
+                    <li>
+                      <%= link_to t('activerecord.models.cat_ppr_par_partida_generica.other'), cat_ppr_par_partida_genericas_path, {title: t('activerecord.models.cat_ppr_par_partida_generica.other')}  %>
+                    </li>
+                    <li>
+                      <%= link_to t('activerecord.models.cat_ppr_par_partida_especifica.other'), cat_ppr_par_partida_especificas_path, {title: t('activerecord.models.cat_ppr_par_partida_especifica.other')}  %>
+                    </li>
+                  </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Áreas</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_are_area.other'), cat_are_areas_path, {title: t('activerecord.models.cat_are_area.other')}  %>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Unidades de Medida</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.cat_uni_measure_unit.other'), cat_uni_measure_units_path, {title: t('activerecord.models.cat_uni_measure_unit.other')}  %>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="/financial_document_types"><%= t('activerecord.models.financial_document_type.other') %></a>
+          </li>
+
         </ul>
       </li>
 
@@ -68,7 +239,7 @@
 
         </ul>
       </li>
-      <li class="hidden-xs"> 
+      <li class="hidden-xs">
       	<a href="#"><i class="fa fa-lg fa-fw fa-question-circle"></i> <span class="menu-item-parent">Ayuda</span></a>
       	<ul>
           <li>
@@ -85,3 +256,15 @@
 
 </aside>
 <!-- END NAVIGATION -->
+
+<script type="text/javascript">
+
+  var pathUrl = location.pathname.split("/")[1];
+  $( 'nav ul li a' ).each(function( index, value ) {
+    var href = $(this).attr('href').split("/")[1];
+    if ( href === pathUrl ) {
+      $(this).parent().addClass('active');
+    }
+  });
+
+</script>

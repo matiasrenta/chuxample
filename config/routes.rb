@@ -1,9 +1,196 @@
 Rails.application.routes.draw do
 
-  resources :key_meta_values
-  resources :key_meta_titles
-  resources :key_meta_subcategories
-  resources :key_meta_categories
+  resources :suppliers
+  resources :towns
+  resources :states
+  resources :financial_document_types
+  resources :projects, shallow: true do
+    resources :project_activity_obras, shallow: true do
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
+    end
+    # resources :project_activities, shallow: true do
+    #   resources :financial_documents
+    # end
+  end
+  resources :key_analyticals do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_ppr_spending_destinations do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_uni_measure_units do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_are_areas
+  resources :cat_ppr_digit_identifiers
+  resources :cat_ppr_par_partida_especificas do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_ppr_par_partida_genericas do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_ppr_par_concepts do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_ppr_par_chapters
+  resources :cat_ppr_expense_types
+  resources :cat_aci_institutional_activities do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_ere_subresults do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_ere_results do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_ere_expending_focus do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_cfu_subfunctions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_cfu_functions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_cfu_finalities
+  resources :cat_fon_funds
+  resources :cat_fon_origin_resources
+  resources :cat_fon_year_documents
+  resources :cat_fon_specific_sources
+  resources :cat_fon_generic_sources
+  resources :cat_fon_funding_sources
+  resources :cat_pgd_line_of_actions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_pgd_goals do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_pgd_objectives do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_pgd_area_of_opportunities do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_pgd_axis do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_gen_line_of_actions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_gen_strategies do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_gen_axis do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_der_line_of_actions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_der_strategies do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :cat_der_human_rights do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :comments
+  resources :conversations, only: [:index, :show, :destroy] do
+    post :mark_as_read, on: :member
+    get :mark_all_as_read, on: :collection
+  end
   resources :delayed_jobs
   resources :thing_categories
   resources :wizard
@@ -37,6 +224,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users do
     get 'resend_password_instructions/:id', action: 'resend_password_instructions', on: :collection
+    get 'mentionables', on: :collection
   end
 
   get "application/access_denied"

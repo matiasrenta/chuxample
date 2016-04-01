@@ -1,3 +1,7 @@
+body {
+    font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+    font-size: 13px;
+}
 // Color or tables
 // Filas impares (odd)
 $color-tr-odd:#B2C4D1;
@@ -92,7 +96,7 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 .smart-timeline table{
   font-size:11px;
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .alert-success {
     //max-height: 50px;
   }
@@ -108,6 +112,14 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 @media (max-width: 420px) {
   .jarviswidget header h2 {
     width: 83%;
+  }
+}
+
+@media (min-width: 768px){
+  .form-inline .form-control {
+      display: inline-block;
+      width: 100%;
+      vertical-align: middle;
   }
 }
 
@@ -154,6 +166,9 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 }
 .jarviswidget-editbox form label{
   //font-weight:bold;
+}
+.jarviswidget-editbox select {
+    min-width: inherit;
 }
 .pagination.pagination-xs {
   //font-size:11px;
@@ -205,6 +220,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before
   margin: auto;
     padding:0;
 }
+.jarviswidget {
+    margin: 0 0 65px 0;
+}
 .jarviswidget .widget-body {
   min-height:0;
   padding-bottom: 0;
@@ -214,6 +232,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.child > td:first-child::before
 }
 table tr td.table-actions{
   padding:0;
+  display: flex;
 }
 
 .form-control-feedback {
@@ -272,4 +291,152 @@ table tr td.table-actions{
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
+}
+
+.dropzone .dz-preview .dz-error-message {
+  top: 130px;
+}
+
+.dropzone .dz-preview .dz-error-mark svg g {
+  border: 1px solid #FFFFFF;
+  fill: #be2626;
+}
+
+.dropzone .dz-preview .dz-error-mark {
+    top: 45%;
+}
+
+@media (max-width: 979px) {
+  .dropzone .dz-default.dz-message {
+    width: auto;
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+// Dropzone
+.dropzone { min-height: 170px; }
+
+.dropzone .dz-preview { margin: 0 22px 10px 0; }
+
+.dropzone .dz-preview .dz-image {
+    border-radius: 6px;
+    width: 100px;
+    height: 100px;
+}
+
+.dropzone .dz-preview.dz-file-preview .dz-image { border-radius: 6px; }
+
+.dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {
+    cursor: pointer;
+    margin-top: 0.5%;
+}
+
+.fileUploadedCheck {
+  position: absolute;
+  z-index: 100;
+  background: #45DA4D;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+  color: white;
+  padding: 0 2px;
+  margin: 3px;
+}
+
+.dropzone .dz-preview:hover .dz-image {
+  -webkit-transform: scale(1.05, 1.05);
+  -moz-transform: scale(1.05, 1.05);
+  -ms-transform: scale(1.05, 1.05);
+  -o-transform: scale(1.05, 1.05);
+  transform: scale(1.05, 1.05);
+  // -webkit-filter: blur(1px);
+  // filter: blur(1px);
+  border-radius: 6px;
+}
+
+.dropzone .dz-preview .dz-image {
+  width: 100px;
+  height: 100px;
+}
+
+.text-remove {
+  max-width: 100px;
+  color: red;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.2;
+  cursor: default;
+}
+
+.pagination{
+  padding: 0 20px;
+}
+//notificaciones ajax
+.ajax-dropdown {
+  height: auto;
+  max-height: 383px;
+  padding: 10px 10px 0;
+}
+
+.ajax-notifications {
+  height: auto;
+  max-height: 365px;
+}
+
+.notification_ind {
+  width: 96%;
+}
+
+.padding_notification {
+  padding: 8px 4px 13px !important;
+}
+
+.subject_notification {
+  padding: 0 18px 0 15px;
+}
+
+.font_body_notification {
+  display: inline-block;
+  font-size: 90%;
+  padding-left: 4px;
+  width: 260px;
+  line-height: 1.3;
+}
+
+.padding_mute {
+  float: right;
+}
+
+.icons_notification {
+  width: 32px;
+}
+
+.product-deatil {
+    padding: 30px 30px 50px;
+}
+
+.product-content {
+    border: 1px solid #dfe5e9;
+    margin-bottom: 20px;
+    margin-top: 12px;
+    background: #fff;
+}
+
+.chat-body li.message .message-text {
+  display: block !important;
+  margin-left: 60px !important;
+}
+
+.profile-message{
+  margin-bottom: 20px;
+}
+
+.reply-bottom {
+  border-bottom: 5px solid #FFFFFF;
+  padding-bottom: 10px !important;
+}
+
+.spanning input {
+    width: 50% !important;
 }

@@ -9,6 +9,16 @@ class BaseImport
     false
   end
 
+  # esto sirvió para actulizar las arear de key_analiticals desde el excel
+  #def save
+  #  if save_in_ddbb == '1'
+  #    KeyAnalytical.all.order(:id).each_with_index do |ka, i|
+  #      ka.update!(cat_are_area_id: imported_entities[i].cat_are_area_id)
+  #    end
+  #  end
+  #  true
+  #end
+
   def save
     if imported_entities.map(&:valid?).all?
       if save_in_ddbb == '1'
@@ -19,11 +29,21 @@ class BaseImport
       true
     else
       errors.add(:base, I18n.translate('activerecord.errors.messages.invalid_imported_entities'))
+      #imported_entities.each_with_index do |entity, index|
+      #  entity.errors.full_messages.each do |message|
+      #    errors.add :base, "Fila #{index+2}: #{message}"
+      #  end
+      #end
+      c = []
       imported_entities.each_with_index do |entity, index|
-        entity.errors.full_messages.each do |message|
-          errors.add :base, "Fila #{index+2}: #{message}"
+        if entity.errors.any?
+          c << index + 1
+          if c.size < 10
+            errors.add :base, "Fila #{index+2}: #{entity.errors.full_messages}"
+          end
         end
       end
+      errors.add :base, "cantidad de filas con errores: #{c.size}"
       false
     end
   end

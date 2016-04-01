@@ -1,0 +1,5 @@
+
+wb = xlsx_package.workbook
+wb.add_worksheet(name: t("activerecord.models.cat_ppr_spending_destination.other")) do |sheet|
+  sheet.add_row (CatPprSpendingDestination.column_names - %W(id created_at updated_at)).map { |c| I18n.t("simple_form.labels.defaults.#{c}") }
+end

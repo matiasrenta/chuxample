@@ -1,0 +1,405 @@
+<section id="widget-grid">
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+
+        <div class="widget-toolbar">
+          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), projects_path, class: 'btn btn-primary' %>
+          <%#= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_key_analytical_path(@key_analytical), class: 'btn btn-primary' if can?(:update, KeyAnalytical) %>
+        </div>
+      </header>
+      <div>
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
+            <thead>
+            <tr class="hidden">
+              <th></th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.key_analytical_string') %></th>
+              <td>
+                <%= @key_analytical.key_analytical_string %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_pgd_axi') %></th>
+              <td>
+                <%= @key_analytical.cat_pgd_axi.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ere_expending_focu') %></th>
+              <td>
+                <%= @key_analytical.cat_ere_expending_focu.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ere_result') %></th>
+              <td>
+                <%= @key_analytical.cat_ere_result.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ere_subresult') %></th>
+              <td>
+                <%= @key_analytical.cat_ere_subresult.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.year') %></th>
+              <td>
+                <%= @key_analytical.year %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.sector') %></th>
+              <td>
+                <%= @key_analytical.sector %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.subsector') %></th>
+              <td>
+                <%= @key_analytical.subsector %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.unidad_responsable') %></th>
+              <td>
+                <%= @key_analytical.unidad_responsable %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_cfu_finality') %></th>
+              <td>
+                <%= @key_analytical.cat_cfu_finality.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_cfu_function') %></th>
+              <td>
+                <%= @key_analytical.cat_cfu_function.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_cfu_subfunction') %></th>
+              <td>
+                <%= @key_analytical.cat_cfu_subfunction.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_aci_institutional_activity') %></th>
+              <td>
+                <%= @key_analytical.cat_aci_institutional_activity.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_fon_funding_source') %></th>
+              <td>
+                <%= @key_analytical.cat_fon_funding_source.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_fon_generic_source') %></th>
+              <td>
+                <%= @key_analytical.cat_fon_generic_source.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_fon_specific_source') %></th>
+              <td>
+                <%= @key_analytical.cat_fon_specific_source.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_fon_year_document') %></th>
+              <td>
+                <%= @key_analytical.cat_fon_year_document.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_fon_origin_resource') %></th>
+              <td>
+                <%= @key_analytical.cat_fon_origin_resource.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_fon_fund') %></th>
+              <td>
+                <%= @key_analytical.cat_fon_fund.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ppr_par_chapter') %></th>
+              <td>
+                <%= @key_analytical.cat_ppr_par_chapter.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ppr_par_concept') %></th>
+              <td>
+                <%= @key_analytical.cat_ppr_par_concept.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ppr_par_partida_generica') %></th>
+              <td>
+                <%= @key_analytical.cat_ppr_par_partida_generica.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ppr_par_partida_especifica') %></th>
+              <td>
+                <%= @key_analytical.cat_ppr_par_partida_especifica.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ppr_expense_type') %></th>
+              <td>
+                <%= @key_analytical.cat_ppr_expense_type.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ppr_digit_identifier') %></th>
+              <td>
+                <%= @key_analytical.cat_ppr_digit_identifier.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_ppr_spending_destination') %></th>
+              <td>
+                <%= @key_analytical.cat_ppr_spending_destination.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.proyecto_de_inversion') %></th>
+              <td>
+                <%= @key_analytical.proyecto_de_inversion %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_are_area') %></th>
+              <td>
+                <%= @key_analytical.cat_are_area.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.autorizado') %></th>
+              <td>
+                <%= @key_analytical.autorizado %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.enero') %></th>
+              <td>
+                <%= @key_analytical.enero %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.febrero') %></th>
+              <td>
+                <%= @key_analytical.febrero %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.marzo') %></th>
+              <td>
+                <%= @key_analytical.marzo %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.abril') %></th>
+              <td>
+                <%= @key_analytical.abril %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.mayo') %></th>
+              <td>
+                <%= @key_analytical.mayo %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.junio') %></th>
+              <td>
+                <%= @key_analytical.junio %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.julio') %></th>
+              <td>
+                <%= @key_analytical.julio %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.agosto') %></th>
+              <td>
+                <%= @key_analytical.agosto %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.septiembre') %></th>
+              <td>
+                <%= @key_analytical.septiembre %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.octubre') %></th>
+              <td>
+                <%= @key_analytical.octubre %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.noviembre') %></th>
+              <td>
+                <%= @key_analytical.noviembre %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.diciembre') %></th>
+              <td>
+                <%= @key_analytical.diciembre %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_uni_measure_unit') %></th>
+              <td>
+                <%= @key_analytical.cat_uni_measure_unit.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.meta_fisica') %></th>
+              <td>
+                <%= @key_analytical.meta_fisica %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.descripcion_de_las_acciones') %></th>
+              <td>
+                <%= @key_analytical.descripcion_de_las_acciones %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.domicilio_del_area') %></th>
+              <td>
+                <%= @key_analytical.domicilio_del_area %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.dut_de_la_accion') %></th>
+              <td>
+                <%= @key_analytical.dut_de_la_accion %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.poblacion_beneficiada') %></th>
+              <td>
+                <%= @key_analytical.poblacion_beneficiada %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_der_human_right') %></th>
+              <td>
+                <%= @key_analytical.cat_der_human_right.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_der_strategy') %></th>
+              <td>
+                <%= @key_analytical.cat_der_strategy.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_der_line_of_action') %></th>
+              <td>
+                <%= @key_analytical.cat_der_line_of_action.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.justificacion_derechos_humanos') %></th>
+              <td>
+                <%= @key_analytical.justificacion_derechos_humanos %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.porcentaje_igualdad_sustantiva') %></th>
+              <td>
+                <%= @key_analytical.porcentaje_igualdad_sustantiva %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.mujeres') %></th>
+              <td>
+                <%= @key_analytical.mujeres %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.hombres') %></th>
+              <td>
+                <%= @key_analytical.hombres %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_gen_axi') %></th>
+              <td>
+                <%= @key_analytical.cat_gen_axi.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_gen_strategy') %></th>
+              <td>
+                <%= @key_analytical.cat_gen_strategy.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_gen_line_of_action') %></th>
+              <td>
+                <%= @key_analytical.cat_gen_line_of_action.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.justificacion_genero') %></th>
+              <td>
+                <%= @key_analytical.justificacion_genero %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_pgd_area_of_opportunity') %></th>
+              <td>
+                <%= @key_analytical.cat_pgd_area_of_opportunity.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_pgd_objective') %></th>
+              <td>
+                <%= @key_analytical.cat_pgd_objective.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_pgd_goal') %></th>
+              <td>
+                <%= @key_analytical.cat_pgd_goal.try(:description) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.cat_pgd_line_of_action') %></th>
+              <td>
+                <%= @key_analytical.cat_pgd_line_of_action.try(:description) %>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <%= render 'index_obras' %>
+
+</section>
+

@@ -35,8 +35,13 @@
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
 
+
 // require js/plugin/jquery-ui/ui/core
 // require js/plugin/jquery-ui/ui/widget
+
+// require js/plugin/jquery-ui/ui/autocomplete
+//= require js/plugin/jquery-ui/jquery-ui.js
+//= require js/plugin/jquery-mentions/jquery.mentions
 
 // require js/plugin/datatables/jquery.dataTables.min
 //= require js/plugin/datatables/jquery.dataTables
@@ -91,7 +96,9 @@
 //= require turbolinks
 
 //= require js/plugin/google-charts/jsapi.js
-//= require things
 //= require global
-
+// require refile
+// Refile custom para que funcione con dropzone
+//= require refile-dropzone
+//= require js/plugin/dropzone/dropzone.js
 //= require js/app.config
