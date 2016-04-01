@@ -44,7 +44,6 @@ class Ability
 		can [:manage], State
 		can [:manage], FinancialDocumentType
 		can [:manage], FinancialDocument
-		can [:manage], ProjectActivity
 		can [:manage], KeyAnalytical
 		can [:manage], CatPprSpendingDestination
 		can [:manage], CatUniMeasureUnit

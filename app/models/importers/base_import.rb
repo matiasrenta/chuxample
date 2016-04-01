@@ -9,6 +9,16 @@ class BaseImport
     false
   end
 
+  # esto sirvió para actulizar las arear de key_analiticals desde el excel
+  #def save
+  #  if save_in_ddbb == '1'
+  #    KeyAnalytical.all.order(:id).each_with_index do |ka, i|
+  #      ka.update!(cat_are_area_id: imported_entities[i].cat_are_area_id)
+  #    end
+  #  end
+  #  true
+  #end
+
   def save
     if imported_entities.map(&:valid?).all?
       if save_in_ddbb == '1'

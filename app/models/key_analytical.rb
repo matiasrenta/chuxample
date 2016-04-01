@@ -1,5 +1,4 @@
 class KeyAnalytical < ActiveRecord::Base
-  has_many :project_activities, dependent: :restrict_with_error
   belongs_to :cat_pgd_line_of_action
   belongs_to :cat_pgd_goal
   belongs_to :cat_pgd_objective
@@ -42,9 +41,9 @@ class KeyAnalytical < ActiveRecord::Base
 
   before_save :construct_key_analytical_string
 
-  scope :obras, -> { where(project_type: 'ProjectObra') }
-  scope :culturas, -> { where(project_type: 'ProjectCultura') }
-  scope :culturas, -> { where(project_type: 'ProjectAdministracion') }
+  scope :obra, -> { where(project_type: 'ProjectObra') }
+  scope :cultura, -> { where(project_type: 'ProjectCultura') }
+  scope :administracion, -> { where(project_type: 'ProjectAdministracion') }
 
   self.inheritance_column = :project_type
 

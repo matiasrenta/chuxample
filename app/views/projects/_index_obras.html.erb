@@ -3,7 +3,7 @@
     <header>
       <h2>Actividades del Proyecto</h2>
       <div class="widget-toolbar filter-group">
-        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_project_activity_obra_path(@key_analytical), class: 'btn btn-primary' if (can? :create, ProjectActivity) %>
+        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_project_activity_obra_path(@key_analytical), class: 'btn btn-primary' if (can? :create, ProjectActivityObra) %>
         <a href="#" id="filtrar" role="button" class="btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
       </div>
     </header>

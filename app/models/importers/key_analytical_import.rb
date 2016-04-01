@@ -1,5 +1,28 @@
 
 class KeyAnalyticalImport < BaseImport
+
+  # esto sirvió para actulizar las arear de key_analiticals desde el excel
+  #def create_entity_from_row(row)
+  #  key_analytical = KeyAnalytical.new
+  #  area_id = nil
+  #  case row['ÁREA']
+  #    when 'ADMINISTRACIÓN'
+  #      area_id = 2
+  #    when 'CENTRALIZADO'
+  #      area_id = 15
+  #    when 'CULTURA'
+  #      area_id = 8
+  #    when 'DESARROLLO SOCIAL'
+  #      area_id = 3
+  #    when 'OBRAS'
+  #      area_id = 4
+  #    when 'SERVICIOS URBANOS'
+  #      area_id = 5
+  #  end
+  #  key_analytical.cat_are_area_id = area_id
+  #  key_analytical
+  #end
+
   def create_entity_from_row(row)
     key_analytical = KeyAnalytical.new
     key_analytical.cat_pgd_axi_id                      = CatPgdAxi.find_by_key(row['cat_pgd_axi_id'].to_i).try(:id)
