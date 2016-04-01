@@ -114,7 +114,6 @@ $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 	$('a.tooltipwithnofollow[rel="tooltip nofollow"]').tooltip();
 });
-
 // ******** Menu Minified ?? ********* -->
 $(function() {
 	$(".minifyme").click(function() {
