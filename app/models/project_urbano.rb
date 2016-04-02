@@ -1,0 +1,2 @@
+class ProjectUrbano < KeyAnalytical
+end

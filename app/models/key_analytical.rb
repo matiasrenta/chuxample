@@ -48,20 +48,28 @@ class KeyAnalytical < ActiveRecord::Base
   self.inheritance_column = :project_type
 
   def self.project_types
-    %w(ProjectObra ProjectCultura ProjectAdministracion)
+    %w(ProjectObra ProjectCultura ProjectAdministracion ProjectUrbano ProjectSocial ProjectCentralizado)
   end
 
   def obra?
     project_type == "ProjectObra"
   end
-
   def cultura?
     project_type == "ProjectCultura"
   end
-
-  def cultura?
+  def administracion?
     project_type == "ProjectAdministracion"
   end
+  def urbano?
+    project_type == "ProjectUrbano"
+  end
+  def social?
+    project_type == "ProjectSocial"
+  end
+  def ProjectCentralizado?
+    project_type == "ProjectCentralizado"
+  end
+
 
   private
 
