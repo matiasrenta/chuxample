@@ -228,8 +228,6 @@ es:
       filter: 'Filtros'
       filter_active: 'Filtros Activos'
       download: 'Bajar'
-      save_and_download_pdf: 'Guardar y bajar PDF'
-      download_pdf: 'Bajar PDF'
 
     messages:
       are_you_sure: "¿Está seguro de querer borrar el registro?"
