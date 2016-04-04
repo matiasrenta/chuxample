@@ -35,12 +35,15 @@
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
 
-
-// require js/plugin/jquery-ui/ui/core
-// require js/plugin/jquery-ui/ui/widget
-
-// require js/plugin/jquery-ui/ui/autocomplete
-//= require js/plugin/jquery-ui/jquery-ui.js
+//No se utiliza todo el jquery-ui, solo llamamos a los modulos que se van necesitando
+// require js/plugin/jquery-ui/jquery-ui.js
+//= require js/plugin/jquery-ui/ui/core
+//= require js/plugin/jquery-ui/ui/widget
+//= require js/plugin/jquery-ui/ui/position
+//= require js/plugin/jquery-ui/ui/menu
+//= require js/plugin/jquery-ui/ui/autocomplete
+//= require js/plugin/jquery-ui/ui/mouse
+//= require js/plugin/jquery-ui/ui/sortable
 //= require js/plugin/jquery-mentions/jquery.mentions
 
 // require js/plugin/datatables/jquery.dataTables.min

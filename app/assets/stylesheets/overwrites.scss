@@ -96,6 +96,37 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 .smart-timeline table{
   font-size:11px;
 }
+
+
+//Iconos hover
+.actions-hover {
+  float: right;
+  padding: 10px;
+  top: -13px;
+}
+
+.actions-hover .btn {
+  width: 37px;
+  padding: 2px;
+}
+
+// .btn:hover {
+//   margin-right: 0;
+//   box-shadow: none;
+// }
+
+// .actions-hover .btn:first-child {
+//   border-radius: 4px 0 0 4px;
+// }
+//
+// .actions-hover .btn:last-child {
+//   border-radius: 0 4px 4px 0;
+// }
+
+.smart-timeline .btn i.fa {
+    color: #8A8A8A;
+}
+
 @media (max-width: 768px) {
   .alert-success {
     //max-height: 50px;
