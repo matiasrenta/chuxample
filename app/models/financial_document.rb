@@ -21,7 +21,7 @@ class FinancialDocument < ActiveRecord::Base
   validates :financial_document_type_id, :file, presence: true
   # las demas validaciones estan en cada tipo de documento
 
-  after_destroy :remove_file
+  after_destroy :remove_file_attached
 
   def grupo_factura?
     type == 'FinancialDocumentBill'
@@ -52,7 +52,7 @@ class FinancialDocument < ActiveRecord::Base
 
   private
 
-  def remove_file
+  def remove_file_attached
     file.try(:delete)
   end
 
