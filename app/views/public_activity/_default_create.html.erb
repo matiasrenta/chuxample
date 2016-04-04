@@ -1,4 +1,9 @@
 <li>
+  <div class="actions-hover btn-group" role="group">
+    <a type="button" href="<%= trackable_history(activity) %>" class="btn btn-sm btn-default" rel="tooltip" data-placement="top" title="Historial del elemento">
+      <i class="fa fa-history"></i>
+    </a>
+  </div>
   <div class="smart-timeline-icon">
     <%= owner_avatar(activity) %>
   </div>
@@ -10,7 +15,6 @@
     <p><i class="fa fa-plus-square-o fa-border fa-lg"></i>
       Creó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
       <%= trackable_label(activity) %>
-      <%= link_to 'show history', trackable_history(activity) %>
     </p>
   </div>
 </li>

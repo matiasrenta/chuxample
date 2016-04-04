@@ -92,11 +92,12 @@
 	</div>
 </section>
 <script type="text/javascript">
-$( ".smart-timeline-list li" ).hover( function() {
-	//$( ".smart-timeline-list" ).find( ".actions-hover" ).fadeOut("fast");
-	$(".btn[rel='tooltip']").tooltip();
-}, function() {
-	//$( this ).find( ".actions-hover:last" ).fadeOut("fast");
-});
-
+	$( ".actions-hover" ).hide();
+	$( ".smart-timeline-list li" ).hover( function() {
+		$( ".smart-timeline-list" ).find( ".actions-hover" ).fadeOut("fast");
+		$( this ).find( ".actions-hover" ).fadeIn("fast");
+		$(".btn[rel='tooltip']").tooltip();
+	}, function() {
+		$( this ).find( ".actions-hover:last" ).fadeOut("fast");
+	});
 </script>
