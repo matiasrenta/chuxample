@@ -14,7 +14,7 @@
     <p><%= user_label(activity) %></p>
     <p>
       <i class="fa fa-trash-o fa-border fa-lg"></i>
-      Borró <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
+      <%= t('helpers.select.destroy') %> <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
       <%= trackable_label(activity, false) %>
     </p>
   </div>
