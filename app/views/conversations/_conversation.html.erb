@@ -9,8 +9,8 @@
       <%= message.body.html_safe -%>
     </div>
     <span class="pull-right icons_notification">
-      <%= link_to '', conversation_path(conversation), class: 'pull-right fa fa-times', title: 'Move to trash', 'data-toggle' => 'tooltip', 'data-placement' => 'top', :remote => true, method: :delete %>
-      <%= link_to '', mark_as_read_conversation_path(conversation), id: "conversation_link_#{conversation.id}", class: 'fa fa-check', title: 'Mark as read', 'data-toggle' => 'tooltip', 'data-placement' => 'top', :remote => true, method: :post if conversation.is_unread?(current_user) %>
+      <%= link_to '', conversation_path(conversation), class: 'pull-right fa fa-times', title: t('activerecord.actions.move_to_trash'), 'data-toggle' => 'tooltip', 'data-placement' => 'top', :remote => true, method: :delete %>
+      <%= link_to '', mark_as_read_conversation_path(conversation), id: "conversation_link_#{conversation.id}", class: 'fa fa-check', title: t('activerecord.actions.mark_as_read'), 'data-toggle' => 'tooltip', 'data-placement' => 'top', :remote => true, method: :post if conversation.is_unread?(current_user) %>
     </span>
     <br/>
     <span class="font-xs text-muted text-right padding_mute" title='<%= l(message.created_at, format: :without_seg) %>' data-toggle='tooltip' data-placement='top'><i><%= time_ago_in_words(message.created_at) %></i></span>

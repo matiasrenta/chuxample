@@ -28,14 +28,14 @@ $(function() {
 
 	$(".show-details").click(function(event) {
 		event.preventDefault();
-		var elem = $(this).closest("p").next(".detalles");
-
+		var elem = $(this).closest("li").find(".detalles");
 		$(elem).toggle("slow");
-
-		if ($(this).text() == 'Mostrar detalles') {
-			$(this).text('Ocultar detalles');
+		$( ".show-details" ).tooltip( "hide", { effect: "explode", duration: 1000 } );
+		var title = $(this).attr('data-original-title');
+		if (title == 'Detalle de cambios') {
+			$(this).attr('data-original-title','Ocultar detalles');
 		} else {
-			$(this).text('Mostrar detalles');
+			$(this).attr('data-original-title','Detalle de cambios');
 		}
 
 	});
@@ -114,7 +114,6 @@ $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 	$('a.tooltipwithnofollow[rel="tooltip nofollow"]').tooltip();
 });
-
 // ******** Menu Minified ?? ********* -->
 $(function() {
 	$(".minifyme").click(function() {
@@ -226,12 +225,6 @@ $(document).ready(function() {
 });
 // Filtros
 $(function() {
-	// $(".filtrar").click(function(event) {
-	// 	var element = $(this)[0];
-	// 	var elementId = $(element).attr('id');
-	// 	console.log( $(element).attr('id') );
-	// 	$("elementId .filter-zone").slideToggle("slow");
-	// });
 	var bgs = $('.filter-zone');
 	$('.filter-button').click(function () {
         var target = $($(this).data('target')).stop(true).slideToggle();
