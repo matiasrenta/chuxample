@@ -26,7 +26,11 @@ module PublicActivityHelper
     label = activity.parameters[:model_label]
     if activity.trackable
       if can?(:read, activity.trackable)
-        link_to label, activity.trackable
+        if activity.trackable.class.name.start_with?('FinancialDocument')
+          link_to label, activity.trackable.becomes(FinancialDocument)
+        else
+          link_to label, activity.trackable
+        end
       else
         label
       end
