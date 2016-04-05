@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       if @comment.save
         make_child_comment
         notify_mention_users
-        format.html  { redirect_to(:back, :notice => 'Comment was successfully added.') }
+        format.html  { redirect_to(:back, :notice => t('activerecord.messages.comment_successfully_added')) }
       else
         format.html  { render :action => "new" }
       end

@@ -290,6 +290,7 @@ es:
 
     messages:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
+      comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
       delayed_job:
@@ -336,6 +337,9 @@ es:
       update_multiple: 'Editar'
       import: 'Importar'
       Export: 'Exportar'
+      mark_as_read: 'Marcar como leído'
+      mark__all_as_read: 'Marcar todos como leídos'
+      move_to_trash: 'Eliminar'
 
   will_paginate:
     previous_label: "&#8592;"
