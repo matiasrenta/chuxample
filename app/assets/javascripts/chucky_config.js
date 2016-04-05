@@ -28,14 +28,14 @@ $(function() {
 
 	$(".show-details").click(function(event) {
 		event.preventDefault();
-		var elem = $(this).closest("p").next(".detalles");
-
+		var elem = $(this).closest("li").find(".detalles");
 		$(elem).toggle("slow");
-
-		if ($(this).text() == 'Mostrar detalles') {
-			$(this).text('Ocultar detalles');
+		$( ".show-details" ).tooltip( "hide", { effect: "explode", duration: 1000 } );
+		var title = $(this).attr('data-original-title');
+		if (title == 'Detalle de cambios') {
+			$(this).attr('data-original-title','Ocultar detalles');
 		} else {
-			$(this).text('Mostrar detalles');
+			$(this).attr('data-original-title','Detalle de cambios');
 		}
 
 	});

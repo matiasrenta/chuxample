@@ -471,3 +471,13 @@ table tr td.table-actions{
 .spanning input {
     width: 50% !important;
 }
+
+.chat-body li.message .ui-autocomplete img {
+    position: relative;
+    width: 25px !important;
+    border: 0;
+}
+
+.chat-body li.message .ui-autocomplete li.ui-menu-item {
+    margin-top: 0;
+}
