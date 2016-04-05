@@ -207,6 +207,9 @@ es:
   helpers:
     select:
       prompt: "Por favor seleccione"
+      create: 'Creó'
+      update: 'Actualizó'
+      destroy: 'Eliminó'
 
     submit:
       create: 'Crear %{model}'
