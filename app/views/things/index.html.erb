@@ -1,4 +1,5 @@
 <section id="widget-grid">
+  <!-- Widgets en 2 columnas. Cada <article> con class col-sm-6 -->
   <div class="row">
     <article class="col-sm-6">
       <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
@@ -17,10 +18,13 @@
           </div>
         </header>
         <div class="no-padding">
-          <div class="jarviswidget-editbox" class="filter-zone" id="filter-wid-id-0" style="display:none;">
+          <!-- La clase fitler-zone hace que se abra una caja de filtros a la vez, si se elimina esta clase se pueden mantener abiertas todas las zonas al mismo tiempo -->
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
             <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
               <fieldset>
+                <!-- campos de filtros dentro de un row para que se muestren alineados -->
                 <div class="row">
+                  <!-- Para widgets en 2 columnas, poner las clases col-sm-6 col-xs-12, a los divs que contienen los inputs, selects, labels -->
                   <div class="col-sm-6 col-xs-12">
                     <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
                     <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
@@ -135,7 +139,7 @@
         </div>
       </div>
     </article>
-
+    <!-- Widgets en 2 columnas. Cada <article> con class col-sm-6 -->
     <article class="col-sm-6">
       <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header>
@@ -153,10 +157,13 @@
           </div>
         </header>
         <div class="no-padding">
-          <div class="jarviswidget-editbox" class="filter-zone" id="filter-wid-id-1" style="display:none;">
+          <!-- La clase fitler-zone hace que se abra una caja de filtros a la vez, si se elimina esta clase se pueden mantener abiertas todas las zonas al mismo tiempo -->
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-1" style="display:none;">
             <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
               <fieldset>
+                <!-- campos de filtros dentro de un row para que se muestren alineados -->
                 <div class="row">
+                  <!-- Para widgets en 2 columnas, poner las clases col-sm-6 col-xs-12, a los divs que contienen los inputs, selects, labels -->
                   <div class="col-sm-6 col-xs-12">
                     <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
                     <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
@@ -273,6 +280,7 @@
     </article>
   </div>
   <div class="row">
+  <!-- Widgets en 1 columna Abarca todo el ancho de la pantalla. <article> con class col-xs-12 -->
     <article class="col-xs-12">
       <div id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header>
@@ -290,10 +298,13 @@
           </div>
         </header>
         <div class="no-padding">
-          <div class="jarviswidget-editbox" class="filter-zone" id="filter-wid-id-2" style="display:none;">
+          <!-- La clase fitler-zone hace que se abra una caja de filtros a la vez, si se elimina esta clase se pueden mantener abiertas todas las zonas al mismo tiempo -->
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-2" style="display:none;">
             <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
               <fieldset>
+                <!-- campos de filtros dentro de un row para que se muestren alineados -->
                 <div class="row">
+                  <!-- Para un solo widget en 1 columna, poner las clases col-md-3 col-sm-6 col-xs-12, a los divs que contienen los inputs, selects, labels -->
                   <div class="col-md-3 col-sm-6 col-xs-12">
                     <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
                     <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
@@ -325,8 +336,6 @@
                       <%= f.search_field :expires_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.expires_lteq) %>
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-md-3 col-sm-6 col-xs-12 spanning">
                     <label for="q[discharged_at_gteq]"><%= t('simple_form.labels.defaults.discharged_at') %></label>
                     <div class="input-group input-group-sm block">
@@ -348,8 +357,6 @@
                     <label for="q[thing_category_id_eq]"><%= t('simple_form.labels.defaults.thing_category') %></label>
                     <%= f.select :thing_category_id_eq, options_from_collection_for_select(ThingCategory.all, :id, :name, @q.thing_category_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-md-3 col-sm-6 col-xs-12">
                     <label for="q[gender_cont]"><%= t('simple_form.labels.defaults.gender') %></label>
                     <%= f.search_field :gender_cont, label: false, class: "form-control input-sm" %>
@@ -408,7 +415,6 @@
         </div>
       </div>
     </article>
-
   </div>
 </section>
 <%= javascript_include_tag 'mentions' %>

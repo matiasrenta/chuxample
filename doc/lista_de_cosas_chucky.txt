@@ -4,8 +4,8 @@ FRONT-END
 Chucky Bugs ---
 
 - Filtros: Ordenar campos --OK--
-- Filtros: función para desplegar #filter-zone no funciona cuando hay varios widgets
-- En pantallas Show, la tabla se corta en el bottom
+- Filtros: función para desplegar #filter-zone no funciona cuando hay varios widgets --OK--
+- En pantallas Show, la tabla se corta en el bottom --OK--
 
 
 Issues:
