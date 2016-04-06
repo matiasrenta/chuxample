@@ -16,4 +16,4 @@ production:
   pool: 5
   timeout: 5000
   username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
