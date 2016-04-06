@@ -13,7 +13,7 @@
   <div class="smart-timeline-content">
     <p><%= user_label(activity) %></p>
     <p><i class="fa fa-plus-square-o fa-border fa-lg"></i>
-      Creó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
+      <%= t('helpers.select.create') %> <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
       <%= trackable_label(activity) %>
     </p>
   </div>

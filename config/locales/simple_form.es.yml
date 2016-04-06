@@ -51,6 +51,9 @@ es:
         action: 'Acción'
         thing_attaches: 'Archivos'
         avatar: 'Avatar'
+        file_size: 'Tamaño de archivo'
+        file_content_type: 'Content Type de archivo'
+        file_filename: 'Nombre de archivo'
 
     placeholders:
       from: 'desde'
