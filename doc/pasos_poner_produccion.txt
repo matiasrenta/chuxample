@@ -10,6 +10,7 @@
 
 - copiar database.yml y secrets.yml de otra app a shared/config/
 - cambiar database.yml con solo production y la base de la app
+- copiar .env.production al directorio shared/
 - RAILS_ENV=production bundle exec rake db:create
 - deployar de nuevo con capistrano para que haga migrate
 - RAILS_ENV=production bundle exec rake db:seed_fu
