@@ -54,8 +54,12 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @user.destroy
+      redirect_to users_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@user)
+      redirect_to users_url
+    end
   end
 
   def resend_password_instructions
