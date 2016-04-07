@@ -47,42 +47,4 @@
       </div>
     </div>
   </article>
-
-
-  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-      <header><span class="widget-icon"><i class="fa fa-info"></i></span>
-        <h2>Details</h2>
-      </header>
-      <div class="no-padding">
-        <div class="widget-body">
-          <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
-            <thead>
-            <tr>
-              <th class='all control'>sender</th>
-              <th>Date</th>
-              <th>Box</th>
-              <th>subject</th>
-              <th>body</th>
-              <th>unread?</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% @receipts.each do |receipt| %>
-                <tr>
-                  <td><%= receipt.message.sender.name %></td>
-                  <td><%= receipt.created_at %></td>
-                  <td><%= receipt.mailbox_type %></td>
-                  <td><%= receipt.message.subject %></td>
-                  <td><%= receipt.message.body %></td>
-                  <td><%= receipt.is_unread? %></td>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </article>
-
 </section>
