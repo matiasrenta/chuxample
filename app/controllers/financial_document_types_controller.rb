@@ -41,8 +41,12 @@ class FinancialDocumentTypesController < ApplicationController
 
   # DELETE /financial_document_types/1
   def destroy
-    @financial_document_type.destroy
-    redirect_to financial_document_types_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @financial_document_type.destroy
+      redirect_to financial_document_types_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@financial_document_type)
+      redirect_to financial_document_types_url
+    end
   end
 
   private

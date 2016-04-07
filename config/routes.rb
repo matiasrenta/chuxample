@@ -1,8 +1,20 @@
 Rails.application.routes.draw do
 
   resources :suppliers
-  resources :towns
-  resources :states
+  resources :towns do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :states do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :financial_document_types
   resources :projects, shallow: true do
     resources :project_activity_obras, shallow: true do

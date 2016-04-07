@@ -36,3 +36,18 @@ DB:SEED:DUMP:
 =============
 rake db:seed:dump APPEND=true EXCLUDE=created_at,updated_at MODELS=CatGenAxi,CatGenGoal...
 para ejecutarlo en produccion: rake db:seed
+Considerar usar pg_dump de PostgreSQL (ver abajo)
+
+PG_DUMP:
+========
+http://www.postgresql.org/docs/9.1/static/backup-dump.html
+dumping: pg_dump -U dbname > outfile
+-o--oids -U username  -O--no-owner -T table--exclude-table=table -a--data-only
+pg_dump -U pitagoras -O -C cuauh_development > cuauh_development_dump.txt
+
+-T users -T activities -T chapters -T chucky -T comments -T     dbname > outfile
+
+-C--create
+-f file--file=file
+
+restoring: psql dbname < infile
