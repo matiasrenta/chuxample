@@ -48,8 +48,12 @@ class ThingsController < ApplicationController
 
   # DELETE /things/1
   def destroy
-    @thing.destroy
-    redirect_to things_url, notice: t('simple_form.flash.successfully_destroyed')
+    if @thing.destroy
+      redirect_to things_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@thing)
+      redirect_to things_url
+    end
   end
 
   private
