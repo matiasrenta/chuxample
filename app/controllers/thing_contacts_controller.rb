@@ -45,7 +45,7 @@ class ThingContactsController < ApplicationController
       redirect_to thing_contacts_url, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@thing_contact)
-      redirect_to thing_contacts_url
+      redirect_to :back
     end
   end
 
