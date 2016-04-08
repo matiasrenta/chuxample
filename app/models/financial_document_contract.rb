@@ -2,7 +2,7 @@ class FinancialDocumentContract < FinancialDocument
 
   before_destroy :check_bills
 
-  has_many :financial_document_bills
+  has_many :financial_document_bills#, dependent: :restrict_with_error # HICE EL BEFORE_DESTROY PARA PERSONALIZAR EL MENSAJE
 
   validates :nro_documento, :monto, :supplier_id, presence: true
 
