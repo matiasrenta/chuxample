@@ -41,8 +41,12 @@ class CatCfuFunctionsController < ApplicationController
 
   # DELETE /cat_cfu_functions/1
   def destroy
-    @cat_cfu_function.destroy
-    redirect_to cat_cfu_functions_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_cfu_function.destroy
+      redirect_to cat_cfu_functions_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_cfu_function)
+      redirect_to :back
+    end
   end
 
   private

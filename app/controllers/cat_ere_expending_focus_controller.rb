@@ -41,8 +41,12 @@ class CatEreExpendingFocusController < ApplicationController
 
   # DELETE /cat_ere_expending_focus/1
   def destroy
-    @cat_ere_expending_focu.destroy
-    redirect_to cat_ere_expending_focus_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_ere_expending_focu.destroy
+      redirect_to cat_ere_expending_focus_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_ere_expending_focu)
+      redirect_to :back
+    end
   end
 
   private

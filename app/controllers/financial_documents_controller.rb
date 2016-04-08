@@ -60,7 +60,8 @@ class FinancialDocumentsController < ApplicationController
       redirect_to project_activity_obra_path(@financial_document.project_activityable_id), notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@financial_document)
-      redirect_to project_activity_obra_path(@financial_document.project_activityable_id)
+      #redirect_to project_activity_obra_path(@financial_document.project_activityable_id)
+      redirect_to :back
     end
 
   end

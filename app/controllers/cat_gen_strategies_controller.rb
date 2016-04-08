@@ -41,8 +41,12 @@ class CatGenStrategiesController < ApplicationController
 
   # DELETE /cat_gen_strategies/1
   def destroy
-    @cat_gen_strategy.destroy
-    redirect_to cat_gen_strategies_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_gen_strategy.destroy
+      redirect_to cat_gen_strategies_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_gen_strategy)
+      redirect_to :back
+    end
   end
 
   private

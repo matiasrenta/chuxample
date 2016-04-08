@@ -45,7 +45,7 @@ class FinancialDocumentTypesController < ApplicationController
       redirect_to financial_document_types_url, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@financial_document_type)
-      redirect_to financial_document_types_url
+      redirect_to :back
     end
   end
 

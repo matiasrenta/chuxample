@@ -41,8 +41,12 @@ class CatFonOriginResourcesController < ApplicationController
 
   # DELETE /cat_fon_origin_resources/1
   def destroy
-    @cat_fon_origin_resource.destroy
-    redirect_to cat_fon_origin_resources_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_fon_origin_resource.destroy
+      redirect_to cat_fon_origin_resources_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_fon_origin_resource)
+      redirect_to :back
+    end
   end
 
   private

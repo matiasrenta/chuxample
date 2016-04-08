@@ -41,8 +41,12 @@ class CatUniMeasureUnitsController < ApplicationController
 
   # DELETE /cat_uni_measure_units/1
   def destroy
-    @cat_uni_measure_unit.destroy
-    redirect_to cat_uni_measure_units_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_uni_measure_unit.destroy
+      redirect_to cat_uni_measure_units_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_uni_measure_unit)
+      redirect_to :back
+    end
   end
 
   private

@@ -41,8 +41,12 @@ class CatPprParConceptsController < ApplicationController
 
   # DELETE /cat_ppr_par_concepts/1
   def destroy
-    @cat_ppr_par_concept.destroy
-    redirect_to cat_ppr_par_concepts_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_ppr_par_concept.destroy
+      redirect_to cat_ppr_par_concepts_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_ppr_par_concept)
+      redirect_to :back
+    end
   end
 
   private

@@ -41,8 +41,12 @@ class CatAciInstitutionalActivitiesController < ApplicationController
 
   # DELETE /cat_aci_institutional_activities/1
   def destroy
-    @cat_aci_institutional_activity.destroy
-    redirect_to cat_aci_institutional_activities_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_aci_institutional_activity.destroy
+      redirect_to cat_aci_institutional_activities_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_aci_institutional_activity)
+      redirect_to :back
+    end
   end
 
   private

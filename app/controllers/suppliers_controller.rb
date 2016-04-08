@@ -41,8 +41,12 @@ class SuppliersController < ApplicationController
 
   # DELETE /suppliers/1
   def destroy
-    @supplier.destroy
-    redirect_to suppliers_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @supplier.destroy
+      redirect_to suppliers_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@supplier)
+      redirect_to :back
+    end
   end
 
   private
