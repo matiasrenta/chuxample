@@ -41,8 +41,12 @@ class CatGenAxisController < ApplicationController
 
   # DELETE /cat_gen_axis/1
   def destroy
-    @cat_gen_axi.destroy
-    redirect_to cat_gen_axis_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_gen_axi.destroy
+      redirect_to cat_gen_axis_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_gen_axi)
+      redirect_to :back
+    end
   end
 
   private

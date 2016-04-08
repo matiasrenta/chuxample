@@ -41,8 +41,12 @@ class CatFonGenericSourcesController < ApplicationController
 
   # DELETE /cat_fon_generic_sources/1
   def destroy
-    @cat_fon_generic_source.destroy
-    redirect_to cat_fon_generic_sources_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_fon_generic_source.destroy
+      redirect_to cat_fon_generic_sources_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_fon_generic_source)
+      redirect_to :back
+    end
   end
 
   private

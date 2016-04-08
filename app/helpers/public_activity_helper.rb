@@ -19,14 +19,18 @@ module PublicActivityHelper
   end
 
   def keyables
-    [['Creó', 'create'], ['Actualizó', 'update'], ['Borró', 'destroy']]
+    [[t('helpers.select.create'), 'create'], [t('helpers.select.update'), 'update'], [t('helpers.select.destroy'), 'destroy']]
   end
 
   def trackable_label(activity, with_not_exists = true)
     label = activity.parameters[:model_label]
     if activity.trackable
       if can?(:read, activity.trackable)
-        link_to label, activity.trackable
+        if activity.trackable.class.name.start_with?('FinancialDocument')
+          link_to label, activity.trackable.becomes(FinancialDocument)
+        else
+          link_to label, activity.trackable
+        end
       else
         label
       end

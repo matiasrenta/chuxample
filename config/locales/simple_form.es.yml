@@ -53,10 +53,15 @@ es:
         thing_attaches: 'Archivos'
         avatar: 'Avatar'
         key: 'Código'
+        file_size: 'Tamaño de archivo'
+        file_content_type: 'Content Type de archivo'
+        file_filename: 'Nombre de archivo'
 
     placeholders:
       from: 'desde'
       to: 'hasta'
+      write_a_reply: 'Escribe una respuesta'
+      write_a_comment: 'Escribe un comentario'
 
     screen:
       actions: 'Acciones'
@@ -71,6 +76,9 @@ es:
       are_you_sure_cancel_upload: '¿Estás seguro de cancelar?'
       remove_file: 'Eliminar'
       cant_upload_any_more_files: 'No se pueden subir más archivos'
+      no_comments_yet: 'No hay comentarios aún'
+      comment: 'Comentario'
+      new_comment: 'Nuevo Comentario'
 
     flash:
       successfully_created: 'Creado exitosamente'
@@ -89,6 +97,10 @@ es:
       destroy: 'Eliminar'
       create: 'Crear'
       update: 'Actualizar'
+      reply: 'Responder'
+      cancel: 'Cancelar'
+      post_reply: 'Responder'
+      post_comment: 'Comentar'
 
     tooltips:
       show: 'Ver'

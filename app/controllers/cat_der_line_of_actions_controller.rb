@@ -45,8 +45,12 @@ class CatDerLineOfActionsController < ApplicationController
 
   # DELETE /cat_der_line_of_actions/1
   def destroy
-    @cat_der_line_of_action.destroy
-    redirect_to cat_der_line_of_actions_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_der_line_of_action.destroy
+      redirect_to cat_der_line_of_actions_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_der_line_of_action)
+      redirect_to :back
+    end
   end
 
   private

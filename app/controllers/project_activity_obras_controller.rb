@@ -45,8 +45,13 @@ class ProjectActivityObrasController < ApplicationController
 
   # DELETE /project_activity_obras/1
   def destroy
-    @project_activity_obra.destroy
-    redirect_to project_path(@project_activity_obra.project_obra), notice: t("simple_form.flash.successfully_destroyed")
+    if @project_activity_obra.destroy
+      redirect_to project_path(@project_activity_obra.project_obra), notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@project_activity_obra)
+      redirect_to :back
+    end
+
   end
 
   private

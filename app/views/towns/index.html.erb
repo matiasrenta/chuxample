@@ -35,6 +35,7 @@
             <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
+                <th class='all control'><%= sort_link(@q, :id, t('simple_form.labels.defaults.id')) %></th>
                 <th class='all control'><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
                 <th><%= sort_link(@q, :abbreviation, t('simple_form.labels.defaults.abbreviation')) %></th>
                 <th><%= sort_link(@q, :state_name, t('simple_form.labels.state')) %></th>
@@ -44,6 +45,7 @@
               <tbody>
               <% @towns.each do |town| %>
                   <tr>
+                    <td><%= town.id %></td>
                     <td><%= town.name %></td>
                     <td><%= town.abbreviation %></td>
                     <td><%= town.state.try(:name) %></td>

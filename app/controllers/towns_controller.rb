@@ -41,8 +41,12 @@ class TownsController < ApplicationController
 
   # DELETE /towns/1
   def destroy
-    @town.destroy
-    redirect_to towns_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @town.destroy
+      redirect_to towns_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@town)
+      redirect_to :back
+    end
   end
 
   private

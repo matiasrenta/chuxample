@@ -45,7 +45,7 @@ class Dev::ChuckyBotsController < ApplicationController
   end
 
   # DELETE /chucky_bots/1
-  def destroy
+  def destroy     if @thing.destroy       redirect_to things_url, notice: t("simple_form.flash.successfully_destroyed")     else       generate_flash_msg(@thing)        redirect_to things_url     end
     @chucky_bot.destroy
     redirect_to dev_chucky_bots_url, notice: t("simple_form.flash.successfully_destroyed")
   end

@@ -17,6 +17,7 @@ class ThingsController < ApplicationController
 
   # GET /things/new
   def new
+    Notificator.recipients_from_body('bbb')
   end
 
   # GET /things/1/edit
@@ -47,8 +48,12 @@ class ThingsController < ApplicationController
 
   # DELETE /things/1
   def destroy
-    @thing.destroy
-    redirect_to things_url, notice: t('simple_form.flash.successfully_destroyed')
+    if @thing.destroy
+      redirect_to things_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@thing)
+      redirect_to things_url
+    end
   end
 
   private
@@ -64,7 +69,8 @@ class ThingsController < ApplicationController
     else current_user.email == 'matiasrenta@gmail.com'
       reciever = User.find_by_email('matias@opi.la')
     end
-    current_user.send_message(reciever, "#{current_user.name} modificó la cosa #{view_context.link_to(@thing.name, thing_path(@thing), class: 'display-normal')}", '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"><i class="fa fa-cube fa-fw fa-1x"></i></em>')
+    body = "#{current_user.name} modificó la cosa #{view_context.link_to(@thing.name, thing_path(@thing), class: 'display-normal')}"
+    Notificator.send(current_user, [reciever, current_user], body)
     # current_user.send_message(reciever, "Lasdasjhba ajhjhsahashd jasdha prueba para texto muy largo en notificaciones, probando espacio de body en notificaciones, prueba más notificaciones", '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"><i class="fa fa-cube fa-fw fa-1x"></i></em>')
   end
 

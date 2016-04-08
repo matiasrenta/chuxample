@@ -41,8 +41,12 @@ class CatFonYearDocumentsController < ApplicationController
 
   # DELETE /cat_fon_year_documents/1
   def destroy
-    @cat_fon_year_document.destroy
-    redirect_to cat_fon_year_documents_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_fon_year_document.destroy
+      redirect_to cat_fon_year_documents_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_fon_year_document)
+      redirect_to :back
+    end
   end
 
   private

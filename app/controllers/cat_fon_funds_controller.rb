@@ -41,8 +41,12 @@ class CatFonFundsController < ApplicationController
 
   # DELETE /cat_fon_funds/1
   def destroy
-    @cat_fon_fund.destroy
-    redirect_to cat_fon_funds_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_fon_fund.destroy
+      redirect_to cat_fon_funds_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_fon_fund)
+      redirect_to :back
+    end
   end
 
   private

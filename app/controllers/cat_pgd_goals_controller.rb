@@ -41,8 +41,12 @@ class CatPgdGoalsController < ApplicationController
 
   # DELETE /cat_pgd_goals/1
   def destroy
-    @cat_pgd_goal.destroy
-    redirect_to cat_pgd_goals_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_pgd_goal.destroy
+      redirect_to cat_pgd_goals_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_pgd_goal)
+      redirect_to :back
+    end
   end
 
   private

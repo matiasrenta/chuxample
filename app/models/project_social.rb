@@ -1,0 +1,2 @@
+class ProjectSocial < KeyAnalytical
+end

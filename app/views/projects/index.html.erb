@@ -1,11 +1,84 @@
+<!--
 <section id="widget-grid">
   <div>
   </div>
   <div class="row">
-    <%= render 'projects_widget', locals: {projects: @projects_obra, query_instance: @q_obra, query_name: 'q_obra', wtitle: t('activerecord.models.project_obra.other'), wicon: t('activerecord.models.project_obra.fa_icon'), wid: 'wid-id-0'} %>
-    <%= render 'projects_widget', locals: {projects: @projects_administracion, query_instance: @q_administracion, query_name: 'q_administracion', wtitle: t('activerecord.models.project_administracion.other'), wicon: t('activerecord.models.project_administracion.fa_icon'), wid: 'wid-id-1'} %>
-    <%= render 'projects_widget', locals: {projects: @projects_cultura, query_instance: @q_cultura, query_name: 'q_cultura', wtitle: t('activerecord.models.project_cultura.other'), wicon: t('activerecord.models.project_cultura.fa_icon'), wid: 'wid-id-2'} %>
+    <%#= render 'projects_widget', locals: {projects: @projects_obra, query_instance: @q_obra, query_name: 'q_obra', wtitle: t('activerecord.models.project_obra.other'), wicon: t('activerecord.models.project_obra.fa_icon'), wid: 'wid-id-0'} %>
+    <%#= render 'projects_widget', locals: {projects: @projects_administracion, query_instance: @q_administracion, query_name: 'q_administracion', wtitle: t('activerecord.models.project_administracion.other'), wicon: t('activerecord.models.project_administracion.fa_icon'), wid: 'wid-id-1'} %>
+    <%#= render 'projects_widget', locals: {projects: @projects_cultura, query_instance: @q_cultura, query_name: 'q_cultura', wtitle: t('activerecord.models.project_cultura.other'), wicon: t('activerecord.models.project_cultura.fa_icon'), wid: 'wid-id-2'} %>
   </div>
 
 </section>
+-->
+
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+          <div class="widget-toolbar filter-group">
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, url: projects_path, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="form-group">
+                      <label for="q[id_eq]">ID</label>
+                      <%= f.search_field :id_eq, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[key_analytical_string_eq]">Key</label>
+                      <%= f.search_field :key_analytical_string_cont, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_are_area_id_cont]"><%= t('simple_form.labels.cat_are_area') %></label>
+                      <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.all, :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <%= render 'shared/submit_filters' %>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :key_analytical_string, 'Clave Presupuestaria') %></th>
+                <th><%= sort_link(@q, :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
+                <th>Monto Ejercido</th>
+                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_key, 'Partida') %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_description, 'Concepto Partida') %></th>
+                <th><%= sort_link(@q, :cat_are_area_description, 'Área') %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @projects.each do |project| %>
+                  <tr>
+                    <td><%= project.key_analytical_string %></td>
+                    <td align='right'><%= number_to_currency(project.autorizado, unit: '') if project.autorizado %></td>
+                    <td align='right'></td>
+                    <td><%= project.cat_ppr_par_partida_especifica.try(:key) %></td>
+                    <td><%= project.cat_ppr_par_partida_especifica.try(:description) %></td>
+                    <td><%= project.cat_are_area.try(:description) %></td>
+                    <td class="table-actions">
+                      <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), project_path(project), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, project %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @projects, model_index_path: projects_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+
 

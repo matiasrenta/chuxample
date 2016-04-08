@@ -41,8 +41,12 @@ class CatPprParPartidaGenericasController < ApplicationController
 
   # DELETE /cat_ppr_par_partida_genericas/1
   def destroy
-    @cat_ppr_par_partida_generica.destroy
-    redirect_to cat_ppr_par_partida_genericas_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_ppr_par_partida_generica.destroy
+      redirect_to cat_ppr_par_partida_genericas_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_ppr_par_partida_generica)
+      redirect_to :back
+    end
   end
 
   private

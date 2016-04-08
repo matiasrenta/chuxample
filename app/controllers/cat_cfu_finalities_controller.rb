@@ -41,8 +41,12 @@ class CatCfuFinalitiesController < ApplicationController
 
   # DELETE /cat_cfu_finalities/1
   def destroy
-    @cat_cfu_finality.destroy
-    redirect_to cat_cfu_finalities_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_cfu_finality.destroy
+      redirect_to cat_cfu_finalities_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_cfu_finality)
+      redirect_to :back
+    end
   end
 
   private

@@ -41,8 +41,12 @@ class CatPprDigitIdentifiersController < ApplicationController
 
   # DELETE /cat_ppr_digit_identifiers/1
   def destroy
-    @cat_ppr_digit_identifier.destroy
-    redirect_to cat_ppr_digit_identifiers_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_ppr_digit_identifier.destroy
+      redirect_to cat_ppr_digit_identifiers_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_ppr_digit_identifier)
+      redirect_to :back
+    end
   end
 
   private

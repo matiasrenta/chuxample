@@ -82,7 +82,7 @@ class Admin::SettingsController < Admin::ApplicationController
     end
   end
 
-  def destroy
+  def destroy     if @thing.destroy       redirect_to things_url, notice: t("simple_form.flash.successfully_destroyed")     else       generate_flash_msg(@thing)        redirect_to things_url     end
     eval("Settings.destroy :#{params[:id]}")
     redirect_to admin_settings_path, notice: t("simple_form.flash.successfully_destroyed")
   end

@@ -41,8 +41,12 @@ class CatEreSubresultsController < ApplicationController
 
   # DELETE /cat_ere_subresults/1
   def destroy
-    @cat_ere_subresult.destroy
-    redirect_to cat_ere_subresults_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_ere_subresult.destroy
+      redirect_to cat_ere_subresults_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_ere_subresult)
+      redirect_to :back
+    end
   end
 
   private

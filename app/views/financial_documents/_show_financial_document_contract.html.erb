@@ -29,6 +29,12 @@
   </td>
 </tr>
 <tr role="row">
+  <th><%= t('simple_form.labels.defaults.financial_document_bills') %></th>
+  <td>
+    <%= @financial_document.financial_document_bills.map(&:nro_documento).join(', ') %>
+  </td>
+</tr>
+<tr role="row">
   <th><%= t('simple_form.labels.defaults.supplier') %></th>
   <td>
     <%= @financial_document.supplier.try(:name) %>

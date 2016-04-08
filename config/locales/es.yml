@@ -207,6 +207,9 @@ es:
   helpers:
     select:
       prompt: "Por favor seleccione"
+      create: 'Creó'
+      update: 'Actualizó'
+      destroy: 'Eliminó'
 
     submit:
       create: 'Crear %{model}'
@@ -228,8 +231,6 @@ es:
       filter: 'Filtros'
       filter_active: 'Filtros Activos'
       download: 'Bajar'
-      save_and_download_pdf: 'Guardar y bajar PDF'
-      download_pdf: 'Bajar PDF'
 
     messages:
       are_you_sure: "¿Está seguro de querer borrar el registro?"
@@ -292,6 +293,7 @@ es:
 
     messages:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
+      comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
       project_activity_obra:
@@ -481,6 +483,9 @@ es:
       update_multiple: 'Editar'
       import: 'Importar'
       Export: 'Exportar'
+      mark_as_read: 'Marcar como leído'
+      mark__all_as_read: 'Marcar todos como leídos'
+      move_to_trash: 'Eliminar'
 
   will_paginate:
     previous_label: "&#8592;"

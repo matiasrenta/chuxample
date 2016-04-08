@@ -4,7 +4,7 @@
   </header>
   <div>
     <div class="widget-body">
-      <%= simple_form_for [@key_analytical, @project_activity_obra], url: creating? ? "/projects/#{@key_analytical.id}/project_activity_obras" : "/project_activity_obras/#{@project_activity_obra.id}", html: {class: 'form-horizontal'},
+      <%= simple_form_for [@key_analytical, @project_activity_obra], url: creating? ? project_project_activity_obras_path(@key_analytical) : "/project_activity_obras/#{@project_activity_obra.id}", html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
                                   check_boxes: :horizontal_radio_and_checkboxes,
@@ -30,7 +30,7 @@
             <div class="widget-footer">
               <div class="form-actions">
                 <div class="btn-group">
-                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), project_project_activity_obras_path(@key_analytical), class: 'btn btn-default btn-sm' if can?(:read, ProjectActivityObra) %>
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), project_path(@key_analytical), class: 'btn btn-default btn-sm' if can?(:read, ProjectActivityObra) %>
                   <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @project_activity_obra, class: 'btn btn-default btn-sm' if can?(:read, ProjectActivityObra) && updating? %>
                   <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @project_activity_obra, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, ProjectActivityObra) && updating? %>
                   <button type="submit" class="btn btn-primary btn-sm">
