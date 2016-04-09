@@ -19,6 +19,8 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def edit
     authorize!(:update, Sett)
+    flash[:info] = t('helpers.messages.edit_setting_variable')
+    flash.discard(:info) # elimina esta entrada del flash al finalizar el action
     @setting = Sett.unscoped.find(params[:id])
   end
 
@@ -26,7 +28,7 @@ class Admin::SettingsController < Admin::ApplicationController
     authorize!(:create, Sett)
     @setting = Sett.new(setting_params)
     if Sett.unscoped.exists?(var: params[:admin_settings][:var])
-      @setting.errors.add(:var, "ya esta en uso")
+      @setting.errors.add(:var, t('activerecord.errors.messages.taken'))
       render :new
     elsif params[:admin_settings][:var].present? && params[:admin_settings][:value].present?
       value = params[:admin_settings][:value]
@@ -35,6 +37,10 @@ class Admin::SettingsController < Admin::ApplicationController
       else
         eval("Sett.#{params[:admin_settings][:var]} = '#{params[:admin_settings][:value]}'") if params[:admin_settings][:value].instance_of? String
       end
+
+      record = Sett.find_by_var(params[:admin_settings][:var])
+      record.update(description: params[:admin_settings][:description]) unless params[:admin_settings][:description].blank?
+
       redirect_to admin_settings_path, notice: t("simple_form.flash.successfully_created")
       return
     else
@@ -52,6 +58,10 @@ class Admin::SettingsController < Admin::ApplicationController
       else
         eval("Sett.#{params[:admin_settings][:var]} = '#{params[:admin_settings][:value]}'") if params[:admin_settings][:value].instance_of? String
       end
+
+      record = Sett.find_by_var(params[:admin_settings][:var])
+      record.update(description: params[:admin_settings][:description]) unless params[:admin_settings][:description].blank?
+
       redirect_to admin_settings_path, notice: t("simple_form.flash.successfully_updated")
       return
     else
@@ -63,14 +73,18 @@ class Admin::SettingsController < Admin::ApplicationController
 
   def destroy
     authorize!(:destroy, Sett)
-    eval("Sett.destroy :#{params[:id]}")
-    redirect_to admin_settings_path, notice: t("simple_form.flash.successfully_destroyed")
+    sett = Sett.find(params[:id])
+    if eval("Sett.destroy '#{sett.var}'") # uso este metodo porque supongo que además de eliminarlo de la bbdd, lo elimina del cache que maneja, o algo así
+      redirect_to admin_settings_path, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      redirect_to admin_settings_path, alert: 'No se ha eliminado. Hubo un error'
+    end
   end
 
   private
 
   def setting_params
-    params.require(:admin_settings).permit(:var, :value)
+    params.require(:admin_settings).permit(:var, :value, :description)
   end
 
   def search_algoritm

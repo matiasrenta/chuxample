@@ -19,7 +19,7 @@
           <%= f.input :time_zone, priority: /Mexico/, include_blank: true %>
           <%= f.association :role %>
           <%= f.input :only_api_access %>
-          <%= render 'shared/dropzone_simple', locals: {f: f, field: :avatar, max_filesize: ENV['REFILE_FILESYSTEM_MAX_FILESIZE'].to_i} %>
+          <%= render 'shared/dropzone_simple', locals: {f: f, field: :avatar, max_filesize: Sett['REFILE_FILESYSTEM_MAX_FILESIZE'].to_i} %>
         </div>
 
         <div class="widget-footer">

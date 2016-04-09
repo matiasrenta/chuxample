@@ -48,9 +48,11 @@
             <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
               <thead>
               <tr>
+                <th class='all control'>ID</th>
                 <th class='all control'>Var</th>
                 <th>Value</th>
                 <th>Class</th>
+                <th>Description</th>
                 <th>Created At</th>
                 <th>Updated At</th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
@@ -59,11 +61,13 @@
               <tbody>
               <% @settings.each do |sett| %>
                   <tr>
+                    <td><%= sett.id %></td>
                     <td><%= sett.var %></td>
                     <td><%= Sett[sett.var].to_s %></td>
                     <td><%= Sett[sett.var].class.try(:name) %></td>
-                    <td><%= sett.created_at %></td>
-                    <td><%= sett.updated_at %></td>
+                    <td><%= sett.description %></td>
+                    <td><%= l(sett.created_at, format: :without_seg) if sett.created_at %></td>
+                    <td><%= l(sett.updated_at, format: :without_seg) if sett.updated_at %></td>
                     <td class="table-actions">
                       <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_admin_setting_path(sett), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can?(:update, Sett) %>
                       <%= link_to raw('<i class="fa fa-trash"></i>'),  admin_setting_path(sett), method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title' => t('simple_form.tooltips.destroy')} if can?(:destroy, Sett) %>
@@ -82,4 +86,3 @@
     </article>
   </div>
 </section>
-
