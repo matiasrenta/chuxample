@@ -502,3 +502,20 @@ table tr td.table-actions{
 .highlighter{
   height: 54px !important;
 }
+
+.login-info {
+    border: solid transparent;
+    border-width: 6px 0;
+    box-shadow: none;
+    width: auto;
+    border-bottom: none;
+    float:right !important;
+}
+
+.login-info > span {
+    border-bottom: none;
+}
+
+.login-info a {
+    color: #807D7C;
+}
