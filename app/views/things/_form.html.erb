@@ -31,7 +31,7 @@
           <%= f.input :published %>
           <%= f.input :gender, collection: User.all %>
 
-          <%= render 'shared/dropzone_multiple', locals: {f: f, field: :thing_attaches_files, max_filesize: ENV['REFILE_S3_MAX_FILESIZE'].to_i} %>
+          <%= render 'shared/dropzone_multiple', locals: {f: f, field: :thing_attaches_files, max_filesize: Sett['REFILE_S3_MAX_FILESIZE'].to_i} %>
 
           <div class="form-group">
             <label class="col-xs-12 col-sm-3 control-label" for="">Contacts</label>
