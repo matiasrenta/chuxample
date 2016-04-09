@@ -40,7 +40,7 @@ class Ability
     can [:manage], PublicActivity::Activity
 		can [:manage], ThingContact
 		can [:manage], ThingPart
-    can [:manage], Settings
+    can [:manage], Sett
 		can [:manage], User
 		can [:manage], Thing
 		can :manage, ChuckyBot

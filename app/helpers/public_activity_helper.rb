@@ -19,7 +19,7 @@ module PublicActivityHelper
   end
 
   def keyables
-    [['Creó', 'create'], ['Actualizó', 'update'], ['Borró', 'destroy']]
+    [[t('helpers.select.create'), 'create'], [t('helpers.select.update'), 'update'], [t('helpers.select.destroy'), 'destroy']]
   end
 
   def trackable_label(activity, with_not_exists = true)

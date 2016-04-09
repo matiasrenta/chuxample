@@ -18,7 +18,7 @@
     <p><%= user_label(activity) %></p>
     <p>
       <i class="fa fa-pencil-square-o fa-border fa-lg"></i>
-      Actualizó <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
+      <%= t('helpers.select.update') %> <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
       <%= trackable_label(activity) %>
     </p>
 
