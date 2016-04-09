@@ -41,8 +41,12 @@ class ThingCategoriesController < ApplicationController
 
   # DELETE /thing_categories/1
   def destroy
-    @thing_category.destroy
-    redirect_to thing_categories_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @thing_category.destroy
+      redirect_to thing_categories_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@thing_category)
+      redirect_to :back
+    end
   end
 
   private

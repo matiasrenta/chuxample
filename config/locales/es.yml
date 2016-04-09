@@ -235,6 +235,7 @@ es:
     messages:
       are_you_sure: "¿Está seguro de querer borrar el registro?"
       access_denied: "Acceso denegado"
+      edit_setting_variable: 'Si esta variable es usada en algún initializer de la aplicación, deberá reiniciar la aplicación para que tome el nuevo valor de la variable.'
 
   errors:
     format: "%{attribute} %{message}"
