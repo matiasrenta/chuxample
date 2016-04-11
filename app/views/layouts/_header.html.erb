@@ -112,7 +112,7 @@
 		    <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
 		        <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
 		          <%= image_tag attachment_url(current_user, :avatar, :fill, 50, 50, fallback: "avatars/male.png"), class: 'online' %>
-		          <span class="hidden-xs"><%= current_user.try(:name) %></span>
+		          <span><%= current_user.try(:name) %></span>
 		        </a>
 		    </span>
 		  </div>
