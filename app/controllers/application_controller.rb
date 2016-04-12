@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   check_authorization unless: :not_check_authorization?
-
   skip_authorization_check only: [:access_denied]
 
   # Prevent CSRF attacks by raising an exception.

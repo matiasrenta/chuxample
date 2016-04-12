@@ -52,7 +52,7 @@ class ThingsController < ApplicationController
       redirect_to things_url, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@thing)
-      redirect_to things_url
+      redirect_to :back
     end
   end
 
