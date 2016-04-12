@@ -27,15 +27,15 @@
               </td>
             </tr>
             <tr role="row">
-              <th>Capítulos</th>
+              <th><%= t('simple_form.labels.defaults.system_doc_type') %></th>
               <td>
-                <%= @financial_document_type.chapters.map(&:name).join(', ') %>
+                <%= t("simple_form.labels.defaults.#{@financial_document_type.system_doc_type.underscore}_group") %>
               </td>
             </tr>
             <tr role="row">
-              <th><%= t('simple_form.labels.defaults.system_doc_type') %></th>
+              <th>Capítulos</th>
               <td>
-                <%= @financial_document_type.system_doc_type %>
+                <%= @financial_document_type.chapters.map(&:name).join(', ') %>
               </td>
             </tr>
             </tbody>

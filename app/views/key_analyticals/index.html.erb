@@ -23,7 +23,7 @@
                       <%= f.search_field :key_analytical_string_cont, {class: "form-control input-sm"} %>
                     </div>
                     <div class="form-group">
-                      <label for="q[cat_are_area_id_cont]"><%= t('simple_form.labels.cat_are_area') %></label>
+                      <label for="q[cat_are_area_id_cont]"><%= t('simple_form.labels.defaults.cat_are_area') %></label>
                       <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.all, :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                     </div>
                     <%= render 'shared/submit_filters' %>
@@ -36,54 +36,54 @@
               <thead>
               <tr>
                 <th class='all control'><%= sort_link(@q, :id, 'ID') %></th>
-                <th class='all control'><%= sort_link(@q, :key_analyticals_string, 'Key') %></th>
-                <th><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.cat_pgd_axi')) %></th>
-                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.cat_ere_expending_focu')) %></th>
-                <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.cat_ere_result')) %></th>
-                <th><%= sort_link(@q, :cat_ere_subresult_name, t('simple_form.labels.cat_ere_subresult')) %></th>
+                <th class='all control'><%= sort_link(@q, :key_analyticals_string, t('simple_form.labels.defaults.key_analytical_string')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.defaults.cat_pgd_axi')) %></th>
+                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.defaults.cat_ere_expending_focu')) %></th>
+                <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.defaults.cat_ere_result')) %></th>
+                <th><%= sort_link(@q, :cat_ere_subresult_name, t('simple_form.labels.defaults.cat_ere_subresult')) %></th>
                 <th><%= sort_link(@q, :year, t('simple_form.labels.defaults.year')) %></th>
                 <th><%= sort_link(@q, :sector, t('simple_form.labels.defaults.sector')) %></th>
                 <th><%= sort_link(@q, :subsector, t('simple_form.labels.defaults.subsector')) %></th>
                 <th><%= sort_link(@q, :unidad_responsable, t('simple_form.labels.defaults.unidad_responsable')) %></th>
-                <th><%= sort_link(@q, :cat_cfu_finality_name, t('simple_form.labels.cat_cfu_finality')) %></th>
-                <th><%= sort_link(@q, :cat_cfu_function_name, t('simple_form.labels.cat_cfu_function')) %></th>
-                <th><%= sort_link(@q, :cat_cfu_subfunction_name, t('simple_form.labels.cat_cfu_subfunction')) %></th>
-                <th><%= sort_link(@q, :cat_aci_institutional_activity_name, t('simple_form.labels.cat_aci_institutional_activity')) %></th>
-                <th><%= sort_link(@q, :cat_fon_funding_source_name, t('simple_form.labels.cat_fon_funding_source')) %></th>
-                <th><%= sort_link(@q, :cat_fon_generic_source_name, t('simple_form.labels.cat_fon_generic_source')) %></th>
-                <th><%= sort_link(@q, :cat_fon_specific_source_name, t('simple_form.labels.cat_fon_specific_source')) %></th>
-                <th><%= sort_link(@q, :cat_fon_year_document_name, t('simple_form.labels.cat_fon_year_document')) %></th>
-                <th><%= sort_link(@q, :cat_fon_origin_resource_name, t('simple_form.labels.cat_fon_origin_resource')) %></th>
-                <th><%= sort_link(@q, :cat_fon_fund_name, t('simple_form.labels.cat_fon_fund')) %></th>
-                <th><%= sort_link(@q, :cat_ppr_par_chapter_name, t('simple_form.labels.cat_ppr_par_chapter')) %></th>
-                <th><%= sort_link(@q, :cat_ppr_par_concept_name, t('simple_form.labels.cat_ppr_par_concept')) %></th>
-                <th><%= sort_link(@q, :cat_ppr_par_partida_generica_name, t('simple_form.labels.cat_ppr_par_partida_generica')) %></th>
-                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_name, t('simple_form.labels.cat_ppr_par_partida_especifica')) %></th>
-                <th><%= sort_link(@q, :cat_ppr_expense_type_name, t('simple_form.labels.cat_ppr_expense_type')) %></th>
-                <th><%= sort_link(@q, :cat_ppr_digit_identifier_name, t('simple_form.labels.cat_ppr_digit_identifier')) %></th>
-                <th><%= sort_link(@q, :cat_ppr_spending_destination_name, t('simple_form.labels.cat_ppr_spending_destination')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_finality_name, t('simple_form.labels.defaults.cat_cfu_finality')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_function_name, t('simple_form.labels.defaults.cat_cfu_function')) %></th>
+                <th><%= sort_link(@q, :cat_cfu_subfunction_name, t('simple_form.labels.defaults.cat_cfu_subfunction')) %></th>
+                <th><%= sort_link(@q, :cat_aci_institutional_activity_name, t('simple_form.labels.defaults.cat_aci_institutional_activity')) %></th>
+                <th><%= sort_link(@q, :cat_fon_funding_source_name, t('simple_form.labels.defaults.cat_fon_funding_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_generic_source_name, t('simple_form.labels.defaults.cat_fon_generic_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_specific_source_name, t('simple_form.labels.defaults.cat_fon_specific_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_year_document_name, t('simple_form.labels.defaults.cat_fon_year_document')) %></th>
+                <th><%= sort_link(@q, :cat_fon_origin_resource_name, t('simple_form.labels.defaults.cat_fon_origin_resource')) %></th>
+                <th><%= sort_link(@q, :cat_fon_fund_name, t('simple_form.labels.defaults.cat_fon_fund')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_chapter_name, t('simple_form.labels.defaults.cat_ppr_par_chapter')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_concept_name, t('simple_form.labels.defaults.cat_ppr_par_concept')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_partida_generica_name, t('simple_form.labels.defaults.cat_ppr_par_partida_generica')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_name, t('simple_form.labels.defaults.cat_ppr_par_partida_especifica')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_expense_type_name, t('simple_form.labels.defaults.cat_ppr_expense_type')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_digit_identifier_name, t('simple_form.labels.defaults.cat_ppr_digit_identifier')) %></th>
+                <th><%= sort_link(@q, :cat_ppr_spending_destination_name, t('simple_form.labels.defaults.cat_ppr_spending_destination')) %></th>
                 <th><%= sort_link(@q, :proyecto_de_inversion, t('simple_form.labels.defaults.proyecto_de_inversion')) %></th>
-                <th><%= sort_link(@q, :cat_are_area_name, t('simple_form.labels.cat_are_area')) %></th>
+                <th><%= sort_link(@q, :cat_are_area_name, t('simple_form.labels.defaults.cat_are_area')) %></th>
                 <th><%= sort_link(@q, :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
-                <th><%= sort_link(@q, :cat_uni_measure_unit_name, t('simple_form.labels.cat_uni_measure_unit')) %></th>
+                <th><%= sort_link(@q, :cat_uni_measure_unit_name, t('simple_form.labels.defaults.cat_uni_measure_unit')) %></th>
                 <th><%= sort_link(@q, :meta_fisica, t('simple_form.labels.defaults.meta_fisica')) %></th>
                 <th><%= sort_link(@q, :descripcion_de_las_acciones, t('simple_form.labels.defaults.descripcion_de_las_acciones')) %></th>
                 <th><%= sort_link(@q, :domicilio_del_area, t('simple_form.labels.defaults.domicilio_del_area')) %></th>
                 <th><%= sort_link(@q, :dut_de_la_accion, t('simple_form.labels.defaults.dut_de_la_accion')) %></th>
                 <th><%= sort_link(@q, :poblacion_beneficiada, t('simple_form.labels.defaults.poblacion_beneficiada')) %></th>
-                <th><%= sort_link(@q, :cat_der_human_right_name, t('simple_form.labels.cat_der_human_right')) %></th>
-                <th><%= sort_link(@q, :cat_der_strategy_name, t('simple_form.labels.cat_der_strategy')) %></th>
-                <th><%= sort_link(@q, :cat_der_line_of_action_name, t('simple_form.labels.cat_der_line_of_action')) %></th>
+                <th><%= sort_link(@q, :cat_der_human_right_name, t('simple_form.labels.defaults.cat_der_human_right')) %></th>
+                <th><%= sort_link(@q, :cat_der_strategy_name, t('simple_form.labels.defaults.cat_der_strategy')) %></th>
+                <th><%= sort_link(@q, :cat_der_line_of_action_name, t('simple_form.labels.defaults.cat_der_line_of_action')) %></th>
                 <th><%= sort_link(@q, :porcentaje_igualdad_sustantiva, t('simple_form.labels.defaults.porcentaje_igualdad_sustantiva')) %></th>
                 <th><%= sort_link(@q, :mujeres, t('simple_form.labels.defaults.mujeres')) %></th>
                 <th><%= sort_link(@q, :hombres, t('simple_form.labels.defaults.hombres')) %></th>
-                <th><%= sort_link(@q, :cat_gen_axi_name, t('simple_form.labels.cat_gen_axi')) %></th>
-                <th><%= sort_link(@q, :cat_gen_strategy_name, t('simple_form.labels.cat_gen_strategy')) %></th>
-                <th><%= sort_link(@q, :cat_gen_line_of_action_name, t('simple_form.labels.cat_gen_line_of_action')) %></th>
-                <th><%= sort_link(@q, :cat_pgd_area_of_opportunity_name, t('simple_form.labels.cat_pgd_area_of_opportunity')) %></th>
-                <th><%= sort_link(@q, :cat_pgd_objective_name, t('simple_form.labels.cat_pgd_objective')) %></th>
-                <th><%= sort_link(@q, :cat_pgd_goal_name, t('simple_form.labels.cat_pgd_goal')) %></th>
-                <th><%= sort_link(@q, :cat_pgd_line_of_action_name, t('simple_form.labels.cat_pgd_line_of_action')) %></th>
+                <th><%= sort_link(@q, :cat_gen_axi_name, t('simple_form.labels.defaults.cat_gen_axi')) %></th>
+                <th><%= sort_link(@q, :cat_gen_strategy_name, t('simple_form.labels.defaults.cat_gen_strategy')) %></th>
+                <th><%= sort_link(@q, :cat_gen_line_of_action_name, t('simple_form.labels.defaults.cat_gen_line_of_action')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_area_of_opportunity_name, t('simple_form.labels.defaults.cat_pgd_area_of_opportunity')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_objective_name, t('simple_form.labels.defaults.cat_pgd_objective')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_goal_name, t('simple_form.labels.defaults.cat_pgd_goal')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_line_of_action_name, t('simple_form.labels.defaults.cat_pgd_line_of_action')) %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>

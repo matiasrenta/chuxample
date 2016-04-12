@@ -16,7 +16,7 @@
             <%= f.input :name %>
             <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.association :chapters, as: :ajax_select2, search_class: :chapter, placeholder: 'Empiece escribiendo' %>
-            <%= f.input :system_doc_type, as: :select, collection: FinancialDocumentType::TYPES %>
+            <%= f.input :system_doc_type, as: :select, collection: FinancialDocumentType::SYS_DOC_TYPES %>
 
             <div class="widget-footer">
               <div class="form-actions">

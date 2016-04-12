@@ -23,7 +23,7 @@
                       <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
                     </div>
                     <div class="form-group">
-                      <label for="q[cat_der_strategy_id_cont]"><%= t('simple_form.labels.cat_der_strategy') %></label>
+                      <label for="q[cat_der_strategy_id_cont]"><%= t('simple_form.labels.defaults.cat_der_strategy') %></label>
                       <%= f.select :cat_der_strategy_id_eq, options_from_collection_for_select(CatDerStrategy.all, :id, :description, @q.cat_der_strategy_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                     </div>
                     <%= render 'shared/submit_filters' %>
@@ -37,7 +37,7 @@
               <tr>
                 <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
                 <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
-                <th><%= sort_link(@q, :cat_der_strategy_name, t('simple_form.labels.cat_der_strategy')) %></th>
+                <th><%= sort_link(@q, :cat_der_strategy_name, t('simple_form.labels.defaults.cat_der_strategy')) %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>

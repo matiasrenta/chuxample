@@ -14,13 +14,17 @@
           <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
             <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
-                    <div class="form-group">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
                       <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
                       <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
                       <label for="q[description_cont]"><%= t('simple_form.labels.defaults.description') %></label>
                       <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                      <label for="q[system_doc_type_eq]"><%= t('simple_form.labels.defaults.system_doc_type') %></label>
+                      <%= f.select :system_doc_type_eq, options_for_select(FinancialDocumentType::SYS_DOC_TYPES, @q.system_doc_type_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                     </div>
                     <%= render 'shared/submit_filters' %>
                   </fieldset>
@@ -33,6 +37,7 @@
               <tr>
                 <th class='all control'><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
                 <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
+                <th><%= sort_link(@q, :system_doc_type, t('simple_form.labels.defaults.system_doc_type')) %></th>
                 <th>Capítulos</th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
@@ -42,6 +47,7 @@
                   <tr>
                     <td><%= financial_document_type.name %></td>
                     <td><%= financial_document_type.description %></td>
+                    <td><%= t("simple_form.labels.defaults.#{financial_document_type.system_doc_type.underscore}_group") %></td>
                     <td><%= financial_document_type.chapters.map(&:name).join(', ') %></td>
                     <td class="table-actions">
                       <%= render 'shared/action_icons', locals: {target: financial_document_type} %>
