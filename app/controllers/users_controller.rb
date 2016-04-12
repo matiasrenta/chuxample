@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       redirect_to users_url, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@user)
-      redirect_to users_url
+      redirect_to :back
     end
   end
 

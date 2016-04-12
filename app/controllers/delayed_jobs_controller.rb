@@ -16,7 +16,7 @@ class DelayedJobsController < ApplicationController
       redirect_to delayed_jobs_url, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@delayed_job)
-      redirect_to delayed_jobs_url
+      redirect_to :back
     end
   end
 

@@ -144,6 +144,15 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
   .jarviswidget header h2 {
     width: 83%;
   }
+  .login-info > span {
+    padding: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .login-info a span {
+    display: none;
+  }
 }
 
 @media (min-width: 768px){
@@ -444,7 +453,7 @@ table tr td.table-actions{
 }
 
 .product-deatil {
-    padding: 30px 30px 50px;
+    padding: 0px 10px 0px;
 }
 
 .product-content {
@@ -456,11 +465,28 @@ table tr td.table-actions{
 
 .chat-body li.message .message-text {
   display: block !important;
-  margin-left: 60px !important;
+  margin-left: 50px !important;
+}
+
+.chat-body li.message img {
+    border-left: none;
+}
+
+.chat-body li.message {
+    margin: 20px 0px 0;
+}
+
+.profile-message li.message.message-reply {
+    margin-left: 40px !important;
+    margin: 3px 0 0 0px;
 }
 
 .profile-message{
   margin-bottom: 20px;
+}
+
+#new_comment{
+  padding: 14px !important;
 }
 
 .reply-bottom {
@@ -480,4 +506,29 @@ table tr td.table-actions{
 
 .chat-body li.message .ui-autocomplete li.ui-menu-item {
     margin-top: 0;
+}
+
+.highlighter{
+  height: 54px !important;
+}
+
+.login-info {
+    border: solid transparent;
+    border-width: 6px 0;
+    box-shadow: none;
+    width: auto;
+    border-bottom: none;
+    float:right !important;
+}
+
+.login-info > span {
+    border-bottom: none;
+}
+
+.login-info a {
+    color: #807D7C;
+}
+
+.login-info a:hover {
+    color: #3A3633;
 }
