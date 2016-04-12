@@ -52,3 +52,8 @@ pg_dump -U pitagoras -o -O -C cuauh_development > cuauh_development_dump.txt
 
 restoring:
 psql -U web -d cuauh_production -f cuauh_development_dump.txt
+
+
+LOGS PRODUCCION:
+================
+Nginx: /var/log/nginx/nginx_error.log (hacer "sudo su" y luego ir al directorio)
