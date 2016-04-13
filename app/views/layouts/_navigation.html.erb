@@ -5,43 +5,18 @@
   <!-- NAVIGATION : This navigation is also responsive-->
   <nav>
     <ul>
-      <li data-step="1" data-intro="Este es el menú de administración.">
-        <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Administration</span></a>
-        <ul>
-          <li>
-            <%= link_to 'Users', users_path, {title: 'Users'}  %>
-          </li>
-          <li>
-            <%= link_to t('activerecord.models.key_analytical.other'), key_analyticals_path, {title: t('activerecord.models.key_analytical.other')}  %>
-          </li>
-          <li>
-            <a href="#">Estados y Municipios</a>
-            <ul>
-              <li>
-                <%= link_to t('activerecord.models.state.other'), states_path, {title: t('activerecord.models.state.other')} %>
-              </li>
-              <li>
-                <%= link_to t('activerecord.models.town.other'), towns_path, {title: t('activerecord.models.town.other')} %>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <%= link_to 'Settings', '/admin/settings', {title: 'Settings'}  %>
-          </li>
-          <li>
-            <%= link_to 'Delayed Jobs', delayed_jobs_path, {title: 'Delayed Jobs'}  %>
-          </li>
-        </ul>
+      <li data-step="1" data-intro="Este es el menú de dashboard.">
+        <a href="/"><i class="fa fa-lg fa-fw fa-dashboard"></i> <span class="menu-item-parent">Dashboard</span></a>
       </li>
-      <li data-step="1" data-intro="Este es el menú de proyectos.">
+      <li data-step="2" data-intro="Este es el menú de proyectos.">
         <a href="/projects"><i class="fa fa-lg fa-fw fa-list-ol"></i> <span class="menu-item-parent">Proyectos</span></a>
       </li>
 
-      <li data-step="1" data-intro="Este es el menú de proveedores.">
+      <li data-step="3" data-intro="Este es el menú de proveedores.">
         <a href="/suppliers"><i class="fa fa-lg fa-fw fa-truck"></i> <span class="menu-item-parent"><%= t('activerecord.models.supplier.other') %></span></a>
       </li>
 
-      <li data-step="2" data-intro="Este es el menú catálogos.">
+      <li data-step="4" data-intro="Este es el menú catálogos.">
         <a href="#"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Catálogos</span></a>
         <ul>
           <li>
@@ -207,7 +182,36 @@
         </ul>
       </li>
 
-      <li data-step="3" data-intro="Este es el menú de desarollo.">
+      <li data-step="5" data-intro="Este es el menú de administración.">
+        <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Administration</span></a>
+        <ul>
+          <li>
+            <%= link_to 'Users', users_path, {title: 'Users'}  %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.key_analytical.other'), key_analyticals_path, {title: t('activerecord.models.key_analytical.other')}  %>
+          </li>
+          <li>
+            <a href="#">Estados y Municipios</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.state.other'), states_path, {title: t('activerecord.models.state.other')} %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.town.other'), towns_path, {title: t('activerecord.models.town.other')} %>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <%= link_to 'Settings', '/admin/settings', {title: 'Settings'}  %>
+          </li>
+          <li>
+            <%= link_to 'Delayed Jobs', delayed_jobs_path, {title: 'Delayed Jobs'}  %>
+          </li>
+        </ul>
+      </li>
+
+      <li data-step="6" data-intro="Este es el menú de desarollo.">
         <a href="#"><i class="fa fa-lg fa-fw fa-code"></i> <span class="menu-item-parent">Development</span></a>
         <ul>
           <li>
