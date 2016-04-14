@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :territorial_units do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :social_development_programs
   resources :suppliers
   resources :towns do

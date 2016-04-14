@@ -133,6 +133,9 @@ es:
         fecha_inicio_real: 'Fecha Real de Inicio'
         fecha_fin_real: 'Fecha Real de Fin'
 
+        code: 'Código'
+        grado_marginacion: 'Grado de Marginación'
+
     placeholders:
       from: 'desde'
       to: 'hasta'

@@ -286,6 +286,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      territorial_unit:
+        one: Unidad Territorial
+        other: Unidades Territoriales
         user:
           attributes:
             avatar:
@@ -297,6 +300,9 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      territorial_unit:
+        one: Unidad Territorial
+        other: Unidades Territoriales
       project_activity_social:
         one: Actividad Social
         other: Actividades Sociales
