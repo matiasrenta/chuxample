@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409004653) do
+ActiveRecord::Schema.define(version: 20160413220258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -543,6 +543,18 @@ ActiveRecord::Schema.define(version: 20160409004653) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "project_activity_socials", force: :cascade do |t|
+    t.integer  "social_development_program_id"
+    t.text     "comentarios"
+    t.integer  "nro_beneficiarios"
+    t.integer  "nro_metas_cumplidas"
+    t.date     "fecha_inicio_real"
+    t.date     "fecha_fin_real"
+    t.integer  "project_social_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "list_order"
@@ -561,6 +573,12 @@ ActiveRecord::Schema.define(version: 20160409004653) do
   end
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+
+  create_table "social_development_programs", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "states", force: :cascade do |t|
     t.string   "name"

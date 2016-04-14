@@ -35,6 +35,8 @@ class Ability
   end
 
   def superuser
+		can [:manage], ProjectActivitySocial
+		can [:manage], SocialDevelopmentProgram
 		can [:manage], ProjectActivityObra
 		can [:manage], ProjectAdministracion
 		can [:manage], ProjectCultura

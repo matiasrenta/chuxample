@@ -297,6 +297,13 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      project_activity_social:
+        one: Actividad Social
+        other: Actividades Sociales
+        fa_icon: 'fa-fw fa fa-child'
+      social_development_program:
+        one: Programa de Desarrollo Social
+        other: Programas de Desarrollo Social
       project_activity_obra:
         one: Actividad de Obra
         other: Actividades de Obra

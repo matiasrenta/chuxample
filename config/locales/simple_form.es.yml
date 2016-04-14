@@ -118,6 +118,21 @@ es:
         financial_document_contract_group: 'Grupo Contratos'
         financial_document_other_group: 'Grupo Otros'
 
+        financial_document_type: 'Tipo de Documento Financiero'
+        nro_documento: 'Nro. de Documento'
+        fecha_expedicion: 'Fecha de Expedición'
+        fecha_finalizacion: 'Fecha de Finalización'
+        monto: 'Monto'
+        supplier: 'Proveedor'
+        financial_document_contract: 'Contrato'
+        file: 'Archivo'
+
+        social_development_program: 'Programa de Desarrollo Social'
+        nro_beneficiarios: 'Nro. de Beneficiarios'
+        nro_metas_cumplidas: 'Nro. de Metas Cumplidas'
+        fecha_inicio_real: 'Fecha Real de Inicio'
+        fecha_fin_real: 'Fecha Real de Fin'
+
     placeholders:
       from: 'desde'
       to: 'hasta'

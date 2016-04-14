@@ -4,7 +4,7 @@
       <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
 
         <div class="widget-toolbar">
-          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), project_activity_obra_path(@financial_document.project_activityable), class: 'btn btn-primary' %>
+          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), @list_path, class: 'btn btn-primary' %>
           <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_financial_document_path(@financial_document), class: 'btn btn-primary' if can?(:update, FinancialDocument) %>
         </div>
       </header>
