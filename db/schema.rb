@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414223327) do
+ActiveRecord::Schema.define(version: 20160414234939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,28 @@ ActiveRecord::Schema.define(version: 20160414223327) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+
+  create_table "beneficiaries", force: :cascade do |t|
+    t.string   "apellido_paterno"
+    t.string   "apellido_materno"
+    t.string   "nombres"
+    t.integer  "territorial_unit_id"
+    t.string   "sexo"
+    t.integer  "edad"
+    t.date     "fecha_nacimiento"
+    t.string   "lugar_nacimiento"
+    t.string   "pertenencia_etnica"
+    t.string   "grado_maximo_estudios"
+    t.float    "anios_residencia_en_df"
+    t.text     "domicilio"
+    t.text     "ocupacion"
+    t.string   "nombre_padre"
+    t.string   "nombre_madre"
+    t.string   "curp"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "project_activity_social_id"
+  end
 
   create_table "cat_aci_institutional_activities", force: :cascade do |t|
     t.string   "key"

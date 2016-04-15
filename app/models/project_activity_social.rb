@@ -14,6 +14,7 @@ class ProjectActivitySocial < ActiveRecord::Base
   belongs_to :project_social
   belongs_to :social_development_program
   has_many :financial_documents, as: :project_activityable, dependent: :restrict_with_error
+  has_many :beneficiaries, dependent: :delete_all
 
   validates :social_development_program_id, :comentarios, :project_social_id, presence: true
   validates :social_development_program_id, :nro_beneficiarios, :nro_metas_cumplidas, :project_social_id, numericality: true

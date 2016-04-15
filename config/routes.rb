@@ -31,6 +31,13 @@ Rails.application.routes.draw do
       end
     end
     resources :project_activity_socials, shallow: true do
+      resources :beneficiaries do
+        collection do
+          get 'new_import'
+          post 'create_import'
+          get 'download_import_file'
+        end
+      end
       resources :financial_documents do
         get 'new_with_type', on: :collection
       end

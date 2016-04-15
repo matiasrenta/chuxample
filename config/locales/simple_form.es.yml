@@ -135,6 +135,22 @@ es:
 
         code: 'Código'
         grado_marginacion: 'Grado de Marginación'
+        apellido_paterno: 'Apellido Paterno'
+        apellido_materno: 'Apellido Materno'
+        nombres: 'Nombres'
+        territorial_unit: 'Unidad Territorial'
+        sexo: 'Sexo'
+        edad: 'Edad'
+        fecha_nacimiento: 'Fecha de Nacimiento'
+        lugar_nacimiento: 'Lugar de Nacimiento'
+        pertenencia_etnica: 'Pertenencia Étnica'
+        grado_maximo_estudios: 'Grado Máximo de Estudios'
+        anios_residencia_en_df: 'Años de Residencia en Distrito Federal'
+        domicilio: 'Domicilio'
+        ocupacion: 'Ocupación'
+        nombre_padre: 'Nombre del Padre'
+        nombre_madre: 'Nombre de la Madre'
+        curp: 'CURP'
 
     placeholders:
       from: 'desde'
