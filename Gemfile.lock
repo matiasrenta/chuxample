@@ -27,6 +27,16 @@ GIT
       i18n (>= 0.4.1)
 
 GIT
+  remote: git://github.com/matiasrenta/auto_select2.git
+  revision: 4df6fc6443bfe6a0c4b6b7533f9f5e5399c3212d
+  branch: master
+  specs:
+    auto_select2 (0.5.3)
+      coffee-rails
+      railties (>= 3.1)
+      select2-rails
+
+GIT
   remote: git://github.com/pokonski/public_activity.git
   revision: 5316ca94763525b1d71ce2253f43143d50176868
   specs:
@@ -94,10 +104,6 @@ GEM
       awesome_nested_set (>= 3.0)
     addressable (2.3.8)
     arel (6.0.3)
-    auto_select2 (0.5.3)
-      coffee-rails
-      railties (>= 3.1)
-      select2-rails
     autoprefixer-rails (6.0.3)
       execjs
       json
@@ -391,7 +397,7 @@ DEPENDENCIES
   activerecord-import
   acts_as_commentable_with_threading
   acts_as_xlsx!
-  auto_select2
+  auto_select2!
   axlsx (= 2.1.0.pre)
   axlsx_rails
   bootstrap-sass (~> 3.3.5)

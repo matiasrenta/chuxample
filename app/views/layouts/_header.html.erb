@@ -110,7 +110,7 @@
 			<!-- User info -->
 		  <div class="login-info" data-step="1" data-intro="Aqui se encuentra la información del usuario. Y aqui hay más info...">
 		    <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
-		        <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+		        <a href="<%= user_path(current_user) %>" id="show-shortcut">
 		          <%= image_tag attachment_url(current_user, :avatar, :fill, 50, 50, fallback: "avatars/male.png"), class: 'online' %>
 		          <span><%= current_user.try(:name) %></span>
 		        </a>
