@@ -1,2 +1,0 @@
-class ProjectUrbano < KeyAnalytical
-end
