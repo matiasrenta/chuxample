@@ -286,6 +286,10 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      project_activity_adquisicion:
+        one: Actividad de Adquisición
+        other: Actividades de Adquisición
+        fa_icon: 'fa-fw fa fa-shopping-cart '
       beneficiary:
         one: Beneficiario
         other: Beneficiarios
@@ -304,6 +308,10 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      project_activity_adquisicion:
+        one: Actividad de Adquisición
+        other: Actividades de Adquisición
+        fa_icon: 'fa-fw fa fa-shopping-cart '
       beneficiary:
         one: Beneficiario
         other: Beneficiarios
@@ -496,6 +504,7 @@ es:
 
     actions:
       new:  'Nuevo'
+      new_with_type: 'Nuevo'
       newf: 'Nueva'
       show: 'Mostrar'
       create: 'Nuevo'

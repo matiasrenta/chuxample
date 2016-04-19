@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :territorial_units do
     collection do
       get 'new_import'
@@ -24,7 +23,9 @@ Rails.application.routes.draw do
       get 'download_import_file'
     end
   end
+
   resources :financial_document_types
+
   resources :projects, shallow: true do
     resources :project_activity_obras, shallow: true do
       resources :financial_documents do
@@ -39,6 +40,11 @@ Rails.application.routes.draw do
           get 'download_import_file'
         end
       end
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
+    end
+    resources :project_activity_adquisicions, shallow: true do
       resources :financial_documents do
         get 'new_with_type', on: :collection
       end
