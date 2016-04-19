@@ -35,13 +35,12 @@ class Ability
   end
 
   def superuser
+		can [:manage], CatalogCleaner
 		can [:manage], Beneficiary
 		can [:manage], TerritorialUnit
 		can [:manage], ProjectActivitySocial
 		can [:manage], SocialDevelopmentProgram
 		can [:manage], ProjectActivityObra
-		can [:manage], ProjectAdministracion
-		can [:manage], ProjectCultura
 		can [:manage], ProjectObra
 		can [:manage], Supplier
 		can [:manage], Town

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources :territorial_units do
     collection do
       get 'new_import'
@@ -235,6 +236,9 @@ Rails.application.routes.draw do
   end
 
   namespace :dev do
+    resources :catalog_cleaners do
+      post :run_cleaner, on: :collection
+    end
     resources :chucky_bots
     resources :examples do
       collection do
