@@ -22,4 +22,3 @@ class ThingCategorySearchAdapter < AutoSelect2::Select2SearchAdapter::Base
 
   end
 end
-
