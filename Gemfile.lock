@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git://github.com/matiasrenta/auto_select2.git
-  revision: a99a3f1ebb1ce8cb6af00eb339df852c6ddd9417
+  revision: b239066033e065a5dee5f36bab677759b1a6346a
   branch: master
   specs:
     auto_select2 (0.5.3)
