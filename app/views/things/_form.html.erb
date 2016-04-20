@@ -21,8 +21,8 @@
 
         <div class="form-inputs edit">
           <%= f.input :name, input_html: {class: 'field_with_image_rt', 'data-pop' => 'popover-hover', 'data-placement' => 'top', 'data-title' => 'Titulo', 'data-content' => 'Contenido del pop', 'data-icon' => 'fa fa-question'} %>
-          <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo' %>
-          <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo' %>
+          <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'category-form', 'data-s2-title' => 'Nueva categoría'} %>
+          <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'part-form', 'data-s2-title' => 'Nueva parte'} %>
           <%= f.input :age %>
           <%= f.input :price %>
           <%= f.input :expires, as: :string, input_html: {class: 'date-picker', value: format_date_field(@thing.expires)} %>
@@ -32,7 +32,6 @@
           <%= f.input :gender, collection: User.all %>
 
           <%= render 'shared/dropzone_multiple', locals: {f: f, field: :thing_attaches_files, max_filesize: Sett['REFILE_S3_MAX_FILESIZE'].to_i} %>
-
           <div class="form-group">
             <label class="col-xs-12 col-sm-3 control-label" for="">Contacts</label>
             <div class="col-sm-9">
@@ -67,7 +66,6 @@
               </div>
             </div>
           </div>
-
           <div class="widget-footer">
             <div class="form-actions">
               <div class="btn-group">
@@ -85,3 +83,74 @@
       </div>
   </div>
   <%= javascript_include_tag 'mentions' %>
+
+  <!-- Modal categoría -->
+  <div class="modal fade" id="category-form" role="dialog" style="z-index:99999">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="fa fa-plus"></span> Nueva categoría</h4>
+        </div>
+        <% @thing_category = ThingCategory.new %>
+        <%= simple_form_for @thing_category, html: { class: 'form-horizontal' }, remote: true,
+                            wrapper: :horizontal_form,
+                            wrapper_mappings: {
+                                    check_boxes: :horizontal_radio_and_checkboxes,
+                                    radio_buttons: :horizontal_radio_and_checkboxes,
+                                    file: :horizontal_file_input,
+                                    boolean: :horizontal_boolean
+                            } do |f| %>
+            <div class="modal-body" style="padding:40px 50px;">
+              <div class="form-inputs">
+                <%= f.input :name %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="btn-group">
+                <a class="btn btn-default btn-sm" href="#" data-dismiss="modal"><i class="fa fa-cancel"></i> Cancelar</a>
+                <button type="submit" class="btn btn-primary btn-sm"><i class='fa fa-check-circle'></i> <%= t('simple_form.buttons.create') %></button>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal parte -->
+  <div class="modal fade" id="part-form" role="dialog" style="z-index:99999">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="fa fa-plus"></span> Nueva parte</h4>
+        </div>
+        <% @thing_part = ThingPart.new %>
+        <%= simple_form_for @thing_part, html: {class: 'form-horizontal'}, remote: true,
+                            wrapper: :horizontal_form,
+                            wrapper_mappings: {
+                                    check_boxes: :horizontal_radio_and_checkboxes,
+                                    radio_buttons: :horizontal_radio_and_checkboxes,
+                                    file: :horizontal_file_input,
+                                    boolean: :horizontal_boolean
+                            } do |f| %>
+            <div class="modal-body" style="padding:40px 50px;">
+                  <div class="form-inputs">
+                    <%= f.input :name %>
+                    <%= f.input :field1 %>
+                    <%= f.input :field2 %>
+                    <%= f.input :field3 %>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <div class="btn-group">
+                <a class="btn btn-default btn-sm" href="#" data-dismiss="modal"><i class="fa fa-cancel"></i> Cancelar</a>
+                <button type="submit" class="btn btn-primary btn-sm"><i class='fa fa-check-circle'></i> <%= t('simple_form.buttons.create') %></button>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
