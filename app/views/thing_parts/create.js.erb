@@ -1,12 +1,5 @@
-//alert('aqui hay que hacer que se cierre el modal y que el nuevo ting_part aparezca en el dropdown. Ting Part id: <%= @thing_part.id %>, Ting Part Name: <%= @thing_part.name %>');
 $('.modal').modal('hide');
-//$('.select2-container-multi').select2('open');
-//console.log( $('.ajax_select2').find('.select2-choices') );
-//$('.select2-input').select2('data', {id:<%= @thing_part.id %>, label:'<%= @thing_part.name %>'});
-//$('.ajax_select2').find('.select2-choices').prepend('<li class="select2-search-choice" id="<%= @thing_part.id %>"><div><%= @thing_part.name %></div><a href="#" onclick="return false;" class="select2-search-choice-close" tabindex="-1"></a></li>');
-//$('.select2-container-multi').select2('data', {id:<%= @thing_part.id %>, text:'<%= @thing_part.name %>'});
-console.log( $('.select2-container-multi').select2('data') );
-var data = $('.select2-container-multi').select2('data');
+var idSelect2 = $('.select2-container-multi').attr('id');
+var data = $('#'+idSelect2).select2('data');
 data.push({id:<%= @thing_part.id %>, text:'<%= @thing_part.name %>'});
-$('.select2-container-multi').select2("data", data, true);
-console.log( $('.select2-container-multi').select2('data') );
+$('#'+idSelect2).select2("data", data, true);
