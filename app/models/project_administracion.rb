@@ -1,0 +1,2 @@
+class ProjectAdministracion < KeyAnalytical
+end
