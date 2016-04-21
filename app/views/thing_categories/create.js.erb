@@ -1,0 +1,3 @@
+$('.modal').modal('hide');
+var idSelect2 = $('.select2-container').attr('id');
+$('#'+idSelect2).select2('data', {id:<%= @thing_category.id %>, text:'<%= @thing_category.name %>'});

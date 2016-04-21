@@ -2,7 +2,7 @@ class ThingCategorySearchAdapter < AutoSelect2::Select2SearchAdapter::Base
   class << self
 
     def limit
-      10
+      50
     end
 
     def search_default(term, page, options)

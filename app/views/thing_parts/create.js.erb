@@ -1,1 +1,5 @@
-alert('aqui hay que hacer que se cierre el modal y que el nuevo ting_part aparezca en el dropdown. Ting Part id: <%= @thing_part.id %>, Ting Part Name: <%= @thing_part.name %>');
+$('.modal').modal('hide');
+var idSelect2 = $('.select2-container-multi').attr('id');
+var data = $('#'+idSelect2).select2('data');
+data.push({id:<%= @thing_part.id %>, text:'<%= @thing_part.name %>'});
+$('#'+idSelect2).select2("data", data, true);
