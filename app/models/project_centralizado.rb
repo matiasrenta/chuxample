@@ -1,0 +1,2 @@
+class ProjectCentralizado < KeyAnalytical
+end
