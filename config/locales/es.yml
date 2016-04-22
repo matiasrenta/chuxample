@@ -286,6 +286,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      ascription:
+        one: Adscripción
+        other: Adscripciones
       project_activity_adquisicion:
         one: Actividad de Adquisición
         other: Actividades de Adquisición
@@ -308,6 +311,9 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      ascription:
+        one: Adscripción
+        other: Adscripciones
       project_activity_adquisicion:
         one: Actividad de Adquisición
         other: Actividades de Adquisición

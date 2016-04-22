@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], Ascription
 		can [:manage], ProjectActivityAdquisicion
 		can [:manage], CatalogCleaner
 		can [:manage], Beneficiary
