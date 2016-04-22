@@ -13,7 +13,7 @@
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs edit">
-            <%= f.input :mes, as: :select, collection: (1..12).to_a.map{|i| [I18n.t("date.month_names")[i], i]} %>
+            <%= f.input :mes, as: :select, collection: (1..12).to_a.map{|i| [t("date.month_names")[i], i]} %>
             <%= f.input :nro_trabajadores %>
             <%= f.input :comentarios, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.association :ascription %>

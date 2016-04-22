@@ -53,7 +53,6 @@
             <th><%= sort_link(@q, :mes, t('simple_form.labels.defaults.mes')) %></th>
             <th><%= sort_link(@q, :comentarios, t('simple_form.labels.defaults.comentarios')) %></th>
             <th><%= sort_link(@q, :ascription_name, t('simple_form.labels.defaults.ascription')) %></th>
-            <th><%= sort_link(@q, :project_nomina_name, t('simple_form.labels.defaults.project_nomina')) %></th>
             <th class="all"><%= t('simple_form.screen.actions') %></th>
           </tr>
           </thead>
@@ -61,10 +60,9 @@
           <% @project_activity_nominas.each do |project_activity_nomina| %>
               <tr>
                 <td align='right'><%= project_activity_nomina.nro_trabajadores %></td>
-                <td><%= project_activity_nomina.mes %></td>
+                <td><%= I18n.t("date.month_names")[project_activity_nomina.mes] %></td>
                 <td><%= project_activity_nomina.comentarios %></td>
                 <td><%= project_activity_nomina.ascription.try(:name) %></td>
-                <td><%= project_activity_nomina.project_nomina.try(:name) %></td>
                 <td class="table-actions">
                   <%= render 'shared/action_icons', locals: {target: project_activity_nomina} %>
                 </td>
