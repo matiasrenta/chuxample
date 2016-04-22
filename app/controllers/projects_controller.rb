@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     elsif @key_analytical.adquisicion?
       @project_activity_adquisicions = do_index(ProjectActivityAdquisicion, params)
     elsif @key_analytical.nomina?
-      #@project_activity_nominas = do_index(ProjectActivityNomina, params)
+      @project_activity_nominas = do_index(ProjectActivityNomina, params)
     else
       raise "Tipo de proyecto inexistente"
     end

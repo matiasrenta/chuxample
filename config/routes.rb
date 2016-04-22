@@ -63,6 +63,11 @@ Rails.application.routes.draw do
         get 'new_with_type', on: :collection
       end
     end
+    resources :project_activity_nominas, shallow: true do
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
+    end
   end
   resources :key_analyticals do
     collection do
