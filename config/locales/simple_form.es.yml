@@ -151,6 +151,12 @@ es:
         nombre_padre: 'Nombre del Padre'
         nombre_madre: 'Nombre de la Madre'
         curp: 'CURP'
+        job_title: 'Denominación del Puesto'
+        ascription: 'Adscripción'
+        importe_actual: 'Importe Actual'
+        periodo_desde: 'Período Desde'
+        periodo_hasta: 'Período Hasta'
+        indefinido: 'Indefinido?'
 
     placeholders:
       from: 'desde'
