@@ -9,6 +9,7 @@ class ProjectActivityNominasController < ApplicationController
   # GET /project_activity_nominas/1
   def show
     @key_analytical = @project_activity_nomina.project_nomina
+    @paysheets = do_index(Paysheet, params, @project_activity_nomina.paysheets)
   end
 
   # GET /project_activity_nominas/new

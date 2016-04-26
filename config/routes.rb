@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :staffs do
     collection do
       get 'new_import'
@@ -73,6 +73,13 @@ Rails.application.routes.draw do
     resources :project_activity_nominas, shallow: true do
       resources :financial_documents do
         get 'new_with_type', on: :collection
+      end
+      resources :paysheets do
+        collection do
+          get 'new_import'
+          post 'create_import'
+          get 'download_import_file'
+        end
       end
     end
   end

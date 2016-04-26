@@ -9,19 +9,19 @@
     </header>
     <div class="no-padding">
       <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-1" style="display:none;">
-        <div class="col-md-9 col-sm-12 no-padding">
+        <div class="col-xs-12">
           <%= search_form_for(@q, url: project_path(@key_analytical), html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
               <fieldset>
                 <div class="row">
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-sm-6 col-xs-12">
                     <label for="q[social_development_program_id_cont]"><%= t('simple_form.labels.social_development_program') %></label>
                     <%= f.select :social_development_program_id_eq, options_from_collection_for_select(SocialDevelopmentProgram.all, :id, :name, @q.social_development_program_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                   </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-sm-6 col-xs-12">
                     <label for="q[comentarios_cont]"><%= t('simple_form.labels.defaults.comentarios') %></label>
                     <%= f.search_field :comentarios_cont, label: false, class: "form-control input-sm" %>
                   </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                  <div class="col-sm-6 col-xs-12 spanning">
                     <label for="q[nro_beneficiarios_gteq]"><%= t('simple_form.labels.defaults.nro_beneficiarios') %></label>
 
                     <div class="input-group input-group-sm block">
@@ -31,7 +31,7 @@
                       <%= f.search_field :nro_beneficiarios_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                  <div class="col-sm-6 col-xs-12 spanning">
                     <label for="q[nro_metas_cumplidas_gteq]"><%= t('simple_form.labels.defaults.nro_metas_cumplidas') %></label>
 
                     <div class="input-group input-group-sm block">
@@ -41,7 +41,7 @@
                       <%= f.search_field :nro_metas_cumplidas_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                  <div class="col-sm-6 col-xs-12 spanning">
                     <label for="q[fecha_inicio_real_gteq]"><%= t('simple_form.labels.defaults.fecha_inicio_real') %></label>
 
                     <div class="input-group input-group-sm block">
@@ -51,7 +51,7 @@
                       <%= f.search_field :fecha_inicio_real_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_inicio_real_lteq) %>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                  <div class="col-sm-6 col-xs-12 spanning">
                     <label for="q[fecha_fin_real_gteq]"><%= t('simple_form.labels.defaults.fecha_fin_real') %></label>
 
                     <div class="input-group input-group-sm block">

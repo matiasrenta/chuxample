@@ -35,6 +35,7 @@ class Ability
   end
 
   def superuser
+		can [:manage], Paysheet
 		can [:manage], Staff
 		can [:manage], ProjectActivityNomina
 		can [:manage], JobTitle

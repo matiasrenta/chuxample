@@ -286,6 +286,10 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      paysheet:
+        one: Registro de Nómina
+        other: Registros de Nómina
+        fa_icon: 'fa-fw fa fa-envelope-o'
         user:
           attributes:
             avatar:
@@ -297,6 +301,10 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      paysheet:
+        one: Registro de Nómina
+        other: Registros de Nómina
+        fa_icon: 'fa-fw fa fa-envelope-o'
       staff:
         one: Trabajador
         other: Trabajadores
