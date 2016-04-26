@@ -1,0 +1,31 @@
+<div class="modal-dialog">
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4><span class="fa fa-plus"></span> Thing Category</h4>
+    </div>
+    <%= simple_form_for @thing_catergory || locals[:instance], html: {class: 'form-horizontal'}, remote: true,
+                        wrapper: :horizontal_form,
+                        wrapper_mappings: {
+                                check_boxes: :horizontal_radio_and_checkboxes,
+                                radio_buttons: :horizontal_radio_and_checkboxes,
+                                file: :horizontal_file_input,
+                                boolean: :horizontal_boolean
+                        } do |f| %>
+        <div class="modal-body" style="padding:40px 50px;">
+          <div class="form-inputs">
+            <%= f.input :name %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn-group">
+            <a class="btn btn-default btn-sm" href="#" data-dismiss="modal"><i class="fa fa-cancel"></i> <%= t('simple_form.buttons.cancel') %>
+            </a>
+            <button type="submit" class="btn btn-primary btn-sm">
+              <i class='fa fa-check-circle'></i> <%= t('simple_form.buttons.create') %></button>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

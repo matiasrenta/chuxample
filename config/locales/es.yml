@@ -312,7 +312,7 @@ es:
       thing_part:
         one: Parte
         other: Partes
-        fa_icon: 'fa-fw'
+        fa_icon: 'fa-fw fa fa-user'
       user:
         one: 'Usuario'
         other: 'Usuarios'
