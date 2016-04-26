@@ -1,6 +1,8 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
+require 'seed-fu/capistrano3'
+
 set :application, 'cuauh'
 set :repo_url, 'git@github.com:matiasrenta/cuauh.git'
 
@@ -71,6 +73,8 @@ namespace :deploy do
       execute :touch, release_path.join('tmp/restart.txt')
     end
   end
+
+  before 'deploy:publishing', 'db:seed_fu'
 
   after :publishing, :restart
 

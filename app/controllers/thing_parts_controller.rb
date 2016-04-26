@@ -21,12 +21,16 @@ class ThingPartsController < ApplicationController
 
   # POST /thing_parts
   def create
-
     if @thing_part.save
-      redirect_to @thing_part, notice: t("simple_form.flash.successfully_created")
+      redirect_to @thing_part, notice: t("simple_form.flash.successfully_created") if request.format != :js
     else
-      generate_flash_msg_no_keep(@thing_part)
-      render :new
+      if request.format == :js # esto es por si viene creado desde un modal via ajax de otra entidad (desde Thing en este caso)
+        @html_form = render_to_string('_form_remote.html.erb', layout: false, formats: [:html] )
+        render :new, formats: [:js]
+      else
+        generate_flash_msg_no_keep(@thing_part)
+        render :new
+      end
     end
   end
 

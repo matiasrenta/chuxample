@@ -532,3 +532,28 @@ table tr td.table-actions{
 .login-info a:hover {
     color: #3A3633;
 }
+// Para pasar el overlay adelante de select2
+.fade.in {
+  z-index: 9999;
+}
+// lineheight en texto de No resultados select2
+.select2-results .select2-no-results, .select2-results .select2-searching, .select2-results .select2-selection-limit {
+    background: none;
+    line-height: 30px;
+}
+// Quita puntos y cambia el cursor debajo del asterisco en campos obligatorios
+abbr[title], abbr[data-original-title] {
+    cursor: auto;
+    border-bottom: none;
+}
+
+.select2-footer {
+  display: block;
+  min-height: 32px;
+  vertical-align: middle;
+  position: relative;
+  background-color: #F8F7F7;
+  padding: 5px;
+  border-top: 1px solid #E4E4E4;
+  text-align: center;
+}

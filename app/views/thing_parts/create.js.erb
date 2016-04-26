@@ -1,0 +1,5 @@
+$('.modal').modal('hide');
+var idSelect2 = $('.select2-container-multi').attr('id');
+var data = $('#'+idSelect2).select2('data');
+data.push({id:<%= @thing_part.id %>, text:'<%= @thing_part.name %>'});
+$('#'+idSelect2).select2("data", data, true);

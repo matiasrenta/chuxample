@@ -21,18 +21,17 @@
 
         <div class="form-inputs edit">
           <%= f.input :name, input_html: {class: 'field_with_image_rt', 'data-pop' => 'popover-hover', 'data-placement' => 'top', 'data-title' => 'Titulo', 'data-content' => 'Contenido del pop', 'data-icon' => 'fa fa-question'} %>
-          <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo' %>
-          <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo' %>
+          <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'modal-form-1', 'data-s2-title' => 'Nueva categoría'} %>
+          <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'modal-form-2', 'data-s2-title' => 'Nueva parte'} %>
           <%= f.input :age %>
           <%= f.input :price %>
           <%= f.input :expires, as: :string, input_html: {class: 'date-picker', value: format_date_field(@thing.expires)} %>
           <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', value: format_datetime_field(@thing.discharged_at)} %>
           <%= f.input :description, input_html: {class: 'mentions'} %>
           <%= f.input :published %>
-          <%= f.input :gender, collection: User.all %>
+          <%= f.input :gender, collection: User.all,  input_html: {class: 'field_with_image_rt', 'data-pop' => 'popover-hover', 'data-placement' => 'top', 'data-title' => 'Titulo', 'data-content' => 'Contenido del pop', 'data-icon' => 'fa fa-question'} %>
 
           <%= render 'shared/dropzone_multiple', locals: {f: f, field: :thing_attaches_files, max_filesize: Sett['REFILE_S3_MAX_FILESIZE'].to_i} %>
-
           <div class="form-group">
             <label class="col-xs-12 col-sm-3 control-label" for="">Contacts</label>
             <div class="col-sm-9">
@@ -67,7 +66,6 @@
               </div>
             </div>
           </div>
-
           <div class="widget-footer">
             <div class="form-actions">
               <div class="btn-group">
@@ -85,3 +83,13 @@
       </div>
   </div>
   <%= javascript_include_tag 'mentions' %>
+
+<!-- Modal parte -->
+<div class="modal fade" id="modal-form-1" role="dialog" style="z-index:99999">
+    <%= render 'thing_categories/form_remote', locals: {:instance => ThingCategory.new } %>
+</div>
+
+<!-- Modal parte -->
+<div class="modal fade" id="modal-form-2" role="dialog" style="z-index:99999">
+    <%= render 'thing_parts/form_remote', locals: {:instance => ThingPart.new } %>
+</div>
