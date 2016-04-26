@@ -159,6 +159,7 @@ es:
         indefinido: 'Indefinido?'
         nro_trabajadores: 'Nro. de Trabajadores'
         staff: 'Trabajador'
+        importe: 'Importe'
 
     placeholders:
       from: 'desde'
