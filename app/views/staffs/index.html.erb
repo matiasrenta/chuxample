@@ -3,9 +3,11 @@
     <article class="col-xs-12">
       <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
           <div class="widget-toolbar filter-group">
-            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_staff_path, class: 'btn btn-primary' if(can? :create, Staff) %>
-            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_staff_path, class: 'btn btn-primary' if (can? :create, Staff) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
           </div>
         </header>
         <div class="no-padding">
@@ -13,100 +15,105 @@
             <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
                     <div class="row">
-                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[apellido_paterno_cont]"><%= t('simple_form.labels.defaults.apellido_paterno') %></label>
-                              <%= f.search_field :apellido_paterno_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[apellido_materno_cont]"><%= t('simple_form.labels.defaults.apellido_materno') %></label>
-                              <%= f.search_field :apellido_materno_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[nombres_cont]"><%= t('simple_form.labels.defaults.nombres') %></label>
-                              <%= f.search_field :nombres_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[sexo_cont]"><%= t('simple_form.labels.defaults.sexo') %></label>
-                              <%= f.search_field :sexo_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12 spanning">
-                              <label for="q[fecha_nacimiento_gteq]"><%= t('simple_form.labels.defaults.fecha_nacimiento') %></label>
-                              <div class="input-group input-group-sm block">
-                                <%= f.search_field :fecha_nacimiento_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_nacimiento_gteq) %>
-                              </div>
-                              <div class="input-group input-group-sm block">
-                                <%= f.search_field :fecha_nacimiento_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_nacimiento_lteq) %>
-                              </div>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[indefinido_eq]"><%= t('simple_form.labels.defaults.indefinido') %></label>
-                              <%= f.select :indefinido_eq, options_for_select([[t('true'), 'true'], [t('false'), 'false']], @q.indefinido_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12 spanning">
-                              <label for="q[periodo_desde_gteq]"><%= t('simple_form.labels.defaults.periodo_desde') %></label>
-                              <div class="input-group input-group-sm block">
-                                <%= f.search_field :periodo_desde_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.periodo_desde_gteq) %>
-                              </div>
-                              <div class="input-group input-group-sm block">
-                                <%= f.search_field :periodo_desde_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.periodo_desde_lteq) %>
-                              </div>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12 spanning">
-                              <label for="q[periodo_hasta_gteq]"><%= t('simple_form.labels.defaults.periodo_hasta') %></label>
-                              <div class="input-group input-group-sm block">
-                                <%= f.search_field :periodo_hasta_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.periodo_hasta_gteq) %>
-                              </div>
-                              <div class="input-group input-group-sm block">
-                                <%= f.search_field :periodo_hasta_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.periodo_hasta_lteq) %>
-                              </div>
-                            </div>
-                                                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                  <label for="q[job_title_id_cont]"><%= t('simple_form.labels.job_title') %></label>
-                                  <%= f.select :job_title_id_eq, options_from_collection_for_select(JobTitle.all, :id, :name, @q.job_title_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                  <label for="q[ascription_id_cont]"><%= t('simple_form.labels.ascription') %></label>
-                                  <%= f.select :ascription_id_eq, options_from_collection_for_select(Ascription.all, :id, :name, @q.ascription_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="col-md-3 col-sm-6 col-xs-12 spanning">
-                                  <label for="q[anios_residencia_en_df_gteq]"><%= t('simple_form.labels.defaults.anios_residencia_en_df') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :anios_residencia_en_df_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :anios_residencia_en_df_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[domicilio_cont]"><%= t('simple_form.labels.defaults.domicilio') %></label>
-                              <%= f.search_field :domicilio_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[ocupacion_cont]"><%= t('simple_form.labels.defaults.ocupacion') %></label>
-                              <%= f.search_field :ocupacion_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[nombre_padre_cont]"><%= t('simple_form.labels.defaults.nombre_padre') %></label>
-                              <%= f.search_field :nombre_padre_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[nombre_madre_cont]"><%= t('simple_form.labels.defaults.nombre_madre') %></label>
-                              <%= f.search_field :nombre_madre_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[curp_cont]"><%= t('simple_form.labels.defaults.curp') %></label>
-                              <%= f.search_field :curp_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="col-md-3 col-sm-6 col-xs-12 spanning">
-                                  <label for="q[importe_actual_gteq]"><%= t('simple_form.labels.defaults.importe_actual') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :importe_actual_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :importe_actual_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                              </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[apellido_paterno_cont]"><%= t('simple_form.labels.defaults.apellido_paterno') %></label>
+                        <%= f.search_field :apellido_paterno_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[apellido_materno_cont]"><%= t('simple_form.labels.defaults.apellido_materno') %></label>
+                        <%= f.search_field :apellido_materno_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[nombres_cont]"><%= t('simple_form.labels.defaults.nombres') %></label>
+                        <%= f.search_field :nombres_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[sexo_cont]"><%= t('simple_form.labels.defaults.sexo') %></label>
+                        <%= f.search_field :sexo_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[fecha_nacimiento_gteq]"><%= t('simple_form.labels.defaults.fecha_nacimiento') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :fecha_nacimiento_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_nacimiento_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :fecha_nacimiento_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_nacimiento_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[indefinido_eq]"><%= t('simple_form.labels.defaults.indefinido') %></label>
+                        <%= f.select :indefinido_eq, options_for_select([[t('true'), 'true'], [t('false'), 'false']], @q.indefinido_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[periodo_desde_gteq]"><%= t('simple_form.labels.defaults.periodo_desde') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :periodo_desde_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.periodo_desde_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :periodo_desde_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.periodo_desde_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[periodo_hasta_gteq]"><%= t('simple_form.labels.defaults.periodo_hasta') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :periodo_hasta_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.periodo_hasta_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :periodo_hasta_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.periodo_hasta_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[job_title_id_cont]"><%= t('simple_form.labels.job_title') %></label>
+                        <%= f.select :job_title_id_eq, options_from_collection_for_select(JobTitle.all, :id, :name, @q.job_title_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[ascription_id_cont]"><%= t('simple_form.labels.ascription') %></label>
+                        <%= f.select :ascription_id_eq, options_from_collection_for_select(Ascription.all, :id, :name, @q.ascription_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[anios_residencia_en_df_gteq]"><%= t('simple_form.labels.defaults.anios_residencia_en_df') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :anios_residencia_en_df_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :anios_residencia_en_df_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[domicilio_cont]"><%= t('simple_form.labels.defaults.domicilio') %></label>
+                        <%= f.search_field :domicilio_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[ocupacion_cont]"><%= t('simple_form.labels.defaults.ocupacion') %></label>
+                        <%= f.search_field :ocupacion_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[nombre_padre_cont]"><%= t('simple_form.labels.defaults.nombre_padre') %></label>
+                        <%= f.search_field :nombre_padre_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[nombre_madre_cont]"><%= t('simple_form.labels.defaults.nombre_madre') %></label>
+                        <%= f.search_field :nombre_madre_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[curp_cont]"><%= t('simple_form.labels.defaults.curp') %></label>
+                        <%= f.search_field :curp_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[importe_actual_gteq]"><%= t('simple_form.labels.defaults.importe_actual') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :importe_actual_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :importe_actual_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                    </div>
                     <div class="row pull-right">
                       <div class="col-sm-12">
                         <%= render 'shared/submit_filters' %>
@@ -114,56 +121,38 @@
                     </div>
                   </fieldset>
               <% end %>
-              </div>
             </div>
+          </div>
           <div class="widget-body">
             <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
-                                                            <th class='all control'><%= sort_link(@q, :apellido_paterno, t('simple_form.labels.defaults.apellido_paterno')) %></th>
-                                                                                <th><%= sort_link(@q, :apellido_materno, t('simple_form.labels.defaults.apellido_materno')) %></th>
-                                                                                <th><%= sort_link(@q, :nombres, t('simple_form.labels.defaults.nombres')) %></th>
-                                                                                <th><%= sort_link(@q, :sexo, t('simple_form.labels.defaults.sexo')) %></th>
-                                                                                <th><%= sort_link(@q, :fecha_nacimiento, t('simple_form.labels.defaults.fecha_nacimiento')) %></th>
-                                                                                <th><%= sort_link(@q, :indefinido, t('simple_form.labels.defaults.indefinido')) %></th>
-                                                                                <th><%= sort_link(@q, :periodo_desde, t('simple_form.labels.defaults.periodo_desde')) %></th>
-                                                                                <th><%= sort_link(@q, :periodo_hasta, t('simple_form.labels.defaults.periodo_hasta')) %></th>
-                                                                                <th><%= sort_link(@q, :job_title_name, t('simple_form.labels.defaults.job_title')) %></th>
-                                                                                <th><%= sort_link(@q, :ascription_name, t('simple_form.labels.defaults.ascription')) %></th>
-                                                                                <th><%= sort_link(@q, :anios_residencia_en_df, t('simple_form.labels.defaults.anios_residencia_en_df')) %></th>
-                                                                                <th><%= sort_link(@q, :domicilio, t('simple_form.labels.defaults.domicilio')) %></th>
-                                                                                <th><%= sort_link(@q, :ocupacion, t('simple_form.labels.defaults.ocupacion')) %></th>
-                                                                                <th><%= sort_link(@q, :nombre_padre, t('simple_form.labels.defaults.nombre_padre')) %></th>
-                                                                                <th><%= sort_link(@q, :nombre_madre, t('simple_form.labels.defaults.nombre_madre')) %></th>
-                                                                                <th><%= sort_link(@q, :curp, t('simple_form.labels.defaults.curp')) %></th>
-                                                                                <th><%= sort_link(@q, :importe_actual, t('simple_form.labels.defaults.importe_actual')) %></th>
-                                                    <th class="all"><%= t('simple_form.screen.actions') %></th>
+                <th class='all control'><%= sort_link(@q, :curp, t('simple_form.labels.defaults.curp')) %></th>
+                <th><%= sort_link(@q, :apellido_paterno, t('simple_form.labels.defaults.apellido_paterno')) %></th>
+                <th><%= sort_link(@q, :apellido_materno, t('simple_form.labels.defaults.apellido_materno')) %></th>
+                <th><%= sort_link(@q, :nombres, t('simple_form.labels.defaults.nombres')) %></th>
+                <th><%= sort_link(@q, :sexo, t('simple_form.labels.defaults.sexo')) %></th>
+                <th><%= sort_link(@q, :fecha_nacimiento, t('simple_form.labels.defaults.fecha_nacimiento')) %></th>
+                <th><%= sort_link(@q, :job_title_name, t('simple_form.labels.defaults.job_title')) %></th>
+                <th><%= sort_link(@q, :ascription_name, t('simple_form.labels.defaults.ascription')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>
               <tbody>
               <% @staffs.each do |staff| %>
-              <tr>
-                                                                        <td><%= staff.apellido_paterno %></td>
-                                                                                          <td><%= staff.apellido_materno %></td>
-                                                                                          <td><%= staff.nombres %></td>
-                                                                                          <td><%= staff.sexo %></td>
-                                                                                          <td><%= l(staff.fecha_nacimiento, format: :default) %></td>
-                                                                                          <td align='center'><%= boolean_check_mark(staff.indefinido) %></td>
-                                                                                          <td><%= l(staff.periodo_desde, format: :default) %></td>
-                                                                                          <td><%= l(staff.periodo_hasta, format: :default) %></td>
-                                                                                          <td><%= staff.job_title.try(:name) %></td>
-                                                                                          <td><%= staff.ascription.try(:name) %></td>
-                                                                                          <td align='right'><%= staff.anios_residencia_en_df %></td>
-                                                                                          <td><%= staff.domicilio %></td>
-                                                                                          <td><%= staff.ocupacion %></td>
-                                                                                          <td><%= staff.nombre_padre %></td>
-                                                                                          <td><%= staff.nombre_madre %></td>
-                                                                                          <td><%= staff.curp %></td>
-                                                                                          <td align='right'><%= staff.importe_actual %></td>
-                                              <td class="table-actions">
-                <%= render 'shared/action_icons', locals: {target: staff} %>
-              </td>
-              </tr>
+                  <tr>
+                    <td><%= staff.curp %></td>
+                    <td><%= staff.apellido_paterno %></td>
+                    <td><%= staff.apellido_materno %></td>
+                    <td><%= staff.nombres %></td>
+                    <td><%= staff.sexo %></td>
+                    <td><%= l(staff.fecha_nacimiento, format: :default) %></td>
+                    <td><%= staff.job_title.try(:name) %></td>
+                    <td><%= staff.ascription.try(:name) %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: staff} %>
+                    </td>
+                  </tr>
               <% end %>
               </tbody>
             </table>

@@ -157,6 +157,7 @@ es:
         periodo_desde: 'Período Desde'
         periodo_hasta: 'Período Hasta'
         indefinido: 'Indefinido?'
+        nro_trabajadores: 'Nro. de Trabajadores'
 
     placeholders:
       from: 'desde'

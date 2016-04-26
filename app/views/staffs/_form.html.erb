@@ -21,24 +21,23 @@
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs edit">
+            <%= f.input :curp %>
             <%= f.input :apellido_paterno %>
             <%= f.input :apellido_materno %>
             <%= f.input :nombres %>
-            <%= f.input :sexo, as: :select, collection: [] %>
+            <%= f.input :sexo, as: :select, collection: ['Masculino', 'Femenino'] %>
             <%= f.input :fecha_nacimiento, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@staff.fecha_nacimiento)} %>
+            <%= f.input :domicilio, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.association :job_title %>
+            <%= f.association :ascription %>
             <%= f.input :indefinido %>
             <%= f.input :periodo_desde, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@staff.periodo_desde)} %>
             <%= f.input :periodo_hasta, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@staff.periodo_hasta)} %>
-            <%= f.association :job_title %>
-            <%= f.association :ascription %>
             <%= f.input :anios_residencia_en_df %>
-            <%= f.input :domicilio, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :ocupacion, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :nombre_padre %>
             <%= f.input :nombre_madre %>
-            <%= f.input :curp %>
             <%= f.input :importe_actual %>
-
             <div class="widget-footer">
               <div class="form-actions">
                 <div class="btn-group">

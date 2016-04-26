@@ -13,7 +13,7 @@
           <%= search_form_for(@q, url: project_path(@key_analytical), html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
               <fieldset>
                 <div class="row">
-                  <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                  <div class="col-sm-6 col-xs-12 spanning">
                     <label for="q[nro_trabajadores_gteq]"><%= t('simple_form.labels.defaults.nro_trabajadores') %></label>
 
                     <div class="input-group input-group-sm block">
@@ -23,16 +23,16 @@
                       <%= f.search_field :nro_trabajadores_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
                     </div>
                   </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-sm-6 col-xs-12">
                     <label for="q[mes_cont]"><%= t('simple_form.labels.defaults.mes') %></label>
                     <%= f.search_field :mes_cont, label: false, class: "form-control input-sm" %>
                   </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="col-sm-6 col-xs-12">
                     <label for="q[comentarios_cont]"><%= t('simple_form.labels.defaults.comentarios') %></label>
                     <%= f.search_field :comentarios_cont, label: false, class: "form-control input-sm" %>
                   </div>
-                  <div class="col-md-3 col-sm-6 col-xs-12">
-                    <label for="q[ascription_id_cont]"><%= t('simple_form.labels.ascription') %></label>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[ascription_id_cont]"><%= t('simple_form.labels.defaults.ascription') %></label>
                     <%= f.select :ascription_id_eq, options_from_collection_for_select(Ascription.all, :id, :name, @q.ascription_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                   </div>
                 </div>
