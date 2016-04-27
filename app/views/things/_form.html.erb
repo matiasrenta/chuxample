@@ -29,7 +29,8 @@
           <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', value: format_datetime_field(@thing.discharged_at)} %>
           <%= f.input :description, input_html: {class: 'mentions'} %>
           <%= f.input :published %>
-          <%= f.input :gender, collection: User.all,  input_html: {class: 'field_with_image_rt', 'data-pop' => 'popover-hover', 'data-placement' => 'top', 'data-title' => 'Titulo', 'data-content' => 'Contenido del pop', 'data-icon' => 'fa fa-question'} %>
+          <%= f.input :gender, collection: ['Masculino', 'Femenino'],  input_html: {class: 'field_with_image_rt', 'data-pop' => 'popover-hover', 'data-placement' => 'top', 'data-title' => 'Titulo', 'data-content' => 'Contenido del pop', 'data-icon' => 'fa fa-question'} %>
+          <%= f.association :user %>
 
           <%= render 'shared/dropzone_multiple', locals: {f: f, field: :thing_attaches_files, max_filesize: Sett['REFILE_S3_MAX_FILESIZE'].to_i} %>
           <div class="form-group">

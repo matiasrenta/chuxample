@@ -127,6 +127,8 @@ gem 'active_record_union'
 #gem 'seed_dump'
 # https://github.com/elight/acts_as_commentable_with_threading
 gem 'acts_as_commentable_with_threading'
+# soft delete. https://github.com/rubysherpas/paranoia
+gem 'paranoia', '~> 2.0'
 # (-)Instalados por mi
 
 

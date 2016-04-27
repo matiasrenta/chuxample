@@ -98,12 +98,12 @@ class ApplicationController < ActionController::Base
     search_algoritm
 
     if params[:q] && params[:q][:meta_sort]
-      @q = model.unscoped.accessible_by(current_ability, :read).ransack(params[:q])
+      @q = model.accessible_by(current_ability, :read).ransack(params[:q])
     elsif order_by
-      @q = model.unscoped.order(order_by).accessible_by(current_ability, :read).ransack(params[:q]) unless includes
-      @q = model.unscoped.includes(includes).order(order_by).accessible_by(current_ability, :read).ransack(params[:q]) if includes
+      @q = model.order(order_by).accessible_by(current_ability, :read).ransack(params[:q]) unless includes
+      @q = model.includes(includes).order(order_by).accessible_by(current_ability, :read).ransack(params[:q]) if includes
     else
-      @q = model.unscoped.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[:q])
+      @q = model.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[:q])
     end
 
     model_collection = @q.result(distinct: true)
@@ -153,6 +153,26 @@ class ApplicationController < ActionController::Base
   end
 
   private ############################################ PRIVATE #################################################
+
+  def prudent_destroy(instance)
+    if instance.really_destroy!
+      redirect_to eval("#{instance.class.name.underscore.pluralize}_path"), notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(instance)
+      if instance.errors.count == 1 && flash[:alert].to_s.include?('restrict_dependent_destroy')
+        instance.errors.clear
+        # eliminar el public activity porque Paranoia equivocamente lo crea
+        PublicActivity::Activity.where(trackable_id: instance.id, trackable_type: instance.class.name, key: "#{instance.class.name.underscore}.destroy").order(:id).last.destroy
+        if instance.update(deleted_at: Time.now)
+          # creo un custom public activity de inactivate
+          instance.create_activity key: "#{instance.class.name.underscore}.inactivate", owner: current_user
+          flash[:alert] = nil
+          flash[:info] = 'Se hizo soft delete'
+        end
+      end
+      redirect_to :back
+    end
+  end
 
   def after_sign_out_path_for(user)
     new_user_session_path
