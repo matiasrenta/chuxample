@@ -233,42 +233,45 @@ $(function() {
 });
 
 //Append button a input y select
-var rel, placement, title, content, icon;
+var rel, placement, title, content, icon, idModal;
 
 //Append help button a la derecha con popover
 var rightPop = $('.field_with_popover_rt');
 $(rightPop).each(function(){
-	rel = $(this).attr('data-pop');
-	placement = $(this).attr('data-placement');
-	title = $(this).attr('data-title');
-	content = $(this).attr('data-content');
-	icon = $(this).attr('data-icon');
+	rel = $(this).data('pop');
+	placement = $(this).data('placement');
+	title = $(this).data('title');
+	content = $(this).data('content');
+	icon = $(this).data('icon');
 	$(this).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
 });
 
 //Append help button a la izquierda con popover
 var leftPop = $('.field_with_popover_lf');
 $(leftPop).each(function(){
-	rel = $(this).attr('data-pop');
-	placement = $(this).attr('data-placement');
-	title = $(this).attr('data-title');
-	content = $(this).attr('data-content');
-	icon = $(this).attr('data-icon');
+	rel = $(this).data('pop');
+	placement = $(this).data('placement');
+	title = $(this).data('title');
+	content = $(this).data('content');
+	icon = $(this).data('icon');
 	$(this).parent().addClass('input-group add-on')
 	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
 });
 
-//Append add button a la izquierda y con tooltip
+//Append add button a la izquierda con tooltip y modal
 var leftTool = $('.field_with_tooltip_lf');
 $(leftTool).each(function(){
-	toggle = $(this).attr('data-toggle');
-	title = $(this).attr('data-title');
-	icon = $(this).attr('data-icon');
+	toggle = $(this).data('toggle');
+	title = $(this).data('title');
+	icon = $(this).data('icon');
+	idModal = $(this).data("id-modal");
 	$(this).parent().addClass('input-group add-on');
-	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-toggle="modal" data-tooltip="true" data-original-title="'+title+'" data-content="'+content+'" data-target="#'+idModal+'"><i class="'+icon+'"></i></button></div>');
 });
 
 // activate popovers with hover states
 $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 	trigger : "hover"
 });
+// Inicializa tooltip
+$('[data-tooltip="true"]').tooltip();
