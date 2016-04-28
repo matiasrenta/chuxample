@@ -21,7 +21,11 @@
 
         <div class="form-inputs edit">
           <%= f.input :name, input_html: {class: 'field_with_popover_rt', 'data-pop' => 'popover-hover', 'data-placement' => 'top', 'data-title' => 'Titulo', 'data-content' => 'Contenido del pop', 'data-icon' => 'fa fa-question'} %>
-          <%= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'modal-form-1', 'data-s2-title' => 'Nueva categoría'} %>
+
+          <!-- ejemplos de "nuevo en modal para un select2 y para un select común" -->
+          <%#= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'modal-form-1', 'data-s2-title' => 'Nueva categoría'} %>
+          <%= f.association :thing_category, input_html: {} %>
+
           <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'modal-form-2', 'data-s2-title' => 'Nueva parte'} %>
           <%= f.input :age %>
           <%= f.input :price %>
@@ -29,7 +33,8 @@
           <%= f.input :discharged_at, as: :string, hint: 'timezone: Mexico City', input_html: {class: 'datetimepicker', value: format_datetime_field(@thing.discharged_at)} %>
           <%= f.input :description, input_html: {class: 'mentions'} %>
           <%= f.input :published %>
-          <%= f.input :gender, collection: User.all,  input_html: {class: 'field_with_tooltip_lf', 'data-title' => 'Agregar nuevo', 'data-icon' => 'fa fa-plus', 'data-id-modal' => 'modal-form-3',} %>
+          <%= f.input :gender, collection: ['Masculino', 'Femenino'],  input_html: {class: 'field_with_tooltip_lf', 'data-title' => 'Agregar nuevo', 'data-icon' => 'fa fa-plus', 'data-id-modal' => 'modal-form-3',} %>
+          <%= f.association :user %>
 
           <%= render 'shared/dropzone_multiple', locals: {f: f, field: :thing_attaches_files, max_filesize: Sett['REFILE_S3_MAX_FILESIZE'].to_i} %>
           <div class="form-group">
