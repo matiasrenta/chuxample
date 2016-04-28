@@ -38,7 +38,7 @@ class ThingsController < ApplicationController
   # PATCH/PUT /things/1
   def update
     if @thing.update(thing_params)
-      notify_other_user # todo: esto es una prueba de notificaciones, quitar cuando se implemente algo real
+      #notify_other_user # todo: esto es una prueba de notificaciones, quitar cuando se implemente algo real
       redirect_to @thing, notice: t('simple_form.flash.successfully_updated')
     else
       generate_flash_msg_no_keep(@thing)
