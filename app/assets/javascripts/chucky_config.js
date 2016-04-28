@@ -232,14 +232,42 @@ $(function() {
     })
 });
 
-//Append help button
-var inputWork = $('.field_with_image_rt');
-var rel = $(inputWork).attr('data-pop');
-var placement = $(inputWork).attr('data-placement');
-var title = $(inputWork).attr('data-title');
-var content = $(inputWork).attr('data-content');
-var icon = $(inputWork).attr('data-icon');
-$(inputWork).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+//Append button a input y select
+var rel, placement, title, content, icon;
+
+//Append help button a la derecha con popover
+var rightPop = $('.field_with_popover_rt');
+$(rightPop).each(function(){
+	rel = $(this).attr('data-pop');
+	placement = $(this).attr('data-placement');
+	title = $(this).attr('data-title');
+	content = $(this).attr('data-content');
+	icon = $(this).attr('data-icon');
+	$(this).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+});
+
+//Append help button a la izquierda con popover
+var leftPop = $('.field_with_popover_lf');
+$(leftPop).each(function(){
+	rel = $(this).attr('data-pop');
+	placement = $(this).attr('data-placement');
+	title = $(this).attr('data-title');
+	content = $(this).attr('data-content');
+	icon = $(this).attr('data-icon');
+	$(this).parent().addClass('input-group add-on')
+	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+});
+
+//Append add button a la izquierda y con tooltip
+var leftTool = $('.field_with_tooltip_lf');
+$(leftTool).each(function(){
+	toggle = $(this).attr('data-toggle');
+	title = $(this).attr('data-title');
+	icon = $(this).attr('data-icon');
+	$(this).parent().addClass('input-group add-on');
+	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+});
+
 // activate popovers with hover states
 $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 	trigger : "hover"
