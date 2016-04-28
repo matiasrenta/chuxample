@@ -154,23 +154,37 @@ class ApplicationController < ActionController::Base
 
   private ############################################ PRIVATE #################################################
 
-  def prudent_destroy(instance)
-    if instance.really_destroy!
-      redirect_to eval("#{instance.class.name.underscore.pluralize}_path"), notice: t("simple_form.flash.successfully_destroyed")
-    else
-      generate_flash_msg(instance)
-      if instance.errors.count == 1 && flash[:alert].to_s.include?('restrict_dependent_destroy')
-        instance.errors.clear
-        # eliminar el public activity porque Paranoia equivocamente lo crea
-        PublicActivity::Activity.where(trackable_id: instance.id, trackable_type: instance.class.name, key: "#{instance.class.name.underscore}.destroy").order(:id).last.destroy
-        if instance.update(deleted_at: Time.now)
-          # creo un custom public activity de inactivate
-          instance.create_activity key: "#{instance.class.name.underscore}.inactivate", owner: current_user
-          flash[:alert] = nil
-          flash[:info] = 'Se hizo soft delete'
+  def prudent_destroy(instance, options = nil)
+    opt = options || {}
+    if instance.respond_to?(:really_destroy!)
+      if instance.really_destroy!
+        redirect_to opt[:redirect_to] || eval("#{instance.class.name.underscore.pluralize}_path"), notice: t("simple_form.flash.successfully_destroyed")
+      else
+        generate_flash_msg(instance)
+        if instance.errors.count == 1 && flash[:alert].to_s.include?('restrict_dependent_destroy')
+          instance.errors.clear
+          # elimino el public activity porque Paranoia equivocamente lo crea
+          PublicActivity::Activity.where(trackable_id: instance.id, trackable_type: instance.class.name, key: "#{instance.class.name.underscore}.destroy").order(:id).last.destroy
+          if instance.update_column(:deleted_at, Time.now) # update_column no lanza los callbacks de update
+            # todo: ejecutar el metodo llamado run_callbacks_destroy de la instancia: instance.try(:run_callbacks_destroy)
+            # ese metodo será publico y podrá acceder a los privados que son los del verdader callback
+
+            #instance.run_callbacks(:destroy) { instance.update_column(:deleted_at, Time.now) } # esto hubiera sido lo optimo, pero se corta por el restrict_dependent_destroy
+            # creo un custom public activity de inactivate
+            instance.create_activity(key: "#{instance.class.name.underscore}.inactivate", owner: current_user)
+            flash[:alert] = nil
+            flash[:info] = 'Se hizo soft delete'
+          end
         end
+        redirect_to :back
       end
-      redirect_to :back
+    else
+      if instance.destroy
+        redirect_to opt[:redirect_to] || eval("#{instance.class.name.underscore.pluralize}_path"), notice: t("simple_form.flash.successfully_destroyed")
+      else
+        generate_flash_msg(instance)
+        redirect_to :back
+      end
     end
   end
 
@@ -192,7 +206,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_404(exception)
-    set_content_title(t("screens.errors.not_found_404"))
+    #set_content_title(t("screens.errors.not_found_404"))
     @not_found_path = exception.message
     respond_to do |format|
       format.html { render template: 'errors/not_found', layout: 'error', status: 404 }
@@ -201,7 +215,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_500(exception)
-    set_content_title(t("screens.errors.internal_server_error_500"))
+    #set_content_title(t("screens.errors.internal_server_error_500"))
     @msg = exception.message + " -- Clase: "
     @backtrace_html = exception.backtrace.join("<br/>")
     backtrace_log = exception.backtrace.join("\n")

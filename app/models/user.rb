@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
   #validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
   validates :email, email: {message: I18n.t('errors.messages.invalid_email')}
 
+
+  before_save :ejecutar_before_update
+  after_save :ejecutar_after_update
+  before_destroy :ejecutar_before_destroy
+
   after_destroy :remove_file
 
   def mailboxer_email(object)
@@ -62,7 +67,22 @@ class User < ActiveRecord::Base
   private
 
   def remove_file
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejecuto after_destroy"
     avatar.try(:delete)
   end
+
+  def ejecutar_before_destroy
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto BEFORE destroy"
+  end
+
+  def ejecutar_before_update
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto BEFORE update"
+  end
+
+  def ejecutar_after_update
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto AFTER update"
+  end
+
+
 end
 
