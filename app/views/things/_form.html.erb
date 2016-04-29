@@ -24,7 +24,7 @@
 
           <!-- ejemplos de "nuevo en modal para un select2 y para un select común" -->
           <%#= f.association :thing_category, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'modal-form-1', 'data-s2-title' => 'Nueva categoría'} %>
-          <%= f.association :thing_category, input_html: {class: 'field_with_tooltip_lf', 'data-title' => 'Agregar nuevo', 'data-icon' => 'fa fa-plus', 'data-id-modal' => 'modal-form-3'} %>
+          <%= f.association :thing_category, input_html: {class: 'field_with_tooltip_lf', 'data-title' => 'Agregar nuevo', 'data-icon' => 'fa fa-plus', 'data-id-modal' => 'modal-form-1'} %>
 
           <%= f.association :thing_parts, as: :ajax_select2, search_class: :thing_part, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, 'data-s2-button-new' => true, 'data-s2-id-modal' => 'modal-form-2', 'data-s2-title' => 'Nueva parte'} %>
           <%= f.input :age %>
@@ -99,7 +99,3 @@
     <%= render 'thing_parts/form_remote', locals: {:instance => ThingPart.new } %>
 </div>
 
-<!-- Modal user -->
-<div class="modal fade" id="modal-form-3" role="dialog" style="z-index:99999">
-    <%= render 'thing_parts/form_remote', locals: {:instance => ThingPart.new } %>
-</div>
