@@ -109,9 +109,7 @@
       <div>
         <!-- widget content -->
         <div class="widget-body">
-          <div>
             <div id="map" style='width: 100%; height: 460px;'></div>
-          </div>
         </div>
       </div>
     </div>
@@ -129,6 +127,7 @@
         markers = handler.addMarkers(<%=raw @hash.to_json %>);
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
+        handler.getMap().setZoom(16);
     });
 
 
