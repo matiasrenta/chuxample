@@ -130,7 +130,7 @@ gem 'acts_as_commentable_with_threading'
 gem 'geocoder'
 #gem 'geokit'
 #gem 'geokit-rails'
-#gem 'gmaps4rails'
+gem 'gmaps4rails'
 #gem 'graticule'
 # (-)Instalados por mi
 

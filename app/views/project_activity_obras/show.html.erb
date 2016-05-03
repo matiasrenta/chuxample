@@ -1,3 +1,6 @@
+<script src="//maps.google.com/maps/api/js?v=3.18&sensor=false&client=&key=&libraries=geometry&language=&hl=&region="></script>
+<script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+
 <section id="widget-grid">
   <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
@@ -99,7 +102,34 @@
     </div>
   </article>
 
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+      </header>
+      <div>
+        <!-- widget content -->
+        <div class="widget-body">
+          <div>
+            <div id="map" style='width: 100%; height: 460px;'></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+
   <%= render 'shared/show_financial_doc_in_project_activity', locals: {instance: @project_activity_obra, new_path: new_project_activity_obra_financial_document_path(@project_activity_obra)} %>
 
 </section>
 
+
+<script>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%=raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+    });
+
+
+</script>
