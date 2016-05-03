@@ -125,6 +125,13 @@ gem 'mailboxer'
 gem 'active_record_union'
 # https://github.com/elight/acts_as_commentable_with_threading
 gem 'acts_as_commentable_with_threading'
+
+# Geocoder
+gem 'geocoder'
+#gem 'geokit'
+#gem 'geokit-rails'
+#gem 'gmaps4rails'
+#gem 'graticule'
 # (-)Instalados por mi
 
 

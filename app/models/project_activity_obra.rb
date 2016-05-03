@@ -14,11 +14,22 @@ class ProjectActivityObra < ActiveRecord::Base
   belongs_to :project_obra
   has_many :financial_documents, as: :project_activityable, dependent: :restrict_with_error
 
-  validates :name, :cantidad, :project_obra_id, presence: true
+  validates :name, :cantidad, :project_obra_id, :calle, :nro_exterior, :colonia, presence: true
   validates :cantidad, :project_obra_id, numericality: true
   validates :avance_programado, numericality: true, if: :avance_programado
   validates :avance_real, numericality: true, if: :avance_real
 
+  geocoded_by :full_address
+  after_validation :geocode, :if => :full_address_changed?
+
+  def full_address
+    # ejepmlo: "Chilpancingo 53, Hipódromo, Cuauhtemnoc, Ciudad de México, México"
+    "#{calle} #{nro_exterior}, #{colonia}, Cuauhtemnoc, Ciudad de México, México"
+  end
+
+  def full_address_changed?
+    calle_changed? || nro_exterior_changed? || colonia_changed?
+  end
 
   def except_attr_in_public_activity
     [:id, :updated_at]
