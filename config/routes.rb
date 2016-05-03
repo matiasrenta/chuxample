@@ -363,5 +363,6 @@ Rails.application.routes.draw do
   # API's routes
   api_version(:module => "V1", :path => {:value => "v1"}, :defaults => {:format => "json"}) do
     resources :things
+    resources :project_activity_obras
   end
 end

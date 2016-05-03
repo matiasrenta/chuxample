@@ -13,8 +13,8 @@ class V1::BaseController < ActionController::Base
 
   def authenticate_user_with_http_basic
     authenticate_or_request_with_http_basic('api') do |username, password|
-      user = User.find_by_email username
-      user && user.valid_password?(password)
+      @current_user = User.find_by_email username
+      @current_user && @current_user.valid_password?(password)
     end
   end
 end
