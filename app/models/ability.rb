@@ -30,30 +30,45 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
     @user = user
-    send(@user.role.name)
+    send(@user.role.name.delete(' ').underscore)
     cannot_for_everyone
   end
 
   def superuser
+		can :manage, :all
+		# can [:manage], CatalogCleaner
+		# can [:manage], CatDerHumanRight
+		# can [:read, :destroy], DelayedJob
+		# can [:manage], ThingCategory
+    # can [:manage], PublicActivity::Activity
+		# can [:manage], ThingContact
+		# can [:manage], ThingPart
+    # can [:manage], Sett
+		# can [:manage], User
+		# can [:manage], Thing
+		# can :manage, ChuckyBot
+	end
+
+	def administrador
 		can [:manage], Paysheet
 		can [:manage], Staff
-		can [:manage], ProjectActivityNomina
 		can [:manage], JobTitle
 		can [:manage], Ascription
 		can [:manage], ProjectActivityAdquisicion
-		can [:manage], CatalogCleaner
+		can [:manage], ProjectActivityNomina
+		can [:manage], ProjectActivitySocial
+		can [:manage], ProjectActivityObra
+
 		can [:manage], Beneficiary
 		can [:manage], TerritorialUnit
-		can [:manage], ProjectActivitySocial
 		can [:manage], SocialDevelopmentProgram
-		can [:manage], ProjectActivityObra
-		can [:manage], ProjectObra
+		#can [:manage], ProjectObra
 		can [:manage], Supplier
 		can [:manage], Town
 		can [:manage], State
 		can [:manage], FinancialDocumentType
 		can [:manage], FinancialDocument
-		can [:manage], KeyAnalytical
+		can [:read], KeyAnalytical#, project_type: 'ProjectObra'
 		can [:manage], CatPprSpendingDestination
 		can [:manage], CatUniMeasureUnit
 		can [:manage], CatAreArea
@@ -79,7 +94,7 @@ class Ability
 		can [:manage], CatPgdGoal
 		can [:manage], CatPgdObjective
 		can [:manage], CatPgdAreaOfOpportunity
-    can [:manage], CatFonFundingSource
+		can [:manage], CatFonFundingSource
 		can [:manage], CatPgdAxi
 		can [:manage], CatGenLineOfAction
 		can [:manage], CatGenStrategy
@@ -87,24 +102,69 @@ class Ability
 		can [:manage], CatDerLineOfAction
 		can [:manage], CatDerStrategy
 		can [:manage], CatDerHumanRight
-		can [:read, :destroy], DelayedJob
-		can [:manage], ThingCategory
-    can [:manage], PublicActivity::Activity
-		can [:manage], ThingContact
-		can [:manage], ThingPart
-    can [:manage], Sett
+		can [:read], PublicActivity::Activity
 		can [:manage], User
-		can [:manage], Thing
-		can :manage, ChuckyBot
-  end
 
-  def prueba
-    can [:manage], Thing
-  end
+		can :read, :public_activities
+		can :read, :catalogs
+		can :read, :administrations
+	end
 
-  #este metodo es para restringir cosas a nivel negocio, no importa el perfil
+	def ejecutor_general
+		ejecutor
+	end
+
+	def ejecutor_adquisición
+		ejecutor('ProjectAdquisicion')
+		can [:create, :read], ProjectActivityAdquisicion
+	end
+	def ejecutor_nómina
+		ejecutor('ProjectNomina')
+		can [:create, :read], ProjectActivityNomina
+	end
+	def ejecutor_obra
+		ejecutor('ProjectObra')
+		can [:create, :read], ProjectActivityObra
+	end
+	def ejecutor_social
+		ejecutor('ProjectSocial')
+		can [:create, :read], ProjectActivitySocial
+	end
+
+	def revisor
+	end
+
+	def visor
+	end
+
+	def verificador_delegacional
+	end
+
+	def verificador_ciudadano
+	end
+
+
+	private
+
+	#este metodo es para restringir cosas a nivel negocio, no importa el perfil
   def cannot_for_everyone
     #todo: cannot manage para todas las entidades que son CONSTANT
     #ejemplo: cannot [:create, :update, :destroy], User
-  end
+	end
+
+	def read_edit_own_user
+		can [:read, :edit], User, id: @user.id
+	end
+
+	def ejecutor(project_type = nil)
+		read_edit_own_user
+		if project_type
+			can [:read], KeyAnalytical, project_type: project_type
+		else
+			can [:read], KeyAnalytical
+		end
+		can [:create, :read], Supplier
+		can [:create, :read], FinancialDocument
+	end
+
 end

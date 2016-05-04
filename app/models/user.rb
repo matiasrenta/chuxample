@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
 
   after_destroy :remove_file
 
+  delegate :superuser?, to: :role
+
   def mailboxer_email(object)
     email
   end

@@ -1,6 +1,6 @@
 class FinancialDocumentsController < ApplicationController
-  load_and_authorize_resource except: :index, param_method: :financial_document_params
-  before_filter :resolve_parent_project_type, except: :index
+  load_and_authorize_resource except: [:index, :new_with_type], param_method: :financial_document_params
+  before_action :resolve_parent_project_type, except: :index
 
   # GET /financial_documents
   def index
@@ -18,6 +18,7 @@ class FinancialDocumentsController < ApplicationController
   end
 
   def new_with_type
+    authorize! :create, FinancialDocument
     financial_document_type_id = params[:financial_document][:financial_document_type_id]
     @financial_document = FinancialDocumentType.find(financial_document_type_id).system_doc_type.constantize.new(financial_document_type_id: financial_document_type_id)
     render 'edit'
