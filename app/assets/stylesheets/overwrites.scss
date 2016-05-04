@@ -575,21 +575,16 @@ legend.scheduler-border {
     border-bottom:none;
 }
 
-@media (min-width: 768px){
-  fieldset.scheduler-border {
-      padding: 0 0 0 1.4em !important;
-      margin: 0 0 1.5em 0 !important;
-  }
-}
-
 @media (max-width: 1122px) and (min-width: 769px){
   fieldset.scheduler-border {
-      margin: 0 5.6em 1.5em 16.5em !important;
+      margin: 0 5.5em 1.5em 0 !important;
+      padding: 0 0em 0 1.4em !important;
   }
 }
 
 @media (max-width: 1900px) and (min-width: 1123px){
   fieldset.scheduler-border {
-      margin: 0 7em 1.5em 21em !important;
+      margin: 0 7em 1.5em 0 !important;
+      padding: 0 0em 0 2.4em !important;
   }
 }
