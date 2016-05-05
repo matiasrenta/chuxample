@@ -12,7 +12,7 @@ User.seed_once(:email) do |s|
   s.name = "Administrador"
   s.password = 'opiopiopi'
   s.password_confirmation = 'opiopiopi'
-  s.role_id = Role.find_by_name('Administrador')
+  s.role_id = Role.find_by_name('Administrador').id
 end
 
 User.seed_once(:email) do |s|
@@ -20,7 +20,7 @@ User.seed_once(:email) do |s|
   s.name = "Revisor"
   s.password = 'opiopiopi'
   s.password_confirmation = 'opiopiopi'
-  s.role_id = Role.find_by_name('Revisor')
+  s.role_id = Role.find_by_name('Revisor').id
 end
 
 User.seed_once(:email) do |s|
@@ -28,7 +28,7 @@ User.seed_once(:email) do |s|
   s.name = "ejecutor.adquisicion"
   s.password = 'opiopiopi'
   s.password_confirmation = 'opiopiopi'
-  s.role_id = Role.find_by_name('Ejecutor Adquisición')
+  s.role_id = Role.find_by_name('Ejecutor Adquisición').id
 end
 
 User.seed_once(:email) do |s|
@@ -36,7 +36,7 @@ User.seed_once(:email) do |s|
   s.name = "ejecutor.general"
   s.password = 'opiopiopi'
   s.password_confirmation = 'opiopiopi'
-  s.role_id = Role.find_by_name('Ejecutor General')
+  s.role_id = Role.find_by_name('Ejecutor General').id
 end
 
 User.seed_once(:email) do |s|
@@ -44,7 +44,7 @@ User.seed_once(:email) do |s|
   s.name = "visor"
   s.password = 'opiopiopi'
   s.password_confirmation = 'opiopiopi'
-  s.role_id = Role.find_by_name('Visor')
+  s.role_id = Role.find_by_name('Visor').id
 end
 
 User.seed_once(:email) do |s|
@@ -52,7 +52,7 @@ User.seed_once(:email) do |s|
   s.name = "verificador.delegacional"
   s.password = 'opiopiopi'
   s.password_confirmation = 'opiopiopi'
-  s.role_id = Role.find_by_name('Verificador Delegacional')
+  s.role_id = Role.find_by_name('Verificador Delegacional').id
 end
 
 User.seed_once(:email) do |s|
@@ -60,5 +60,5 @@ User.seed_once(:email) do |s|
   s.name = "verificador.ciudadano"
   s.password = 'opiopiopi'
   s.password_confirmation = 'opiopiopi'
-  s.role_id = Role.find_by_name('Verificador Ciudadano')
+  s.role_id = Role.find_by_name('Verificador Ciudadano').id
 end
