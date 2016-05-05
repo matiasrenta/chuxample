@@ -30,7 +30,8 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
     @user = user
-    send(@user.role.name.delete(' ').underscore)
+		superuser
+    #send(@user.role.name.delete(' ').underscore)
     cannot_for_everyone
   end
 
