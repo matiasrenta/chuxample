@@ -17,7 +17,7 @@
           <%= f.input :name %>
           <%= f.input :locale, as: :select, collection: available_locales_for_dropdown %>
           <%= f.input :time_zone, priority: /Mexico/, include_blank: true %>
-          <%= f.association :role %>
+          <%= f.association :role, collection: roles_for_dropdown, input_html: {disabled: !can_change_user_role? } %>
           <%= f.input :only_api_access %>
           <%= render 'shared/dropzone_simple', locals: {f: f, field: :avatar, max_filesize: Sett['REFILE_FILESYSTEM_MAX_FILESIZE'].to_i} %>
         </div>

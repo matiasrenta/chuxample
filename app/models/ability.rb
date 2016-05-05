@@ -108,36 +108,81 @@ class Ability
 		can :read, :public_activities
 		can :read, :catalogs
 		can :read, :administrations
+		can :change_user_role, User
 	end
 
 	def ejecutor_general
 		ejecutor
+		can [:create, :read, :update], ProjectActivityAdquisicion
+		can [:create, :read, :update], ProjectActivityNomina
+		can [:create, :read, :update], ProjectActivityObra
+		can [:create, :read, :update], ProjectActivitySocial
 	end
 
 	def ejecutor_adquisición
-		ejecutor('ProjectAdquisicion')
-		can [:create, :read], ProjectActivityAdquisicion
+		ejecutor
+		can [:create, :read, :update], ProjectActivityAdquisicion
+		can :read, ProjectActivityNomina
+		can :read, ProjectActivityObra
+		can :read, ProjectActivitySocial
 	end
 	def ejecutor_nómina
-		ejecutor('ProjectNomina')
-		can [:create, :read], ProjectActivityNomina
+		ejecutor
+		can [:create, :read, :update], ProjectActivityNomina
+		can :read, ProjectActivityAdquisicion
+		can :read, ProjectActivityObra
+		can :read, ProjectActivitySocial
 	end
 	def ejecutor_obra
-		ejecutor('ProjectObra')
-		can [:create, :read], ProjectActivityObra
+		ejecutor
+		can [:create, :read, :update], ProjectActivityObra
+		can :read, ProjectActivityAdquisicion
+		can :read, ProjectActivityNomina
+		can :read, ProjectActivitySocial
 	end
 	def ejecutor_social
-		ejecutor('ProjectSocial')
-		can [:create, :read], ProjectActivitySocial
+		ejecutor
+		can [:create, :read, :update], ProjectActivitySocial
+		can :read, ProjectActivityAdquisicion
+		can :read, ProjectActivityNomina
+		can :read, ProjectActivityObra
 	end
 
 	def revisor
+		read_edit_own_user
+		can [:read], KeyAnalytical
+		can [:create, :read, :update], ProjectActivityAdquisicion
+		can [:create, :read, :update], ProjectActivityNomina
+		can [:create, :read, :update], ProjectActivityObra
+		can [:create, :read, :update], ProjectActivitySocial
+		can [:create, :read], FinancialDocument
+		can :read, Paysheet
+		can :read, Staff
+		can [:create, :read, :update], Supplier
+		can :read, :catalogs
+		can_do_with_all_catalogs(:read)
+		can :read, State
+		can :read, Town
+		can :read, :administrations
 	end
 
 	def visor
+		read_edit_own_user
+		can [:read], KeyAnalytical
+		can [:read], ProjectActivityAdquisicion
+		can [:read], ProjectActivityNomina
+		can [:read], ProjectActivityObra
+		can [:read], ProjectActivitySocial
+		can [:read], FinancialDocument
+		can :read, Supplier
 	end
 
 	def verificador_delegacional
+		read_edit_own_user
+		can :read, KeyAnalytical, project_type: 'ProjectObra'
+		can :read, ProjectActivityObra
+		can :read, FinancialDocument
+		can :read, Supplier
 	end
 
 	def verificador_ciudadano
@@ -153,18 +198,52 @@ class Ability
 	end
 
 	def read_edit_own_user
-		can [:read, :edit], User, id: @user.id
+		can [:read, :update], User, id: @user.id
 	end
 
-	def ejecutor(project_type = nil)
+	def ejecutor
 		read_edit_own_user
-		if project_type
-			can [:read], KeyAnalytical, project_type: project_type
-		else
-			can [:read], KeyAnalytical
-		end
+		can :read, :public_activities
+		can [:read], PublicActivity::Activity
+		can [:read], KeyAnalytical
 		can [:create, :read], Supplier
 		can [:create, :read], FinancialDocument
+	end
+
+	def can_do_with_all_catalogs(operation)
+		can [operation], CatPprSpendingDestination
+		can [operation], CatUniMeasureUnit
+		can [operation], CatAreArea
+		can [operation], CatPprDigitIdentifier
+		can [operation], CatPprParPartidaEspecifica
+		can [operation], CatPprParPartidaGenerica
+		can [operation], CatPprParConcept
+		can [operation], CatPprParChapter
+		can [operation], CatPprExpenseType
+		can [operation], CatAciInstitutionalActivity
+		can [operation], CatEreSubresult
+		can [operation], CatEreResult
+		can [operation], CatEreExpendingFocu
+		can [operation], CatCfuSubfunction
+		can [operation], CatCfuFunction
+		can [operation], CatCfuFinality
+		can [operation], CatFonFund
+		can [operation], CatFonOriginResource
+		can [operation], CatFonYearDocument
+		can [operation], CatFonSpecificSource
+		can [operation], CatFonGenericSource
+		can [operation], CatPgdLineOfAction
+		can [operation], CatPgdGoal
+		can [operation], CatPgdObjective
+		can [operation], CatPgdAreaOfOpportunity
+		can [operation], CatFonFundingSource
+		can [operation], CatPgdAxi
+		can [operation], CatGenLineOfAction
+		can [operation], CatGenStrategy
+		can [operation], CatGenAxi
+		can [operation], CatDerLineOfAction
+		can [operation], CatDerStrategy
+		can [operation], CatDerHumanRight
 	end
 
 end
