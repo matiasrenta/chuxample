@@ -32,7 +32,7 @@ class Ability
     @user = user
 		superuser
     #send(@user.role.name.delete(' ').underscore)
-    cannot_for_everyone
+    #cannot_for_everyone
   end
 
   def superuser
