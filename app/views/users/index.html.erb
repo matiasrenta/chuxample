@@ -52,7 +52,8 @@
                 <th><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
                 <th><%= sort_link(@q, :locale, t('simple_form.labels.defaults.locale')) %></th>
                 <th><%= sort_link(@q, :time_zone, t('simple_form.labels.defaults.timezone')) %></th>
-                <th><%= sort_link(@q, :role_name, t('simple_form.labels.role')) %></th>
+                <th><%= sort_link(@q, :role_name, t('simple_form.labels.defaults.role')) %></th>
+                <th><%= sort_link(@q, :only_api_access, t('simple_form.labels.defaults.only_api_access')) %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
             </thead>
@@ -64,6 +65,7 @@
                 <td><%= user.locale %></td>
                 <td><%= user.time_zone %></td>
                 <td><%= user.role.try(:name) %></td>
+                <td><%= boolean_check_mark(user.only_api_access) %></td>
                 <td class="table-actions">
                   <% # variables para el extra action
                   if user.sign_in_count == 0
