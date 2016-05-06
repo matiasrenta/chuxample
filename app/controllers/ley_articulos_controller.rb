@@ -8,6 +8,7 @@ class LeyArticulosController < ApplicationController
 
   # GET /ley_articulos/1
   def show
+    @ley_fraccions = do_index(LeyFraccion, params, @ley_articulo.ley_fraccions, false, :codigo)
   end
 
   # GET /ley_articulos/new

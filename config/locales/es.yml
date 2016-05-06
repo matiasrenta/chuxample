@@ -286,6 +286,9 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      ley_fraccion:
+        one: Fracción de Artículo
+        other: Fracciones de Artículos
       ley_articulo:
         one: Artículo
         other: Artículos
@@ -304,6 +307,9 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      ley_fraccion:
+        one: Fracción de Artículo
+        other: Fracciones de Artículos
       ley_articulo:
         one: Artículo
         other: Artículos
