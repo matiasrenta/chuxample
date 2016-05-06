@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :ley_articulos do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :staffs do
     collection do
       get 'new_import'

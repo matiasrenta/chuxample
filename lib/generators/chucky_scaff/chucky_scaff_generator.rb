@@ -65,21 +65,21 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   end
 
   def relationize_models
-    args.each do |field_and_type|
-      field = field_and_type.strip.split(':')[0]
-      if field.include? "_id"
-        unless options['no-relationize'] && options['no-relationize'].split(':').include?(field)
-          inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
-            "  belongs_to :#{field.split('_id')[0]}\n\n"
-          end
-          #--dependents=nombre_campo:destroy-nombre_campo:restrict_with_error
-          dependent = options['dependents'].split('-').select {|word| word.include?(field)}.first.split(':').last
-          inject_into_file "app/models/#{field.split('_id')[0]}.rb", after: "< ActiveRecord::Base\n" do
-            "  has_many :#{name.pluralize}, dependent: :#{dependent}\n"
-          end
-        end
-      end
-    end
+    #args.each do |field_and_type|
+    #  field = field_and_type.strip.split(':')[0]
+    #  if field.include? "_id"
+    #    unless options['no-relationize'] && options['no-relationize'].split(':').include?(field)
+    #      inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
+    #        "  belongs_to :#{field.split('_id')[0]}\n\n"
+    #      end
+    #      #--dependents=nombre_campo:destroy-nombre_campo:restrict_with_error
+    #      dependent = options['dependents'].split('-').select {|word| word.include?(field)}.first.split(':').last
+    #      inject_into_file "app/models/#{field.split('_id')[0]}.rb", after: "< ActiveRecord::Base\n" do
+    #        "  has_many :#{name.pluralize}, dependent: :#{dependent}\n"
+    #      end
+    #    end
+    #  end
+    #end
   end
 
   def authorize_roles

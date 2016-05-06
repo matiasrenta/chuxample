@@ -1,0 +1,5 @@
+
+wb = xlsx_package.workbook
+wb.add_worksheet(name: t("activerecord.models.ley_articulo.other")) do |sheet|
+  sheet.add_row (LeyArticulo.column_names - %W(id created_at updated_at file_id file_filename file_size file_content_type)).map { |c| I18n.t("simple_form.labels.defaults.#{c}") }
+end

@@ -1,0 +1,94 @@
+<section id="widget-grid">
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+
+        <div class="widget-toolbar">
+          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), ley_articulos_path, class: 'btn btn-primary' %>
+          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_ley_articulo_path(@ley_articulo), class: 'btn btn-primary' if can?(:update, LeyArticulo) %>
+        </div>
+      </header>
+      <div>
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
+            <thead>
+            <tr class="hidden">
+              <th></th>
+              <th></th>
+            </tr>
+            </thead>
+            <!-- el thead es necesario para que datatable no de error -->
+            <tbody>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.codigo') %></th>
+              <td>
+                <%= @ley_articulo.codigo %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.name') %></th>
+              <td>
+                <%= @ley_articulo.name %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.descripcion_de_documento') %></th>
+              <td>
+                <%= @ley_articulo.descripcion_de_documento %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.periodo_actualizacion') %></th>
+              <td>
+                <%= @ley_articulo.periodo_actualizacion %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.actualizado') %></th>
+              <td>
+                <%= l(@ley_articulo.actualizado, :format => :long) if @ley_articulo.actualizado %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.validado') %></th>
+              <td>
+                <%= l(@ley_articulo.validado, :format => :long) if @ley_articulo.validado %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.detalle') %></th>
+              <td>
+                <%= @ley_articulo.detalle %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.file') %></th>
+              <td>
+                <%= link_to "Download file", attachment_url(@ley_articulo, :file) %>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!--
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-info"></i></span>
+        <h2>Details</h2>
+      </header>
+      <div class="no-padding">
+        <div class="widget-body">
+
+        </div>
+      </div>
+    </div>
+  </article>
+  -->
+</section>
+
