@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503211506) do
+ActiveRecord::Schema.define(version: 20160506024517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -494,6 +494,39 @@ ActiveRecord::Schema.define(version: 20160503211506) do
     t.text     "justificacion_genero"
     t.string   "key_analytical_string"
     t.string   "project_type"
+  end
+
+  create_table "ley_articulos", force: :cascade do |t|
+    t.string   "codigo"
+    t.string   "name"
+    t.text     "descripcion_de_documento"
+    t.string   "periodo_actualizacion"
+    t.date     "actualizado"
+    t.date     "validado"
+    t.text     "detalle"
+    t.string   "file_id"
+    t.string   "file_filename"
+    t.integer  "file_size"
+    t.string   "file_content_type"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "ley_fraccions", force: :cascade do |t|
+    t.string   "codigo"
+    t.string   "name"
+    t.text     "descripcion_de_documento"
+    t.string   "periodo_actualizacion"
+    t.date     "actualizado"
+    t.date     "validado"
+    t.text     "detalle"
+    t.string   "file_id"
+    t.string   "file_filename"
+    t.integer  "file_size"
+    t.string   "file_content_type"
+    t.integer  "ley_articulo_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

@@ -161,6 +161,14 @@ es:
         staff: 'Trabajador'
         importe: 'Importe'
 
+        codigo: 'Código'
+        descripcion_de_documento: 'Descripción del Documento'
+        periodo_actualizacion: 'Período de Actualización'
+        actualizado: 'Actualizado'
+        validado: 'Validado'
+        detalle: 'Detalle'
+
+
     placeholders:
       from: 'desde'
       to: 'hasta'

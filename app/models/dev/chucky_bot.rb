@@ -54,7 +54,7 @@ class ChuckyBot < ActiveRecord::Base
       # fields... showtime!
 
       # no relationize
-      #option = '--no-relationize='
+      #option = '--donot_relationize='
       values_array = Array.new
       dependents = ""
       fields.each do |field|
@@ -71,7 +71,7 @@ class ChuckyBot < ActiveRecord::Base
           end
         end
       end
-      c = "#{c} --no-relationize=#{values_array.join(':')}" if values_array.size > 0
+      c = "#{c} --donot_relationize=#{values_array.join(':')}" if values_array.size > 0
       c = "#{c}#{dependents}"
 
 

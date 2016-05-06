@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  resources :ley_articulos, shallow: true do
+    resources :ley_fraccions do
+      collection do
+        get 'new_import'
+        post 'create_import'
+        get 'download_import_file'
+      end
+    end
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
   resources :staffs do
     collection do
       get 'new_import'

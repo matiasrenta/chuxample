@@ -1,0 +1,144 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_ley_fraccion_path, class: 'btn btn-primary' if (can? :create, LeyFraccion) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[codigo_cont]"><%= t('simple_form.labels.defaults.codigo') %></label>
+                        <%= f.search_field :codigo_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
+                        <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[descripcion_de_documento_cont]"><%= t('simple_form.labels.defaults.descripcion_de_documento') %></label>
+                        <%= f.search_field :descripcion_de_documento_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[periodo_actualizacion_cont]"><%= t('simple_form.labels.defaults.periodo_actualizacion') %></label>
+                        <%= f.search_field :periodo_actualizacion_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[actualizado_gteq]"><%= t('simple_form.labels.defaults.actualizado') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :actualizado_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.actualizado_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :actualizado_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.actualizado_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[validado_gteq]"><%= t('simple_form.labels.defaults.validado') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :validado_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.validado_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :validado_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.validado_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[detalle_cont]"><%= t('simple_form.labels.defaults.detalle') %></label>
+                        <%= f.search_field :detalle_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[file_id_cont]"><%= t('simple_form.labels.defaults.file_id') %></label>
+                        <%= f.search_field :file_id_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[file_filename_cont]"><%= t('simple_form.labels.defaults.file_filename') %></label>
+                        <%= f.search_field :file_filename_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[file_size_gteq]"><%= t('simple_form.labels.defaults.file_size') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :file_size_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :file_size_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[file_content_type_cont]"><%= t('simple_form.labels.defaults.file_content_type') %></label>
+                        <%= f.search_field :file_content_type_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[ley_articulo_id_cont]"><%= t('simple_form.labels.ley_articulo') %></label>
+                        <%= f.select :ley_articulo_id_eq, options_from_collection_for_select(LeyArticulo.all, :id, :name, @q.ley_articulo_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                    </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :codigo, t('simple_form.labels.defaults.codigo')) %></th>
+                <th><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
+                <th><%= sort_link(@q, :descripcion_de_documento, t('simple_form.labels.defaults.descripcion_de_documento')) %></th>
+                <th><%= sort_link(@q, :periodo_actualizacion, t('simple_form.labels.defaults.periodo_actualizacion')) %></th>
+                <th><%= sort_link(@q, :actualizado, t('simple_form.labels.defaults.actualizado')) %></th>
+                <th><%= sort_link(@q, :validado, t('simple_form.labels.defaults.validado')) %></th>
+                <th><%= sort_link(@q, :detalle, t('simple_form.labels.defaults.detalle')) %></th>
+                <th><%= sort_link(@q, :file_name, t('simple_form.labels.defaults.file')) %></th>
+                <th><%= sort_link(@q, :file_filename, t('simple_form.labels.defaults.file_filename')) %></th>
+                <th><%= sort_link(@q, :file_size, t('simple_form.labels.defaults.file_size')) %></th>
+                <th><%= sort_link(@q, :file_content_type, t('simple_form.labels.defaults.file_content_type')) %></th>
+                <th><%= sort_link(@q, :ley_articulo_name, t('simple_form.labels.defaults.ley_articulo')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @ley_fraccions.each do |ley_fraccion| %>
+                  <tr>
+                    <td><%= ley_fraccion.codigo %></td>
+                    <td><%= ley_fraccion.name %></td>
+                    <td><%= ley_fraccion.descripcion_de_documento %></td>
+                    <td><%= ley_fraccion.periodo_actualizacion %></td>
+                    <td><%= l(ley_fraccion.actualizado, format: :default) %></td>
+                    <td><%= l(ley_fraccion.validado, format: :default) %></td>
+                    <td><%= ley_fraccion.detalle %></td>
+                    <td><%= ley_fraccion.file.try(:name) %></td>
+                    <td><%= ley_fraccion.file_filename %></td>
+                    <td align='right'><%= ley_fraccion.file_size %></td>
+                    <td><%= ley_fraccion.file_content_type %></td>
+                    <td><%= ley_fraccion.ley_articulo.try(:name) %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: ley_fraccion} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @ley_fraccions, model_index_path: ley_fraccions_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

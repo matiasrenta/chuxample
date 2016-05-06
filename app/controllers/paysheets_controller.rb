@@ -1,6 +1,6 @@
 class PaysheetsController < ApplicationController
   load_and_authorize_resource except: :index, param_method: :paysheet_params
-  before_filter :set_project_activity_nomina, except: :index
+  before_action :set_project_activity_nomina, except: :index
 
   # GET /paysheets
   def index
