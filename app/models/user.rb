@@ -2,10 +2,13 @@ require 'valid_email'
 
 class User < ActiveRecord::Base
   acts_as_messageable
+  #acts_as_paranoid
   include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
-  tracked owner: ->(controller, model) { controller.try(:current_user) if controller.try(:user_sign_in?) }
+  # TODO: no consigo registrar el usuario porque cuando expera la session da core dump cuando ejecuta controller.try(:current_user)
+  #tracked owner: ->(controller, model) { controller.try(:current_user) if true }
+  #tracked owner: ->(controller, model) { (controller && controller.current_user) ? controller.current_user : nil }
   #tracked recipient: ->(controller, model) { model.xxxx }
   tracked :parameters => {
               :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},
@@ -13,6 +16,7 @@ class User < ActiveRecord::Base
           }
 
   belongs_to :role
+  has_many :things, dependent: :restrict_with_error
   # Include default devise modules. Others available are:
   # :registerable, :confirmable, :validatable and :omniauthable
   # mas los 7 modulos proveidos por el gem devise_security_extension
@@ -21,6 +25,11 @@ class User < ActiveRecord::Base
 
   #validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
   validates :email, email: {message: I18n.t('errors.messages.invalid_email')}
+
+
+  #before_save :ejecutar_before_update
+  #after_save :ejecutar_after_update
+  #before_destroy :ejecutar_before_destroy
 
   after_destroy :remove_file
 
@@ -43,7 +52,7 @@ class User < ActiveRecord::Base
   end
 
   def except_attr_in_public_activity
-    [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count, :current_sign_in_ip, :last_sign_in_ip, :failed_attempts, :unlock_token, :locked_at, :reset_password_token, :reset_password_sent_at, :last_seen_at]
+    [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count, :current_sign_in_ip, :last_sign_in_ip, :failed_attempts, :unlock_token, :locked_at, :reset_password_token, :reset_password_sent_at, :last_seen_at, :deleted_at, :avatar_id, :avatar_size]
   end
 
   protected
@@ -59,7 +68,22 @@ class User < ActiveRecord::Base
   private
 
   def remove_file
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejecuto after_destroy"
     avatar.try(:delete)
   end
+
+  #def ejecutar_before_destroy
+  #  puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto BEFORE destroy"
+  #end
+#
+  #def ejecutar_before_update
+  #  puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto BEFORE update"
+  #end
+#
+  #def ejecutar_after_update
+  #  puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto AFTER update"
+  #end
+
+
 end
 

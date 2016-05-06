@@ -68,6 +68,8 @@
                                                fallback = 'default_update'
                                              elsif activity.key.include?('destroy')
                                                fallback = 'default_destroy'
+                                             elsif activity.key.include?('inactivate')
+                                               fallback = 'default_inactivate'
                                              end
                                           %>
                                           <% if !activity.trackable_type.blank? && exists_class?(activity.trackable_type) %>
