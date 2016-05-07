@@ -169,6 +169,12 @@ es:
         validado: 'Validado'
         detalle: 'Detalle'
 
+        user: 'Usuario'
+        project_activity_obra: 'Actividad de Obra'
+        question: 'Respuesta a la pregunta'
+        evaluation: 'Evaluación'
+        comments: 'Comentarios'
+        status: 'Status'
 
     placeholders:
       from: 'desde'

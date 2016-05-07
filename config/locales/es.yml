@@ -287,6 +287,10 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      verification:
+        one: Verificación
+        other: Verificaciones
+        fa_icon: 'fa-fw fa fa-camera'
         user:
           attributes:
             avatar:
@@ -298,6 +302,10 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      verification:
+        one: Verificación
+        other: Verificaciones
+        fa_icon: 'fa-fw fa fa-camera'
       ley_fraccion:
         one: Fracción de Artículo
         other: Fracciones de Artículo

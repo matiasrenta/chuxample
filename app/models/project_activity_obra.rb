@@ -1,4 +1,5 @@
 class ProjectActivityObra < ActiveRecord::Base
+  has_many :verifications, dependent: :destroy
 	include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}

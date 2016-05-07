@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :verifications
   resources :ley_articulos, shallow: true do
     put 'validar_documento', on: :member
     resources :ley_fraccions do

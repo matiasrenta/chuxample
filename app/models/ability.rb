@@ -50,6 +50,7 @@ class Ability
 	end
 
 	def administrador
+		can [:read], Verification
 		can [:manage], Paysheet
 		can [:manage], Staff
 		can [:manage], JobTitle
@@ -149,6 +150,7 @@ class Ability
 	end
 
 	def revisor
+		can [:read, :change_status], Verification
 		read_edit_own_user
 		can [:read], KeyAnalytical
 		can [:create, :read, :update], ProjectActivityAdquisicion
