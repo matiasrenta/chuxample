@@ -1,9 +1,13 @@
 <div class="modal-dialog">
   <!-- Modal content-->
   <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4><span class="fa fa-plus"></span> Thing Category</h4>
+    <div class="modal-header" style="background: #404040; border-radius: 4px 4px 0 0; color: #FFFFFF">
+      <button type="button" class="close" data-dismiss="modal" style="color: #FFFFFF; text-shadow: 0 1px 0 #FFF;">&times;</button>
+      <!-- <h4><span class="fa fa-plus"></span> Thing Category</h4> -->
+      <h1 class="page-title" style="margin:0px">
+        <i class="<%= t("activerecord.models.thing_category.fa_icon", default: '') %>"></i>
+        <%= t("activerecord.models.thing_category.one") %> <span style="color:#CACACA">> <%= t("activerecord.actions.new") %> </span>
+      </h1>
     </div>
     <%= simple_form_for @thing_catergory || locals[:instance], html: {class: 'form-horizontal'}, remote: true,
                         wrapper: :horizontal_form,

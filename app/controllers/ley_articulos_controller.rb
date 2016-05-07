@@ -3,12 +3,12 @@ class LeyArticulosController < ApplicationController
 
   # GET /ley_articulos
   def index
-    @ley_articulos = do_index(LeyArticulo, params)
+    @ley_articulos = do_index(LeyArticulo, params, nil, true, :codigo)
   end
 
   # GET /ley_articulos/1
   def show
-    @ley_fraccions = do_index(LeyFraccion, params, @ley_articulo.ley_fraccions, false, :codigo)
+    @ley_fraccions =  @ley_articulo.ley_fraccions.order(:id) # todo: ordenar por id no es lo correcto, tampoco se puede ordenar por :codigo porque 14.10 apareceria primero que 14.2
   end
 
   # GET /ley_articulos/new
@@ -50,10 +50,20 @@ class LeyArticulosController < ApplicationController
     end
   end
 
+  def validar_documento
+    @ley_articulo.validado = Date.today
+    if @ley_articulo.save
+      redirect_to @ley_articulo, notice: 'Validado exitosamente.'
+    else
+      generate_flash_msg_no_keep(@ley_articulo)
+      render :show
+    end
+  end
+
   private
 
     # Only allow a trusted parameter "white list" through.
     def ley_articulo_params
-      params.require(:ley_articulo).permit(:codigo, :name, :descripcion_de_documento, :periodo_actualizacion, :actualizado, :validado, :detalle, :file)
+      params.require(:ley_articulo).permit(:codigo, :name, :descripcion_de_documento, :periodo_actualizacion, :actualizado, :validado, :detalle, :file, :remove_file)
     end
 end

@@ -6,6 +6,7 @@
         <div class="widget-toolbar">
           <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), ley_articulo_path(@ley_articulo), class: 'btn btn-primary' %>
           <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_ley_fraccion_path(@ley_fraccion), class: 'btn btn-primary' if can?(:update, LeyFraccion) %>
+          <%= link_to raw("<i class='fa fa-trash'></i> Validar Documento"), validar_documento_ley_fraccion_path(@ley_fraccion), class: 'btn btn-warning btn-sm', method: :put, data: {confirm: '¿Está seguro de validar este documento?. Esta operación no puede revertirse.', 'original-title': 'Validar Documento'} if can?(:validar_documento, LeyFraccion) && @ley_fraccion.validado.blank?  && !@ley_fraccion.file_id.blank? %>
         </div>
       </header>
       <div>
@@ -66,31 +67,7 @@
             <tr role="row">
               <th><%= t('simple_form.labels.defaults.file') %></th>
               <td>
-                <%= @ley_fraccion.file_id %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.file_filename') %></th>
-              <td>
-                <%= @ley_fraccion.file_filename %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.file_size') %></th>
-              <td>
-                <%= @ley_fraccion.file_size %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.file_content_type') %></th>
-              <td>
-                <%= @ley_fraccion.file_content_type %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.ley_articulo') %></th>
-              <td>
-                <%= @ley_fraccion.ley_articulo.try(:name) %>
+                <%= link_to "Download file", attachment_url(@ley_fraccion, :file) unless @ley_fraccion.file_id.blank? %>
               </td>
             </tr>
             </tbody>

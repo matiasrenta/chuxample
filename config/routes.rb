@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :ley_articulos, shallow: true do
+    put 'validar_documento', on: :member
     resources :ley_fraccions do
+      put 'validar_documento', on: :member
       collection do
         get 'new_import'
         post 'create_import'

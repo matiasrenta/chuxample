@@ -53,6 +53,7 @@ es:
         thing_attaches: 'Archivos'
         avatar: 'Avatar'
         key: 'Código'
+        avatar_filename: 'Avatar'
         file_size: 'Tamaño de archivo'
         file_content_type: 'Content Type de archivo'
         file_filename: 'Nombre de archivo'
