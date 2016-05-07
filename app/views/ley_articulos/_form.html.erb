@@ -26,8 +26,10 @@
             <%= f.input :descripcion_de_documento, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :periodo_actualizacion %>
             <%= f.input :detalle, :input_html => {:rows => 4, :cols => 30} %>
-            <%= f.input :actualizado, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@ley_articulo.actualizado)} %>
-            <%= f.input :validado, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@ley_articulo.validado)} %>
+            <% if current_user.superuser? %>
+                <%= f.input :actualizado, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@ley_articulo.actualizado)} %>
+                <%= f.input :validado, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@ley_articulo.validado)} %>
+            <% end %>
             <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_LEY_MAX_FILESIZE'].to_i} %>
 
             <div class="widget-footer">

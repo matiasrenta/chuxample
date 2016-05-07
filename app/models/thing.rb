@@ -11,6 +11,7 @@ class Thing < ActiveRecord::Base
 							:model_label => proc {|controller, model| model.try(:name)}
           }
 
+	belongs_to :user
 	belongs_to :thing_category
 	has_many :thing_contacts, dependent: :destroy
 	has_many :thing_attaches, dependent: :destroy

@@ -210,6 +210,7 @@ es:
       create: 'Creó'
       update: 'Actualizó'
       destroy: 'Eliminó'
+      inactivate: 'Inactivó'
 
     submit:
       create: 'Crear %{model}'
@@ -286,16 +287,6 @@ es:
         format: "%{attribute} %{message}"
 
       models:
-      ley_fraccion:
-        one: Fracción de Artículo
-        other: Fracciones de Artículos
-      ley_articulo:
-        one: Artículo
-        other: Artículos
-      paysheet:
-        one: Registro de Nómina
-        other: Registros de Nómina
-        fa_icon: 'fa-fw fa fa-envelope-o'
         user:
           attributes:
             avatar:
@@ -309,7 +300,7 @@ es:
     models:
       ley_fraccion:
         one: Fracción de Artículo
-        other: Fracciones de Artículos
+        other: Fracciones de Artículo
       ley_articulo:
         one: Artículo
         other: Artículos

@@ -74,8 +74,6 @@
               <thead>
               <tr>
                 <th class='all control'><%= sort_link(@q, :codigo, t('simple_form.labels.defaults.codigo')) %></th>
-                <th><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
-                <th><%= sort_link(@q, :descripcion_de_documento, t('simple_form.labels.defaults.descripcion_de_documento')) %></th>
                 <th><%= sort_link(@q, :periodo_actualizacion, t('simple_form.labels.defaults.periodo_actualizacion')) %></th>
                 <th><%= sort_link(@q, :actualizado, t('simple_form.labels.defaults.actualizado')) %></th>
                 <th><%= sort_link(@q, :validado, t('simple_form.labels.defaults.validado')) %></th>
@@ -87,8 +85,6 @@
               <% @ley_articulos.each do |ley_articulo| %>
                   <tr>
                     <td><%= ley_articulo.codigo %></td>
-                    <td><%= ley_articulo.name %></td>
-                    <td><%= ley_articulo.descripcion_de_documento %></td>
                     <td><%= ley_articulo.periodo_actualizacion %></td>
                     <td><%= l(ley_articulo.actualizado, format: :default) if ley_articulo.actualizado %></td>
                     <td><%= l(ley_articulo.validado, format: :default) if ley_articulo.validado %></td>

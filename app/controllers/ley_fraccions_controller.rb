@@ -53,10 +53,20 @@ class LeyFraccionsController < ApplicationController
     end
   end
 
+  def validar_documento
+    @ley_fraccion.validado = Date.today
+    if @ley_fraccion.save
+      redirect_to @ley_fraccion, notice: 'Validado exitosamente.'
+    else
+      generate_flash_msg_no_keep(@ley_fraccion)
+      render :show
+    end
+  end
+
   private
 
     # Only allow a trusted parameter "white list" through.
     def ley_fraccion_params
-      params.require(:ley_fraccion).permit(:codigo, :name, :descripcion_de_documento, :periodo_actualizacion, :actualizado, :validado, :detalle, :file_id, :file_filename, :file_size, :file_content_type, :ley_articulo_id)
+      params.require(:ley_fraccion).permit(:codigo, :name, :descripcion_de_documento, :periodo_actualizacion, :actualizado, :validado, :detalle, :file, :remove_file)
     end
 end
