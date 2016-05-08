@@ -6,7 +6,11 @@ class Verification < ActiveRecord::Base
 
   accepts_nested_attributes_for :verification_photos
 
-  validates :user_id, :project_activity_obra_id, :question, :evaluation, presence: true
-  validates :user_id, :project_activity_obra_id, :question, :evaluation, numericality: true
-  validates :status, numericality: true, if: 'status'
+  validates :user_id, :project_activity_obra_id, :answer, :evaluation, :status, presence: true
+  validates :user_id, :project_activity_obra_id, :answer, :evaluation, :status, numericality: true
+
+  validates :answer, inclusion: 0..1
+  validates :evaluation, inclusion: 1..5
+  validates :status, inclusion: -1..1
+
 end

@@ -171,7 +171,7 @@ es:
 
         user: 'Usuario'
         project_activity_obra: 'Actividad de Obra'
-        question: 'Respuesta a la pregunta'
+        answer: 'Respuesta'
         evaluation: 'Evaluación'
         comments: 'Comentarios'
         status: 'Status'

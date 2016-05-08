@@ -2,55 +2,64 @@
   <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
       <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+
         <div class="widget-toolbar">
           <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), verifications_path, class: 'btn btn-primary' %>
           <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_verification_path(@verification), class: 'btn btn-primary' if can?(:update, Verification) %>
+          <%= link_to raw("<i class='fa fa-check-circle'></i> Válida"), verification_path(@verification, 'verification[status]' => 1), class: 'btn btn-success btn-sm', method: :put, data: {'original-title': 'Validar Documento'} if(can?(:update, Verification) && @verification.status != 1) %>
+          <%= link_to raw("<i class='fa fa-times-circle'></i> Inválida"), verification_path(@verification, 'verification[status]' => 0), class: 'btn btn-danger btn-sm', method: :put, data: {confirm: '¿Está seguro de invalidar esta verificación?', 'original-title': 'Invalidar verificación'} if(can?(:update, Verification) && @verification.status != 0) %>
         </div>
       </header>
       <div>
         <!-- widget content -->
         <div class="widget-body">
 
-        <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
-          <thead><tr class="hidden"><th></th><th></th></tr></thead> <!-- el thead es necesario para que datatable no de error -->
+          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
+            <thead>
+            <tr class="hidden">
+              <th></th>
+              <th></th>
+            </tr>
+            </thead>
+            <!-- el thead es necesario para que datatable no de error -->
             <tbody>
-                                        <tr role="row">
+            <tr role="row">
               <th><%= t('simple_form.labels.defaults.user') %></th>
               <td>
-                                                            <%= @verification.user.try(:name) %>
-                                                  </td>
+                <%= @verification.user.try(:name) %>
+              </td>
             </tr>
-                                        <tr role="row">
+            <tr role="row">
               <th><%= t('simple_form.labels.defaults.project_activity_obra') %></th>
               <td>
-                                                            <%= @verification.project_activity_obra.try(:name) %>
-                                                  </td>
+                <%= @verification.project_activity_obra.try(:name) %>
+              </td>
             </tr>
-                                        <tr role="row">
-              <th><%= t('simple_form.labels.defaults.question') %></th>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.answer') %></th>
               <td>
-                                                            <%= @verification.question %>
-                                                  </td>
+                <%= humanize_answer(@verification.answer) %>
+              </td>
             </tr>
-                                        <tr role="row">
+            <tr role="row">
               <th><%= t('simple_form.labels.defaults.evaluation') %></th>
               <td>
-                                                            <%= @verification.evaluation %>
-                                                  </td>
+                <%= @verification.evaluation %>
+              </td>
             </tr>
-                                        <tr role="row">
+            <tr role="row">
               <th><%= t('simple_form.labels.defaults.comments') %></th>
               <td>
-                                    <%= @verification.comments %>
-                              </td>
+                <%= @verification.comments %>
+              </td>
             </tr>
-                                        <tr role="row">
+            <tr role="row">
               <th><%= t('simple_form.labels.defaults.status') %></th>
               <td>
-                                                            <%= @verification.status %>
-                                                  </td>
+                <%= status_icon(@verification.status) %>
+              </td>
             </tr>
-                        </tbody>
+            </tbody>
           </table>
         </div>
       </div>
@@ -71,5 +80,94 @@
     </div>
   </article>
   -->
+
+  <!-- Gallery row -->
+  <div class="row">
+
+    <!-- SuperBox -->
+    <div class="superbox col-sm-12">
+      <div class="superbox-list">
+        <img src="<%= image_url('img/superbox/superbox-thumb-1.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-1.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Miller Cine" class="superbox-img">
+      </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-2.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-2.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Bridge of Edgen" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-3.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-3.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Lines of Friendship" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-4.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-4.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="My new car!" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-5.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-5.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Study Time" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-6.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-6.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="San Francisco Bridge"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-7.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-7.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="New Styla"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-8.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-8.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Cristpta"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-9.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-9.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Cristine Dine"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-10.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-10.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Mosaic Clock"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-11.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-11.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Elegance"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-12.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-12.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="China Town"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-13.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-13.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Sky Diving"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-14.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-14.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Country Music"  class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-15.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-15.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="You are late!" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-16.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-16.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Royal Bengle Tiger" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-17.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-17.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Snowpine" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-18.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-18.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Hop Jop Mop" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-19.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-19.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Party Girls" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-20.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-20.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Dragon Fly" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-21.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-21.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Kinds Road" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-22.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-22.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Tokyo" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-23.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-23.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Rome" class="superbox-img">
+    </div><!--
+		--><div class="superbox-list">
+      <img src="<%= image_url('img/superbox/superbox-thumb-24.jpg') %>" data-img="<%= image_url('img/superbox/superbox-full-24.jpg') %>" alt="My first photoshop layer mask on a high end PSD template theme" title="Traning" class="superbox-img">
+    </div>
+      <div class="superbox-float"></div>
+    </div>
+    <!-- /SuperBox -->
+
+    <div class="superbox-show" style="height:300px; display: none"></div>
+
+  </div>
+  <!-- end Gallery row -->
+
 </section>
+
+
 

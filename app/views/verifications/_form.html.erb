@@ -15,10 +15,9 @@
           <div class="form-inputs edit">
             <%= f.association :user %>
             <%= f.association :project_activity_obra %>
-            <%= f.input :question %>
+            <%= f.input :answer, as: :select, collection: [['Sí', 1], ['No', 0]], include_blank: false %>
             <%= f.input :evaluation %>
             <%= f.input :comments, :input_html => {:rows => 4, :cols => 30} %>
-            <%= f.input :status %>
 
             <div class="form-group">
               <label class="col-xs-12 col-sm-3 control-label" for="">Fotos</label>

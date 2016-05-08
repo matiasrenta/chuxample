@@ -69,6 +69,8 @@
 // require js/plugin/flot/jquery.flot.time
 // require js/plugin/flot/jquery.flot.tooltip
 
+//= require js/plugin/superbox/superbox
+
 //= require jquery_nested_form
 //= require chucky_bots
 
