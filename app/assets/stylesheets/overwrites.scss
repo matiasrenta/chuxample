@@ -96,6 +96,37 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 .smart-timeline table{
   font-size:11px;
 }
+
+
+//Iconos hover
+.actions-hover {
+  float: right;
+  padding: 10px;
+  top: -13px;
+}
+
+.actions-hover .btn {
+  width: 37px;
+  padding: 2px;
+}
+
+// .btn:hover {
+//   margin-right: 0;
+//   box-shadow: none;
+// }
+
+// .actions-hover .btn:first-child {
+//   border-radius: 4px 0 0 4px;
+// }
+//
+// .actions-hover .btn:last-child {
+//   border-radius: 0 4px 4px 0;
+// }
+
+.smart-timeline .btn i.fa {
+    color: #8A8A8A;
+}
+
 @media (max-width: 768px) {
   .alert-success {
     //max-height: 50px;
@@ -112,6 +143,15 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
 @media (max-width: 420px) {
   .jarviswidget header h2 {
     width: 83%;
+  }
+  .login-info > span {
+    padding: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .login-info a span {
+    display: none;
   }
 }
 
@@ -413,7 +453,7 @@ table tr td.table-actions{
 }
 
 .product-deatil {
-    padding: 30px 30px 50px;
+    padding: 0px 10px 0px;
 }
 
 .product-content {
@@ -425,11 +465,28 @@ table tr td.table-actions{
 
 .chat-body li.message .message-text {
   display: block !important;
-  margin-left: 60px !important;
+  margin-left: 50px !important;
+}
+
+.chat-body li.message img {
+    border-left: none;
+}
+
+.chat-body li.message {
+    margin: 20px 0px 0;
+}
+
+.profile-message li.message.message-reply {
+    margin-left: 40px !important;
+    margin: 3px 0 0 0px;
 }
 
 .profile-message{
   margin-bottom: 20px;
+}
+
+#new_comment{
+  padding: 14px !important;
 }
 
 .reply-bottom {
@@ -439,4 +496,64 @@ table tr td.table-actions{
 
 .spanning input {
     width: 50% !important;
+}
+
+.chat-body li.message .ui-autocomplete img {
+    position: relative;
+    width: 25px !important;
+    border: 0;
+}
+
+.chat-body li.message .ui-autocomplete li.ui-menu-item {
+    margin-top: 0;
+}
+
+.highlighter{
+  height: 54px !important;
+}
+
+.login-info {
+    border: solid transparent;
+    border-width: 6px 0;
+    box-shadow: none;
+    width: auto;
+    border-bottom: none;
+    float:right !important;
+}
+
+.login-info > span {
+    border-bottom: none;
+}
+
+.login-info a {
+    color: #807D7C;
+}
+
+.login-info a:hover {
+    color: #3A3633;
+}
+// Para pasar el overlay adelante de select2
+.fade.in {
+  z-index: 9999;
+}
+// lineheight en texto de No resultados select2
+.select2-results .select2-no-results, .select2-results .select2-searching, .select2-results .select2-selection-limit {
+    background: none;
+    line-height: 30px;
+}
+// Quita puntos y cambia el cursor debajo del asterisco en campos obligatorios
+abbr[title], abbr[data-original-title] {
+    cursor: auto;
+    border-bottom: none;
+}
+
+.select2-footer {
+  display: block;
+  min-height: 32px;
+  vertical-align: middle;
+  position: relative;
+  background-color: #F8F7F7;
+  padding: 5px;
+  border-top: 1px solid #E4E4E4;
+  text-align: center;
 }

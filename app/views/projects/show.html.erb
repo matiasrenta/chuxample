@@ -399,7 +399,10 @@
     </div>
   </article>
 
-  <%= render 'index_obras' %>
+  <%= render 'index_obras' if @key_analytical.obra? %>
+  <%= render 'index_social' if @key_analytical.social? %>
+  <%= render 'index_adquisiciones' if @key_analytical.adquisicion? %>
+  <%= render 'index_nominas' if @key_analytical.nomina? %>
 
 </section>
 

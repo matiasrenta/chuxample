@@ -35,12 +35,15 @@
 //= require js/plugin/msie-fix/jquery.mb.browser
 //= require js/plugin/fastclick/fastclick
 
-
-// require js/plugin/jquery-ui/ui/core
-// require js/plugin/jquery-ui/ui/widget
-
-// require js/plugin/jquery-ui/ui/autocomplete
-//= require js/plugin/jquery-ui/jquery-ui.js
+//No se utiliza todo el jquery-ui, solo llamamos a los modulos que se van necesitando
+// require js/plugin/jquery-ui/jquery-ui.js
+//= require js/plugin/jquery-ui/ui/core
+//= require js/plugin/jquery-ui/ui/widget
+//= require js/plugin/jquery-ui/ui/position
+//= require js/plugin/jquery-ui/ui/menu
+//= require js/plugin/jquery-ui/ui/autocomplete
+//= require js/plugin/jquery-ui/ui/mouse
+//= require js/plugin/jquery-ui/ui/sortable
 //= require js/plugin/jquery-mentions/jquery.mentions
 
 // require js/plugin/datatables/jquery.dataTables.min
@@ -65,6 +68,8 @@
 // require js/plugin/flot/jquery.flot.pie
 // require js/plugin/flot/jquery.flot.time
 // require js/plugin/flot/jquery.flot.tooltip
+
+//= require js/plugin/superbox/superbox
 
 //= require jquery_nested_form
 //= require chucky_bots
@@ -101,4 +106,9 @@
 // Refile custom para que funcione con dropzone
 //= require refile-dropzone
 //= require js/plugin/dropzone/dropzone.js
+
+// considerar poner estos dos solo en la pagina show de activity obras ya que solo se usa alli para mostrar el mapa
+//= require underscore
+//= require gmaps/google
+
 //= require js/app.config

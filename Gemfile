@@ -113,7 +113,8 @@ gem 'axlsx_rails'
 #select2 para rails. https://github.com/argerim/select2-rails
 gem 'select2-rails', '3.5.4'
 # provide API (scripts, helpers, controller and base class for ajax-search) for select2. https://github.com/Loriowar/auto_select2
-gem 'auto_select2'
+# (0.5.3)
+gem 'auto_select2', github: "matiasrenta/auto_select2", branch: "master"
 # Provide select2 input class for simple_form. https://github.com/tab10id/simple_form_auto_select2
 gem 'simple_form_auto_select2'
 # para setear environment variables. https://github.com/bkeepers/dotenv
@@ -124,6 +125,15 @@ gem 'mailboxer'
 gem 'active_record_union'
 # https://github.com/elight/acts_as_commentable_with_threading
 gem 'acts_as_commentable_with_threading'
+# Geocoder
+gem 'geocoder'
+#gem 'geokit'
+#gem 'geokit-rails'
+gem 'gmaps4rails'
+#gem 'graticule'
+
+# soft delete. https://github.com/rubysherpas/paranoia
+gem 'paranoia', '~> 2.0'
 # (-)Instalados por mi
 
 

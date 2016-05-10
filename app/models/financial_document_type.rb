@@ -4,5 +4,7 @@ class FinancialDocumentType < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
-  TYPES = [['Grupo Facturas', 'FinancialDocumentBill'], ['Grupo Contratos', 'FinancialDocumentContract'], ['Grupo Otros', 'FinancialDocumentOther']]
+  SYS_DOC_TYPES = [[I18n.t('simple_form.labels.defaults.financial_document_bill_group'), 'FinancialDocumentBill'],
+                   [I18n.t('simple_form.labels.defaults.financial_document_contract_group'), 'FinancialDocumentContract'],
+                   [I18n.t('simple_form.labels.defaults.financial_document_other_group'), 'FinancialDocumentOther']]
 end

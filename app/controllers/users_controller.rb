@@ -8,19 +8,6 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    #conversations = @user.mailbox.inbox
-    #@receipts = []
-    #conversations.each_with_index do |c, i|
-    #  #c.receipts_for(@user).each do |r|
-    #  #  @receipts << r
-    #  #end
-    #  @receipts = c.receipts_for(@user) if i == 0
-    #  @receipts.union_all(c.receipts_for(@user)) unless i == 0
-    #end
-    #@receipts.paginate(page: 1, per_page: 10)
-
-    @receipts = Mailboxer::Receipt.where(mailbox_type: 'inbox', receiver_id: @user.id).order('created_at desc').paginate(page: 1, per_page: 10)
-
   end
 
   # GET /users/new
@@ -67,8 +54,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: t("simple_form.flash.successfully_destroyed")
+    #prudent_destroy(@user)
   end
 
   def resend_password_instructions

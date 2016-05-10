@@ -2,9 +2,7 @@ class ProjectsController < ApplicationController
   #load_and_authorize_resource except: :index, param_method: :key_analytical_params
 
   def index
-    @projects_obra = do_index(ProjectObra, params, nil, true, nil, nil, :q_obra)
-    @projects_cultura = do_index(ProjectCultura, params, nil, true, nil, nil, :q_cultura)
-    @projects_administracion = do_index(ProjectAdministracion, params, nil, true, nil, nil, :q_administracion)
+    @projects = do_index(KeyAnalytical, params)
   end
 
   def show
@@ -12,10 +10,12 @@ class ProjectsController < ApplicationController
     authorize! :read, @key_analytical.class
     if @key_analytical.obra?
       @project_activity_obras = do_index(ProjectActivityObra, params)
-    elsif @key_analytical.administracion?
-      #@project_activity_administracion = do_index(ProjectActivityAdministracion, params)
-    elsif @key_analytical.cultura?
-      #@project_activity_administracion = do_index(ProjectActivityAdministracion, params)
+    elsif @key_analytical.social?
+      @project_activity_socials = do_index(ProjectActivitySocial, params)
+    elsif @key_analytical.adquisicion?
+      @project_activity_adquisicions = do_index(ProjectActivityAdquisicion, params)
+    elsif @key_analytical.nomina?
+      @project_activity_nominas = do_index(ProjectActivityNomina, params)
     else
       raise "Tipo de proyecto inexistente"
     end

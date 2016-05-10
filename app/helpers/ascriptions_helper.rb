@@ -1,0 +1,2 @@
+module AscriptionsHelper
+end

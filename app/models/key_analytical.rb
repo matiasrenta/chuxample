@@ -42,25 +42,24 @@ class KeyAnalytical < ActiveRecord::Base
   before_save :construct_key_analytical_string
 
   scope :obra, -> { where(project_type: 'ProjectObra') }
-  scope :cultura, -> { where(project_type: 'ProjectCultura') }
-  scope :administracion, -> { where(project_type: 'ProjectAdministracion') }
 
   self.inheritance_column = :project_type
 
   def self.project_types
-    %w(ProjectObra ProjectCultura ProjectAdministracion)
+    %w(ProjectObra ProjectSocial ProjectAdquisicion ProjectNomina)
   end
 
   def obra?
     project_type == "ProjectObra"
   end
-
-  def cultura?
-    project_type == "ProjectCultura"
+  def social?
+    project_type == "ProjectSocial"
   end
-
-  def cultura?
-    project_type == "ProjectAdministracion"
+  def adquisicion?
+    project_type == "ProjectAdquisicion"
+  end
+  def nomina?
+    project_type == "ProjectNomina"
   end
 
   private

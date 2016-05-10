@@ -2,57 +2,32 @@
 <!-- Note: This width of the aside area can be adjusted through LESS variables -->
 <aside id="left-panel">
 
-  <!-- User info -->
-  <div class="login-info" data-step="1" data-intro="Aqui se encuentra la información del usuario. Y aqui hay más info...">
-    <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
-        <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-          <%= image_tag attachment_url(current_user, :avatar, :fill, 50, 50, fallback: "avatars/male.png"), class: 'online' %>
-          <span><%= current_user.try(:name) %></span>
-        </a>
-    </span>
-  </div>
-  <!-- end user info -->
-
   <!-- NAVIGATION : This navigation is also responsive-->
   <nav>
     <ul>
-      <li data-step="1" data-intro="Este es el menú de administración.">
-        <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Administration</span></a>
-        <ul>
-          <li>
-            <%= link_to 'Users', users_path, {title: 'Users'}  %>
-          </li>
-          <li>
-            <%= link_to t('activerecord.models.key_analytical.other'), key_analyticals_path, {title: t('activerecord.models.key_analytical.other')}  %>
-          </li>
-          <li>
-            <a href="#">Estados y Municipios</a>
-            <ul>
-              <li>
-                <%= link_to t('activerecord.models.state.other'), states_path, {title: t('activerecord.models.state.other')} %>
-              </li>
-              <li>
-                <%= link_to t('activerecord.models.town.other'), towns_path, {title: t('activerecord.models.town.other')} %>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <%= link_to 'Settings', '/admin/settings', {title: 'Settings'}  %>
-          </li>
-          <li>
-            <%= link_to 'Delayed Jobs', delayed_jobs_path, {title: 'Delayed Jobs'}  %>
-          </li>
-        </ul>
+      <li data-step="1" data-intro="Este es el menú de dashboard.">
+        <a href="/"><i class="fa fa-lg fa-fw fa-dashboard"></i> <span class="menu-item-parent">Dashboard</span></a>
       </li>
-      <li data-step="1" data-intro="Este es el menú de proyectos.">
-        <a href="/projects"><i class="fa fa-lg fa-fw fa-list-ol"></i> <span class="menu-item-parent">Proyectos</span></a>
-      </li>
+      <% if can? :read, KeyAnalytical %>
+          <li data-step="2" data-intro="Este es el menú de proyectos.">
+            <a href="/projects"><i class="fa fa-lg fa-fw fa-list-ol"></i> <span class="menu-item-parent">Proyectos</span></a>
+          </li>
+      <% end %>
 
-      <li data-step="1" data-intro="Este es el menú de proveedores.">
-        <a href="/suppliers"><i class="fa fa-lg fa-fw fa-truck"></i> <span class="menu-item-parent"><%= t('activerecord.models.supplier.other') %></span></a>
-      </li>
+      <% if can? :read, Supplier %>
+          <li data-step="3" data-intro="Este es el menú de proveedores.">
+            <a href="/suppliers"><i class="fa fa-lg fa-fw fa-truck"></i> <span class="menu-item-parent"><%= t('activerecord.models.supplier.other') %></span></a>
+          </li>
+      <% end %>
 
-      <li data-step="2" data-intro="Este es el menú catálogos.">
+      <% if can? :read, :public_activities %>
+          <li data-step="3" data-intro="Este es el menú de Actividad de Usuarios.">
+            <a href="/public_activity"><i class="fa fa-lg fa-fw fa-video-camera"></i> <span class="menu-item-parent">Actividad de Usuarios</span></a>
+          </li>
+      <% end %>
+
+      <% if can? :read, :catalogs %>
+        <li data-step="4" data-intro="Este es el menú catálogos.">
         <a href="#"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Catálogos</span></a>
         <ul>
           <li>
@@ -210,35 +185,59 @@
               </li>
             </ul>
           </li>
-
           <li>
             <a href="/financial_document_types"><%= t('activerecord.models.financial_document_type.other') %></a>
           </li>
-
         </ul>
       </li>
+      <% end %>
 
-      <li data-step="3" data-intro="Este es el menú de desarollo.">
-        <a href="#"><i class="fa fa-lg fa-fw fa-code"></i> <span class="menu-item-parent">Development</span></a>
+      <% if can? :read, :administrations %>
+        <li data-step="5" data-intro="Este es el menú de administración.">
+        <a href="#"><i class="fa fa-lg fa-fw fa-wrench"></i> <span class="menu-item-parent">Administración</span></a>
         <ul>
           <li>
-            <%= link_to 'Chucky Bots', dev_chucky_bots_path, {title: 'Chucky Bots'}  %>
-          </li>
-          <li data-no-turbolink>
-            <%= link_to 'Chartkick', '/dev/examples/chartkick', {title: 'Chartkick'}  %>
+            <%= link_to t('activerecord.models.user.other'), users_path, {title: t('activerecord.models.user.other')}  %>
           </li>
           <li>
-            <%= link_to 'Things', things_path, {title: 'Things'}  %>
+            <%= link_to t('activerecord.models.key_analytical.other'), key_analyticals_path, {title: t('activerecord.models.key_analytical.other')}  %>
           </li>
           <li>
-            <%= link_to 'Public Activity', '/public_activity', {title: 'Public Activity'}  %>
+            <%= link_to t('activerecord.models.staff.other'), staffs_path, {title: t('activerecord.models.staff.other')}  %>
           </li>
           <li>
-            <%= link_to 'Pruebas', '/welcome/prueba', {title: 'Pruebas'}  %>
+            <a href="#">Estados y Municipios</a>
+            <ul>
+              <li>
+                <%= link_to t('activerecord.models.state.other'), states_path, {title: t('activerecord.models.state.other')} %>
+              </li>
+              <li>
+                <%= link_to t('activerecord.models.town.other'), towns_path, {title: t('activerecord.models.town.other')} %>
+              </li>
+            </ul>
           </li>
-
+          <li>
+            <%= link_to t('activerecord.models.social_development_program.other'), social_development_programs_path, {title: t('activerecord.models.social_development_program.other')} %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.territorial_unit.other'), territorial_units_path, {title: t('activerecord.models.territorial_unit.other')} %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.ascription.other'), ascriptions_path, {title: t('activerecord.models.ascription.other')} %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.job_title.other'), job_titles_path, {title: t('activerecord.models.job_title.other')} %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.ley_articulo.other'), ley_articulos_path, {title: t('activerecord.models.ley_articulo.other')} %>
+          </li>
+          <li>
+            <%= link_to t('activerecord.models.verification.other'), verifications_path, {title: t('activerecord.models.verification.other')} %>
+          </li>
         </ul>
       </li>
+      <% end %>
+
       <li class="hidden-xs">
       	<a href="#"><i class="fa fa-lg fa-fw fa-question-circle"></i> <span class="menu-item-parent">Ayuda</span></a>
       	<ul>
@@ -247,6 +246,41 @@
           </li>
         </ul>
       </li>
+
+      <% if current_user.superuser? %>
+          <li data-step="6" data-intro="Este es el menú de Superuser.">
+            <a href="#"><i class="fa fa-lg fa-fw fa-code"></i> <span class="menu-item-parent">Superuser</span></a>
+            <ul>
+              <li>
+                <%= link_to 'Settings', '/admin/settings', {title: 'Settings'}  %>
+              </li>
+              <li>
+                <%= link_to 'Delayed Jobs', delayed_jobs_path, {title: 'Delayed Jobs'}  %>
+              </li>
+              <li>
+                <%= link_to 'Catalog Cleaner', dev_catalog_cleaners_path, {title: 'Catalog Cleaner'}  %>
+              </li>
+
+              <li>
+                  <a href="#">Development</a>
+                  <ul>
+                    <li>
+                      <%= link_to 'Chucky Bots', dev_chucky_bots_path, {title: 'Chucky Bots'}  %>
+                    </li>
+                    <li>
+                      <%= link_to 'Things', things_path, {title: 'Things'}  %>
+                    </li>
+                    <li data-no-turbolink>
+                      <%= link_to 'Chartkick', '/dev/examples/chartkick', {title: 'Chartkick'}  %>
+                    </li>
+                    <li>
+                      <%= link_to 'Pruebas', '/welcome/prueba', {title: 'Pruebas'}  %>
+                    </li>
+                  </ul>
+              </li>
+            </ul>
+          </li>
+      <% end %>
 
     </ul>
   </nav>

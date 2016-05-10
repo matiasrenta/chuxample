@@ -28,14 +28,14 @@ $(function() {
 
 	$(".show-details").click(function(event) {
 		event.preventDefault();
-		var elem = $(this).closest("p").next(".detalles");
-
+		var elem = $(this).closest("li").find(".detalles");
 		$(elem).toggle("slow");
-
-		if ($(this).text() == 'Mostrar detalles') {
-			$(this).text('Ocultar detalles');
+		$( ".show-details" ).tooltip( "hide", { effect: "explode", duration: 1000 } );
+		var title = $(this).attr('data-original-title');
+		if (title == 'Detalle de cambios') {
+			$(this).attr('data-original-title','Ocultar detalles');
 		} else {
-			$(this).text('Mostrar detalles');
+			$(this).attr('data-original-title','Detalle de cambios');
 		}
 
 	});
@@ -114,7 +114,6 @@ $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 	$('a.tooltipwithnofollow[rel="tooltip nofollow"]').tooltip();
 });
-
 // ******** Menu Minified ?? ********* -->
 $(function() {
 	$(".minifyme").click(function() {
@@ -226,12 +225,6 @@ $(document).ready(function() {
 });
 // Filtros
 $(function() {
-	// $(".filtrar").click(function(event) {
-	// 	var element = $(this)[0];
-	// 	var elementId = $(element).attr('id');
-	// 	console.log( $(element).attr('id') );
-	// 	$("elementId .filter-zone").slideToggle("slow");
-	// });
 	var bgs = $('.filter-zone');
 	$('.filter-button').click(function () {
         var target = $($(this).data('target')).stop(true).slideToggle();
@@ -239,15 +232,46 @@ $(function() {
     })
 });
 
-//Append help button
-var inputWork = $('.field_with_image_rt');
-var rel = $(inputWork).attr('data-pop');
-var placement = $(inputWork).attr('data-placement');
-var title = $(inputWork).attr('data-title');
-var content = $(inputWork).attr('data-content');
-var icon = $(inputWork).attr('data-icon');
-$(inputWork).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+//Append button a input y select
+var rel, placement, title, content, icon, idModal;
+
+//Append help button a la derecha con popover
+var rightPop = $('.field_with_popover_rt');
+$(rightPop).each(function(){
+	rel = $(this).data('pop');
+	placement = $(this).data('placement');
+	title = $(this).data('title');
+	content = $(this).data('content');
+	icon = $(this).data('icon');
+	$(this).parent().addClass('input-group add-on').append('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+});
+
+//Append help button a la izquierda con popover
+var leftPop = $('.field_with_popover_lf');
+$(leftPop).each(function(){
+	rel = $(this).data('pop');
+	placement = $(this).data('placement');
+	title = $(this).data('title');
+	content = $(this).data('content');
+	icon = $(this).data('icon');
+	$(this).parent().addClass('input-group add-on')
+	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-rel="'+rel+'" data-placement="'+placement+'" data-original-title="'+title+'" data-content="'+content+'"><i class="'+icon+'"></i></button></div>');
+});
+
+//Append add button a la izquierda con tooltip y modal
+var leftTool = $('.field_with_tooltip_lf');
+$(leftTool).each(function(){
+	toggle = $(this).data('toggle');
+	title = $(this).data('title');
+	icon = $(this).data('icon');
+	idModal = $(this).data("id-modal");
+	$(this).parent().addClass('input-group add-on');
+	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-toggle="modal" data-tooltip="true" data-original-title="'+title+'" data-content="'+content+'" data-target="#'+idModal+'"><i class="'+icon+'"></i></button></div>');
+});
+
 // activate popovers with hover states
 $("[rel=popover-hover], [data-rel=popover-hover]").popover({
 	trigger : "hover"
 });
+// Inicializa tooltip
+$('[data-tooltip="true"]').tooltip();

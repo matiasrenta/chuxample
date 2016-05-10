@@ -9,6 +9,11 @@ class ProjectActivityObrasController < ApplicationController
   # GET /project_activity_obras/1
   def show
     @key_analytical = @project_activity_obra.project_obra
+
+    @hash = Gmaps4rails.build_markers([@project_activity_obra]) do |activity_obra, marker|
+      marker.lat activity_obra.latitude
+      marker.lng activity_obra.longitude
+    end
   end
 
   # GET /project_activity_obras/new
@@ -45,8 +50,13 @@ class ProjectActivityObrasController < ApplicationController
 
   # DELETE /project_activity_obras/1
   def destroy
-    @project_activity_obra.destroy
-    redirect_to project_path(@project_activity_obra.project_obra), notice: t("simple_form.flash.successfully_destroyed")
+    if @project_activity_obra.destroy
+      redirect_to project_path(@project_activity_obra.project_obra), notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@project_activity_obra)
+      redirect_to :back
+    end
+
   end
 
   private

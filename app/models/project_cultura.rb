@@ -1,2 +1,0 @@
-class ProjectCultura < KeyAnalytical
-end

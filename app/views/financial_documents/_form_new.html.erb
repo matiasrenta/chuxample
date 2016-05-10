@@ -4,7 +4,7 @@
   </header>
   <div>
     <div class="widget-body">
-      <%= simple_form_for [@project_activity, @financial_document.becomes(FinancialDocument)], url: new_with_type_project_activity_obra_financial_documents_path, method: :get, html: {class: 'form-horizontal'},
+      <%= simple_form_for [@project_activityable, @financial_document.becomes(FinancialDocument)], url: @new_with_type_path, method: :get, html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
                                   check_boxes: :horizontal_radio_and_checkboxes,
@@ -17,7 +17,7 @@
             <div class="widget-footer">
               <div class="form-actions">
                 <div class="btn-group">
-                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), creating? ? project_activity_obra_path(@project_activity) : project_activity_obra_path(@financial_document.project_activityable), class: 'btn btn-default btn-sm' if can?(:read, FinancialDocument) %>
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), @list_path, class: 'btn btn-default btn-sm' if can?(:read, FinancialDocument) %>
                   <button type="submit" class="btn btn-primary btn-sm">
                     <i class='fa fa-check-circle'></i> next
                   </button>

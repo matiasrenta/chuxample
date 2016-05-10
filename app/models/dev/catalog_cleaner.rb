@@ -70,4 +70,22 @@ class CatalogCleaner < Object
     end
   end
 
+  def self.assign_project_type_to_key_analyticals
+    KeyAnalytical.all.each do |key_analytical|
+      case key_analytical.cat_ppr_par_chapter.key
+        when '6000'
+          key_analytical.project_type = 'ProjectObra'
+        when '4000'
+          key_analytical.project_type = 'ProjectSocial'
+        when '2000', '3000', '5000'
+          key_analytical.project_type = 'ProjectAdquisicion'
+        when '1000'
+          key_analytical.project_type = 'ProjectNomina'
+        else
+          raise "que diablos es este chapter? #{key_analytical.cat_ppr_par_chapter.key}"
+      end
+      key_analytical.save!
+    end
+  end
+
 end

@@ -46,8 +46,12 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   # DELETE <%= route_url %>/1
   def destroy
-    @<%= orm_instance.destroy %>
-    redirect_to <%= index_helper %>_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @<%= orm_instance.destroy %>
+      redirect_to <%= index_helper %>_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@<%= singular_table_name %>)
+      redirect_to <%= index_helper %>_url
+    end
   end
 
   private

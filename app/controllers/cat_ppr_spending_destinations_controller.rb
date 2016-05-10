@@ -41,8 +41,12 @@ class CatPprSpendingDestinationsController < ApplicationController
 
   # DELETE /cat_ppr_spending_destinations/1
   def destroy
-    @cat_ppr_spending_destination.destroy
-    redirect_to cat_ppr_spending_destinations_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_ppr_spending_destination.destroy
+      redirect_to cat_ppr_spending_destinations_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_ppr_spending_destination)
+      redirect_to :back
+    end
   end
 
   private

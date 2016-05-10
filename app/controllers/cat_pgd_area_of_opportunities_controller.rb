@@ -41,8 +41,12 @@ class CatPgdAreaOfOpportunitiesController < ApplicationController
 
   # DELETE /cat_pgd_area_of_opportunities/1
   def destroy
-    @cat_pgd_area_of_opportunity.destroy
-    redirect_to cat_pgd_area_of_opportunities_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_pgd_area_of_opportunity.destroy
+      redirect_to cat_pgd_area_of_opportunities_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_pgd_area_of_opportunity)
+      redirect_to :back
+    end
   end
 
   private

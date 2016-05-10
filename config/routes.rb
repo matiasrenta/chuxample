@@ -1,18 +1,104 @@
 Rails.application.routes.draw do
 
+  resources :verifications
+  resources :ley_articulos, shallow: true do
+    put 'validar_documento', on: :member
+    resources :ley_fraccions do
+      put 'validar_documento', on: :member
+      collection do
+        get 'new_import'
+        post 'create_import'
+        get 'download_import_file'
+      end
+    end
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :staffs do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :job_titles do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :ascriptions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :territorial_units do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :social_development_programs
   resources :suppliers
-  resources :towns
-  resources :states
+  resources :towns do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :states do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+
   resources :financial_document_types
+
   resources :projects, shallow: true do
     resources :project_activity_obras, shallow: true do
       resources :financial_documents do
         get 'new_with_type', on: :collection
       end
     end
-    # resources :project_activities, shallow: true do
-    #   resources :financial_documents
-    # end
+    resources :project_activity_socials, shallow: true do
+      resources :beneficiaries do
+        collection do
+          get 'new_import'
+          post 'create_import'
+          get 'download_import_file'
+        end
+      end
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
+    end
+    resources :project_activity_adquisicions, shallow: true do
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
+    end
+    resources :project_activity_nominas, shallow: true do
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
+      resources :paysheets do
+        collection do
+          get 'new_import'
+          post 'create_import'
+          get 'download_import_file'
+        end
+      end
+    end
   end
   resources :key_analyticals do
     collection do
@@ -206,6 +292,9 @@ Rails.application.routes.draw do
   end
 
   namespace :dev do
+    resources :catalog_cleaners do
+      post :run_cleaner, on: :collection
+    end
     resources :chucky_bots
     resources :examples do
       collection do
@@ -291,5 +380,7 @@ Rails.application.routes.draw do
   # API's routes
   api_version(:module => "V1", :path => {:value => "v1"}, :defaults => {:format => "json"}) do
     resources :things
+    resources :project_activity_obras
+    resources :verifications
   end
 end

@@ -1,0 +1,138 @@
+<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+    <header>
+      <h2>Actividades del Proyecto</h2>
+      <div class="widget-toolbar filter-group">
+        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_project_activity_adquisicion_path(@key_analytical), class: 'btn btn-primary' if (can? :create, ProjectActivityAdquisicion) %>
+        <a href="javascript:void(0)" data-target="#filter-wid-id-1" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+      </div>
+    </header>
+    <div class="no-padding">
+      <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-1" style="display:none;">
+        <div class="col-xs-12"><%= search_form_for(@q, url: project_path(@key_analytical), html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+              <fieldset>
+                <div class="row">
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
+                    <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[description_cont]"><%= t('simple_form.labels.defaults.description') %></label>
+                    <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[calle_cont]"><%= t('simple_form.labels.defaults.calle') %></label>
+                    <%= f.search_field :calle_cont, label: false, class: "form-control input-sm" %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[nro_exterior_cont]"><%= t('simple_form.labels.defaults.nro_exterior') %></label>
+                    <%= f.search_field :nro_exterior_cont, label: false, class: "form-control input-sm" %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[nro_interior_cont]"><%= t('simple_form.labels.defaults.nro_interior') %></label>
+                    <%= f.search_field :nro_interior_cont, label: false, class: "form-control input-sm" %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[colonia_cont]"><%= t('simple_form.labels.defaults.colonia') %></label>
+                    <%= f.search_field :colonia_cont, label: false, class: "form-control input-sm" %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[codigo_postal_cont]"><%= t('simple_form.labels.defaults.codigo_postal') %></label>
+                    <%= f.search_field :codigo_postal_cont, label: false, class: "form-control input-sm" %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[tipo_adquisicion_cont]"><%= t('simple_form.labels.defaults.tipo_adquisicion') %></label>
+                    <%= f.search_field :tipo_adquisicion_cont, label: false, class: "form-control input-sm" %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12 spanning">
+                    <label for="q[cantidad_gteq]"><%= t('simple_form.labels.defaults.cantidad') %></label>
+
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :cantidad_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                    </div>
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :cantidad_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12 spanning">
+                    <label for="q[avance_programado_gteq]"><%= t('simple_form.labels.defaults.avance_programado') %></label>
+
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :avance_programado_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                    </div>
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :avance_programado_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12 spanning">
+                    <label for="q[avance_real_gteq]"><%= t('simple_form.labels.defaults.avance_real') %></label>
+
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :avance_real_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                    </div>
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :avance_real_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12 spanning">
+                    <label for="q[real_start_date_gteq]"><%= t('simple_form.labels.defaults.real_start_date') %></label>
+
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :real_start_date_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.real_start_date_gteq) %>
+                    </div>
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :real_start_date_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.real_start_date_lteq) %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12 spanning">
+                    <label for="q[real_end_date_gteq]"><%= t('simple_form.labels.defaults.real_end_date') %></label>
+
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :real_end_date_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.real_end_date_gteq) %>
+                    </div>
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :real_end_date_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.real_end_date_lteq) %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pull-right">
+                  <div class="col-sm-12">
+                    <%= render 'shared/submit_filters' %>
+                  </div>
+                </div>
+              </fieldset>
+          <% end %>
+        </div>
+      </div>
+      <div class="widget-body">
+        <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+          <thead>
+          <tr>
+            <th class='all control'><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
+            <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
+            <th><%= sort_link(@q, :tipo_adquisicion, t('simple_form.labels.defaults.tipo_adquisicion')) %></th>
+            <th class="all"><%= t('simple_form.screen.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @project_activity_adquisicions.each do |project_activity_adquisicion| %>
+              <tr>
+                <td><%= project_activity_adquisicion.name %></td>
+                <td><%= project_activity_adquisicion.description %></td>
+                <td><%= project_activity_adquisicion.tipo_adquisicion %></td>
+                <td class="table-actions">
+                  <%= render 'shared/action_icons', locals: {target: project_activity_adquisicion} %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="widget-footer">
+          <%= render 'shared/pagination', locals: {target: @project_activity_adquisicions, model_index_path: project_project_activity_adquisicions_path(@key_analytical)} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+

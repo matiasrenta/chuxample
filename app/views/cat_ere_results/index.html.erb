@@ -21,7 +21,7 @@
                               <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
                             </div>
                                                                                                                                 <div class="form-group">
-                                  <label for="q[cat_ere_expending_focu_id_cont]"><%= t('simple_form.labels.cat_ere_expending_focu') %></label>
+                                  <label for="q[cat_ere_expending_focu_id_cont]"><%= t('simple_form.labels.defaults.cat_ere_expending_focu') %></label>
                                   <%= f.select :cat_ere_expending_focu_id_eq, options_from_collection_for_select(CatEreExpendingFocu.all, :id, :description, @q.cat_ere_expending_focu_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                             <%= render 'shared/submit_filters' %>
@@ -34,7 +34,7 @@
               <tr>
                                                             <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
                                                                                 <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.cat_ere_expending_focu')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.defaults.cat_ere_expending_focu')) %></th>
                                                     <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>

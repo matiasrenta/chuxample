@@ -36,3 +36,24 @@ DB:SEED:DUMP:
 =============
 rake db:seed:dump APPEND=true EXCLUDE=created_at,updated_at MODELS=CatGenAxi,CatGenGoal...
 para ejecutarlo en produccion: rake db:seed
+Considerar usar pg_dump de PostgreSQL (ver abajo)
+
+PG_DUMP:
+========
+http://www.postgresql.org/docs/9.1/static/app-pgdump.html
+http://www.postgresql.org/docs/9.1/static/backup-dump.html
+http://www.thegeekstuff.com/2009/01/how-to-backup-and-restore-postgres-database-using-pg_dump-and-psql/
+http://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
+TIP: le puse al archivo (sudo vim /etc/postgresql/9.3/main/pg_hba.conf) que dice el link de arriba para que no me de el error, luego "sudo service postgresql restart":
+local   all          usuario_del_database_yml           md5
+
+dumping: pg_dump -U dbname > outfile
+pg_dump -U pitagoras -o -O -C cuauh_development > cuauh_development_dump.txt
+
+restoring:
+psql -U web -d cuauh_production -f cuauh_development_dump.txt
+
+
+LOGS PRODUCCION:
+================
+Nginx: /var/log/nginx/nginx_error.log (hacer "sudo su" y luego ir al directorio)

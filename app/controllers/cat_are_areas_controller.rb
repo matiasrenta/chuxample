@@ -41,8 +41,12 @@ class CatAreAreasController < ApplicationController
 
   # DELETE /cat_are_areas/1
   def destroy
-    @cat_are_area.destroy
-    redirect_to cat_are_areas_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @cat_are_area.destroy
+      redirect_to cat_are_areas_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@cat_are_area)
+      redirect_to :back
+    end
   end
 
   private

@@ -41,8 +41,12 @@ class StatesController < ApplicationController
 
   # DELETE /states/1
   def destroy
-    @state.destroy
-    redirect_to states_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @state.destroy
+      redirect_to states_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@state)
+      redirect_to :back
+    end
   end
 
   private

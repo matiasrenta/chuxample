@@ -21,23 +21,23 @@
                               <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
                             </div>
                                                                                                                                 <div class="form-group">
-                                  <label for="q[cat_fon_funding_source_id_cont]"><%= t('simple_form.labels.cat_fon_funding_source') %></label>
+                                  <label for="q[cat_fon_funding_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_funding_source') %></label>
                                   <%= f.select :cat_fon_funding_source_id_eq, options_from_collection_for_select(CatFonFundingSource.all, :id, :description, @q.cat_fon_funding_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_fon_generic_source_id_cont]"><%= t('simple_form.labels.cat_fon_generic_source') %></label>
+                                  <label for="q[cat_fon_generic_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_generic_source') %></label>
                                   <%= f.select :cat_fon_generic_source_id_eq, options_from_collection_for_select(CatFonGenericSource.all, :id, :description, @q.cat_fon_generic_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_fon_specific_source_id_cont]"><%= t('simple_form.labels.cat_fon_specific_source') %></label>
+                                  <label for="q[cat_fon_specific_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_specific_source') %></label>
                                   <%= f.select :cat_fon_specific_source_id_eq, options_from_collection_for_select(CatFonSpecificSource.all, :id, :description, @q.cat_fon_specific_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_fon_year_document_id_cont]"><%= t('simple_form.labels.cat_fon_year_document') %></label>
+                                  <label for="q[cat_fon_year_document_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_year_document') %></label>
                                   <%= f.select :cat_fon_year_document_id_eq, options_from_collection_for_select(CatFonYearDocument.all, :id, :description, @q.cat_fon_year_document_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_fon_origin_resource_id_cont]"><%= t('simple_form.labels.cat_fon_origin_resource') %></label>
+                                  <label for="q[cat_fon_origin_resource_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_origin_resource') %></label>
                                   <%= f.select :cat_fon_origin_resource_id_eq, options_from_collection_for_select(CatFonOriginResource.all, :id, :description, @q.cat_fon_origin_resource_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                             <%= render 'shared/submit_filters' %>
@@ -50,11 +50,11 @@
               <tr>
                                                             <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
                                                                                 <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_funding_source_name, t('simple_form.labels.cat_fon_funding_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_generic_source_name, t('simple_form.labels.cat_fon_generic_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_specific_source_name, t('simple_form.labels.cat_fon_specific_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_year_document_name, t('simple_form.labels.cat_fon_year_document')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_origin_resource_name, t('simple_form.labels.cat_fon_origin_resource')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_fon_funding_source_name, t('simple_form.labels.defaults.cat_fon_funding_source')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_fon_generic_source_name, t('simple_form.labels.defaults.cat_fon_generic_source')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_fon_specific_source_name, t('simple_form.labels.defaults.cat_fon_specific_source')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_fon_year_document_name, t('simple_form.labels.defaults.cat_fon_year_document')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_fon_origin_resource_name, t('simple_form.labels.defaults.cat_fon_origin_resource')) %></th>
                                                     <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>

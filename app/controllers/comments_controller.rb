@@ -1,13 +1,14 @@
 class CommentsController < ApplicationController
 
   def create
-    commentable = commentable_type.constantize.find(commentable_id)
-    @comment = Comment.build_from(commentable, current_user.id, body)
+    @commentable = commentable_type.constantize.find(commentable_id)
+    @comment = Comment.build_from(@commentable, current_user.id, body)
 
     respond_to do |format|
       if @comment.save
         make_child_comment
-        format.html  { redirect_to(:back, :notice => 'Comment was successfully added.') }
+        notify_mention_users
+        format.html  { redirect_to(:back, :notice => t('activerecord.messages.comment_successfully_added')) }
       else
         format.html  { render :action => "new" }
       end
@@ -43,4 +44,11 @@ class CommentsController < ApplicationController
     @comment.move_to_child_of(parent_comment)
   end
 
+  def notify_mention_users
+    recipients = Notificator.recipients_from_body(body)
+    if recipients.size > 0
+      entity_link = view_context.link_to(@commentable.try(:name), eval("#{@commentable.class.name.underscore}_path(@commentable)"), class: 'display-normal')
+      Notificator.send(current_user, recipients, "<strong>#{current_user.name}</strong> te etiquetó en un comentario de <strong>#{t("activerecord.models.#{@commentable.class.name.underscore}.one")}</strong> #{entity_link}")
+    end
+  end
 end

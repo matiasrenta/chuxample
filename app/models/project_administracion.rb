@@ -1,2 +1,0 @@
-class ProjectAdministracion < KeyAnalytical
-end

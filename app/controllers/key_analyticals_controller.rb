@@ -41,8 +41,12 @@ class KeyAnalyticalsController < ApplicationController
 
   # DELETE /key_analyticals/1
   def destroy
-    @key_analytical.destroy
-    redirect_to key_analyticals_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @key_analytical.destroy
+      redirect_to key_analyticals_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@key_analytical)
+      redirect_to :back
+    end
   end
 
   private

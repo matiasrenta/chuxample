@@ -12,8 +12,12 @@ class DelayedJobsController < ApplicationController
 
   # DELETE /delayed_jobs/1
   def destroy
-    @delayed_job.destroy
-    redirect_to delayed_jobs_url, notice: t("simple_form.flash.successfully_destroyed")
+    if @delayed_job.destroy
+      redirect_to delayed_jobs_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@delayed_job)
+      redirect_to :back
+    end
   end
 
   private

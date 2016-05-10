@@ -10,7 +10,7 @@ class ThingPart < ActiveRecord::Base
 
   has_and_belongs_to_many :things, join_table: 'things_thing_parts'
 
-  validates :name, presence: true
+  validates :name, :field1, presence: true
   validates :name, uniqueness: true
 
 

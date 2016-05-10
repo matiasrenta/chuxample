@@ -21,31 +21,31 @@
                               <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
                             </div>
                                                                                                                                 <div class="form-group">
-                                  <label for="q[cat_pgd_axi_id_cont]"><%= t('simple_form.labels.cat_pgd_axi') %></label>
+                                  <label for="q[cat_pgd_axi_id_cont]"><%= t('simple_form.labels.defaults.cat_pgd_axi') %></label>
                                   <%= f.select :cat_pgd_axi_id_eq, options_from_collection_for_select(CatPgdAxi.all, :id, :description, @q.cat_pgd_axi_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_ere_expending_focu_id_cont]"><%= t('simple_form.labels.cat_ere_expending_focu') %></label>
+                                  <label for="q[cat_ere_expending_focu_id_cont]"><%= t('simple_form.labels.defaults.cat_ere_expending_focu') %></label>
                                   <%= f.select :cat_ere_expending_focu_id_eq, options_from_collection_for_select(CatEreExpendingFocu.all, :id, :description, @q.cat_ere_expending_focu_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_ere_result_id_cont]"><%= t('simple_form.labels.cat_ere_result') %></label>
+                                  <label for="q[cat_ere_result_id_cont]"><%= t('simple_form.labels.defaults.cat_ere_result') %></label>
                                   <%= f.select :cat_ere_result_id_eq, options_from_collection_for_select(CatEreResult.all, :id, :description, @q.cat_ere_result_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_ere_subresult_id_cont]"><%= t('simple_form.labels.cat_ere_subresult') %></label>
+                                  <label for="q[cat_ere_subresult_id_cont]"><%= t('simple_form.labels.defaults.cat_ere_subresult') %></label>
                                   <%= f.select :cat_ere_subresult_id_eq, options_from_collection_for_select(CatEreSubresult.all, :id, :description, @q.cat_ere_subresult_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_cfu_finality_id_cont]"><%= t('simple_form.labels.cat_cfu_finality') %></label>
+                                  <label for="q[cat_cfu_finality_id_cont]"><%= t('simple_form.labels.defaults.cat_cfu_finality') %></label>
                                   <%= f.select :cat_cfu_finality_id_eq, options_from_collection_for_select(CatCfuFinality.all, :id, :description, @q.cat_cfu_finality_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_cfu_function_id_cont]"><%= t('simple_form.labels.cat_cfu_function') %></label>
+                                  <label for="q[cat_cfu_function_id_cont]"><%= t('simple_form.labels.defaults.cat_cfu_function') %></label>
                                   <%= f.select :cat_cfu_function_id_eq, options_from_collection_for_select(CatCfuFunction.all, :id, :description, @q.cat_cfu_function_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                                                                                             <div class="form-group">
-                                  <label for="q[cat_cfu_subfunction_id_cont]"><%= t('simple_form.labels.cat_cfu_subfunction') %></label>
+                                  <label for="q[cat_cfu_subfunction_id_cont]"><%= t('simple_form.labels.defaults.cat_cfu_subfunction') %></label>
                                   <%= f.select :cat_cfu_subfunction_id_eq, options_from_collection_for_select(CatCfuSubfunction.all, :id, :description, @q.cat_cfu_subfunction_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                                 </div>
                                                                                             <%= render 'shared/submit_filters' %>
@@ -58,13 +58,13 @@
               <tr>
                                                             <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
                                                                                 <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.cat_pgd_axi')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.cat_ere_expending_focu')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.cat_ere_result')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_ere_subresult_name, t('simple_form.labels.cat_ere_subresult')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_cfu_finality_name, t('simple_form.labels.cat_cfu_finality')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_cfu_function_name, t('simple_form.labels.cat_cfu_function')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_cfu_subfunction_name, t('simple_form.labels.cat_cfu_subfunction')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.defaults.cat_pgd_axi')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.defaults.cat_ere_expending_focu')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.defaults.cat_ere_result')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_ere_subresult_name, t('simple_form.labels.defaults.cat_ere_subresult')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_cfu_finality_name, t('simple_form.labels.defaults.cat_cfu_finality')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_cfu_function_name, t('simple_form.labels.defaults.cat_cfu_function')) %></th>
+                                                                                <th><%= sort_link(@q, :cat_cfu_subfunction_name, t('simple_form.labels.defaults.cat_cfu_subfunction')) %></th>
                                                     <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>

@@ -1,0 +1,79 @@
+<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+    <header>
+      <span class="widget-icon"><i class="<%= t('activerecord.errors.paysheet.fa_icon') %>"></i></span>
+      <h2><%= t('activerecord.errors.paysheet.other') %></h2>
+      <div class="widget-toolbar">
+        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_activity_nomina_paysheet_path(@project_activity_nomina), class: 'btn btn-primary' if (can? :create, FinancialDocument) %>
+        <a href="javascript:void(0)" data-target="#filter-wid-id-1" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+      </div>
+    </header>
+    <div class="no-padding">
+      <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-1" style="display:none;">
+        <div class="col-xs-12">
+          <%= search_form_for(@q, url: project_activity_nomina_path(@project_activity_nomina), html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+              <fieldset>
+                <div class="row">
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[staff_id_cont]"><%= t('simple_form.labels.defaults.staff') %></label>
+                    <%= f.select :staff_id_eq, options_from_collection_for_select(Staff.all, :id, :to_label, @q.staff_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[job_title_id_cont]"><%= t('simple_form.labels.defaults.job_title') %></label>
+                    <%= f.select :job_title_id_eq, options_from_collection_for_select(JobTitle.all, :id, :name, @q.job_title_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <label for="q[ascription_id_cont]"><%= t('simple_form.labels.defaults.ascription') %></label>
+                    <%= f.select :ascription_id_eq, options_from_collection_for_select(Ascription.all, :id, :name, @q.ascription_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                  </div>
+                  <div class="col-sm-6 col-xs-12 spanning">
+                    <label for="q[importe_gteq]"><%= t('simple_form.labels.defaults.importe') %></label>
+
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :importe_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                    </div>
+                    <div class="input-group input-group-sm block">
+                      <%= f.search_field :importe_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pull-right">
+                  <div class="col-sm-12">
+                    <%= render 'shared/submit_filters' %>
+                  </div>
+                </div>
+              </fieldset>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="widget-body">
+        <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+          <thead>
+          <tr>
+            <th class='all control'><%= t('simple_form.labels.defaults.staff') %></th>
+            <th><%= sort_link(@q, :job_title_name, t('simple_form.labels.defaults.job_title')) %></th>
+            <th><%= sort_link(@q, :importe, t('simple_form.labels.defaults.importe')) %></th>
+            <th class="all"><%= t('simple_form.screen.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @project_activity_nomina.paysheets.each do |paysheet| %>
+              <tr>
+                <td><%= paysheet.staff.try(:to_label) %></td>
+                <td><%= paysheet.job_title.try(:name) %></td>
+                <td align='right'><%= number_to_currency(paysheet.importe, unit: '') %></td>
+                <td class="table-actions">
+                  <%= render 'shared/action_icons', locals: {target: paysheet} %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="widget-footer">
+          <%#= render 'shared/pagination', locals: {target: @paysheets, model_index_path: paysheets_path} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

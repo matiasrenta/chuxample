@@ -23,7 +23,7 @@
                         <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
-                        <label for="q[cat_pgd_objective_id_cont]"><%= t('simple_form.labels.cat_pgd_objective') %></label>
+                        <label for="q[cat_pgd_objective_id_cont]"><%= t('simple_form.labels.defaults.cat_pgd_objective') %></label>
                         <%= f.select :cat_pgd_objective_id_eq, options_from_collection_for_select(CatPgdObjective.all, :id, :description, @q.cat_pgd_objective_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
                     </div>
@@ -42,7 +42,7 @@
               <tr>
                 <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
                 <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
-                <th><%= sort_link(@q, :cat_pgd_objective_name, t('simple_form.labels.cat_pgd_objective')) %></th>
+                <th><%= sort_link(@q, :cat_pgd_objective_name, t('simple_form.labels.defaults.cat_pgd_objective')) %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>

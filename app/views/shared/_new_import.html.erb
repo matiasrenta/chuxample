@@ -1,11 +1,14 @@
 <%
    entity = locals[:entity]
-   download_import_file_path = eval("download_import_file_#{entity.name.underscore.pluralize}_path(format: :xlsx)")
-   create_import_path = eval("create_import_#{entity.name.underscore.pluralize}_path")
-   new_entity_path = eval("new_#{entity.name.underscore}_path")#'/things/new'
+   parent_entity = locals[:parent_entity] # si el entity está como nested resource se debe armar la url distinto
+   nested_string = ''
+   nested_string = "#{parent_entity.name.underscore}_" if parent_entity
+
+   download_import_file_path = eval("download_import_file_#{nested_string}#{entity.name.underscore.pluralize}_path(format: :xlsx)")
+   create_import_path = eval("create_import_#{nested_string}#{entity.name.underscore.pluralize}_path")
+   new_entity_path = eval("new_#{nested_string}#{entity.name.underscore}_path")#'/things/new'
    i18n_entity_other = "activerecord.models.#{entity.name.underscore}.other"
    i18n_entity_one = "activerecord.models.#{entity.name.underscore}.one"
-
 %>
 
 <section id="widget-grid">

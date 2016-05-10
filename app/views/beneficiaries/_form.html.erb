@@ -1,0 +1,57 @@
+<div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+  <header>
+    <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
+
+    <% if creating? %>
+        <div class='widget-toolbar hidden-xs'>
+          <a href='<%= new_import_project_activity_social_beneficiaries_path %>' role='button' class='btn btn-primary'><i class='fa fa-upload'></i>Carga
+            masiva</a>
+        </div>
+    <% end %>
+
+  </header>
+  <div>
+    <div class="widget-body">
+      <%= simple_form_for updating? ? @beneficiary : [@project_activity_social, @beneficiary], html: {class: 'form-horizontal'},
+                          wrapper: :horizontal_form,
+                          wrapper_mappings: {
+                                  check_boxes: :horizontal_radio_and_checkboxes,
+                                  radio_buttons: :horizontal_radio_and_checkboxes,
+                                  file: :horizontal_file_input,
+                                  boolean: :horizontal_boolean
+                          } do |f| %>
+          <div class="form-inputs edit">
+            <%= f.input :apellido_paterno %>
+            <%= f.input :apellido_materno %>
+            <%= f.input :nombres %>
+            <%= f.association :territorial_unit %>
+            <%= f.input :sexo, as: :select, collection: [['Masculino', 'M'], ['Femenino', 'F']] %>
+            <%= f.input :edad %>
+            <%= f.input :fecha_nacimiento, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@beneficiary.fecha_nacimiento)} %>
+            <%= f.input :lugar_nacimiento %>
+            <%= f.input :pertenencia_etnica %>
+            <%= f.input :grado_maximo_estudios %>
+            <%= f.input :anios_residencia_en_df %>
+            <%= f.input :domicilio, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :ocupacion, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :nombre_padre %>
+            <%= f.input :nombre_madre %>
+            <%= f.input :curp %>
+
+            <div class="widget-footer">
+              <div class="form-actions">
+                <div class="btn-group">
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), project_activity_social_path(@project_activity_social), class: 'btn btn-default btn-sm' if can?(:read, Beneficiary) %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @beneficiary, class: 'btn btn-default btn-sm' if can?(:read, Beneficiary) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @beneficiary, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, Beneficiary) && updating? %>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

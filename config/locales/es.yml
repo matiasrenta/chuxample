@@ -207,6 +207,10 @@ es:
   helpers:
     select:
       prompt: "Por favor seleccione"
+      create: 'Creó'
+      update: 'Actualizó'
+      destroy: 'Eliminó'
+      inactivate: 'Inactivó'
 
     submit:
       create: 'Crear %{model}'
@@ -228,12 +232,11 @@ es:
       filter: 'Filtros'
       filter_active: 'Filtros Activos'
       download: 'Bajar'
-      save_and_download_pdf: 'Guardar y bajar PDF'
-      download_pdf: 'Bajar PDF'
 
     messages:
       are_you_sure: "¿Está seguro de querer borrar el registro?"
       access_denied: "Acceso denegado"
+      edit_setting_variable: 'Si esta variable es usada en algún initializer de la aplicación, deberá reiniciar la aplicación para que tome el nuevo valor de la variable.'
 
   errors:
     format: "%{attribute} %{message}"
@@ -284,6 +287,10 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      verification:
+        one: Verificación
+        other: Verificaciones
+        fa_icon: 'fa-fw fa fa-camera'
         user:
           attributes:
             avatar:
@@ -292,8 +299,55 @@ es:
 
     messages:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
+      comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      verification:
+        one: Verificación
+        other: Verificaciones
+        fa_icon: 'fa-fw fa fa-camera'
+      ley_fraccion:
+        one: Fracción de Artículo
+        other: Fracciones de Artículo
+      ley_articulo:
+        one: Artículo
+        other: Artículos
+      paysheet:
+        one: Registro de Nómina
+        other: Registros de Nómina
+        fa_icon: 'fa-fw fa fa-envelope-o'
+      staff:
+        one: Trabajador
+        other: Trabajadores
+        fa_icon: 'fa-fw fa fa-male'
+      project_activity_nomina:
+        one: Actividad de Nómina
+        other: Actividades de Nómina
+        fa_icon: 'fa-fw fa fa-group '
+      job_title:
+        one: Denominación de Puesto
+        other: Denominaciones de Puestos
+      ascription:
+        one: Adscripción
+        other: Adscripciones
+      project_activity_adquisicion:
+        one: Actividad de Adquisición
+        other: Actividades de Adquisición
+        fa_icon: 'fa-fw fa fa-shopping-cart '
+      beneficiary:
+        one: Beneficiario
+        other: Beneficiarios
+        fa_icon: 'fa-fw fa fa-male'
+      territorial_unit:
+        one: Unidad Territorial
+        other: Unidades Territoriales
+      project_activity_social:
+        one: Actividad Social
+        other: Actividades Sociales
+        fa_icon: 'fa-fw fa fa-child'
+      social_development_program:
+        one: Programa de Desarrollo Social
+        other: Programas de Desarrollo Social
       project_activity_obra:
         one: Actividad de Obra
         other: Actividades de Obra
@@ -328,6 +382,7 @@ es:
       financial_document:
         one: Documento Financiero
         other: Documentos Financieros
+        fa_icon: 'fa-fw fa fa-file-pdf-o'
       project_activity:
         one: Actividad
         other: Actividades
@@ -452,7 +507,7 @@ es:
       thing_part:
         one: Parte
         other: Partes
-        fa_icon: 'fa-fw'
+        fa_icon: 'fa-fw fa fa-user'
       user:
         one: 'Usuario'
         other: 'Usuarios'
@@ -472,6 +527,7 @@ es:
 
     actions:
       new:  'Nuevo'
+      new_with_type: 'Nuevo'
       newf: 'Nueva'
       show: 'Mostrar'
       create: 'Nuevo'
@@ -481,6 +537,9 @@ es:
       update_multiple: 'Editar'
       import: 'Importar'
       Export: 'Exportar'
+      mark_as_read: 'Marcar como leído'
+      mark__all_as_read: 'Marcar todos como leídos'
+      move_to_trash: 'Eliminar'
 
   will_paginate:
     previous_label: "&#8592;"
