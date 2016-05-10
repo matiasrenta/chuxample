@@ -6,6 +6,8 @@ class Verification < ActiveRecord::Base
 
   accepts_nested_attributes_for :verification_photos
 
+  attr_accessor :photos # esto es para que la app movil envia este parametro con un string que sea el json de toddas las fotos. para que sea mas facil de programar en la app
+
   validates :user_id, :project_activity_obra_id, :answer, :evaluation, :status, presence: true
   validates :user_id, :project_activity_obra_id, :answer, :evaluation, :status, numericality: true
 
