@@ -4,7 +4,7 @@ class Verification < ActiveRecord::Base
   belongs_to :user
   has_many :verification_photos, dependent: :destroy
 
-  accepts_nested_attributes_for :verification_photos
+  accepts_nested_attributes_for :verification_photos, allow_destroy: true
 
   attr_accessor :photos # esto es para que la app movil envia este parametro con un string que sea el json de toddas las fotos. para que sea mas facil de programar en la app
 

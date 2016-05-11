@@ -557,3 +557,19 @@ abbr[title], abbr[data-original-title] {
   border-top: 1px solid #E4E4E4;
   text-align: center;
 }
+
+.thumbnail_gallery {
+  position: relative;
+  width: 137px;
+  height: 137px;
+  overflow: hidden;
+  margin: 5px;
+}
+
+.thumbnail_gallery img {
+  max-width: none;
+  width: 260px;
+  top: -40%;
+  left: -50%;
+  position: absolute;
+}
