@@ -1,12 +1,12 @@
 <%#= activity.trackable.try(:name) if ... existe la clase %>
 <li>
   <div class="actions-hover btn-group" role="group">
-    <a href="javascript:void(0);" class="btn btn-sm btn-default show-details" rel="tooltip" data-placement="top" title="Detalle de cambios">
+    <button href="javascript:void(0);" class="btn btn-sm btn-default show-details" rel="tooltip" data-placement="top" title="Detalle de cambios">
       <i class="fa fa-info"></i>
-    </a>
-    <a type="button" href="<%= trackable_history(activity) %>" class="btn btn-sm btn-default" rel="tooltip" data-placement="top" title="Historial del elemento">
+    </button>
+    <button type="button" href="<%= trackable_history(activity) %>" class="btn btn-sm btn-default" rel="tooltip" data-placement="top" title="Historial del elemento">
       <i class="fa fa-history"></i>
-    </a>
+    </button>
   </div>
   <div class="smart-timeline-icon">
     <%= owner_avatar(activity) %>
@@ -15,7 +15,7 @@
     <small><%= time_ago_in_words(activity.created_at) %></small>
   </div>
   <div class="smart-timeline-content">
-    <p>
+    <p class="public-act-title">
       <%= user_label(activity) %>
       <%= t('helpers.select.update') %>
       <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
