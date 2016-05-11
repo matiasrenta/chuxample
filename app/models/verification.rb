@@ -4,7 +4,7 @@ class Verification < ActiveRecord::Base
   belongs_to :user
   has_many :verification_photos, dependent: :destroy
 
-  accepts_nested_attributes_for :verification_photos
+  accepts_nested_attributes_for :verification_photos, allow_destroy: true
 
   validates :user_id, :project_activity_obra_id, :answer, :evaluation, :status, presence: true
   validates :user_id, :project_activity_obra_id, :answer, :evaluation, :status, numericality: true

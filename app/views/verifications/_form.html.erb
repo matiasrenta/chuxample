@@ -29,6 +29,7 @@
                       <th>Latitud</th>
                       <th>Longitud</th>
                       <th>Fecha y hora</th>
+                      <th class="all"></th>
                     </tr>
                     <%= f.fields_for :verification_photos, :wrapper => false do |verification_photo_form| %>
                         <tr class="fields">
@@ -36,6 +37,11 @@
                           <td><%= verification_photo_form.input :latitude, wrapper: :clean %></td>
                           <td><%= verification_photo_form.input :longitude, wrapper: :clean %></td>
                           <td><%= format_datetime_field(verification_photo_form.object.try(:date_and_time)) %></td>
+                          <td align="center">
+                            <%= verification_photo_form.link_to_remove do %>
+                                <i class="fa fa-trash-o" data-original-title="Eliminar" data-placement="top" rel="tooltip"></i>
+                            <% end %>
+                          </td>
                         </tr>
                     <% end %>
                   </table>
