@@ -27,13 +27,18 @@
 				//$('.superbox-list', $(this)).click(function() {
 				$this = $(this);
 
-				var currentimg = $this.find('.superbox-img'),
-					imgData = currentimg.data('img'),
-					imgDescription = currentimg.attr('alt') || "No description",
-					imgLink = imgData,
-					imgTitle = currentimg.attr('title') || "No Title";
+				// var currentimg = $this.find('.superbox-img'),
+				// 	imgData = currentimg.data('img'),
+				// 	imgDescription = currentimg.attr('data-alt') || "No description",
+				// 	imgLink = imgData,
+				// 	imgTitle = currentimg.attr('title') || "No Title";
 
-					//console.log(imgData, imgDescription, imgLink, imgTitle)
+					var imgData = $(this).find('.superbox-img').attr('data-img'),
+							imgDescription = $(this).find('.superbox-img').attr('data-alt'),
+							imgLink = imgDescription,
+							imgTitle = $(this).find('.superbox-img').attr('data-title');
+
+				//console.log(imgData, imgDescription, imgLink, imgTitle)
 
 				superboximg.attr('src', imgData);
 
