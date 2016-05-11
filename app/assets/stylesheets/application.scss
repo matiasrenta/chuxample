@@ -35,9 +35,6 @@
 @import "select2";
 @import "select2-bootstrap";
 
-// Sobreescribimos los estilos que hacen falta
-@import "overwrites";
-
 // Intro JS -> Tour de jquery
 @import "scss/intro-js/introjs.scss";
 
@@ -46,3 +43,6 @@
 
 // Photo Gallery
 @import "scss/smartadmin/_plugin-superbox.scss";
+
+// Sobreescribimos los estilos que hacen falta
+@import "overwrites";
