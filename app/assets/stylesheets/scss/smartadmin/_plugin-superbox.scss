@@ -49,6 +49,7 @@
   cursor: pointer;
   background-position: center center;
   background-repeat: no-repeat;
+  background-size: 160%;
   &:hover {
     opacity: 0.8;
   }
@@ -112,9 +113,9 @@
   .superbox-list {
     width:100%;
   }
-  .superbox-img {
-    height: 170px;
-  }
+  // .superbox-img {
+  //   height: 170px;
+  // }
 }
 @media only screen and (min-width: 320px) {
   .superbox-list {
@@ -133,15 +134,15 @@
 }
 @media only screen and (min-width: 1025px) {
   .superbox-list {
-    width:13.5%;
+    width:11.5%;
   }
   .superbox-img {
-    height: 118px;
+    height: 100px;
   }
 }
 @media only screen and (min-width: 1824px) {
   .superbox-list {
-    width:12.5%;
+    width:11.5%;
   }
   .superbox-img {
     height: 127px;
