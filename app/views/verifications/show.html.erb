@@ -86,14 +86,13 @@
     <!-- SuperBox -->
     <div class="superbox col-sm-12">
         <% @verification.verification_photos.each do |photo| %>
-          <div class="superbox-list thumbnail_gallery">
-            <img src="<%= photo.url %>" data-img="<%= photo.url %>" alt="My first photoshop layer mask on a high end PSD template theme" title="<%= photo.date_and_time %>" class="superbox-img">
+          <div class="superbox-list">
+            <div style="background-image: url('<%= photo.url %>');" data-img="<%= photo.url %>" data-alt="My first photoshop layer mask on a high end PSD template theme" data-title="<%= photo.date_and_time %>" class="superbox-img"></div>
           </div>
         <% end %>
     </div>
     <!-- /SuperBox -->
     <div class="superbox-show" style="height:300px; display: none"></div>
-
   </div>
   <!-- end Gallery row -->
 

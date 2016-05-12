@@ -25,7 +25,7 @@
   display: inline-block;
   *display: inline;
   zoom: 1;
-  width: 12.5%;
+  width: 11.5%;
   padding: 5px;
   position: relative;
   &.active:before {
@@ -34,18 +34,21 @@
     display: block;
     position: absolute;
     left: 43%;
-    bottom: -34px;
+    bottom: -30px;
     z-index: 2;
     text-align: center;
-    font-size: 45px;
+    font-size: 38px;
     color: $gray-darker;
-    display: none;
   }
 }
 
 .superbox-img {
-  // max-width: 100%;
+  max-width:100%;
+	width:100%;
+  height: 116px;
   cursor: pointer;
+  background-position: center center;
+  background-repeat: no-repeat;
   &:hover {
     opacity: 0.8;
   }
@@ -105,29 +108,42 @@
   }
 }
 
-
+@media only screen and (min-width: 120px) {
+  .superbox-list {
+    width:100%;
+  }
+  .superbox-img {
+    height: 170px;
+  }
+}
 @media only screen and (min-width: 320px) {
   .superbox-list {
-    width:50%;
+    width:48%;
   }
 }
 @media only screen and (min-width: 486px) {
   .superbox-list {
-    width:25%;
+    width:24%;
   }
 }
 @media only screen and (min-width: 768px) {
   .superbox-list {
-    width:16.66666667%;
+    width:15.66666667%;
   }
 }
 @media only screen and (min-width: 1025px) {
   .superbox-list {
-    width:12.5%;
+    width:13.5%;
+  }
+  .superbox-img {
+    height: 118px;
   }
 }
 @media only screen and (min-width: 1824px) {
   .superbox-list {
     width:12.5%;
+  }
+  .superbox-img {
+    height: 127px;
   }
 }
