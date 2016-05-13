@@ -58,7 +58,7 @@ es:
         file_content_type: 'Content Type de archivo'
         file_filename: 'Nombre de archivo'
 
-        key_analytical_string: 'Clave'
+        key_analytical_string: 'Clave Presupuestal'
         cat_pgd_axi: 'Eje PGDDF'
         cat_ere_expending_focu: 'Enfoque del Gasto'
         cat_ere_result: 'Resultado'
@@ -175,6 +175,8 @@ es:
         evaluation: 'Evaluación'
         comments: 'Comentarios'
         status: 'Status'
+
+        project_type: 'Tipo de Proyecto'
 
     placeholders:
       from: 'desde'

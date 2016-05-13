@@ -4,4 +4,9 @@ class CatFonSpecificSource < ActiveRecord::Base
   validates :key, :description, presence: true
   # la key en este caso no es única
   validates :description, uniqueness: true
+
+  def to_label
+    "#{key} - #{description}"
+  end
+
 end

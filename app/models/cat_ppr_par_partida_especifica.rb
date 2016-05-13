@@ -5,4 +5,8 @@ class CatPprParPartidaEspecifica < ActiveRecord::Base
   validates :key, :description, :cat_ppr_par_partida_generica_id, presence: true
   #validates :key, :description, uniqueness: true
   validates :key, uniqueness: true
+
+  def to_label
+    "#{key} - #{description}"
+  end
 end

@@ -287,10 +287,6 @@ es:
         format: "%{attribute} %{message}"
 
       models:
-      verification:
-        one: Verificación
-        other: Verificaciones
-        fa_icon: 'fa-fw fa fa-camera'
         user:
           attributes:
             avatar:
@@ -308,7 +304,7 @@ es:
         fa_icon: 'fa-fw fa fa-camera'
       ley_fraccion:
         one: Fracción de Artículo
-        other: Fracciones de Artículo
+        other: Fracciones de Artículos
       ley_articulo:
         one: Artículo
         other: Artículos
@@ -352,14 +348,18 @@ es:
         one: Actividad de Obra
         other: Actividades de Obra
         fa_icon: 'fa-fw fa fa-building'
-      project_administracion:
-        one: Proyecto de Administración
-        other: Proyectos de Administración
-        fa_icon: 'fa-fw fa fa-archive'
-      project_cultura:
-        one: Projecto de Cultura
-        other: Projectos de Cultura
-        fa_icon: 'fa-fw fa fa-institution'
+      project_nomina:
+        one: Proyecto de Nómina
+        other: Proyectos de Nóminas
+        fa_icon: ''
+      project_adquisicion:
+        one: Proyecto de Adquisición
+        other: Proyectos de Adquisiciones
+        fa_icon: ''
+      project_social:
+        one: Proyecto Social
+        other: Proyectos Sociales
+        fa_icon: ''
       project_obra:
         one: Proyecto de Obra
         other: Proyectos de Obra
@@ -391,7 +391,7 @@ es:
         other: Proyectos
       key_analytical:
         one: Analítico de Claves
-        other: Analítico de Claves
+        other: Analíticos de Claves
         fa_icon: 'fa-fw fa fa-list-ol'
       cat_ppr_spending_destination:
         one: Destino de Gasto
@@ -407,7 +407,7 @@ es:
         other: Dígitos Identificadores
       cat_ppr_par_partida_especifica:
         one: Partida Específica
-        other: Partida Específica
+        other: Partidas Específicas
       cat_ppr_par_partida_generica:
         one: Partida Genérica
         other: Partidas Genéricas
@@ -466,8 +466,8 @@ es:
         one: Objetivo PGDDF
         other: Objetivos PGDDF
       cat_pgd_area_of_opportunity:
-        one: Area de Oportunidad
-        other: Areas de Oportunidad
+        one: Área de Oportunidad
+        other: Áreas de Oportunidad
       cat_fon_funding_source:
         one: Fuente de Financiamiento
         other: Fuentes de Financiamiento
@@ -484,8 +484,8 @@ es:
         one: Eje Género
         other: Ejes Género
       cat_der_line_of_action:
-        one: Línea de Acción (der. hum.)
-        other: Líneas de Acción (der. hum.)
+        one: Línea de Acción Derechos Humanos
+        other: Líneas de Acción Derechos Humanos
       cat_der_strategy:
         one: Estrategia Derechos Humanos
         other: Estrategias Derechos Humanos
