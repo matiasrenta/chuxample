@@ -40,6 +40,11 @@ Role.seed_once(:name) do |r|
 end
 
 Role.seed_once(:name) do |r|
+  r.name = "Transparentador"
+  r.list_order = 9
+end
+
+Role.seed_once(:name) do |r|
   r.name = "Verificador Delegacional"
   r.list_order = 10
 end
@@ -48,4 +53,3 @@ Role.seed_once(:name) do |r|
   r.name = "Verificador Ciudadano"
   r.list_order = 11
 end
-
