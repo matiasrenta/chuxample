@@ -190,6 +190,7 @@ es:
     screen:
       actions: 'Acciones'
       click_or_drop_files: 'Haga click o arrastre archivos'
+      click_or_drop_file: 'Haga click o arrastre un archivo'
       not_support_drag_drop: 'Tu navegador no soporta drag and drop'
       use_the_form_below: 'Por favor usa el formulario de abajo'
       file_is_too_big: 'Archivo demasiado grande'
