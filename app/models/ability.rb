@@ -114,39 +114,34 @@ class Ability
 
 	def ejecutor_general
 		ejecutor
-		can [:create, :read, :update], ProjectActivityAdquisicion
-		can [:create, :read, :update], ProjectActivityNomina
-		can [:create, :read, :update], ProjectActivityObra
-		can [:create, :read, :update], ProjectActivitySocial
+		can [:create, :update], ProjectActivityAdquisicion
+		can [:create, :update], ProjectActivityNomina
+		can [:create, :update], ProjectActivityObra
+		can [:create, :update], ProjectActivitySocial
+		can [:manage], Beneficiary
 	end
 
 	def ejecutor_adquisición
 		ejecutor
-		can [:create, :read, :update], ProjectActivityAdquisicion
-		can :read, ProjectActivityNomina
-		can :read, ProjectActivityObra
-		can :read, ProjectActivitySocial
+		can [:create, :update], ProjectActivityAdquisicion
+		can [:create], FinancialDocument, project_activityable: {parent_project: {adquisicion?: true}}
 	end
 	def ejecutor_nómina
 		ejecutor
-		can [:create, :read, :update], ProjectActivityNomina
-		can :read, ProjectActivityAdquisicion
-		can :read, ProjectActivityObra
-		can :read, ProjectActivitySocial
+		can [:create, :update], ProjectActivityNomina
+		can :create, FinancialDocument, project_activityable: {parent_project: {nomina?: true}}
+		can :manage, Paysheet
 	end
 	def ejecutor_obra
 		ejecutor
-		can [:create, :read, :update], ProjectActivityObra
-		can :read, ProjectActivityAdquisicion
-		can :read, ProjectActivityNomina
-		can :read, ProjectActivitySocial
+		can [:create, :update], ProjectActivityObra
+		can [:create], FinancialDocument, project_activityable: {parent_project: {obra?: true}}
 	end
 	def ejecutor_social
 		ejecutor
-		can [:create, :read, :update], ProjectActivitySocial
-		can :read, ProjectActivityAdquisicion
-		can :read, ProjectActivityNomina
-		can :read, ProjectActivityObra
+		can [:create, :update], ProjectActivitySocial
+		can :create, FinancialDocument, project_activityable: {parent_project: {social?: true}}
+		can :manage, Beneficiary
 	end
 
 	def revisor
@@ -213,10 +208,16 @@ class Ability
 	def ejecutor
 		read_edit_own_user
 		can :read, :public_activities
-		can [:read], PublicActivity::Activity
-		can [:read], KeyAnalytical
+		can :read, PublicActivity::Activity
+		can :read, KeyAnalytical
 		can [:create, :read], Supplier
-		can [:create, :read], FinancialDocument
+		can :read, ProjectActivitySocial
+		can :read, ProjectActivityAdquisicion
+		can :read, ProjectActivityNomina
+		can :read, ProjectActivityObra
+		can :read, FinancialDocument
+		can :read, Beneficiary
+		can :read, Paysheet
 	end
 
 	def can_do_with_all_catalogs(operation)

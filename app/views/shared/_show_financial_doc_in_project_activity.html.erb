@@ -4,7 +4,7 @@
       <span class="widget-icon"><i class="fa fa-file-pdf-o"></i></span>
       <h2>Documentos Financieros</h2>
       <div class="widget-toolbar">
-        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), locals[:new_path], class: 'btn btn-primary' if (can? :create, FinancialDocument) %>
+        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), locals[:new_path], class: 'btn btn-primary' if can?(:create, FinancialDocument.new(project_activityable: locals[:instance])) %>
       </div>
     </header>
     <div class="no-padding">

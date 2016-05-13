@@ -1,10 +1,10 @@
 <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
   <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
     <header>
-      <span class="widget-icon"><i class="<%= t('activerecord.errors.paysheet.fa_icon') %>"></i></span>
-      <h2><%= t('activerecord.errors.paysheet.other') %></h2>
+      <span class="widget-icon"><i class="<%= t('activerecord.models.paysheet.fa_icon') %>"></i></span>
+      <h2><%= t('activerecord.models.paysheet.other') %></h2>
       <div class="widget-toolbar">
-        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_activity_nomina_paysheet_path(@project_activity_nomina), class: 'btn btn-primary' if (can? :create, FinancialDocument) %>
+        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_activity_nomina_paysheet_path(@project_activity_nomina), class: 'btn btn-primary' if (can? :create, Paysheet) %>
         <a href="javascript:void(0)" data-target="#filter-wid-id-1" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
       </div>
     </header>

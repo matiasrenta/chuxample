@@ -20,6 +20,9 @@ class ProjectActivityAdquisicion < ActiveRecord::Base
 
 
 
+  def parent_project
+    self.project_adquisicion
+  end
 
   def except_attr_in_public_activity
     [:id, :updated_at]
