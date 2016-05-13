@@ -103,9 +103,9 @@
               <%% end %>
               </tbody>
             </table>
-            <div class="widget-footer">
-              <%%= render 'shared/pagination', locals: {target: @<%= plural_table_name %>, model_index_path: <%= plural_table_name %>_path} %>
-            </div>
+          </div>
+          <div class="widget-footer">
+            <%%= render 'shared/pagination', locals: {target: @<%= plural_table_name %>, model_index_path: <%= plural_table_name %>_path} %>
           </div>
         </div>
       </div>

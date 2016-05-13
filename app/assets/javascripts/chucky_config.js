@@ -266,8 +266,12 @@ $(leftTool).each(function(){
 	icon = $(this).data('icon');
 	idModal = $(this).data("id-modal");
 	$(this).parent().addClass('input-group add-on');
-	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-toggle="modal" data-tooltip="true" data-original-title="'+title+'" data-content="'+content+'" data-target="#'+idModal+'"><i class="'+icon+'"></i></button></div>');
+	$(this).before('<div class="input-group-btn"><button type="button" class="btn btn-default" data-toggle="modal" data-tooltip="true" data-original-title="'+title+'" data-content="'+content+'" data-target="#'+idModal+'" data-backdrop="static"><i class="'+icon+'"></i></button></div>');
 });
+
+$("#" + idModal).on('shown.bs.modal', function () {
+    $(this).find('input:text:visible:first').focus();
+})
 
 // activate popovers with hover states
 $("[rel=popover-hover], [data-rel=popover-hover]").popover({
