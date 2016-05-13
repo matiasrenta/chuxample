@@ -43,10 +43,10 @@ class PaysheetsController < ApplicationController
   # DELETE /paysheets/1
   def destroy
     if @paysheet.destroy
-      redirect_to paysheets_url, notice: t("simple_form.flash.successfully_destroyed")
+      redirect_to project_activity_nomina_path(@project_activity_nomina), notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@paysheet)
-      redirect_to paysheets_url
+      redirect_to :back
     end
   end
 

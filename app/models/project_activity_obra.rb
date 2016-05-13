@@ -23,6 +23,10 @@ class ProjectActivityObra < ActiveRecord::Base
   geocoded_by :full_address
   after_validation :geocode, :if => :full_address_changed?
 
+  def parent_project
+    self.project_obra
+  end
+
   def full_address
     # ejepmlo: "Chilpancingo 53, Hipódromo, Cuauhtemnoc, Ciudad de México, México"
     "#{calle} #{nro_exterior}, #{colonia}, Cuauhtemnoc, Ciudad de México, México"

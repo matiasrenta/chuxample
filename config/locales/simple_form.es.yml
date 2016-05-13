@@ -177,6 +177,7 @@ es:
         status: 'Status'
 
         project_type: 'Tipo de Proyecto'
+        short_key_analytical_string: 'Clave Presupuestal'
 
     placeholders:
       from: 'desde'
