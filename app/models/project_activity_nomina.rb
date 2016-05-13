@@ -20,7 +20,9 @@ class ProjectActivityNomina < ActiveRecord::Base
   validates :nro_trabajadores, :ascription_id, :project_nomina_id, numericality: true
   validates :ascription_id, numericality: true, if: 'ascription_id'
 
-
+  def parent_project
+    self.project_nomina
+  end
 
   def except_attr_in_public_activity
     [:id, :updated_at]

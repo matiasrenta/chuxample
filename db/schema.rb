@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508012729) do
+ActiveRecord::Schema.define(version: 20160513011807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -494,6 +494,7 @@ ActiveRecord::Schema.define(version: 20160508012729) do
     t.text     "justificacion_genero"
     t.string   "key_analytical_string"
     t.string   "project_type"
+    t.string   "short_key_analytical_string"
   end
 
   create_table "ley_articulos", force: :cascade do |t|

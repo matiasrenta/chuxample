@@ -6,6 +6,7 @@ class Paysheet < ActiveRecord::Base
 
   validates :staff_id, :importe, :project_activity_nomina_id, presence: true
   validates :staff_id, :importe, :project_activity_nomina_id, numericality: true
+  validates :staff_id, uniqueness: {scope: [:project_activity_nomina_id]}
 
   before_save :set_job_and_ascription
 
