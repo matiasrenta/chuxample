@@ -52,9 +52,11 @@ es:
         thing_attaches: 'Archivos'
         avatar: 'Avatar'
         avatar_filename: 'Avatar'
-        file_size: 'Tamaño de archivo'
-        file_content_type: 'Content Type de archivo'
-        file_filename: 'Nombre de archivo'
+        file_size: 'Tamaño de Archivo'
+        file_content_type: 'Content Type de Archivo'
+        file_filename: 'Nombre de Archivo'
+        locale: 'Idioma'
+        time_zone: 'Uso Horario'
 
     placeholders:
       from: 'desde'
