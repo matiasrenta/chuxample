@@ -44,15 +44,15 @@
             <% end %>
           </div>
         </div>
-        <div class="widget-body">
-          <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
+        <div class="widget-body no-margin-top-bottom" >
+          <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
             <thead>
               <tr>
                 <th class='all control'><%= sort_link(@q, :email, t('simple_form.labels.defaults.email')) %></th>
                 <th><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
                 <th><%= sort_link(@q, :locale, t('simple_form.labels.defaults.locale')) %></th>
-                <th><%= sort_link(@q, :time_zone, t('simple_form.labels.defaults.timezone')) %></th>
-                <th><%= sort_link(@q, :role_name, t('simple_form.labels.role')) %></th>
+                <th><%= sort_link(@q, :time_zone, t('simple_form.labels.defaults.time_zone')) %></th>
+                <th><%= sort_link(@q, :role_name, t('simple_form.labels.defaults.role')) %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
             </thead>
@@ -82,9 +82,9 @@
               <% end %>
             </tbody>
           </table>
-          <div class="no-padding">
-            <%= render 'shared/pagination', locals: {target: @users, model_index_path: users_path} %>
-          </div>
+        </div>
+        <div class="widget-footer">
+          <%= render 'shared/pagination', locals: {target: @users, model_index_path: users_path} %>
         </div>
       </div>
     </div>
