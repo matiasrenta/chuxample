@@ -189,6 +189,21 @@ class Ability
 		can :read, Supplier
 	end
 
+	def transparentador
+		read_edit_own_user
+		can [:read], KeyAnalytical
+		can [:read], ProjectActivityAdquisicion
+		can [:read], ProjectActivityNomina
+		can [:read], ProjectActivityObra
+		can [:read], ProjectActivitySocial
+		can [:read], FinancialDocument
+		can :read, Beneficiary
+		can :read, Paysheet
+		can :read, Supplier
+		can [:create, :read, :update], LeyFraccion
+		can [:create, :read, :update], LeyArticulo
+	end
+
 	def verificador_ciudadano
 	end
 
