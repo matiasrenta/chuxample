@@ -87,7 +87,7 @@
     <div class="superbox col-sm-12">
         <% @verification.verification_photos.each do |photo| %>
           <div class="superbox-list">
-            <div style="background-image: url('<%= photo.url %>');" data-img="<%= photo.url %>" data-alt="My first photoshop layer mask on a high end PSD template theme" data-title="<%= photo.date_and_time %>" class="superbox-img"></div>
+            <div style="background-image: url('<%= photo.url %>');" data-img="<%= photo.url %>" data-alt="Latitud: <%= photo.latitude %>. Longitud: <%= photo.longitude %>" data-title="<%= l(photo.date_and_time, :format => :long) if photo.date_and_time %>" class="superbox-img"></div>
           </div>
         <% end %>
     </div>
@@ -95,13 +95,11 @@
     <div class="superbox-show" style="height:300px; display: none"></div>
   </div>
   <!-- end Gallery row -->
-
-
 </section>
 
-  <script type="text/javascript">
-		// DO NOT REMOVE : GLOBAL FUNCTIONS!
-		$(document).ready(function() {
-			$('.superbox').SuperBox();
-		})
-	</script>
+<script type="text/javascript">
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    $(document).ready(function () {
+        $('.superbox').SuperBox();
+    })
+</script>
