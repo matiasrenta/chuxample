@@ -180,6 +180,10 @@ es:
 
         project_type: 'Tipo de Proyecto'
         short_key_analytical_string: 'Clave Presupuestal'
+        real_start_date: 'Fecha Inicio Real'
+        real_end_date: 'Fecha Fin Real'
+        latitude: 'Latitud'
+        longitude: 'Longitud'
 
     hints:
       only_api_access: 'Si solo tiene acceso API no podrá hacer login en la aplicación web. Solo accederá a la API.'
