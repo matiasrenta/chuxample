@@ -47,6 +47,7 @@ class Ability
   end
 
   def prueba
+    can [:manage], User
     can [:manage], Thing
   end
 
@@ -54,5 +55,10 @@ class Ability
   def cannot_for_everyone
     #todo: cannot manage para todas las entidades que son CONSTANT
     #ejemplo: cannot [:create, :update, :destroy], User
+
+    unless @user.superuser?
+      cannot [:create, :read, :update, :destroy], User, role_id: Role.find_by_name('superuser').id
+      cannot [:create, :read, :update, :destroy], Role, id: Role.find_by_name('superuser').id
+    end
   end
 end

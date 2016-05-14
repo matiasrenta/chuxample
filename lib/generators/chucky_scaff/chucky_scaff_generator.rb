@@ -8,7 +8,7 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
   class_option :i18n_singular_name
   class_option :i18n_plural_name
   class_option :fa_icon # --fa_icon='fa fa-lg fa-fw fa-cube' solo funciona si se especifica i18n_singular_name y i18n_plural_name
-  class_option 'no-relationize'
+  class_option :donot_relationize
   class_option :authorization # ejemplo: --authorization=superuser:manage%director:read-edit-destroy
   class_option :public_activity # ejemplos: --public_activity (inserta codigo por default), --public_activity=create:update
   class_option :migrate # para que se ejecute rake db:migrate: --migrate=true
@@ -66,7 +66,7 @@ class ChuckyScaffGenerator < Rails::Generators::NamedBase
     args.each do |field_and_type|
       field = field_and_type.strip.split(':')[0]
       if field.include? "_id"
-        unless options['no-relationize'] && options['no-relationize'].split(':').include?(field)
+        unless options['donot_relationize'] && options['donot_relationize'].split(':').include?(field)
           inject_into_file "app/models/#{name}.rb", after: "< ActiveRecord::Base\n" do
             "  belongs_to :#{field.split('_id')[0]}\n\n"
           end
