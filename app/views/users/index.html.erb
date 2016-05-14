@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                   <label for="q[role_id_cont]"><%= t('simple_form.labels.defaults.role') %></label>
-                  <%= f.select :role_id_eq, options_from_collection_for_select(Role.all, :id, :name, @q.role_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                  <%= f.select :role_id_eq, options_from_collection_for_select(roles_for_dropdown, :id, :name, @q.role_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                   <label for="q[only_api_access_eq]"><%= t('simple_form.labels.defaults.only_api_access') %></label>
