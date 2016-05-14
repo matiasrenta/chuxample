@@ -58,6 +58,9 @@ es:
         locale: 'Idioma'
         time_zone: 'Uso Horario'
 
+    hints:
+      only_api_access: 'Si solo tiene acceso API no podrá hacer login en la aplicación web. Solo accederá a la API.'
+
     placeholders:
       from: 'desde'
       to: 'hasta'
