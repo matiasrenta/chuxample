@@ -88,6 +88,7 @@ es:
   time:
     formats:
       default: "%d/%m/%Y"
+      with_seg: "%d/%m/%Y %H:%M:%S"
       without_seg: "%d/%m/%Y %H:%M"
       short: "%d de %b %H:%M"
       short_day: "%A %d de %B %H:%M"
