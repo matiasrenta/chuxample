@@ -105,7 +105,6 @@ class Ability
 		can [:manage], CatDerHumanRight
 		can [:read], PublicActivity::Activity
 		can [:manage], User
-
 		can :read, :public_activities
 		can :read, :catalogs
 		can :read, :administrations
