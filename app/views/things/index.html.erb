@@ -350,7 +350,7 @@
                   </div>
                   <div class="col-sm-6 col-xs-12">
                     <label for="q[published_eq]"><%= t('simple_form.labels.defaults.published') %></label>
-                    <%= f.select :published_eq, options_for_select([[t('true'), 'true'], [t('false'), 'false']], @q.published_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    <%= f.select :published_eq, options_for_select(options_for_boolean, @q.published_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                   </div>
                   <div class="col-sm-6 col-xs-12">
                     <label for="q[thing_category_id_eq]"><%= t('simple_form.labels.defaults.thing_category') %></label>

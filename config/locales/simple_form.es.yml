@@ -181,6 +181,9 @@ es:
         project_type: 'Tipo de Proyecto'
         short_key_analytical_string: 'Clave Presupuestal'
 
+    hints:
+      only_api_access: 'Si solo tiene acceso API no podrá hacer login en la aplicación web. Solo accederá a la API.'
+
     placeholders:
       from: 'desde'
       to: 'hasta'

@@ -24,13 +24,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable
   attachment :avatar, type: :image, store: 'filesystem_backend', cache: 'filesystem_cache'
 
+  validates :email, :name, :role_id, presence: true
+  validates :email, uniqueness: true
   #validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
   validates :email, email: {message: I18n.t('errors.messages.invalid_email')}
 
-
-  #before_save :ejecutar_before_update
-  #after_save :ejecutar_after_update
-  #before_destroy :ejecutar_before_destroy
 
   after_destroy :remove_file
 
@@ -71,22 +69,8 @@ class User < ActiveRecord::Base
   private
 
   def remove_file
-    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejecuto after_destroy"
     avatar.try(:delete)
   end
-
-  #def ejecutar_before_destroy
-  #  puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto BEFORE destroy"
-  #end
-#
-  #def ejecutar_before_update
-  #  puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto BEFORE update"
-  #end
-#
-  #def ejecutar_after_update
-  #  puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ejcuto AFTER update"
-  #end
-
 
 end
 

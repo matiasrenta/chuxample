@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def options_for_boolean
+    [[t('true'), 'true'], [t('false'), 'false']]
+  end
+
   def boolean_check_mark(boo)
     if boo
       '<i class="fa fa-check"></i>'.html_safe
