@@ -1,0 +1,6 @@
+class ApiUserWellcomeController < ActionController::Base
+  protect_from_forgery with: :exception
+
+  def wellcome
+  end
+end
