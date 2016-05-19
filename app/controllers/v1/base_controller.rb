@@ -2,6 +2,8 @@ class V1::BaseController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :restrict_applications_access
   before_action :authenticate_user_or_api_user_or_social_user
+  before_action :check_if_api_user_active
+
   #before_action :set_user_time_zone
 
   protected
@@ -21,7 +23,7 @@ class V1::BaseController < ActionController::Base
   def authenticate_user_or_api_user_or_social_user
     if request.headers['HTTP_AUTHORIZATION'].present?
       # users or api_user are authenticated with http basic auth
-      authenticate_or_request_with_http_basic('api') do |username, password|
+      authenticate_with_http_basic do |username, password|
         user = User.find_by_email username
         if user && user.valid_password?(password)
           @user = user
@@ -29,10 +31,12 @@ class V1::BaseController < ActionController::Base
         end
 
         api_user = ApiUser.find_by_email username
-        if api_user && api_user.confirmed_at.present? && api_user.valid_password?(password)
+        if api_user && api_user.valid_password?(password)
           @api_user = api_user
           return true
         end
+
+        head :unauthorized
       end
     elsif request.headers['HTTP_SOCIAL_USER'].present?
       # aqui solo debo ver si existe el provider/uid. Si no existe lo agrego.
@@ -42,6 +46,12 @@ class V1::BaseController < ActionController::Base
       head :unauthorized
     else
       head :unauthorized
+    end
+  end
+
+  def check_if_api_user_active
+    if @api_user && @api_user.confirmed_at.blank?
+      render :json => {data: @api_user, status: :unprocessable_entity, errors: ['Usuario no activado. Debe confirmar su cuenta visitando el enlace enviado a su email.']}
     end
   end
 
