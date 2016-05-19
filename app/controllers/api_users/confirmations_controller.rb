@@ -1,5 +1,7 @@
 class ApiUsers::ConfirmationsController < Devise::ConfirmationsController
 
+  protect_from_forgery with: :null_session
+
   # POST /resource/confirmation
   def create
     self.resource = resource_class.send_confirmation_instructions(resource_params)

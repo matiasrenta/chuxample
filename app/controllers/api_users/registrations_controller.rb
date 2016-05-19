@@ -1,5 +1,7 @@
 class ApiUsers::RegistrationsController < Devise::RegistrationsController
   respond_to :json
+  protect_from_forgery with: :null_session
+
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 

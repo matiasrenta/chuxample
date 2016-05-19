@@ -1,5 +1,7 @@
 class ApiUsers::PasswordsController < Devise::PasswordsController
 
+  protect_from_forgery with: :null_session
+
   # POST /resource/password
   def create
     self.resource = resource_class.send_reset_password_instructions(resource_params)
