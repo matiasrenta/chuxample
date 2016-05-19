@@ -14,26 +14,38 @@ class V1::BaseController < ActionController::Base
   private
 
   def restrict_applications_access
+    puts "@@@@@@@@@@@@@  debug 1"
     api_key = ApiKey.find_by_access_token(request.headers['HTTP_ACCESS_TOKEN']) # el header original es 'access_token', pero rails 4 lo transforma a HTTP_ACCES_TOKEN (uppercase, underscore and prefixed with HTTP)
+    puts "@@@@@@@@@@@@@  debug 2"
+    puts "@@@@@@@@@@@@@  debug 3" if api_key.blank?
+    puts "@@@@@@@@@@@@@  debug 4" unless api_key.blank?
+
     head :unauthorized unless api_key
   end
 
 
   def authenticate_user_or_api_user_or_social_user
+    puts "@@@@@@@@@@@@@  debug 44"
     if request.headers['HTTP_AUTHORIZATION'].present?
       # users or api_user are authenticated with http basic auth
+      puts "@@@@@@@@@@@@@  debug 5"
       authenticate_with_http_basic do |username, password|
+        puts "@@@@@@@@@@@@@  debug 6"
         user = User.find_by_email username
         if user && user.valid_password?(password)
           @user = user
           return true
         end
 
+        puts "@@@@@@@@@@@@@  debug 7"
         api_user = ApiUser.find_by_email username
+        puts "@@@@@@@@@@@@@  debug 8" if api_user
         if api_user && api_user.valid_password?(password)
+          puts "@@@@@@@@@@@@@  debug 9"
           @api_user = api_user
           return true
         end
+        puts "@@@@@@@@@@@@@  debug 10"
 
         head :unauthorized
       end
@@ -44,6 +56,7 @@ class V1::BaseController < ActionController::Base
       # podria entrar pasando un provider/uid (inventado o peor aun el de otra persona)
       head :unauthorized
     else
+      puts "@@@@@@@@@@@@@  debug 11"
       head :unauthorized
     end
   end
