@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :api_keys
   resources :verifications
   resources :ley_articulos, shallow: true do
     put 'validar_documento', on: :member
@@ -272,6 +273,7 @@ Rails.application.routes.draw do
       get 'download_import_file'
     end
   end
+
   resources :comments
   resources :conversations, only: [:index, :show, :destroy] do
     post :mark_as_read, on: :member
@@ -315,6 +317,11 @@ Rails.application.routes.draw do
     get 'resend_password_instructions/:id', action: 'resend_password_instructions', on: :collection
     get 'mentionables', on: :collection
   end
+
+  devise_for :api_users, :controllers => { registrations: 'api_users/registrations', confirmations: 'api_users/confirmations', sessions: 'api_users/sessions', passwords: 'api_users/passwords' }
+  resources :api_users
+  get 'api_user_root', to: 'api_user_wellcome#wellcome'
+
 
   get "application/access_denied"
 

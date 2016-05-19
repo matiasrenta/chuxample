@@ -299,6 +299,16 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      api_key:
+        one: API Key
+        other: API Keys
+        fa_icon: 'fa-fw fa fa-key'
+      registration:
+        one: Usuario API
+        other: Usuarios API
+      api_user:
+        one: Usuario API
+        other: Ususrios API
       verification:
         one: Verificación
         other: Verificaciones
@@ -496,7 +506,7 @@ es:
       delayed_job:
         one: Delayed job
         other: Delayed jobs
-        fa_icon: 'fa-fw fa fa-stack-overflow '
+        fa_icon: 'fa-fw fa fa-stack-overflow'
       thing_category:
         one: Categoría de cosa
         other: Categoría de cosas

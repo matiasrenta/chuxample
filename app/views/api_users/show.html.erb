@@ -1,0 +1,128 @@
+<section id="widget-grid">
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+
+        <div class="widget-toolbar">
+          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), api_users_path, class: 'btn btn-primary' %>
+          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_api_user_path(@api_user), class: 'btn btn-primary' if can?(:update, ApiUser) %>
+        </div>
+      </header>
+      <div>
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
+            <thead>
+            <tr class="hidden">
+              <th></th>
+              <th></th>
+            </tr>
+            </thead>
+            <!-- el thead es necesario para que datatable no de error -->
+            <tbody>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.email') %></th>
+              <td>
+                <%= @api_user.email %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.name') %></th>
+              <td>
+                <%= @api_user.name %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.role') %></th>
+              <td>
+                <%= @api_user.role.try(:name) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.locale') %></th>
+              <td>
+                <%= @api_user.locale %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.time_zone') %></th>
+              <td>
+                <%= @api_user.time_zone %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.avatar') %></th>
+              <td><%= image_tag attachment_url(@api_user, :avatar, :fill, 100, 100, fallback: "avatars/male.png") %></td>
+            </tr>
+
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.created_at') %></th>
+              <td><%= l(@api_user.created_at, :format => :long) if @api_user.created_at %></td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.updated_at') %></th>
+              <td><%= l(@api_user.updated_at, :format => :long) if @api_user.updated_at %> </td>
+            </tr>
+
+            <% if current_user.superuser? %>
+                <tr role="row">
+                  <th><%= t('simple_form.labels.defaults.reset_password_token') %></th>
+                  <td>
+                    <%= @api_user.reset_password_token %>
+                  </td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('simple_form.labels.defaults.reset_password_sent_at') %></th>
+                  <td>
+                    <%= l(@api_user.reset_password_sent_at, :format => :long) if @api_user.reset_password_sent_at %>
+                  </td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('simple_form.labels.defaults.confirmation_token') %></th>
+                  <td>
+                    <%= @api_user.confirmation_token %>
+                  </td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('simple_form.labels.defaults.confirmed_at') %></th>
+                  <td>
+                    <%= l(@api_user.confirmed_at, :format => :long) if @api_user.confirmed_at %>
+                  </td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('simple_form.labels.defaults.confirmation_sent_at') %></th>
+                  <td>
+                    <%= l(@api_user.confirmation_sent_at, :format => :long) if @api_user.confirmation_sent_at %>
+                  </td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('simple_form.labels.defaults.last_seen_at') %></th>
+                  <td>
+                    <%= l(@api_user.last_seen_at, :format => :long) if @api_user.last_seen_at %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!--
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-info"></i></span>
+        <h2>Details</h2>
+      </header>
+      <div class="no-padding">
+        <div class="widget-body">
+
+        </div>
+      </div>
+    </div>
+  </article>
+  -->
+</section>
+

@@ -200,6 +200,9 @@
             <%= link_to t('activerecord.models.user.other'), users_path, {title: t('activerecord.models.user.other')}  %>
           </li>
           <li>
+            <%= link_to t('activerecord.models.api_user.other'), api_users_path, {title: t('activerecord.models.api_user.other')}  %>
+          </li>
+          <li>
             <%= link_to t('activerecord.models.key_analytical.other'), key_analyticals_path, {title: t('activerecord.models.key_analytical.other')}  %>
           </li>
           <li>
@@ -258,9 +261,11 @@
                 <%= link_to 'Delayed Jobs', delayed_jobs_path, {title: 'Delayed Jobs'}  %>
               </li>
               <li>
+                <%= link_to t('activerecord.models.api_key.other'), api_keys_path, {title: t('activerecord.models.api_key.other')}  %>
+              </li>
+              <li>
                 <%= link_to 'Catalog Cleaner', dev_catalog_cleaners_path, {title: 'Catalog Cleaner'}  %>
               </li>
-
               <li>
                   <a href="#">Development</a>
                   <ul>
