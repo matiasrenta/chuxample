@@ -308,7 +308,7 @@ es:
         other: Usuarios API
       api_user:
         one: Usuario API
-        other: Ususrios API
+        other: Usuarios API
       verification:
         one: Verificación
         other: Verificaciones
