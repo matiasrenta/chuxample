@@ -15,7 +15,7 @@
       <%= f.input :fecha_finalizacion, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@financial_document.fecha_finalizacion)} %>
       <%= f.input :monto %>
       <%= f.association :supplier %>
-      <%= f.association :financial_document_contract, label_method: :nro_documento %>
+      <%= f.association :financial_document_contract, collection: FinancialDocumentContract.by_project_activityable(@project_activityable), label_method: :nro_doc_and_supplier %>
       <% f.object = @financial_document.becomes(FinancialDocument) %>
       <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_MAX_FILESIZE'].to_i} %>
       <div class="widget-footer">
