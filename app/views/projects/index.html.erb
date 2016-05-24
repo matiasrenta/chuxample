@@ -41,6 +41,12 @@
                         <label for="q[cat_are_area_id_eq]"><%= t('simple_form.labels.defaults.cat_are_area') %></label>
                         <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.order(:description), :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
+
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[cat_aci_institutional_activity_id_eq]"><%= t('simple_form.labels.defaults.cat_aci_institutional_activity') %></label>
+                        <%= f.select :cat_aci_institutional_activity_id_eq, options_from_collection_for_select(CatAciInstitutionalActivity.order(:description), :id, :description, @q.cat_aci_institutional_activity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+
                       <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[project_type_eq]"><%= t('simple_form.labels.defaults.project_type') %></label>
                         <%= f.select :project_type_eq, options_for_select(
@@ -84,6 +90,7 @@
                 <th class='all control'><%= sort_link(@q, :cat_ppr_par_partida_especifica_key, 'Partida') %></th>
                 <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_description, 'Concepto Partida') %></th>
                 <th><%= sort_link(@q, :cat_are_area_description, 'Área') %></th>
+                <th><%= sort_link(@q, :cat_aci_institutional_activity_description, t('simple_form.labels.defaults.cat_aci_institutional_activity')) %></th>
                 <th><%= sort_link(@q, :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
                 <th>Monto Ejercido</th>
                 <th><%= sort_link(@q, :short_key_analytical_string, t('simple_form.labels.defaults.short_key_analytical_string')) %></th>
@@ -96,6 +103,7 @@
                     <td><%= project.cat_ppr_par_partida_especifica.try(:key) %></td>
                     <td><%= project.cat_ppr_par_partida_especifica.try(:description) %></td>
                     <td><%= project.cat_are_area.try(:description) %></td>
+                    <td><%= project.cat_aci_institutional_activity.try(:description) %></td>
                     <td align='right'><%= number_to_currency(project.autorizado, unit: '') if project.autorizado %></td>
                     <td align='right'><%= '000000000.00' %></td>
                     <td><%= project.short_key_analytical_string %></td>

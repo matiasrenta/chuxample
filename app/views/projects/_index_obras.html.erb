@@ -96,7 +96,7 @@
               <tr>
                 <td><%= project_activity_obra.name %></td>
                 <td><%= project_activity_obra.codigo_postal %></td>
-                <td align='right'><%= project_activity_obra.avance_real %></td>
+                <td align='right'><%= "#{number_with_precision(project_activity_obra.avance_real, precision: 2) }%" if project_activity_obra.avance_real %></td>
                 <td class="table-actions">
                   <%= render 'shared/action_icons', locals: {target: project_activity_obra} %>
                 </td>

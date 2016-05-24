@@ -110,5 +110,6 @@
 // considerar poner estos dos solo en la pagina show de activity obras ya que solo se usa alli para mostrar el mapa
 //= require underscore
 //= require gmaps/google
+//= require markerclusterer.min
 
 //= require js/app.config
