@@ -71,7 +71,7 @@ Rails.application.configure do
       openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
       address: 'localhost',
       port: 25,
-      domain: 'cuauh.transparenciacuauhtemoc.com',
+      domain: 'sys.transparenciacuauhtemoc.com',
       user_name: nil, #NOREPLY_MAIL,
       password: nil #NOREPLY_PASS,
       #:authentication  => :login
