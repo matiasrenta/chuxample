@@ -3,7 +3,8 @@ class ThingsController < ApplicationController
 
   # GET /things
   def index
-    @things = do_index(Thing, params)
+    #@things = indexize(Thing, collection: Thing.where("price > 1"), order: :age, no_paginate: false)
+    @things = indexize(Thing)
     respond_to do |format|
       format.html
       format.xlsx

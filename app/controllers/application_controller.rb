@@ -93,6 +93,35 @@ class ApplicationController < ActionController::Base
     Time.zone = current_user.time_zone if user_signed_in? && !current_user.time_zone.blank?
   end
 
+  # options:
+  #   collection: la collección que debe ser "indexada" (no usará el model par obtener los datos)
+  #   no_paginate: true/false. default to false
+  #   order: texto para hacer el order by (o bien un symbol. Será ordenado por defecto como ASC)
+  #   includes: texto para hacer includes
+  #   query_param: si se necesita enviar el parametro ransack distinto a :q (para el caso de multiples listas en una misma pagina)
+  def indexize(model, options = {})
+    authorize!(:read, model)
+    query_param = options[:query_param] || :q
+    collection = options[:collection] || model
+    search_algoritm(query_param)
+    if params[query_param] && params[query_param][:meta_sort]
+      instance_variable_set("@#{query_param}", collection.accessible_by(current_ability, :read).ransack(params[query_param]))
+    elsif options[:order]
+      instance_variable_set("@#{query_param}", collection.order(options[:order]).accessible_by(current_ability, :read).ransack(params[query_param])) unless options[:includes]
+      instance_variable_set("@#{query_param}", collection.includes(options[:includes]).order(options[:order]).accessible_by(current_ability, :read).ransack(params[query_param])) if options[:includes]
+    else
+      instance_variable_set("@#{query_param}", collection.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[query_param]))
+    end
+
+    indexize_collection = eval("@#{query_param}.result(distinct: true)") #@q.result(distinct: true)
+    if options[:no_paginate]
+      indexize_collection.all
+    else
+      indexize_collection.paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
+    end
+  end
+
+  # <b>DEPRECATED:</b> Please use <tt>indexize</tt> instead.
   def do_index(model, params, collection = nil, paginate = true, order_by = nil, includes = nil)
     authorize!(:read, model)
     search_algoritm
@@ -114,20 +143,36 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def search_algoritm
+  def search_algoritm(query_param = :q)
     if params[:search_clear]
-      params[:q] = nil
+      params[query_param] = nil
       params[:search_clear] = nil
     end
-    if params[:q]
-      params[:q].each do |param|
+    if params[query_param]
+      params[query_param].each do |param|
         unless param[1].blank? || param[0] == 's' # la 's' es para que no se ponga rojo cuando solo se hace sort de columnas
+          instance_variable_set("@#{query_param.to_s}_filter_active", true) # ejemplo: @q_obra_filter_active
           @filter_active = true;
           break
         end
       end
     end
   end
+
+  #def search_algoritm
+  #  if params[:search_clear]
+  #    params[:q] = nil
+  #    params[:search_clear] = nil
+  #  end
+  #  if params[:q]
+  #    params[:q].each do |param|
+  #      unless param[1].blank? || param[0] == 's' # la 's' es para que no se ponga rojo cuando solo se hace sort de columnas
+  #        @filter_active = true;
+  #        break
+  #      end
+  #    end
+  #  end
+  #end
 
   def per_page(quantity)
     if !quantity.blank?
