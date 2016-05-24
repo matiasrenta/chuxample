@@ -315,7 +315,7 @@ es:
         other: Usuarios API
       api_user:
         one: Usuario API
-        other: Ususrios API
+        other: Usuarios API
       delayed_job:
         one: Delayed job
         other: Delayed jobs
