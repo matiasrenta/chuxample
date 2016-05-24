@@ -7,7 +7,7 @@ square = () ->
     searching: false
     ordering: false
     paging: false
-
+    language: url: 'assets/js/plugin/datatables/dataTables.spanish.json'
     responsive:
       details:
         renderer: (api, rowIdx) ->
