@@ -96,8 +96,8 @@ class ApplicationController < ActionController::Base
   # options:
   #   collection: la collección que debe ser "indexada" (no usará el model par obtener los datos)
   #   no_paginate: true/false. default to false
-  #   order: texto para hacer el order by (o bien un symbol. Será ordenado por defecto como ASC)
-  #   includes: texto para hacer includes
+  #   order: texto para hacer el order by (o bien un symbol. Será ordenado por defecto (ASC o DESC no recuerdo))
+  #   includes: texto para hacer includes. CUIDADO: si hago un include de una tabla que es has_many para el modelo a indexar, pueden venir registros duplicados (Thing.includes(:thing_parts))
   #   query_param: si se necesita enviar el parametro ransack distinto a :q (para el caso de multiples listas en una misma pagina)
   def indexize(model, options = {})
     authorize!(:read, model)
@@ -113,7 +113,9 @@ class ApplicationController < ActionController::Base
       instance_variable_set("@#{query_param}", collection.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[query_param]))
     end
 
-    indexize_collection = eval("@#{query_param}.result(distinct: true)") #@q.result(distinct: true)
+    #indexize_collection = eval("@#{query_param}.result(distinct: true)")
+    indexize_collection = eval("@#{query_param}.result") # TODO: si existiera option[:includes] hay que pensar como se hace: includes(:articles).page(params[:page]).to_a.uniq
+
     if options[:no_paginate]
       indexize_collection.all
     else
