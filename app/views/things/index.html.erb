@@ -2,7 +2,7 @@
   <!-- Widgets en 2 columnas. Cada <article> con class col-sm-6 -->
   <div class="row">
     <article class="col-sm-6">
-      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <div class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>" id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false">
         <header>
           <div class="jarviswidget-ctrls hidden-xs" role="menu">
             <a href="javascript:export_list();" class="button-icon" rel="tooltip" title="" data-placement="bottom" data-original-title="<%= t('activerecord.actions.Export') %>"><i class="fa fa-file-excel-o"></i>
@@ -10,10 +10,10 @@
           </div>
 
           <span class="widget-icon"><i class="fa fa-table"></i></span>
-
+          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
-            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
             </a>
           </div>
         </header>
@@ -141,7 +141,7 @@
     </article>
     <!-- Widgets en 2 columnas. Cada <article> con class col-sm-6 -->
     <article class="col-sm-6">
-      <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <div class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>" id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false">
         <header>
           <div class="jarviswidget-ctrls hidden-xs" role="menu">
             <a href="javascript:export_list();" class="button-icon" rel="tooltip" title="" data-placement="bottom" data-original-title="<%= t('activerecord.actions.Export') %>"><i class="fa fa-file-excel-o"></i>
@@ -149,10 +149,10 @@
           </div>
 
           <span class="widget-icon"><i class="fa fa-table"></i></span>
-
+          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
-            <a href="javascript:void(0)" data-target="#filter-wid-id-1" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-1" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
             </a>
           </div>
         </header>
@@ -282,7 +282,7 @@
   <div class="row">
   <!-- Widgets en 1 columna Abarca todo el ancho de la pantalla. <article> con class col-xs-12 -->
     <article class="col-xs-12">
-      <div id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <div class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>" id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false">
         <header>
           <div class="jarviswidget-ctrls hidden-xs" role="menu">
             <a href="javascript:export_list();" class="button-icon" rel="tooltip" title="" data-placement="bottom" data-original-title="<%= t('activerecord.actions.Export') %>"><i class="fa fa-file-excel-o"></i>
@@ -290,10 +290,10 @@
           </div>
 
           <span class="widget-icon"><i class="fa fa-table"></i></span>
-
+          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
-            <a href="javascript:void(0)" data-target="#filter-wid-id-2" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-2" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
             </a>
           </div>
         </header>
