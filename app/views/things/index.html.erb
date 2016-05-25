@@ -384,6 +384,7 @@
                   <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
                   <th><%= sort_link(@q, :published, t('simple_form.labels.defaults.published')) %></th>
                   <th><%= sort_link(@q, :gender, t('simple_form.labels.defaults.gender')) %></th>
+                  <th><%= sort_link(@q, :thing_category_name, 'Categoria') %></th>
                   <th class="all"><%= t('simple_form.screen.actions') %></th>
                 </tr>
               </thead>
@@ -402,6 +403,7 @@
                   </td>
                   <td align='center'><%= boolean_check_mark(thing.published) %></td>
                   <td><%= thing.gender %></td>
+                  <td><%= thing.thing_category.try(:name) %></td>
                   <td class="table-actions">
                     <%= render 'shared/action_icons', locals: {target: thing} %>
                   </td>
