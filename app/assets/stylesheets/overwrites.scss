@@ -592,3 +592,18 @@ legend.scheduler-border {
 .public-act-title {
   margin-bottom: 26px;
 }
+
+.show-details{
+  margin: 0; border-bottom: 1px solid #DDDDDD; padding: 6px 0;
+}
+
+.show-details:last-child{ border-bottom: none; }
+
+.striped-div{ background-color: #f9f9f9; }
+
+.details-data { display: table; padding: 0; }
+.details-data p { display: inline-block; padding-right: 10px; }
+
+@media (max-width: 991px){
+  .details-data{ padding: 0 15px; }
+}
