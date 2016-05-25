@@ -9,13 +9,13 @@ class ProjectsController < ApplicationController
     @key_analytical = KeyAnalytical.find(params[:id])
     authorize! :read, @key_analytical.class
     if @key_analytical.obra?
-      @project_activity_obras = do_index(ProjectActivityObra, params)
+      @project_activity_obras = indexize(ProjectActivityObra, collection: @key_analytical.project_activity_obras)
     elsif @key_analytical.social?
-      @project_activity_socials = do_index(ProjectActivitySocial, params)
+      @project_activity_socials = indexize(ProjectActivitySocial, collection: @key_analytical.project_activity_socials)
     elsif @key_analytical.adquisicion?
-      @project_activity_adquisicions = do_index(ProjectActivityAdquisicion, params)
+      @project_activity_adquisicions = indexize(ProjectActivityAdquisicion, collection: @key_analytical.project_activity_adquisicions)
     elsif @key_analytical.nomina?
-      @project_activity_nominas = do_index(ProjectActivityNomina, params)
+      @project_activity_nominas = indexize(ProjectActivityNomina, collection: @key_analytical.project_activity_nominas)
     else
       raise "Tipo de proyecto inexistente"
     end

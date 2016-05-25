@@ -70,8 +70,8 @@
                         <%= f.select :cat_ppr_expense_type_id_eq, options_from_collection_for_select(CatPprExpenseType.order(:key), :id, :to_label, @q.cat_ppr_expense_type_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
-                        <label for="q[short_key_analytical_string_cont]"><%= t('simple_form.labels.defaults.short_key_analytical_string') %></label>
-                        <%= f.search_field :short_key_analytical_string_cont, {class: "form-control input-sm"} %>
+                        <label for="q[key_analytical_string_cont]"><%= t('simple_form.labels.defaults.short_key_analytical_string') %></label>
+                        <%= f.search_field :key_analytical_string_cont, {class: "form-control input-sm"} %>
                       </div>
                     </div>
                     <div class="row pull-right">
