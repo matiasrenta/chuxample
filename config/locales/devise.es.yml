@@ -33,6 +33,7 @@ es:
         content: "Tu cuenta ha sido creada, pero debes ingresar al link de abajo para crear tu contraseña."
         link: "Setear mi contraseña"
         footer: "Tu cuenta fue creada por un administrador del sistema."
+        bie: "Saludos"
     omniauth_callbacks:
       failure: "No se te ha podido autorizar de %{kind} debido a \"%{reason}\"."
       success: "Identificado correctamente de %{kind}."

@@ -43,8 +43,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :api_users, :controllers => { registrations: 'api_users/registrations', confirmations: 'api_users/confirmations', sessions: 'api_users/sessions', passwords: 'api_users/passwords' }
-  resources :api_users
-  get 'api_user_root', to: 'api_user_wellcome#wellcome'
+  resources :api_users do
+    get 'error_when_confirmation', to: 'api_users/welcome#error_when_confirmation', on: :collection
+  end
+  get 'api_user_root', to: 'api_users/welcome#welcome'
+
 
 
   get "application/access_denied"

@@ -7,10 +7,10 @@
       <%= f.error_notification %>
       <%= f.input :reset_password_token, as: :hidden %>
       <%= f.full_error :reset_password_token %>
-
+<p><%= resource.errors.full_messages %></p>
       <section>
         <label class="label"><%= t('pages.login.new_password') %></label>
-        <label class="input"> <i class="icon-append fa fa-user"></i>
+        <label class="input"> <i class="icon-append fa fa-lock"></i>
           <%= f.input :password, label: false, required: true, autofocus: true, hint: ("#{@minimum_password_length} #{t('pages.login.characters_minimum')}" if @minimum_password_length) %>
         </label>
       </section>
