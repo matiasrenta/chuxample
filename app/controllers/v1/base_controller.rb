@@ -53,7 +53,17 @@ class V1::BaseController < ActionController::Base
       # aqui solo debo ver si existe el provider/uid. Si no existe lo agrego.
       # Al no haber password, se debe confiar que la application (por ejemplo una aplicacion movil)
       # haya hecho el login con el provider correctamente. Por eso es importante primero validar la ApiKey, sino cualquiera
-      # podria entrar pasando un provider/uid (inventado o peor aun el de otra persona)
+      # podria entrar pasando un provider/uid (inventado o peor aun el de otra persona).
+      # La otra es que con el access token que me llega, llamar al endpoint de facebook: https://graph.facebook.com/me?access_token=" .$access_token
+      # el cual me devuelve la hash del usuario.
+
+      # {verification_photos_attributes: [:id, :url, :date_and_time, :latitude, :longitude]}
+
+      ActiveSupport::JSON.decode(request.headers['HTTP_SOCIAL_USER'])
+      verification.save
+
+      SocialUser.find_or_create_by(provider: 4, uid: 7)
+
       head :unauthorized
     else
       puts "@@@@@@@@@@@@@  debug 11"

@@ -111,7 +111,8 @@ gem 'acts_as_xlsx' , github: "matiasrenta/acts_as_xlsx", branch: "master"
 gem 'axlsx_rails'
 
 #select2 para rails. https://github.com/argerim/select2-rails
-gem 'select2-rails', '3.5.4'
+#gem 'select2-rails', '3.5.4' # este version tiene el bug que no aparece el selec2 cuando no tiene espacipo en la pantalla
+gem 'select2-rails', '3.5.10'
 # provide API (scripts, helpers, controller and base class for ajax-search) for select2. https://github.com/Loriowar/auto_select2
 # (0.5.3)
 gem 'auto_select2', github: "matiasrenta/auto_select2", branch: "master"

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :social_users
   resources :api_keys
   resources :verifications
   resources :ley_articulos, shallow: true do
