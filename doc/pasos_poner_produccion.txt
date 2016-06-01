@@ -10,9 +10,10 @@
 
 - copiar database.yml y secrets.yml de otra app a shared/config/
 - cambiar database.yml con solo production y la base de la app
+- comentar las lineas donde se aparezca Settings (o Sett) en los initializers delayed_job_config.rb y refile.rb, comentar el bloque entero para no pensar
 - RAILS_ENV=production bundle exec rake db:create
 - deployar de nuevo con capistrano para que haga migrate
-- RAILS_ENV=production bundle exec rake db:seed_fu
+- descomentar lineas de initializers y hacer push y deploy
 - /etc/nginx/sites-enabled   (para agregar el server de la app)
 - sudo service nginx restart
 - cambiar config/environment/production.rb de cada linea de la config de mailer
