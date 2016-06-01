@@ -723,6 +723,16 @@ ActiveRecord::Schema.define(version: 20160526235432) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "social_users", force: :cascade do |t|
+    t.string   "provider"
+    t.integer  "uid"
+    t.string   "access_token"
+    t.string   "email"
+    t.string   "json_data"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "staffs", force: :cascade do |t|
     t.string   "apellido_paterno"
     t.string   "apellido_materno"
@@ -748,16 +758,6 @@ ActiveRecord::Schema.define(version: 20160526235432) do
   create_table "states", force: :cascade do |t|
     t.string   "name"
     t.string   "abbreviation"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "social_users", force: :cascade do |t|
-    t.string   "provider"
-    t.integer  "uid"
-    t.string   "access_token"
-    t.string   "email"
-    t.string   "json_data"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
