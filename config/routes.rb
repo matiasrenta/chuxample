@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :social_users
   resources :api_keys
   resources :comments
   resources :conversations, only: [:index, :show, :destroy] do
