@@ -558,6 +558,16 @@ abbr[title], abbr[data-original-title] {
   text-align: center;
 }
 
+.form-control .select2-choice {
+    border: none;
+    border-radius: 0;
+}
+
+.select2-container .select2-choice {
+    height: 29px;
+    padding: 2px 0 0 8px;
+}
+
 fieldset.scheduler-border {
     border: 1px solid #D2D2D2 !important;
     padding: 0 1.4em 0 1.4em !important;
