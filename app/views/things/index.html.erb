@@ -300,7 +300,7 @@
         <div class="no-padding">
           <!-- La clase fitler-zone hace que se abra una caja de filtros a la vez, si se elimina esta clase se pueden mantener abiertas todas las zonas al mismo tiempo -->
           <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-2" style="display:none;">
-            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+            <div class="col-xs-12"><%= search_form_for(@q, builder: SimpleForm::FormBuilder, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
               <fieldset>
                 <!-- campos de filtros dentro de un row para que se muestren alineados -->
                 <div class="row">
@@ -355,7 +355,8 @@
                   </div>
                   <div class="col-md-3 col-sm-6 col-xs-12">
                     <label for="q[thing_category_id_eq]"><%= t('simple_form.labels.defaults.thing_category') %></label>
-                    <%= f.select :thing_category_id_eq, options_from_collection_for_select(ThingCategory.all, :id, :name, @q.thing_category_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    <%#= f.select :thing_category_id_eq, options_from_collection_for_select(ThingCategory.all, :id, :name, @q.thing_category_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    <%= f.input :thing_category_id_eq, label: false, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, class: "form-control input-sm"} %>
                   </div>
                   <div class="col-md-3 col-sm-6 col-xs-12">
                     <label for="q[gender_cont]"><%= t('simple_form.labels.defaults.gender') %></label>
