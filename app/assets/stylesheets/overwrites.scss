@@ -607,3 +607,30 @@ legend.scheduler-border {
 @media (max-width: 991px){
   .details-data{ padding: 0 15px; }
 }
+
+@media only screen and (max-width: 479px) and (min-width: 320px){
+  .page-title {
+      display: block;
+  }
+  .jarviswidget header h2 {
+    width: 37%;
+  }
+}
+
+@media only screen and (max-width: 679px) and (min-width: 480px){
+  .jarviswidget header h2 {
+      width: 275px;
+  }
+}
+
+@media (max-width: 880px) and (min-width: 768px){
+  .jarviswidget header h2 {
+      width: 135px;
+  }
+}
+
+@media (max-width: 979px) and (min-width: 768px){
+  .jarviswidget header h2 {
+      width: 29%;
+  }
+}
