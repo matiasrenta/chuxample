@@ -568,6 +568,10 @@ abbr[title], abbr[data-original-title] {
     padding: 2px 0 0 8px;
 }
 
+.form-inline .form-group {
+    display: block;
+}
+
 fieldset.scheduler-border {
     border: 1px solid #D2D2D2 !important;
     padding: 0 1.4em 0 1.4em !important;
