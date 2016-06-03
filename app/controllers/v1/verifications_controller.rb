@@ -1,6 +1,12 @@
 class V1::VerificationsController < V1::BaseController
   respond_to :json
 
+  # estas son las verificaciones realizadas por el usuario
+  def index
+    @verifications = Verification.all
+    respond_with @verifications
+  end
+
   def create
     # {verification_photos_attributes: [:id, :url, :date_and_time, :latitude, :longitude]}
     verification = Verification.new(verification_params)
