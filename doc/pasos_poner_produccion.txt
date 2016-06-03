@@ -17,6 +17,7 @@
 - descomentar lineas de initializers y hacer push y deploy
 - /etc/nginx/sites-enabled   (para agregar el server de la app)
 - sudo service nginx restart
+- habilitar herders con underscore en nginx
 - cambiar config/environment/production.rb de cada linea de la config de mailer
 - cambiar config/initializer/devise.rb (config.mailer_sender con la nueva direccion de mail)
 - cambiar .env.production (poner el bucket y las claves s3)

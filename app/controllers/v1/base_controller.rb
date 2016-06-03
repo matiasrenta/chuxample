@@ -14,62 +14,57 @@ class V1::BaseController < ActionController::Base
   private
 
   def restrict_applications_access
-    puts "@@@@@@@@@@@@@  debug 1"
     api_key = ApiKey.find_by_access_token(request.headers['HTTP_ACCESS_TOKEN']) # el header original es 'access_token', pero rails 4 lo transforma a HTTP_ACCES_TOKEN (uppercase, underscore and prefixed with HTTP)
-    puts "@@@@@@@@@@@@@  debug 2"
-    puts "@@@@@@@@@@@@@  debug 3" if api_key.blank?
-    puts "@@@@@@@@@@@@@  debug 4" unless api_key.blank?
-
     head :unauthorized unless api_key
   end
 
-
   def authenticate_user_or_api_user_or_social_user
-    puts "@@@@@@@@@@@@@  debug 44"
     if request.headers['HTTP_AUTHORIZATION'].present?
-      # users or api_user are authenticated with http basic auth
-      puts "@@@@@@@@@@@@@  debug 5"
-      authenticate_with_http_basic do |username, password|
-        puts "@@@@@@@@@@@@@  debug 6"
-        user = User.find_by_email username
-        if user && user.valid_password?(password)
-          @user = user
-          return true
-        end
-
-        puts "@@@@@@@@@@@@@  debug 7"
-        api_user = ApiUser.find_by_email username
-        puts "@@@@@@@@@@@@@  debug 8" if api_user
-        if api_user && api_user.valid_password?(password)
-          puts "@@@@@@@@@@@@@  debug 9"
-          @api_user = api_user
-          return true
-        end
-        puts "@@@@@@@@@@@@@  debug 10"
-
-        head :unauthorized
-      end
+      authenticate_user_or_api_user
     elsif request.headers['HTTP_SOCIAL_USER'].present?
-      # aqui solo debo ver si existe el provider/uid. Si no existe lo agrego.
-      # Al no haber password, se debe confiar que la application (por ejemplo una aplicacion movil)
-      # haya hecho el login con el provider correctamente. Por eso es importante primero validar la ApiKey, sino cualquiera
-      # podria entrar pasando un provider/uid (inventado o peor aun el de otra persona).
-      # La otra es que con el access token que me llega, llamar al endpoint de facebook: https://graph.facebook.com/me?access_token=" .$access_token
-      # el cual me devuelve la hash del usuario.
-
-      # {verification_photos_attributes: [:id, :url, :date_and_time, :latitude, :longitude]}
-
-      ActiveSupport::JSON.decode(request.headers['HTTP_SOCIAL_USER'])
-      verification.save
-
-      SocialUser.find_or_create_by(provider: 4, uid: 7)
-
-      head :unauthorized
+      authenticate_social_user
     else
-      puts "@@@@@@@@@@@@@  debug 11"
       head :unauthorized
     end
   end
+
+  def authenticate_user_or_api_user
+    # users or api_user are authenticated with http basic auth
+    authenticate_with_http_basic do |username, password|
+      user = User.find_by_email username
+      if user && user.valid_password?(password)
+        @user = user
+        return true
+      end
+      api_user = ApiUser.find_by_email username
+      if api_user && api_user.valid_password?(password)
+        @api_user = api_user
+        return true
+      end
+      head :unauthorized
+    end
+  end
+
+  def authenticate_social_user
+    # aqui solo debo ver si existe el provider/uid. Si no existe lo agrego.
+    # Al no haber password, se debe confiar que la application (por ejemplo una aplicacion movil)
+    # haya hecho el login con el provider correctamente. Por eso es importante primero validar la ApiKey, sino cualquiera
+    # podria entrar pasando un provider/uid inventado o peor aun el de otra persona.
+    # La otra es que con el access token que me llega, llamar al endpoint de facebook: https://graph.facebook.com/me?access_token=" .$access_token
+    # el cual me devuelve la hash del usuario. Por ahora no uso el access_token.
+    social_user_header = ActiveSupport::JSON.decode(request.headers['HTTP_SOCIAL_USER'])
+    head :unauthorized unless social_user_header['provider'].present? && social_user_header['uid'].present?
+    social_user = SocialUser.find_by(provider: social_user_header['provider'], uid: social_user_header['uid'])
+    unless social_user
+      head :unauthorized unless SocialUser.create(provider: social_user_header['provider'],
+                                                  uid: social_user_header['uid'],
+                                                  access_token: social_user_header['access_token'],
+                                                  email: social_user_header['info'] ? social_user_header['info']['email'] : nil,
+                                                  json_data: request.headers['HTTP_SOCIAL_USER'])
+    end
+  end
+
+
 
   def check_if_api_user_active
     if @api_user && @api_user.confirmed_at.blank?
