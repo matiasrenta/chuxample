@@ -3,8 +3,7 @@ class V1::VerificationsController < V1::BaseController
 
   # estas son las verificaciones realizadas por el usuario
   def index
-    @verifications = Verification.all
-    respond_with @verifications
+    @verifications = Verification.all.includes(:project_activity_obra)
   end
 
   def create
