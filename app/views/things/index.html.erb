@@ -10,7 +10,10 @@
           </div>
 
           <span class="widget-icon"><i class="fa fa-table"></i></span>
-          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
+
+          <!-- <%= @filter_active ? t('simple_form.buttons.filtering') : '' %> Hay un issue con esta condición, se pinta el texto de los inputs en el titulo del widget -->
+          <%= @filter_active ? "<h2>Filtrando</h2>".html_safe : "".html_safe %>
+
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
             <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
@@ -149,7 +152,10 @@
           </div>
 
           <span class="widget-icon"><i class="fa fa-table"></i></span>
-          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
+
+          <!-- <%= @filter_active ? t('simple_form.buttons.filtering') : '' %> Hay un issue con esta condición, se pinta el texto de los inputs en el titulo del widget -->
+          <%= @filter_active ? "<h2>Filtrando</h2>".html_safe : "".html_safe %>
+
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
             <a href="javascript:void(0)" data-target="#filter-wid-id-1" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
@@ -290,7 +296,10 @@
           </div>
 
           <span class="widget-icon"><i class="fa fa-table"></i></span>
-          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
+
+          <!-- <%= @filter_active ? t('simple_form.buttons.filtering') : '' %> Hay un issue con esta condición, se pinta el texto de los inputs en el titulo del widget -->
+          <%= @filter_active ? "<h2>Filtrando</h2>".html_safe : "".html_safe %>
+
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
             <a href="javascript:void(0)" data-target="#filter-wid-id-2" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
@@ -356,7 +365,7 @@
                   <div class="col-md-3 col-sm-6 col-xs-12">
                     <label for="q[thing_category_id_eq]"><%= t('simple_form.labels.defaults.thing_category') %></label>
                     <%#= f.select :thing_category_id_eq, options_from_collection_for_select(ThingCategory.all, :id, :name, @q.thing_category_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                    <%= f.input :thing_category_id_eq, label: false, as: :ajax_select2, search_class: :thing_category, placeholder: 'Empiece escribiendo', input_html: {'data-s2-limit' => 10, class: "form-control input-sm"} %>
+                    <%= f.input :thing_category_id_eq, label: false, as: :ajax_select2, search_class: :thing_category, input_html: {'data-s2-limit' => 10} %>
                   </div>
                   <div class="col-md-3 col-sm-6 col-xs-12">
                     <label for="q[gender_cont]"><%= t('simple_form.labels.defaults.gender') %></label>
