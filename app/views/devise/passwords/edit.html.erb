@@ -4,10 +4,7 @@
     </header>
 
     <fieldset>
-      <%= f.error_notification %>
       <%= f.input :reset_password_token, as: :hidden %>
-      <%= f.full_error :reset_password_token %>
-<p><%= resource.errors.full_messages %></p>
       <section>
         <label class="label"><%= t('pages.login.new_password') %></label>
         <label class="input"> <i class="icon-append fa fa-lock"></i>
