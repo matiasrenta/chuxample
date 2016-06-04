@@ -13,6 +13,10 @@ class ApiUser < ActiveRecord::Base
 
   after_destroy :remove_file
 
+  def name_or_email
+    name || email
+  end
+
   private
 
   def remove_file
