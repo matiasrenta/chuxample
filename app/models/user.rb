@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :things, dependent: :restrict_with_error
   # Include default devise modules. Others available are:
-  # :registerable, :confirmable, :validatable and :omniauthable
+  # :registerable, :confirmable and :omniauthable
   # mas los 7 modulos proveidos por el gem devise_security_extension
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable, :validatable
   attachment :avatar, type: :image, store: 'filesystem_backend', cache: 'filesystem_cache'
 
   validates :email, :name, :role_id, presence: true
