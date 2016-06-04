@@ -1,5 +1,5 @@
 class ApiUsers::PasswordsController < Devise::PasswordsController
-
+  layout 'api_login_flow'
   protect_from_forgery with: :null_session
 
   # POST /resource/password
