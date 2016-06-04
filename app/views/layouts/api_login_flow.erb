@@ -8,7 +8,7 @@
 
   <div id="logo-group">
     <span id="logo">
-      <%= image_tag("logo_opi.png", alt:"OPI", style: "width:80px;") %>
+      <%= image_tag('logo-cuauhtemoc.png', style: "width:100px;") %>
     </span>
   </div>
 
@@ -23,33 +23,25 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
-        <h1 class="txt-color-red login-header-big">Chucky API Login Flow</h1>
+        <h1 class="txt-color-red login-header-big">Delegación Cuauhtémoc</h1>
         <div class="hero">
 
           <div class="pull-left login-desc-box-l">
-            <h4 class="paragraph-header">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</h4>
+            <h4 class="paragraph-header">Aplicación móvil para la verificación de obras de la Delegación Cuauhtémoc.</h4>
             <div class="login-app-icons">
-              <a href="javascript:void(0);" class="btn btn-danger btn-sm">sit voluptatem</a>
-              <a href="javascript:void(0);" class="btn btn-danger btn-sm">perspiciatis unde</a>
+              <a href="http://www.transparenciacuauhtemoc.com" class="btn btn-danger btn-sm">Portal de Transparencia</a>
             </div>
           </div>
 
           <%= image_tag("demo/iphoneview.png", class:"pull-right display-image", alt:"", style: "width:210px") %>
-          <!--img src="img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px" -->
-
         </div>
 
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <h5 class="about-heading">voluptatem accusantium doloremque laudantium</h5>
+            <h5 class="about-heading">Desarrollado por OPI</h5>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.
-            </p>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <h5 class="about-heading">voluptatem accusantium doloremque!</h5>
-            <p>
-              Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi voluptatem accusantium!
+              <%= image_tag('logo_opi.png', style: "width:80px;") %>
+              <%= link_to 'www.opi.la', 'http://www.opi.la' %>
             </p>
           </div>
         </div>
@@ -93,6 +85,7 @@
         <div class="well no-padding">
           <%= yield %>
         </div>
+
       </div>
     </div>
   </div>
