@@ -246,7 +246,7 @@ es:
       inclusion: "no está incluido en la lista"
       exclusion: "está reservado"
       invalid: "no es válido"
-      confirmation: "no coincide con la confirmación"
+      confirmation: "no coincide la confirmación"
       accepted: "debe ser aceptado"
       empty: "no puede estar vacío"
       blank: "no puede estar en blanco"
@@ -293,6 +293,8 @@ es:
             avatar:
               invalid_content_type: 'Formato no permitido'
               too_large: 'Excede el tamaño permitido'
+            reset_password_token: 'El token debe haber expirado o no es válido'
+            unlock_token: 'El token debe haber expirado o no es válido'
 
     messages:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'

@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # (+)Instalados por mi
 # para Postgresql
 gem 'pg'
-# authentication
+# authentication. https://github.com/plataformatec/devise
 gem 'devise'
 # authorization
 gem 'cancancan', '~> 1.10'

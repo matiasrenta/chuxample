@@ -43,6 +43,39 @@
         </div>
 
       </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+        <%
+           if resource.errors.messages[:base].present?
+             flash[:alert] = resource.errors.get(:base).kind_of?(String) ? resource.errors.get(:base) : resource.errors.get(:base).join(". ")
+           elsif resource.errors.messages[:reset_password_token].present?
+             flash[:alert] = t('activerecord.errors.models.user.attributes.reset_password_token')
+           elsif resource.errors.messages[:unlock_token].present?
+             flash[:alert] = t('activerecord.errors.models.user.attributes.unlock_token')
+           elsif resource.errors.any?
+             flash[:alert] = t('activerecord.errors.template.default_error_base')
+           end
+           flash.discard(:alert) # elimina esta entrada del flash al finalizar el action
+        %>
+        <%#= render 'shared/flash_messages' %>
+        <% if alert %>
+            <div class="alert alert-danger fade in">
+              <button class="close" data-dismiss="alert">
+                ×
+              </button>
+              <%= alert %>
+            </div>
+        <% end %>
+        <% if notice && notice != 'Has cerrado la sesión correctamente.' %>
+            <div class="alert alert-success fade in">
+              <button class="close" data-dismiss="alert">
+                ×
+              </button>
+              <%= notice %>
+            </div>
+        <% end %>
+      </div>
+
       <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
         <div class="well no-padding">
           <%= yield %>
@@ -65,25 +98,37 @@
         $("#login-form").validate({
             // Rules for form validation
             rules : {
-                email : {
+                'user[email]' : {
                     required : true,
                     email : true
                 },
-                password : {
+                'user[password]' : {
                     required : true,
-                    //minlength : 3,
-                    //maxlength : 20
+                    minlength : 8,
+                    maxlength : 20
+                },
+                'user[password_confirmation]' : {
+                    required : true,
+                    minlength : 8,
+                    maxlength : 20
                 }
             },
 
             // Messages for form validation
             messages : {
-                email : {
-                    required : 'Please enter your email address',
-                    email : 'Please enter a VALID email address'
+                'user[email]' : {
+                    required : '<%= t('errors.messages.blank') %>',
+                    email : '<%= t('errors.messages.invalid_email') %>'
                 },
-                password : {
-                    required : 'Please enter your password'
+                'user[password]' : {
+                    required : '<%= t('errors.messages.blank') %>',
+                    minlength: '<%= t('errors.messages.too_short', count: 8) %>',
+                    maxlength: '<%= t('errors.messages.too_long', count: 20) %>'
+                },
+                'user[password_confirmation]' : {
+                    required : '<%= t('errors.messages.blank') %>',
+                    minlength: '<%= t('errors.messages.too_short', count: 8) %>',
+                    maxlength: '<%= t('errors.messages.too_long', count: 20) %>'
                 }
             },
 
