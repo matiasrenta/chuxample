@@ -27,6 +27,9 @@ es:
         footer: "Si tú no solicitaste esto, por favor ignora este mail. Tu contraseña no va a cambiar hasta que tú accedas al link y la cambies."
       unlock_instructions:
         subject: "Instrucciones de desbloqueo"
+        content: "Tu cuenta se bloqueó debido a un excesivo número de intentos fallidos de iniciar sesión."
+        click_link: "Haz click en el enlace de abajo para desbloquear tu cuenta:"
+        link: "Desbloquear mi cuenta"
       welcome:
         subject: "Tu cuenta ha sido creada"
         hi: "Hola, %{name_or_email}!"
