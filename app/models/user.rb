@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
 
   delegate :superuser?, to: :role
 
+  def name_or_email
+    name || email
+  end
+
   def mailboxer_email(object)
     email
   end
