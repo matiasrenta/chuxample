@@ -66,7 +66,7 @@
            flash.discard(:alert) # elimina esta entrada del flash al finalizar el action
         %>
         <%#= render 'shared/flash_messages' %>
-        <% if alert %>
+        <% if alert && alert != 'Necesitas iniciar sesión o registrarte para continuar.' %>
             <div class="alert alert-danger fade in">
               <button class="close" data-dismiss="alert">
                 ×
