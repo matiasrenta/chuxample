@@ -1,5 +1,5 @@
 class ApiUsers::WelcomeController < ActionController::Base
-  #layout 'application'
+  layout 'api_login_flow'
   protect_from_forgery with: :null_session
 
   def welcome
@@ -9,7 +9,7 @@ class ApiUsers::WelcomeController < ActionController::Base
     end
   end
 
-  # se usa para que la app movil pueda verificar si el email y password son correctos, par aluego hacer el header e ingresarlo dentro de la app movil.
+  # se usa para que la app movil pueda verificar si el email y password son correctos, para luego hacer el header e ingresarlo dentro de la app movil.
   def check_credentials
     api_user = ApiUser.find_by_email params[:api_user][:email]
     if api_user && api_user.valid_password?(params[:api_user][:password])

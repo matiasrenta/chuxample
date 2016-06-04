@@ -45,7 +45,7 @@
         <table>
           <tr>
             <td>
-              <h3><%= t('pages.login.welcome') %> <%= @resource.name || @resource.email %>!</h3>
+              <h3><%= t('pages.login.welcome') %> <%= @resource.name_or_email %>!</h3>
               <p class="lead"><%= t('pages.login.you_can_confirm_your_account') %>:</p>
               <p><%= link_to t('pages.login.confirm_my_account'), confirmation_url(@resource, confirmation_token: @token) %></p>
               <br/>
