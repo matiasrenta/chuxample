@@ -1,7 +1,8 @@
 class Verification < ActiveRecord::Base
   belongs_to :project_activity_obra
 
-  belongs_to :user
+  #belongs_to :user
+  belongs_to :verification_owneable, polymorphic: true
   has_many :verification_photos, dependent: :destroy
 
   accepts_nested_attributes_for :verification_photos, allow_destroy: true

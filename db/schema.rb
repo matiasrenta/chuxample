@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526235432) do
+ActiveRecord::Schema.define(version: 20160606231850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -897,14 +897,15 @@ ActiveRecord::Schema.define(version: 20160526235432) do
   end
 
   create_table "verifications", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "project_activity_obra_id"
     t.integer  "evaluation"
     t.text     "comments"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "answer"
-    t.integer  "status",                   default: -1
+    t.integer  "status",                     default: -1
+    t.integer  "verification_owneable_id"
+    t.integer  "verification_owneable_type"
   end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"

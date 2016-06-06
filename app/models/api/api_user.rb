@@ -1,5 +1,6 @@
 class ApiUser < ActiveRecord::Base
   belongs_to :role
+  has_many :verifications, as: :verification_owneables, dependent: :restrict_with_error
 
   # Include default devise modules. Others available are:
   # :rememberable, :trackable, :lockable, :validatable, :timeoutable and :omniauthable
