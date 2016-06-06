@@ -12,7 +12,7 @@
           <span class="widget-icon"><i class="fa fa-table"></i></span>
 
           <!-- <%= @filter_active ? t('simple_form.buttons.filtering') : '' %> Hay un issue con esta condición, se pinta el texto de los inputs en el titulo del widget -->
-          <%= @filter_active ? "<h2>Filtrando</h2>".html_safe : "".html_safe %>
+          <%= @filter_active ? "<h3>Filtrando</h3>".html_safe : "".html_safe %>
 
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
@@ -154,7 +154,7 @@
           <span class="widget-icon"><i class="fa fa-table"></i></span>
 
           <!-- <%= @filter_active ? t('simple_form.buttons.filtering') : '' %> Hay un issue con esta condición, se pinta el texto de los inputs en el titulo del widget -->
-          <%= @filter_active ? "<h2>Filtrando</h2>".html_safe : "".html_safe %>
+          <%= @filter_active ? "<h3>Filtrando</h3>".html_safe : "".html_safe %>
 
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
@@ -298,7 +298,7 @@
           <span class="widget-icon"><i class="fa fa-table"></i></span>
 
           <!-- <%= @filter_active ? t('simple_form.buttons.filtering') : '' %> Hay un issue con esta condición, se pinta el texto de los inputs en el titulo del widget -->
-          <%= @filter_active ? "<h2>Filtrando</h2>".html_safe : "".html_safe %>
+          <%= @filter_active ? "<h3>Filtrando</h3>".html_safe : "".html_safe %>
 
           <div class="widget-toolbar filter-group">
             <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_thing_path, class: 'btn btn-primary' if (can? :create, Thing) %>
