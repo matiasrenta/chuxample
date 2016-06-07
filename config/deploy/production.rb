@@ -27,11 +27,6 @@ role :db,  %w{deployer@104.236.104.0}
 server '104.236.104.0', user: 'deployer', roles: %w{web app}, my_property: :my_value
 
 
-
-=======
-server '104.236.104.0', user: 'deployer', roles: %w{web app}, my_property: :my_value
->>>>>>> b24ba12f1e0f39d7dd74bfd6d5243b1c19419995
-
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
 # you can see them in [net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start)
