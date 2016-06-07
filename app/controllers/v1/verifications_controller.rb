@@ -9,6 +9,9 @@ class V1::VerificationsController < V1::BaseController
   def create
     # {verification_photos_attributes: [:id, :url, :date_and_time, :latitude, :longitude]}
     verification = Verification.new(verification_params)
+
+    puts "current_user.class.name: #{current_user.class.name}"
+
     verification.verification_owneable = current_user
     ActiveSupport::JSON.decode(verification.photos).each do |photo|
       verification.verification_photos << VerificationPhoto.new(photo)

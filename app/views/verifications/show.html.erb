@@ -24,12 +24,6 @@
             <!-- el thead es necesario para que datatable no de error -->
             <tbody>
             <tr role="row">
-              <th><%= t('simple_form.labels.defaults.user') %></th>
-              <td>
-                <%= @verification.user.try(:name) %>
-              </td>
-            </tr>
-            <tr role="row">
               <th><%= t('simple_form.labels.defaults.project_activity_obra') %></th>
               <td>
                 <%= @verification.project_activity_obra.try(:name) %>
@@ -87,7 +81,7 @@
     <div class="superbox col-sm-12">
         <% @verification.verification_photos.each do |photo| %>
           <div class="superbox-list">
-            <div style="background-image: url('<%= photo.url %>');" data-img="<%= photo.url %>" data-alt="Latitud: <%= photo.latitude %>. Longitud: <%= photo.longitude %>" data-title="<%= l(photo.date_and_time, :format => :long) if photo.date_and_time %>" class="superbox-img"></div>
+            <div style="background-image: url('<%= photo.name %>');" data-img="<%= photo.name %>" data-alt="Latitud: <%= photo.latitude %>. Longitud: <%= photo.longitude %>" data-title="<%= l(photo.date_and_time, :format => :long) if photo.date_and_time %>" class="superbox-img"></div>
           </div>
         <% end %>
     </div>

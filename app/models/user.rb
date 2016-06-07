@@ -1,7 +1,7 @@
 require 'valid_email'
 
 class User < ActiveRecord::Base
-  has_many :verifications, as: :verification_owneables, dependent: :restrict_with_error
+  has_many :verifications, as: :verification_owneable, dependent: :restrict_with_error
   acts_as_messageable
   #acts_as_paranoid
   include PublicActivity::Model
