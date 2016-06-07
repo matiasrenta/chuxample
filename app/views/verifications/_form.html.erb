@@ -13,7 +13,7 @@
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs edit">
-            <%= f.association :user %>
+            <%#= f.association :user %>
             <%= f.association :project_activity_obra %>
             <%= f.input :answer, as: :select, collection: [['Sí', 1], ['No', 0]], include_blank: false %>
             <%= f.input :evaluation %>
@@ -25,7 +25,7 @@
                 <div class="table-responsive">
                   <table id="verification_photos" width="100%" class="display tableAlt table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
                     <tr>
-                      <th class="all control">URL</th>
+                      <th class="all control">Nombre</th>
                       <th>Latitud</th>
                       <th>Longitud</th>
                       <th>Fecha y hora</th>
@@ -33,7 +33,7 @@
                     </tr>
                     <%= f.fields_for :verification_photos, :wrapper => false do |verification_photo_form| %>
                         <tr class="fields">
-                          <td><%= verification_photo_form.input :url, wrapper: :clean %></td>
+                          <td><%= verification_photo_form.input :name, wrapper: :clean %></td>
                           <td><%= verification_photo_form.input :latitude, wrapper: :clean %></td>
                           <td><%= verification_photo_form.input :longitude, wrapper: :clean %></td>
                           <td><%= format_datetime_field(verification_photo_form.object.try(:date_and_time)) %></td>

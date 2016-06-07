@@ -16,10 +16,6 @@
                   <fieldset>
                     <div class="row">
                       <div class="col-md-3 col-sm-6 col-xs-12">
-                        <label for="q[user_id_cont]"><%= t('simple_form.labels.defaults.user') %></label>
-                        <%= f.select :user_id_eq, options_from_collection_for_select(User.all, :id, :name, @q.user_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                      </div>
-                      <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[project_activity_obra_id_cont]"><%= t('simple_form.labels.defaults.project_activity_obra') %></label>
                         <%= f.select :project_activity_obra_id_eq, options_from_collection_for_select(ProjectActivityObra.all, :id, :name, @q.project_activity_obra_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
@@ -59,7 +55,7 @@
             <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
-                <th class='all control'><%= sort_link(@q, :user_name, t('simple_form.labels.defaults.user')) %></th>
+                <th class='all control'><%= t('simple_form.labels.defaults.user') %></th>
                 <th><%= sort_link(@q, :project_activity_obra_name, t('simple_form.labels.defaults.project_activity_obra')) %></th>
                 <th><%= sort_link(@q, :answer, t('simple_form.labels.defaults.answer')) %></th>
                 <th><%= sort_link(@q, :evaluation, t('simple_form.labels.defaults.evaluation')) %></th>
@@ -71,7 +67,7 @@
               <tbody>
               <% @verifications.each do |verification| %>
                   <tr>
-                    <td><%= verification.user.try(:name) %></td>
+                    <td><%= verification.verification_owneable.try(:name_or_email) %></td>
                     <td><%= verification.project_activity_obra.try(:name) %></td>
                     <td><%= humanize_answer(verification.answer) %></td>
                     <td align='right'><%= verification.evaluation %></td>

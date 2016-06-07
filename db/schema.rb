@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606231850) do
+ActiveRecord::Schema.define(version: 20160607011601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -731,6 +731,7 @@ ActiveRecord::Schema.define(version: 20160606231850) do
     t.string   "json_data"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "name"
   end
 
   create_table "staffs", force: :cascade do |t|
@@ -888,12 +889,12 @@ ActiveRecord::Schema.define(version: 20160606231850) do
 
   create_table "verification_photos", force: :cascade do |t|
     t.integer  "verification_id"
-    t.string   "url"
     t.datetime "date_and_time"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "name"
   end
 
   create_table "verifications", force: :cascade do |t|

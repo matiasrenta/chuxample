@@ -3,4 +3,9 @@ class SocialUser < ActiveRecord::Base
 
   validates :provider, :uid, :json_data, presence: true
   validates :uid, numericality: true
+
+  def name_or_email
+    name || email || uid
+  end
+
 end
