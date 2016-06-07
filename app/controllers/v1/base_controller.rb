@@ -59,6 +59,15 @@ class V1::BaseController < ActionController::Base
     # el cual me devuelve la hash del usuario. Por ahora no uso el access_token.
     social_user_header = ActiveSupport::JSON.decode(request.headers['HTTP_SOCIAL_USER'])
     head :unauthorized unless social_user_header['provider'].present? && social_user_header['uid'].present?
+
+    logger.fatal "social_user_header['provider']: #{social_user_header['provider']}"
+    logger.fatal "social_user_header['uid']: #{social_user_header['uid']}"
+    logger.fatal "social_user_header['access_token']: #{social_user_header['access_token']}"
+    logger.fatal "social_user_header['info']: #{social_user_header['info']}"
+    logger.fatal "social_user_header['info']['email']: #{social_user_header['info']['email']}"
+
+
+
     @social_user = SocialUser.find_by(provider: social_user_header['provider'], uid: social_user_header['uid'])
     unless @social_user
       @social_user = SocialUser.create(provider: social_user_header['provider'],
