@@ -41,30 +41,30 @@ set :keep_releases, 2
 
 namespace :deploy do
 
-  namespace :assets do
-    Rake::Task['deploy:assets:precompile'].clear_actions
-    desc 'Precompile assets locally and upload to servers'
-    task :precompile do
-      on roles(fetch(:assets_roles)) do
-        run_locally do
-          execute 'RAILS_ENV=production bundle exec rake assets:precompile'
-          #with rails_env: fetch(:rails_env) do
-          #  execute 'bin/rake assets:precompile'
-          #end
-        end
-        within release_path do
-          with rails_env: fetch(:rails_env) do
-            old_manifest_path = "#{shared_path}/public/assets/manifest*"
-            execute :rm, old_manifest_path if test "[ -f #{old_manifest_path} ]"
+  #namespace :assets do
+  #  Rake::Task['deploy:assets:precompile'].clear_actions
+  #  desc 'Precompile assets locally and upload to servers'
+  #  task :precompile do
+  #    on roles(fetch(:assets_roles)) do
+  #      run_locally do
+  #        execute 'RAILS_ENV=production bundle exec rake assets:precompile'
+  #        #with rails_env: fetch(:rails_env) do
+  #        #  execute 'bin/rake assets:precompile'
+  #        #end
+  #      end
+  #      within release_path do
+  #        with rails_env: fetch(:rails_env) do
+  #          old_manifest_path = "#{shared_path}/public/assets/manifest*"
+  #          execute :rm, old_manifest_path if test "[ -f #{old_manifest_path} ]"
 
-            #run "rm -rf #{shared_path}/public/assets"
-            upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
-          end
-        end
-        run_locally { execute 'rm -rf public/assets' }
-      end
-    end
-  end
+  #          #run "rm -rf #{shared_path}/public/assets"
+  #          upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
+  #        end
+  #      end
+  #      run_locally { execute 'rm -rf public/assets' }
+  #    end
+  #  end
+  #end
 
   desc 'Restart application'
   task :restart do
@@ -90,3 +90,4 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
 
 end
+
