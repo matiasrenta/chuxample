@@ -527,7 +527,7 @@
                     if (self.o.fullscreenButton === true && tWidget.data('widget-fullscreenbutton') ===
                         undefined) {
                         fullscreenBtn =
-                            '<a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="Fullscreen" data-placement="bottom"><i class="' +
+                            '<a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="Maximizar" data-placement="bottom"><i class="' +
                             self.fullscreenClass[0] + '"></i></a>';
                     } else {
                         fullscreenBtn = '';
@@ -941,7 +941,7 @@
              * On click go to fullscreen mode.
              **/
             headers.on(clickEvent, '.jarviswidget-fullscreen-btn', function (e) {
-
+                $(this).tooltip('hide'); //Oculta el tooltip
                 var thisWidget = $(this)
                     .parents(self.o.widgets);
                 var thisWidgetContent = thisWidget.children('div');

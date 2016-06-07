@@ -17,7 +17,6 @@
 #server '159.203.115.132', user: 'deployer', roles: %w{web app}, my_property: :my_value
 
 
-
 # esto es para staging. Comentar si se quiere poner en produccion
 # Se puse hacer otro archivo staging.rb para hacer: cap staging deploy
 # pero eso implica tener completo ese entorno (database.yml con staging, environment con staging)
@@ -29,6 +28,9 @@ server '104.236.104.0', user: 'deployer', roles: %w{web app}, my_property: :my_v
 
 
 
+=======
+server '104.236.104.0', user: 'deployer', roles: %w{web app}, my_property: :my_value
+>>>>>>> b24ba12f1e0f39d7dd74bfd6d5243b1c19419995
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

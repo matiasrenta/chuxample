@@ -11,6 +11,11 @@ class V1::BaseController < ActionController::Base
     Time.zone = current_user.time_zone if user_signed_in?
   end
 
+  # metodo conveniente para obtener el usuario que hizo el requerimiento a la api
+  def current_user
+    @user || @api_user || @social_user
+  end
+
   private
 
   def restrict_applications_access
@@ -54,13 +59,14 @@ class V1::BaseController < ActionController::Base
     # el cual me devuelve la hash del usuario. Por ahora no uso el access_token.
     social_user_header = ActiveSupport::JSON.decode(request.headers['HTTP_SOCIAL_USER'])
     head :unauthorized unless social_user_header['provider'].present? && social_user_header['uid'].present?
-    social_user = SocialUser.find_by(provider: social_user_header['provider'], uid: social_user_header['uid'])
-    unless social_user
-      head :unauthorized unless SocialUser.create(provider: social_user_header['provider'],
-                                                  uid: social_user_header['uid'],
-                                                  access_token: social_user_header['access_token'],
-                                                  email: social_user_header['info'] ? social_user_header['info']['email'] : nil,
-                                                  json_data: request.headers['HTTP_SOCIAL_USER'])
+    @social_user = SocialUser.find_by(provider: social_user_header['provider'], uid: social_user_header['uid'])
+    unless @social_user
+      @social_user = SocialUser.create(provider: social_user_header['provider'],
+                                       uid: social_user_header['uid'],
+                                       access_token: social_user_header['access_token'],
+                                       email: social_user_header['info'] ? social_user_header['info']['email'] : nil,
+                                       json_data: request.headers['HTTP_SOCIAL_USER'])
+      head :unauthorized unless (@social_user && @social_user.errors.empty?)
     end
   end
 

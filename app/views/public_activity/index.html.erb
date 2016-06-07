@@ -96,10 +96,10 @@
 <script type="text/javascript">
 	$( ".actions-hover" ).hide();
 	$( ".smart-timeline-list li" ).hover( function() {
-		$( ".smart-timeline-list" ).find( ".actions-hover" ).fadeOut("fast");
-		$( this ).find( ".actions-hover" ).fadeIn("fast");
+		$( ".smart-timeline-list" ).find( ".actions-hover" ).hide();
+		$( this ).find( ".actions-hover" ).show();
 		$(".btn[rel='tooltip']").tooltip();
 	}, function() {
-		$( this ).find( ".actions-hover:last" ).fadeOut("fast");
+		$( this ).find( ".actions-hover:last" ).hide();
 	});
 </script>
