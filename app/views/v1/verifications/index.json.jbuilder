@@ -1,6 +1,5 @@
 json.array! @verifications do |verification|
   json.id verification.id
-  json.user_id verification.user_id
   json.evaluation verification.evaluation
   json.answer verification.answer
   json.status verification.status

@@ -24,6 +24,12 @@
             <!-- el thead es necesario para que datatable no de error -->
             <tbody>
             <tr role="row">
+              <th><%= t('simple_form.labels.defaults.user') %></th>
+              <td>
+                <%= @verification.verification_owneable.try(:name_or_email) %>
+              </td>
+            </tr>
+            <tr role="row">
               <th><%= t('simple_form.labels.defaults.project_activity_obra') %></th>
               <td>
                 <%= @verification.project_activity_obra.try(:name) %>

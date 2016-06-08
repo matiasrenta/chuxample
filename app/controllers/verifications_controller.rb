@@ -32,10 +32,10 @@ class VerificationsController < ApplicationController
 
   # PATCH/PUT /verifications/1
   def update
+    @verification.verification_owneable = current_user unless @verification.verification_owneable
     if @verification.update(verification_params)
       redirect_to @verification, notice: t("simple_form.flash.successfully_updated")
     else
-      puts "#{@verification.errors.full_messages}"
       generate_flash_msg_no_keep(@verification)
       render :edit
     end

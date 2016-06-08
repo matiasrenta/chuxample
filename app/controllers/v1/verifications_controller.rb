@@ -3,15 +3,12 @@ class V1::VerificationsController < V1::BaseController
 
   # estas son las verificaciones realizadas por el usuario
   def index
-    @verifications = Verification.all.includes(:project_activity_obra)
+    @verifications = Verification.by_user(current_user).includes(:project_activity_obra)
   end
 
   def create
     # {verification_photos_attributes: [:id, :url, :date_and_time, :latitude, :longitude]}
     verification = Verification.new(verification_params)
-
-    puts "current_user.class.name: #{current_user.class.name}"
-
     verification.verification_owneable = current_user
     ActiveSupport::JSON.decode(verification.photos).each do |photo|
       verification.verification_photos << VerificationPhoto.new(photo)
