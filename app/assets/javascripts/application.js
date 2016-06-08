@@ -95,6 +95,8 @@
 
 //= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js
 //= require js/plugin/fuelux/wizard/wizard.js
+//Dynamic Ajax dropdown
+//= require js/plugin/dynamic-selectable/dynamic_selectable
 
 //= require turbolinks
 
