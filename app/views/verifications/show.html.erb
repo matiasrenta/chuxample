@@ -86,8 +86,9 @@
     <!-- SuperBox -->
     <div class="superbox col-sm-12">
         <% @verification.verification_photos.each do |photo| %>
+          <% photo_url = "https://s3-us-west-2.amazonaws.com/cuauhtemoc/#{photo.name}" %>
           <div class="superbox-list">
-            <div style="background-image: url('<%= photo.name %>');" data-img="<%= photo.name %>" data-alt="Latitud: <%= photo.latitude %>. Longitud: <%= photo.longitude %>" data-title="<%= l(photo.date_and_time, :format => :long) if photo.date_and_time %>" class="superbox-img"></div>
+            <div style="background-image: url('<%= photo_url %>');" data-img="<%= photo_url %>" data-alt="Latitud: <%= photo.latitude %>. Longitud: <%= photo.longitude %>" data-title="<%= l(photo.date_and_time, :format => :long) if photo.date_and_time %>" class="superbox-img"></div>
           </div>
         <% end %>
     </div>
