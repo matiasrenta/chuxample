@@ -41,6 +41,8 @@ set :keep_releases, 2
 
 namespace :deploy do
 
+  #before  'deploy:assets:precompile', 'deploy:migrate'
+
   #namespace :assets do
   #  Rake::Task['deploy:assets:precompile'].clear_actions
   #  desc 'Precompile assets locally and upload to servers'

@@ -65,22 +65,22 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: Admin::Settings['DOMAIN_OR_SUBDOMAIN'] }
+  config.action_mailer.default_url_options = { host: 'deliriumtechmen.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
       address: 'localhost',
       port: 25,
-      domain: Admin::Settings['DOMAIN_OR_SUBDOMAIN'],
+      domain: 'deliriumtechmen.com',
       user_name: nil, #NOREPLY_MAIL,
       password: nil #NOREPLY_PASS,
       #:authentication  => :login
   }
   config.action_mailer.default_options = {
-      from: %{"#{Admin::Settings['ACTION_MAILER_FRIENDLY_FROM']}" <noreply@#{Admin::Settings['DOMAIN_OR_SUBDOMAIN']}>},
+      from: %{"Chucky" <noreply@deliriumtechmen.com>},
       content_type: "text/html"
   }
-  config.action_mailer.asset_host = "http://#{Admin::Settings['DOMAIN_OR_SUBDOMAIN']}"
+  config.action_mailer.asset_host = 'http://deliriumtechmen.com'
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -97,9 +97,9 @@ Rails.application.configure do
 
   # envia mail ante exceptions
   config.middleware.use ExceptionNotification::Rack,
-                        email: {
-                            email_prefix: Admin::Settings['EXCEPTION_NOTIFICATION_EMAIL_PREFIX'],
-                            sender_address: %{"Exception Notifier" <notifier@#{Admin::Settings['DOMAIN_OR_SUBDOMAIN']}>},
-                            exception_recipients: [Admin::Settings['EXCEPTION_NOTIFICATION_EMAIL']]
+                        :email => {
+                            :email_prefix => "chucky 500 - ",
+                            :sender_address => %{"Exception Notifier" <notifier@deliriumtechmen.com>},
+                            :exception_recipients => %w{matiasrenta@gmail.com}
                         }
 end
