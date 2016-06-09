@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :dynamic_select do
+    get ':thing_id/thing_contacts', to: 'thing_contacts#index', as: 'thing_contacts' # el as: es para que el helper method sea 'dynamic_select_thing_contacts_path' y no 'dynamic_select_path'
+  end
+
   namespace :dev do
     resources :chucky_bots
     resources :examples do
@@ -43,7 +47,7 @@ Rails.application.routes.draw do
     get 'mentionables', on: :collection
   end
 
-  devise_for :api_users, :controllers => { registrations: 'api_users/registrations', confirmations: 'api_users/confirmations', sessions: 'api_users/sessions', passwords: 'api_users/passwords' }
+  devise_for :api_users, controllers: { registrations: 'api_users/registrations', confirmations: 'api_users/confirmations', passwords: 'api_users/passwords' }
   resources :api_users do
     get 'error_when_confirmation', to: 'api_users/welcome#error_when_confirmation', on: :collection
     get 'check_credentials', to: 'api_users/welcome#check_credentials', on: :collection
