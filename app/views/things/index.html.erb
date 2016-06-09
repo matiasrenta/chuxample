@@ -371,6 +371,24 @@
                     <label for="q[gender_cont]"><%= t('simple_form.labels.defaults.gender') %></label>
                     <%= f.search_field :gender_cont, label: false, class: "form-control input-sm" %>
                   </div>
+
+
+                  <!-- (+) Dynamic Select Example -->
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <label for="q[id_eq]">Thing (dynamic select example)</label>
+                    <%= f.select :id_eq, options_from_collection_for_select(Thing.all, :id, :name, @q.id_eq), {include_blank: true},
+                                 { class: "form-control input-sm", data: {dynamic_selectable_url: dynamic_select_thing_contacts_path(':thing_id'), dynamic_selectable_target: '#q_gender_eq'}} %>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12">
+                    <label for="q[gender_eq]">Thing Contact (dynamic select example)</label>
+                    <%= f.select :gender_eq, options_for_select([], @q.gender_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                  </div>
+                  <script>
+                      $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
+                  </script>
+                  <!-- (-) Dynamic Select Example -->
+
+
                 </div>
                 <div class="row pull-right">
                   <div class="col-sm-12">
