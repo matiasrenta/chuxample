@@ -662,3 +662,23 @@ legend.scheduler-border {
   letter-spacing: 0px;
   float: left;
 }
+
+.login-message .title{
+  text-align: center;
+  background-color: #a90329;
+  color: #FFFFFF;
+  padding: 10px 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.login-message .description{
+  background-color: #f4f4f4;
+  padding: 20px 25px;
+  border-radius: 0 0 4px 4px;
+}
+
+.login-message h2{ margin: 0; }
+
+#extr-page .hero {
+  background-position: 0 232px;
+}
