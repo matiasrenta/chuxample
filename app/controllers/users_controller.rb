@@ -30,6 +30,7 @@ class UsersController < ApplicationController
       #@user.send_reset_password_instructions
       redirect_to @user, notice: t('devise.labels.new_user_email_sent', email: @user.email)
     else
+      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #{@user.errors.full_messages}"
       generate_flash_msg_no_keep(@user)
       render :new
     end
@@ -54,7 +55,12 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    #prudent_destroy(@user)
+    if @user.destroy
+      redirect_to users_url, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      generate_flash_msg(@user)
+      redirect_to :back
+    end
   end
 
   def resend_password_instructions
@@ -71,7 +77,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:remove_avatar, :avatar, :email, :name, :locale, :time_zone, :role_id, :only_api_access)
+      params.require(:user).permit(:remove_avatar, :avatar, :email, :name, :locale, :time_zone, :role_id, :password, :password_confirmation, :only_api_access)
     end
 
 end
