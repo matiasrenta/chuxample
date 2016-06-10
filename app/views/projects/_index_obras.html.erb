@@ -1,10 +1,10 @@
-<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-  <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+<article class="col-sm-6">
+  <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>">
     <header>
-      <h2>Actividades del Proyecto</h2>
+      <%= @filter_active ? "<h3>Filtrando</h3>".html_safe : "<h3>Actividades del Proyecto</h3>".html_safe %>
       <div class="widget-toolbar filter-group">
         <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_project_activity_obra_path(@key_analytical), class: 'btn btn-primary' if (can? :create, ProjectActivityObra) %>
-        <a href="javascript:void(0)" data-target="#filter-wid-id-1" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+        <a href="javascript:void(0)" data-target="#filter-wid-id-1" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
       </div>
     </header>
     <div class="no-padding">
@@ -111,5 +111,3 @@
     </div>
   </div>
 </article>
-
-
