@@ -18,7 +18,6 @@
 - /etc/nginx/sites-enabled   (para agregar el server de la app)
 - sudo service nginx restart
 - habilitar herders con underscore en nginx
-- cambiar config/environment/production.rb de cada linea de la config de mailer
-- cambiar config/initializer/devise.rb (config.mailer_sender con la nueva direccion de mail)
-- cambiar .env.production (poner el bucket y las claves s3)
+- cambiar .env.production con las variables de domain, mailers, etc. (poner el bucket y las claves s3)
+- el el server (/etc/nginx/sites-enabled) agregar la linea 'underscores_in_headers on' (puede ser antes de la linea de 'passenger on')
 - ejecutar bin/delayed_job start (ver memo.txt para mas opciones)
