@@ -397,5 +397,6 @@ Rails.application.routes.draw do
     resources :things
     resources :project_activity_obras
     resources :verifications
+    resources :projects, only: :index
   end
 end

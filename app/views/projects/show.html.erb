@@ -157,67 +157,67 @@
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.autorizado') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.autorizado %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.autorizado, unit: 'MXN') if @key_analytical.autorizado %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.enero') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.enero %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.enero, unit: 'MXN') if @key_analytical.enero %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.febrero') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.febrero %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.febrero, unit: 'MXN') if @key_analytical.febrero %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.marzo') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.marzo %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.marzo, unit: 'MXN') if @key_analytical.marzo %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.abril') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.abril %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.abril, unit: 'MXN') if @key_analytical.abril %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.mayo') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.mayo %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.mayo, unit: 'MXN') if @key_analytical.mayo %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.junio') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.junio %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.junio, unit: 'MXN') if @key_analytical.junio %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.julio') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.julio %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.julio, unit: 'MXN') if @key_analytical.julio %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.agosto') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.agosto %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.agosto, unit: 'MXN') if @key_analytical.agosto %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.septiembre') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.septiembre %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.septiembre, unit: 'MXN') if @key_analytical.septiembre %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.octubre') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.octubre %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.octubre, unit: 'MXN') if @key_analytical.octubre %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.noviembre') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.noviembre %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.noviembre, unit: 'MXN') if @key_analytical.noviembre %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.diciembre') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.diciembre %></div>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.diciembre, unit: 'MXN') if @key_analytical.diciembre %></div>
               </div>
 
               <div class="row show-details">
@@ -272,6 +272,7 @@
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.porcentaje_igualdad_sustantiva') %></strong></label>
+                <!-- <div class="col-lg-9 details-data"><%#= number_to_percentage(@key_analytical.porcentaje_igualdad_sustantiva, precision: 2, strip_insignificant_zeros: true) if @key_analytical.porcentaje_igualdad_sustantiva %></div> -->
                 <div class="col-lg-9 details-data"><%= @key_analytical.porcentaje_igualdad_sustantiva %></div>
               </div>
 
@@ -287,12 +288,12 @@
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.cat_gen_axi') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.cat_gen_axi %></div>
+                <div class="col-lg-9 details-data"><%= @key_analytical.cat_gen_axi.try(:description) %></div>
               </div>
 
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.cat_gen_strategy') %></strong></label>
-                <div class="col-lg-9 details-data"><%= @key_analytical.cat_gen_strategy %></div>
+                <div class="col-lg-9 details-data"><%= @key_analytical.cat_gen_strategy.try(:description) %></div>
               </div>
 
               <div class="row show-details">

@@ -17,4 +17,5 @@ class Verification < ActiveRecord::Base
   scope :by_user, -> (user){where(verification_owneable: user)}
   scope :validas, -> {where(status: 1)}
   scope :validas_or_sin_revisar, -> {where('status = 1 OR status = -1')}
+  scope :for_today, -> {where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day)}
 end
