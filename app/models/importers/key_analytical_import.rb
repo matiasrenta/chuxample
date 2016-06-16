@@ -34,9 +34,6 @@ class KeyAnalyticalImport < BaseImport
     key_analytical.subsector                           = row['subsector']
     key_analytical.unidad_responsable                  = row['unidad_responsable']
 
-    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@ row['cat_cfu_finality_id']:#{row['cat_cfu_finality_id'].strip}"
-
-
     key_analytical.cat_cfu_finality_id                 = CatCfuFinality.find_by_key(row['cat_cfu_finality_id'].strip).try(:id)
     key_analytical.cat_cfu_function_id                 = CatCfuFunction.find_by_key(row['cat_cfu_function_id']).try(:id)
     key_analytical.cat_cfu_subfunction_id              = CatCfuSubfunction.find_by_key(row['cat_cfu_subfunction_id']).try(:id)
