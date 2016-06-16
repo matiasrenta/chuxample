@@ -56,7 +56,7 @@ class KeyAnalytical < ActiveRecord::Base
   validates :mujeres, numericality: true, :if => :mujeres
   validates :hombres, numericality: true, :if => :hombres
 
-  before_save :construct_key_analytical_string
+  before_save :construct_key_analytical_string, :assign_project_type
 
   scope :obra, -> { where(project_type: 'ProjectObra') }
 
@@ -108,6 +108,21 @@ class KeyAnalytical < ActiveRecord::Base
 #{sector}.
 #{subsector}.
 #{unidad_responsable}"
+  end
+  
+  def assign_project_type
+    case self.cat_ppr_par_chapter.key
+      when '6000'
+        self.project_type = 'ProjectObra'
+      when '4000'
+        self.project_type = 'ProjectSocial'
+      when '2000', '3000', '5000'
+        self.project_type = 'ProjectAdquisicion'
+      when '1000'
+        self.project_type = 'ProjectNomina'
+      else
+        raise "No se pudo asignar un tipo de proyecto. Capítulo no reconocido: #{self.cat_ppr_par_chapter.key}"
+    end
   end
 
 end
