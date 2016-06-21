@@ -26,6 +26,19 @@
                       <label for="q[cat_are_area_id_cont]"><%= t('simple_form.labels.defaults.cat_are_area') %></label>
                       <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.all, :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                     </div>
+                    <div class="form-group">
+                      <label for="q[status_in]">Con Cambios para Aprobar/rechazar (Status)</label>
+                      <%= f.select :status_in, options_for_select(KeyAnalytical.status_array, @q.status_in), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="q[id_in]">Con Historial de Cambios?</label>
+                      <%= f.select :id_in, options_for_select(['Sí', 'No'], @patch_q_id_in), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+
+
+
+
                     <%= render 'shared/submit_filters' %>
                   </fieldset>
               <% end %>
@@ -37,6 +50,7 @@
               <tr>
                 <th class='all control'><%= sort_link(@q, :id, 'ID') %></th>
                 <th class='all control'><%= sort_link(@q, :key_analyticals_string, t('simple_form.labels.defaults.key_analytical_string')) %></th>
+                <th><%= sort_link(@q, :status, 'Status') %></th>
                 <th><%= sort_link(@q, :cat_pgd_axi_name, t('simple_form.labels.defaults.cat_pgd_axi')) %></th>
                 <th><%= sort_link(@q, :cat_ere_expending_focu_name, t('simple_form.labels.defaults.cat_ere_expending_focu')) %></th>
                 <th><%= sort_link(@q, :cat_ere_result_name, t('simple_form.labels.defaults.cat_ere_result')) %></th>
@@ -92,6 +106,7 @@
                   <tr>
                     <td><%= key_analytical.id %></td>
                     <td><%= key_analytical.key_analytical_string %></td>
+                    <td><%= key_analytical.status %></td>
                     <td><%= key_analytical.cat_pgd_axi.try(:description) %></td>
                     <td><%= key_analytical.cat_ere_expending_focu.try(:description) %></td>
                     <td><%= key_analytical.cat_ere_result.try(:description) %></td>

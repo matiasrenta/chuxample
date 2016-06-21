@@ -466,7 +466,7 @@
                 <tr>
                   <td><%= l(version.created_at, format: :without_seg) %></td>
                   <td><%= User.find_by_id(version.whodunnit).try(:name_or_email) %></td>
-                  <td><%= version.changeset.key?('autorizado') ? 'Afectación' : 'Modificación' %></td>
+                  <td><%= infer_status_from_version(version) %></td>
                   <td><%= version.changeset %></td>
                 </tr>
             <% end %>

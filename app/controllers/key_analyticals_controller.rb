@@ -3,7 +3,23 @@ class KeyAnalyticalsController < ApplicationController
 
   # GET /key_analyticals
   def index
-    @key_analyticals = do_index(KeyAnalytical, params)
+    authorize!(:read, KeyAnalytical)
+    search_algoritm(:q)
+    # filtros add-hoc
+    params[:q][:status_in] = KeyAnalytical.status_array if params[:q] && params[:q][:status_in] == 'Todos'
+    if params[:q] && params[:q][:id_in] == 'Sí'
+      params[:q][:id_in] = with_history.size > 0 ? with_history : [0]
+    elsif params[:q] && params[:q][:id_in] == 'No'
+      params[:q][:id_not_in] = with_history.size > 0 ? with_history : [0]
+      params[:q].except!(:id_in)
+    end
+    @q = KeyAnalytical.accessible_by(current_ability, :read).ransack(params[:q])
+    @q = @q.order("updated_at DESC, created_at DESC") if params[:q] && params[:q][:meta_sort]
+    @key_analyticals = @q.result(distinct: true).paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
+
+    # parche para que el dropdown del filtro tenga el valor que el usuario seleccionó
+    @patch_q_id_in = 'Sí' if params[:q] && params[:q][:id_in].present?
+    @patch_q_id_in = 'No' if params[:q] && params[:q][:id_not_in].present?
   end
 
   # GET /key_analyticals/1
@@ -87,5 +103,9 @@ class KeyAnalyticalsController < ApplicationController
       @key_analytical.versions.last.destroy # elimino la version porque he revertido el cambio
       @key_analytical.status = status
       @key_analytical.save # grabo dejando el record identico a como estaba antes (excepto por el status), pero genero una version con los cambios que el usuario quiere. Esta version es la que se aprueba por el revisor
+    end
+
+    def with_history
+      @with_history ||= PaperTrail::Version.select(:item_id).group(:item_id).map(&:item_id)
     end
 end

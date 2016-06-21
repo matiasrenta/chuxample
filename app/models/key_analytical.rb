@@ -69,6 +69,10 @@ class KeyAnalytical < ActiveRecord::Base
     %w(ProjectObra ProjectSocial ProjectAdquisicion ProjectNomina)
   end
 
+  def self.status_array
+    %w(Afectación Modificación Eliminación Todos)
+  end
+
   def obra?
     project_type == "ProjectObra"
   end
