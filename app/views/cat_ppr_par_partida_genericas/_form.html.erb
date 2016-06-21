@@ -29,7 +29,7 @@
                 <div class="btn-group">
                   <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), cat_ppr_par_partida_genericas_path, class: 'btn btn-default btn-sm' if can?(:read, CatPprParPartidaGenerica) %>
                   <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @cat_ppr_par_partida_generica, class: 'btn btn-default btn-sm' if can?(:read, CatPprParPartidaGenerica) && updating? %>
-                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @cat_ppr_par_partida_generica, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, CatPprParPartidaGenerica) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @cat_ppr_par_partida_generica, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: t('helpers.messages.are_you_sure'), 'original-title': 'Destroy'} if can?(:destroy, CatPprParPartidaGenerica) && updating? %>
                   <button type="submit" class="btn btn-primary btn-sm"><i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %></button>
                 </div>
               </div>

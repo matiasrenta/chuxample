@@ -62,7 +62,7 @@
                     <td class="table-actions">
                       <%= link_to raw('<i class="fa fa-binoculars"></i>'), dev_chucky_bot_path(chucky_bot), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, chucky_bot %>
                       <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_dev_chucky_bot_path(chucky_bot), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can? :update, chucky_bot %>
-                      <%= link_to raw('<i class="fa fa-trash"></i>'), dev_chucky_bot_path(chucky_bot), method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title' => t('simple_form.tooltips.destroy')} if can? :destroy, chucky_bot %>
+                      <%= link_to raw('<i class="fa fa-trash"></i>'), dev_chucky_bot_path(chucky_bot), method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: t('helpers.messages.are_you_sure'), 'original-title' => t('simple_form.tooltips.destroy')} if can? :destroy, chucky_bot %>
                     </td>
                   </tr>
               <% end %>
