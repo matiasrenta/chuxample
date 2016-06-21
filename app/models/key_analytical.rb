@@ -1,4 +1,6 @@
 class KeyAnalytical < ActiveRecord::Base
+  has_paper_trail ignore: [:updated_at, :status]
+
   belongs_to :cat_pgd_line_of_action
   belongs_to :cat_pgd_goal
   belongs_to :cat_pgd_objective

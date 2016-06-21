@@ -132,9 +132,10 @@ gem 'geocoder'
 #gem 'geokit-rails'
 gem 'gmaps4rails'
 #gem 'graticule'
-
 # soft delete. https://github.com/rubysherpas/paranoia
 gem 'paranoia', '~> 2.0'
+# para versionamiento. https://github.com/airblade/paper_trail
+gem 'paper_trail'
 # (-)Instalados por mi
 
 

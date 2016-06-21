@@ -31,8 +31,12 @@ class KeyAnalyticalsController < ApplicationController
 
   # PATCH/PUT /key_analyticals/1
   def update
-    if @key_analytical.update(key_analytical_params)
-      redirect_to @key_analytical.becomes(KeyAnalytical), notice: t("simple_form.flash.successfully_updated")
+    @key_analytical.attributes = key_analytical_params
+    status = @key_analytical.autorizado_changed? ? 'Afectación' : 'Modificación'
+    if @key_analytical.save
+      logica_afectaciones(status) # logica de afectaciones, modificaciones y eliminaciones
+      flash[:info] = 'Cambios sujetos a aprobación. Una vez aprobados se harán efectivos.'
+      redirect_to @key_analytical.becomes(KeyAnalytical)
     else
       generate_flash_msg_no_keep(@key_analytical)
       render :edit
@@ -42,11 +46,33 @@ class KeyAnalyticalsController < ApplicationController
   # DELETE /key_analyticals/1
   def destroy
     if @key_analytical.destroy
-      redirect_to key_analyticals_url, notice: t("simple_form.flash.successfully_destroyed")
+      logica_afectaciones('Eliminación')
+      flash[:info] = 'Eliminación sujeta a aprobación. Una vez aprobada se hará efectiva.'
+      redirect_to @key_analytical.becomes(KeyAnalytical)
     else
       generate_flash_msg(@key_analytical)
       redirect_to :back
     end
+  end
+
+  def approve_changes
+    if @key_analytical.status == 'Eliminación'
+      @key_analytical.destroy
+      redirect_to key_analyticals_path, notice: t("simple_form.flash.successfully_destroyed")
+    else
+      @key_analytical = @key_analytical.versions.last.reify
+      @key_analytical.versions.last.destroy
+      @key_analytical.status = nil
+      @key_analytical.save
+      redirect_to @key_analytical.becomes(KeyAnalytical), notice: t("simple_form.flash.successfully_updated")
+    end
+  end
+
+  def reject_changes
+    @key_analytical.versions.last.destroy
+    @key_analytical.status = nil
+    @key_analytical.save # no genera ninguna version porque solo he cambiado el status (el cual es ignorado)
+    redirect_to @key_analytical.becomes(KeyAnalytical), notice: 'Los cambios se han rechazado'
   end
 
   private
@@ -54,5 +80,12 @@ class KeyAnalyticalsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def key_analytical_params
       params.require(:key_analytical).permit(:cat_pgd_axi_id, :cat_ere_expending_focu_id, :cat_ere_result_id, :cat_ere_subresult_id, :year, :sector, :subsector, :unidad_responsable, :cat_cfu_finality_id, :cat_cfu_function_id, :cat_cfu_subfunction_id, :cat_aci_institutional_activity_id, :cat_fon_funding_source_id, :cat_fon_generic_source_id, :cat_fon_specific_source_id, :cat_fon_year_document_id, :cat_fon_origin_resource_id, :cat_fon_fund_id, :cat_ppr_par_chapter_id, :cat_ppr_par_concept_id, :cat_ppr_par_partida_generica_id, :cat_ppr_par_partida_especifica_id, :cat_ppr_expense_type_id, :cat_ppr_digit_identifier_id, :cat_ppr_spending_destination_id, :proyecto_de_inversion, :cat_are_area_id, :autorizado, :enero, :febrero, :marzo, :abril, :mayo, :junio, :julio, :agosto, :septiembre, :octubre, :noviembre, :diciembre, :cat_uni_measure_unit_id, :meta_fisica, :descripcion_de_las_acciones, :domicilio_del_area, :dut_de_la_accion, :poblacion_beneficiada, :cat_der_human_right_id, :cat_der_strategy_id, :cat_der_line_of_action_id, :justificacion, :porcentaje_igualdad_sustantiva, :mujeres, :hombres, :cat_gen_axi_id, :cat_gen_objective_id, :cat_gen_strategy_id, :cat_gen_goal_id, :cat_gen_line_of_action_id, :cat_pgd_area_of_opportunity_id, :cat_pgd_objective_id, :cat_pgd_goal_id, :cat_pgd_line_of_action_id)
+    end
+
+    def logica_afectaciones(status)
+      @key_analytical = @key_analytical.versions.last.reify # revierto el cambio
+      @key_analytical.versions.last.destroy # elimino la version porque he revertido el cambio
+      @key_analytical.status = status
+      @key_analytical.save # grabo dejando el record identico a como estaba antes (excepto por el status), pero genero una version con los cambios que el usuario quiere. Esta version es la que se aprueba por el revisor
     end
 end

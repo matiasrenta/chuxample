@@ -103,6 +103,8 @@ Rails.application.routes.draw do
     end
   end
   resources :key_analyticals do
+    put :approve_changes, on: :member
+    put :reject_changes, on: :member
     collection do
       get 'new_import'
       post 'create_import'
