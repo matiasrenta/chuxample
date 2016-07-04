@@ -26,6 +26,12 @@
           </li>
       <% end %>
 
+      <% if can? :read, :afectaciones %>
+          <li data-step="3" data-intro="Este es el menú de Afectaciones presupuestales.">
+            <a href="<%= key_analyticals_path %>"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Afectaciones Presup.</span></a>
+          </li>
+      <% end %>
+
       <% if can? :read, :catalogs %>
         <li data-step="4" data-intro="Este es el menú catálogos.">
         <a href="#"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent">Catálogos</span></a>
@@ -202,9 +208,6 @@
           </li>
           <li>
             <%= link_to t('activerecord.models.social_user.other'), social_users_path, {title: t('activerecord.models.social_user.other')}  %>
-          </li>
-          <li>
-            <%= link_to t('activerecord.models.key_analytical.other'), key_analyticals_path, {title: t('activerecord.models.key_analytical.other')}  %>
           </li>
           <li>
             <%= link_to t('activerecord.models.staff.other'), staffs_path, {title: t('activerecord.models.staff.other')}  %>
