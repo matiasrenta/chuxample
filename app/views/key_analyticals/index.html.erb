@@ -36,6 +36,12 @@
                       <%= f.select :id_in, options_for_select(['Sí', 'No'], @patch_q_id_in), {include_blank: true}, {class: "form-control input-sm"} %>
                     </div>
 
+                    <div class="form-group">
+                      <label for="q[destroyed_in]">Solo eliminados</label>
+                      <%#= f.select :destroyed_in, options_for_select(['Solo eliminados'], @q.destroyed_in), {include_blank: true}, {class: "form-control input-sm"} %>
+                      <%= select_tag "destroyed_in", options_for_select(['Solo eliminados'], nil), {include_blank: true}  %>
+                    </div>
+
 
 
 

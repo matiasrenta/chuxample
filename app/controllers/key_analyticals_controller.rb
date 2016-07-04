@@ -6,20 +6,27 @@ class KeyAnalyticalsController < ApplicationController
     authorize!(:read, KeyAnalytical)
     search_algoritm(:q)
     # filtros add-hoc
-    params[:q][:status_in] = KeyAnalytical.status_array if params[:q] && params[:q][:status_in] == 'Todos'
-    if params[:q] && params[:q][:id_in] == 'Sí'
-      params[:q][:id_in] = with_history.size > 0 ? with_history : [0]
-    elsif params[:q] && params[:q][:id_in] == 'No'
-      params[:q][:id_not_in] = with_history.size > 0 ? with_history : [0]
-      params[:q].except!(:id_in)
-    end
-    @q = KeyAnalytical.accessible_by(current_ability, :read).ransack(params[:q])
-    @q = @q.order("updated_at DESC, created_at DESC") if params[:q] && params[:q][:meta_sort]
-    @key_analyticals = @q.result(distinct: true).paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
+    if params[:destroyed_in] == 'Solo eliminados'
+      @key_analyticals = []
+      versions_destroyeds.each do |version|
+        @key_analyticals << PaperTrail::Version.find(version.id).reify
+      end
+    else
+      params[:q][:status_in] = KeyAnalytical.status_array if params[:q] && params[:q][:status_in] == 'Todos'
+      if params[:q] && params[:q][:id_in] == 'Sí'
+        params[:q][:id_in] = with_history.size > 0 ? with_history : [0]
+      elsif params[:q] && params[:q][:id_in] == 'No'
+        params[:q][:id_not_in] = with_history.size > 0 ? with_history : [0]
+        params[:q].except!(:id_in)
+      end
+      @q = KeyAnalytical.accessible_by(current_ability, :read).ransack(params[:q])
+      @q = @q.order("updated_at DESC, created_at DESC") if params[:q] && params[:q][:meta_sort]
+      @key_analyticals = @q.result(distinct: true).paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
 
-    # parche para que el dropdown del filtro tenga el valor que el usuario seleccionó
-    @patch_q_id_in = 'Sí' if params[:q] && params[:q][:id_in].present?
-    @patch_q_id_in = 'No' if params[:q] && params[:q][:id_not_in].present?
+      # parche para que el dropdown del filtro tenga el valor que el usuario seleccionó
+      @patch_q_id_in = 'Sí' if params[:q] && params[:q][:id_in].present?
+      @patch_q_id_in = 'No' if params[:q] && params[:q][:id_not_in].present?
+    end
   end
 
   # GET /key_analyticals/1
@@ -73,6 +80,7 @@ class KeyAnalyticalsController < ApplicationController
 
   def approve_changes
     if @key_analytical.status == 'Eliminación'
+      @key_analytical.versions.last.destroy # aqui estoy eliminando una version que tiene como evento 'create'
       @key_analytical.destroy
       redirect_to key_analyticals_path, notice: t("simple_form.flash.successfully_destroyed")
     else
@@ -107,5 +115,10 @@ class KeyAnalyticalsController < ApplicationController
 
     def with_history
       @with_history ||= PaperTrail::Version.select(:item_id).group(:item_id).map(&:item_id)
+    end
+
+    def versions_destroyeds
+      #@destroyeds ||= PaperTrail::Version.select(:id, :item_id).where(event: 'destroy').group(:item_id).map(&:id)
+      @destroyeds ||= PaperTrail::Version.select('max(id) as max_id, item_id').where(event: 'destroy').group(:item_id)
     end
 end
