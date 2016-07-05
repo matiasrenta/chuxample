@@ -19,7 +19,7 @@ module PublicActivityHelper
   end
 
   def keyables
-    [[t('helpers.select.create'), 'create'], [t('helpers.select.update'), 'update'], [t('helpers.select.destroy'), 'destroy'], [t('helpers.select.inactivate'), 'inactivate']]
+    [[t('helpers.select.create'), 'create'], [t('helpers.select.update'), 'update'], [t('helpers.select.destroy'), 'destroy'], ['Afectación presupuestal', 'afectacion']]
   end
 
   def trackable_label(activity, with_not_exists = true)
