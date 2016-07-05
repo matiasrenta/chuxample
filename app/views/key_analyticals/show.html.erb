@@ -443,16 +443,16 @@
                   <% last_version.changeset.keys.each do |key| %>
                       <tr>
                         <td><%= key %></td>
-                        <td><%= last_version.changeset[key][0] %></td>
                         <td><%= last_version.changeset[key][1] %></td>
+                        <td><%= last_version.changeset[key][0] %></td>
                       </tr>
                   <% end %>
                   </tbody>
                 </table>
               </td>
               <td class="table-actions">
-                <%= link_to raw("<i class='fa fa-check-circle'></i> Aprobar"), approve_changes_key_analytical_path(@key_analytical), class: 'btn btn-success btn-sm', method: :put, data: {confirm: "¿Está seguro de APROBAR esta #{@key_analytical.status}?"} if can?(:approve_afectacion, KeyAnalytical) %>
-                <%= link_to raw("<i class='fa fa-times-circle'></i> Rechazar"), reject_changes_key_analytical_path(@key_analytical), class: 'btn btn-danger btn-sm', method: :put, data: {confirm: "¿Está seguro de RECHAZAR esta #{@key_analytical.status}?"} if can?(:approve_afectacion, KeyAnalytical) %>
+                <%= link_to raw("<i class='fa fa-check-circle'></i> Aprobar"), approve_changes_key_analytical_path(@key_analytical), class: 'btn btn-success btn-sm', method: :put, data: {confirm: "¿Está seguro de APROBAR esta #{@key_analytical.status}?"} if can?(:approve_changes, KeyAnalytical) %>
+                <%= link_to raw("<i class='fa fa-times-circle'></i> Rechazar"), reject_changes_key_analytical_path(@key_analytical), class: 'btn btn-danger btn-sm', method: :put, data: {confirm: "¿Está seguro de RECHAZAR esta #{@key_analytical.status}?"} if can?(:reject_changes, KeyAnalytical) %>
               </td>
             </tr>
             </tbody>

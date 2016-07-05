@@ -36,7 +36,7 @@
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[cat_ppr_par_partida_especifica_id_eq]">Partida</label>
-                        <%= f.select :cat_ppr_par_partida_especifica_id_eq, options_from_collection_for_select(CatPprParPartidaEspecifica.order(:key), :id, :to_label, @q.cat_ppr_par_chapter_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                        <%= f.select :cat_ppr_par_partida_especifica_id_eq, options_from_collection_for_select(CatPprParPartidaEspecifica.order(:key), :id, :to_label, @q.cat_ppr_par_partida_especifica_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[cat_are_area_id_eq]"><%= t('simple_form.labels.defaults.cat_are_area') %></label>

@@ -407,8 +407,8 @@ es:
         one: Proyecto
         other: Proyectos
       key_analytical:
-        one: Afectación Presupuestal
-        other: Afectaciones Presupuestales
+        one: Afectación
+        other: Afectaciones
         fa_icon: 'fa-fw fa fa-money'
       cat_ppr_spending_destination:
         one: Destino de Gasto

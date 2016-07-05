@@ -6,4 +6,20 @@ class Role < ActiveRecord::Base
     name == 'superuser'
   end
 
+  def ejecutor_adquisicion?
+    name == 'Ejecutor Adquisición'
+  end
+
+  def ejecutor_nomina?
+    name == 'Ejecutor Nómina'
+  end
+
+  def ejecutor_obra?
+    name == 'Ejecutor Obra'
+  end
+
+  def ejecutor_social?
+    name == 'Ejecutor Social'
+  end
+
 end

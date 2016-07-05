@@ -6,9 +6,14 @@ class KeyAnalyticalsController < ApplicationController
   def index
     authorize!(:read, KeyAnalytical)
     params[:destroyed_in] = nil if params[:search_clear] # debo limpiar este filtro a mano
+    project_type_filter_for_ejecutors # para filtrar por project_type automaticamente si es un ejecutor específico
     search_algoritm(:q)
     # filtros add-hoc
     if params[:destroyed_in] == 'Solo eliminados'
+      @filter_active = true;
+      params[:q] = nil # para limpiar todos los otros filtros y no cree confusión al usuario
+      flash[:warning] = 'Se muestran todos los proyectos eliminados. No se puede aplicar otro filtro cuando se muestran los eliminados'
+      flash.discard(:warning) # elimina esta entrada del flash al finalizar el action
       @key_analyticals = []
       versions_destroyeds.each do |version|
         @key_analyticals << PaperTrail::Version.find(version.max_id).reify
@@ -17,7 +22,6 @@ class KeyAnalyticalsController < ApplicationController
         pager.replace @key_analyticals
       end
       @q = KeyAnalytical.accessible_by(current_ability, :read).ransack(params[:q]) # solo para que no de error el search_for
-
     else
       params[:q][:status_in] = KeyAnalytical.status_array if params[:q] && params[:q][:status_in] == 'Todos'
       if params[:q] && params[:q][:id_in] == 'Sí'
@@ -137,5 +141,15 @@ class KeyAnalyticalsController < ApplicationController
     def versions_destroyeds
       #@destroyeds ||= PaperTrail::Version.select(:id, :item_id).where(event: 'destroy').group(:item_id).map(&:id)
       @destroyeds ||= PaperTrail::Version.select('max(id) as max_id, item_id').where(event: 'destroy').group(:item_id)
+    end
+
+    def project_type_filter_for_ejecutors
+      if params[:q].nil?
+        params[:q] = {}
+        params[:q][:project_type_eq] = 'ProjectAdquisicion' if params[:q][:project_type_eq].blank? && current_user.ejecutor_adquisicion?
+        params[:q][:project_type_eq] = 'ProjectNomina'      if params[:q][:project_type_eq].blank? && current_user.ejecutor_nomina?
+        params[:q][:project_type_eq] = 'ProjectObra'        if params[:q][:project_type_eq].blank? && current_user.ejecutor_obra?
+        params[:q][:project_type_eq] = 'ProjectSocial'      if params[:q][:project_type_eq].blank? && current_user.ejecutor_social?
+      end
     end
 end

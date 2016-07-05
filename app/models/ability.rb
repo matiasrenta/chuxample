@@ -151,7 +151,7 @@ class Ability
 	def revisor
 		can [:read, :change_status], Verification
 		read_edit_own_user
-		can [:read, :approve_afectacion], KeyAnalytical
+		can [:read, :approve_changes, :reject_changes], KeyAnalytical
 		can [:create, :read, :update], ProjectActivityAdquisicion
 		can [:create, :read, :update], ProjectActivityNomina
 		can [:create, :read, :update], ProjectActivityObra

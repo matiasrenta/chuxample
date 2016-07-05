@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   after_destroy :remove_file
 
-  delegate :superuser?, to: :role
+  delegate :superuser?, :ejecutor_adquisicion?, :ejecutor_nomina?, :ejecutor_obra?, :ejecutor_social?, to: :role
 
   def name_or_email
     name || email
