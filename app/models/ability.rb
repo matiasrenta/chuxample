@@ -69,7 +69,7 @@ class Ability
 		can [:manage], State
 		can [:manage], FinancialDocumentType
 		can [:manage], FinancialDocument
-		can [:read], KeyAnalytical#, project_type: 'ProjectObra'
+		can [:read], KeyAnalytical
 		can [:manage], CatPprSpendingDestination
 		can [:manage], CatUniMeasureUnit
 		can [:manage], CatAreArea
@@ -113,6 +113,7 @@ class Ability
 
 	def ejecutor_general
 		ejecutor
+		can [:update], KeyAnalytical, status: nil
 		can [:create, :update], ProjectActivityAdquisicion
 		can [:create, :update], ProjectActivityNomina
 		can [:create, :update], ProjectActivityObra
@@ -122,22 +123,26 @@ class Ability
 
 	def ejecutor_adquisición
 		ejecutor
+		can [:update], KeyAnalytical, adquisicion?: true
 		can [:create, :update], ProjectActivityAdquisicion
 		can [:create], FinancialDocument, project_activityable: {parent_project: {adquisicion?: true}}
 	end
 	def ejecutor_nómina
 		ejecutor
+		can [:update], KeyAnalytical, nomina?: true
 		can [:create, :update], ProjectActivityNomina
 		can :create, FinancialDocument, project_activityable: {parent_project: {nomina?: true}}
 		can :manage, Paysheet
 	end
 	def ejecutor_obra
 		ejecutor
+		can [:update], KeyAnalytical, obra?: true
 		can [:create, :update], ProjectActivityObra
 		can [:create], FinancialDocument, project_activityable: {parent_project: {obra?: true}}
 	end
 	def ejecutor_social
 		ejecutor
+		can [:update], KeyAnalytical, social?: true
 		can [:create, :update], ProjectActivitySocial
 		can :create, FinancialDocument, project_activityable: {parent_project: {social?: true}}
 		can :manage, Beneficiary
@@ -146,7 +151,7 @@ class Ability
 	def revisor
 		can [:read, :change_status], Verification
 		read_edit_own_user
-		can [:read], KeyAnalytical
+		can [:read, :approve_afectacion], KeyAnalytical
 		can [:create, :read, :update], ProjectActivityAdquisicion
 		can [:create, :read, :update], ProjectActivityNomina
 		can [:create, :read, :update], ProjectActivityObra
@@ -208,6 +213,8 @@ class Ability
   def cannot_for_everyone
     #todo: cannot manage para todas las entidades que son CONSTANT
     #ejemplo: cannot [:create, :update, :destroy], User
+
+		cannot :update, KeyAnalytical, status: KeyAnalytical.status_array # no se puede editar cuando esta pendiente de revisar una afectacion
 
 		unless @user.superuser?
 			cannot [:create, :read, :update, :destroy], User, role_id: Role.find_by_name('superuser').id

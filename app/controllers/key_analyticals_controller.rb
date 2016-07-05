@@ -62,7 +62,7 @@ class KeyAnalyticalsController < ApplicationController
   # PATCH/PUT /key_analyticals/1
   def update
     @key_analytical.attributes = key_analytical_params
-    status = @key_analytical.autorizado_changed? ? 'Afectación' : 'Modificación'
+    status = @key_analytical.autorizado_changed? ? KeyAnalytical.status_array[0] : KeyAnalytical.status_array[1]
     if @key_analytical.save
       logica_afectaciones(status) # logica de afectaciones, modificaciones y eliminaciones
       flash[:info] = 'Cambios sujetos a aprobación. Una vez aprobados se harán efectivos.'
@@ -76,7 +76,7 @@ class KeyAnalyticalsController < ApplicationController
   # DELETE /key_analyticals/1
   def destroy
     if @key_analytical.destroy
-      logica_afectaciones('Eliminación')
+      logica_afectaciones(KeyAnalytical.status_array[2])
       flash[:info] = 'Eliminación sujeta a aprobación. Una vez aprobada se hará efectiva.'
       redirect_to @key_analytical.becomes(KeyAnalytical)
     else
@@ -87,7 +87,7 @@ class KeyAnalyticalsController < ApplicationController
 
   def approve_changes
     status = @key_analytical.status
-    if @key_analytical.status == 'Eliminación'
+    if @key_analytical.status == KeyAnalytical.status_array[2]
       @key_analytical.versions.last.destroy # aqui estoy eliminando una version que tiene como evento 'create'
       # primero creo el public activity y luego elimino (no me deja hacerlo al revés)
       @key_analytical.create_activity(key: 'key_analytical.approve_reject_afectacion', owner: current_user, parameters: {model_label: @key_analytical.short_key_analytical_string, status: status, approve_or_reject: 'Aprobó'})

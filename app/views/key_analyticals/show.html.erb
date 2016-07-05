@@ -5,7 +5,7 @@
 
         <div class="widget-toolbar">
           <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), key_analyticals_path, class: 'btn btn-primary' %>
-          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_key_analytical_path(@key_analytical), class: 'btn btn-primary' if can?(:update, KeyAnalytical) %>
+          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_key_analytical_path(@key_analytical), class: 'btn btn-primary' if can?(:update, @key_analytical) %>
         </div>
       </header>
       <div>
@@ -430,10 +430,29 @@
               <td><%= l(last_version.created_at, format: :without_seg) %></td>
               <td><%= User.find_by_id(last_version.whodunnit).try(:name_or_email) %></td>
               <td><%= @key_analytical.status %></td>
-              <td><%= last_version.changeset %></td>
+              <td>
+                <table width="100%" class="display table table-striped table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th></th>
+                    <th>Actual</th>
+                    <th>Cambiar a</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% last_version.changeset.keys.each do |key| %>
+                      <tr>
+                        <td><%= key %></td>
+                        <td><%= last_version.changeset[key][0] %></td>
+                        <td><%= last_version.changeset[key][1] %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </td>
               <td class="table-actions">
-                <%= link_to raw("<i class='fa fa-check-circle'></i> Aprobar"), approve_changes_key_analytical_path(@key_analytical), class: 'btn btn-success btn-sm', method: :put, data: {confirm: "¿Está seguro de APROBAR esta #{@key_analytical.status}?"} if can?(:approve_changes, KeyAnalytical) %>
-                <%= link_to raw("<i class='fa fa-times-circle'></i> Rechazar"), reject_changes_key_analytical_path(@key_analytical), class: 'btn btn-danger btn-sm', method: :put, data: {confirm: "¿Está seguro de RECHAZAR esta #{@key_analytical.status}?"} if can?(:approve_changes, KeyAnalytical) %>
+                <%= link_to raw("<i class='fa fa-check-circle'></i> Aprobar"), approve_changes_key_analytical_path(@key_analytical), class: 'btn btn-success btn-sm', method: :put, data: {confirm: "¿Está seguro de APROBAR esta #{@key_analytical.status}?"} if can?(:approve_afectacion, KeyAnalytical) %>
+                <%= link_to raw("<i class='fa fa-times-circle'></i> Rechazar"), reject_changes_key_analytical_path(@key_analytical), class: 'btn btn-danger btn-sm', method: :put, data: {confirm: "¿Está seguro de RECHAZAR esta #{@key_analytical.status}?"} if can?(:approve_afectacion, KeyAnalytical) %>
               </td>
             </tr>
             </tbody>
@@ -467,7 +486,26 @@
                   <td><%= l(version.created_at, format: :without_seg) %></td>
                   <td><%= User.find_by_id(version.whodunnit).try(:name_or_email) %></td>
                   <td><%= infer_status_from_version(version) %></td>
-                  <td><%= version.changeset %></td>
+                  <td>
+                    <table width="100%" class="display table table-striped table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th>Antes</th>
+                        <th>Después</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% version.changeset.keys.each do |key| %>
+                          <tr>
+                            <td><%= key %></td>
+                            <td><%= version.changeset[key][0] %></td>
+                            <td><%= version.changeset[key][1] %></td>
+                          </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </td>
                 </tr>
             <% end %>
             </tbody>
