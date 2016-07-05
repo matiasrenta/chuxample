@@ -39,12 +39,8 @@
                     <div class="form-group">
                       <label for="q[destroyed_in]">Solo eliminados</label>
                       <%#= f.select :destroyed_in, options_for_select(['Solo eliminados'], @q.destroyed_in), {include_blank: true}, {class: "form-control input-sm"} %>
-                      <%= select_tag "destroyed_in", options_for_select(['Solo eliminados'], nil), {include_blank: true}  %>
+                      <%= select_tag "destroyed_in", options_for_select(['Solo eliminados'], params[:destroyed_in]), {include_blank: true, class: "form-control input-sm"}  %>
                     </div>
-
-
-
-
                     <%= render 'shared/submit_filters' %>
                   </fieldset>
               <% end %>

@@ -1,4 +1,5 @@
 class KeyAnalyticalsController < ApplicationController
+  require 'will_paginate/array'
   load_and_authorize_resource except: :index, param_method: :key_analytical_params
 
   # GET /key_analyticals
@@ -9,8 +10,13 @@ class KeyAnalyticalsController < ApplicationController
     if params[:destroyed_in] == 'Solo eliminados'
       @key_analyticals = []
       versions_destroyeds.each do |version|
-        @key_analyticals << PaperTrail::Version.find(version.id).reify
+        @key_analyticals << PaperTrail::Version.find(version.max_id).reify
       end
+      @key_analyticals = WillPaginate::Collection.create(params[:page] || 1, per_page(params[:per_page]), @key_analyticals.length) do |pager|
+        pager.replace @key_analyticals
+      end
+      @q = KeyAnalytical.accessible_by(current_ability, :read).ransack(params[:q]) # solo para que no de error el search_for
+
     else
       params[:q][:status_in] = KeyAnalytical.status_array if params[:q] && params[:q][:status_in] == 'Todos'
       if params[:q] && params[:q][:id_in] == 'Sí'
