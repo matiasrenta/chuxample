@@ -28,6 +28,8 @@ module PublicActivityHelper
       if can?(:read, activity.trackable)
         if activity.trackable.class.name.start_with?('FinancialDocument')
           link_to label, activity.trackable.becomes(FinancialDocument)
+        elsif activity.trackable.class.name.start_with?('Project')
+          link_to label, activity.trackable.becomes(KeyAnalytical)
         else
           link_to label, activity.trackable
         end

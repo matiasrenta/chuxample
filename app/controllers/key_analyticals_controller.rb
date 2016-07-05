@@ -5,6 +5,7 @@ class KeyAnalyticalsController < ApplicationController
   # GET /key_analyticals
   def index
     authorize!(:read, KeyAnalytical)
+    params[:destroyed_in] = nil if params[:search_clear] # debo limpiar este filtro a mano
     search_algoritm(:q)
     # filtros add-hoc
     if params[:destroyed_in] == 'Solo eliminados'
@@ -85,23 +86,31 @@ class KeyAnalyticalsController < ApplicationController
   end
 
   def approve_changes
+    status = @key_analytical.status
     if @key_analytical.status == 'Eliminación'
       @key_analytical.versions.last.destroy # aqui estoy eliminando una version que tiene como evento 'create'
+      # primero creo el public activity y luego elimino (no me deja hacerlo al revés)
+      @key_analytical.create_activity(key: 'key_analytical.approve_reject_afectacion', owner: current_user, parameters: {model_label: @key_analytical.short_key_analytical_string, status: status, approve_or_reject: 'Aprobó'})
       @key_analytical.destroy
       redirect_to key_analyticals_path, notice: t("simple_form.flash.successfully_destroyed")
     else
       @key_analytical = @key_analytical.versions.last.reify
       @key_analytical.versions.last.destroy
       @key_analytical.status = nil
-      @key_analytical.save
+      if @key_analytical.save
+        @key_analytical.create_activity(key: 'key_analytical.approve_reject_afectacion', owner: current_user, parameters: {model_label: @key_analytical.short_key_analytical_string, status: status, approve_or_reject: 'Aprobó'})
+      end
       redirect_to @key_analytical.becomes(KeyAnalytical), notice: t("simple_form.flash.successfully_updated")
     end
   end
 
   def reject_changes
     @key_analytical.versions.last.destroy
+    status = @key_analytical.status
     @key_analytical.status = nil
-    @key_analytical.save # no genera ninguna version porque solo he cambiado el status (el cual es ignorado)
+    if @key_analytical.save # no genera ninguna version porque solo he cambiado el status (el cual es ignorado)
+      @key_analytical.create_activity(key: 'key_analytical.approve_reject_afectacion', owner: current_user, parameters: {model_label: @key_analytical.short_key_analytical_string, status: status, approve_or_reject: 'Rechazó'})
+    end
     redirect_to @key_analytical.becomes(KeyAnalytical), notice: 'Los cambios se han rechazado'
   end
 
@@ -116,7 +125,9 @@ class KeyAnalyticalsController < ApplicationController
       @key_analytical = @key_analytical.versions.last.reify # revierto el cambio
       @key_analytical.versions.last.destroy # elimino la version porque he revertido el cambio
       @key_analytical.status = status
-      @key_analytical.save # grabo dejando el record identico a como estaba antes (excepto por el status), pero genero una version con los cambios que el usuario quiere. Esta version es la que se aprueba por el revisor
+      if @key_analytical.save # grabo dejando el record identico a como estaba antes (excepto por el status), pero genero una version con los cambios que el usuario quiere. Esta version es la que se aprueba por el revisor
+        @key_analytical.create_activity(key: 'key_analytical.afectacion', owner: current_user, parameters: {model_label: @key_analytical.short_key_analytical_string, status: status})
+      end
     end
 
     def with_history

@@ -157,9 +157,11 @@
                     <td><%= key_analytical.cat_pgd_goal.try(:description) %></td>
                     <td><%= key_analytical.cat_pgd_line_of_action.try(:description) %></td>
                     <td class="table-actions">
-                      <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), key_analytical_path(key_analytical), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, key_analytical %>
-                      <%= link_to raw('<i class="fa fa-pencil fa-lg"></i>'), edit_key_analytical_path(key_analytical), rel: 'tooltip', title: t('simple_form.tooltips.edit'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can? :update, key_analytical %>
-                      <%= link_to raw('<i class="fa fa-trash fa-lg"></i>'), key_analytical_path(key_analytical), method: :delete, rel: 'tooltip', title: t('simple_form.tooltips.destroy'), class:'tooltipwithnofollow', data: { toggle: 'toggle', placement: 'top' , confirm: t('helpers.messages.are_you_sure'), 'original-title' => t('simple_form.tooltips.destroy')} if can? :destroy, key_analytical %>
+                      <% unless params[:destroyed_in] == 'Solo eliminados' %>
+                          <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), key_analytical_path(key_analytical), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, key_analytical %>
+                          <%= link_to raw('<i class="fa fa-pencil fa-lg"></i>'), edit_key_analytical_path(key_analytical), rel: 'tooltip', title: t('simple_form.tooltips.edit'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can? :update, key_analytical %>
+                          <%= link_to raw('<i class="fa fa-trash fa-lg"></i>'), key_analytical_path(key_analytical), method: :delete, rel: 'tooltip', title: t('simple_form.tooltips.destroy'), class:'tooltipwithnofollow', data: { toggle: 'toggle', placement: 'top' , confirm: t('helpers.messages.are_you_sure'), 'original-title' => t('simple_form.tooltips.destroy')} if can? :destroy, key_analytical %>
+                      <% end %>
                     </td>
                   </tr>
               <% end %>
