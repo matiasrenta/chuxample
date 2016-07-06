@@ -50,6 +50,8 @@ class Ability
 	end
 
 	def administrador
+		can [:manage], LeyFraccion
+		can [:manage], LeyArticulo
 		can [:read], Verification
 		can [:manage], Paysheet
 		can [:manage], Staff
@@ -63,13 +65,12 @@ class Ability
 		can [:manage], Beneficiary
 		can [:manage], TerritorialUnit
 		can [:manage], SocialDevelopmentProgram
-		#can [:manage], ProjectObra
 		can [:manage], Supplier
 		can [:manage], Town
 		can [:manage], State
 		can [:manage], FinancialDocumentType
 		can [:manage], FinancialDocument
-		can [:read], KeyAnalytical
+		can [:manage], KeyAnalytical
 		can [:manage], CatPprSpendingDestination
 		can [:manage], CatUniMeasureUnit
 		can [:manage], CatAreArea

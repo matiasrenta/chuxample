@@ -1,16 +1,6 @@
 class KeyAnalytical < ActiveRecord::Base
   has_paper_trail ignore: [:updated_at, :status]
-
   include PublicActivity::Model
-  #tracked only: [:create, :update, :destroy]
-  #tracked owner: ->(controller, model) {controller.try(:current_user)}
-  ##tracked recipient: ->(controller, model) { model.xxxx }
-  #tracked :on => {:update => proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).keys.size > 0 }}
-  #tracked :parameters => {
-  #            :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},
-  #            #:associations_changed => proc {|controller, model| model.id_changed? ? nil : de los que cambiaron y terminan con id, buscar el nombre anterior y posterior, luego en la vista buscar en la hash por el campo con id (ejemplo: category_id y obtener de la hash[:label_before], hash[:label_after] y hash[:show_url])},
-  #            :model_label => proc {|controller, model| model.try(:description)}
-  #        }
 
   belongs_to :cat_pgd_line_of_action
   belongs_to :cat_pgd_goal

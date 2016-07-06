@@ -42,6 +42,7 @@ class KeyAnalyticalsController < ApplicationController
 
   # GET /key_analyticals/1
   def show
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ @key_analytical.class.name: #{@key_analytical.class.name}"
   end
 
   # GET /key_analyticals/new
