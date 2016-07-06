@@ -70,7 +70,8 @@ class Ability
 		can [:manage], State
 		can [:manage], FinancialDocumentType
 		can [:manage], FinancialDocument
-		can [:read, :create, :update, :destroy], KeyAnalytical # no puede :massive_load
+		can [:manage], KeyAnalytical # no puede :massive_load
+		cannot :massive_load, KeyAnalytical
 		can [:manage], CatPprSpendingDestination
 		can [:manage], CatUniMeasureUnit
 		can [:manage], CatAreArea
@@ -114,7 +115,7 @@ class Ability
 
 	def ejecutor_general
 		ejecutor
-		can [:update], KeyAnalytical, status: nil
+		can [:update], KeyAnalytical
 		can [:create, :update], ProjectActivityAdquisicion
 		can [:create, :update], ProjectActivityNomina
 		can [:create, :update], ProjectActivityObra
