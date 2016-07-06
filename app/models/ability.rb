@@ -70,7 +70,7 @@ class Ability
 		can [:manage], State
 		can [:manage], FinancialDocumentType
 		can [:manage], FinancialDocument
-		can [:manage], KeyAnalytical
+		can [:read, :create, :update, :destroy], KeyAnalytical # no puede :massive_load
 		can [:manage], CatPprSpendingDestination
 		can [:manage], CatUniMeasureUnit
 		can [:manage], CatAreArea

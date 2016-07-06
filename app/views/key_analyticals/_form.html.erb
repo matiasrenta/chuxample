@@ -4,8 +4,7 @@
 
     <% if creating? %>
         <div class='widget-toolbar hidden-xs'>
-          <a href='<%= new_import_key_analyticals_path %>' role='button' class='btn btn-primary'><i class='fa fa-upload'></i>Carga
-            masiva</a>
+          <%= link_to raw("<i class='fa fa-upload'></i> #{t('simple_form.buttons.massive_load')}"), new_import_key_analyticals_path, class: 'btn btn-primary' if (can? :massive_load, KeyAnalytical) %>
         </div>
     <% end %>
 
