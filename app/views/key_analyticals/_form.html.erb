@@ -21,33 +21,33 @@
                                   boolean: :horizontal_boolean
                           } do |f| %>
           <div class="form-inputs edit">
-            <%= f.association :cat_pgd_axi %>
-            <%= f.association :cat_ere_expending_focu %>
-            <%= f.association :cat_ere_result %>
-            <%= f.association :cat_ere_subresult %>
-            <%= f.input :year %>
-            <%= f.input :sector %>
-            <%= f.input :subsector %>
-            <%= f.input :unidad_responsable %>
-            <%= f.association :cat_cfu_finality %>
-            <%= f.association :cat_cfu_function %>
-            <%= f.association :cat_cfu_subfunction %>
-            <%= f.association :cat_aci_institutional_activity %>
-            <%= f.association :cat_fon_funding_source %>
-            <%= f.association :cat_fon_generic_source %>
-            <%= f.association :cat_fon_specific_source %>
-            <%= f.association :cat_fon_year_document %>
-            <%= f.association :cat_fon_origin_resource %>
-            <%= f.association :cat_fon_fund %>
-            <%= f.association :cat_ppr_par_chapter %>
-            <%= f.association :cat_ppr_par_concept %>
-            <%= f.association :cat_ppr_par_partida_generica %>
-            <%= f.association :cat_ppr_par_partida_especifica %>
-            <%= f.association :cat_ppr_expense_type %>
-            <%= f.association :cat_ppr_digit_identifier %>
-            <%= f.association :cat_ppr_spending_destination %>
+            <%= f.association :cat_pgd_axi, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ere_expending_focu, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ere_result, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ere_subresult, input_html: {disabled: updating?} %>
+            <%= f.input :year, input_html: {disabled: updating?} %>
+            <%= f.input :sector, input_html: {disabled: updating?} %>
+            <%= f.input :subsector, input_html: {disabled: updating?} %>
+            <%= f.input :unidad_responsable, input_html: {disabled: updating?} %>
+            <%= f.association :cat_cfu_finality, input_html: {disabled: updating?} %>
+            <%= f.association :cat_cfu_function, input_html: {disabled: updating?} %>
+            <%= f.association :cat_cfu_subfunction, input_html: {disabled: updating?} %>
+            <%= f.association :cat_aci_institutional_activity, input_html: {disabled: updating?} %>
+            <%= f.association :cat_fon_funding_source, input_html: {disabled: updating?} %>
+            <%= f.association :cat_fon_generic_source, input_html: {disabled: updating?} %>
+            <%= f.association :cat_fon_specific_source, input_html: {disabled: updating?} %>
+            <%= f.association :cat_fon_year_document, input_html: {disabled: updating?} %>
+            <%= f.association :cat_fon_origin_resource, input_html: {disabled: updating?} %>
+            <%= f.association :cat_fon_fund, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ppr_par_chapter, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ppr_par_concept, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ppr_par_partida_generica, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ppr_par_partida_especifica, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ppr_expense_type, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ppr_digit_identifier, input_html: {disabled: updating?} %>
+            <%= f.association :cat_ppr_spending_destination, input_html: {disabled: updating?} %>
             <%= f.input :proyecto_de_inversion %>
-            <%= f.association :cat_are_area %>
+            <%= f.association :cat_are_area, input_html: {disabled: updating?} %>
             <%= f.input :autorizado %>
             <%= f.input :enero %>
             <%= f.input :febrero %>
@@ -61,27 +61,27 @@
             <%= f.input :octubre %>
             <%= f.input :noviembre %>
             <%= f.input :diciembre %>
-            <%= f.association :cat_uni_measure_unit %>
+            <%= f.association :cat_uni_measure_unit, input_html: {disabled: updating?} %>
             <%= f.input :meta_fisica %>
             <%= f.input :descripcion_de_las_acciones, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :domicilio_del_area, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :dut_de_la_accion, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :poblacion_beneficiada %>
-            <%= f.association :cat_der_human_right %>
-            <%= f.association :cat_der_strategy %>
-            <%= f.association :cat_der_line_of_action %>
+            <%= f.association :cat_der_human_right, input_html: {disabled: updating?} %>
+            <%= f.association :cat_der_strategy, input_html: {disabled: updating?} %>
+            <%= f.association :cat_der_line_of_action, input_html: {disabled: updating?} %>
             <%= f.input :justificacion_derechos_humanos, :input_html => {:rows => 4, :cols => 30} %>
             <%= f.input :porcentaje_igualdad_sustantiva %>
             <%= f.input :mujeres %>
             <%= f.input :hombres %>
-            <%= f.association :cat_gen_axi %>
-            <%= f.association :cat_gen_strategy %>
-            <%= f.association :cat_gen_line_of_action %>
+            <%= f.association :cat_gen_axi, input_html: {disabled: updating?} %>
+            <%= f.association :cat_gen_strategy, input_html: {disabled: updating?} %>
+            <%= f.association :cat_gen_line_of_action, input_html: {disabled: updating?} %>
             <%= f.input :justificacion_genero, :input_html => {:rows => 4, :cols => 30} %>
-            <%= f.association :cat_pgd_area_of_opportunity %>
-            <%= f.association :cat_pgd_objective %>
-            <%= f.association :cat_pgd_goal %>
-            <%= f.association :cat_pgd_line_of_action %>
+            <%= f.association :cat_pgd_area_of_opportunity, input_html: {disabled: updating?} %>
+            <%= f.association :cat_pgd_objective, input_html: {disabled: updating?} %>
+            <%= f.association :cat_pgd_goal, input_html: {disabled: updating?} %>
+            <%= f.association :cat_pgd_line_of_action, input_html: {disabled: updating?} %>
 
             <div class="widget-footer">
               <div class="form-actions">
