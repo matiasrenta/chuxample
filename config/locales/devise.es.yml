@@ -8,7 +8,7 @@ es:
       send_paranoid_instructions: "Si tu correo electrónico existe en nuestra base de datos recibirás un correo electrónico en unos minutos con instrucciones sobre cómo confirmar tu cuenta."
     failure:
       already_authenticated: "Ya has iniciado sesión."
-      inactive: "Tu cuenta aún no ha sido activada."
+      inactive: "Tu cuenta está inactiva."
       invalid: "%{authentication_keys} o contraseña inválidos."
       locked: "Tu cuenta ha sido bloqueada. Recibirás un email con un enlace para desbloquearla."
       last_attempt: "Tienes un último intento antes de que tu cuenta sea bloqueada."

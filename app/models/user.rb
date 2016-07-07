@@ -36,16 +36,18 @@ class User < ActiveRecord::Base
 
   scope :revisores, -> {where(role_id: Role.revisor.id)}
 
+  scope :actives, -> {where('deleted_at IS NULL')}
+
+  def active?
+    deleted_at.nil?
+  end
+
   def name_or_email
     name || email
   end
 
   def mailboxer_email(object)
     email
-  end
-
-  def only_api_access?
-    self.only_api_access
   end
 
   # sobreescribí este metodo de Devise solo para poder enviar un subject distinto para el mail de bienvenida y el de reset pasword instruction
@@ -60,6 +62,10 @@ class User < ActiveRecord::Base
 
   def except_attr_in_public_activity
     [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count, :current_sign_in_ip, :last_sign_in_ip, :failed_attempts, :unlock_token, :locked_at, :reset_password_token, :reset_password_sent_at, :last_seen_at, :deleted_at, :avatar_id, :avatar_size]
+  end
+
+  def active_for_authentication?
+    super && active?
   end
 
   protected
