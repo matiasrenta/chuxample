@@ -15,6 +15,7 @@
           <div class="form-inputs edit">
             <%= f.input :application %>
             <%= f.input :note, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :access_token if updating? %>
 
             <div class="widget-footer">
               <div class="form-actions">
