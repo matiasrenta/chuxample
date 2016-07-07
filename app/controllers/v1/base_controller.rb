@@ -5,6 +5,11 @@ class V1::BaseController < ActionController::Base
   before_action :check_if_api_user_active
   #before_action :set_user_time_zone
 
+
+  def user_for_paper_trail
+    nil # disable whodunnit tracking for paper_trail. Para que no aparezca el warning
+  end
+
   protected
 
   def set_user_time_zone

@@ -399,6 +399,10 @@ Rails.application.routes.draw do
     resources :things
     resources :project_activity_obras
     resources :verifications
-    resources :projects, only: :index
+    resources :projects do
+      collection do
+        get :portal_treemap
+      end
+    end
   end
 end
