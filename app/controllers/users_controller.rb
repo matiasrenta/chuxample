@@ -27,10 +27,8 @@ class UsersController < ApplicationController
     authorize! :create, @user
     if @user.save
       @user.delay(queue: 'mailing').send_reset_password_instructions
-      #@user.send_reset_password_instructions
       redirect_to @user, notice: t('devise.labels.new_user_email_sent', email: @user.email)
     else
-      puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #{@user.errors.full_messages}"
       generate_flash_msg_no_keep(@user)
       render :new
     end
