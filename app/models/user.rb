@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
 
   delegate :superuser?, :ejecutor_adquisicion?, :ejecutor_nomina?, :ejecutor_obra?, :ejecutor_social?, to: :role
 
+  scope :revisores, -> {where(role_id: Role.revisor.id)}
+
   def name_or_email
     name || email
   end

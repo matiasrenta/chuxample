@@ -19,4 +19,13 @@ class Notificator
     end
     User.where(id: user_ids)
   end
+
+  def notify_afectacion_to_revisores(key_analytical, sender)
+      recipients = User.actives.revisores
+      if recipients.size > 0
+        entity_link = view_context.link_to(key_analytical.short_key_analytical_string, key_analytical_path(key_analytical), class: 'display-normal')
+        Notificator.send(current_user, recipients, "<strong>#{sender.name_or_email}</strong> realizó una <strong>#{key_analytical.status}</strong> en el proyecto #{entity_link}")
+      end
+  end
+
 end

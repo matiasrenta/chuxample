@@ -42,7 +42,6 @@ class KeyAnalyticalsController < ApplicationController
 
   # GET /key_analyticals/1
   def show
-    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ @key_analytical.class.name: #{@key_analytical.class.name}"
   end
 
   # GET /key_analyticals/new
@@ -131,6 +130,8 @@ class KeyAnalyticalsController < ApplicationController
       @key_analytical.versions.last.destroy # elimino la version porque he revertido el cambio
       @key_analytical.status = status
       if @key_analytical.save # grabo dejando el record identico a como estaba antes (excepto por el status), pero genero una version con los cambios que el usuario quiere. Esta version es la que se aprueba por el revisor
+        # aqui debería notificar a los usuarios verificadores
+        Notificator.notify_afectacion_to_revisores(@key_analytical)
         @key_analytical.create_activity(key: 'key_analytical.afectacion', owner: current_user, parameters: {model_label: @key_analytical.short_key_analytical_string, status: status})
       end
     end
