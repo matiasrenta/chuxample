@@ -130,8 +130,11 @@ class KeyAnalyticalsController < ApplicationController
       @key_analytical.versions.last.destroy # elimino la version porque he revertido el cambio
       @key_analytical.status = status
       if @key_analytical.save # grabo dejando el record identico a como estaba antes (excepto por el status), pero genero una version con los cambios que el usuario quiere. Esta version es la que se aprueba por el revisor
-        # aqui debería notificar a los usuarios verificadores
-        Notificator.notify_afectacion_to_revisores(@key_analytical)
+        # notifico a los revisores
+        entity_link = view_context.link_to(@key_analytical.short_key_analytical_string, key_analytical_path(@key_analytical), class: 'display-normal')
+        body = "<strong>#{current_user.name_or_email}</strong> realizó una <strong>#{@key_analytical.status}</strong> en el proyecto #{entity_link}"
+        Notificator.send(current_user, User.actives.revisores, body, 'fa-money')
+        # creo public activity
         @key_analytical.create_activity(key: 'key_analytical.afectacion', owner: current_user, parameters: {model_label: @key_analytical.short_key_analytical_string, status: status})
       end
     end
