@@ -32,4 +32,8 @@ class V1::PortalController < V1::BaseController
     respond_with @suppliers
   end
 
+  def mapa_obras
+    @activities_obras = ProjectActivityObra.all.includes(:financial_documents, :verifications, project_obra: [:cat_are_area])
+  end
+
 end
