@@ -20,7 +20,7 @@ class VerificationsController < ApplicationController
 
   # POST /verifications
   def create
-
+    @verification.verification_owneable = current_user
     if @verification.save
       redirect_to @verification, notice: t("simple_form.flash.successfully_created")
     else
