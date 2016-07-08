@@ -1,8 +1,8 @@
 class V1::BaseController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :restrict_applications_access
-  before_action :authenticate_user_or_api_user_or_social_user
-  before_action :check_if_api_user_active
+  before_action :authenticate_user_or_api_user_or_social_user, unless: :access_only_with_token?
+  before_action :check_if_api_user_active, unless: :access_only_with_token?
   #before_action :set_user_time_zone
 
 
@@ -24,8 +24,8 @@ class V1::BaseController < ActionController::Base
   private
 
   def restrict_applications_access
-    api_key = ApiKey.find_by_access_token(request.headers['HTTP_ACCESS_TOKEN']) # el header original es 'access_token', pero rails 4 lo transforma a HTTP_ACCES_TOKEN (uppercase, underscore and prefixed with HTTP)
-    head :unauthorized unless api_key
+    @api_key = ApiKey.find_by_access_token(request.headers['HTTP_ACCESS_TOKEN']) # el header original es 'access_token', pero rails 4 lo transforma a HTTP_ACCES_TOKEN (uppercase, underscore and prefixed with HTTP)
+    head :unauthorized unless @api_key
   end
 
   def authenticate_user_or_api_user_or_social_user
@@ -84,12 +84,14 @@ class V1::BaseController < ActionController::Base
     end
   end
 
-
-
   def check_if_api_user_active
     if @api_user && @api_user.confirmed_at.blank?
       render :json => {data: @api_user, status: :unprocessable_entity, errors: ['Usuario no activado. Debe confirmar su cuenta visitando el enlace enviado a su email.']}
     end
+  end
+
+  def access_only_with_token?
+    @api_key.access_only_with_token
   end
 
 end
