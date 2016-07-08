@@ -399,9 +399,12 @@ Rails.application.routes.draw do
     resources :things
     resources :project_activity_obras
     resources :verifications
-    resources :projects do
+    resources :portal do
       collection do
-        get :portal_treemap
+        get :total_budget
+        get :treemap
+        get :suppliers
+        get :mapa_obras
       end
     end
   end

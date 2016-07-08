@@ -23,6 +23,11 @@ class FinancialDocument < ActiveRecord::Base
 
   after_destroy :remove_file_attached
 
+  scope :bills, -> {where(:type => 'FinancialDocumentBill')}
+  scope :adquisicions, -> {where(project_activityable_type: 'ProjectActivityAdquisicion')}
+  scope :obras, -> {where(project_activityable_type: 'ProjectActivityObra')}
+  scope :socials, -> {where(project_activityable_type: 'ProjectActivitySocial')}
+
   def grupo_factura?
     type == 'FinancialDocumentBill'
   end
