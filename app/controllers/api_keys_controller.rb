@@ -53,6 +53,6 @@ class ApiKeysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def api_key_params
-      params.require(:api_key).permit(:application, :access_token, :note)
+      params.require(:api_key).permit(:application, :access_token, :access_only_with_token, :note)
     end
 end

@@ -14,6 +14,7 @@
                           } do |f| %>
           <div class="form-inputs edit">
             <%= f.input :application %>
+            <%= f.input :access_only_with_token, hint: t('simple_form.hints.access_only_with_token') %>
             <%= f.input :note, :input_html => {:rows => 4, :cols => 30} %>
 
             <div class="widget-footer">

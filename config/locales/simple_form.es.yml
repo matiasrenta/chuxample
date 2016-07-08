@@ -57,9 +57,10 @@ es:
         file_filename: 'Nombre de Archivo'
         locale: 'Idioma'
         time_zone: 'Uso Horario'
+        access_only_with_token: 'Accede solamente con token'
 
     hints:
-      only_api_access: 'Si solo tiene acceso API no podrá hacer login en la aplicación web. Solo accederá a la API.'
+      access_only_with_token: 'La app no necesita autenticar usuario, solo usa el token para acceder a la API'
 
     placeholders:
       from: 'desde'
