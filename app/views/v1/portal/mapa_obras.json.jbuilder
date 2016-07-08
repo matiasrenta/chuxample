@@ -15,4 +15,16 @@ json.features @activities_obras do |ao|
     json.type 'Point'
     json.coordinates [ao.longitude, ao.latitude]
   end
+  json.verifications ao.verifications.validas.order('created_at DESC') do |v|
+    json.answer v.answer
+    json.evaluation v.evaluation
+    json.comments v.comments
+    json.created_at v.created_at
+    json.verification_photos v.verification_photos do |vp|
+      json.date_and_time vp.date_and_time
+      json.latitude vp.latitude
+      json.longitude vp.longitude
+      json.url "#{Sett['S3_ROOT_PATH']}#{vp.name}"
+    end
+  end
 end
