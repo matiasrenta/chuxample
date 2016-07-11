@@ -46,6 +46,8 @@ class KeyAnalytical < ActiveRecord::Base
   #          :justificacion_derechos_humanos, :porcentaje_igualdad_sustantiva, :cat_gen_axi_id, :cat_gen_strategy_id,
   #          :justificacion_genero, presence: true
 
+  normalize_attribute :proyecto_de_inversion # para que no cambie de nil a ''. ver gem attribute_normalizer
+
   validates :year, :sector, :subsector, :unidad_responsable,
             :cat_cfu_finality_id, :cat_cfu_function_id, :cat_cfu_subfunction_id, :cat_aci_institutional_activity_id, :cat_fon_funding_source_id,
             :cat_fon_generic_source_id, :cat_fon_specific_source_id, :cat_fon_year_document_id, :cat_fon_origin_resource_id,

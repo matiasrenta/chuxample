@@ -67,13 +67,17 @@ class KeyAnalyticalsController < ApplicationController
   def update
     @key_analytical.attributes = key_analytical_params
     status = @key_analytical.autorizado_changed? ? KeyAnalytical.status_array[0] : KeyAnalytical.status_array[1]
-    if @key_analytical.save
-      logica_afectaciones(status) # logica de afectaciones, modificaciones y eliminaciones
-      flash[:info] = 'Cambios sujetos a aprobación. Una vez aprobados se harán efectivos.'
-      redirect_to @key_analytical.becomes(KeyAnalytical)
+    if @key_analytical.changed?
+      if @key_analytical.save
+        logica_afectaciones(status) # logica de afectaciones, modificaciones y eliminaciones
+        flash[:info] = 'Cambios sujetos a aprobación. Una vez aprobados se harán efectivos.'
+        redirect_to @key_analytical.becomes(KeyAnalytical)
+      else
+        generate_flash_msg_no_keep(@key_analytical)
+        render :edit
+      end
     else
-      generate_flash_msg_no_keep(@key_analytical)
-      render :edit
+      redirect_to @key_analytical.becomes(KeyAnalytical)
     end
   end
 

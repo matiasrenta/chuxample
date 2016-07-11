@@ -136,6 +136,8 @@ gem 'gmaps4rails'
 gem 'paranoia', '~> 2.0'
 # para versionamiento. https://github.com/airblade/paper_trail
 gem 'paper_trail'
+# https://github.com/mdeering/attribute_normalizer
+gem 'attribute_normalizer' #proyecto_inversion en key_analytical se cambia de nil a '' provocando un attribute change en una afectacion. Este gem hace que se quede como nil
 # (-)Instalados por mi
 
 
