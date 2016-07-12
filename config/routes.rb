@@ -405,6 +405,7 @@ Rails.application.routes.draw do
         get :treemap
         get :suppliers
         get :mapa_obras
+        get :financial_documents
       end
     end
   end
