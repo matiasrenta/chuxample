@@ -19,6 +19,9 @@ class ProjectActivitySocial < ActiveRecord::Base
   validates :social_development_program_id, :comentarios, :project_social_id, presence: true
   validates :social_development_program_id, :nro_beneficiarios, :nro_metas_cumplidas, :project_social_id, numericality: true
 
+  before_create do
+    self.name = social_development_program.try(:name)
+  end
 
   def parent_project
     self.project_social

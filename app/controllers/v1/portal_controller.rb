@@ -36,4 +36,8 @@ class V1::PortalController < V1::BaseController
     @activities_obras = ProjectActivityObra.all.includes(:financial_documents, :verifications, project_obra: [:cat_are_area])
   end
 
+  def financial_documents
+    @financial_documents = FinancialDocument.all.includes(:project_activityable, :financial_document_type)
+  end
+
 end

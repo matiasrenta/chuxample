@@ -88,4 +88,9 @@ class CatalogCleaner < Object
     end
   end
 
+  def self.nilify_proyecto_de_inversion
+    sql = "update key_analyticals set proyecto_de_inversion = null where proyecto_de_inversion = ''"
+    ActiveRecord::Base.connection.execute(sql)
+  end
+
 end
