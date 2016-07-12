@@ -21,7 +21,7 @@ class ProjectActivityNomina < ActiveRecord::Base
   validates :ascription_id, numericality: true, if: 'ascription_id'
 
   before_create do
-    self.name = nil # todo: setear aqui el nombre del tipo de nomina (serán dos pero aún no lo he programado)
+    self.name = 'Documento de Nómina'
   end
 
   def parent_project

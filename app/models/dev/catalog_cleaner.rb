@@ -93,4 +93,19 @@ class CatalogCleaner < Object
     ActiveRecord::Base.connection.execute(sql)
   end
 
+  def self.assign_name_to_project_activity_nomina_and_social
+    ProjectActivitySocial.all.each do |pas|
+      if pas.name.nil?
+        pas.name = pas.social_development_program.try(:name)
+        pas.save!
+      end
+    end
+    ProjectActivityNomina.all.each do |pan|
+      if pan.name.nil?
+        pan.name = 'Documento de Nómina'
+        pan.save!
+      end
+    end
+  end
+
 end
