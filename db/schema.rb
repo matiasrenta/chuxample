@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711234257) do
+ActiveRecord::Schema.define(version: 20160713214954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -622,6 +622,22 @@ ActiveRecord::Schema.define(version: 20160711234257) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
+
+  create_table "open_data", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "labels"
+    t.string   "published_by"
+    t.string   "contact"
+    t.string   "email"
+    t.string   "access_level"
+    t.string   "file_id"
+    t.string   "file_filename"
+    t.integer  "file_size"
+    t.string   "file_content_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "paysheets", force: :cascade do |t|
     t.integer  "staff_id"
