@@ -288,6 +288,10 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      open_datum:
+        one: Datos Abiertos
+        other: Datos Abiertos
+        fa_icon: 'fa-fw fa fa-database'
         user:
           attributes:
             avatar:
@@ -301,6 +305,10 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      open_datum:
+        one: Datos Abiertos
+        other: Datos Abiertos
+        fa_icon: 'fa-fw fa fa-database'
       social_user:
         one: Usuario Social
         other: Usuarios Sociales

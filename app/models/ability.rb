@@ -50,6 +50,7 @@ class Ability
 	end
 
 	def administrador
+		can [:manage], OpenDatum
 		can [:manage], LeyFraccion
 		can [:manage], LeyArticulo
 		can [:read], Verification

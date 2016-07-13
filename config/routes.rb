@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :open_data
   resources :social_users
   resources :api_keys
   resources :verifications

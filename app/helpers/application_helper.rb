@@ -62,5 +62,18 @@ module ApplicationHelper
     eval("edit_#{instance.class.name.underscore}_path(instance)")
   end
 
+  def file_size_with_meassure(bytes)
+    b = Float(bytes)
+    if b > 1073741824 # Gb
+      "#{(b / 1073741824).round(1)} Gb."
+    elsif b > 1048576 # Mb
+      "#{(b / 1048576).round(1)} Mb."
+    elsif b > 1024    # Kb
+      "#{(b / 1024).round} Kb."
+    else              # bytes
+      "#{bytes} Bytes"
+    end
+  end
+
 
 end
