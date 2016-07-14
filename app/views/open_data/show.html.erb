@@ -52,7 +52,7 @@
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.updated_at') %></strong></label>
 
                 <div class="col-lg-9 details-data">
-                  <%= @open_datum.updated_at %>
+                  <%= titled_time_ago_in_words(@open_datum.updated_at) %>
                 </div>
               </div>
 

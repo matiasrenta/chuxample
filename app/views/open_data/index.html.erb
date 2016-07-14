@@ -89,7 +89,7 @@
                   <tr>
                     <td><%= open_datum.title %></td>
                     <td><%= open_datum.published_by %></td>
-                    <td><%= open_datum.updated_at %></td>
+                    <td><%= titled_time_ago_in_words(open_datum.updated_at) %></td>
                     <td><%= open_datum.file_filename %></td>
                     <td align='right'><%= friendly_file_size(open_datum.file_size) %></td>
                     <td><%= open_datum.contact %></td>
