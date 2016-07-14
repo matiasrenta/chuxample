@@ -4,6 +4,7 @@
   </header>
   <div>
     <div class="widget-body">
+      <span title="hola">hhhhh</span>
       <%= simple_form_for @open_datum, html: {class: 'form-horizontal'},
                           wrapper: :horizontal_form,
                           wrapper_mappings: {
@@ -19,7 +20,6 @@
             <%= f.input :published_by, input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'La entidad en responsabilidad de la publicación de los datos.', icon: 'fa fa-question'}} %>
             <%= f.input :contact, input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'Nombre de la persona de contacto para la base de datos.', icon: 'fa fa-question'}} %>
             <%= f.input :email, input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'Correo electrónico de contacto para responder dudas, comentarios y sugerencias sobre los datos publicados.', icon: 'fa fa-question'}} %>
-            <%= f.input :access_level, as: :select, collection: %w(Público Restringido Privado), input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'El grado de publicidad de la base de datos.', icon: 'fa fa-question'}} %>
             <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_OPEN_DATA_MAX_FILESIZE'].to_i} %>
 
             <div class="widget-footer">

@@ -52,6 +52,6 @@ class OpenDataController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def open_datum_params
-      params.require(:open_datum).permit(:title, :description, :labels, :published_by, :contact, :email, :access_level, :file, :remove_file)
+      params.require(:open_datum).permit(:title, :description, :labels, :published_by, :contact, :email, :file, :remove_file)
     end
 end

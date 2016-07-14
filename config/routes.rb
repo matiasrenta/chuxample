@@ -407,6 +407,7 @@ Rails.application.routes.draw do
         get :suppliers
         get :mapa_obras
         get :financial_documents
+        get :open_data
       end
     end
   end

@@ -47,6 +47,15 @@
                   <%= @open_datum.published_by %>
                 </div>
               </div>
+
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.updated_at') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @open_datum.updated_at %>
+                </div>
+              </div>
+
               <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.contact') %></strong></label>
 
@@ -62,16 +71,9 @@
                 </div>
               </div>
               <div class="row show-details">
-                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.access_level') %></strong></label>
-
-                <div class="col-lg-9 details-data">
-                  <%= @open_datum.access_level %>
-                </div>
-              </div>
-              <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.file') %></strong></label>
                 <div class="col-lg-9 details-data">
-                  <%= link_to @open_datum.file_filename, attachment_url(@open_datum, :file) %> <%= "(#{file_size_with_meassure(@open_datum.file_size)} #{@open_datum.file_content_type})" %>
+                  <%= link_to @open_datum.file_filename, attachment_url(@open_datum, :file) %> <%= "(#{friendly_file_size(@open_datum.file_size)} #{@open_datum.file_content_type})" %>
                 </div>
               </div>
             </div>

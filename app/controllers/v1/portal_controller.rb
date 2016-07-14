@@ -40,4 +40,8 @@ class V1::PortalController < V1::BaseController
     @financial_documents = FinancialDocument.all.includes(:project_activityable, :financial_document_type)
   end
 
+  def open_data
+    @open_data = OpenDatum.order('updated_at DESC')
+  end
+
 end

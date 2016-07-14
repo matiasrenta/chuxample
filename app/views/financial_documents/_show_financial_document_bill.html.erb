@@ -43,7 +43,7 @@
 <tr role="row">
   <th><%= t('simple_form.labels.defaults.file') %></th>
   <td>
-    <%= link_to @financial_document.file_filename, attachment_url(@financial_document, :file) %> <%= "(#{file_size_with_meassure(@financial_document.file_size)} #{@financial_document.file_content_type})" %>
+    <%= link_to @financial_document.file_filename, attachment_url(@financial_document, :file) %> <%= "(#{friendly_file_size(@financial_document.file_size)} #{@financial_document.file_content_type})" %>
   </td>
 </tr>
 
