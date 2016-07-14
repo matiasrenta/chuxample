@@ -47,7 +47,8 @@
             <%= f.association :cat_ppr_spending_destination, input_html: {disabled: updating?} %>
             <%= f.input :proyecto_de_inversion %>
             <%= f.association :cat_are_area, input_html: {disabled: updating?} %>
-            <%= f.input :autorizado %>
+            <%= f.input :original, input_html: {disabled: updating?} %>
+            <%= f.input :modificado unless creating? %>
             <%= f.input :enero %>
             <%= f.input :febrero %>
             <%= f.input :marzo %>

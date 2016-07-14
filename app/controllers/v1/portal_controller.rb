@@ -2,12 +2,12 @@ class V1::PortalController < V1::BaseController
   respond_to :json
 
   def index
-    @suppliers = KeyAnalytical.select(:id, :autorizado).group(:project_type).sum(:autorizado)
+    @suppliers = KeyAnalytical.select(:id, :modificado).group(:project_type).sum(:modificado)
     respond_with @projects
   end
 
   def total_budget
-    render json: {presupuesto: KeyAnalytical.sum(:autorizado), percent: 7, last_year: 2015}
+    render json: {presupuesto: KeyAnalytical.sum(:modificado), percent: 7, last_year: 2015}
   end
 
   def treemap
@@ -20,7 +20,7 @@ class V1::PortalController < V1::BaseController
                                                               cat_ppr_par_chapters.description as capitulo,
                                                               cat_aci_institutional_activities.description as actividad_institucional,
                                                               cat_are_areas.description as area,
-                                                              key_analyticals.autorizado as programado')
+                                                              key_analyticals.original as programado')
     respond_with @projects
   end
 

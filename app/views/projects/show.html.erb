@@ -156,8 +156,13 @@
               </div>
 
               <div class="row show-details">
-                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.autorizado') %></strong></label>
-                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.autorizado, unit: 'MXN') if @key_analytical.autorizado %></div>
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.original') %></strong></label>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.original, unit: 'MXN') if @key_analytical.original %></div>
+              </div>
+
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.modificado') %></strong></label>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.modificado, unit: 'MXN') if @key_analytical.modificado %></div>
               </div>
 
               <div class="row show-details">

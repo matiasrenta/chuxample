@@ -80,7 +80,8 @@ class KeyAnalyticalImport < BaseImport
     end
     key_analytical.cat_are_area_id                     = CatAreArea.find_by_description(area).try(:id)
 
-    key_analytical.autorizado                          = row['autorizado']
+    key_analytical.original                            = row['autorizado']
+    key_analytical.modificado                          = row['autorizado']
     key_analytical.enero                               = row['enero'.upcase]
     key_analytical.febrero                             = row['febrero'.upcase]
     key_analytical.marzo                               = row['marzo'.upcase]

@@ -92,7 +92,7 @@
                 <th><%= sort_link(@q, :cat_ppr_par_partida_especifica_description, 'Concepto Partida') %></th>
                 <th><%= sort_link(@q, :cat_are_area_description, 'Área') %></th>
                 <th><%= sort_link(@q, :cat_aci_institutional_activity_description, t('simple_form.labels.defaults.cat_aci_institutional_activity')) %></th>
-                <th><%= sort_link(@q, :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
+                <th><%= sort_link(@q, :modificado, t('simple_form.labels.defaults.modificado')) %></th>
                 <th>Monto Ejercido</th>
                 <th><%= sort_link(@q, :short_key_analytical_string, t('simple_form.labels.defaults.short_key_analytical_string')) %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
@@ -105,7 +105,7 @@
                     <td><%= project.cat_ppr_par_partida_especifica.try(:description) %></td>
                     <td><%= project.cat_are_area.try(:description) %></td>
                     <td><%= project.cat_aci_institutional_activity.try(:description) %></td>
-                    <td align='right'><%= number_to_currency(project.autorizado, unit: '') if project.autorizado %></td>
+                    <td align='right'><%= number_to_currency(project.modificado, unit: '') if project.modificado %></td>
                     <td align='right'><%= '000000000.00' %></td>
                     <td><%= project.short_key_analytical_string %></td>
                     <td class="table-actions">
