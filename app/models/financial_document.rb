@@ -28,6 +28,12 @@ class FinancialDocument < ActiveRecord::Base
   scope :obras, -> {where(project_activityable_type: 'ProjectActivityObra')}
   scope :socials, -> {where(project_activityable_type: 'ProjectActivitySocial')}
 
+  def friendly_type
+    return 'Factura' if grupo_factura?
+    return 'Contrato' if grupo_contrato?
+    return '' if grupo_other?
+  end
+
   def grupo_factura?
     type == 'FinancialDocumentBill'
   end

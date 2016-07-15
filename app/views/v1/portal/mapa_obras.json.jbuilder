@@ -27,4 +27,9 @@ json.features @activities_obras do |ao|
       json.url "#{Sett['S3_ROOT_PATH']}#{vp.name}"
     end
   end
+  json.financial_documents ao.financial_documents do |fd|
+    json.documento fd.financial_document_type.name
+    json.tipo fd.friendly_type
+    json.link "http://#{ENV['DOMAIN_OR_SUBDOMAIN']}#{attachment_url(fd, :file)}"
+  end
 end
