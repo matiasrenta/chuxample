@@ -62,6 +62,8 @@ class KeyAnalytical < ActiveRecord::Base
   validates :mujeres, numericality: true, :if => :mujeres
   validates :hombres, numericality: true, :if => :hombres
 
+  MONTH_FIELDS = %W(enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre)
+
   before_save :construct_key_analytical_string, :assign_project_type
 
   scope :obra, -> { where(project_type: 'ProjectObra') }
@@ -78,6 +80,34 @@ class KeyAnalytical < ActiveRecord::Base
 
   def self.status_array
     %w(Afectación Modificación Eliminación Todos)
+  end
+
+  def programado_calculated
+    # la suma de todos los meses hasta el mes anterior empezando desde enero.
+    month = 1.month.ago.month
+    if month > 1
+      ejercido_total = 0.0
+      MONTH_FIELDS.each_with_index do |m, i|
+        ejercido_total = ejercido_total + eval("self.#{m}")
+        break if (month - 1) == i
+      end
+      ejercido_total
+    else
+      0.0
+    end
+  end
+
+  def ejercido_calculated
+    # TODO: Hay que sumarle el ejercido de nomina... mmm (eso seria para un proyecto de nomina nada mas. Y para el total de todos los proyectos)
+    activities_ids = eval "self.project_activity_#{self.class.name.split('Project').last.pluralize.downcase}.pluck(:id)"
+    FinancialDocument.bills_and_contracts.without_contract.by_activities(activities_ids).sum(:monto)
+  end
+
+  def calculate_and_save_ejercido
+    # TODO: para los proyectos de nomina hay que sobreescribir este metodo para que sume el prorrateado (se carga el ejercido por partida) que se le asigne cuando el empleado llene el formulario donde carga los tres tipos de documentos comprobatorios de nomina
+    project_activities = eval "self.project_activity_#{self.class.name.split('Project').last.pluralize.downcase}"
+    self.ejercido = project_activities.sum(:ejercido)
+    save
   end
 
   def obra?

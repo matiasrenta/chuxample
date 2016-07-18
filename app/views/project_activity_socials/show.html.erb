@@ -57,9 +57,9 @@
               </td>
             </tr>
             <tr role="row">
-              <th><%= t('simple_form.labels.defaults.project_social') %></th>
+              <th><%= t('simple_form.labels.defaults.ejercido') %></th>
               <td>
-                <%= @project_activity_social.project_social.try(:id) %>
+                <%= number_to_currency(@project_activity_social.ejercido, unit: '') %>
               </td>
             </tr>
             </tbody>

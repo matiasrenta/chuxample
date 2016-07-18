@@ -27,7 +27,13 @@ class ProjectActivitySocial < ActiveRecord::Base
     self.project_social
   end
 
-  def except_attr_in_public_activity
-    [:id, :updated_at]
+  def calculate_and_save_ejercido
+    self.ejercido = FinancialDocument.bills_and_contracts.without_contract.by_activities([self.id], self.class.name).sum(:monto)
+    save
   end
+
+  def except_attr_in_public_activity
+    [:id, :updated_at, :ejercido]
+  end
+
 end

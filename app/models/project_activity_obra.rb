@@ -48,6 +48,11 @@ class ProjectActivityObra < ActiveRecord::Base
     self.project_obra
   end
 
+  def calculate_and_save_ejercido
+    self.ejercido = FinancialDocument.bills_and_contracts.without_contract.by_activities([self.id], self.class.name).sum(:monto)
+    save
+  end
+
   def full_address
     # ejepmlo: "Chilpancingo 53, Hipódromo, Cuauhtemnoc, Ciudad de México, México"
     "#{calle} #{nro_exterior}, #{colonia}, Cuauhtemnoc, Ciudad de México, México"
@@ -58,6 +63,7 @@ class ProjectActivityObra < ActiveRecord::Base
   end
 
   def except_attr_in_public_activity
-    [:id, :updated_at]
+    [:id, :updated_at, :ejercido]
   end
+
 end

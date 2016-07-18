@@ -106,7 +106,7 @@
                     <td><%= project.cat_are_area.try(:description) %></td>
                     <td><%= project.cat_aci_institutional_activity.try(:description) %></td>
                     <td align='right'><%= number_to_currency(project.modificado, unit: '') if project.modificado %></td>
-                    <td align='right'><%= '000000000.00' %></td>
+                    <td align='right'><%= number_to_currency(project.ejercido, unit: '') if project.ejercido %></td>
                     <td><%= project.short_key_analytical_string %></td>
                     <td class="table-actions">
                       <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), project_path(project), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: {toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, project %>

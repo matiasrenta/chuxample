@@ -89,9 +89,11 @@
               <div class="col-lg-9 details-data"><%= @project_activity_obra.longitude %></div>
             </div>
 
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.ejercido') %></strong></label>
+              <div class="col-lg-9 details-data"><%= number_to_currency(@project_activity_obra.ejercido, unit: '') %></div>
+            </div>
           </div>
-
-
         </div>
       </div>
     </div>

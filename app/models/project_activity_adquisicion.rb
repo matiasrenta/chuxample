@@ -18,13 +18,17 @@ class ProjectActivityAdquisicion < ActiveRecord::Base
   validates :cantidad, numericality: true
   validates :avance_programado, :avance_real, :project_adquisicion_id, numericality: true, :allow_nil => true
 
-
-
   def parent_project
     self.project_adquisicion
   end
 
-  def except_attr_in_public_activity
-    [:id, :updated_at]
+  def calculate_and_save_ejercido
+    self.ejercido = FinancialDocument.bills_and_contracts.without_contract.by_activities([self.id], self.class.name).sum(:monto)
+    save
   end
+
+  def except_attr_in_public_activity
+    [:id, :updated_at, :ejercido]
+  end
+
 end

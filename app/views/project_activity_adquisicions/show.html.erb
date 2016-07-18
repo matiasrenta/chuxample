@@ -99,6 +99,12 @@
                 <%= l(@project_activity_adquisicion.real_end_date, :format => :long) if @project_activity_adquisicion.real_end_date %>
               </td>
             </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.ejercido') %></th>
+              <td>
+                <%= number_to_currency(@project_activity_adquisicion.ejercido, unit: '') %>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>

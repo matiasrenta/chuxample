@@ -45,6 +45,12 @@
                 <%= @project_activity_nomina.ascription.try(:name) %>
               </td>
             </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.ejercido') %></th>
+              <td>
+                <%= number_to_currency(@project_activity_nomina.ejercido, unit: '') %>
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>

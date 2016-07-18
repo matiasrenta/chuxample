@@ -6,10 +6,10 @@ json.features @activities_obras do |ao|
     json.colonia ao.colonia
     json.direccion ao.full_address
     json.admin ao.project_obra.cat_are_area.description
-    json.ejercicio 'NA'
-    json.comprometido 'NA'
-    json.pagado 'NA'
-    json.periodo 'NA'
+    json.original ao.project_obra.original
+    json.modificado ao.project_obra.modificado
+    json.ejercido ao.project_obra.ejercido_calculated
+    json.periodo ao.project_obra.year
   end
   json.geometry do
     json.type 'Point'

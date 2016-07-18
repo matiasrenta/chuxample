@@ -118,7 +118,9 @@
                 <th><%= sort_link(@q, :proyecto_de_inversion, t('simple_form.labels.defaults.proyecto_de_inversion')) %></th>
                 <th><%= sort_link(@q, :cat_are_area_name, t('simple_form.labels.defaults.cat_are_area')) %></th>
                 <th><%= sort_link(@q, :original, t('simple_form.labels.defaults.original')) %></th>
-                <th><%= sort_link(@q, :modificado, t('simple_form.labels.defaults.modificado')) %></th>
+                <th><%= t('simple_form.labels.defaults.modificado') %></th>
+                <th><%= t('simple_form.labels.defaults.programado') %></th>
+                <th><%= t('simple_form.labels.defaults.ejercido') %></th>
                 <th><%= sort_link(@q, :cat_uni_measure_unit_name, t('simple_form.labels.defaults.cat_uni_measure_unit')) %></th>
                 <th><%= sort_link(@q, :meta_fisica, t('simple_form.labels.defaults.meta_fisica')) %></th>
                 <th><%= sort_link(@q, :descripcion_de_las_acciones, t('simple_form.labels.defaults.descripcion_de_las_acciones')) %></th>
@@ -176,6 +178,8 @@
                     <td><%= key_analytical.cat_are_area.try(:description) %></td>
                     <td align='right'><%= key_analytical.original %></td>
                     <td align='right'><%= key_analytical.modificado %></td>
+                    <td align='right'><%= key_analytical.programado_calculated %></td>
+                    <td align='right'><%= key_analytical.ejercido_calculated %></td>
                     <td><%= key_analytical.cat_uni_measure_unit.try(:description) %></td>
                     <td align='right'><%= key_analytical.meta_fisica %></td>
                     <td><%= key_analytical.descripcion_de_las_acciones %></td>
