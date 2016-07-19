@@ -66,7 +66,11 @@ class KeyAnalytical < ActiveRecord::Base
 
   before_save :construct_key_analytical_string, :assign_project_type
 
-  scope :obra, -> { where(project_type: 'ProjectObra') }
+  scope :obras, -> { where(project_type: 'ProjectObra') }
+  scope :socials, -> { where(project_type: 'ProjectSocial') }
+  scope :nominas, -> { where(project_type: 'ProjectNomina') }
+  scope :adquisicions, -> { where(project_type: 'ProjectAdquisicion') }
+  scope :con_afectaciones, -> {where(id: PaperTrail::Version.select('item_id').group(:item_id).pluck(:item_id))}
 
   self.inheritance_column = :project_type
 
