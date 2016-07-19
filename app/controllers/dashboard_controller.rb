@@ -13,7 +13,14 @@ class DashboardController < ApplicationController
 
   def presupuesto
     @pre_total             = KeyAnalytical.sum(:modificado)
-    @pre_by_chapter        = KeyAnalytical.select('sum(modificado) as value, cat_ppr_par_chapter_id').includes(:cat_ppr_par_chapter).group(:cat_ppr_par_chapter_id)
+    #@pre_by_chapter        = KeyAnalytical.select('sum(modificado) as value, cat_ppr_par_chapter_id').includes(:cat_ppr_par_chapter).group(:cat_ppr_par_chapter_id)
+    #@pre_by_chapter        = KeyAnalytical.select('CONCAT(cat_ppr_par_chapters.key, " ", cat_ppr_par_chapters.description)').includes(:cat_ppr_par_chapter).group('cat_ppr_par_chapters.id, cat_ppr_par_chapters.key, cat_ppr_par_chapters.description').sum(:modificado)
+
+    @pre_by_chapter        = KeyAnalytical.select('sum(modificado) as value, cat_ppr_par_chapter_id')
+                                 .includes(:cat_ppr_par_chapter).group(:cat_ppr_par_chapter_id)
+                                 .map{ |c| ["#{c.cat_ppr_par_chapter.key}-#{c.cat_ppr_par_chapter.description}", c.value] }
+                                 .to_h
+
     @pre_by_area           = KeyAnalytical.select('sum(modificado) as value, cat_are_area_id').includes(:cat_are_area).group(:cat_are_area_id)
     @pre_by_project_type   = KeyAnalytical.select('sum(modificado) as value, project_type').group(:project_type)
     @pre_by_funding_source = KeyAnalytical.select('sum(modificado) as value, cat_fon_funding_source_id').includes(:cat_fon_funding_source).group(:cat_fon_funding_source_id)
