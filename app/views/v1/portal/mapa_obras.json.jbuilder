@@ -8,8 +8,9 @@ json.features @activities_obras do |ao|
     json.admin ao.project_obra.cat_are_area.description
     json.original ao.project_obra.original
     json.modificado ao.project_obra.modificado
-    json.ejercido ao.ejercido
-    json.periodo ao.project_obra.year
+    json.ejercido ao.ejercido || 0
+    json.periodo  "#{I18n.t('date.month_names')[ao.real_start_date.month] if ao.real_start_date}  #{I18n.t('date.month_names')[ao.real_end_date.month] if ao.real_end_date}"
+    json.ejercicio ao.project_obra.year
   end
   json.geometry do
     json.type 'Point'
