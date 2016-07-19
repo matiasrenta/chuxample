@@ -166,6 +166,16 @@
               </div>
 
               <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.programado') %></strong></label>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.programado_calculated, unit: 'MXN') if @key_analytical.modificado %></div>
+              </div>
+
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.ejercido') %></strong></label>
+                <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.ejercido, unit: 'MXN') if @key_analytical.modificado %></div>
+              </div>
+
+              <div class="row show-details">
                 <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.enero') %></strong></label>
                 <div class="col-lg-9 details-data"><%= number_to_currency(@key_analytical.enero, unit: 'MXN') if @key_analytical.enero %></div>
               </div>

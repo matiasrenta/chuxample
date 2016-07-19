@@ -8,7 +8,7 @@ json.features @activities_obras do |ao|
     json.admin ao.project_obra.cat_are_area.description
     json.original ao.project_obra.original
     json.modificado ao.project_obra.modificado
-    json.ejercido ao.project_obra.ejercido_calculated
+    json.ejercido ao.ejercido
     json.periodo ao.project_obra.year
   end
   json.geometry do
