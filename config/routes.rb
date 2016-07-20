@@ -344,7 +344,7 @@ Rails.application.routes.draw do
   get 'welcome/prueba'
 
   # You can have the root of your site routed with "root"
-  root to: 'welcome#index'
+  root to: 'dashboard#index'
 
   #match '*unmatched_route', :to => 'application#raise_not_found!', :via => :all
 
