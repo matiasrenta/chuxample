@@ -326,8 +326,34 @@
 
     </article>
     <!-- WIDGET END -->
+
+    <article class="col-sm-6">
+      <div id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+        </header>
+        <div class="no-padding">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div id="map" style='width: 100%; height: 300px;'></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+
   </div>
   <!-- end row -->
 
 </section>
 <!-- end widget grid -->
+
+<script data-no-turbolink="true">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%=raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(13);
+    });
+    $('.show-details:even').addClass('striped-div');
+</script>

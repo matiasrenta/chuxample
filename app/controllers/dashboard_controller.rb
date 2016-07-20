@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
     documentos
     suppliers
     afectaciones
+    activities_obras
   end
 
   private
@@ -54,6 +55,16 @@ class DashboardController < ApplicationController
     @afe_projects = KeyAnalytical.con_afectaciones.group(:project_type).count
     @afe_chapters = KeyAnalytical.con_afectaciones.select('count(*) as value, cat_ppr_par_chapter_id').includes(:cat_ppr_par_chapter).group(:cat_ppr_par_chapter_id)
                                  .map{ |c| ["#{c.cat_ppr_par_chapter.key}-#{c.cat_ppr_par_chapter.description}", c.value] }.to_h
+  end
+
+  def activities_obras
+    @with_verifications_approved = ProjectActivityObra.with_verifications_approved
+    @without_verifications_approved = ProjectActivityObra.without_verifications_approved
+
+    @hash = Gmaps4rails.build_markers(@with_verifications_approved.to_a + @without_verifications_approved.to_a) do |activity_obra, marker|
+      marker.lat activity_obra.latitude
+      marker.lng activity_obra.longitude
+    end
   end
 
 end

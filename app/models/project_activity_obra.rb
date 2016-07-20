@@ -20,6 +20,8 @@ class ProjectActivityObra < ActiveRecord::Base
   validates :avance_programado, numericality: true, if: :avance_programado
   validates :avance_real, numericality: true, if: :avance_real
 
+  scope :with_verifications_approved, -> {joins(:verifications).where('verifications.status = 1').group('project_activity_obras.id')} # el group es para que no vengan filas repetidas
+  scope :without_verifications_approved, -> {where('NOT EXISTS (select * from verifications v where v.project_activity_obra_id = project_activity_obras.id AND status = 1)')}
   # actividades que un usuario no ha verificado hoy, y si las ha verificado antes entonces 'v.created_at' es la fecha de la última vez que verificó
   scope :verificables_by_user, -> (owneable){ find_by_sql(
     "
