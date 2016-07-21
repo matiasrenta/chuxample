@@ -54,7 +54,7 @@ class BeneficiariesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def beneficiary_params
-    params.require(:beneficiary).permit(:apellido_paterno, :apellido_materno, :nombres, :territorial_unit_id, :sexo, :edad, :fecha_nacimiento, :lugar_nacimiento, :pertenencia_etnica, :grado_maximo_estudios, :anios_residencia_en_df, :domicilio, :ocupacion, :nombre_padre, :nombre_madre, :curp)
+    params.require(:beneficiary).permit(:apellido_paterno, :apellido_materno, :nombres, :territorial_unit_id, :sexo, :fecha_nacimiento, :lugar_nacimiento, :pertenencia_etnica, :grado_maximo_estudios, :anios_residencia_en_df, :domicilio, :ocupacion, :nombre_padre, :nombre_madre, :curp)
   end
 
   def set_project_activity_social

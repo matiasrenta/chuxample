@@ -13,7 +13,6 @@
           <tr>
             <th class='all control'>Nombre</th>
             <th>sexo</th>
-            <th>Edad</th>
             <th class="all"><%= t('simple_form.screen.actions') %></th>
           </tr>
           </thead>
@@ -22,7 +21,6 @@
               <tr>
                 <td><%= beneficiary.full_name %></td>
                 <td><%= beneficiary.sexo %></td>
-                <td><%= beneficiary.edad %></td>
                 <td class="table-actions">
                   <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), beneficiary_path(beneficiary), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, beneficiary %>
                   <%= link_to raw('<i class="fa fa-pencil fa-lg"></i>'), edit_beneficiary_path(beneficiary), rel: 'tooltip', title: t('simple_form.tooltips.edit'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can? :update, beneficiary %>

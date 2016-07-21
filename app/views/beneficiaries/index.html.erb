@@ -3,9 +3,11 @@
     <article class="col-xs-12">
       <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
           <div class="widget-toolbar filter-group">
-            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_beneficiary_path, class: 'btn btn-primary' if(can? :create, Beneficiary) %>
-            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary'%>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_beneficiary_path, class: 'btn btn-primary' if (can? :create, Beneficiary) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
           </div>
         </header>
         <div class="no-padding">
@@ -13,141 +15,134 @@
             <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
                     <div class="row">
-                                                                        <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[apellido_paterno_cont]"><%= t('simple_form.labels.defaults.apellido_paterno') %></label>
-                              <%= f.search_field :apellido_paterno_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[apellido_materno_cont]"><%= t('simple_form.labels.defaults.apellido_materno') %></label>
-                              <%= f.search_field :apellido_materno_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[nombres_cont]"><%= t('simple_form.labels.defaults.nombres') %></label>
-                              <%= f.search_field :nombres_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                  <label for="q[territorial_unit_id_cont]"><%= t('simple_form.labels.territorial_unit') %></label>
-                                  <%= f.select :territorial_unit_id_eq, options_from_collection_for_select(TerritorialUnit.all, :id, :name, @q.territorial_unit_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[sexo_cont]"><%= t('simple_form.labels.defaults.sexo') %></label>
-                              <%= f.search_field :sexo_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="col-md-3 col-sm-6 col-xs-12 spanning">
-                                  <label for="q[edad_gteq]"><%= t('simple_form.labels.defaults.edad') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :edad_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :edad_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                            <div class="col-md-3 col-sm-6 col-xs-12 spanning">
-                              <label for="q[fecha_nacimiento_gteq]"><%= t('simple_form.labels.defaults.fecha_nacimiento') %></label>
-                              <div class="input-group input-group-sm block">
-                                <%= f.search_field :fecha_nacimiento_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_nacimiento_gteq) %>
-                              </div>
-                              <div class="input-group input-group-sm block">
-                                <%= f.search_field :fecha_nacimiento_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_nacimiento_lteq) %>
-                              </div>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[lugar_nacimiento_cont]"><%= t('simple_form.labels.defaults.lugar_nacimiento') %></label>
-                              <%= f.search_field :lugar_nacimiento_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[pertenencia_etnica_cont]"><%= t('simple_form.labels.defaults.pertenencia_etnica') %></label>
-                              <%= f.search_field :pertenencia_etnica_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[grado_maximo_estudios_cont]"><%= t('simple_form.labels.defaults.grado_maximo_estudios') %></label>
-                              <%= f.search_field :grado_maximo_estudios_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="col-md-3 col-sm-6 col-xs-12 spanning">
-                                  <label for="q[anios_residencia_en_df_gteq]"><%= t('simple_form.labels.defaults.anios_residencia_en_df') %></label>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :anios_residencia_en_df_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
-                                  </div>
-                                  <div class="input-group input-group-sm block">
-                                    <%= f.search_field :anios_residencia_en_df_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
-                                  </div>
-                                </div>
-                                                                                                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[domicilio_cont]"><%= t('simple_form.labels.defaults.domicilio') %></label>
-                              <%= f.search_field :domicilio_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[ocupacion_cont]"><%= t('simple_form.labels.defaults.ocupacion') %></label>
-                              <%= f.search_field :ocupacion_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[nombre_padre_cont]"><%= t('simple_form.labels.defaults.nombre_padre') %></label>
-                              <%= f.search_field :nombre_padre_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[nombre_madre_cont]"><%= t('simple_form.labels.defaults.nombre_madre') %></label>
-                              <%= f.search_field :nombre_madre_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="col-md-3 col-sm-6 col-xs-12">
-                              <label for="q[curp_cont]"><%= t('simple_form.labels.defaults.curp') %></label>
-                              <%= f.search_field :curp_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                  </div>
-                    <div class="row pull-right">
-                      <div class="col-sm-12">
-                        <%= render 'shared/submit_filters' %>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[apellido_paterno_cont]"><%= t('simple_form.labels.defaults.apellido_paterno') %></label>
+                        <%= f.search_field :apellido_paterno_cont, label: false, class: "form-control input-sm" %>
                       </div>
-                    </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[apellido_materno_cont]"><%= t('simple_form.labels.defaults.apellido_materno') %></label>
+                        <%= f.search_field :apellido_materno_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[nombres_cont]"><%= t('simple_form.labels.defaults.nombres') %></label>
+                        <%= f.search_field :nombres_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[territorial_unit_id_cont]"><%= t('simple_form.labels.territorial_unit') %></label>
+                        <%= f.select :territorial_unit_id_eq, options_from_collection_for_select(TerritorialUnit.all, :id, :name, @q.territorial_unit_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[sexo_cont]"><%= t('simple_form.labels.defaults.sexo') %></label>
+                        <%= f.search_field :sexo_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+
+                        <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                          <label for="q[fecha_nacimiento_gteq]"><%= t('simple_form.labels.defaults.fecha_nacimiento') %></label>
+
+                          <div class="input-group input-group-sm block">
+                            <%= f.search_field :fecha_nacimiento_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_nacimiento_gteq) %>
+                          </div>
+                          <div class="input-group input-group-sm block">
+                            <%= f.search_field :fecha_nacimiento_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.fecha_nacimiento_lteq) %>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <label for="q[lugar_nacimiento_cont]"><%= t('simple_form.labels.defaults.lugar_nacimiento') %></label>
+                          <%= f.search_field :lugar_nacimiento_cont, label: false, class: "form-control input-sm" %>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <label for="q[pertenencia_etnica_cont]"><%= t('simple_form.labels.defaults.pertenencia_etnica') %></label>
+                          <%= f.search_field :pertenencia_etnica_cont, label: false, class: "form-control input-sm" %>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <label for="q[grado_maximo_estudios_cont]"><%= t('simple_form.labels.defaults.grado_maximo_estudios') %></label>
+                          <%= f.search_field :grado_maximo_estudios_cont, label: false, class: "form-control input-sm" %>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                          <label for="q[anios_residencia_en_df_gteq]"><%= t('simple_form.labels.defaults.anios_residencia_en_df') %></label>
+
+                          <div class="input-group input-group-sm block">
+                            <%= f.search_field :anios_residencia_en_df_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                          </div>
+                          <div class="input-group input-group-sm block">
+                            <%= f.search_field :anios_residencia_en_df_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                          </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <label for="q[domicilio_cont]"><%= t('simple_form.labels.defaults.domicilio') %></label>
+                          <%= f.search_field :domicilio_cont, label: false, class: "form-control input-sm" %>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <label for="q[ocupacion_cont]"><%= t('simple_form.labels.defaults.ocupacion') %></label>
+                          <%= f.search_field :ocupacion_cont, label: false, class: "form-control input-sm" %>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <label for="q[nombre_padre_cont]"><%= t('simple_form.labels.defaults.nombre_padre') %></label>
+                          <%= f.search_field :nombre_padre_cont, label: false, class: "form-control input-sm" %>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <label for="q[nombre_madre_cont]"><%= t('simple_form.labels.defaults.nombre_madre') %></label>
+                          <%= f.search_field :nombre_madre_cont, label: false, class: "form-control input-sm" %>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <label for="q[curp_cont]"><%= t('simple_form.labels.defaults.curp') %></label>
+                          <%= f.search_field :curp_cont, label: false, class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="row pull-right">
+                        <div class="col-sm-12">
+                          <%= render 'shared/submit_filters' %>
+                        </div>
+                      </div>
                   </fieldset>
               <% end %>
-              </div>
             </div>
+          </div>
           <div class="widget-body">
             <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
-                                                            <th class='all control'><%= sort_link(@q, :apellido_paterno, t('simple_form.labels.defaults.apellido_paterno')) %></th>
-                                                                                <th><%= sort_link(@q, :apellido_materno, t('simple_form.labels.defaults.apellido_materno')) %></th>
-                                                                                <th><%= sort_link(@q, :nombres, t('simple_form.labels.defaults.nombres')) %></th>
-                                                                                <th><%= sort_link(@q, :territorial_unit_name, t('simple_form.labels.defaults.territorial_unit')) %></th>
-                                                                                <th><%= sort_link(@q, :sexo, t('simple_form.labels.defaults.sexo')) %></th>
-                                                                                <th><%= sort_link(@q, :edad, t('simple_form.labels.defaults.edad')) %></th>
-                                                                                <th><%= sort_link(@q, :fecha_nacimiento, t('simple_form.labels.defaults.fecha_nacimiento')) %></th>
-                                                                                <th><%= sort_link(@q, :lugar_nacimiento, t('simple_form.labels.defaults.lugar_nacimiento')) %></th>
-                                                                                <th><%= sort_link(@q, :pertenencia_etnica, t('simple_form.labels.defaults.pertenencia_etnica')) %></th>
-                                                                                <th><%= sort_link(@q, :grado_maximo_estudios, t('simple_form.labels.defaults.grado_maximo_estudios')) %></th>
-                                                                                <th><%= sort_link(@q, :anios_residencia_en_df, t('simple_form.labels.defaults.anios_residencia_en_df')) %></th>
-                                                                                <th><%= sort_link(@q, :domicilio, t('simple_form.labels.defaults.domicilio')) %></th>
-                                                                                <th><%= sort_link(@q, :ocupacion, t('simple_form.labels.defaults.ocupacion')) %></th>
-                                                                                <th><%= sort_link(@q, :nombre_padre, t('simple_form.labels.defaults.nombre_padre')) %></th>
-                                                                                <th><%= sort_link(@q, :nombre_madre, t('simple_form.labels.defaults.nombre_madre')) %></th>
-                                                                                <th><%= sort_link(@q, :curp, t('simple_form.labels.defaults.curp')) %></th>
-                                                    <th class="all"><%= t('simple_form.screen.actions') %></th>
+                <th class='all control'><%= sort_link(@q, :apellido_paterno, t('simple_form.labels.defaults.apellido_paterno')) %></th>
+                <th><%= sort_link(@q, :apellido_materno, t('simple_form.labels.defaults.apellido_materno')) %></th>
+                <th><%= sort_link(@q, :nombres, t('simple_form.labels.defaults.nombres')) %></th>
+                <th><%= sort_link(@q, :territorial_unit_name, t('simple_form.labels.defaults.territorial_unit')) %></th>
+                <th><%= sort_link(@q, :sexo, t('simple_form.labels.defaults.sexo')) %></th>
+                <th><%= sort_link(@q, :fecha_nacimiento, t('simple_form.labels.defaults.fecha_nacimiento')) %></th>
+                <th><%= sort_link(@q, :lugar_nacimiento, t('simple_form.labels.defaults.lugar_nacimiento')) %></th>
+                <th><%= sort_link(@q, :pertenencia_etnica, t('simple_form.labels.defaults.pertenencia_etnica')) %></th>
+                <th><%= sort_link(@q, :grado_maximo_estudios, t('simple_form.labels.defaults.grado_maximo_estudios')) %></th>
+                <th><%= sort_link(@q, :anios_residencia_en_df, t('simple_form.labels.defaults.anios_residencia_en_df')) %></th>
+                <th><%= sort_link(@q, :domicilio, t('simple_form.labels.defaults.domicilio')) %></th>
+                <th><%= sort_link(@q, :ocupacion, t('simple_form.labels.defaults.ocupacion')) %></th>
+                <th><%= sort_link(@q, :nombre_padre, t('simple_form.labels.defaults.nombre_padre')) %></th>
+                <th><%= sort_link(@q, :nombre_madre, t('simple_form.labels.defaults.nombre_madre')) %></th>
+                <th><%= sort_link(@q, :curp, t('simple_form.labels.defaults.curp')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>
               <tbody>
               <% @beneficiaries.each do |beneficiary| %>
-              <tr>
-                                                                        <td><%= beneficiary.apellido_paterno %></td>
-                                                                                          <td><%= beneficiary.apellido_materno %></td>
-                                                                                          <td><%= beneficiary.nombres %></td>
-                                                                                          <td><%= beneficiary.territorial_unit.try(:name) %></td>
-                                                                                          <td><%= beneficiary.sexo %></td>
-                                                                                          <td align='right'><%= beneficiary.edad %></td>
-                                                                                          <td><%= l(beneficiary.fecha_nacimiento, format: :default) %></td>
-                                                                                          <td><%= beneficiary.lugar_nacimiento %></td>
-                                                                                          <td><%= beneficiary.pertenencia_etnica %></td>
-                                                                                          <td><%= beneficiary.grado_maximo_estudios %></td>
-                                                                                          <td align='right'><%= beneficiary.anios_residencia_en_df %></td>
-                                                                                          <td><%= beneficiary.domicilio %></td>
-                                                                                          <td><%= beneficiary.ocupacion %></td>
-                                                                                          <td><%= beneficiary.nombre_padre %></td>
-                                                                                          <td><%= beneficiary.nombre_madre %></td>
-                                                                                          <td><%= beneficiary.curp %></td>
-                                              <td class="table-actions">
-                <%= render 'shared/action_icons', locals: {target: beneficiary} %>
-              </td>
-              </tr>
+                  <tr>
+                    <td><%= beneficiary.apellido_paterno %></td>
+                    <td><%= beneficiary.apellido_materno %></td>
+                    <td><%= beneficiary.nombres %></td>
+                    <td><%= beneficiary.territorial_unit.try(:name) %></td>
+                    <td><%= beneficiary.sexo %></td>
+                    <td><%= l(beneficiary.fecha_nacimiento, format: :default) %></td>
+                    <td><%= beneficiary.lugar_nacimiento %></td>
+                    <td><%= beneficiary.pertenencia_etnica %></td>
+                    <td><%= beneficiary.grado_maximo_estudios %></td>
+                    <td align='right'><%= beneficiary.anios_residencia_en_df %></td>
+                    <td><%= beneficiary.domicilio %></td>
+                    <td><%= beneficiary.ocupacion %></td>
+                    <td><%= beneficiary.nombre_padre %></td>
+                    <td><%= beneficiary.nombre_madre %></td>
+                    <td><%= beneficiary.curp %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: beneficiary} %>
+                    </td>
+                  </tr>
               <% end %>
               </tbody>
             </table>

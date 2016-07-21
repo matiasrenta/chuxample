@@ -6,7 +6,6 @@ class BeneficiaryImport < BaseImport
     beneficiary.apellido_materno = row[I18n.translate('simple_form.labels.defaults.apellido_materno')]
     beneficiary.nombres = row[I18n.translate('simple_form.labels.defaults.nombres')]
     beneficiary.sexo = row[I18n.translate('simple_form.labels.defaults.sexo')]
-    beneficiary.edad = row[I18n.translate('simple_form.labels.defaults.edad')]
     beneficiary.fecha_nacimiento = row[I18n.translate('simple_form.labels.defaults.fecha_nacimiento')]
     beneficiary.lugar_nacimiento = row[I18n.translate('simple_form.labels.defaults.lugar_nacimiento')]
     beneficiary.pertenencia_etnica = row[I18n.translate('simple_form.labels.defaults.pertenencia_etnica')]

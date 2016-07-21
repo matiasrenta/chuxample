@@ -9,7 +9,7 @@
   <!-- row -->
   <div class="row">
 
-    <!-- NEW WIDGET START -->
+    <!-- presupuesto -->
     <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
       <!-- Widget ID (each widget will need unique ID)-->
@@ -101,9 +101,8 @@
       <!-- end widget -->
 
     </article>
-    <!-- WIDGET END -->
 
-    <!-- NEW WIDGET START -->
+    <!--documentos-->
     <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
       <!-- Widget ID (each widget will need unique ID)-->
@@ -182,9 +181,8 @@
       <!-- end widget -->
 
     </article>
-    <!-- WIDGET END -->
 
-    <!-- NEW WIDGET START -->
+    <!--suppliers-->
     <article  class="col-xs-12">
 
       <!-- Widget ID (each widget will need unique ID)-->
@@ -255,9 +253,8 @@
       <!-- end widget -->
 
     </article>
-    <!-- WIDGET END -->
 
-    <!-- NEW WIDGET START -->
+    <!--afectaciones-->
     <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
       <!-- Widget ID (each widget will need unique ID)-->
@@ -325,8 +322,8 @@
       <!-- end widget -->
 
     </article>
-    <!-- WIDGET END -->
 
+    <!--activities_obras (mapa)-->
     <article class="col-sm-6">
       <div id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
@@ -339,9 +336,111 @@
         </div>
       </div>
     </article>
-
-
   </div>
+
+  <div class="row">
+    <!--desarrollo social-->
+    <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+      <!-- Widget ID (each widget will need unique ID)-->
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+        <header>
+          <span class="widget-icon"> <i class="fa fa-child"></i> </span>
+          <h2>Desarrollo Social</h2>
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+            <div class="tab-pane fade active in" id="afe-hr1" style="width: 500px; height: 300px;">
+              <%= pie_chart @hash_desarrollo_social %>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+      </div>
+      <!-- end widget -->
+
+    </article>
+
+    <!--beneficiarios-->
+    <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+      <!-- Widget ID (each widget will need unique ID)-->
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+        <header>
+          <span class="widget-icon"> <i class="fa fa-male"></i> </span>
+          <h2>Beneficiarios</h2>
+          <!-- Tabs -->
+          <ul class="nav nav-tabs pull-right" id="widget-tab-0">
+            <li class="active">
+              <a data-toggle="tab" href="#ben-hr1" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Capítulo">
+                <span>Género</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#ben-hr2" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Área">
+                <span>Edad</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#ben-hr3" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Tipo de Proyecto">
+                <span>Unidad Territorial</span>
+              </a>
+            </li>
+          </ul>
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+
+            <div class="tab-content padding-10">
+              <div class="tab-pane fade active in" id="ben-hr1" style="width: 500px; height: 300px;">
+                <%= bar_chart @ben_genero %>
+              </div>
+              <div class="tab-pane fade active in" id="ben-hr2"  style="width: 500px; height: 300px;">
+                <%= bar_chart @ben_edad %>
+              </div>
+              <div class="tab-pane fade active in" id="ben-hr3" style="width: 500px; height: 300px;">
+                <%= bar_chart @ben_unidad_territorial %>
+              </div>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+      </div>
+      <!-- end widget -->
+
+    </article>
+
+ </div>
   <!-- end row -->
 
 </section>

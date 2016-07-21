@@ -17,7 +17,8 @@ class ProjectActivitySocial < ActiveRecord::Base
   has_many :beneficiaries, dependent: :delete_all
 
   validates :social_development_program_id, :comentarios, :project_social_id, presence: true
-  validates :social_development_program_id, :nro_beneficiarios, :nro_metas_cumplidas, :project_social_id, numericality: true
+  validates :nro_beneficiarios, numericality: true, if: :nro_beneficiarios
+  validates :nro_metas_cumplidas, numericality: true, if: :nro_metas_cumplidas
 
   before_create do
     self.name = social_development_program.try(:name)

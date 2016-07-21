@@ -8,6 +8,8 @@ class DashboardController < ApplicationController
     suppliers
     afectaciones
     activities_obras
+    desarrollo_social
+    beneficiarios
   end
 
   private
@@ -65,6 +67,20 @@ class DashboardController < ApplicationController
       marker.lat activity_obra.latitude
       marker.lng activity_obra.longitude
     end
+  end
+
+  def desarrollo_social
+    #ProjectActivitySocial.includes(:project_social, :social_development_program).group(:social_development_program_id).map{ |c| [c.social_development_program.name, c.project_social.modificado] }.to_h
+    hash_bad_keys = ProjectActivitySocial.includes(:project_social, :social_development_program).group(:social_development_program_id).sum(:modificado)
+    @hash_desarrollo_social = Hash.new
+    hash_bad_keys.keys.each{|key| @hash_desarrollo_social[SocialDevelopmentProgram.find(key).name.to_sym] = hash_bad_keys[key]} # es un parche para que la has tenga los nombres y no los ids
+  end
+
+  def beneficiarios
+    @ben_genero = Beneficiary.group(:sexo).count
+    @ben_edad = {'hasta 17' => Beneficiary.to_17.count, '18 a 29' => Beneficiary.from_18_to_29.count, '30 a 59' => Beneficiary.from_30_to_59.count, '60+' => Beneficiary.from_60.count}
+    @ben_unidad_territorial = Beneficiary.select('count(*) as value, territorial_unit_id').includes(:territorial_unit).group(:territorial_unit_id)
+                                  .map{ |c| [c.territorial_unit.name, c.value] }.to_h
   end
 
 end
