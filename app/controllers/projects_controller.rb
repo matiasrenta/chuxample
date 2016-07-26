@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     elsif @key_analytical.adquisicion?
       @project_activity_adquisicions = indexize(ProjectActivityAdquisicion, collection: @key_analytical.project_activity_adquisicions)
     elsif @key_analytical.nomina?
-      @project_activity_nominas = indexize(ProjectActivityNomina, collection: @key_analytical.project_activity_nominas)
+      #@project_activity_nominas = indexize(ProjectActivityNomina, collection: @key_analytical.project_activity_nominas)
     else
       raise "Tipo de proyecto inexistente"
     end
