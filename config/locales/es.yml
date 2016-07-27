@@ -288,14 +288,6 @@ es:
         format: "%{attribute} %{message}"
 
       models:
-      nomina_document:
-        one: Documento de Nómina
-        other: Documentos de Nómina
-        fa_icon: 'fa-fw fa fa-envelope-o'
-      open_datum:
-        one: Datos Abiertos
-        other: Datos Abiertos
-        fa_icon: 'fa-fw fa fa-database'
         user:
           attributes:
             avatar:
@@ -312,7 +304,7 @@ es:
       nomina_document:
         one: Documento de Nómina
         other: Documentos de Nómina
-        fa_icon: 'fa-fw fa fa-envelope-o'
+        fa_icon: 'fa-fw fa fa-file-text'
       open_datum:
         one: Datos Abiertos
         other: Datos Abiertos

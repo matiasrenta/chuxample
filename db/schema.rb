@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727015321) do
+ActiveRecord::Schema.define(version: 20160727023753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -621,6 +621,14 @@ ActiveRecord::Schema.define(version: 20160727015321) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
+
+  create_table "nomina_document_items", force: :cascade do |t|
+    t.integer  "cat_ppr_par_partida_especifica_id"
+    t.float    "monto"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "nomina_document_id"
+  end
 
   create_table "nomina_documents", force: :cascade do |t|
     t.integer  "month"

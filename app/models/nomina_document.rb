@@ -10,10 +10,12 @@ class NominaDocument < ActiveRecord::Base
               :model_label => proc {|controller, model| "#{model.try(:month)} #{model.try(:year)}" }
           }
 
-  #attachment :file, extension: %w[pdf doc docx xls xlsx], store: 's3_backend', cache: 's3_cache'
-  attachment :file, extension: %w[jpg jpeg png gif pdf doc docx], store: 's3_nomina_doc_backend', cache: 's3_nomina_doc_cache'
-  #attachment :file, store: 's3_open_data_backend', cache: 's3_open_data_cache'
+  has_many :nomina_document_items, dependent: :destroy
+  accepts_nested_attributes_for :nomina_document_items, allow_destroy: true
+
+  attachment :file, extension: %w[jpg jpeg png gif pdf doc docx xls xlsx], store: 's3_nomina_doc_backend', cache: 's3_nomina_doc_cache'
   #content_type: %w[image/jpeg image/png image/gif text/plain application/pdf application/doc application/docx]
+
 
   validates :month, :year, :file, presence: true
 

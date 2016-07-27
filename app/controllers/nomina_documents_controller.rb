@@ -53,6 +53,6 @@ class NominaDocumentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def nomina_document_params
-      params.require(:nomina_document).permit(:month, :year, :file, :remove_file)
+      params.require(:nomina_document).permit({nomina_document_items_attributes: [:_destroy, :id, :cat_ppr_par_partida_especifica_id, :monto]}, :month, :year, :file, :remove_file)
     end
 end
