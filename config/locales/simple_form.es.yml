@@ -185,6 +185,7 @@ es:
         real_end_date: 'Fecha Fin Real'
         latitude: 'Latitud'
         longitude: 'Longitud'
+        month: 'Mes'
 
     hints:
       access_only_with_token: 'La app no necesita autenticar usuario, solo usa el token para acceder a la API'

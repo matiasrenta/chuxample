@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :nomina_documents
   resources :dashboard
   resources :open_data
   resources :social_users

@@ -26,4 +26,8 @@ else
   Refile.backends['s3_ley_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_ley/cache').to_s, max_size: Admin::Settings['REFILE_S3_LEY_MAX_FILESIZE'].to_i.megabytes)
   Refile.backends['s3_open_data_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_open_data/store').to_s, max_size: Admin::Settings['REFILE_S3_OPEN_DATA_MAX_FILESIZE'].to_i.megabytes)
   Refile.backends['s3_open_data_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_open_data/cache').to_s, max_size: Admin::Settings['REFILE_S3_OPEN_DATA_MAX_FILESIZE'].to_i.megabytes)
+
+  Refile.backends['s3_nomina_doc_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_nomina_doc/store').to_s, max_size: Admin::Settings['REFILE_S3_OPEN_DATA_MAX_FILESIZE'].to_i.megabytes)
+  Refile.backends['s3_nomina_doc_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_nomina_doc/cache').to_s, max_size: Admin::Settings['REFILE_S3_OPEN_DATA_MAX_FILESIZE'].to_i.megabytes)
+
 end

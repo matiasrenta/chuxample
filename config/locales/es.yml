@@ -288,6 +288,10 @@ es:
         format: "%{attribute} %{message}"
 
       models:
+      nomina_document:
+        one: Documento de Nómina
+        other: Documentos de Nómina
+        fa_icon: 'fa-fw fa fa-envelope-o'
       open_datum:
         one: Datos Abiertos
         other: Datos Abiertos
@@ -305,6 +309,10 @@ es:
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      nomina_document:
+        one: Documento de Nómina
+        other: Documentos de Nómina
+        fa_icon: 'fa-fw fa fa-envelope-o'
       open_datum:
         one: Datos Abiertos
         other: Datos Abiertos

@@ -63,6 +63,7 @@ module ApplicationHelper
   end
 
   def friendly_file_size(bytes)
+    return nil if bytes.nil?
     b = Float(bytes)
     if b > 1073741824 # Gb
       "#{(b / 1073741824).round(1)} Gb."
