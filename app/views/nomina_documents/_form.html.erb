@@ -34,7 +34,7 @@
                           <td><%= ndi_form.input :monto, wrapper: :clean %></td>
                           <td align="center">
                             <%= ndi_form.link_to_remove do %>
-                                <i class="fa fa-trash-o" data-original-title="destroy" data-placement="top" rel="tooltip"></i>
+                                <i class="fa fa-trash-o" data-original-title="<%= t('simple_form.tooltips.destroy') %>" data-placement="top" rel="tooltip"></i>
                             <% end %>
                           </td>
                         </tr>

@@ -1,5 +1,5 @@
 class KeyAnalytical < ActiveRecord::Base
-  has_paper_trail ignore: [:updated_at, :status]
+  has_paper_trail ignore: [:updated_at, :status, :ejercido]
   include PublicActivity::Model
 
   belongs_to :cat_pgd_line_of_action
@@ -90,12 +90,12 @@ class KeyAnalytical < ActiveRecord::Base
     # la suma de todos los meses hasta el mes anterior empezando desde enero.
     month = 1.month.ago.month
     if month > 1
-      ejercido_total = 0.0
+      programado_total = 0.0
       MONTH_FIELDS.each_with_index do |m, i|
-        ejercido_total = ejercido_total + eval("self.#{m}")
+        programado_total = programado_total + eval("self.#{m}")
         break if (month - 1) == i
       end
-      ejercido_total
+      programado_total
     else
       0.0
     end

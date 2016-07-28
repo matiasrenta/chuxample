@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727023753) do
+ActiveRecord::Schema.define(version: 20160728033232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -639,6 +639,7 @@ ActiveRecord::Schema.define(version: 20160727023753) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "file_size"
+    t.text     "monto_por_project"
   end
 
   create_table "open_data", force: :cascade do |t|
@@ -666,6 +667,14 @@ ActiveRecord::Schema.define(version: 20160727023753) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
+
+  create_table "proj_nominas_nom_docs_joins", id: false, force: :cascade do |t|
+    t.integer "project_nomina_id"
+    t.integer "nomina_document_id"
+  end
+
+  add_index "proj_nominas_nom_docs_joins", ["nomina_document_id"], name: "index_proj_nominas_nom_docs_joins_on_nomina_document_id", using: :btree
+  add_index "proj_nominas_nom_docs_joins", ["project_nomina_id"], name: "index_proj_nominas_nom_docs_joins_on_project_nomina_id", using: :btree
 
   create_table "project_activities", force: :cascade do |t|
     t.string   "key"

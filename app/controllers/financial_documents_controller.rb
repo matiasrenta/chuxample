@@ -1,5 +1,5 @@
 class FinancialDocumentsController < ApplicationController
-  load_and_authorize_resource except: [:index, :new_with_type], param_method: :financial_document_params
+  load_and_authorize_resource except: [:new, :create, :index, :new_with_type], param_method: :financial_document_params
   before_action :resolve_parent_project_type, except: :index
 
   # GET /financial_documents
@@ -14,13 +14,16 @@ class FinancialDocumentsController < ApplicationController
   # GET /financial_documents/new
   def new
     @new_with_type_path = eval("new_with_type_#{@project_activity_underscore}_financial_documents_path")
-    @financial_document = FinancialDocumentBill.new # podria haber sido cualquiera de los otros tipos de docs, en el new_with_type se crea el que el usuario haya seleccionado
+    @financial_document = FinancialDocumentBill.new(project_activityable: @project_activityable) # podria haber sido cualquiera de los otros tipos de docs, en el new_with_type se crea el que el usuario haya seleccionado
+    authorize! :create, @financial_document
   end
 
   def new_with_type
     authorize! :create, FinancialDocument
     financial_document_type_id = params[:financial_document][:financial_document_type_id]
     @financial_document = FinancialDocumentType.find(financial_document_type_id).system_doc_type.constantize.new(financial_document_type_id: financial_document_type_id)
+    #@financial_document.project_activityable = @project_activityable
+    #authorize! :create, @financial_document
     render 'edit'
   end
 
@@ -33,6 +36,8 @@ class FinancialDocumentsController < ApplicationController
     financial_document_type_id = params[:financial_document][:financial_document_type_id]
     @financial_document = FinancialDocumentType.find(financial_document_type_id).system_doc_type.constantize.new(financial_document_params)
     @financial_document.project_activityable = @project_activityable
+    authorize! :create, @financial_document
+
     if @financial_document.save
       redirect_to financial_document_path(@financial_document), notice: t("simple_form.flash.successfully_created")
     else

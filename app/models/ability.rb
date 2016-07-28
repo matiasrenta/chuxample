@@ -122,6 +122,7 @@ class Ability
 		can [:create, :update], ProjectActivityObra
 		can [:create, :update], ProjectActivitySocial
 		can [:manage], Beneficiary
+		can [:create], FinancialDocument
 	end
 
 	def ejecutor_adquisición
@@ -133,9 +134,9 @@ class Ability
 	def ejecutor_nómina
 		ejecutor
 		can [:update], KeyAnalytical, nomina?: true
-		can [:create, :update], ProjectActivityNomina
-		can :create, FinancialDocument, project_activityable: {parent_project: {nomina?: true}}
-		can :manage, Paysheet
+		#can [:create, :update], ProjectActivityNomina
+		#can :create, FinancialDocument, project_activityable: {parent_project: {nomina?: true}}
+		#can :manage, Paysheet
 	end
 	def ejecutor_obra
 		ejecutor
@@ -218,6 +219,8 @@ class Ability
     #ejemplo: cannot [:create, :update, :destroy], User
 
 		cannot :update, KeyAnalytical, status: KeyAnalytical.status_array # no se puede editar cuando esta pendiente de revisar una afectacion
+		#cannot :update, NominaDocument # es para que no se vuelva a calcular el ejercido, es decir, le sume dinero al ejercido de cada proyecto
+		#cannot :update, NominaDocumentItem # es para que no se vuelva a calcular el ejercido, es decir, le sume dinero al ejercido de cada proyecto
 
 		unless @user.superuser?
 			cannot [:create, :read, :update, :destroy], User, role_id: Role.find_by_name('superuser').id
