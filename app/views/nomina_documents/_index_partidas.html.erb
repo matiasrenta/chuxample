@@ -19,6 +19,10 @@
                 <td align='right'><%= number_to_currency(ndi.monto, unit: '') %></td>
               </tr>
           <% end %>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td align='right'><strong><%= number_to_currency(@nomina_document.nomina_document_items.sum(:monto), unit: '') %></strong></td>
+          </tr>
           </tbody>
         </table>
       </div>
