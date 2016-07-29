@@ -30,7 +30,7 @@
                     </tr>
                     <%= f.fields_for :nomina_document_items, :wrapper => false do |ndi_form| %>
                         <tr class="fields">
-                          <td><%= ndi_form.association :cat_ppr_par_partida_especifica, wrapper: :clean %></td>
+                          <td><%= ndi_form.association :cat_ppr_par_partida_especifica, collection: CatPprParPartidaEspecifica.for_nomina, wrapper: :clean %></td>
                           <td><%= ndi_form.input :monto, wrapper: :clean %></td>
                           <td align="center">
                             <%= ndi_form.link_to_remove do %>

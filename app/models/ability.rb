@@ -31,6 +31,7 @@ class Ability
 
     @user = user
     send(@user.role.name.delete(' ').underscore)
+		everybody_can_do
     cannot_for_everyone
   end
 
@@ -219,8 +220,7 @@ class Ability
     #ejemplo: cannot [:create, :update, :destroy], User
 
 		cannot :update, KeyAnalytical, status: KeyAnalytical.status_array # no se puede editar cuando esta pendiente de revisar una afectacion
-		#cannot :update, NominaDocument # es para que no se vuelva a calcular el ejercido, es decir, le sume dinero al ejercido de cada proyecto
-		#cannot :update, NominaDocumentItem # es para que no se vuelva a calcular el ejercido, es decir, le sume dinero al ejercido de cada proyecto
+		cannot :update, NominaDocument # es para que no se vuelva a calcular el ejercido, es decir, le sume dinero al ejercido de cada proyecto
 
 		unless @user.superuser?
 			cannot [:create, :read, :update, :destroy], User, role_id: Role.find_by_name('superuser').id
@@ -281,6 +281,10 @@ class Ability
 		can [operation], CatDerLineOfAction
 		can [operation], CatDerStrategy
 		can [operation], CatDerHumanRight
+	end
+
+	def everybody_can_do
+		can :read, :dashboard
 	end
 
 end
