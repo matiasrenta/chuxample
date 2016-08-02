@@ -24,4 +24,8 @@ class CatAciInstitutionalActivity < ActiveRecord::Base
       ais ? ais.first : nil
     end
   end
+
+  def to_label
+    "#{key} - #{description}"
+  end
 end

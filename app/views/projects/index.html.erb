@@ -42,11 +42,11 @@
                         <label for="q[cat_are_area_id_eq]"><%= t('simple_form.labels.defaults.cat_are_area') %></label>
                         <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.order(:description), :id, :description, @q.cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
-
                       <div class="col-md-3 col-sm-6 col-xs-12">
-                        <label for="q[cat_aci_institutional_activity_id_eq]"><%= t('simple_form.labels.defaults.cat_aci_institutional_activity') %></label>
-                        <%= f.select :cat_aci_institutional_activity_id_eq, options_from_collection_for_select(CatAciInstitutionalActivity.order(:description), :id, :description, @q.cat_aci_institutional_activity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                        <label for="q[cat_aci_institutional_activity_id_cont]"><%= t('simple_form.labels.defaults.cat_aci_institutional_activity') %></label>
+                        <%= f.select :cat_aci_institutional_activity_id_eq, options_from_collection_for_select(CatAciInstitutionalActivity.order(:key, :description), :id, :to_label, @q.cat_aci_institutional_activity_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
+
 
                       <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[project_type_eq]"><%= t('simple_form.labels.defaults.project_type') %></label>
@@ -60,15 +60,19 @@
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[cat_fon_funding_source_id_eq]"><%= t('simple_form.labels.defaults.cat_fon_funding_source') %></label>
-                        <%= f.select :cat_fon_funding_source_id_eq, options_from_collection_for_select(CatFonFundingSource.order(:key), :id, :to_label, @q.cat_fon_funding_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                        <%= f.select :cat_fon_funding_source_id_eq, options_from_collection_for_select(CatFonFundingSource.order(:key, :description), :id, :to_label, @q.cat_fon_funding_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[cat_fon_specific_source_id_eq]"><%= t('simple_form.labels.defaults.cat_fon_specific_source') %></label>
-                        <%= f.select :cat_fon_specific_source_id_eq, options_from_collection_for_select(CatFonSpecificSource.order(:key), :id, :to_label, @q.cat_fon_specific_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                        <%= f.select :cat_fon_specific_source_id_eq, options_from_collection_for_select(CatFonSpecificSource.order(:key, :description), :id, :to_label, @q.cat_fon_specific_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[cat_ppr_expense_type_id_eq]"><%= t('simple_form.labels.defaults.cat_ppr_expense_type') %></label>
-                        <%= f.select :cat_ppr_expense_type_id_eq, options_from_collection_for_select(CatPprExpenseType.order(:key), :id, :to_label, @q.cat_ppr_expense_type_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                        <%= f.select :cat_ppr_expense_type_id_eq, options_from_collection_for_select(CatPprExpenseType.order(:key, :description), :id, :to_label, @q.cat_ppr_expense_type_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[proyecto_de_inversion_cont]"><%= t('simple_form.labels.defaults.proyecto_de_inversion') %></label>
+                        <%= f.search_field :proyecto_de_inversion_cont, label: false, class: "form-control input-sm" %>
                       </div>
                       <div class="col-md-3 col-sm-6 col-xs-12">
                         <label for="q[key_analytical_string_cont]"><%= t('simple_form.labels.defaults.short_key_analytical_string') %></label>
