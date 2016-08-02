@@ -71,12 +71,16 @@ class KeyAnalyticalImport < BaseImport
     # busco por description
     area = ''
     case row['cat_are_area_description']
-      when 'ADMINISTRACION'
+      when 'ADMINISTRACIÓN'
         area = 'Dirección General de Administración'
       when 'CENTRALIZADO'
         area = 'Jefatura Delegacional'
       when 'OBRAS'
         area = 'Dirección General de Obras y Desarrollo Urbano'
+      when 'CULTURA'
+        area = 'Dirección General de Cultura'
+      when 'DESARROLLO SOCIAL'
+        area = 'Dirección General de Desarrollo Social'
     end
     key_analytical.cat_are_area_id                     = CatAreArea.find_by_description(area).try(:id)
 
