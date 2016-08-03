@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   # :registerable, :confirmable and :omniauthable
   # mas los 7 modulos proveidos por el gem devise_security_extension
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable, :validatable
-  attachment :avatar, type: :image, store: 'filesystem_backend', cache: 'filesystem_cache'
+  attachment :avatar, type: :image, store: 's3_avatar_backend', cache: 's3_avatar_cache'
 
   validates :email, :name, :role_id, presence: true
   validates :email, uniqueness: true

@@ -15,7 +15,7 @@ class FinancialDocument < ActiveRecord::Base
   belongs_to :financial_document_type
   belongs_to :supplier
 
-  attachment :file, extension: %w[jpg jpeg png gif pdf doc docx], store: 's3_backend', cache: 's3_cache'
+  attachment :file, extension: %w[jpg jpeg png gif pdf doc docx], store: 's3_financial_documents_backend', cache: 's3_financial_documents_cache'
   #content_type: %w[image/jpeg image/png image/gif text/plain application/pdf application/doc application/docx]
 
   validates :financial_document_type_id, :file, presence: true
