@@ -16,7 +16,7 @@
       <%= f.input :monto %>
       <%= f.association :supplier %>
       <% f.object = @financial_document.becomes(FinancialDocument) %>
-      <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_MAX_FILESIZE'].to_i} %>
+      <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_FINANCIAL_DOCUMENTS_MAX_FILESIZE'].to_i} %>
       <div class="widget-footer">
         <div class="form-actions">
           <div class="btn-group">

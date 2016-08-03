@@ -20,6 +20,8 @@ if Rails.env.production? && Admin::Settings['REFILE_USE_S3'] == 'true'
   Refile.backends['s3_nomina_documents_cache'] = Refile::S3.new(prefix: "cache_nomina_documents", max_size: Admin::Settings['REFILE_S3_NOMINA_DOC_MAX_FILESIZE'].to_i.megabytes, **aws)
   Refile.backends['s3_avatar_backend'] = Refile::S3.new(prefix: "store_avatar", max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes, **aws)
   Refile.backends['s3_avatar_cache'] = Refile::S3.new(prefix: "cache_avatar", max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes, **aws)
+  Refile.backends['s3_thing_backend'] = Refile::S3.new(prefix: "store_thing", max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes, **aws)
+  Refile.backends['s3_thing_cache'] = Refile::S3.new(prefix: "cache_thing", max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes, **aws)
 else
   Refile.backends['s3_financial_documents_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_financial_documents/store').to_s, max_size: Admin::Settings['REFILE_S3_FINANCIAL_DOCUMENTS_MAX_FILESIZE'].to_i.megabytes)
   Refile.backends['s3_financial_documents_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_financial_documents/cache').to_s, max_size: Admin::Settings['REFILE_S3_FINANCIAL_DOCUMENTS_MAX_FILESIZE'].to_i.megabytes)
@@ -31,4 +33,6 @@ else
   Refile.backends['s3_nomina_doc_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_nomina_doc/cache').to_s, max_size: Admin::Settings['REFILE_S3_NOMINA_DOC_MAX_FILESIZE'].to_i.megabytes)
   Refile.backends['s3_avatar_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_avatar/store').to_s, max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes)
   Refile.backends['s3_avatar_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_avatar/cache').to_s, max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes)
+  Refile.backends['s3_thing_backend'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_thing/store').to_s, max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes)
+  Refile.backends['s3_thing_cache'] = Refile::Backend::FileSystem.new(Rails.root.join('uploads/s3_thing/cache').to_s, max_size: Admin::Settings['REFILE_S3_AVATAR_MAX_FILESIZE'].to_i.megabytes)
 end

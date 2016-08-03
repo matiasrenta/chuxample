@@ -15,7 +15,7 @@
           <div class="form-inputs edit">
             <%= f.input :month, as: :select, collection: (1..12).to_a.map{|i| [I18n.t("date.month_names")[i], i]} %>
             <%= f.input :year, as: :select, collection: 2016..2030 %>
-            <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_MAX_FILESIZE'].to_i} %>
+            <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_FINANCIAL_DOCUMENTS_MAX_FILESIZE'].to_i} %>
 
 
             <div class="form-group">
