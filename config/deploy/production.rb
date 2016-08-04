@@ -4,9 +4,9 @@
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
-role :app, %w{deployer@159.203.115.132}
-role :web, %w{deployer@159.203.115.132}
-role :db,  %w{deployer@159.203.115.132}
+#role :app, %w{deployer@159.203.115.132}
+#role :web, %w{deployer@159.203.115.132}
+#role :db,  %w{deployer@159.203.115.132}
 
 # Extended Server Syntax
 # ======================
@@ -14,17 +14,17 @@ role :db,  %w{deployer@159.203.115.132}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server '159.203.115.132', user: 'deployer', roles: %w{web app}, my_property: :my_value
+#server '159.203.115.132', user: 'deployer', roles: %w{web app}, my_property: :my_value
 
 
 # esto es para staging. Comentar si se quiere poner en produccion
 # Se puse hacer otro archivo staging.rb para hacer: cap staging deploy
 # pero eso implica tener completo ese entorno (database.yml con staging, environment con staging)
 # y lo peor sería llevarse una sorpresa que al no ser production los assets se comporten distintos etc.
-#role :app, %w{deployer@104.236.104.0}
-#role :web, %w{deployer@104.236.104.0}
-#role :db,  %w{deployer@104.236.104.0}
-#server '104.236.104.0', user: 'deployer', roles: %w{web app}, my_property: :my_value
+role :app, %w{deployer@104.236.104.0}
+role :web, %w{deployer@104.236.104.0}
+role :db,  %w{deployer@104.236.104.0}
+server '104.236.104.0', user: 'deployer', roles: %w{web app}, my_property: :my_value
 
 
 # you can set custom ssh options

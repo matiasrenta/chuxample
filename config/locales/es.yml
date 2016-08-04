@@ -331,8 +331,9 @@ es:
         one: Fracción de Artículo
         other: Fracciones de Artículos
       ley_articulo:
-        one: Artículo
-        other: Artículos
+        one: Artículo de Transparencia
+        other: Artículos de Transparencia
+        fa_icon: 'fa-fw fa fa-eye'
       paysheet:
         one: Registro de Nómina
         other: Registros de Nómina
@@ -414,6 +415,7 @@ es:
       project:
         one: Proyecto
         other: Proyectos
+        fa_icon: 'fa-fw fa fa-list-ol'
       key_analytical:
         one: Afectación
         other: Afectaciones
