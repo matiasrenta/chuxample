@@ -302,8 +302,8 @@ es:
 
     models:
       nomina_document:
-        one: Documento de Nómina
-        other: Documentos de Nómina
+        one: Reporte de Nómina
+        other: Reportes de Nómina
         fa_icon: 'fa-fw fa fa-file-text'
       open_datum:
         one: Datos Abiertos

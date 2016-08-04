@@ -65,12 +65,15 @@ class CatalogCleaner < Object
   end
 
   def self.construct_all_key_analyticals_string
+    PaperTrail.enabled = false
     KeyAnalytical.all.each do |key_analytical|
       key_analytical.save!
     end
+    PaperTrail.enabled = true
   end
 
   def self.assign_project_type_to_key_analyticals
+    PaperTrail.enabled = false
     KeyAnalytical.all.each do |key_analytical|
       case key_analytical.cat_ppr_par_chapter.key
         when '6000'
@@ -86,6 +89,7 @@ class CatalogCleaner < Object
       end
       key_analytical.save!
     end
+    PaperTrail.enabled = true
   end
 
   def self.nilify_proyecto_de_inversion
@@ -93,17 +97,11 @@ class CatalogCleaner < Object
     ActiveRecord::Base.connection.execute(sql)
   end
 
-  def self.assign_name_to_project_activity_nomina_and_social
+  def self.assign_name_to_project_activity_social
     ProjectActivitySocial.all.each do |pas|
       if pas.name.nil?
         pas.name = pas.social_development_program.try(:name)
         pas.save!
-      end
-    end
-    ProjectActivityNomina.all.each do |pan|
-      if pan.name.nil?
-        pan.name = 'Documento de Nómina'
-        pan.save!
       end
     end
   end

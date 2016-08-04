@@ -124,32 +124,11 @@ class KeyAnalytical < ActiveRecord::Base
   private
 
   def construct_key_analytical_string
-    self.key_analytical_string = "#{construct_short_key_analytical_string}.
-#{cat_cfu_finality.key}.
-#{cat_cfu_function.key.split('.')[1]}.
-#{cat_cfu_subfunction.key.split('.')[2]}.
-#{cat_aci_institutional_activity.key}.SN.
-#{cat_fon_funding_source.key}.
-#{cat_fon_generic_source.key}.
-#{cat_fon_specific_source.key}.
-#{cat_fon_year_document.key}.
-#{cat_fon_origin_resource.key}.
-#{cat_ppr_par_partida_especifica.key}.
-#{cat_ppr_expense_type.key}.
-#{cat_ppr_digit_identifier.key}.
-#{cat_ppr_spending_destination.key}.
-#{proyecto_de_inversion}"
+    self.key_analytical_string = "#{construct_short_key_analytical_string}.#{cat_cfu_finality.key}.#{cat_cfu_function.key.split('.')[1]}.#{cat_cfu_subfunction.key.split('.')[2]}.#{cat_aci_institutional_activity.key}.SN.#{cat_fon_funding_source.key}.#{cat_fon_generic_source.key}.#{cat_fon_specific_source.key}.#{cat_fon_year_document.key}.#{cat_fon_origin_resource.key}.#{cat_ppr_par_partida_especifica.key}.#{cat_ppr_expense_type.key}.#{cat_ppr_digit_identifier.key}.#{cat_ppr_spending_destination.key}.#{proyecto_de_inversion}"
   end
 
   def construct_short_key_analytical_string
-    self.short_key_analytical_string = "#{cat_pgd_axi.key}.
-#{cat_ere_expending_focu.key}.
-#{cat_ere_result.key.split('.')[1]}.
-#{cat_ere_subresult.key.split('.')[2]}.
-#{cat_fon_year_document.key}.
-#{sector}.
-#{subsector}.
-#{unidad_responsable}"
+    self.short_key_analytical_string = "#{cat_pgd_axi.key}.#{cat_ere_expending_focu.key}.#{cat_ere_result.key.split('.')[1]}.#{cat_ere_subresult.key.split('.')[2]}.#{cat_fon_year_document.key}.#{sector}.#{subsector}.#{unidad_responsable}"
   end
   
   def assign_project_type
