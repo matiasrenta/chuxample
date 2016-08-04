@@ -3,7 +3,7 @@ class CatFonYearDocumentsController < ApplicationController
 
   # GET /cat_fon_year_documents
   def index
-    @cat_fon_year_documents = do_index(CatFonYearDocument, params)
+    @cat_fon_year_documents = indexize(CatFonYearDocument)
   end
 
   # GET /cat_fon_year_documents/1

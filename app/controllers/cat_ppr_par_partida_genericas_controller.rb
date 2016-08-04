@@ -3,7 +3,7 @@ class CatPprParPartidaGenericasController < ApplicationController
 
   # GET /cat_ppr_par_partida_genericas
   def index
-    @cat_ppr_par_partida_genericas = do_index(CatPprParPartidaGenerica, params)
+    @cat_ppr_par_partida_genericas = indexize(CatPprParPartidaGenerica)
   end
 
   # GET /cat_ppr_par_partida_genericas/1

@@ -3,7 +3,7 @@ class CatGenAxisController < ApplicationController
 
   # GET /cat_gen_axis
   def index
-    @cat_gen_axis = do_index(CatGenAxi, params)
+    @cat_gen_axis = indexize(CatGenAxi)
   end
 
   # GET /cat_gen_axis/1

@@ -7,7 +7,7 @@ class ApiUsersController < ApplicationController
 
   # GET /api_users
   def index
-    @api_users = do_index(ApiUser, params)
+    @api_users = indexize(ApiUser)
   end
 
   # GET /api_users/1

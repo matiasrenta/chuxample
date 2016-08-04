@@ -3,7 +3,7 @@ class CatFonGenericSourcesController < ApplicationController
 
   # GET /cat_fon_generic_sources
   def index
-    @cat_fon_generic_sources = do_index(CatFonGenericSource, params)
+    @cat_fon_generic_sources = indexize(CatFonGenericSource)
   end
 
   # GET /cat_fon_generic_sources/1

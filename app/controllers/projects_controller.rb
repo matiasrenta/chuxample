@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   #load_and_authorize_resource except: :index, param_method: :key_analytical_params
 
   def index
-    @projects = do_index(KeyAnalytical, params)
+    @projects = indexize(KeyAnalytical)
   end
 
   def show

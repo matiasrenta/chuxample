@@ -3,7 +3,7 @@ class ProjectActivityObrasController < ApplicationController
 
   # GET /project_activity_obras
   def index
-    @project_activity_obras = do_index(ProjectActivityObra, params)
+    @project_activity_obras = indexize(ProjectActivityObra)
   end
 
   # GET /project_activity_obras/1

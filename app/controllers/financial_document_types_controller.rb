@@ -3,7 +3,7 @@ class FinancialDocumentTypesController < ApplicationController
 
   # GET /financial_document_types
   def index
-    @financial_document_types = do_index(FinancialDocumentType, params)
+    @financial_document_types = indexize(FinancialDocumentType)
   end
 
   # GET /financial_document_types/1

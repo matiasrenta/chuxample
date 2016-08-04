@@ -3,7 +3,7 @@ class AscriptionsController < ApplicationController
 
   # GET /ascriptions
   def index
-    @ascriptions = do_index(Ascription, params)
+    @ascriptions = indexize(Ascription)
   end
 
   # GET /ascriptions/1

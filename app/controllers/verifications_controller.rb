@@ -3,7 +3,7 @@ class VerificationsController < ApplicationController
 
   # GET /verifications
   def index
-    @verifications = do_index(Verification, params)
+    @verifications = indexize(Verification)
   end
 
   # GET /verifications/1

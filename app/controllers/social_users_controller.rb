@@ -3,7 +3,7 @@ class SocialUsersController < ApplicationController
 
   # GET /social_users
   def index
-    @social_users = do_index(SocialUser, params)
+    @social_users = indexize(SocialUser)
   end
 
   # GET /social_users/1

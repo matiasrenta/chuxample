@@ -3,7 +3,7 @@ class StatesController < ApplicationController
 
   # GET /states
   def index
-    @states = do_index(State, params)
+    @states = indexize(State)
   end
 
   # GET /states/1

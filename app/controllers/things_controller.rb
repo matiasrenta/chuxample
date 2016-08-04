@@ -5,7 +5,6 @@ class ThingsController < ApplicationController
   def index
     #@things = indexize(Thing, collection: Thing.where("price > 1"), order: :age, no_paginate: false)
     @things = indexize(Thing)
-    #@things = do_index(Thing, params)
 
     respond_to do |format|
       format.html

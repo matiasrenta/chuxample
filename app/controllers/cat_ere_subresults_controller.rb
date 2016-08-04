@@ -3,7 +3,7 @@ class CatEreSubresultsController < ApplicationController
 
   # GET /cat_ere_subresults
   def index
-    @cat_ere_subresults = do_index(CatEreSubresult, params)
+    @cat_ere_subresults = indexize(CatEreSubresult)
   end
 
   # GET /cat_ere_subresults/1

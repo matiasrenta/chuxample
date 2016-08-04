@@ -3,7 +3,7 @@ class CatCfuFinalitiesController < ApplicationController
 
   # GET /cat_cfu_finalities
   def index
-    @cat_cfu_finalities = do_index(CatCfuFinality, params)
+    @cat_cfu_finalities = indexize(CatCfuFinality)
   end
 
   # GET /cat_cfu_finalities/1

@@ -3,7 +3,7 @@ class LeyFraccionsController < ApplicationController
 
   # GET /ley_fraccions
   def index
-    @ley_fraccions = do_index(LeyFraccion, params)
+    @ley_fraccions = indexize(LeyFraccion)
   end
 
   # GET /ley_fraccions/1

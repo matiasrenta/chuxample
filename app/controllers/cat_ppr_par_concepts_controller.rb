@@ -3,7 +3,7 @@ class CatPprParConceptsController < ApplicationController
 
   # GET /cat_ppr_par_concepts
   def index
-    @cat_ppr_par_concepts = do_index(CatPprParConcept, params)
+    @cat_ppr_par_concepts = indexize(CatPprParConcept)
   end
 
   # GET /cat_ppr_par_concepts/1

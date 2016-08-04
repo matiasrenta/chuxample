@@ -3,7 +3,7 @@ class DelayedJobsController < ApplicationController
 
   # GET /delayed_jobs
   def index
-    @delayed_jobs = do_index(DelayedJob, params)
+    @delayed_jobs = indexize(DelayedJob)
   end
 
   # GET /delayed_jobs/1

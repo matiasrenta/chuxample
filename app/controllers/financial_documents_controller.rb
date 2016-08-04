@@ -4,7 +4,7 @@ class FinancialDocumentsController < ApplicationController
 
   # GET /financial_documents
   def index
-    @financial_documents = do_index(FinancialDocument, params)
+    @financial_documents = indexize(FinancialDocument)
   end
 
   # GET /financial_documents/1

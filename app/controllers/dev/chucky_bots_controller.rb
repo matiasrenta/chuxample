@@ -5,7 +5,7 @@ class Dev::ChuckyBotsController < ApplicationController
 
   # GET /chucky_bots
   def index
-    @chucky_bots = do_index(ChuckyBot, params)
+    @chucky_bots = indexize(ChuckyBot)
   end
 
   # GET /chucky_bots/1

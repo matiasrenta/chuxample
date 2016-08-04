@@ -3,7 +3,7 @@ class TerritorialUnitsController < ApplicationController
 
   # GET /territorial_units
   def index
-    @territorial_units = do_index(TerritorialUnit, params)
+    @territorial_units = indexize(TerritorialUnit)
   end
 
   # GET /territorial_units/1

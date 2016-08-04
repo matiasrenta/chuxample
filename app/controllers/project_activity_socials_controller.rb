@@ -3,7 +3,7 @@ class ProjectActivitySocialsController < ApplicationController
 
   # GET /project_activity_socials
   def index
-    @project_activity_socials = do_index(ProjectActivitySocial, params)
+    @project_activity_socials = indexize(ProjectActivitySocial)
   end
 
   # GET /project_activity_socials/1

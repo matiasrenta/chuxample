@@ -187,6 +187,10 @@ es:
         longitude: 'Longitud'
         month: 'Mes'
         happened_at: 'Ocurrió en'
+        title: 'Título'
+        published_by: 'Publicado por'
+        contact: 'Contacto'
+        labels: 'Etiquetas'
 
     hints:
       access_only_with_token: 'La app no necesita autenticar usuario, solo usa el token para acceder a la API'

@@ -3,7 +3,7 @@ class NominaDocumentsController < ApplicationController
 
   # GET /nomina_documents
   def index
-    @nomina_documents = do_index(NominaDocument, params)
+    @nomina_documents = indexize(NominaDocument)
   end
 
   # GET /nomina_documents/1

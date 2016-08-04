@@ -3,7 +3,7 @@ class OpenDataController < ApplicationController
 
   # GET /open_data
   def index
-    @open_data = do_index(OpenDatum, params)
+    @open_data = indexize(OpenDatum)
   end
 
   # GET /open_data/1

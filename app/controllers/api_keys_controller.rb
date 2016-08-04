@@ -3,7 +3,7 @@ class ApiKeysController < ApplicationController
 
   # GET /api_keys
   def index
-    @api_keys = do_index(ApiKey, params)
+    @api_keys = indexize(ApiKey)
   end
 
   # GET /api_keys/1

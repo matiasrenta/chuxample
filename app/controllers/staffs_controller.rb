@@ -3,7 +3,7 @@ class StaffsController < ApplicationController
 
   # GET /staffs
   def index
-    @staffs = do_index(Staff, params)
+    @staffs = indexize(Staff)
   end
 
   # GET /staffs/1

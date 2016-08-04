@@ -3,13 +3,13 @@ class ProjectActivityNominasController < ApplicationController
 
   # GET /project_activity_nominas
   def index
-    @project_activity_nominas = do_index(ProjectActivityNomina, params)
+    @project_activity_nominas = indexize(ProjectActivityNomina)
   end
 
   # GET /project_activity_nominas/1
   def show
     @key_analytical = @project_activity_nomina.project_nomina
-    @paysheets = do_index(Paysheet, params, @project_activity_nomina.paysheets)
+    @paysheets = indexize(Paysheet, collection: @project_activity_nomina.paysheets)
   end
 
   # GET /project_activity_nominas/new

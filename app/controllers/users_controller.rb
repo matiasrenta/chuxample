@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = do_index(User, params)
+    @users = indexize(User)
   end
 
   # GET /users/1
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def mentionables
-    @users = do_index(User, params)
+    @users = indexize(User)
   end
 
   private

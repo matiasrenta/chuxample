@@ -3,7 +3,7 @@ class CatPprSpendingDestinationsController < ApplicationController
 
   # GET /cat_ppr_spending_destinations
   def index
-    @cat_ppr_spending_destinations = do_index(CatPprSpendingDestination, params)
+    @cat_ppr_spending_destinations = indexize(CatPprSpendingDestination)
   end
 
   # GET /cat_ppr_spending_destinations/1

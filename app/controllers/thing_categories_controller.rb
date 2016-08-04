@@ -3,7 +3,7 @@ class ThingCategoriesController < ApplicationController
 
   # GET /thing_categories
   def index
-    @thing_categories = do_index(ThingCategory, params)
+    @thing_categories = indexize(ThingCategory)
   end
 
   # GET /thing_categories/1

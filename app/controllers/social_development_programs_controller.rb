@@ -3,7 +3,7 @@ class SocialDevelopmentProgramsController < ApplicationController
 
   # GET /social_development_programs
   def index
-    @social_development_programs = do_index(SocialDevelopmentProgram, params)
+    @social_development_programs = indexize(SocialDevelopmentProgram)
   end
 
   # GET /social_development_programs/1

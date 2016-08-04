@@ -3,7 +3,7 @@ class CatGenStrategiesController < ApplicationController
 
   # GET /cat_gen_strategies
   def index
-    @cat_gen_strategies = do_index(CatGenStrategy, params)
+    @cat_gen_strategies = indexize(CatGenStrategy)
   end
 
   # GET /cat_gen_strategies/1

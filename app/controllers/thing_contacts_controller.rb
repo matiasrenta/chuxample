@@ -3,7 +3,7 @@ class ThingContactsController < ApplicationController
 
   # GET /thing_contacts
   def index
-    @thing_contacts = do_index(ThingContact, params)
+    @thing_contacts = indexize(ThingContact)
   end
 
   # GET /thing_contacts/1

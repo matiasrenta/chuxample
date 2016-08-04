@@ -3,7 +3,7 @@ class LeyArticulosController < ApplicationController
 
   # GET /ley_articulos
   def index
-    @ley_articulos = do_index(LeyArticulo, params, nil, true, :codigo)
+    @ley_articulos = indexize(LeyArticulo, order: :codigo)
   end
 
   # GET /ley_articulos/1

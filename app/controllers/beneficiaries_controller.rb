@@ -4,7 +4,7 @@ class BeneficiariesController < ApplicationController
 
   # GET /beneficiaries
   def index
-    @beneficiaries = do_index(Beneficiary, params)
+    @beneficiaries = indexize(Beneficiary)
   end
 
   # GET /beneficiaries/1

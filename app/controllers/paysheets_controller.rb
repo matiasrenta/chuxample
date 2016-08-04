@@ -4,7 +4,7 @@ class PaysheetsController < ApplicationController
 
   # GET /paysheets
   def index
-    @paysheets = do_index(Paysheet, params)
+    @paysheets = indexize(Paysheet)
   end
 
   # GET /paysheets/1

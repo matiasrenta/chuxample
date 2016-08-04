@@ -3,7 +3,7 @@ class CatPgdLineOfActionsController < ApplicationController
 
   # GET /cat_pgd_line_of_actions
   def index
-    @cat_pgd_line_of_actions = do_index(CatPgdLineOfAction, params)
+    @cat_pgd_line_of_actions = indexize(CatPgdLineOfAction)
   end
 
   # GET /cat_pgd_line_of_actions/1

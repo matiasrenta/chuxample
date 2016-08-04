@@ -3,7 +3,7 @@ class CatGenLineOfActionsController < ApplicationController
 
   # GET /cat_gen_line_of_actions
   def index
-    @cat_gen_line_of_actions = do_index(CatGenLineOfAction, params)
+    @cat_gen_line_of_actions = indexize(CatGenLineOfAction)
   end
 
   # GET /cat_gen_line_of_actions/1

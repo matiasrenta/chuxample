@@ -3,7 +3,7 @@ class JobTitlesController < ApplicationController
 
   # GET /job_titles
   def index
-    @job_titles = do_index(JobTitle, params)
+    @job_titles = indexize(JobTitle)
   end
 
   # GET /job_titles/1
