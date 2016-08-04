@@ -44,7 +44,7 @@
           </li>
       <% end %>
 
-      <% if can? :read, :public_activities %>
+      <% if can? :read, PublicActivity::Activity %>
           <li data-step="3" data-intro="Este es el menú de Actividad de Usuarios.">
             <a href="/public_activity"><i class="fa fa-lg fa-fw fa-video-camera"></i> <span class="menu-item-parent">Actividad de Usuarios</span></a>
           </li>

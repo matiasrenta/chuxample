@@ -37,17 +37,6 @@ class Ability
 
   def superuser
 		can :manage, :all
-		# can [:manage], CatalogCleaner
-		# can [:manage], CatDerHumanRight
-		# can [:read, :destroy], DelayedJob
-		# can [:manage], ThingCategory
-    # can [:manage], PublicActivity::Activity
-		# can [:manage], ThingContact
-		# can [:manage], ThingPart
-    # can [:manage], Sett
-		# can [:manage], User
-		# can [:manage], Thing
-		# can :manage, ChuckyBot
 	end
 
 	def administrador
@@ -107,9 +96,7 @@ class Ability
 		can [:manage], CatDerLineOfAction
 		can [:manage], CatDerStrategy
 		can [:manage], CatDerHumanRight
-		can [:read], PublicActivity::Activity
 		can [:manage], User
-		can :read, :public_activities
 		can :read, :catalogs
 		can :read, :administrations
 		can :change_user_role, User
@@ -234,8 +221,6 @@ class Ability
 
 	def ejecutor
 		read_edit_own_user
-		can :read, :public_activities
-		can :read, PublicActivity::Activity
 		can :read, KeyAnalytical
 		can [:create, :read], Supplier
 		can :read, ProjectActivitySocial
@@ -285,6 +270,7 @@ class Ability
 
 	def everybody_can_do
 		can :read, :dashboard
+		can :read, PublicActivity::Activity
 	end
 
 end

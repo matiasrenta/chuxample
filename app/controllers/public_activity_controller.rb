@@ -3,7 +3,12 @@ class PublicActivityController < ApplicationController
 
   def index
     set_content_title('fa-fw fa fa-video-camera', ['Actividad de Usuarios'])
-    @activities = do_index(PublicActivity::Activity, params, nil, true, 'id desc')
+    if current_user.superuser?
+      collection = PublicActivity::Activity.all
+    else
+      collection = PublicActivity::Activity.joins("INNER JOIN users ON users.id = activities.owner_id").where('users.role_id <> ?', Role.superuser.id)
+    end
+    @activities = indexize(PublicActivity::Activity, order: 'id desc', collection: collection)
   end
 
 end
