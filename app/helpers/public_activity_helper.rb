@@ -10,7 +10,7 @@ module PublicActivityHelper
   def trackables
     all_trackables = PublicActivity::Activity.select(:trackable_type).group(:trackable_type).order(:trackable_type).map(&:trackable_type)
     existing_trackables = Array.new
-    all_trackables.each {|t| existing_trackables << t if exists_class?(t)}
+    all_trackables.each {|t| existing_trackables << t if exists_class?(t) && !t.start_with?('Thing')}
     opt = Array.new
     existing_trackables.each do |t|
       opt << OpenStruct.new(id: t, name: t("activerecord.models.#{t.underscore}.one"))

@@ -186,6 +186,7 @@ es:
         latitude: 'Latitud'
         longitude: 'Longitud'
         month: 'Mes'
+        happened_at: 'Ocurrió en'
 
     hints:
       access_only_with_token: 'La app no necesita autenticar usuario, solo usa el token para acceder a la API'

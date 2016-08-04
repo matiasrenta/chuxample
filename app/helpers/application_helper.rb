@@ -82,4 +82,13 @@ module ApplicationHelper
     "<span title=\"#{formated_time_value}\">#{time_ago_in_words(date_or_datetine, options)}</span>".html_safe
   end
 
+  # para no mostrar los usuarios superusers a los que no son superusers
+  def users_hide_or_show_superusers
+    if current_user.superuser?
+      User.all
+    else
+      User.less_superusers
+    end
+  end
+
 end

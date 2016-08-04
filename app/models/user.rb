@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
 
   delegate :superuser?, :ejecutor_adquisicion?, :ejecutor_nomina?, :ejecutor_obra?, :ejecutor_social?, to: :role
 
+  scope :less_superusers, -> {where.not(role_id: Role.superuser.id)}
   scope :revisores, -> {where(role_id: Role.revisor.id)}
-
   scope :actives, -> {where('deleted_at IS NULL')}
 
   def active?

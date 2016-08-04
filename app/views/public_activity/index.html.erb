@@ -21,7 +21,7 @@
 								<div class="row">
 									<div class="col-md-3 col-sm-6 col-xs-12">
 										<label for="q[owner_id_eq]"><%= t('activerecord.models.user.one') %></label>
-										<%= f.select :owner_id_eq, options_from_collection_for_select(User.all, :id, :name, @q.owner_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+										<%= f.select :owner_id_eq, options_from_collection_for_select(users_hide_or_show_superusers, :id, :name, @q.owner_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
 									</div>
 									<div class="col-md-3 col-sm-6 col-xs-12">
 										<label for="q[trackable_type_eq]"><%= t('simple_form.labels.defaults.trackable_type') %></label>
@@ -32,7 +32,7 @@
 										<%= f.select :key_cont, keyables, {include_blank: true}, {class: "form-control input-sm"} %>
 									</div>
 									<div class="col-md-3 col-sm-6 col-xs-12 spanning ">
-										<label for="q[created_at_gteq]"><%= t('simple_form.labels.defaults.created_at') %></label>
+										<label for="q[created_at_gteq]"><%= t('simple_form.labels.defaults.happened_at') %></label>
 										<div class="input-group input-group-sm block">
 											<%= f.search_field :created_at_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.created_at_gteq) %>
 										</div>
