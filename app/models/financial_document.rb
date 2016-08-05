@@ -78,7 +78,7 @@ class FinancialDocument < ActiveRecord::Base
     file.try(:delete)
   end
 
-  # calcula y setea el ejercido de la actividad a la que pertenece este Financial Documents y del Project
+  # calcula y setea el ejercido de la actividad y del Project a la que pertenece este Financial Documents
   # si el documento no es factura o contrato pues quedará igual el ejercido, pero no cuesta nada siempre calcularlo
   # se calcula after_save y after_destroy
   def calculate_ejercido

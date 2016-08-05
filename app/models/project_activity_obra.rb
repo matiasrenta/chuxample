@@ -51,7 +51,9 @@ class ProjectActivityObra < ActiveRecord::Base
   end
 
   def calculate_and_save_ejercido
-    self.ejercido = FinancialDocument.bills_and_contracts.without_contract.by_activities([self.id], self.class.name).sum(:monto)
+    # ahora solo se suman las facturas, quitar la siguiente linea si no se cambia de opinión
+    #self.ejercido = FinancialDocument.bills_and_contracts.without_contract.by_activities([self.id], self.class.name).sum(:monto)
+    self.ejercido = FinancialDocument.bills.by_activities([self.id], self.class.name).sum(:monto)
     save
   end
 

@@ -106,4 +106,11 @@ class CatalogCleaner < Object
     end
   end
 
+  #para que se ejecuten los callbacks de save.
+  def self.save_financial_documents
+    FinancialDocument.all.each do |fd|
+      fd.save!
+    end
+  end
+
 end
