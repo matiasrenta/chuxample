@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803002139) do
+ActiveRecord::Schema.define(version: 20160805214900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -658,16 +658,6 @@ ActiveRecord::Schema.define(version: 20160803002139) do
     t.datetime "updated_at",        null: false
   end
 
-  create_table "paysheets", force: :cascade do |t|
-    t.integer  "staff_id"
-    t.integer  "job_title_id"
-    t.integer  "ascription_id"
-    t.float    "importe"
-    t.integer  "project_activity_nomina_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
   create_table "proj_nominas_nom_docs_joins", id: false, force: :cascade do |t|
     t.integer "project_nomina_id"
     t.integer "nomina_document_id"
@@ -675,15 +665,6 @@ ActiveRecord::Schema.define(version: 20160803002139) do
 
   add_index "proj_nominas_nom_docs_joins", ["nomina_document_id"], name: "index_proj_nominas_nom_docs_joins_on_nomina_document_id", using: :btree
   add_index "proj_nominas_nom_docs_joins", ["project_nomina_id"], name: "index_proj_nominas_nom_docs_joins_on_project_nomina_id", using: :btree
-
-  create_table "project_activities", force: :cascade do |t|
-    t.string   "key"
-    t.string   "name"
-    t.text     "description"
-    t.integer  "key_analytical_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
 
   create_table "project_activity_adquisicions", force: :cascade do |t|
     t.string   "name"
@@ -702,18 +683,6 @@ ActiveRecord::Schema.define(version: 20160803002139) do
     t.integer  "project_adquisicion_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.float    "ejercido"
-  end
-
-  create_table "project_activity_nominas", force: :cascade do |t|
-    t.integer  "nro_trabajadores"
-    t.text     "comentarios"
-    t.integer  "ascription_id"
-    t.integer  "project_nomina_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "mes"
-    t.string   "name"
     t.float    "ejercido"
   end
 
