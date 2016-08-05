@@ -334,18 +334,10 @@ es:
         one: Artículo de Transparencia
         other: Artículos de Transparencia
         fa_icon: 'fa-fw fa fa-eye'
-      paysheet:
-        one: Registro de Nómina
-        other: Registros de Nómina
-        fa_icon: 'fa-fw fa fa-envelope-o'
       staff:
         one: Trabajador
         other: Trabajadores
         fa_icon: 'fa-fw fa fa-male'
-      project_activity_nomina:
-        one: Actividad de Nómina
-        other: Actividades de Nómina
-        fa_icon: 'fa-fw fa fa-group '
       job_title:
         one: Denominación de Puesto
         other: Denominaciones de Puestos

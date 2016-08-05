@@ -44,12 +44,10 @@ class Ability
 		can [:manage], LeyFraccion
 		can [:manage], LeyArticulo
 		can [:read], Verification
-		can [:manage], Paysheet
 		can [:manage], Staff
 		can [:manage], JobTitle
 		can [:manage], Ascription
 		can [:manage], ProjectActivityAdquisicion
-		can [:manage], ProjectActivityNomina
 		can [:manage], ProjectActivitySocial
 		can [:manage], ProjectActivityObra
 
@@ -106,7 +104,6 @@ class Ability
 		ejecutor
 		can [:update], KeyAnalytical
 		can [:create, :update], ProjectActivityAdquisicion
-		can [:create, :update], ProjectActivityNomina
 		can [:create, :update], ProjectActivityObra
 		can [:create, :update], ProjectActivitySocial
 		can [:manage], Beneficiary
@@ -122,9 +119,6 @@ class Ability
 	def ejecutor_nómina
 		ejecutor
 		can [:update], KeyAnalytical, nomina?: true
-		#can [:create, :update], ProjectActivityNomina
-		#can :create, FinancialDocument, project_activityable: {parent_project: {nomina?: true}}
-		#can :manage, Paysheet
 	end
 	def ejecutor_obra
 		ejecutor
@@ -145,11 +139,9 @@ class Ability
 		read_edit_own_user
 		can [:read, :approve_changes, :reject_changes], KeyAnalytical
 		can [:create, :read, :update], ProjectActivityAdquisicion
-		can [:create, :read, :update], ProjectActivityNomina
 		can [:create, :read, :update], ProjectActivityObra
 		can [:create, :read, :update], ProjectActivitySocial
 		can [:create, :read], FinancialDocument
-		can :read, Paysheet
 		can :read, Staff
 		can [:create, :read, :update], Supplier
 		can :read, :catalogs
@@ -163,12 +155,10 @@ class Ability
 		read_edit_own_user
 		can [:read], KeyAnalytical
 		can [:read], ProjectActivityAdquisicion
-		can [:read], ProjectActivityNomina
 		can [:read], ProjectActivityObra
 		can [:read], ProjectActivitySocial
 		can [:read], FinancialDocument
 		can :read, Beneficiary
-		can :read, Paysheet
 		can :read, Supplier
 	end
 
@@ -184,12 +174,10 @@ class Ability
 		read_edit_own_user
 		can [:read], KeyAnalytical
 		can [:read], ProjectActivityAdquisicion
-		can [:read], ProjectActivityNomina
 		can [:read], ProjectActivityObra
 		can [:read], ProjectActivitySocial
 		can [:read], FinancialDocument
 		can :read, Beneficiary
-		can :read, Paysheet
 		can :read, Supplier
 		can [:create, :read, :update], LeyFraccion
 		can [:create, :read, :update], LeyArticulo
@@ -225,11 +213,9 @@ class Ability
 		can [:create, :read], Supplier
 		can :read, ProjectActivitySocial
 		can :read, ProjectActivityAdquisicion
-		can :read, ProjectActivityNomina
 		can :read, ProjectActivityObra
 		can :read, FinancialDocument
 		can :read, Beneficiary
-		can :read, Paysheet
 	end
 
 	def can_do_with_all_catalogs(operation)

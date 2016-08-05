@@ -92,18 +92,6 @@ Rails.application.routes.draw do
         get 'new_with_type', on: :collection
       end
     end
-    resources :project_activity_nominas, shallow: true do
-      resources :financial_documents do
-        get 'new_with_type', on: :collection
-      end
-      resources :paysheets do
-        collection do
-          get 'new_import'
-          post 'create_import'
-          get 'download_import_file'
-        end
-      end
-    end
   end
   resources :key_analyticals do
     put :approve_changes, on: :member
