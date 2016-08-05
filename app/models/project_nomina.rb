@@ -1,5 +1,4 @@
 class ProjectNomina < KeyAnalytical
-  #has_many :project_activity_nominas, dependent: :restrict_with_error
   has_and_belongs_to_many :nomina_documents, join_table: 'proj_nominas_nom_docs_joins'
 
   scope :by_year, -> (year){where(year: year)}
