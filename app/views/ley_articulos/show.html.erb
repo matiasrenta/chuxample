@@ -71,7 +71,7 @@
             <tr role="row">
               <th><%= t('simple_form.labels.defaults.file') %></th>
               <td>
-                <%= link_to "Download file", attachment_url(@ley_articulo, :file) unless @ley_articulo.file_id.blank? %>
+                <%= link_to @ley_articulo.file_filename, attachment_url(@ley_articulo, :file) %> <%= "(#{friendly_file_size(@ley_articulo.file_size)} #{@ley_articulo.file_content_type})" unless @ley_articulo.file_id.blank? %>
               </td>
             </tr>
             </tbody>

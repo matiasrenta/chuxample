@@ -78,7 +78,6 @@
                 <th><%= sort_link(@q, :published_by, t('simple_form.labels.defaults.published_by')) %></th>
                 <th><%= sort_link(@q, :updated_at, t('simple_form.labels.defaults.updated_at')) %></th>
                 <th><%= sort_link(@q, :file_filename, t('simple_form.labels.defaults.file')) %></th>
-                <th><%= sort_link(@q, :file_size, t('simple_form.labels.defaults.file_size')) %></th>
                 <th><%= sort_link(@q, :contact, t('simple_form.labels.defaults.contact')) %></th>
                 <th><%= sort_link(@q, :email, t('simple_form.labels.defaults.email')) %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
@@ -90,8 +89,7 @@
                     <td><%= open_datum.title %></td>
                     <td><%= open_datum.published_by %></td>
                     <td><%= titled_time_ago_in_words(open_datum.updated_at) %></td>
-                    <td><%= open_datum.file_filename %></td>
-                    <td align='right'><%= friendly_file_size(open_datum.file_size) %></td>
+                    <td><%= "#{open_datum.file_filename} (#{friendly_file_size(open_datum.file_size)})" unless open_datum.file_id.blank? %></td>
                     <td><%= open_datum.contact %></td>
                     <td><%= open_datum.email %></td>
                     <td class="table-actions">

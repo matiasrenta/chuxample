@@ -26,7 +26,7 @@
                 <td><%= ley_fraccion.periodo_actualizacion %></td>
                 <td><%= l(ley_fraccion.actualizado, format: :default) if ley_fraccion.actualizado %></td>
                 <td><%= l(ley_fraccion.validado, format: :default) if ley_fraccion.validado %></td>
-                <td><%= "#{ley_fraccion.file_filename} (#{ley_fraccion.file_size} Mb.)" unless ley_fraccion.file_id.blank? %></td>
+                <td><%= "#{ley_fraccion.file_filename} (#{friendly_file_size(ley_fraccion.file_size)})" unless ley_fraccion.file_id.blank? %></td>
                 <td class="table-actions">
                   <%= render 'shared/action_icons', locals: {target: ley_fraccion} %>
                 </td>

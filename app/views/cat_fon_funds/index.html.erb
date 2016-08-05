@@ -3,75 +3,78 @@
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
           <div class="widget-toolbar filter-group">
-            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_cat_fon_fund_path, class: 'btn btn-primary' if(can? :create, CatFonFund) %>
-            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_cat_fon_fund_path, class: 'btn btn-primary' if (can? :create, CatFonFund) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
           </div>
         </header>
         <div class="no-padding">
           <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
             <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
-                                                                        <div class="form-group">
-                              <label for="q[key_cont]"><%= t('simple_form.labels.defaults.key') %></label>
-                              <%= f.search_field :key_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[description_cont]"><%= t('simple_form.labels.defaults.description') %></label>
-                              <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="form-group">
-                                  <label for="q[cat_fon_funding_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_funding_source') %></label>
-                                  <%= f.select :cat_fon_funding_source_id_eq, options_from_collection_for_select(CatFonFundingSource.all, :id, :description, @q.cat_fon_funding_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_generic_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_generic_source') %></label>
-                                  <%= f.select :cat_fon_generic_source_id_eq, options_from_collection_for_select(CatFonGenericSource.all, :id, :description, @q.cat_fon_generic_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_specific_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_specific_source') %></label>
-                                  <%= f.select :cat_fon_specific_source_id_eq, options_from_collection_for_select(CatFonSpecificSource.all, :id, :description, @q.cat_fon_specific_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_year_document_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_year_document') %></label>
-                                  <%= f.select :cat_fon_year_document_id_eq, options_from_collection_for_select(CatFonYearDocument.all, :id, :description, @q.cat_fon_year_document_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[cat_fon_origin_resource_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_origin_resource') %></label>
-                                  <%= f.select :cat_fon_origin_resource_id_eq, options_from_collection_for_select(CatFonOriginResource.all, :id, :description, @q.cat_fon_origin_resource_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                            <%= render 'shared/submit_filters' %>
-                  </fieldset><% end %>
-              </div>
+                    <div class="form-group">
+                      <label for="q[key_cont]"><%= t('simple_form.labels.defaults.key') %></label>
+                      <%= f.search_field :key_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[description_cont]"><%= t('simple_form.labels.defaults.description') %></label>
+                      <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_funding_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_funding_source') %></label>
+                      <%= f.select :cat_fon_funding_source_id_eq, options_from_collection_for_select(CatFonFundingSource.all, :id, :description, @q.cat_fon_funding_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_generic_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_generic_source') %></label>
+                      <%= f.select :cat_fon_generic_source_id_eq, options_from_collection_for_select(CatFonGenericSource.all, :id, :description, @q.cat_fon_generic_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_specific_source_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_specific_source') %></label>
+                      <%= f.select :cat_fon_specific_source_id_eq, options_from_collection_for_select(CatFonSpecificSource.all, :id, :description, @q.cat_fon_specific_source_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_year_document_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_year_document') %></label>
+                      <%= f.select :cat_fon_year_document_id_eq, options_from_collection_for_select(CatFonYearDocument.all, :id, :description, @q.cat_fon_year_document_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[cat_fon_origin_resource_id_cont]"><%= t('simple_form.labels.defaults.cat_fon_origin_resource') %></label>
+                      <%= f.select :cat_fon_origin_resource_id_eq, options_from_collection_for_select(CatFonOriginResource.all, :id, :description, @q.cat_fon_origin_resource_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <%= render 'shared/submit_filters' %>
+                  </fieldset>
+              <% end %>
             </div>
+          </div>
           <div class="widget-body">
             <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
-                                                            <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
-                                                                                <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_funding_source_name, t('simple_form.labels.defaults.cat_fon_funding_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_generic_source_name, t('simple_form.labels.defaults.cat_fon_generic_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_specific_source_name, t('simple_form.labels.defaults.cat_fon_specific_source')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_year_document_name, t('simple_form.labels.defaults.cat_fon_year_document')) %></th>
-                                                                                <th><%= sort_link(@q, :cat_fon_origin_resource_name, t('simple_form.labels.defaults.cat_fon_origin_resource')) %></th>
-                                                    <th class="all"><%= t('simple_form.screen.actions') %></th>
+                <th class='all control'><%= sort_link(@q, :key, t('simple_form.labels.defaults.key')) %></th>
+                <th><%= sort_link(@q, :description, t('simple_form.labels.defaults.description')) %></th>
+                <th><%= sort_link(@q, :cat_fon_funding_source_description, t('simple_form.labels.defaults.cat_fon_funding_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_generic_source_description, t('simple_form.labels.defaults.cat_fon_generic_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_specific_source_description, t('simple_form.labels.defaults.cat_fon_specific_source')) %></th>
+                <th><%= sort_link(@q, :cat_fon_year_document_description, t('simple_form.labels.defaults.cat_fon_year_document')) %></th>
+                <th><%= sort_link(@q, :cat_fon_origin_resource_description, t('simple_form.labels.defaults.cat_fon_origin_resource')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>
               <tbody>
               <% @cat_fon_funds.each do |cat_fon_fund| %>
-              <tr>
-                                                                        <td><%= cat_fon_fund.key %></td>
-                                                                                          <td><%= cat_fon_fund.description %></td>
-                                                                                          <td><%= cat_fon_fund.cat_fon_funding_source.try(:description) %></td>
-                                                                                          <td><%= cat_fon_fund.cat_fon_generic_source.try(:description) %></td>
-                                                                                          <td><%= cat_fon_fund.cat_fon_specific_source.try(:description) %></td>
-                                                                                          <td><%= cat_fon_fund.cat_fon_year_document.try(:description) %></td>
-                                                                                          <td><%= cat_fon_fund.cat_fon_origin_resource.try(:description) %></td>
-                                              <td class="table-actions">
-                <%= render 'shared/action_icons', locals: {target: cat_fon_fund} %>
-              </td>
-              </tr>
+                  <tr>
+                    <td><%= cat_fon_fund.key %></td>
+                    <td><%= cat_fon_fund.description %></td>
+                    <td><%= cat_fon_fund.cat_fon_funding_source.try(:description) %></td>
+                    <td><%= cat_fon_fund.cat_fon_generic_source.try(:description) %></td>
+                    <td><%= cat_fon_fund.cat_fon_specific_source.try(:description) %></td>
+                    <td><%= cat_fon_fund.cat_fon_year_document.try(:description) %></td>
+                    <td><%= cat_fon_fund.cat_fon_origin_resource.try(:description) %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: cat_fon_fund} %>
+                    </td>
+                  </tr>
               <% end %>
               </tbody>
             </table>

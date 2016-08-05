@@ -88,7 +88,7 @@
                     <td><%= ley_articulo.periodo_actualizacion %></td>
                     <td><%= l(ley_articulo.actualizado, format: :default) if ley_articulo.actualizado %></td>
                     <td><%= l(ley_articulo.validado, format: :default) if ley_articulo.validado %></td>
-                    <td><%= "#{ley_articulo.file_filename} (#{ley_articulo.file_size} Mb.)" unless ley_articulo.file_id.blank? %></td>
+                    <td><%= "#{ley_articulo.file_filename} (#{friendly_file_size(ley_articulo.file_size)})" unless ley_articulo.file_id.blank? %></td>
                     <td class="table-actions">
                       <%= render 'shared/action_icons', locals: {target: ley_articulo} %>
                     </td>

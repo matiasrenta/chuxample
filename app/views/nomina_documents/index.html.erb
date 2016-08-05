@@ -42,9 +42,7 @@
               <tr>
                 <th class='all control'><%= sort_link(@q, :month, t('simple_form.labels.defaults.month')) %></th>
                 <th><%= sort_link(@q, :year, t('simple_form.labels.defaults.year')) %></th>
-                <th><%= sort_link(@q, :file_filename, t('simple_form.labels.defaults.file_filename')) %></th>
-                <th><%= sort_link(@q, :file_size, t('simple_form.labels.defaults.file_size')) %></th>
-                <th><%= sort_link(@q, :file_content_type, t('simple_form.labels.defaults.file_content_type')) %></th>
+                <th><%= sort_link(@q, :file_filename, t('simple_form.labels.defaults.file')) %></th>
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>
@@ -53,9 +51,7 @@
                   <tr>
                     <td><%= t("date.month_names")[nomina_document.month] %></td>
                     <td align='right'><%= nomina_document.year %></td>
-                    <td><%= nomina_document.file_filename %></td>
-                    <td align='right'><%= friendly_file_size(nomina_document.file_size) %></td>
-                    <td><%= nomina_document.file_content_type %></td>
+                    <td><%= "#{nomina_document.file_filename} (#{friendly_file_size(nomina_document.file_size)})" unless nomina_document.file_id.blank? %></td>
                     <td class="table-actions">
                       <%= render 'shared/action_icons', locals: {target: nomina_document} %>
                     </td>
