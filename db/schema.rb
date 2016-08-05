@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708192432) do
+ActiveRecord::Schema.define(version: 20160805215853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -297,7 +297,6 @@ ActiveRecord::Schema.define(version: 20160708192432) do
     t.datetime "locked_at"
     t.string   "locale"
     t.string   "time_zone"
-    t.boolean  "only_api_access"
     t.string   "avatar_id"
     t.string   "avatar_filename"
     t.integer  "avatar_size"
