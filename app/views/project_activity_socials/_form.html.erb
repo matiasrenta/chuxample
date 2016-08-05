@@ -15,7 +15,7 @@
           <div class="form-inputs edit">
             <%= f.association :social_development_program %>
             <%= f.input :comentarios, :input_html => {:rows => 4, :cols => 30} %>
-            <%= f.input :nro_beneficiarios %>
+            <%= f.input :nro_beneficiarios, hint: 'Este número se genera automáticamente si luego carga los beneficiarios.' %>
             <%= f.input :nro_metas_cumplidas %>
             <%= f.input :fecha_inicio_real, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@project_activity_social.fecha_inicio_real)} %>
             <%= f.input :fecha_fin_real, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@project_activity_social.fecha_fin_real)} %>
