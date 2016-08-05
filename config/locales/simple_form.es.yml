@@ -41,7 +41,6 @@ es:
         discharged_at: 'Pagado el'
         published: 'Publicado'
         role: 'Rol'
-        only_api_access: 'Solo acceso API'
         gender: 'Género'
         created_at: 'Creado'
         updated_at: 'Actualizado'
