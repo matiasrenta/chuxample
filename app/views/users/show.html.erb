@@ -26,10 +26,6 @@
                 <td><%= @user.role.try(:name) %></td>
               </tr>
               <tr role="row">
-                <th><%= t('simple_form.labels.defaults.only_api_access') %></th>
-                <td><%= boolean_check_mark(@user.only_api_access) %></td>
-              </tr>
-              <tr role="row">
                 <th><%= t('simple_form.labels.defaults.locale') %></th>
                 <td><%= @user.locale %></td>
               </tr>

@@ -9,21 +9,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_cache_buster
   before_action :authenticate_user!
-  before_action :redirect_only_api_user
   before_action :set_content_title, :set_user_language, :set_user_time_zone, :unread_notifications_count
   before_action :set_last_seen_at, if: proc { user_signed_in? && (session[:last_seen_at] == nil || session[:last_seen_at] < 15.minutes.ago) }
   before_action :set_paper_trail_whodunnit
-
-  # previene que usuarios que solo usan la api puedan hacer login en la aplicación web
-  # todo: debería mejorarse para que no alcance a hacer login. Aqui alcanza a hacerlo y luego fuerzo el logout
-  def redirect_only_api_user
-    if user_signed_in? && current_user.only_api_access?
-      flash[:alert] = 'only api access'
-      sign_out(:user)
-      redirect_to new_user_session_path
-    end
-  end
-
 
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
