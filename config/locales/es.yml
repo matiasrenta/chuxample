@@ -401,9 +401,6 @@ es:
         one: Documento Financiero
         other: Documentos Financieros
         fa_icon: 'fa-fw fa fa-file-pdf-o'
-      project_activity:
-        one: Actividad
-        other: Actividades
       project:
         one: Proyecto
         other: Proyectos
