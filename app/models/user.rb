@@ -6,9 +6,8 @@ class User < ActiveRecord::Base
   include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
-  # TODO: no consigo registrar el usuario porque cuando expera la session da core dump cuando ejecuta controller.try(:current_user)
-  #tracked owner: ->(controller, model) { controller.try(:current_user) if true }
-  #tracked owner: ->(controller, model) { (controller && controller.current_user) ? controller.current_user : nil }
+  # la linea siguiente es asi debido a que si solo ejecuto controller.current_user termina dando "Stack LevelToo Deep" (y luego el core dump)
+  tracked owner: ->(controller, model) { (model.changes.except(*model.except_attr_in_public_activity).size > 0) && !controller.nil? ? controller.current_user : nil }
   #tracked recipient: ->(controller, model) { model.xxxx }
   tracked :parameters => {
               :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},
@@ -58,7 +57,26 @@ class User < ActiveRecord::Base
   end
 
   def except_attr_in_public_activity
+    #[:id]
     [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count, :current_sign_in_ip, :last_sign_in_ip, :failed_attempts, :unlock_token, :locked_at, :reset_password_token, :reset_password_sent_at, :last_seen_at, :deleted_at, :avatar_id, :avatar_size]
+  end
+
+  def prueba(controller)
+    if controller.nil?
+      puts "@@@@@@@@@@@@@@@@@ controller nil"
+    elsif controller.respond_to?(:user_signed_in?)
+      puts "@@@@@@@@@@@@@@@@@@@@@ controller.respond_to?(:user_signed_in?)"
+      puts "@@@@@@@@@@@@@@@@@@@@@ #{controller.class.name}"
+      if controller.user_signed_in?
+        puts "@@@@@@@@@@@@@@@@@@@@@ ejecuto user_signed_in? y dio true"
+      else
+        puts "@@@@@@@@@@@@@@@@@@@@@ ejecuto user_signed_in? y dio false"
+      end
+    else
+      puts "@@@@@@@@@@@@@@@@@@@@@ NOO controller.respond_to?(:user_signed_in?)"
+      puts "@@@@@@@@@@@@@@@@@@@@@ #{controller.class.name}"
+    end
+    nil
   end
 
   def active_for_authentication?
