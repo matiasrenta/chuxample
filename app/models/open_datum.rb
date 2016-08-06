@@ -11,7 +11,7 @@ class OpenDatum < ActiveRecord::Base
           }
 
 
-  attachment :file, store: 's3_open_data_backend', cache: 's3_open_data_cache'
+  attachment :file, extension: %w[csv xls xlsx], store: 's3_open_data_backend', cache: 's3_open_data_cache'
 
   validates :title, :published_by, :file, presence: true
   #validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, if: :email
