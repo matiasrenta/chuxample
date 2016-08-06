@@ -280,6 +280,8 @@ es:
         default_error_base: 'Revise los errores en el formulario'
 
       messages:
+        restrict_dependent_destroy:
+          many: 'Existen registros relacionados a este. En caso que sea permitido, intente eliminar estos registros primero para luego eliminar este.'
         invalid_extension: 'Tipo de archivo inválido'
         invalid_content_type: 'Formato no permitido'
         too_large: 'Excede el tamaño permitido'
