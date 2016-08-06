@@ -70,7 +70,7 @@
                     <td><%= l(sett.updated_at, format: :without_seg) if sett.updated_at %></td>
                     <td class="table-actions">
                       <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_admin_setting_path(sett), rel: 'tooltip', data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can?(:update, Sett) %>
-                      <%= link_to raw('<i class="fa fa-trash"></i>'),  admin_setting_path(sett), method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: 'Are you sure?', 'original-title' => t('simple_form.tooltips.destroy')} if can?(:destroy, Sett) %>
+                      <%= link_to raw('<i class="fa fa-trash"></i>'),  admin_setting_path(sett), method: :delete, rel: 'tooltip', data: { toggle: 'toggle', placement: 'top' , confirm: t('helpers.messages.are_you_sure'), 'original-title' => t('simple_form.tooltips.destroy')} if can?(:destroy, Sett) %>
                     </td>
                   </tr>
               <% end %>
