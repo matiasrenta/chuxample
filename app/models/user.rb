@@ -57,26 +57,7 @@ class User < ActiveRecord::Base
   end
 
   def except_attr_in_public_activity
-    #[:id]
     [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count, :current_sign_in_ip, :last_sign_in_ip, :failed_attempts, :unlock_token, :locked_at, :reset_password_token, :reset_password_sent_at, :last_seen_at, :deleted_at, :avatar_id, :avatar_size]
-  end
-
-  def prueba(controller)
-    if controller.nil?
-      puts "@@@@@@@@@@@@@@@@@ controller nil"
-    elsif controller.respond_to?(:user_signed_in?)
-      puts "@@@@@@@@@@@@@@@@@@@@@ controller.respond_to?(:user_signed_in?)"
-      puts "@@@@@@@@@@@@@@@@@@@@@ #{controller.class.name}"
-      if controller.user_signed_in?
-        puts "@@@@@@@@@@@@@@@@@@@@@ ejecuto user_signed_in? y dio true"
-      else
-        puts "@@@@@@@@@@@@@@@@@@@@@ ejecuto user_signed_in? y dio false"
-      end
-    else
-      puts "@@@@@@@@@@@@@@@@@@@@@ NOO controller.respond_to?(:user_signed_in?)"
-      puts "@@@@@@@@@@@@@@@@@@@@@ #{controller.class.name}"
-    end
-    nil
   end
 
   def active_for_authentication?
