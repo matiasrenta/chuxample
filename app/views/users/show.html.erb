@@ -25,10 +25,12 @@
                 <th><%= t('simple_form.labels.defaults.role') %></th>
                 <td><%= @user.role.try(:name) %></td>
               </tr>
+              <!--
               <tr role="row">
-                <th><%= t('simple_form.labels.defaults.locale') %></th>
-                <td><%= @user.locale %></td>
+                <th><%#= t('simple_form.labels.defaults.locale') %></th>
+                <td><%#= @user.locale %></td>
               </tr>
+              -->
               <tr role="row">
                 <th><%= t('simple_form.labels.defaults.time_zone') %></th>
                 <td><%= @user.time_zone %></td>

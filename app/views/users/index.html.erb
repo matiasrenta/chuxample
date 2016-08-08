@@ -26,10 +26,12 @@
                   <label for="q[role_id_cont]"><%= t('simple_form.labels.defaults.role') %></label>
                   <%= f.select :role_id_eq, options_from_collection_for_select(roles_for_dropdown, :id, :name, @q.role_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                 </div>
+                <!--
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                  <label for="q[locale_cont]"><%= t('simple_form.labels.defaults.locale') %></label>
-                  <%= f.select :locale_cont, options_for_select(available_locales_for_dropdown, @q.locale_cont), {include_blank: true}, class: "form-control input-sm" %>
+                  <label for="q[locale_cont]"><%#= t('simple_form.labels.defaults.locale') %></label>
+                  <%#= f.select :locale_cont, options_for_select(available_locales_for_dropdown, @q.locale_cont), {include_blank: true}, class: "form-control input-sm" %>
                 </div>
+                -->
 
                 <div class="col-md-3 col-sm-6 col-xs-12 spanning">
                   <label for="q[created_at_gteq]"><%= t('simple_form.labels.defaults.created_at') %></label>
@@ -152,7 +154,7 @@
                 <th class='all control'><%= sort_link(@q, :email, t('simple_form.labels.defaults.email')) %></th>
                 <th><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
                 <th><%= sort_link(@q, :role_name, t('simple_form.labels.defaults.role')) %></th>
-                <th><%= sort_link(@q, :locale, t('simple_form.labels.defaults.locale')) %></th>
+                <!--<th><%#= sort_link(@q, :locale, t('simple_form.labels.defaults.locale')) %></th>-->
                 <th><%= sort_link(@q, :time_zone, t('simple_form.labels.defaults.time_zone')) %></th>
 
                 <th class="all"><%= t('simple_form.screen.actions') %></th>
@@ -167,7 +169,7 @@
                 <td><%= user.email %></td>
                 <td><%= user.name %></td>
                 <td><%= user.role.try(:name) %></td>
-                <td><%= user.locale %></td>
+                <!--<td><%#= user.locale %></td>-->
                 <td><%= user.time_zone %></td>
                 <td class="table-actions">
                   <% # variables para el extra action

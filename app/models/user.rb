@@ -6,9 +6,8 @@ class User < ActiveRecord::Base
   include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
-  # TODO: no consigo registrar el usuario porque cuando expera la session da core dump cuando ejecuta controller.try(:current_user)
-  #tracked owner: ->(controller, model) { controller.try(:current_user) if true }
-  #tracked owner: ->(controller, model) { (controller && controller.current_user) ? controller.current_user : nil }
+  # la linea siguiente es asi debido a que si solo ejecuto controller.current_user termina dando "Stack LevelToo Deep" (y luego el core dump)
+  tracked owner: ->(controller, model) { (model.changes.except(*model.except_attr_in_public_activity).size > 0) && !controller.nil? ? controller.current_user : nil }
   #tracked recipient: ->(controller, model) { model.xxxx }
   tracked :parameters => {
               :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},

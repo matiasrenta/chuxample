@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_cache_buster
   before_action :authenticate_user!
-  before_action :set_content_title, :set_user_language, :set_user_time_zone, :unread_notifications_count
+  before_action :set_content_title, :unread_notifications_count, :set_user_time_zone#, :set_user_language,
   before_action :set_last_seen_at, if: proc { user_signed_in? && (session[:last_seen_at] == nil || session[:last_seen_at] < 15.minutes.ago) }
 
   def set_cache_buster
