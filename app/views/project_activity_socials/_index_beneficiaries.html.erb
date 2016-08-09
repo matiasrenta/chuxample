@@ -3,7 +3,7 @@
     <header>
       <h2>Padrón de Beneficiarios</h2>
       <div class="widget-toolbar">
-        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_activity_social_beneficiary_path(@project_activity_social), class: 'btn btn-primary' if (can? :create, Beneficiary) %>
+        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_activity_social_beneficiary_path(@project_activity_social), class: 'btn btn-primary' if current_user.superuser? %>
       </div>
     </header>
     <div class="no-padding">
