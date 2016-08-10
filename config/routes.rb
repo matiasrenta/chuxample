@@ -393,6 +393,7 @@ Rails.application.routes.draw do
     resources :portal do
       collection do
         get :total_budget
+        get :budget_by_chapter
         get :treemap
         get :suppliers
         get :mapa_obras

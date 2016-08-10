@@ -4,12 +4,12 @@ class DashboardController < ApplicationController
     authorize! :read, :dashboard
     set_content_title('fa-fw fa fa-dashboard', ['Dashboard'])
     presupuesto
-    documentos
+    #documentos
     suppliers
     afectaciones
     activities_obras
     desarrollo_social
-    beneficiarios
+    #beneficiarios
   end
 
   private
