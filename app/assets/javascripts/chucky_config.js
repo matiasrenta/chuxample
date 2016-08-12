@@ -26,11 +26,11 @@ $(function() {
 //Mostrar / ocutar detalles en timeline
 $(function() {
 
-	$(".show-details").click(function(event) {
+	$(".actions-hover .show-details").click(function(event) {
 		event.preventDefault();
 		var elem = $(this).closest("li").find(".detalles");
 		$(elem).toggle("slow");
-		$( ".show-details" ).tooltip( "hide", { effect: "explode", duration: 1000 } );
+		$( ".actions-hover .show-details" ).tooltip( "hide", { effect: "explode", duration: 1000 } );
 		var title = $(this).attr('data-original-title');
 		if (title == 'Detalle de cambios') {
 			$(this).attr('data-original-title','Ocultar detalles');
