@@ -41,10 +41,10 @@ class ChuckyBot < ActiveRecord::Base
       authorization.keys.each do |key|
         unless ['notes', :notes].include?(key)
           if !fisrt_found && authorization[key].present?
-            c = "#{c} --authorization=#{key}:#{authorization[key]}"
+            c = "#{c} --authorization=#{systemize_word(key.tr(" ", "_").underscore)}:#{authorization[key]}"
             fisrt_found = true
           elsif authorization[key].present?
-            c = "#{c}%#{key}:#{authorization[key]}"
+            c = "#{c}%#{systemize_word(key.tr(" ", "_").underscore)}:#{authorization[key]}"
           end
         end
       end
@@ -54,7 +54,7 @@ class ChuckyBot < ActiveRecord::Base
       # fields... showtime!
 
       # no relationize
-      #option = '--no-relationize='
+      #option = '--donot_relationize='
       values_array = Array.new
       dependents = ""
       fields.each do |field|
@@ -71,7 +71,7 @@ class ChuckyBot < ActiveRecord::Base
           end
         end
       end
-      c = "#{c} --no-relationize=#{values_array.join(':')}" if values_array.size > 0
+      c = "#{c} --donot_relationize=#{values_array.join(':')}" if values_array.size > 0
       c = "#{c}#{dependents}"
 
 
@@ -105,5 +105,23 @@ class ChuckyBot < ActiveRecord::Base
       # at last!
       self.chucky_command = c
     end
+
+  # le quita los acentos y los "palitos" de las ñ a una palabra o frase
+  def systemize_word(word)
+    system_word = word
+    system_word = system_word.tr("á", "a")
+    system_word = system_word.tr("é", "e")
+    system_word = system_word.tr("í", "i")
+    system_word = system_word.tr("ó", "o")
+    system_word = system_word.tr("ú", "u")
+    system_word = system_word.tr("ñ", "n")
+    system_word = system_word.tr("Á", "A")
+    system_word = system_word.tr("É", "E")
+    system_word = system_word.tr("Í", "I")
+    system_word = system_word.tr("Ó", "O")
+    system_word = system_word.tr("Ú", "U")
+    system_word = system_word.tr("Ñ", "N")
+    return system_word
+  end
 
 end

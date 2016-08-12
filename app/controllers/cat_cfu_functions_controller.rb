@@ -3,7 +3,7 @@ class CatCfuFunctionsController < ApplicationController
 
   # GET /cat_cfu_functions
   def index
-    @cat_cfu_functions = do_index(CatCfuFunction, params)
+    @cat_cfu_functions = indexize(CatCfuFunction)
   end
 
   # GET /cat_cfu_functions/1

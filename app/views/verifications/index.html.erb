@@ -1,0 +1,92 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_verification_path, class: 'btn btn-primary' if (can? :create, Verification) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[project_activity_obra_id_cont]"><%= t('simple_form.labels.defaults.project_activity_obra') %></label>
+                        <%= f.select :project_activity_obra_id_eq, options_from_collection_for_select(ProjectActivityObra.all, :id, :name, @q.project_activity_obra_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[answer_eq]"><%= t('simple_form.labels.defaults.answer') %></label>
+                        <%= f.select :answer_eq, options_for_select([['Sí', 1], ['No', 0]], @q.answer_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[evaluation_gteq]"><%= t('simple_form.labels.defaults.evaluation') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :evaluation_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :evaluation_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[comments_cont]"><%= t('simple_form.labels.defaults.comments') %></label>
+                        <%= f.search_field :comments_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[status_eq]"><%= t('simple_form.labels.defaults.status') %></label>
+                        <%= f.select :status_eq, options_for_select([['Sin Revisar', -1], ['Válida', 1], ['Inválida', 0]], @q.status_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                    </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= t('simple_form.labels.defaults.user') %></th>
+                <th><%= sort_link(@q, :project_activity_obra_name, t('simple_form.labels.defaults.project_activity_obra')) %></th>
+                <th><%= sort_link(@q, :answer, t('simple_form.labels.defaults.answer')) %></th>
+                <th><%= sort_link(@q, :evaluation, t('simple_form.labels.defaults.evaluation')) %></th>
+                <th><%= sort_link(@q, :comments, t('simple_form.labels.defaults.comments')) %></th>
+                <th><%= sort_link(@q, :status, t('simple_form.labels.defaults.status')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @verifications.each do |verification| %>
+                  <tr>
+                    <td><%= verification.verification_owneable.try(:name_or_email) %></td>
+                    <td><%= verification.project_activity_obra.try(:name) %></td>
+                    <td><%= humanize_answer(verification.answer) %></td>
+                    <td align='right'><%= verification.evaluation %></td>
+                    <td><%= verification.comments %></td>
+                    <td align='center'><%= status_icon(verification.status) %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: verification} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @verifications, model_index_path: verifications_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

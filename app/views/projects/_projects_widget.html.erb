@@ -21,7 +21,7 @@
                   <%= f.search_field :key_analytical_string_cont, {class: "form-control input-sm"} %>
                 </div>
                 <div class="form-group">
-                  <label for="<%=locals[:query_name]%>[cat_are_area_id_cont]"><%= t('simple_form.labels.cat_are_area') %></label>
+                  <label for="<%=locals[:query_name]%>[cat_are_area_id_cont]"><%= t('simple_form.labels.defaults.cat_are_area') %></label>
                   <%= f.select :cat_are_area_id_eq, options_from_collection_for_select(CatAreArea.all, :id, :description, locals[:query_instance].cat_are_area_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
                 </div>
                 <%= render 'shared/submit_filters' %>
@@ -34,7 +34,7 @@
           <thead>
           <tr>
             <th class='all control'><%= sort_link(locals[:query_instance], :key_analytical_string, 'Clave Presupuestaria') %></th>
-            <th><%= sort_link(locals[:query_instance], :autorizado, t('simple_form.labels.defaults.autorizado')) %></th>
+            <th><%= sort_link(locals[:query_instance], :modificado, t('simple_form.labels.defaults.modificado')) %></th>
             <th>Monto Ejercido</th>
             <th><%= sort_link(locals[:query_instance], :cat_ppr_par_partida_especifica_key, 'Partida') %></th>
             <th><%= sort_link(locals[:query_instance], :cat_ppr_par_partida_especifica_description, 'Concepto Partida') %></th>
@@ -46,7 +46,7 @@
           <% locals[:projects].each do |key_analytical| %>
               <tr>
                 <td><%= key_analytical.key_analytical_string %></td>
-                <td align='right'><%= number_to_currency(key_analytical.autorizado, unit: '') if key_analytical.autorizado %></td>
+                <td align='right'><%= number_to_currency(key_analytical.modificado, unit: '') if key_analytical.modificado %></td>
                 <td align='right'></td>
                 <td><%= key_analytical.cat_ppr_par_partida_especifica.try(:key) %></td>
                 <td><%= key_analytical.cat_ppr_par_partida_especifica.try(:description) %></td>

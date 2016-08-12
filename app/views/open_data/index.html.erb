@@ -1,0 +1,111 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12">
+      <div class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>" id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false">
+        <header>
+          <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_open_datum_path, class: 'btn btn-primary' if (can? :create, OpenDatum) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[title_cont]"><%= t('simple_form.labels.defaults.title') %></label>
+                        <%= f.search_field :title_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[description_cont]"><%= t('simple_form.labels.defaults.description') %></label>
+                        <%= f.search_field :description_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[labels_cont]"><%= t('simple_form.labels.defaults.labels') %></label>
+                        <%= f.search_field :labels_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[published_by_cont]"><%= t('simple_form.labels.defaults.published_by') %></label>
+                        <%= f.search_field :published_by_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[contact_cont]"><%= t('simple_form.labels.defaults.contact') %></label>
+                        <%= f.search_field :contact_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[email_cont]"><%= t('simple_form.labels.defaults.email') %></label>
+                        <%= f.search_field :email_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[file_filename_cont]"><%= t('simple_form.labels.defaults.file_filename') %></label>
+                        <%= f.search_field :file_filename_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[file_size_gteq]"><%= t('simple_form.labels.defaults.file_size') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :file_size_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control input-sm" %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :file_size_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control input-sm" %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[file_content_type_cont]"><%= t('simple_form.labels.defaults.file_content_type') %></label>
+                        <%= f.search_field :file_content_type_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :title, t('simple_form.labels.defaults.title')) %></th>
+                <th><%= sort_link(@q, :published_by, t('simple_form.labels.defaults.published_by')) %></th>
+                <th><%= sort_link(@q, :updated_at, t('simple_form.labels.defaults.updated_at')) %></th>
+                <th><%= sort_link(@q, :file_filename, t('simple_form.labels.defaults.file')) %></th>
+                <th><%= sort_link(@q, :contact, t('simple_form.labels.defaults.contact')) %></th>
+                <th><%= sort_link(@q, :email, t('simple_form.labels.defaults.email')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @open_data.each do |open_datum| %>
+                  <tr>
+                    <td><%= open_datum.title %></td>
+                    <td><%= open_datum.published_by %></td>
+                    <td><%= titled_time_ago_in_words(open_datum.updated_at) %></td>
+                    <td><%= "#{open_datum.file_filename} (#{friendly_file_size(open_datum.file_size)})" unless open_datum.file_id.blank? %></td>
+                    <td><%= open_datum.contact %></td>
+                    <td><%= open_datum.email %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: open_datum} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="widget-footer">
+            <%= render 'shared/pagination', locals: {target: @open_data, model_index_path: open_data_path} %>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

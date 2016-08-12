@@ -3,7 +3,7 @@ class CatAciInstitutionalActivitiesController < ApplicationController
 
   # GET /cat_aci_institutional_activities
   def index
-    @cat_aci_institutional_activities = do_index(CatAciInstitutionalActivity, params)
+    @cat_aci_institutional_activities = indexize(CatAciInstitutionalActivity)
   end
 
   # GET /cat_aci_institutional_activities/1

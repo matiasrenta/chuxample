@@ -3,99 +3,92 @@
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
         <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
           <div class="widget-toolbar filter-group">
-            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_supplier_path, class: 'btn btn-primary' if(can? :create, Supplier) %>
-            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %></a>
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_supplier_path, class: 'btn btn-primary' if (can? :create, Supplier) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn  <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
           </div>
         </header>
         <div class="no-padding">
           <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
             <div class="col-md-9 col-sm-12 no-padding"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
                   <fieldset>
-                                                                        <div class="form-group">
-                              <label for="q[rfc_cont]"><%= t('simple_form.labels.defaults.rfc') %></label>
-                              <%= f.search_field :rfc_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[razon_social_cont]"><%= t('simple_form.labels.defaults.razon_social') %></label>
-                              <%= f.search_field :razon_social_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
-                              <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[calle_cont]"><%= t('simple_form.labels.defaults.calle') %></label>
-                              <%= f.search_field :calle_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[nro_exterior_cont]"><%= t('simple_form.labels.defaults.nro_exterior') %></label>
-                              <%= f.search_field :nro_exterior_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[nro_interior_cont]"><%= t('simple_form.labels.defaults.nro_interior') %></label>
-                              <%= f.search_field :nro_interior_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[entre_calles_cont]"><%= t('simple_form.labels.defaults.entre_calles') %></label>
-                              <%= f.search_field :entre_calles_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                                                <div class="form-group">
-                                  <label for="q[state_id_cont]"><%= t('simple_form.labels.state') %></label>
-                                  <%= f.select :state_id_eq, options_from_collection_for_select(State.all, :id, :name, @q.state_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                                                            <div class="form-group">
-                                  <label for="q[town_id_cont]"><%= t('simple_form.labels.town') %></label>
-                                  <%= f.select :town_id_eq, options_from_collection_for_select(Town.all, :id, :name, @q.town_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
-                                </div>
-                                                                                                                            <div class="form-group">
-                              <label for="q[codigo_postal_cont]"><%= t('simple_form.labels.defaults.codigo_postal') %></label>
-                              <%= f.search_field :codigo_postal_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                                                <div class="form-group">
-                              <label for="q[observaciones_cont]"><%= t('simple_form.labels.defaults.observaciones') %></label>
-                              <%= f.search_field :observaciones_cont, label: false, class: "form-control input-sm" %>
-                            </div>
-                                                                <%= render 'shared/submit_filters' %>
-                  </fieldset><% end %>
-              </div>
+                    <div class="form-group">
+                      <label for="q[rfc_cont]"><%= t('simple_form.labels.defaults.rfc') %></label>
+                      <%= f.search_field :rfc_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[razon_social_cont]"><%= t('simple_form.labels.defaults.razon_social') %></label>
+                      <%= f.search_field :razon_social_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
+                      <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[calle_cont]"><%= t('simple_form.labels.defaults.calle') %></label>
+                      <%= f.search_field :calle_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[nro_exterior_cont]"><%= t('simple_form.labels.defaults.nro_exterior') %></label>
+                      <%= f.search_field :nro_exterior_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[nro_interior_cont]"><%= t('simple_form.labels.defaults.nro_interior') %></label>
+                      <%= f.search_field :nro_interior_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[entre_calles_cont]"><%= t('simple_form.labels.defaults.entre_calles') %></label>
+                      <%= f.search_field :entre_calles_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[state_id_cont]"><%= t('simple_form.labels.state') %></label>
+                      <%= f.select :state_id_eq, options_from_collection_for_select(State.all, :id, :name, @q.state_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[town_id_cont]"><%= t('simple_form.labels.town') %></label>
+                      <%= f.select :town_id_eq, options_from_collection_for_select(Town.all, :id, :name, @q.town_id_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[codigo_postal_cont]"><%= t('simple_form.labels.defaults.codigo_postal') %></label>
+                      <%= f.search_field :codigo_postal_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <div class="form-group">
+                      <label for="q[observaciones_cont]"><%= t('simple_form.labels.defaults.observaciones') %></label>
+                      <%= f.search_field :observaciones_cont, label: false, class: "form-control input-sm" %>
+                    </div>
+                    <%= render 'shared/submit_filters' %>
+                  </fieldset>
+              <% end %>
             </div>
+          </div>
           <div class="widget-body">
             <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
               <thead>
               <tr>
-                                                            <th class='all control'><%= sort_link(@q, :rfc, t('simple_form.labels.defaults.rfc')) %></th>
-                                                                                <th><%= sort_link(@q, :razon_social, t('simple_form.labels.defaults.razon_social')) %></th>
-                                                                                <th><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
-                                                                                <th><%= sort_link(@q, :calle, t('simple_form.labels.defaults.calle')) %></th>
-                                                                                <th><%= sort_link(@q, :nro_exterior, t('simple_form.labels.defaults.nro_exterior')) %></th>
-                                                                                <th><%= sort_link(@q, :nro_interior, t('simple_form.labels.defaults.nro_interior')) %></th>
-                                                                                <th><%= sort_link(@q, :entre_calles, t('simple_form.labels.defaults.entre_calles')) %></th>
-                                                                                <th><%= sort_link(@q, :state_name, t('simple_form.labels.state')) %></th>
-                                                                                <th><%= sort_link(@q, :town_name, t('simple_form.labels.town')) %></th>
-                                                                                <th><%= sort_link(@q, :codigo_postal, t('simple_form.labels.defaults.codigo_postal')) %></th>
-                                                                                <th><%= sort_link(@q, :observaciones, t('simple_form.labels.defaults.observaciones')) %></th>
-                                                    <th class="all"><%= t('simple_form.screen.actions') %></th>
+                <th class='all control'><%= sort_link(@q, :razon_social, t('simple_form.labels.defaults.razon_social')) %></th>
+                <th><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
+                <th><%= sort_link(@q, :rfc, t('simple_form.labels.defaults.rfc')) %></th>
+                <th><%= sort_link(@q, :state_name, t('simple_form.labels.defaults.state')) %></th>
+                <th><%= sort_link(@q, :town_name, t('simple_form.labels.defaults.town')) %></th>
+                <th><%= sort_link(@q, :codigo_postal, t('simple_form.labels.defaults.codigo_postal')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
               </tr>
               </thead>
               <tbody>
               <% @suppliers.each do |supplier| %>
-              <tr>
-                                                                        <td><%= supplier.rfc %></td>
-                                                                                          <td><%= supplier.razon_social %></td>
-                                                                                          <td><%= supplier.name %></td>
-                                                                                          <td><%= supplier.calle %></td>
-                                                                                          <td><%= supplier.nro_exterior %></td>
-                                                                                          <td><%= supplier.nro_interior %></td>
-                                                                                          <td><%= supplier.entre_calles %></td>
-                                                                                          <td><%= supplier.state.try(:name) %></td>
-                                                                                          <td><%= supplier.town.try(:name) %></td>
-                                                                                          <td><%= supplier.codigo_postal %></td>
-                                                                                          <td><%= supplier.observaciones %></td>
-                                              <td class="table-actions">
-                <%= render 'shared/action_icons', locals: {target: supplier} %>
-              </td>
-              </tr>
+                  <tr>
+                    <td><%= supplier.razon_social %></td>
+                    <td><%= supplier.name %></td>
+                    <td><%= supplier.rfc %></td>
+                    <td><%= supplier.state.try(:name) %></td>
+                    <td><%= supplier.town.try(:name) %></td>
+                    <td><%= supplier.codigo_postal %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: supplier} %>
+                    </td>
+                  </tr>
               <% end %>
               </tbody>
             </table>

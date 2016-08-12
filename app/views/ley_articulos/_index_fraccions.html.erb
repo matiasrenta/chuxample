@@ -1,0 +1,42 @@
+<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+    <header>
+      <h2><%= t('activerecord.models.ley_fraccion.other') %></h2>
+      <div class="widget-toolbar filter-group">
+        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_ley_articulo_ley_fraccion_path(@ley_articulo), class: 'btn btn-primary' if (can? :create, LeyFraccion) %>
+      </div>
+    </header>
+    <div class="no-padding">
+      <div class="widget-body">
+        <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+          <thead>
+          <tr>
+            <th class='all control'><%= t('simple_form.labels.defaults.codigo') %></th>
+            <th><%= t('simple_form.labels.defaults.periodo_actualizacion') %></th>
+            <th><%= t('simple_form.labels.defaults.actualizado') %></th>
+            <th><%= t('simple_form.labels.defaults.validado') %></th>
+            <th><%= t('simple_form.labels.defaults.file') %></th>
+            <th class="all"><%= t('simple_form.screen.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @ley_fraccions.each do |ley_fraccion| %>
+              <tr>
+                <td><%= ley_fraccion.codigo %></td>
+                <td><%= ley_fraccion.periodo_actualizacion %></td>
+                <td><%= l(ley_fraccion.actualizado, format: :default) if ley_fraccion.actualizado %></td>
+                <td><%= l(ley_fraccion.validado, format: :default) if ley_fraccion.validado %></td>
+                <td><%= "#{ley_fraccion.file_filename} (#{friendly_file_size(ley_fraccion.file_size)})" unless ley_fraccion.file_id.blank? %></td>
+                <td class="table-actions">
+                  <%= render 'shared/action_icons', locals: {target: ley_fraccion} %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+
+

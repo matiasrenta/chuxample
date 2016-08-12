@@ -22,25 +22,74 @@
                 <td><%= @user.name %></td>
               </tr>
               <tr role="row">
-                <th><%= t('simple_form.labels.defaults.locale') %></th>
-                <td><%= @user.locale %></td>
-              </tr>
-              <tr role="row">
-                <th><%= t('simple_form.labels.defaults.timezone') %></th>
-                <td><%= @user.time_zone %></td>
-              </tr>
-              <tr role="row">
                 <th><%= t('simple_form.labels.defaults.role') %></th>
                 <td><%= @user.role.try(:name) %></td>
               </tr>
+              <!--
               <tr role="row">
-                <th><%= t('simple_form.labels.defaults.only_api_access') %></th>
-                <td><%= boolean_check_mark(@user.only_api_access) %></td>
+                <th><%#= t('simple_form.labels.defaults.locale') %></th>
+                <td><%#= @user.locale %></td>
+              </tr>
+              -->
+              <tr role="row">
+                <th><%= t('simple_form.labels.defaults.time_zone') %></th>
+                <td><%= @user.time_zone %></td>
               </tr>
               <tr role="row">
                 <th><%= t('simple_form.labels.defaults.avatar') %></th>
                 <td><%= image_tag attachment_url(@user, :avatar, :fill, 100, 100, fallback: "avatars/male.png") %></td>
               </tr>
+              <tr role="row">
+                <th><%= t('simple_form.labels.defaults.created_at') %></th>
+                <td><%= l(@user.created_at, :format => :long) if @user.created_at %></td>
+              </tr>
+              <tr role="row">
+                <th><%= t('simple_form.labels.defaults.updated_at') %></th>
+                <td><%= l(@user.updated_at, :format => :long) if @user.updated_at %> </td>
+              </tr>
+
+              <% if current_user.superuser? %>
+                <tr role="row">
+                  <th><%= t('sign_in_count') %></th>
+                  <td><%= @user.sign_in_count %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('failed_attempts') %></th>
+                  <td><%= @user.failed_attempts %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('current_sign_in_ip') %></th>
+                  <td><%= @user.current_sign_in_ip %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('last_sign_in_ip') %></th>
+                  <td><%= @user.last_sign_in_ip %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('reset_password_sent_at') %></th>
+                  <td><%= l(@user.reset_password_sent_at, :format => :with_seg) if @user.reset_password_sent_at %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('remember_created_at') %></th>
+                  <td><%= l(@user.remember_created_at, :format => :with_seg) if @user.remember_created_at %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('current_sign_in_at') %></th>
+                  <td><%= l(@user.current_sign_in_at, :format => :with_seg) if @user.current_sign_in_at %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('last_sign_in_at') %></th>
+                  <td><%= l(@user.last_sign_in_at, :format => :with_seg) if @user.last_sign_in_at %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('locked_at') %></th>
+                  <td><%= l(@user.locked_at, :format => :with_seg) if @user.locked_at %></td>
+                </tr>
+                <tr role="row">
+                  <th><%= t('last_seen_at') %></th>
+                  <td><%= l(@user.last_seen_at, :format => :with_seg) if @user.last_seen_at %></td>
+                </tr>
+            <% end %>
             </tbody>
           </table>
         </div>

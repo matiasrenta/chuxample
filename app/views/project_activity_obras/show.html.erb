@@ -1,5 +1,6 @@
 <section id="widget-grid">
-  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <div class="row">
+  <article class="col-sm-6">
     <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
       <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
         <div class="widget-toolbar">
@@ -7,136 +8,124 @@
           <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_project_activity_obra_path(@project_activity_obra), class: 'btn btn-primary' if can?(:update, ProjectActivityObra) %>
         </div>
       </header>
-      <div>
+      <div class="no-padding">
         <!-- widget content -->
         <div class="widget-body">
 
-          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
-            <thead><tr class="hidden"><th></th><th></th></tr></thead> <!-- el thead es necesario para que datatable no de error -->
-            <tbody>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.name') %></th>
-              <td>
-                <%= @project_activity_obra.name %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.description') %></th>
-              <td>
-                <%= @project_activity_obra.description %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.calle') %></th>
-              <td>
-                <%= @project_activity_obra.calle %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.nro_exterior') %></th>
-              <td>
-                <%= @project_activity_obra.nro_exterior %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.nro_interior') %></th>
-              <td>
-                <%= @project_activity_obra.nro_interior %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.colonia') %></th>
-              <td>
-                <%= @project_activity_obra.colonia %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.codigo_postal') %></th>
-              <td>
-                <%= @project_activity_obra.codigo_postal %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.tipo_obra') %></th>
-              <td>
-                <%= @project_activity_obra.tipo_obra %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.cantidad') %></th>
-              <td>
-                <%= @project_activity_obra.cantidad %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.avance_programado') %></th>
-              <td>
-                <%= @project_activity_obra.avance_programado %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.avance_real') %></th>
-              <td>
-                <%= @project_activity_obra.avance_real %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.real_start_date') %></th>
-              <td>
-                <%= l(@project_activity_obra.real_start_date, :format => :long) if @project_activity_obra.real_start_date %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.real_end_date') %></th>
-              <td>
-                <%= l(@project_activity_obra.real_end_date, :format => :long) if @project_activity_obra.real_end_date %>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+          <div class="form-group">
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.name') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.name %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.description') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.description %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.calle') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.calle %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.nro_exterior') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.nro_exterior %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.nro_interior') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.nro_interior %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.colonia') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.colonia %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.codigo_postal') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.codigo_postal %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.tipo_obra') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.tipo_obra %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.cantidad') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.cantidad %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.avance_programado') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.avance_programado %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.avance_real') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.avance_real %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.real_start_date') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.real_start_date %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.real_end_date') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.real_end_date %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.latitude') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.latitude %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.longitude') %></strong></label>
+              <div class="col-lg-9 details-data"><%= @project_activity_obra.longitude %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.ejercido') %></strong></label>
+              <div class="col-lg-9 details-data"><%= number_to_currency(@project_activity_obra.ejercido, unit: '') %></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </article>
 
-  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-      <header>
-        <h2>Documentos Financieros</h2>
-        <div class="widget-toolbar">
-          <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_activity_obra_financial_document_path(@project_activity_obra), class: 'btn btn-primary' if (can? :create, FinancialDocument) %>
-        </div>
+  <article class="col-sm-6">
+    <div id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
       </header>
       <div class="no-padding">
+        <!-- widget content -->
         <div class="widget-body">
-          <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
-            <thead>
-            <tr>
-              <th class='all control'>Tipo</th>
-              <th>Número</th>
-              <th>Importe</th>
-              <th class="all"><%= t('simple_form.screen.actions') %></th>
-            </tr>
-            </thead>
-            <tbody>
-            <% @project_activity_obra.financial_documents.each do |fd| %>
-                <tr>
-                  <td><%= fd.financial_document_type.try(:name) %></td>
-                  <td><%= fd.nro_documento %></td>
-                  <td><%= fd.monto %></td>
-                  <td class="table-actions">
-                    <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), financial_document_path(fd), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, fd %>
-                    <%= link_to raw('<i class="fa fa-pencil fa-lg"></i>'), edit_financial_document_path(fd), rel: 'tooltip', title: t('simple_form.tooltips.edit'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can? :update, fd %>
-                    <%= link_to raw('<i class="fa fa-trash fa-lg"></i>'), financial_document_path(fd), method: :delete, rel: 'tooltip', title: t('simple_form.tooltips.destroy'), class:'tooltipwithnofollow', data: { toggle: 'toggle', placement: 'top' , confirm: t('helpers.messages.are_you_sure'), 'original-title' => t('simple_form.tooltips.destroy')} if can? :destroy, fd %>
-                  </td>
-                </tr>
-            <% end %>
-            </tbody>
-          </table>
+          <div id="map" style='width: 100%; height: 460px;'></div>
         </div>
       </div>
     </div>
   </article>
+
+</div>
+
+  <%= render 'shared/show_financial_doc_in_project_activity', locals: {instance: @project_activity_obra, new_path: new_project_activity_obra_financial_document_path(@project_activity_obra)} %>
 
 </section>
 
+
+<script data-no-turbolink="true">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  handler.getMap().setZoom(16);
+  });
+  $('.show-details:even').addClass('striped-div');
+</script>

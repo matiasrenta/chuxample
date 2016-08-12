@@ -3,7 +3,7 @@ class TownsController < ApplicationController
 
   # GET /towns
   def index
-    @towns = do_index(Town, params)
+    @towns = indexize(Town)
   end
 
   # GET /towns/1

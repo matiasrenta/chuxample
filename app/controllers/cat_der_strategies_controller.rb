@@ -3,7 +3,7 @@ class CatDerStrategiesController < ApplicationController
 
   # GET /cat_der_strategies
   def index
-    @cat_der_strategies = do_index(CatDerStrategy, params)
+    @cat_der_strategies = indexize(CatDerStrategy)
     respond_to do |format|
       format.html
       format.xlsx

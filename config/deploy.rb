@@ -1,6 +1,8 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
+require 'seed-fu/capistrano3'
+
 set :application, 'cuauh'
 set :repo_url, 'git@github.com:matiasrenta/cuauh.git'
 
@@ -39,6 +41,8 @@ set :keep_releases, 2
 
 namespace :deploy do
 
+  #before  'deploy:assets:precompile', 'deploy:migrate'
+
   #namespace :assets do
   #  Rake::Task['deploy:assets:precompile'].clear_actions
   #  desc 'Precompile assets locally and upload to servers'
@@ -72,6 +76,8 @@ namespace :deploy do
     end
   end
 
+  before 'deploy:publishing', 'db:seed_fu'
+
   after :publishing, :restart
 
   #after :restart, :clear_cache do
@@ -86,3 +92,4 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
 
 end
+

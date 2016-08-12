@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def options_for_boolean
+    [[t('true'), 'true'], [t('false'), 'false']]
+  end
+
   def boolean_check_mark(boo)
     if boo
       '<i class="fa fa-check"></i>'.html_safe
@@ -57,5 +62,33 @@ module ApplicationHelper
     eval("edit_#{instance.class.name.underscore}_path(instance)")
   end
 
+  def friendly_file_size(bytes)
+    return nil if bytes.nil?
+    b = Float(bytes)
+    if b > 1073741824 # Gb
+      "#{(b / 1073741824).round(1)} Gb."
+    elsif b > 1048576 # Mb
+      "#{(b / 1048576).round(1)} Mb."
+    elsif b > 1024    # Kb
+      "#{(b / 1024).round} Kb."
+    else              # bytes
+      "#{bytes} Bytes"
+    end
+  end
+
+  def titled_time_ago_in_words(date_or_datetine, options = {})
+    return nil if date_or_datetine.blank?
+    formated_time_value = l(date_or_datetine, format: options[:format] || :without_seg)
+    "<span title=\"#{formated_time_value}\">#{time_ago_in_words(date_or_datetine, options)}</span>".html_safe
+  end
+
+  # para no mostrar los usuarios superusers a los que no son superusers
+  def users_hide_or_show_superusers
+    if current_user.superuser?
+      User.all
+    else
+      User.less_superusers
+    end
+  end
 
 end

@@ -1,0 +1,316 @@
+<script type="application/javascript" data-turbolinks-eval=always>
+    var Chartkick = {"language": "es"};
+</script>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+  <!-- row -->
+  <div class="row">
+
+    <!-- presupuesto -->
+    <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+      <!-- Widget ID (each widget will need unique ID)-->
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+        <!-- widget options:
+        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+        -->
+        <header>
+          <span class="widget-icon"> <i class="fa fa-dollar"></i> </span>
+          <h2>Presupuesto</h2>
+          <!-- Tabs -->
+          <ul class="nav nav-tabs pull-right" id="widget-tab-0">
+            <li class="active">
+              <a data-toggle="tab" href="#pre-hr1" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Capítulo">
+                <span>Capítulo</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#pre-hr2" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Área">
+                <span>Área</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#pre-hr3" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Tipo de Proyecto">
+                <span>Proyecto</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#pre-hr4" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Fuente de Financiamiento">
+                <span>Financiamiento</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#pre-hr5" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Tipo de Gasto">
+                <span>Gasto</span>
+              </a>
+            </li>
+          </ul>
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+
+            <div class="tab-content padding-10">
+              <div class="tab-pane fade active in" id="pre-hr1" style="width: 500px; height: 300px;">
+                <%= column_chart @pre_by_chapter %>
+              </div>
+              <div class="tab-pane fade active in" id="pre-hr2"  style="width: 500px; height: 300px;">
+                <%= column_chart @pre_by_area %>
+              </div>
+              <div class="tab-pane fade active in" id="pre-hr3" style="width: 500px; height: 300px;">
+                <%= column_chart @pre_by_project_type %>
+              </div>
+              <div class="tab-pane fade active in" id="pre-hr4"  style="width: 500px; height: 300px;">
+                <%= column_chart @pre_by_funding_source %>
+              </div>
+              <div class="tab-pane fade active in" id="pre-hr5" style="width: 500px; height: 300px;">
+                <%= column_chart @pre_by_expense_type %>
+              </div>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+      </div>
+      <!-- end widget -->
+
+    </article>
+
+    <!--suppliers-->
+    <article  class="col-xs-12">
+
+      <!-- Widget ID (each widget will need unique ID)-->
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-2" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+        <header>
+          <span class="widget-icon"> <i class="fa fa-truck"></i> </span>
+          <h2>Proveedores</h2>
+          <!-- Tabs -->
+          <ul class="nav nav-tabs pull-right" id="widget-tab-2">
+            <li class="active">
+              <a data-toggle="tab" href="#sup-hr1" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Capítulo">
+                <span>Total</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#sup-hr2" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Área">
+                <span>Obra</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#sup-hr3" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Tipo de Proyecto">
+                <span>Social</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#sup-hr5" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Tipo de Gasto">
+                <span>Adquisición</span>
+              </a>
+            </li>
+          </ul>
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+
+            <div class="tab-content padding-10">
+              <div class="tab-pane fade active in" id="sup-hr1" style="width: 1050px; height: 300px;">
+                <%= column_chart @sup_total %>
+              </div>
+              <div class="tab-pane fade active in" id="sup-hr2"  style="width: 1050px; height: 300px;">
+                <%= column_chart @sup_obras %>
+              </div>
+              <div class="tab-pane fade active in" id="sup-hr3" style="width: 1050px; height: 300px;">
+                <%= column_chart @sup_socials %>
+              </div>
+              <div class="tab-pane fade active in" id="sup-hr5" style="width: 1050px; height: 300px;">
+                <%= column_chart @sup_adquisicions %>
+              </div>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+      </div>
+      <!-- end widget -->
+
+    </article>
+
+    <!--afectaciones-->
+    <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+      <!-- Widget ID (each widget will need unique ID)-->
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+        <!-- widget options:
+        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+        -->
+        <header>
+          <span class="widget-icon"> <i class="fa fa-money"></i> </span>
+          <h2>Afectaciones</h2>
+          <!-- Tabs -->
+          <ul class="nav nav-tabs pull-right" id="widget-tab-3">
+            <li class="active">
+              <a data-toggle="tab" href="#afe-hr1" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Tipo de Proyecto">
+                <span>Proyecto</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#afe-hr2" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Capítulo">
+                <span>Capítulo</span>
+              </a>
+            </li>
+          </ul>
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+
+            <div class="tab-content padding-10">
+              <div class="tab-pane fade active in" id="afe-hr1" style="width: 500px; height: 300px;">
+                <%= column_chart @afe_projects %>
+              </div>
+              <div class="tab-pane fade active in" id="afe-hr2"  style="width: 500px; height: 300px;">
+                <%= column_chart @afe_chapters %>
+              </div>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+      </div>
+      <!-- end widget -->
+
+    </article>
+
+    <!--activities_obras (mapa)-->
+    <article class="col-sm-6">
+      <div id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+        </header>
+        <div class="no-padding">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div id="map" style='width: 100%; height: 300px;'></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="row">
+    <!--desarrollo social-->
+    <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+      <!-- Widget ID (each widget will need unique ID)-->
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+        <header>
+          <span class="widget-icon"> <i class="fa fa-child"></i> </span>
+          <h2>Desarrollo Social</h2>
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+            <div class="tab-pane fade active in" id="afe-hr1" style="width: 500px; height: 300px;">
+              <%= pie_chart @hash_desarrollo_social %>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+      </div>
+      <!-- end widget -->
+
+    </article>
+
+
+
+ </div>
+  <!-- end row -->
+
+</section>
+<!-- end widget grid -->
+
+<script data-no-turbolink="true">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers(<%=raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(13);
+    });
+    $('.show-details:even').addClass('striped-div');
+</script>

@@ -3,7 +3,7 @@ class ThingCategoriesController < ApplicationController
 
   # GET /thing_categories
   def index
-    @thing_categories = do_index(ThingCategory, params)
+    @thing_categories = indexize(ThingCategory)
   end
 
   # GET /thing_categories/1
@@ -20,12 +20,16 @@ class ThingCategoriesController < ApplicationController
 
   # POST /thing_categories
   def create
-
     if @thing_category.save
-      redirect_to @thing_category, notice: t("simple_form.flash.successfully_created")
+      redirect_to @thing_category, notice: t("simple_form.flash.successfully_created") if request.format != :js
     else
-      generate_flash_msg_no_keep(@thing_category)
-      render :new
+      if request.format == :js # esto es por si viene creado desde un modal via ajax de otra entidad (desde Thing en este caso)
+        @html_form = render_to_string('_form_remote.html.erb', layout: false, formats: [:html] )
+        render :new, formats: [:js]
+      else
+        generate_flash_msg_no_keep(@thing_category)
+        render :new
+      end
     end
   end
 
@@ -45,7 +49,7 @@ class ThingCategoriesController < ApplicationController
       redirect_to thing_categories_url, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@thing_category)
-      redirect_to thing_categories_url
+      redirect_to :back
     end
   end
 

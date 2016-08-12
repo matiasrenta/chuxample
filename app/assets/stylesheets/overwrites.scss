@@ -144,6 +144,15 @@ table.grey-blue-table tr:first-child td, table.grey-blue-table tr:first-child th
   .jarviswidget header h2 {
     width: 83%;
   }
+  .login-info > span {
+    padding: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .login-info a span {
+    display: none;
+  }
 }
 
 @media (min-width: 768px){
@@ -444,7 +453,7 @@ table tr td.table-actions{
 }
 
 .product-deatil {
-    padding: 30px 30px 50px;
+    padding: 0px 10px 0px;
 }
 
 .product-content {
@@ -456,11 +465,28 @@ table tr td.table-actions{
 
 .chat-body li.message .message-text {
   display: block !important;
-  margin-left: 60px !important;
+  margin-left: 50px !important;
+}
+
+.chat-body li.message img {
+    border-left: none;
+}
+
+.chat-body li.message {
+    margin: 20px 0px 0;
+}
+
+.profile-message li.message.message-reply {
+    margin-left: 40px !important;
+    margin: 3px 0 0 0px;
 }
 
 .profile-message{
   margin-bottom: 20px;
+}
+
+#new_comment{
+  padding: 14px !important;
 }
 
 .reply-bottom {
@@ -480,4 +506,183 @@ table tr td.table-actions{
 
 .chat-body li.message .ui-autocomplete li.ui-menu-item {
     margin-top: 0;
+}
+
+.highlighter{
+  height: 54px !important;
+}
+
+.login-info {
+    border: solid transparent;
+    border-width: 6px 0;
+    box-shadow: none;
+    width: auto;
+    border-bottom: none;
+    float:right !important;
+}
+
+.login-info > span {
+    border-bottom: none;
+}
+
+.login-info a {
+    color: #807D7C;
+}
+
+.login-info a:hover {
+    color: #3A3633;
+}
+// Para pasar el overlay adelante de select2
+.fade.in {
+  z-index: 9999;
+}
+// lineheight en texto de No resultados select2
+.select2-results .select2-no-results, .select2-results .select2-searching, .select2-results .select2-selection-limit {
+    background: none;
+    line-height: 30px;
+}
+// Quita puntos y cambia el cursor debajo del asterisco en campos obligatorios
+abbr[title], abbr[data-original-title] {
+    cursor: auto;
+    border-bottom: none;
+}
+
+.select2-footer {
+  display: block;
+  min-height: 32px;
+  vertical-align: middle;
+  position: relative;
+  background-color: #F8F7F7;
+  padding: 5px;
+  border-top: 1px solid #E4E4E4;
+  text-align: center;
+}
+
+.form-control .select2-choice {
+    border: none;
+    border-radius: 0;
+}
+
+.select2-container .select2-choice {
+    height: 29px;
+    padding: 2px 0 0 8px;
+}
+
+.form-inline .form-group {
+    display: block;
+}
+
+fieldset.scheduler-border {
+    border: 1px solid #D2D2D2 !important;
+    padding: 0 1.4em 0 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+
+@media (max-width: 1122px) and (min-width: 769px){
+  fieldset.scheduler-border {
+      margin: 0 5.5em 1.5em 0 !important;
+      padding: 0 0em 0 1.4em !important;
+  }
+}
+
+@media (max-width: 1900px) and (min-width: 1123px){
+  fieldset.scheduler-border {
+      margin: 0 7em 1.5em 0 !important;
+      padding: 0 0em 0 2.4em !important;
+  }
+}
+
+.public-act-title {
+  margin-bottom: 26px;
+}
+
+.show-details{
+  margin: 0; border-bottom: 1px solid #DDDDDD; padding: 6px 0;
+}
+
+.show-details:last-child{ border-bottom: none; }
+
+.striped-div{ background-color: #f9f9f9; }
+
+.details-data { display: table; padding: 0; }
+.details-data p { display: inline-block; padding-right: 10px; }
+
+@media (max-width: 991px){
+  .details-data{ padding: 0 15px; }
+}
+
+@media only screen and (max-width: 479px) and (min-width: 320px){
+  .page-title {
+      display: block;
+  }
+  .jarviswidget header h2 {
+    width: 37%;
+  }
+}
+
+@media only screen and (max-width: 679px) and (min-width: 480px){
+  .jarviswidget header h2 {
+      width: 275px;
+  }
+}
+
+@media (max-width: 880px) and (min-width: 768px){
+  .jarviswidget header h2 {
+      width: 135px;
+  }
+}
+
+@media (max-width: 979px) and (min-width: 768px){
+  .jarviswidget header h2 {
+      width: 29%;
+  }
+}
+
+//Encabezado de widgets
+.jarviswidget > header h3 {
+  height: 100%;
+  width: auto;
+  display: inline-block;
+  font-size: 14px;
+  position: relative;
+  margin: 0 0 0 10px;
+  line-height: 34px;
+  font-weight: normal;
+  letter-spacing: 0px;
+  float: left;
+}
+
+.login-message .title{
+  text-align: center;
+  background-color: #a90329;
+  color: #FFFFFF;
+  padding: 10px 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.login-message .description{
+  background-color: #f4f4f4;
+  padding: 20px 25px;
+  border-radius: 0 0 4px 4px;
+}
+
+.login-message h2{ margin: 0; }
+
+#extr-page .hero {
+  background-position: 0 232px;
+}
+
+.jarviswidget header .nav-tabs > li > a {
+    background-color: #e4e4e4;
 }

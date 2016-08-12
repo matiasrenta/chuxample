@@ -6,6 +6,12 @@ class FinancialDocumentContract < FinancialDocument
 
   validates :nro_documento, :monto, :supplier_id, presence: true
 
+  scope :by_project_activityable, -> (pa){where(project_activityable: pa)}
+
+  def nro_doc_and_supplier
+    "#{nro_documento} - #{supplier.try(:name)}"
+  end
+
   private
 
   def check_bills

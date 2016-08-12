@@ -1,9 +1,10 @@
 class FinancialDocumentsController < ApplicationController
-  load_and_authorize_resource except: :index, param_method: :financial_document_params
+  load_and_authorize_resource except: [:new, :create, :index, :new_with_type], param_method: :financial_document_params
+  before_action :resolve_parent_project_type, except: :index
 
   # GET /financial_documents
   def index
-    @financial_documents = do_index(FinancialDocument, params)
+    @financial_documents = indexize(FinancialDocument)
   end
 
   # GET /financial_documents/1
@@ -12,15 +13,17 @@ class FinancialDocumentsController < ApplicationController
 
   # GET /financial_documents/new
   def new
-    #@project_activity = ProjectActivity.find(params[:project_activity_id])
-    @project_activity = ProjectActivityObra.find(params[:project_activity_obra_id])
-    @financial_document = FinancialDocumentBill.new
+    @new_with_type_path = eval("new_with_type_#{@project_activity_underscore}_financial_documents_path")
+    @financial_document = FinancialDocumentBill.new(project_activityable: @project_activityable) # podria haber sido cualquiera de los otros tipos de docs, en el new_with_type se crea el que el usuario haya seleccionado
+    authorize! :create, @financial_document
   end
 
   def new_with_type
-    @project_activity = ProjectActivityObra.find(params[:project_activity_obra_id])
+    authorize! :create, FinancialDocument
     financial_document_type_id = params[:financial_document][:financial_document_type_id]
     @financial_document = FinancialDocumentType.find(financial_document_type_id).system_doc_type.constantize.new(financial_document_type_id: financial_document_type_id)
+    #@financial_document.project_activityable = @project_activityable
+    #authorize! :create, @financial_document
     render 'edit'
   end
 
@@ -30,14 +33,13 @@ class FinancialDocumentsController < ApplicationController
 
   # POST /financial_documents
   def create
-    @project_activity = ProjectActivityObra.find(params[:project_activity_obra_id])
     financial_document_type_id = params[:financial_document][:financial_document_type_id]
     @financial_document = FinancialDocumentType.find(financial_document_type_id).system_doc_type.constantize.new(financial_document_params)
-    @financial_document.project_activityable = @project_activity
-    #@financial_document = @project_activity.financial_documents.build(financial_document_params)
-    #@financial_document.type = @financial_document.financial_document_type.system_doc_type
+    @financial_document.project_activityable = @project_activityable
+    authorize! :create, @financial_document
+
     if @financial_document.save
-      redirect_to project_activity_obra_path(@project_activity), notice: t("simple_form.flash.successfully_created")
+      redirect_to financial_document_path(@financial_document), notice: t("simple_form.flash.successfully_created")
     else
       generate_flash_msg_no_keep(@financial_document)
       render :edit
@@ -57,10 +59,9 @@ class FinancialDocumentsController < ApplicationController
   # DELETE /financial_documents/1
   def destroy
     if @financial_document.destroy
-      redirect_to project_activity_obra_path(@financial_document.project_activityable_id), notice: t("simple_form.flash.successfully_destroyed")
+      redirect_to @list_path, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@financial_document)
-      #redirect_to project_activity_obra_path(@financial_document.project_activityable_id)
       redirect_to :back
     end
 
@@ -68,9 +69,25 @@ class FinancialDocumentsController < ApplicationController
 
   private
 
-    # Only allow a trusted parameter "white list" through.
-    def financial_document_params
-      params.require(:financial_document).permit(:nro_documento, :fecha_expedicion, :fecha_finalizacion, :monto, :supplier_id, :financial_document_type_id, :financial_document_contract_id, :description, :file, :remove_file)
+  # Only allow a trusted parameter "white list" through.
+  def financial_document_params
+    params.require(:financial_document).permit(:nro_documento, :fecha_expedicion, :fecha_finalizacion, :monto, :supplier_id, :financial_document_type_id, :financial_document_contract_id, :description, :file, :remove_file)
+  end
+
+  def resolve_parent_project_type
+    if @financial_document.try(:id)
+      @project_activityable = @financial_document.project_activityable
+    else
+      project_activity_key = params.keys.find{|key| key.to_s.start_with?('project_activity_') }
+      klass = project_activity_key.split('_id').first.camelize.constantize
+      @project_activityable = klass.find(params[project_activity_key])
     end
+    @klass = @project_activityable.class # ej: ProjectActivityObra
+    @project_activity_underscore = @klass.name.underscore# ej: project_activity_obra
+    @list_path = eval("#{@project_activity_underscore}_path(@project_activityable)")
+    @url_form = financial_document_path(@financial_document) if @financial_document.try(:id)
+    @url_form = "/#{@project_activity_underscore}s/#{@project_activityable.id}/financial_documents" unless @financial_document.try(:id)
+  end
+
 end
 

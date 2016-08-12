@@ -69,6 +69,8 @@
 // require js/plugin/flot/jquery.flot.time
 // require js/plugin/flot/jquery.flot.tooltip
 
+//= require js/plugin/superbox/superbox
+
 //= require jquery_nested_form
 //= require chucky_bots
 
@@ -95,6 +97,8 @@
 
 //= require js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.js
 //= require js/plugin/fuelux/wizard/wizard.js
+//Dynamic Ajax dropdown
+//= require js/plugin/dynamic-selectable/dynamic_selectable
 
 //= require turbolinks
 
@@ -104,4 +108,10 @@
 // Refile custom para que funcione con dropzone
 //= require refile-dropzone
 //= require js/plugin/dropzone/dropzone.js
+
+// considerar poner estos dos solo en la pagina show de activity obras ya que solo se usa alli para mostrar el mapa
+//= require underscore
+//= require gmaps/google
+//= require markerclusterer.min
+
 //= require js/app.config

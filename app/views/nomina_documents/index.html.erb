@@ -1,0 +1,71 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12">
+      <div class="jarviswidget <%= @filter_active ? 'jarviswidget-color-redLight' : 'jarviswidget-color-darken' %>" id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false">
+        <header>
+          <span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <h2><%= @filter_active ? t('simple_form.buttons.filtering') : '' %></h2>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_nomina_document_path, class: 'btn btn-primary' if (can? :create, NominaDocument) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn btn-primary"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[month_gteq]"><%= t('simple_form.labels.defaults.month') %></label>
+                        <%= f.select :month_eq, options_for_select((1..12).to_a.map{|i| [I18n.t("date.month_names")[i], i]}, @q.month_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[month_gteq]"><%= t('simple_form.labels.defaults.year') %></label>
+                        <%= f.select :year_eq, options_for_select(2016..2030, @q.year_eq), {include_blank: true}, {class: "form-control input-sm"} %>
+                      </div>
+                    </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :month, t('simple_form.labels.defaults.month')) %></th>
+                <th><%= sort_link(@q, :year, t('simple_form.labels.defaults.year')) %></th>
+                <th><%= sort_link(@q, :file_filename, t('simple_form.labels.defaults.file')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @nomina_documents.each do |nomina_document| %>
+                  <tr>
+                    <td><%= t("date.month_names")[nomina_document.month] %></td>
+                    <td align='right'><%= nomina_document.year %></td>
+                    <td><%= "#{nomina_document.file_filename} (#{friendly_file_size(nomina_document.file_size)})" unless nomina_document.file_id.blank? %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: nomina_document} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="widget-footer">
+            <%= render 'shared/pagination', locals: {target: @nomina_documents, model_index_path: nomina_documents_path} %>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

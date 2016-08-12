@@ -1,0 +1,108 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_ley_articulo_path, class: 'btn btn-primary' if (can? :create, LeyArticulo) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[codigo_cont]"><%= t('simple_form.labels.defaults.codigo') %></label>
+                        <%= f.search_field :codigo_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
+                        <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[descripcion_de_documento_cont]"><%= t('simple_form.labels.defaults.descripcion_de_documento') %></label>
+                        <%= f.search_field :descripcion_de_documento_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[periodo_actualizacion_cont]"><%= t('simple_form.labels.defaults.periodo_actualizacion') %></label>
+                        <%= f.search_field :periodo_actualizacion_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[actualizado_gteq]"><%= t('simple_form.labels.defaults.actualizado') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :actualizado_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.actualizado_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :actualizado_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.actualizado_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12 spanning">
+                        <label for="q[validado_gteq]"><%= t('simple_form.labels.defaults.validado') %></label>
+
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :validado_gteq, label: false, placeholder: t('simple_form.placeholders.from'), class: "form-control date-picker input-sm", value: format_date_field(@q.validado_gteq) %>
+                        </div>
+                        <div class="input-group input-group-sm block">
+                          <%= f.search_field :validado_lteq, label: false, placeholder: t('simple_form.placeholders.to'), class: "form-control date-picker input-sm", value: format_date_field(@q.validado_lteq) %>
+                        </div>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[detalle_cont]"><%= t('simple_form.labels.defaults.detalle') %></label>
+                        <%= f.search_field :detalle_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[file_filename_cont]"><%= t('simple_form.labels.defaults.file_filename') %></label>
+                        <%= f.search_field :file_filename_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :codigo, t('simple_form.labels.defaults.codigo')) %></th>
+                <th><%= sort_link(@q, :periodo_actualizacion, t('simple_form.labels.defaults.periodo_actualizacion')) %></th>
+                <th><%= sort_link(@q, :actualizado, t('simple_form.labels.defaults.actualizado')) %></th>
+                <th><%= sort_link(@q, :validado, t('simple_form.labels.defaults.validado')) %></th>
+                <th><%= sort_link(@q, :file_name, t('simple_form.labels.defaults.file')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @ley_articulos.each do |ley_articulo| %>
+                  <tr>
+                    <td><%= ley_articulo.codigo %></td>
+                    <td><%= ley_articulo.periodo_actualizacion %></td>
+                    <td><%= l(ley_articulo.actualizado, format: :default) if ley_articulo.actualizado %></td>
+                    <td><%= l(ley_articulo.validado, format: :default) if ley_articulo.validado %></td>
+                    <td><%= "#{ley_articulo.file_filename} (#{friendly_file_size(ley_articulo.file_size)})" unless ley_articulo.file_id.blank? %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: ley_articulo} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @ley_articulos, model_index_path: ley_articulos_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

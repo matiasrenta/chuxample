@@ -3,7 +3,7 @@ class CatFonFundsController < ApplicationController
 
   # GET /cat_fon_funds
   def index
-    @cat_fon_funds = do_index(CatFonFund, params)
+    @cat_fon_funds = indexize(CatFonFund)
   end
 
   # GET /cat_fon_funds/1

@@ -1,0 +1,40 @@
+<div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+  <header>
+    <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
+  </header>
+  <div>
+    <div class="widget-body">
+      <%= simple_form_for @open_datum, html: {class: 'form-horizontal'},
+                          wrapper: :horizontal_form,
+                          wrapper_mappings: {
+                                  check_boxes: :horizontal_radio_and_checkboxes,
+                                  radio_buttons: :horizontal_radio_and_checkboxes,
+                                  file: :horizontal_file_input,
+                                  boolean: :horizontal_boolean
+                          } do |f| %>
+          <div class="form-inputs edit">
+            <%= f.input :title, input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'Nombre de la base de datos suficientemente descriptivo para facilitar su búsqueda e identificación.', icon: 'fa fa-question'}} %>
+            <%= f.input :description, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :labels, input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'Términos clave que facilitarán al usuario la búsqueda del documento. Es importante uso de términos comunes: “salud,medicinas,compras”.', icon: 'fa fa-question'}} %>
+            <%= f.input :published_by, input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'La entidad en responsabilidad de la publicación de los datos.', icon: 'fa fa-question'}} %>
+            <%= f.input :contact, input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'Nombre de la persona de contacto para la base de datos.', icon: 'fa fa-question'}} %>
+            <%= f.input :email, input_html: {class: 'field_with_popover_rt', data: {pop: 'popover-hover', placement: 'top', title: '', content: 'Correo electrónico de contacto para responder dudas, comentarios y sugerencias sobre los datos publicados.', icon: 'fa fa-question'}} %>
+            <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_OPEN_DATA_MAX_FILESIZE'].to_i} %>
+
+            <div class="widget-footer">
+              <div class="form-actions">
+                <div class="btn-group">
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), open_data_path, class: 'btn btn-default btn-sm' if can?(:read, OpenDatum) %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @open_datum, class: 'btn btn-default btn-sm' if can?(:read, OpenDatum) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @open_datum, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: t('helpers.messages.are_you_sure'), 'original-title': 'Destroy'} if can?(:destroy, OpenDatum) && updating? %>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

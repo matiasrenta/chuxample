@@ -16,12 +16,13 @@
             <%= f.input :var, as: :hidden if updating? %>
             <%= f.input :var, input_html: {disabled: updating?} %>
             <%= f.input :value %>
+            <%= f.input :description %>
           </div>
 
           <div class="form-actions">
             <div class="btn-group">
               <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), admin_settings_path, class: 'btn btn-default btn-sm' %>
-              <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), "/admin/settings/#{@setting.id}", class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if updating? %>
+              <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), "/admin/settings/#{@setting.id}", class: 'btn btn-default btn-sm', method: :delete, data: {confirm: t('helpers.messages.are_you_sure'), 'original-title': 'Destroy'} if updating? %>
               <button type="submit" class="btn btn-primary btn-sm">
                 <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
               </button>

@@ -3,7 +3,7 @@ class CatEreExpendingFocusController < ApplicationController
 
   # GET /cat_ere_expending_focus
   def index
-    @cat_ere_expending_focus = do_index(CatEreExpendingFocu, params)
+    @cat_ere_expending_focus = indexize(CatEreExpendingFocu)
   end
 
   # GET /cat_ere_expending_focus/1

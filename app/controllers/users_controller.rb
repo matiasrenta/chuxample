@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = do_index(User, params)
+    @users = indexize(User)
   end
 
   # GET /users/1
@@ -27,7 +27,6 @@ class UsersController < ApplicationController
     authorize! :create, @user
     if @user.save
       @user.delay(queue: 'mailing').send_reset_password_instructions
-      #@user.send_reset_password_instructions
       redirect_to @user, notice: t('devise.labels.new_user_email_sent', email: @user.email)
     else
       generate_flash_msg_no_keep(@user)
@@ -58,7 +57,7 @@ class UsersController < ApplicationController
       redirect_to users_url, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@user)
-      redirect_to users_url
+      redirect_to :back
     end
   end
 
@@ -69,14 +68,14 @@ class UsersController < ApplicationController
   end
 
   def mentionables
-    @users = do_index(User, params)
+    @users = indexize(User)
   end
 
   private
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:remove_avatar, :avatar, :email, :name, :locale, :time_zone, :role_id, :only_api_access)
+      params.require(:user).permit(:remove_avatar, :avatar, :email, :name, :locale, :time_zone, :role_id, :password, :password_confirmation)
     end
 
 end

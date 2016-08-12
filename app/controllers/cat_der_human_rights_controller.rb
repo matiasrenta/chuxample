@@ -3,7 +3,7 @@ class CatDerHumanRightsController < ApplicationController
 
   # GET /cat_der_human_rights
   def index
-    @cat_der_human_rights = do_index(CatDerHumanRight, params)
+    @cat_der_human_rights = indexize(CatDerHumanRight)
     respond_to do |format|
       format.html
       format.xlsx

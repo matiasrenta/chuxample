@@ -1,0 +1,72 @@
+<section id="widget-grid">
+  <div class="row">
+    <article class="col-xs-12">
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-table"></i></span>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_territorial_unit_path, class: 'btn btn-primary' if (can? :create, TerritorialUnit) %>
+            <a href="javascript:void(0)" data-target="#filter-wid-id-0" id="filtrar" role="button" class="filter-button btn <%= @filter_active ? 'btn-danger' : 'btn-primary' %>"><i class="fa fa-filter"></i> <%= @filter_active ? t('simple_form.buttons.filtering') : t('simple_form.buttons.filters') %>
+            </a>
+          </div>
+        </header>
+        <div class="no-padding">
+          <div class="jarviswidget-editbox filter-zone" id="filter-wid-id-0" style="display:none;">
+            <div class="col-xs-12"><%= search_form_for(@q, html: {name: 'filter_form', class: 'form-inline'}) do |f| %>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[code_cont]"><%= t('simple_form.labels.defaults.code') %></label>
+                        <%= f.search_field :code_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[name_cont]"><%= t('simple_form.labels.defaults.name') %></label>
+                        <%= f.search_field :name_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <label for="q[grado_marginacion_cont]"><%= t('simple_form.labels.defaults.grado_marginacion') %></label>
+                        <%= f.search_field :grado_marginacion_cont, label: false, class: "form-control input-sm" %>
+                      </div>
+                    </div>
+                    <div class="row pull-right">
+                      <div class="col-sm-12">
+                        <%= render 'shared/submit_filters' %>
+                      </div>
+                    </div>
+                  </fieldset>
+              <% end %>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+              <thead>
+              <tr>
+                <th class='all control'><%= sort_link(@q, :code, t('simple_form.labels.defaults.code')) %></th>
+                <th><%= sort_link(@q, :name, t('simple_form.labels.defaults.name')) %></th>
+                <th><%= sort_link(@q, :grado_marginacion, t('simple_form.labels.defaults.grado_marginacion')) %></th>
+                <th class="all"><%= t('simple_form.screen.actions') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @territorial_units.each do |territorial_unit| %>
+                  <tr>
+                    <td><%= territorial_unit.code %></td>
+                    <td><%= territorial_unit.name %></td>
+                    <td><%= territorial_unit.grado_marginacion %></td>
+                    <td class="table-actions">
+                      <%= render 'shared/action_icons', locals: {target: territorial_unit} %>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+            <div class="widget-footer">
+              <%= render 'shared/pagination', locals: {target: @territorial_units, model_index_path: territorial_units_path} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+

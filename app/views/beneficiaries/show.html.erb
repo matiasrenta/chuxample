@@ -1,0 +1,141 @@
+<section id="widget-grid">
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+        <div class="widget-toolbar">
+          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), project_activity_social_path(@project_activity_social), class: 'btn btn-primary' %>
+          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_beneficiary_path(@beneficiary), class: 'btn btn-primary' if can?(:update, Beneficiary) %>
+        </div>
+      </header>
+      <div>
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
+            <thead>
+            <tr class="hidden">
+              <th></th>
+              <th></th>
+            </tr>
+            </thead>
+            <!-- el thead es necesario para que datatable no de error -->
+            <tbody>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.apellido_paterno') %></th>
+              <td>
+                <%= @beneficiary.apellido_paterno %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.apellido_materno') %></th>
+              <td>
+                <%= @beneficiary.apellido_materno %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.nombres') %></th>
+              <td>
+                <%= @beneficiary.nombres %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.territorial_unit') %></th>
+              <td>
+                <%= @beneficiary.territorial_unit.try(:name) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.sexo') %></th>
+              <td>
+                <%= @beneficiary.sexo %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.edad') %></th>
+              <td>
+                <%= @beneficiary.edad %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.fecha_nacimiento') %></th>
+              <td>
+                <%= l(@beneficiary.fecha_nacimiento, :format => :long) if @beneficiary.fecha_nacimiento %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.lugar_nacimiento') %></th>
+              <td>
+                <%= @beneficiary.lugar_nacimiento %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.pertenencia_etnica') %></th>
+              <td>
+                <%= @beneficiary.pertenencia_etnica %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.grado_maximo_estudios') %></th>
+              <td>
+                <%= @beneficiary.grado_maximo_estudios %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.anios_residencia_en_df') %></th>
+              <td>
+                <%= @beneficiary.anios_residencia_en_df %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.domicilio') %></th>
+              <td>
+                <%= @beneficiary.domicilio %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.ocupacion') %></th>
+              <td>
+                <%= @beneficiary.ocupacion %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.nombre_padre') %></th>
+              <td>
+                <%= @beneficiary.nombre_padre %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.nombre_madre') %></th>
+              <td>
+                <%= @beneficiary.nombre_madre %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.curp') %></th>
+              <td>
+                <%= @beneficiary.curp %>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!--
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-info"></i></span>
+        <h2>Details</h2>
+      </header>
+      <div class="no-padding">
+        <div class="widget-body">
+
+        </div>
+      </div>
+    </div>
+  </article>
+  -->
+</section>
+

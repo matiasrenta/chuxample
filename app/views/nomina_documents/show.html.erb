@@ -1,0 +1,52 @@
+<section id="widget-grid">
+  <div class="row">
+
+    <!-- Nuevo show ahora con divs, ya no existe tabla -->
+    <article class="col-sm-6">
+
+      <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+        <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+
+          <div class="widget-toolbar filter-group">
+            <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), nomina_documents_path, class: 'btn btn-primary' %>
+            <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_nomina_document_path(@nomina_document), class: 'btn btn-primary' if can?(:update, NominaDocument) %>
+          </div>
+        </header>
+        <!-- widget div-->
+        <div class="no-padding">
+
+          <!-- widget content -->
+          <div class="widget-body">
+
+            <div class="form-group">
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.month') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= t("date.month_names")[@nomina_document.month] %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.year') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= @nomina_document.year %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%= t('simple_form.labels.defaults.file') %></strong></label>
+
+                <div class="col-lg-9 details-data">
+                  <%= link_to @nomina_document.file_filename, attachment_url(@nomina_document, :file) %> <%= "(#{friendly_file_size(@nomina_document.file_size)} #{@nomina_document.file_content_type})" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <%= render 'index_partidas' %>
+
+  </div>
+</section>

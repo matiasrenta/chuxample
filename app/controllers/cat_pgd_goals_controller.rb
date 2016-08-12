@@ -3,7 +3,7 @@ class CatPgdGoalsController < ApplicationController
 
   # GET /cat_pgd_goals
   def index
-    @cat_pgd_goals = do_index(CatPgdGoal, params)
+    @cat_pgd_goals = indexize(CatPgdGoal)
   end
 
   # GET /cat_pgd_goals/1

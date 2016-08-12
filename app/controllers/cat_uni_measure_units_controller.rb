@@ -3,7 +3,7 @@ class CatUniMeasureUnitsController < ApplicationController
 
   # GET /cat_uni_measure_units
   def index
-    @cat_uni_measure_units = do_index(CatUniMeasureUnit, params)
+    @cat_uni_measure_units = indexize(CatUniMeasureUnit)
   end
 
   # GET /cat_uni_measure_units/1

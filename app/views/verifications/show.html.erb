@@ -1,0 +1,106 @@
+<section id="widget-grid">
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+
+        <div class="widget-toolbar">
+          <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), verifications_path, class: 'btn btn-primary' %>
+          <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_verification_path(@verification), class: 'btn btn-primary' if can?(:update, Verification) %>
+          <%= link_to raw("<i class='fa fa-check-circle'></i> Válida"), verification_path(@verification, 'verification[status]' => 1), class: 'btn btn-success btn-sm', method: :put, data: {'original-title': 'Validar Documento'} if(can?(:update, Verification) && @verification.status != 1) %>
+          <%= link_to raw("<i class='fa fa-times-circle'></i> Inválida"), verification_path(@verification, 'verification[status]' => 0), class: 'btn btn-danger btn-sm', method: :put, data: {confirm: '¿Está seguro de invalidar esta verificación?', 'original-title': 'Invalidar verificación'} if(can?(:update, Verification) && @verification.status != 0) %>
+        </div>
+      </header>
+      <div>
+        <!-- widget content -->
+        <div class="widget-body">
+
+          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
+            <thead>
+            <tr class="hidden">
+              <th></th>
+              <th></th>
+            </tr>
+            </thead>
+            <!-- el thead es necesario para que datatable no de error -->
+            <tbody>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.user') %></th>
+              <td>
+                <%= @verification.verification_owneable.try(:name_or_email) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.project_activity_obra') %></th>
+              <td>
+                <%= @verification.project_activity_obra.try(:name) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.answer') %></th>
+              <td>
+                <%= humanize_answer(@verification.answer) %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.evaluation') %></th>
+              <td>
+                <%= @verification.evaluation %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.comments') %></th>
+              <td>
+                <%= @verification.comments %>
+              </td>
+            </tr>
+            <tr role="row">
+              <th><%= t('simple_form.labels.defaults.status') %></th>
+              <td>
+                <%= status_icon(@verification.status) %>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!--
+  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+      <header><span class="widget-icon"><i class="fa fa-info"></i></span>
+        <h2>Details</h2>
+      </header>
+      <div class="no-padding">
+        <div class="widget-body">
+
+        </div>
+      </div>
+    </div>
+  </article>
+  -->
+
+  <!-- Gallery row -->
+  <div class="row">
+    <!-- SuperBox -->
+    <div class="superbox col-sm-12">
+        <% @verification.verification_photos.each do |photo| %>
+          <% photo_url = "#{Sett['S3_ROOT_PATH']}#{photo.name}" %>
+          <div class="superbox-list">
+            <div style="background-image: url('<%= photo_url %>');" data-img="<%= photo_url %>" data-alt="Latitud: <%= photo.latitude %>. Longitud: <%= photo.longitude %>" data-title="<%= l(photo.date_and_time, :format => :long) if photo.date_and_time %>" class="superbox-img"></div>
+          </div>
+        <% end %>
+    </div>
+    <!-- /SuperBox -->
+    <div class="superbox-show" style="height:300px; display: none"></div>
+  </div>
+  <!-- end Gallery row -->
+</section>
+
+<script type="text/javascript">
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    $(document).ready(function () {
+        $('.superbox').SuperBox();
+    })
+</script>

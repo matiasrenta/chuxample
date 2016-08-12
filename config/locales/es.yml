@@ -88,6 +88,7 @@ es:
   time:
     formats:
       default: "%d/%m/%Y"
+      with_seg: "%d/%m/%Y %H:%M:%S"
       without_seg: "%d/%m/%Y %H:%M"
       short: "%d de %b %H:%M"
       short_day: "%A %d de %B %H:%M"
@@ -210,6 +211,7 @@ es:
       create: 'Creó'
       update: 'Actualizó'
       destroy: 'Eliminó'
+      inactivate: 'Inactivó'
 
     submit:
       create: 'Crear %{model}'
@@ -235,6 +237,7 @@ es:
     messages:
       are_you_sure: "¿Está seguro de querer borrar el registro?"
       access_denied: "Acceso denegado"
+      edit_setting_variable: 'Si esta variable es usada en algún initializer de la aplicación, deberá reiniciar la aplicación para que tome el nuevo valor de la variable.'
 
   errors:
     format: "%{attribute} %{message}"
@@ -243,7 +246,7 @@ es:
       inclusion: "no está incluido en la lista"
       exclusion: "está reservado"
       invalid: "no es válido"
-      confirmation: "no coincide con la confirmación"
+      confirmation: "no coincide la confirmación"
       accepted: "debe ser aceptado"
       empty: "no puede estar vacío"
       blank: "no puede estar en blanco"
@@ -277,6 +280,11 @@ es:
         default_error_base: 'Revise los errores en el formulario'
 
       messages:
+        restrict_dependent_destroy:
+          many: 'Existen registros relacionados a este. En caso que sea permitido, intente eliminar estos registros primero para luego eliminar este.'
+        invalid_extension: 'Tipo de archivo inválido'
+        invalid_content_type: 'Formato no permitido'
+        too_large: 'Excede el tamaño permitido'
         taken: "ya está en uso"
         record_invalid: "La validación falló: %{errors}"
         <<: *errors_messages
@@ -287,27 +295,91 @@ es:
       models:
         user:
           attributes:
-            avatar:
-              invalid_content_type: 'Formato no permitido'
-              too_large: 'Excede el tamaño permitido'
+            reset_password_token: 'El token debe haber expirado o no es válido'
+            unlock_token: 'El token debe haber expirado o no es válido'
 
     messages:
       imported_successfuly: 'Se importaron %{count} registros exitosamente'
       comment_successfully_added: 'El comentario fue agregado exitosamente'
 
     models:
+      nomina_document:
+        one: Reporte de Nómina
+        other: Reportes de Nómina
+        fa_icon: 'fa-fw fa fa-file-text'
+      open_datum:
+        one: Datos Abiertos
+        other: Datos Abiertos
+        fa_icon: 'fa-fw fa fa-database'
+      social_user:
+        one: Usuario Social
+        other: Usuarios Sociales
+        fa_icon: 'fa-fw fa fa-facebook-square'
+      api_key:
+        one: API Key
+        other: API Keys
+        fa_icon: 'fa-fw fa fa-key'
+      registration:
+        one: Usuario API
+        other: Usuarios API
+      api_user:
+        one: Usuario API
+        other: Usuarios API
+      verification:
+        one: Verificación
+        other: Verificaciones
+        fa_icon: 'fa-fw fa fa-camera'
+      ley_fraccion:
+        one: Fracción de Artículo
+        other: Fracciones de Artículos
+      ley_articulo:
+        one: Artículo de Transparencia
+        other: Artículos de Transparencia
+        fa_icon: 'fa-fw fa fa-eye'
+      staff:
+        one: Trabajador
+        other: Trabajadores
+        fa_icon: 'fa-fw fa fa-male'
+      job_title:
+        one: Denominación de Puesto
+        other: Denominaciones de Puestos
+      ascription:
+        one: Adscripción
+        other: Adscripciones
+      project_activity_adquisicion:
+        one: Actividad de Adquisición
+        other: Actividades de Adquisición
+        fa_icon: 'fa-fw fa fa-shopping-cart '
+      beneficiary:
+        one: Beneficiario
+        other: Beneficiarios
+        fa_icon: 'fa-fw fa fa-male'
+      territorial_unit:
+        one: Unidad Territorial
+        other: Unidades Territoriales
+      project_activity_social:
+        one: Actividad Social
+        other: Actividades Sociales
+        fa_icon: 'fa-fw fa fa-child'
+      social_development_program:
+        one: Programa de Desarrollo Social
+        other: Programas de Desarrollo Social
       project_activity_obra:
         one: Actividad de Obra
         other: Actividades de Obra
         fa_icon: 'fa-fw fa fa-building'
-      project_administracion:
-        one: Proyecto de Administración
-        other: Proyectos de Administración
-        fa_icon: 'fa-fw fa fa-archive'
-      project_cultura:
-        one: Projecto de Cultura
-        other: Projectos de Cultura
-        fa_icon: 'fa-fw fa fa-institution'
+      project_nomina:
+        one: Proyecto de Nómina
+        other: Proyectos de Nóminas
+        fa_icon: ''
+      project_adquisicion:
+        one: Proyecto de Adquisición
+        other: Proyectos de Adquisiciones
+        fa_icon: ''
+      project_social:
+        one: Proyecto Social
+        other: Proyectos Sociales
+        fa_icon: ''
       project_obra:
         one: Proyecto de Obra
         other: Proyectos de Obra
@@ -330,16 +402,15 @@ es:
       financial_document:
         one: Documento Financiero
         other: Documentos Financieros
-      project_activity:
-        one: Actividad
-        other: Actividades
+        fa_icon: 'fa-fw fa fa-file-pdf-o'
       project:
         one: Proyecto
         other: Proyectos
-      key_analytical:
-        one: Analítico de Claves
-        other: Analítico de Claves
         fa_icon: 'fa-fw fa fa-list-ol'
+      key_analytical:
+        one: Afectación
+        other: Afectaciones
+        fa_icon: 'fa-fw fa fa-money'
       cat_ppr_spending_destination:
         one: Destino de Gasto
         other: Destinos de Gasto
@@ -354,7 +425,7 @@ es:
         other: Dígitos Identificadores
       cat_ppr_par_partida_especifica:
         one: Partida Específica
-        other: Partida Específica
+        other: Partidas Específicas
       cat_ppr_par_partida_generica:
         one: Partida Genérica
         other: Partidas Genéricas
@@ -413,8 +484,8 @@ es:
         one: Objetivo PGDDF
         other: Objetivos PGDDF
       cat_pgd_area_of_opportunity:
-        one: Area de Oportunidad
-        other: Areas de Oportunidad
+        one: Área de Oportunidad
+        other: Áreas de Oportunidad
       cat_fon_funding_source:
         one: Fuente de Financiamiento
         other: Fuentes de Financiamiento
@@ -431,8 +502,8 @@ es:
         one: Eje Género
         other: Ejes Género
       cat_der_line_of_action:
-        one: Línea de Acción (der. hum.)
-        other: Líneas de Acción (der. hum.)
+        one: Línea de Acción Derechos Humanos
+        other: Líneas de Acción Derechos Humanos
       cat_der_strategy:
         one: Estrategia Derechos Humanos
         other: Estrategias Derechos Humanos
@@ -442,7 +513,7 @@ es:
       delayed_job:
         one: Delayed job
         other: Delayed jobs
-        fa_icon: 'fa-fw fa fa-stack-overflow '
+        fa_icon: 'fa-fw fa fa-stack-overflow'
       thing_category:
         one: Categoría de cosa
         other: Categoría de cosas
@@ -454,7 +525,7 @@ es:
       thing_part:
         one: Parte
         other: Partes
-        fa_icon: 'fa-fw'
+        fa_icon: 'fa-fw fa fa-user'
       user:
         one: 'Usuario'
         other: 'Usuarios'
@@ -474,6 +545,7 @@ es:
 
     actions:
       new:  'Nuevo'
+      new_with_type: 'Nuevo'
       newf: 'Nueva'
       show: 'Mostrar'
       create: 'Nuevo'

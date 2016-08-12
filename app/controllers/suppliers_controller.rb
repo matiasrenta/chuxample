@@ -3,7 +3,7 @@ class SuppliersController < ApplicationController
 
   # GET /suppliers
   def index
-    @suppliers = do_index(Supplier, params)
+    @suppliers = indexize(Supplier)
   end
 
   # GET /suppliers/1

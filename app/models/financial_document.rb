@@ -15,13 +15,31 @@ class FinancialDocument < ActiveRecord::Base
   belongs_to :financial_document_type
   belongs_to :supplier
 
-  attachment :file, extension: %w[jpg jpeg png gif pdf doc docx], store: 's3_backend', cache: 's3_cache'
+  attachment :file, extension: %w[jpg jpeg png gif pdf doc docx], store: 's3_financial_documents_backend', cache: 's3_financial_documents_cache'
   #content_type: %w[image/jpeg image/png image/gif text/plain application/pdf application/doc application/docx]
 
   validates :financial_document_type_id, :file, presence: true
   # las demas validaciones estan en cada tipo de documento
 
-  after_destroy :remove_file_attached
+  after_save :calculate_ejercido
+  after_destroy :remove_file_attached, :calculate_ejercido
+
+  scope :bills, -> {where(:type => 'FinancialDocumentBill')}
+  scope :contracts, -> {where(:type => 'FinancialDocumentContract')}
+  scope :bills_and_contracts, -> {where(type: ['FinancialDocumentBill', 'FinancialDocumentContract'])}
+  scope :without_contract, -> {where("financial_document_contract_id IS NULL")}
+  scope :by_activities, -> (activities_ids, activityable_type){where(project_activityable_id: activities_ids, project_activityable_type: activityable_type)}
+
+  scope :adquisicions, -> {where(project_activityable_type: 'ProjectActivityAdquisicion')}
+  scope :obras, -> {where(project_activityable_type: 'ProjectActivityObra')}
+  scope :socials, -> {where(project_activityable_type: 'ProjectActivitySocial')}
+  scope :nominas, -> {where(project_activityable_type: 'ProjectActivityNomina')}
+
+  def friendly_type
+    return 'Factura' if grupo_factura?
+    return 'Contrato' if grupo_contrato?
+    return '' if grupo_other?
+  end
 
   def grupo_factura?
     type == 'FinancialDocumentBill'
@@ -58,6 +76,14 @@ class FinancialDocument < ActiveRecord::Base
 
   def remove_file_attached
     file.try(:delete)
+  end
+
+  # calcula y setea el ejercido de la actividad y del Project a la que pertenece este Financial Documents
+  # si el documento no es factura o contrato pues quedará igual el ejercido, pero no cuesta nada siempre calcularlo
+  # se calcula after_save y after_destroy
+  def calculate_ejercido
+    project_activityable.calculate_and_save_ejercido
+    project_activityable.parent_project.calculate_and_save_ejercido
   end
 
 end

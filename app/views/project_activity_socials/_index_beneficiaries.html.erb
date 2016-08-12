@@ -1,0 +1,36 @@
+<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+    <header>
+      <h2>Padrón de Beneficiarios</h2>
+      <div class="widget-toolbar">
+        <%= link_to raw("<i class='fa fa-file'></i> #{t('simple_form.buttons.new')}"), new_project_activity_social_beneficiary_path(@project_activity_social), class: 'btn btn-primary' if (can? :create, Beneficiary) %>
+      </div>
+    </header>
+    <div class="no-padding">
+      <div class="widget-body">
+        <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover">
+          <thead>
+          <tr>
+            <th class='all control'>Nombre</th>
+            <th>sexo</th>
+            <th class="all"><%= t('simple_form.screen.actions') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @project_activity_social.beneficiaries.each do |beneficiary| %>
+              <tr>
+                <td><%= beneficiary.full_name %></td>
+                <td><%= beneficiary.sexo %></td>
+                <td class="table-actions">
+                  <%= link_to raw('<i class="fa fa-binoculars fa-lg"></i>'), beneficiary_path(beneficiary), rel: 'tooltip', title: t('simple_form.tooltips.show'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.show')} if can? :read, beneficiary %>
+                  <%= link_to raw('<i class="fa fa-pencil fa-lg"></i>'), edit_beneficiary_path(beneficiary), rel: 'tooltip', title: t('simple_form.tooltips.edit'), data: { toggle: 'toggle', placement: 'top', 'original-title' => t('simple_form.tooltips.edit')} if can? :update, beneficiary %>
+                  <%= link_to raw('<i class="fa fa-trash fa-lg"></i>'), beneficiary_path(beneficiary), method: :delete, rel: 'tooltip', title: t('simple_form.tooltips.destroy'), class:'tooltipwithnofollow', data: { toggle: 'toggle', placement: 'top' , confirm: t('helpers.messages.are_you_sure'), 'original-title' => t('simple_form.tooltips.destroy')} if can? :destroy, beneficiary %>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>

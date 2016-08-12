@@ -3,7 +3,7 @@ class CatPprDigitIdentifiersController < ApplicationController
 
   # GET /cat_ppr_digit_identifiers
   def index
-    @cat_ppr_digit_identifiers = do_index(CatPprDigitIdentifier, params)
+    @cat_ppr_digit_identifiers = indexize(CatPprDigitIdentifier)
   end
 
   # GET /cat_ppr_digit_identifiers/1

@@ -3,7 +3,7 @@ class CatPgdAxisController < ApplicationController
 
   # GET /cat_pgd_axis
   def index
-    @cat_pgd_axis = do_index(CatPgdAxi, params)
+    @cat_pgd_axis = indexize(CatPgdAxi)
   end
 
   # GET /cat_pgd_axis/1

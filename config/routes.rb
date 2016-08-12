@@ -1,5 +1,56 @@
 Rails.application.routes.draw do
 
+  resources :nomina_documents
+  resources :dashboard
+  resources :open_data
+  resources :social_users
+  resources :api_keys
+  resources :verifications
+  resources :ley_articulos, shallow: true do
+    put 'validar_documento', on: :member
+    resources :ley_fraccions do
+      put 'validar_documento', on: :member
+      collection do
+        get 'new_import'
+        post 'create_import'
+        get 'download_import_file'
+      end
+    end
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :staffs do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :job_titles do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :ascriptions do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :territorial_units do
+    collection do
+      get 'new_import'
+      post 'create_import'
+      get 'download_import_file'
+    end
+  end
+  resources :social_development_programs
   resources :suppliers
   resources :towns do
     collection do
@@ -15,15 +66,36 @@ Rails.application.routes.draw do
       get 'download_import_file'
     end
   end
+
   resources :financial_document_types
+
   resources :projects, shallow: true do
     resources :project_activity_obras, shallow: true do
       resources :financial_documents do
         get 'new_with_type', on: :collection
       end
     end
+    resources :project_activity_socials, shallow: true do
+      resources :beneficiaries do
+        collection do
+          get 'new_import'
+          post 'create_import'
+          get 'download_import_file'
+        end
+      end
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
+    end
+    resources :project_activity_adquisicions, shallow: true do
+      resources :financial_documents do
+        get 'new_with_type', on: :collection
+      end
+    end
   end
   resources :key_analyticals do
+    put :approve_changes, on: :member
+    put :reject_changes, on: :member
     collection do
       get 'new_import'
       post 'create_import'
@@ -195,6 +267,7 @@ Rails.application.routes.draw do
       get 'download_import_file'
     end
   end
+
   resources :comments
   resources :conversations, only: [:index, :show, :destroy] do
     post :mark_as_read, on: :member
@@ -214,7 +287,14 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :dynamic_select do
+    get ':thing_id/thing_contacts', to: 'thing_contacts#index', as: 'thing_contacts' # el as: es para que el helper method sea 'dynamic_select_thing_contacts_path' y no 'dynamic_select_path'
+  end
+
   namespace :dev do
+    resources :catalog_cleaners do
+      post :run_cleaner, on: :collection
+    end
     resources :chucky_bots
     resources :examples do
       collection do
@@ -236,6 +316,14 @@ Rails.application.routes.draw do
     get 'mentionables', on: :collection
   end
 
+  devise_for :api_users, controllers: { registrations: 'api_users/registrations', confirmations: 'api_users/confirmations', passwords: 'api_users/passwords' }
+  resources :api_users do
+    get 'error_when_confirmation', to: 'api_users/welcome#error_when_confirmation', on: :collection
+    get 'check_credentials', to: 'api_users/welcome#check_credentials', on: :collection
+  end
+  get 'api_user_root', to: 'api_users/welcome#welcome'
+
+
   get "application/access_denied"
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -245,7 +333,7 @@ Rails.application.routes.draw do
   get 'welcome/prueba'
 
   # You can have the root of your site routed with "root"
-  root to: 'welcome#index'
+  root to: 'dashboard#index'
 
   #match '*unmatched_route', :to => 'application#raise_not_found!', :via => :all
 
@@ -300,5 +388,18 @@ Rails.application.routes.draw do
   # API's routes
   api_version(:module => "V1", :path => {:value => "v1"}, :defaults => {:format => "json"}) do
     resources :things
+    resources :project_activity_obras
+    resources :verifications
+    resources :portal do
+      collection do
+        get :total_budget
+        get :budget_by_chapter
+        get :treemap
+        get :suppliers
+        get :mapa_obras
+        get :financial_documents
+        get :open_data
+      end
+    end
   end
 end

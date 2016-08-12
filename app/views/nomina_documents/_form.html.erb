@@ -1,0 +1,70 @@
+<div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+  <header>
+    <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
+  </header>
+  <div>
+    <div class="widget-body">
+      <%= simple_nested_form_for @nomina_document, html: {class: 'form-horizontal'},
+                          wrapper: :horizontal_form,
+                          wrapper_mappings: {
+                                  check_boxes: :horizontal_radio_and_checkboxes,
+                                  radio_buttons: :horizontal_radio_and_checkboxes,
+                                  file: :horizontal_file_input,
+                                  boolean: :horizontal_boolean
+                          } do |f| %>
+          <div class="form-inputs edit">
+            <%= f.input :month, as: :select, collection: (1..12).to_a.map{|i| [I18n.t("date.month_names")[i], i]} %>
+            <%= f.input :year, as: :select, collection: 2016..2030 %>
+            <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_FINANCIAL_DOCUMENTS_MAX_FILESIZE'].to_i} %>
+
+
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-3 control-label" for="">Partidas</label>
+              <div class="col-sm-9">
+                <div class="table-responsive">
+                  <table id="nomina_document_items" width="100%" class="display tableAlt table-striped table-bordered table-hover no-margin" style="margin:0 padding-top:0px">
+                    <tr>
+                      <th class="all control">Partida</th>
+                      <th class="all control">Monto</th>
+                      <th class="all"></th>
+                    </tr>
+                    <%= f.fields_for :nomina_document_items, :wrapper => false do |ndi_form| %>
+                        <tr class="fields">
+                          <td><%= ndi_form.association :cat_ppr_par_partida_especifica, collection: CatPprParPartidaEspecifica.for_nomina, wrapper: :clean %></td>
+                          <td><%= ndi_form.input :monto, wrapper: :clean %></td>
+                          <td align="center">
+                            <%= ndi_form.link_to_remove do %>
+                                <i class="fa fa-trash-o" data-original-title="<%= t('simple_form.tooltips.destroy') %>" data-placement="top" rel="tooltip"></i>
+                            <% end %>
+                          </td>
+                        </tr>
+                    <% end %>
+                  </table>
+                  <div class="well well-sm">
+                    <span class="btn bg-color-blue txt-color-white btn-xs">
+                      <%= f.link_to_add raw("<i class='fa fa-plus-square'></i> Agregar"), :nomina_document_items, :data => {:target => "#nomina_document_items"} %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="widget-footer">
+              <div class="form-actions">
+                <div class="btn-group">
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), nomina_documents_path, class: 'btn btn-default btn-sm' if can?(:read, NominaDocument) %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @nomina_document, class: 'btn btn-default btn-sm' if can?(:read, NominaDocument) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @nomina_document, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: t('helpers.messages.are_you_sure'), 'original-title': 'Destroy'} if can?(:destroy, NominaDocument) && updating? %>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

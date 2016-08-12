@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   check_authorization unless: :not_check_authorization?
-
   skip_authorization_check only: [:access_denied]
 
   # Prevent CSRF attacks by raising an exception.
@@ -10,20 +9,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_cache_buster
   before_action :authenticate_user!
-  before_action :redirect_only_api_user
-  before_action :set_content_title, :set_user_language, :set_user_time_zone, :unread_notifications_count
+  before_action :set_content_title, :unread_notifications_count, :set_user_time_zone#, :set_user_language,
   before_action :set_last_seen_at, if: proc { user_signed_in? && (session[:last_seen_at] == nil || session[:last_seen_at] < 15.minutes.ago) }
-
-  # previene que usuarios que solo usan la api puedan hacer login en la aplicación web
-  # todo: debería mejorarse para que no alcance a hacer login. Aqui alcanza a hacerlo y luego fuerzo el logout
-  def redirect_only_api_user
-    if user_signed_in? && current_user.only_api_access?
-      flash[:alert] = 'only api access'
-      sign_out(:user)
-      redirect_to new_user_session_path
-    end
-  end
-
+  before_action :set_paper_trail_whodunnit
 
   def set_cache_buster
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
@@ -94,17 +82,48 @@ class ApplicationController < ActionController::Base
     Time.zone = current_user.time_zone if user_signed_in? && !current_user.time_zone.blank?
   end
 
+  # options:
+  #   collection: la collección que debe ser "indexada" (no usará el model par obtener los datos)
+  #   no_paginate: true/false. default to false
+  #   order: texto para hacer el order by (o bien un symbol. Será ordenado por defecto (ASC o DESC no recuerdo))
+  #   includes: texto para hacer includes. CUIDADO: si hago un include de una tabla que es has_many para el modelo a indexar, pueden venir registros duplicados (Thing.includes(:thing_parts))
+  #   query_param: si se necesita enviar el parametro ransack distinto a :q (para el caso de multiples listas en una misma pagina)
+  def indexize(model, options = {})
+    authorize!(:read, model)
+    query_param = options[:query_param] || :q
+    collection = options[:collection] || model
+    search_algoritm(query_param)
+    if params[query_param] && params[query_param][:meta_sort]
+      instance_variable_set("@#{query_param}", collection.accessible_by(current_ability, :read).ransack(params[query_param]))
+    elsif options[:order]
+      instance_variable_set("@#{query_param}", collection.order(options[:order]).accessible_by(current_ability, :read).ransack(params[query_param])) unless options[:includes]
+      instance_variable_set("@#{query_param}", collection.includes(options[:includes]).order(options[:order]).accessible_by(current_ability, :read).ransack(params[query_param])) if options[:includes]
+    else
+      instance_variable_set("@#{query_param}", collection.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[query_param]))
+    end
+
+    #indexize_collection = eval("@#{query_param}.result(distinct: true)")
+    indexize_collection = eval("@#{query_param}.result") # TODO: si existiera option[:includes] hay que pensar como se hace: includes(:articles).page(params[:page]).to_a.uniq
+
+    if options[:no_paginate]
+      indexize_collection.all
+    else
+      indexize_collection.paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
+    end
+  end
+
+  # <b>DEPRECATED:</b> Please use <tt>indexize</tt> instead.
   def do_index(model, params, collection = nil, paginate = true, order_by = nil, includes = nil, query_param = :q)
     authorize!(:read, model)
     variable_name = query_param.to_s
     search_algoritm(query_param)
     if params[query_param] && params[query_param][:meta_sort]
-      instance_variable_set("@#{variable_name}", model.unscoped.accessible_by(current_ability, :read).ransack(params[query_param]))
+      instance_variable_set("@#{variable_name}", model.accessible_by(current_ability, :read).ransack(params[query_param]))
     elsif order_by
-      instance_variable_set("@#{variable_name}", model.unscoped.order(order_by).accessible_by(current_ability, :read).ransack(params[query_param])) unless includes
-      instance_variable_set("@#{variable_name}", model.unscoped.includes(includes).order(order_by).accessible_by(current_ability, :read).ransack(params[query_param])) if includes
+      instance_variable_set("@#{variable_name}", model.order(order_by).accessible_by(current_ability, :read).ransack(params[query_param])) unless includes
+      instance_variable_set("@#{variable_name}", model.includes(includes).order(order_by).accessible_by(current_ability, :read).ransack(params[query_param])) if includes
     else
-      instance_variable_set("@#{variable_name}", model.unscoped.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[query_param]))
+      instance_variable_set("@#{variable_name}", model.order("updated_at DESC, created_at DESC").accessible_by(current_ability, :read).ransack(params[query_param]))
     end
 
     model_collection = eval("@#{variable_name}.result(distinct: true)") #@q.result(distinct: true)
@@ -131,6 +150,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #def search_algoritm
+  #  if params[:search_clear]
+  #    params[:q] = nil
+  #    params[:search_clear] = nil
+  #  end
+  #  if params[:q]
+  #    params[:q].each do |param|
+  #      unless param[1].blank? || param[0] == 's' # la 's' es para que no se ponga rojo cuando solo se hace sort de columnas
+  #        @filter_active = true;
+  #        break
+  #      end
+  #    end
+  #  end
+  #end
+
   def per_page(quantity)
     if !quantity.blank?
       cookies[:per_page] = {:value => quantity, :expires => 30.days.from_now}
@@ -156,6 +190,40 @@ class ApplicationController < ActionController::Base
 
   private ############################################ PRIVATE #################################################
 
+  def prudent_destroy(instance, options = nil)
+    #opt = options || {}
+    #if instance.respond_to?(:really_destroy!)
+    #  if instance.really_destroy!
+    #    redirect_to opt[:redirect_to] || eval("#{instance.class.name.underscore.pluralize}_path"), notice: t("simple_form.flash.successfully_destroyed")
+    #  else
+    #    generate_flash_msg(instance)
+    #    if instance.errors.count == 1 && flash[:alert].to_s.include?('restrict_dependent_destroy')
+    #      instance.errors.clear
+    #      # elimino el public activity porque Paranoia equivocamente lo crea
+    #      PublicActivity::Activity.where(trackable_id: instance.id, trackable_type: instance.class.name, key: "#{instance.class.name.underscore}.destroy").order(:id).last.destroy
+    #      if instance.update_column(:deleted_at, Time.now) # update_column no lanza los callbacks de update
+    #        # todo: ejecutar el metodo llamado run_callbacks_destroy de la instancia: instance.try(:run_callbacks_destroy)
+    #        # ese metodo será publico y podrá acceder a los privados que son los del verdader callback
+#
+    #        #instance.run_callbacks(:destroy) { instance.update_column(:deleted_at, Time.now) } # esto hubiera sido lo optimo, pero se corta por el restrict_dependent_destroy
+    #        # creo un custom public activity de inactivate
+    #        instance.create_activity(key: "#{instance.class.name.underscore}.inactivate", owner: current_user)
+    #        flash[:alert] = nil
+    #        flash[:info] = 'Se hizo soft delete'
+    #      end
+    #    end
+    #    redirect_to :back
+    #  end
+    #else
+    #  if instance.destroy
+    #    redirect_to opt[:redirect_to] || eval("#{instance.class.name.underscore.pluralize}_path"), notice: t("simple_form.flash.successfully_destroyed")
+    #  else
+    #    generate_flash_msg(instance)
+    #    redirect_to :back
+    #  end
+    #end
+  end
+
   def after_sign_out_path_for(user)
     new_user_session_path
   end
@@ -174,7 +242,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_404(exception)
-    set_content_title(t("screens.errors.not_found_404"))
+    #set_content_title(t("screens.errors.not_found_404"))
     @not_found_path = exception.message
     respond_to do |format|
       format.html { render template: 'errors/not_found', layout: 'error', status: 404 }
@@ -183,7 +251,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_500(exception)
-    set_content_title(t("screens.errors.internal_server_error_500"))
+    #set_content_title(t("screens.errors.internal_server_error_500"))
     @msg = exception.message + " -- Clase: "
     @backtrace_html = exception.backtrace.join("<br/>")
     backtrace_log = exception.backtrace.join("\n")

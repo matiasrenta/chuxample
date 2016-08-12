@@ -1,11 +1,14 @@
 require 'valid_email'
 
 class User < ActiveRecord::Base
+  has_many :verifications, as: :verification_owneable, dependent: :restrict_with_error
   acts_as_messageable
+  #acts_as_paranoid
   include PublicActivity::Model
   tracked only: [:create, :update, :destroy]
   tracked :on => {update: proc {|model, controller| model.changes.except(*model.except_attr_in_public_activity).size > 0 }}
-  tracked owner: ->(controller, model) { controller.try(:current_user) if controller.try(:user_sign_in?) }
+  # la linea siguiente es asi debido a que si solo ejecuto controller.current_user termina dando "Stack LevelToo Deep" (y luego el core dump)
+  tracked owner: ->(controller, model) { (model.changes.except(*model.except_attr_in_public_activity).size > 0) && !controller.nil? ? controller.current_user : nil }
   #tracked recipient: ->(controller, model) { model.xxxx }
   tracked :parameters => {
               :attributes_changed => proc {|controller, model| model.id_changed? ? nil : model.changes.except(*model.except_attr_in_public_activity)},
@@ -13,23 +16,37 @@ class User < ActiveRecord::Base
           }
 
   belongs_to :role
+  has_many :things, dependent: :restrict_with_error
   # Include default devise modules. Others available are:
-  # :registerable, :confirmable, :validatable and :omniauthable
+  # :registerable, :confirmable and :omniauthable
   # mas los 7 modulos proveidos por el gem devise_security_extension
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable
-  attachment :avatar, type: :image, store: 'filesystem_backend', cache: 'filesystem_cache'
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :timeoutable, :lockable, :validatable
+  attachment :avatar, type: :image, store: 's3_avatar_backend', cache: 's3_avatar_cache'
 
+  validates :email, :name, :role_id, presence: true
+  validates :email, uniqueness: true
   #validates :email, email: {message: I18n.t('errors.messages.invalid_email')}, mx: {message: I18n.t('errors.messages.invalid_mx')}
   validates :email, email: {message: I18n.t('errors.messages.invalid_email')}
 
+
   after_destroy :remove_file
+
+  delegate :superuser?, :ejecutor_adquisicion?, :ejecutor_nomina?, :ejecutor_obra?, :ejecutor_social?, to: :role
+
+  scope :less_superusers, -> {where.not(role_id: Role.superuser.id)}
+  scope :revisores, -> {where(role_id: Role.revisor.id)}
+  scope :actives, -> {where('deleted_at IS NULL')}
+
+  def active?
+    deleted_at.nil?
+  end
+
+  def name_or_email
+    name || email
+  end
 
   def mailboxer_email(object)
     email
-  end
-
-  def only_api_access?
-    self.only_api_access
   end
 
   # sobreescribí este metodo de Devise solo para poder enviar un subject distinto para el mail de bienvenida y el de reset pasword instruction
@@ -43,7 +60,11 @@ class User < ActiveRecord::Base
   end
 
   def except_attr_in_public_activity
-    [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count, :current_sign_in_ip, :last_sign_in_ip, :failed_attempts, :unlock_token, :locked_at, :reset_password_token, :reset_password_sent_at, :last_seen_at]
+    [:id, :remember_created_at, :updated_at, :last_sign_in_at, :current_sign_in_at, :sign_in_count, :current_sign_in_ip, :last_sign_in_ip, :failed_attempts, :unlock_token, :locked_at, :reset_password_token, :reset_password_sent_at, :last_seen_at, :deleted_at, :avatar_id, :avatar_size]
+  end
+
+  def active_for_authentication?
+    super && active?
   end
 
   protected
@@ -61,5 +82,6 @@ class User < ActiveRecord::Base
   def remove_file
     avatar.try(:delete)
   end
+
 end
 

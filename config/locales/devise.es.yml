@@ -4,13 +4,13 @@ es:
   devise:
     confirmations:
       confirmed: "Tu cuenta ha sido confirmada."
-      send_instructions: "Recibirás un correo electrónico en unos minutos con instrucciones sobre cómo restablecer tu contraseña."
-      send_paranoid_instructions: "Si tu correo electrónico existe en nuestra base de datos recibirás un correo electrónico en unos minutos con instrucciones sobre cómo restablecer tu contraseña."
+      send_instructions: "Recibirás un correo electrónico en unos minutos con instrucciones sobre cómo confirmar tu cuenta."
+      send_paranoid_instructions: "Si tu correo electrónico existe en nuestra base de datos recibirás un correo electrónico en unos minutos con instrucciones sobre cómo confirmar tu cuenta."
     failure:
       already_authenticated: "Ya has iniciado sesión."
-      inactive: "Tu cuenta aún no ha sido activada."
+      inactive: "Tu cuenta está inactiva."
       invalid: "%{authentication_keys} o contraseña inválidos."
-      locked: "Tu cuenta ha sido bloqueada."
+      locked: "Tu cuenta ha sido bloqueada. Recibirás un email con un enlace para desbloquearla."
       last_attempt: "Tienes un último intento antes de que tu cuenta sea bloqueada."
       not_found_in_database: "%{authentication_keys} o contraseña inválidos."
       timeout: "Tu sesión ha expirado, por favor inicia sesión nuevamente para continuar."
@@ -27,12 +27,16 @@ es:
         footer: "Si tú no solicitaste esto, por favor ignora este mail. Tu contraseña no va a cambiar hasta que tú accedas al link y la cambies."
       unlock_instructions:
         subject: "Instrucciones de desbloqueo"
+        content: "Tu cuenta se bloqueó debido a un excesivo número de intentos fallidos de iniciar sesión."
+        click_link: "Haz click en el enlace de abajo para desbloquear tu cuenta:"
+        link: "Desbloquear mi cuenta"
       welcome:
         subject: "Tu cuenta ha sido creada"
         hi: "Hola, %{name_or_email}!"
-        content: "Tu cuenta ha sido creada, pero debes ingresar al link de abajo para crear tu contraseña."
-        link: "Setear mi contraseña"
+        content: "Tu cuenta para el Sistema de Segumiento y Transparencia de la Delegación Cuauhtémoc ha sido creada. Ahora tienes que ingresar al siguiente link para generar tu nueva contraseña:"
+        link: "Cambiar mi contraseña"
         footer: "Tu cuenta fue creada por un administrador del sistema."
+        bie: "Saludos."
     omniauth_callbacks:
       failure: "No se te ha podido autorizar de %{kind} debido a \"%{reason}\"."
       success: "Identificado correctamente de %{kind}."
@@ -47,7 +51,7 @@ es:
       signed_up: "¡Bienvenido! Has sido identificado."
       signed_up_but_inactive: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta no ha sido activada."
       signed_up_but_locked: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta está bloqueada."
-      signed_up_but_unconfirmed: "Se te ha enviado un mensaje con un enlace de confirmación. Por favor visita el enlace para activar tu cuenta."
+      signed_up_but_unconfirmed: "Se te ha enviado un email con un enlace de confirmación. Por favor visita el enlace para activar tu cuenta."
       update_needs_confirmation: "Has actualizado tu cuenta correctamente, sin embargo necesitamos verificar tu nueva cuenta de correo. Por favor revisa tu correo electrónico y visita el enlace para finalizar la confirmación de tu nueva dirección de correo electrónico."
       updated: "Has actualizado tu cuenta correctamente."
     sessions:

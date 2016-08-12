@@ -10,7 +10,7 @@ module PublicActivityHelper
   def trackables
     all_trackables = PublicActivity::Activity.select(:trackable_type).group(:trackable_type).order(:trackable_type).map(&:trackable_type)
     existing_trackables = Array.new
-    all_trackables.each {|t| existing_trackables << t if exists_class?(t)}
+    all_trackables.each {|t| existing_trackables << t if exists_class?(t) && !t.start_with?('Thing')}
     opt = Array.new
     existing_trackables.each do |t|
       opt << OpenStruct.new(id: t, name: t("activerecord.models.#{t.underscore}.one"))
@@ -19,7 +19,7 @@ module PublicActivityHelper
   end
 
   def keyables
-    [[t('helpers.select.create'), 'create'], [t('helpers.select.update'), 'update'], [t('helpers.select.destroy'), 'destroy']]
+    [[t('helpers.select.create'), 'create'], [t('helpers.select.update'), 'update'], [t('helpers.select.destroy'), 'destroy'], ['Afectación presupuestal', 'afectacion']]
   end
 
   def trackable_label(activity, with_not_exists = true)
@@ -28,6 +28,8 @@ module PublicActivityHelper
       if can?(:read, activity.trackable)
         if activity.trackable.class.name.start_with?('FinancialDocument')
           link_to label, activity.trackable.becomes(FinancialDocument)
+        elsif KeyAnalytical.project_types.include?(activity.trackable.class.name)
+          link_to label, activity.trackable.becomes(KeyAnalytical)
         else
           link_to label, activity.trackable
         end

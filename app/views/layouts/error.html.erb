@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-<%= render "/layouts/head" %>
-
-
 <% if user_signed_in? %>
+    <%= render "/layouts/head", locals: {js_options: {'data-turbolinks-track' => true}, css_options: { media: 'all', 'data-turbolinks-track' => true}} %>
     <%= render "errors/body_error" %>
 <% else %>
+    <%= render "/layouts/head", locals: {js_options: {}, css_options: { media: 'all'}} %>
     <%= render "/layouts/login" %>
 <% end %>
 

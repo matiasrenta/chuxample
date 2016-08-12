@@ -27,7 +27,7 @@
                 <div class="btn-group">
                   <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), cat_der_line_of_actions_path, class: 'btn btn-default btn-sm' if can?(:read, CatDerLineOfAction) %>
                   <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @cat_der_line_of_action, class: 'btn btn-default btn-sm' if can?(:read, CatDerLineOfAction) && updating? %>
-                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @cat_der_line_of_action, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Are you sure?', 'original-title': 'Destroy'} if can?(:destroy, CatDerLineOfAction) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @cat_der_line_of_action, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: t('helpers.messages.are_you_sure'), 'original-title': 'Destroy'} if can?(:destroy, CatDerLineOfAction) && updating? %>
                   <button type="submit" class="btn btn-primary btn-sm"><i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %></button>
                 </div>
               </div>

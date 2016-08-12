@@ -3,7 +3,7 @@
 	<div id="logo-group">
 
 		<!-- PLACE YOUR LOGO HERE -->
-		<span id="logo"> <%= image_tag('logo_opi.png', alt: 'OPI', style: "width:80px;") %> </span>
+		<span id="logo"> <%= image_tag('logo-cuauhtemoc.png', style: "width:80px;") %> </span>
 		<!-- END LOGO PLACEHOLDER -->
 
 		<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -106,6 +106,17 @@
         <span> <%= link_to raw("<i class='fa fa-sign-out'></i>"), :destroy_user_session, title: t('pages.login.sign_out'), data: {method: :delete, 'logout-msg': "Esta seguro?", action: "userLogout"} %> </span>
       </div>
       <!-- end logout button -->
+
+			<!-- User info -->
+		  <div class="login-info" data-step="1" data-intro="Aqui se encuentra la información del usuario. Y aqui hay más info...">
+		    <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+		        <a href="<%= user_path(current_user) %>" id="show-shortcut">
+		          <%= image_tag attachment_url(current_user, :avatar, :fill, 50, 50, fallback: "avatars/male.png"), class: 'online' %>
+		          <span><%= current_user.try(:name) %></span>
+		        </a>
+		    </span>
+		  </div>
+		  <!-- end user info -->
 
 	</div>
 	<!-- end pulled right: nav area -->

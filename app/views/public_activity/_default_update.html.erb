@@ -12,45 +12,39 @@
     <%= owner_avatar(activity) %>
   </div>
   <div class="smart-timeline-time">
-    <small><%= time_ago_in_words(activity.created_at) %></small>
+    <small><%= titled_time_ago_in_words(activity.created_at) %></small>
   </div>
   <div class="smart-timeline-content">
-    <p><%= user_label(activity) %></p>
-    <p>
-      <i class="fa fa-pencil-square-o fa-border fa-lg"></i>
-      <%= t('helpers.select.update') %> <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
+    <p class="public-act-title">
+      <%= user_label(activity) %>
+      <%= t('helpers.select.update') %>
+      <strong><%= t("activerecord.models.#{activity.trackable_type.underscore}.one") %></strong>
       <%= trackable_label(activity) %>
     </p>
 
     <div class="detalles" style="display:none">
       <% changes = activity.parameters[:attributes_changed] %>
       <% if changes %>
-      <% keys = changes.keys # lo paso a arrays para garantizar el mismo orden %>
-      <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
-        <thead>
-          <tr>
-            <th class="all control">Valor</th>
-            <% keys.each do |key| %>
-            <th><%= t("simple_form.labels.defaults.#{key}") %></th>
-            <% end %>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Antes</strong></td>
-            <% keys.each do |key| %>
-            <td><%= changes[key][0] %></td>
-            <% end %>
-          </tr>
-          <tr>
-            <td><strong>Después<strong></td>
-              <% keys.each do |key| %>
-              <td><%= changes[key][1] %></td>
-              <% end %>
+          <% keys = changes.keys # lo paso a arrays para garantizar el mismo orden  %>
+          <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+            <thead>
+            <tr>
+              <th class="all control"></th>
+              <th class="all control">Antes</th>
+              <th class="all control">Después</th>
             </tr>
-          </tbody>
-        </table>
-        <% end %>
-      </div>
+            </thead>
+            <tbody>
+            <% keys.each do |key| %>
+                <tr>
+                  <td><strong><%= t("simple_form.labels.defaults.#{key}") %></strong></td>
+                  <td><%= changes[key][0] %></td>
+                  <td><%= changes[key][1] %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+      <% end %>
     </div>
-  </li>
+  </div>
+</li>

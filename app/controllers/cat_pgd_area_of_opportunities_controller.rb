@@ -3,7 +3,7 @@ class CatPgdAreaOfOpportunitiesController < ApplicationController
 
   # GET /cat_pgd_area_of_opportunities
   def index
-    @cat_pgd_area_of_opportunities = do_index(CatPgdAreaOfOpportunity, params)
+    @cat_pgd_area_of_opportunities = indexize(CatPgdAreaOfOpportunity)
   end
 
   # GET /cat_pgd_area_of_opportunities/1

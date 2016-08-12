@@ -1,0 +1,33 @@
+<article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <div id="wid-id-1" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+    <header>
+      <h2>Partidas</h2>
+    </header>
+    <div class="no-padding">
+      <div class="widget-body">
+        <table id="dt_basic" width="100%" class="display table table-striped table-bordered table-hover" style="margin:0 padding-top:0px">
+          <thead>
+          <tr>
+            <th class='all control'>Partida</th>
+            <th>Monto</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @nomina_document.nomina_document_items.each do |ndi| %>
+              <tr>
+                <td><%= ndi.cat_ppr_par_partida_especifica.to_label %></td>
+                <td align='right'><%= number_to_currency(ndi.monto, unit: '') %></td>
+              </tr>
+          <% end %>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td align='right'><strong><%= number_to_currency(@nomina_document.nomina_document_items.sum(:monto), unit: '') %></strong></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
+
+

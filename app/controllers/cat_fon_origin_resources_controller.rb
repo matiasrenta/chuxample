@@ -3,7 +3,7 @@ class CatFonOriginResourcesController < ApplicationController
 
   # GET /cat_fon_origin_resources
   def index
-    @cat_fon_origin_resources = do_index(CatFonOriginResource, params)
+    @cat_fon_origin_resources = indexize(CatFonOriginResource)
   end
 
   # GET /cat_fon_origin_resources/1

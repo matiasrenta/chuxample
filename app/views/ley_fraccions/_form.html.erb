@@ -1,0 +1,50 @@
+<div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
+  <header>
+    <h2><%= creating? ? "<i class='fa fa-file'></i>".html_safe : "<i class='fa fa-pencil'></i>".html_safe %></h2>
+
+    <% if creating? %>
+        <div class='widget-toolbar hidden-xs'>
+          <a href='<%= new_import_ley_articulo_ley_fraccions_path %>' role='button' class='btn btn-primary'><i class='fa fa-upload'></i>Carga
+            masiva</a>
+        </div>
+    <% end %>
+
+  </header>
+  <div>
+    <div class="widget-body">
+      <%= simple_form_for [@ley_articulo, @ley_fraccion], url: creating? ? ley_articulo_ley_fraccions_path(@ley_articulo) : "/ley_fraccions/#{@ley_fraccion.id}", html: {class: 'form-horizontal'},
+                          wrapper: :horizontal_form,
+                          wrapper_mappings: {
+                                  check_boxes: :horizontal_radio_and_checkboxes,
+                                  radio_buttons: :horizontal_radio_and_checkboxes,
+                                  file: :horizontal_file_input,
+                                  boolean: :horizontal_boolean
+                          } do |f| %>
+          <div class="form-inputs edit">
+            <%= f.input :codigo %>
+            <%= f.input :name %>
+            <%= f.input :descripcion_de_documento, :input_html => {:rows => 4, :cols => 30} %>
+            <%= f.input :periodo_actualizacion %>
+            <%= f.input :detalle, :input_html => {:rows => 4, :cols => 30} %>
+            <% if current_user.superuser? %>
+                <%= f.input :actualizado, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@ley_fraccion.actualizado)} %>
+                <%= f.input :validado, as: :string, placeholder: 'dd/mm/aaaa', input_html: {class: 'date-picker', value: format_date_field(@ley_fraccion.validado)} %>
+            <% end %>
+            <%= render 'shared/dropzone_simple', locals: {f: f, field: :file, max_filesize: Sett['REFILE_S3_LEY_MAX_FILESIZE'].to_i} %>
+            <div class="widget-footer">
+              <div class="form-actions">
+                <div class="btn-group">
+                  <%= link_to raw("<i class='fa fa-arrow-left'></i> #{t('simple_form.buttons.list')}"), ley_articulo_path(@ley_articulo), class: 'btn btn-default btn-sm' if can?(:read, LeyFraccion) %>
+                  <%= link_to raw("<i class='fa fa-binoculars'></i> #{t('simple_form.buttons.show')}"), @ley_fraccion, class: 'btn btn-default btn-sm' if can?(:read, LeyFraccion) && updating? %>
+                  <%= link_to raw("<i class='fa fa-trash'></i> #{t('simple_form.buttons.destroy')}"), @ley_fraccion, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: t('helpers.messages.are_you_sure'), 'original-title': 'Destroy'} if can?(:destroy, LeyFraccion) && updating? %>
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class='fa fa-check-circle'></i> <%= creating? ? t('simple_form.buttons.create') : t('simple_form.buttons.update') %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

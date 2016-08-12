@@ -3,7 +3,7 @@ class CatPprParChaptersController < ApplicationController
 
   # GET /cat_ppr_par_chapters
   def index
-    @cat_ppr_par_chapters = do_index(CatPprParChapter, params)
+    @cat_ppr_par_chapters = indexize(CatPprParChapter)
   end
 
   # GET /cat_ppr_par_chapters/1

@@ -3,7 +3,7 @@ class ThingContactsController < ApplicationController
 
   # GET /thing_contacts
   def index
-    @thing_contacts = do_index(ThingContact, params)
+    @thing_contacts = indexize(ThingContact)
   end
 
   # GET /thing_contacts/1
@@ -45,7 +45,7 @@ class ThingContactsController < ApplicationController
       redirect_to thing_contacts_url, notice: t("simple_form.flash.successfully_destroyed")
     else
       generate_flash_msg(@thing_contact)
-      redirect_to thing_contacts_url
+      redirect_to :back
     end
   end
 

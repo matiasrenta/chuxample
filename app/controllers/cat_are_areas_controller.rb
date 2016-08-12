@@ -3,7 +3,7 @@ class CatAreAreasController < ApplicationController
 
   # GET /cat_are_areas
   def index
-    @cat_are_areas = do_index(CatAreArea, params)
+    @cat_are_areas = indexize(CatAreArea)
   end
 
   # GET /cat_are_areas/1
