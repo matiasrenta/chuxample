@@ -1,5 +1,5 @@
 <section id="widget-grid">
-  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <article class="col-sm-6">
     <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
       <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
 
@@ -9,73 +9,78 @@
           <%= link_to raw("<i class='fa fa-check-square'></i> Validar Documento"), validar_documento_ley_articulo_path(@ley_articulo), class: 'btn btn-warning btn-sm', method: :put, data: {confirm: '¿Está seguro de validar este documento?. Esta operación no puede revertirse.', 'original-title': 'Validar Documento'} if(can?(:validar_documento, LeyArticulo) && @ley_articulo.validado.blank? && !@ley_articulo.file_id.blank?) %>
         </div>
       </header>
-      <div>
+      <div class="no-padding">
         <!-- widget content -->
         <div class="widget-body">
 
-          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
-            <thead>
-            <tr class="hidden">
-              <th></th>
-              <th></th>
-            </tr>
-            </thead>
-            <!-- el thead es necesario para que datatable no de error -->
-            <tbody>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.codigo') %></th>
-              <td>
-                <%= @ley_articulo.codigo %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.name') %></th>
-              <td>
-                <%= @ley_articulo.name %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.descripcion_de_documento') %></th>
-              <td>
-                <%= @ley_articulo.descripcion_de_documento %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.periodo_actualizacion') %></th>
-              <td>
-                <%= @ley_articulo.periodo_actualizacion %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.actualizado') %></th>
-              <td>
-                <%= l(@ley_articulo.actualizado, :format => :long) if @ley_articulo.actualizado %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.validado') %></th>
-              <td>
+          <div class="form-group">
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.codigo') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @ley_articulo.codigo %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.name') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @ley_articulo.name %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.descripcion_de_documento') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @ley_articulo.descripcion_de_documento %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.periodo_actualizacion') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @ley_articulo.periodo_actualizacion %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.actualizado') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= l(@ley_articulo.actualizado, :format => :long) if @ley_articulo.actualizado %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.validado') %></strong>
+              </label>
+              <div class="col-lg-9 details-data">
                 <% if @ley_articulo.validado %>
                     <%= l(@ley_articulo.validado, :format => :long) %>
                 <% else %>
 
-                <% end %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.detalle') %></th>
-              <td>
-                <%= @ley_articulo.detalle %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.file') %></th>
-              <td>
+                <% end %>                
+              </div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.detalle') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @ley_articulo.detalle %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.file') %></strong>
+              </label>
+              <div class="col-lg-9 details-data">
                 <%= link_to @ley_articulo.file_filename, attachment_url(@ley_articulo, :file) %> <%= "(#{friendly_file_size(@ley_articulo.file_size)} #{@ley_articulo.file_content_type})" unless @ley_articulo.file_id.blank? %>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -84,4 +89,8 @@
   <%= render 'index_fraccions' %>
 
 </section>
+
+<script type="text/javascript">
+  $('.show-details:even').addClass('striped-div');
+</script>
 

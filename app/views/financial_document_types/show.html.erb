@@ -1,5 +1,5 @@
 <section id="widget-grid">
-  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <article class="col-sm-6">
     <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
       <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
 
@@ -8,38 +8,44 @@
           <%= link_to raw("<i class='fa fa-pencil'></i> #{t('simple_form.buttons.edit')}"), edit_financial_document_type_path(@financial_document_type), class: 'btn btn-primary' if can?(:update, FinancialDocumentType) %>
         </div>
       </header>
-      <div>
+      <div class="no-padding">
         <!-- widget content -->
         <div class="widget-body">
 
-          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
-            <thead><tr class="hidden"><th></th><th></th></tr></thead> <!-- el thead es necesario para que datatable no de error --> <tbody>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.name') %></th>
-              <td>
-                <%= @financial_document_type.name %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.description') %></th>
-              <td>
-                <%= @financial_document_type.description %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.system_doc_type') %></th>
-              <td>
+          <div class="form-group">
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.name') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @financial_document_type.name %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.description') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @financial_document_type.description %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.system_doc_type') %></strong>
+              </label>
+              <div class="col-lg-9 details-data">
                 <%= t("simple_form.labels.defaults.#{@financial_document_type.system_doc_type.underscore}_group") %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th>Capítulos</th>
-              <td>
-                <%= @financial_document_type.chapters.map(&:name).join(', ') %>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+              </div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong>Capítulos</strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @financial_document_type.chapters.map(&:name).join(', ') %></div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -60,4 +66,8 @@
   </article>
   -->
 </section>
+
+<script type="text/javascript">
+  $('.show-details:even').addClass('striped-div');
+</script>
 
