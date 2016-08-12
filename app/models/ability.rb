@@ -29,6 +29,8 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
+		#test commit
+
     @user = user
     send(@user.role.name.delete(' ').underscore)
 		everybody_can_do
