@@ -92,7 +92,7 @@ class KeyAnalytical < ActiveRecord::Base
     if month > 1
       programado_total = 0.0
       MONTH_FIELDS.each_with_index do |m, i|
-        programado_total = programado_total + eval("self.#{m}")
+        programado_total = programado_total + eval("self.#{m}.to_f")
         break if (month - 1) == i
       end
       programado_total
