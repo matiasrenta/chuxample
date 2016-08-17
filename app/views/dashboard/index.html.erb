@@ -102,6 +102,76 @@
 
     </article>
 
+    <!--afectaciones-->
+    <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+      <!-- Widget ID (each widget will need unique ID)-->
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+        <!-- widget options:
+        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+        data-widget-colorbutton="false"
+        data-widget-editbutton="false"
+        data-widget-togglebutton="false"
+        data-widget-deletebutton="false"
+        data-widget-fullscreenbutton="false"
+        data-widget-custombutton="false"
+        data-widget-collapsed="true"
+        data-widget-sortable="false"
+
+        -->
+        <header>
+          <span class="widget-icon"> <i class="fa fa-money"></i> </span>
+          <h2>Afectaciones</h2>
+          <!-- Tabs -->
+          <ul class="nav nav-tabs pull-right" id="widget-tab-3">
+            <li class="active">
+              <a data-toggle="tab" href="#afe-hr1" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Tipo de Proyecto">
+                <span>Proyecto</span>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#afe-hr2" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Capítulo">
+                <span>Capítulo</span>
+              </a>
+            </li>
+          </ul>
+        </header>
+
+        <!-- widget div-->
+        <div>
+
+          <!-- widget edit box -->
+          <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+          </div>
+          <!-- end widget edit box -->
+
+          <!-- widget content -->
+          <div class="widget-body no-padding">
+
+            <div class="tab-content padding-10">
+              <div class="tab-pane fade active in" id="afe-hr1" style="width: 500px; height: 300px;">
+                <%= column_chart @afe_projects %>
+              </div>
+              <div class="tab-pane fade active in" id="afe-hr2"  style="width: 500px; height: 300px;">
+                <%= column_chart @afe_chapters %>
+              </div>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+      </div>
+      <!-- end widget -->
+
+    </article>
+
+
     <!--suppliers-->
     <article  class="col-xs-12">
 
@@ -174,79 +244,12 @@
 
     </article>
 
-    <!--afectaciones-->
-    <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-
-      <!-- Widget ID (each widget will need unique ID)-->
-      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
-        <!-- widget options:
-        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-        data-widget-colorbutton="false"
-        data-widget-editbutton="false"
-        data-widget-togglebutton="false"
-        data-widget-deletebutton="false"
-        data-widget-fullscreenbutton="false"
-        data-widget-custombutton="false"
-        data-widget-collapsed="true"
-        data-widget-sortable="false"
-
-        -->
-        <header>
-          <span class="widget-icon"> <i class="fa fa-money"></i> </span>
-          <h2>Afectaciones</h2>
-          <!-- Tabs -->
-          <ul class="nav nav-tabs pull-right" id="widget-tab-3">
-            <li class="active">
-              <a data-toggle="tab" href="#afe-hr1" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Tipo de Proyecto">
-                <span>Proyecto</span>
-              </a>
-            </li>
-            <li>
-              <a data-toggle="tab" href="#afe-hr2" rel="tooltip" data-toggle="toggle" data-placement="top" data-original-title="Capítulo">
-                <span>Capítulo</span>
-              </a>
-            </li>
-          </ul>
-        </header>
-
-        <!-- widget div-->
-        <div>
-
-          <!-- widget edit box -->
-          <div class="jarviswidget-editbox">
-            <!-- This area used as dropdown edit box -->
-
-          </div>
-          <!-- end widget edit box -->
-
-          <!-- widget content -->
-          <div class="widget-body no-padding">
-
-            <div class="tab-content padding-10">
-              <div class="tab-pane fade active in" id="afe-hr1" style="width: 500px; height: 300px;">
-                <%= column_chart @afe_projects %>
-              </div>
-              <div class="tab-pane fade active in" id="afe-hr2"  style="width: 500px; height: 300px;">
-                <%= column_chart @afe_chapters %>
-              </div>
-            </div>
-
-          </div>
-          <!-- end widget content -->
-
-        </div>
-        <!-- end widget div -->
-
-      </div>
-      <!-- end widget -->
-
-    </article>
-
     <!--activities_obras (mapa)-->
     <article class="col-sm-6">
       <div id="wid-id-2" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
-        <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
+        <header>
+          <span class="widget-icon"> <i class="fa fa-building"></i> </span>
+          <h2>Obras</h2>
         </header>
         <div class="no-padding">
           <!-- widget content -->
@@ -256,14 +259,12 @@
         </div>
       </div>
     </article>
-  </div>
 
-  <div class="row">
     <!--desarrollo social-->
     <article  class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
       <!-- Widget ID (each widget will need unique ID)-->
-      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-3" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
+      <div class="jarviswidget jarviswidget-color-darken" id="wid-id-4" data-widget-fullscreenbutton="false" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false">
         <header>
           <span class="widget-icon"> <i class="fa fa-child"></i> </span>
           <h2>Desarrollo Social</h2>
@@ -297,9 +298,9 @@
     </article>
 
 
+  </div>
 
- </div>
-  <!-- end row -->
+
 
 </section>
 <!-- end widget grid -->
