@@ -1,5 +1,5 @@
 <section id="widget-grid">
-  <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <article class="col-sm-6">
     <div id="wid-id-0" data-widget-colorbutton="false" data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" class="jarviswidget jarviswidget-color-darken">
       <header><span class="widget-icon"><i class="fa fa-binoculars"></i></span>
 
@@ -10,57 +10,56 @@
           <%= link_to raw("<i class='fa fa-times-circle'></i> Inválida"), verification_path(@verification, 'verification[status]' => 0), class: 'btn btn-danger btn-sm', method: :put, data: {confirm: '¿Está seguro de invalidar esta verificación?', 'original-title': 'Invalidar verificación'} if(can?(:update, Verification) && @verification.status != 0) %>
         </div>
       </header>
-      <div>
+      <div class="no-padding">
         <!-- widget content -->
         <div class="widget-body">
 
-          <table class="table table-striped table-hover grey-blue-table" width="100%" cellspacing="0" id="dt_basic">
-            <thead>
-            <tr class="hidden">
-              <th></th>
-              <th></th>
-            </tr>
-            </thead>
-            <!-- el thead es necesario para que datatable no de error -->
-            <tbody>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.user') %></th>
-              <td>
-                <%= @verification.verification_owneable.try(:name_or_email) %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.project_activity_obra') %></th>
-              <td>
-                <%= @verification.project_activity_obra.try(:name) %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.answer') %></th>
-              <td>
-                <%= humanize_answer(@verification.answer) %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.evaluation') %></th>
-              <td>
-                <%= @verification.evaluation %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.comments') %></th>
-              <td>
-                <%= @verification.comments %>
-              </td>
-            </tr>
-            <tr role="row">
-              <th><%= t('simple_form.labels.defaults.status') %></th>
-              <td>
-                <%= status_icon(@verification.status) %>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+          <div class="form-group">
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.user') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @verification.verification_owneable.try(:name_or_email) %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.project_activity_obra') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @verification.project_activity_obra.try(:name) %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.answer') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= humanize_answer(@verification.answer) %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.evaluation') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @verification.evaluation %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.comments') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= @verification.comments %></div>
+            </div>
+
+            <div class="row show-details">
+              <label class="col-lg-3 col-md-4 control-label">
+                <strong><%= t('simple_form.labels.defaults.status') %></strong>
+              </label>
+              <div class="col-lg-9 details-data"><%= status_icon(@verification.status) %></div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -102,5 +101,7 @@
     // DO NOT REMOVE : GLOBAL FUNCTIONS!
     $(document).ready(function () {
         $('.superbox').SuperBox();
-    })
+    });
+    $('.show-details:even').addClass('striped-div');
+
 </script>

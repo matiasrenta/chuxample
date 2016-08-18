@@ -19,37 +19,37 @@
           <div class="widget-body">
 
             <div class="form-group">
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.provider') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                <%= @social_user.provider %>
-                                          </div>
-                  </div>
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.uid') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                                              <%= @social_user.uid %>
-                                                                    </div>
-                  </div>
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.access_token') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                <%= @social_user.access_token %>
-                                          </div>
-                  </div>
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.email') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                <%= @social_user.email %>
-                                          </div>
-                  </div>
-                                                  <div class="row show-details">
-                    <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.json_data') %></strong></label>
-                    <div class="col-lg-9 details-data">
-                                                <%= @social_user.json_data %>
-                                          </div>
-                  </div>
-                          </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.provider') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <%= @social_user.provider %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.uid') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <%= @social_user.uid %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.access_token') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <%= @social_user.access_token %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.email') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <%= @social_user.email %>
+                </div>
+              </div>
+              <div class="row show-details">
+                <label class="col-lg-3 col-md-4 control-label"><strong><%=t('simple_form.labels.defaults.json_data') %></strong></label>
+                <div class="col-lg-9 details-data">
+                  <%= @social_user.json_data %>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -68,7 +68,10 @@
         </div>
       </div>
     </article>
-    -->
-  </div>
+  -->
+</div>
 </section>
 
+<script type="text/javascript">
+  $('.show-details:even').addClass('striped-div');
+</script>
