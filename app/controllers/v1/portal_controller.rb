@@ -31,7 +31,8 @@ class V1::PortalController < V1::BaseController
                                                               cat_ppr_par_chapters.description as capitulo,
                                                               cat_aci_institutional_activities.description as actividad_institucional,
                                                               cat_are_areas.description as area,
-                                                              key_analyticals.original as programado')
+                                                              key_analyticals.original as programado,
+                                                              key_analyticals.modificado as modificado')
     respond_with @projects
   end
 
