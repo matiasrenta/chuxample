@@ -180,6 +180,7 @@ class ApplicationController < ActionController::Base
       flash[flash_type] = model_instance.errors.get(:base).kind_of?(String) ? model_instance.errors.get(:base) : model_instance.errors.get(:base).join(". ")
     elsif model_instance.errors.any?
       flash[flash_type] = t('activerecord.errors.template.default_error_base')
+      #puts "@@@@@@@@@@@@@@@@@@ model_instance.errors.full_messages: #{model_instance.errors.full_messages}"
     end
   end
 
