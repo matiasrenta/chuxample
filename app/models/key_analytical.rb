@@ -48,7 +48,7 @@ class KeyAnalytical < ActiveRecord::Base
 
   normalize_attribute :proyecto_de_inversion # para que no cambie de nil a ''. ver gem attribute_normalizer
 
-  before_validation do
+  before_validation on: :create do
     self.modificado = self.original
   end
 
