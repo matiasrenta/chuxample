@@ -57,3 +57,12 @@ psql -U web -d cuauh_production -f cuauh_development_dump.txt
 LOGS PRODUCCION:
 ================
 Nginx: /var/log/nginx/nginx_error.log (hacer "sudo su" y luego ir al directorio)
+
+
+PROBLEMA DE DEPLOY EN MI MAC:
+=============================
+si desde mi mac el deploy de capistrano dice:
+DEBUG [bfa15479] 	Permission denied (publickey).
+DEBUG [bfa15479] 	fatal: Could not read from remote repository.
+entonces ejecutar (para agregar al agente la llave): ssh-add ~/.ssh/id_rsa
+ver link: http://stackoverflow.com/questions/22977714/capistrano-and-github-private-repo-permission-denied-publickey
