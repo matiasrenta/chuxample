@@ -7,7 +7,7 @@ class V1::PortalController < V1::BaseController
   end
 
   def total_budget
-    render json: {presupuesto: KeyAnalytical.sum(:modificado), percent: 7, last_year: 2015}
+    render json: {presupuesto: KeyAnalytical.sum(:modificado), percent: 35, last_year: 2015}
   end
 
   def budget_by_chapter
