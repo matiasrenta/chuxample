@@ -70,6 +70,8 @@ class KeyAnalytical < ActiveRecord::Base
 
   before_save :construct_key_analytical_string, :assign_project_type
 
+  default_scope {where("key_analyticals.year = #{PublicActivity.get_controller.try(:current_user).try(:viewing_year) || Date.today.year }")}
+
   scope :obras, -> { where(project_type: 'ProjectObra') }
   scope :socials, -> { where(project_type: 'ProjectSocial') }
   scope :nominas, -> { where(project_type: 'ProjectNomina') }

@@ -259,6 +259,7 @@ class Ability
 	def everybody_can_do
 		can :read, :dashboard
 		can :read, PublicActivity::Activity
+		can :update, :viewing_year
 	end
 
 end

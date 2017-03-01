@@ -324,6 +324,7 @@ Rails.application.routes.draw do
   get 'api_user_root', to: 'api_users/welcome#welcome'
 
 
+  get 'set_viewing_year/:viewing_year', to: 'application#set_viewing_year'
   get "application/access_denied"
 
   # The priority is based upon order of creation: first created -> highest priority.
