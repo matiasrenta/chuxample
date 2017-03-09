@@ -52,6 +52,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_viewing_year
+    authorize! :update, :viewing_year
+    year = params[:viewing_year]
+    if year
+      raise ArgumentError.new('viewing_year debe ser numerico y no menor a 2016)') if year.to_i < 2016
+      current_user.update(viewing_year: year.to_i)
+    elsif current_user.viewing_year.nil?
+      current_user.update(viewing_year: Date.today.year)
+    end
+    flash[:info] = "Visualizando datos del año #{current_user.viewing_year}"
+    redirect_to :back
+  end
+
 
   protected ####################################### PROTECTED ###################################################
 

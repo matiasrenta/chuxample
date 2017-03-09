@@ -118,6 +118,25 @@
 		  </div>
 		  <!-- end user info -->
 
+
+      <ul class="header-dropdown-list">
+        <span>Año</span>
+        <li class="">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <span> <%= current_user.viewing_year %> </span> <i class="fa fa-angle-down"></i> </a>
+          <ul class="dropdown-menu pull-right">
+            <li class="<%= current_user.viewing_year == 2016 ? 'active' : '' %>">
+              <a href="/set_viewing_year/2016">2016</a>
+            </li>
+            <li class="<%= current_user.viewing_year == 2017 ? 'active' : '' %>">
+              <a href="/set_viewing_year/2017">2017</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+
+
+
 	</div>
 	<!-- end pulled right: nav area -->
 
