@@ -24,7 +24,9 @@ class BaseImport
       if save_in_ddbb == '1'
         model = self.class.name # ejemplo: ThingImport
         model.slice! "Import" # quito el Import para que quede Thing
+        PaperTrail.enabled = false
         eval("#{model}.import imported_entities")  # esto es del gem activerecord-import el cual hace una sola sentencia insert para todos los registros. Cuidado: no validations y no callbacks
+        PaperTrail.enabled = true
       end
       true
     else
