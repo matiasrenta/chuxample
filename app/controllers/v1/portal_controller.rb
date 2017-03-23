@@ -46,10 +46,12 @@ class V1::PortalController < V1::BaseController
 
   def mapa_obras
     @activities_obras = ProjectActivityObra.all.includes(:financial_documents, :verifications, project_obra: [:cat_are_area])
+    #ao.each {|act_o| puts "act_o.id = #{act_o.id}" if act_o.project_obra.nil?}
   end
 
   def financial_documents
     @financial_documents = FinancialDocument.all.includes(:project_activityable, :financial_document_type)
+    #fds.each {|fd| puts fd.project_activityable.parent_project.cat_are_area.description}
   end
 
   def open_data

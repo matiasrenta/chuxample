@@ -66,3 +66,8 @@ DEBUG [bfa15479] 	Permission denied (publickey).
 DEBUG [bfa15479] 	fatal: Could not read from remote repository.
 entonces ejecutar (para agregar al agente la llave): ssh-add ~/.ssh/id_rsa
 ver link: http://stackoverflow.com/questions/22977714/capistrano-and-github-private-repo-permission-denied-publickey
+
+EJECUTAR CONSOLA EN PRODUCCION:
+===============================
+RAILS_ENV=production bundle exec rails c --sandbox
+
