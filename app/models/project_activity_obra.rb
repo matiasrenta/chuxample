@@ -12,6 +12,7 @@ class ProjectActivityObra < ActiveRecord::Base
 
 
   belongs_to :project_obra
+  #alias_attribute :parent_project, :project_obra #esto debería reemplazar al metodo feo "def parent_project". pero primero debo probar si funciona
   has_many :financial_documents, as: :project_activityable, dependent: :restrict_with_error
   has_many :verifications, dependent: :destroy
 
@@ -42,6 +43,8 @@ class ProjectActivityObra < ActiveRecord::Base
       ORDER BY verificated_at DESC, pao.name ASC
     ")
   }
+
+  scope :by_project_year, -> (year){joins("INNER JOIN key_analyticals ON key_analyticals.id = project_activity_obras.project_obra_id AND (key_analyticals.year = #{year})")}
 
   geocoded_by :full_address
   after_validation :geocode, :if => :full_address_changed?

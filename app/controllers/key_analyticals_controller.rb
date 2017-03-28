@@ -30,7 +30,7 @@ class KeyAnalyticalsController < ApplicationController
         params[:q][:id_not_in] = with_history.size > 0 ? with_history : [0]
         params[:q].except!(:id_in)
       end
-      @q = KeyAnalytical.accessible_by(current_ability, :read).ransack(params[:q])
+      @q = KeyAnalytical.where(year: current_user.viewing_year).accessible_by(current_ability, :read).ransack(params[:q])
       @q = @q.order("updated_at DESC, created_at DESC") if params[:q] && params[:q][:meta_sort]
       @key_analyticals = @q.result(distinct: true).paginate(:page => params[:page], :per_page => per_page(params[:per_page]))
 

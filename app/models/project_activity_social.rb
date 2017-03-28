@@ -11,6 +11,10 @@ class ProjectActivitySocial < ActiveRecord::Base
           }
 
 
+
+  #belongs_to :parent_project, class_name: 'ProjectSocial', foreign_key: 'project_social_id'
+  #alias_attribute :project_social, :parent_project
+
   belongs_to :project_social
   belongs_to :social_development_program
   has_many :financial_documents, as: :project_activityable, dependent: :restrict_with_error
@@ -23,6 +27,8 @@ class ProjectActivitySocial < ActiveRecord::Base
   before_create do
     self.name = social_development_program.try(:name)
   end
+
+  scope :by_project_year, -> (year){joins("INNER JOIN key_analyticals ON key_analyticals.id = project_activity_socials.project_social_id AND (key_analyticals.year = #{year})")}
 
   def parent_project
     self.project_social

@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   #load_and_authorize_resource except: :index, param_method: :key_analytical_params
 
   def index
-    @projects = indexize(KeyAnalytical)
+    @projects = indexize(KeyAnalytical, collection: KeyAnalytical.where(year: current_user.viewing_year))
   end
 
   def show

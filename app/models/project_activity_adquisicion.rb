@@ -18,6 +18,8 @@ class ProjectActivityAdquisicion < ActiveRecord::Base
   validates :cantidad, numericality: true
   validates :avance_programado, :avance_real, :project_adquisicion_id, numericality: true, :allow_nil => true
 
+  scope :by_project_year, -> (year){joins("INNER JOIN key_analyticals ON key_analyticals.id = project_activity_adquisicions.project_adquisicion_id AND (key_analyticals.year = #{year})")}
+
   def parent_project
     self.project_adquisicion
   end

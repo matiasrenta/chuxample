@@ -15,6 +15,9 @@ class FinancialDocument < ActiveRecord::Base
   belongs_to :financial_document_type
   belongs_to :supplier
 
+  # las siguientes son para poder hacer eager load (joins(:project_activity_obra) por ejemplo. Porque no puedo hacer: joins(:project_activityable))
+  belongs_to :project_activity_obra, -> { joins(:reviews) .where(reviews: {reviewable_type: 'Shop'}) }, foreign_key: 'reviewable_id'
+
   attachment :file, extension: %w[jpg jpeg png gif pdf doc docx], store: 's3_financial_documents_backend', cache: 's3_financial_documents_cache'
   #content_type: %w[image/jpeg image/png image/gif text/plain application/pdf application/doc application/docx]
 
@@ -29,11 +32,25 @@ class FinancialDocument < ActiveRecord::Base
   scope :bills_and_contracts, -> {where(type: ['FinancialDocumentBill', 'FinancialDocumentContract'])}
   scope :without_contract, -> {where("financial_document_contract_id IS NULL")}
   scope :by_activities, -> (activities_ids, activityable_type){where(project_activityable_id: activities_ids, project_activityable_type: activityable_type)}
+  #scope :by_project_year, ->(year){joins(project_activityable: [:parent_project]).where('key_analyticals.year = ?', year)}
 
   scope :adquisicions, -> {where(project_activityable_type: 'ProjectActivityAdquisicion')}
   scope :obras, -> {where(project_activityable_type: 'ProjectActivityObra')}
   scope :socials, -> {where(project_activityable_type: 'ProjectActivitySocial')}
-  scope :nominas, -> {where(project_activityable_type: 'ProjectActivityNomina')}
+
+  # este scope obtiene todos los documentos financieros de los proyectos de un año en particular
+  scope :by_project_year, -> (year) do
+    a = adquisicions.joins("INNER JOIN project_activity_adquisicions ON project_activity_adquisicions.id = financial_documents.project_activityable_id
+                        INNER JOIN key_analyticals ON key_analyticals.id = project_activity_adquisicions.project_adquisicion_id AND (key_analyticals.year = #{year})")
+
+    o = obras.joins("INNER JOIN project_activity_obras ON project_activity_obras.id = financial_documents.project_activityable_id
+                 INNER JOIN key_analyticals ON key_analyticals.id = project_activity_obras.project_obra_id AND (key_analyticals.year = #{year})")
+
+    s = socials.joins("INNER JOIN project_activity_socials ON project_activity_socials.id = financial_documents.project_activityable_id
+                 INNER JOIN key_analyticals ON key_analyticals.id = project_activity_socials.project_social_id AND (key_analyticals.year = #{year})")
+
+    a.union(o.union(s))
+  end
 
   def friendly_type
     return 'Factura' if grupo_factura?
