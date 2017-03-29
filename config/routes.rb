@@ -411,7 +411,7 @@ Rails.application.routes.draw do
     resources :portal do
       collection do
         get 'total_budget/:year', action: 'total_budget'
-        get 'budget_by_chapter/:year', action: 'budget_by_chapter'
+        get :budget_by_chapter
         get 'treemap/:year', action: 'treemap'
         get 'suppliers/:year', action: 'suppliers'
         get 'mapa_obras/:year', action: 'mapa_obras'
