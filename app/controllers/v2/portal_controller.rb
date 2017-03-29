@@ -3,7 +3,16 @@ class V2::PortalController < V2::BaseController
   before_action :year_param, only: [:total_budget, :budget_by_chapter, :treemap, :suppliers, :mapa_obras, :financial_documents]
 
   def total_budget
-    render json: {presupuesto: KeyAnalytical.where(year: @year).sum(:modificado), percent: 35, last_year: @year - 1}
+    presupuesto_actual_year = KeyAnalytical.where(year: @year).sum(:modificado)
+    presupuesto_last_year   = KeyAnalytical.where(year: @year - 1).sum(:modificado) # year no debe ser menor a 2017 porque last year seria menor a 2016 y no hay datos
+    percent = (Float(presupuesto_actual_year - presupuesto_last_year) / presupuesto_last_year * 100).round
+    if percent >= 0
+      phrase =  "Esto representa un aumento de #{percent}% al presupuesto ejercido en #{@year - 1}"
+    else
+      phrase =  "Esto representa una reducción de #{percent.abs}% al presupuesto ejercido en #{@year - 1}"
+    end
+
+    render json: {presupuesto: presupuesto_actual_year, percent: percent, last_year: @year - 1, friendly_phrase: phrase}
   end
 
   def budget_by_chapter
