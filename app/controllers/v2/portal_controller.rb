@@ -33,9 +33,9 @@ class V2::PortalController < V2::BaseController
   end
 
   def suppliers
-    adquisiciones = FinancialDocument.bills.adquisicions.select("SUM(monto) AS value, suppliers.name AS name, 'Adquisiciones' AS tipo").joins(:supplier).group('suppliers.id, suppliers.name')
-    obras         = FinancialDocument.bills.obras.select("SUM(monto) AS value, suppliers.name AS name, 'Obras' AS tipo").joins(:supplier).group('suppliers.id, suppliers.name')
-    socials       = FinancialDocument.bills.socials.select("SUM(monto) AS value, suppliers.name AS name, 'Sociales' AS tipo").joins(:supplier).group('suppliers.id, suppliers.name')
+    adquisiciones = FinancialDocument.by_project_year(@year).bills.adquisicions.select("SUM(monto) AS value, suppliers.name AS name, 'Adquisiciones' AS tipo").joins(:supplier).group('suppliers.id, suppliers.name')
+    obras         = FinancialDocument.by_project_year(@year).bills.obras.select("SUM(monto) AS value, suppliers.name AS name, 'Obras' AS tipo").joins(:supplier).group('suppliers.id, suppliers.name')
+    socials       = FinancialDocument.by_project_year(@year).bills.socials.select("SUM(monto) AS value, suppliers.name AS name, 'Sociales' AS tipo").joins(:supplier).group('suppliers.id, suppliers.name')
     @suppliers = adquisiciones.union(obras.union(socials))
     respond_with @suppliers
   end
