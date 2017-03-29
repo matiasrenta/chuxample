@@ -32,13 +32,11 @@ class FinancialDocument < ActiveRecord::Base
   scope :bills_and_contracts, -> {where(type: ['FinancialDocumentBill', 'FinancialDocumentContract'])}
   scope :without_contract, -> {where("financial_document_contract_id IS NULL")}
   scope :by_activities, -> (activities_ids, activityable_type){where(project_activityable_id: activities_ids, project_activityable_type: activityable_type)}
-  #scope :by_project_year, ->(year){joins(project_activityable: [:parent_project]).where('key_analyticals.year = ?', year)}
-
   scope :adquisicions, -> {where(project_activityable_type: 'ProjectActivityAdquisicion')}
   scope :obras, -> {where(project_activityable_type: 'ProjectActivityObra')}
   scope :socials, -> {where(project_activityable_type: 'ProjectActivitySocial')}
 
-  # este scope obtiene todos los documentos financieros de los proyectos de un año en particular
+  # este scope obtiene todos los documentos financieros de los proyectos de un año en particular. porque esto no se puede hacer: scope :by_project_year, ->(year){joins(project_activityable: [:parent_project]).where('key_analyticals.year = ?', year)}
   scope :by_project_year, -> (year) do
     a = adquisicions.joins("INNER JOIN project_activity_adquisicions ON project_activity_adquisicions.id = financial_documents.project_activityable_id
                         INNER JOIN key_analyticals ON key_analyticals.id = project_activity_adquisicions.project_adquisicion_id AND (key_analyticals.year = #{year})")
