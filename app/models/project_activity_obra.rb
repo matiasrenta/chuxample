@@ -21,6 +21,8 @@ class ProjectActivityObra < ActiveRecord::Base
   validates :avance_programado, numericality: true, if: :avance_programado
   validates :avance_real, numericality: true, if: :avance_real
 
+  before_save :precence_of_latitude_and_longitude
+
   scope :with_verifications_approved, -> {joins(:verifications).where('verifications.status = 1').group('project_activity_obras.id')} # el group es para que no vengan filas repetidas
   scope :without_verifications_approved, -> {where('NOT EXISTS (select * from verifications v where v.project_activity_obra_id = project_activity_obras.id AND status = 1)')}
   # actividades que un usuario no ha verificado hoy, y si las ha verificado antes entonces 'v.created_at' es la fecha de la última vez que verificó
@@ -62,7 +64,7 @@ class ProjectActivityObra < ActiveRecord::Base
 
   def full_address
     # ejepmlo: "Chilpancingo 53, Hipódromo, Cuauhtemnoc, Ciudad de México, México"
-    "#{calle} #{nro_exterior}, #{colonia}, Cuauhtemnoc, Ciudad de México, México"
+    "#{calle} #{nro_exterior}, #{colonia}, Cuauhtemoc, Ciudad de México, México"
   end
 
   def full_address_changed?
@@ -71,6 +73,15 @@ class ProjectActivityObra < ActiveRecord::Base
 
   def except_attr_in_public_activity
     [:id, :updated_at, :ejercido]
+  end
+
+  private
+
+  def precence_of_latitude_and_longitude
+    if self.latitude.blank? || self.longitude.blank?
+      errors.add(:base, "No se pudo ubicar en el mapa. Debe haber un error en la calle, nro exterior o colonia.")
+      return false
+    end
   end
 
 end

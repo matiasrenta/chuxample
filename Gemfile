@@ -130,6 +130,7 @@ gem 'acts_as_commentable_with_threading'
 gem 'geocoder'
 #gem 'geokit'
 #gem 'geokit-rails'
+# https://github.com/apneadiving/Google-Maps-for-Rails
 gem 'gmaps4rails'
 #gem 'graticule'
 # soft delete. https://github.com/rubysherpas/paranoia
